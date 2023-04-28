@@ -4,15 +4,12 @@ namespace IslandBoy
 {
     public class PlayerIdleState : PlayerBaseState
     {
-        private static Vector3 _rightDirScale = new(1, 1, 1);
-        private static Vector3 _leftDirScale = new(-1, 1, 1);
-
         public PlayerIdleState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory) { }
 
         public override void EnterState()
         {
-            Debug.Log("Entered Idle State");
-            Ctx.LocalScale = Ctx.IsFacingRight ? _rightDirScale : _leftDirScale;
+            //Debug.Log("Entered Idle State");
+            Ctx.SpriteFlipHandle();
         }
 
         public override void UpdateState()
