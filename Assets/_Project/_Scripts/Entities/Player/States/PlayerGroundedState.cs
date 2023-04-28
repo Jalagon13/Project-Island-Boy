@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace IslandBoy
@@ -15,7 +13,6 @@ namespace IslandBoy
         public override void EnterState()
         {
             //Debug.Log("Entered Grounded State");
-            
         }
 
         public override void UpdateState()
@@ -30,20 +27,10 @@ namespace IslandBoy
 
         public override void InitializeSubState()
         {
-            
+            SetSubState(Factory.Idle());
         }
 
         public override void CheckSwitchStates()
-        {
-            
-        }
-
-        private void SetUpParameters()
-        {
-            
-        }
-
-        private void AnimHandle()
         {
             
         }

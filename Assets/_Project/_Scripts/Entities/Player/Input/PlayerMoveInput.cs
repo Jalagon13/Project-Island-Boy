@@ -8,10 +8,12 @@ namespace IslandBoy
         [SerializeField] private float _speed = 3f;
 
         private Rigidbody2D _rb;
-        private Vector2 _moveDirection;
         private PlayerInput _playerInput;
+        private Vector2 _moveDirection;
+        private bool _isFacingRight;
 
         public Vector2 MoveDirection { get { return _moveDirection; } }
+        public bool IsFacingRight { get { return _isFacingRight; } }
 
         private void Awake()
         {
@@ -44,6 +46,8 @@ namespace IslandBoy
         private void MovementAction(InputAction.CallbackContext context)
         {
             _moveDirection = context.ReadValue<Vector2>();
+            if (_moveDirection.x != 0)
+                _isFacingRight = _moveDirection.x > 0;
         }
     }
 }
