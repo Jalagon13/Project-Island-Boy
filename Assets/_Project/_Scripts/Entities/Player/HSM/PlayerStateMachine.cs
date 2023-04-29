@@ -4,7 +4,7 @@ namespace IslandBoy
 {
     public class PlayerStateMachine : MonoBehaviour
     {
-        //[SerializeField] private Sprite _cursorSprite;
+        [SerializeField] private PlayerReference _pr;
 
         private static Vector3 _rightDirScale = new(1, 1, 1);
         private static Vector3 _leftDirScale = new(-1, 1, 1);
@@ -32,6 +32,7 @@ namespace IslandBoy
         private void Update()
         {
             _currentState.UpdateStates();
+            _pr.UpdatePlayerPositionReference(transform.position);
         }
 
         public void SpriteFlipHandle()

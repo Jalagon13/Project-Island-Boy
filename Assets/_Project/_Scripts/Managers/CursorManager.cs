@@ -6,6 +6,7 @@ namespace IslandBoy
     {
         [SerializeField] private Texture2D _defaultCursor;
         [SerializeField] private Texture2D _promptCursor;
+        [SerializeField] private Texture2D _promptCursorTransparent;
 
         private void Start()
         {
@@ -20,6 +21,11 @@ namespace IslandBoy
         public void SetPromptCursor()
         {
             Cursor.SetCursor(_promptCursor, Vector2.zero, CursorMode.ForceSoftware);
+        }
+
+        public void SetPromptCursorTransparent()
+        {
+            Cursor.SetCursor(_promptCursorTransparent, Vector2.zero, CursorMode.ForceSoftware);
         }
     }
 }
