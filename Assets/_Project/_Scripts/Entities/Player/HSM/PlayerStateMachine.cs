@@ -4,6 +4,8 @@ namespace IslandBoy
 {
     public class PlayerStateMachine : MonoBehaviour
     {
+        //[SerializeField] private Sprite _cursorSprite;
+
         private static Vector3 _rightDirScale = new(1, 1, 1);
         private static Vector3 _leftDirScale = new(-1, 1, 1);
         private PlayerBaseState _currentState;
@@ -24,6 +26,7 @@ namespace IslandBoy
         {
             _currentState = _states.Grounded();
             _currentState.EnterState();
+            //Cursor.SetCursor(_cursorSprite.texture, Vector2.zero, CursorMode.ForceSoftware);
         }
 
         private void Update()
