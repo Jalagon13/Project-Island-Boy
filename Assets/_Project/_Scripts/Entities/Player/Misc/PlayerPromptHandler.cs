@@ -4,7 +4,7 @@ namespace IslandBoy
 {
     public class PlayerPromptHandler : MonoBehaviour
     {
-
+        private PromptInteract _currentPromptInteract;
 
         private void OnEnable()
         {
@@ -18,7 +18,10 @@ namespace IslandBoy
 
         private void PromptTracker(PromptInteract promptInteract)
         {
-            Debug.Log("Interacted");
+            if (_currentPromptInteract != promptInteract && _currentPromptInteract != null)
+                _currentPromptInteract.ClosePrompt();
+
+            _currentPromptInteract = promptInteract;
         }
     }
 }

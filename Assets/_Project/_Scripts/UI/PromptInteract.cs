@@ -16,6 +16,9 @@ namespace IslandBoy
 
         protected virtual void Update()
         {
+            if (!_pr.PlayerInRange(transform.position) && _promptOn)
+                ClosePrompt();
+
             if (!_hovering) return;
 
             if (_pr.PlayerInRange(transform.position))
@@ -55,7 +58,7 @@ namespace IslandBoy
             PromptInterectEvent?.Invoke(this);
         }
 
-        private void ClosePrompt()
+        public void ClosePrompt()
         {
             _promptOn = false;
             _promptCanvas.gameObject.SetActive(false);
