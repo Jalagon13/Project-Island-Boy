@@ -6,8 +6,8 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerReference _pr;
 
-        private static Vector3 _rightDirScale = new(1, 1, 1);
-        private static Vector3 _leftDirScale = new(-1, 1, 1);
+        private static Vector3 _rightDirScale;
+        private static Vector3 _leftDirScale;
         private PlayerBaseState _currentState;
         private PlayerStateFactory _states;
         private PlayerMoveInput _moveInput;
@@ -18,6 +18,8 @@ namespace IslandBoy
 
         private void Awake()
         {
+            _rightDirScale = transform.localScale;
+            _leftDirScale = new(-_rightDirScale.x, _rightDirScale.y);
             _states = new PlayerStateFactory(this);
             _moveInput = GetComponent<PlayerMoveInput>();
         }
