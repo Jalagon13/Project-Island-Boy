@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f59011461ecd73f4bafc48709d902230
+guid: 62ea08f92c2779248a315a11272ffe75
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,22 +105,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rsc_tree
+      name: decal_move_tutorial
       rect:
         serializedVersion: 2
-        x: 15
-        y: 2
-        width: 34
-        height: 58
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 7
+        y: 20
+        width: 45
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2cc47ab847a5c54488ddaf5c89160f71
-      internalID: -1302916514
+      spriteID: 9364eee7feff48645b8c44057c505deb
+      internalID: 883676940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: decal_single_hit_tutorial
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 21
+        width: 34
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59b4c026058588c41a1c1cf857f56b15
+      internalID: 688158985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: decal_swing_hit_tutorial
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 17
+        width: 53
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 262f1ffa74360814d8f719e04b98fe2c
+      internalID: 485633072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: decal_sta
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6a02d7aa3442dc4c9284060e5914d56
+      internalID: -2059306806
       vertices: []
       indices: 
       edges: []
@@ -136,7 +199,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      rsc_tree: -1302916514
+      decal_move_tutorial: 883676940
+      decal_single_hit_tutorial: 688158985
+      decal_sta: -2059306806
+      decal_swing_hit_tutorial: 485633072
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

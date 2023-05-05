@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace IslandBoy
 {
@@ -11,6 +12,7 @@ namespace IslandBoy
         private PlayerBaseState _currentState;
         private PlayerStateFactory _states;
         private PlayerMoveInput _moveInput;
+        private Camera _mainCamera;
 
         public PlayerBaseState CurrentState { get { return _currentState; } set { _currentState = value; } }
         public Vector2 MoveDirection { get { return _moveInput.MoveDirection; } }
@@ -18,6 +20,7 @@ namespace IslandBoy
 
         private void Awake()
         {
+            _mainCamera = Camera.main;
             _rightDirScale = transform.localScale;
             _leftDirScale = new(-_rightDirScale.x, _rightDirScale.y);
             _states = new PlayerStateFactory(this);
@@ -34,7 +37,8 @@ namespace IslandBoy
         private void Update()
         {
             _currentState.UpdateStates();
-            _pr.UpdatePlayerPositionReference(transform.position);
+            _pr.PlayerPositionReference = transform.position;
+            _pr.MousePositionReference = (Vector2)_mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         }
 
         public void SpriteFlipHandle()
