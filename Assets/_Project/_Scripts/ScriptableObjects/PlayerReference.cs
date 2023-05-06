@@ -8,6 +8,7 @@ namespace IslandBoy
         private const float INTERACT_RANGE = 2f;
         private Vector2 _playerPosition;
         private Vector2 _mousePosition;
+        private Inventory _playerInventory;
 
         /// <summary>
         /// Setting PlayerPositionReference does NOT change the actual position of the player.
@@ -17,6 +18,9 @@ namespace IslandBoy
         /// </summary>
         public Vector2 PlayerPositionReference { get { return _playerPosition; } set { _playerPosition = value; } }
         public Vector2 MousePositionReference { get { return _mousePosition; } set { _mousePosition = value; } }
+
+        // This is only SET in the Inventory Script do NOT SET this anywhere else. Only get a refernce for it.
+        public Inventory PlayerInventory { get { return _playerInventory; } set { _playerInventory = value; } }
 
         public bool PlayerInRange(Vector3 posToCheck)
         {
