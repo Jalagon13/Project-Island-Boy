@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace IslandBoy
 {
@@ -9,35 +6,20 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerReference _pr;
 
-        private PlayerInput _input;
-        private bool _isHeldDown;
+        private StaInput _staInput;
 
         private void Awake()
         {
             transform.SetParent(null);
-            _input = new();
-            _input.Player.PrimaryAction.performed += SetIsHeldDown;
-            _input.Player.PrimaryAction.canceled += SetIsHeldDown;
-        }
-
-        private void SetIsHeldDown(InputAction.CallbackContext context)
-        {
-            _isHeldDown = context.performed;
-        }
-
-        private void OnEnable()
-        {
-            _input.Enable();
-        }
-
-        private void OnDisable()
-        {
-            _input.Disable();
+            _staInput = GetComponent<StaInput>();
         }
 
         private void Update()
         {
             transform.position = CalcStaPos();
+
+            if (!_staInput.IsHeldDown) return;
+
         }
 
         private Vector2 CalcStaPos()
