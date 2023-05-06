@@ -4,18 +4,11 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public class ResourceObject : MonoBehaviour
+    [CreateAssetMenu(fileName = "New Resource", menuName = "Create Item/New Resource")]
+    public class ResourceObject : ItemObject
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
+        [Header("Resource Parameters")]
+        [SerializeField] private bool _stackable = true;
+        public bool Stackable { get { return _stackable; } }
     }
 }
