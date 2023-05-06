@@ -12,14 +12,11 @@ namespace IslandBoy
 
         public ToolObject Item { get { return _item; } }
 
-        private void Awake()
+        public void Initialize(ItemObject item)
         {
             _image = GetComponent<Image>();
             _durabilityFill = transform.GetChild(0).GetChild(1).GetComponent<Image>();
-        }
 
-        public void Initialize(ItemObject item)
-        {
             _item = (ToolObject)item;
             _image.sprite = item.UIDisplay;
             _currentDurability = _item.DurabilityReference;

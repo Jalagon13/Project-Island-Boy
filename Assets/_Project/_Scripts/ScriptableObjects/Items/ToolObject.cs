@@ -15,7 +15,8 @@ namespace IslandBoy
         public float CoolDown { get { return _coolDown; } }
 
         /// This is not a set in stone Durability for all Tools of this type but like a 
-        /// durability temp variable to store this information in the inventory slot.
+        /// durability temp variable to temporarily store this information in the inventory slot 
+        /// to display the durability in the inventory.
         public int DurabilityReference { get { return _durabilityReference; } 
             set 
             {

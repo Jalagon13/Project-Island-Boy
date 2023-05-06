@@ -1,21 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace IslandBoy
 {
-    public class InventorySlot : MonoBehaviour
+    public class InventorySlot : MonoBehaviour, IPointerClickHandler
     {
-        // Start is called before the first frame update
-        void Start()
+        public void OnPointerClick(PointerEventData eventData)
         {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
+            if(eventData.button == PointerEventData.InputButton.Left)
+            {
+                Debug.Log("Clicked Inventory Slot");
+            }
         }
     }
 }

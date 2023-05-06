@@ -14,14 +14,11 @@ namespace IslandBoy
         public ItemObject Item { get { return _item; } }
         public int Count { get { return _count; } }
 
-        private void Awake()
+        public void Initialize(ItemObject item)
         {
             _image = GetComponent<Image>();
             _countText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        }
 
-        public void Initialize(ItemObject item)
-        {
             _item = item;
             _image.sprite = item.UIDisplay;
             _count = 1;
