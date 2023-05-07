@@ -5,6 +5,7 @@ namespace IslandBoy
 {
     public class InventorySlot : MonoBehaviour, IPointerClickHandler
     {
+        [SerializeField] private GameObject _inventoryItemPrefab;
         private MouseItemHolder _mouseItemHolder;
         private bool _inventoryOpen;
         private int _maxStack;
@@ -56,7 +57,44 @@ namespace IslandBoy
             {
                 if (_mouseItemHolder.HasItem())
                 {
+                    if (ThisSlotHasItem())
+                    {
+                        if(ThisItemObject() == _mouseItemHolder.MouseItemObject())
+                        {
+                            if (ThisItemObject().Stackable)
+                            {
+                                var mouseInventoryItem = _mouseItemHolder.transform.GetChild(0).GetComponent<InventoryItem>();
+                                var thisInventoryItem = transform.GetChild(0).GetComponent<InventoryItem>();
 
+                                if(thisInventoryItem.Count < _maxStack)
+                                {
+                                    mouseInventoryItem.Count -= 1;
+                                    thisInventoryItem.Count += 1;
+                                }
+                            }
+                            else
+                            {
+                                SwapThisItemAndMouseItem();
+                            }
+                        }
+                        else
+                        {
+                            SwapThisItemAndMouseItem();
+                        }
+                    }
+                    else
+                    {
+                        if (_mouseItemHolder.MouseItemObject().Stackable)
+                        {
+                            CreateItem(_mouseItemHolder.MouseItemObject());
+                            var mouseInventoryItem = _mouseItemHolder.transform.GetChild(0).GetComponent<InventoryItem>();
+                            mouseInventoryItem.Count -= 1;
+                        }
+                        else
+                        {
+                            _mouseItemHolder.GiveItemToSlot(transform);
+                        }
+                    }
                 }
                 else
                 {
@@ -72,6 +110,16 @@ namespace IslandBoy
                         }
                     }
                 }
+            }
+        }
+
+        private void CreateItem(ItemObject item)
+        {
+            if (!ThisSlotHasItem())
+            {
+                GameObject newItemGo = Instantiate(_inventoryItemPrefab, transform);
+                IInventoryItemInitializer inventoryItem = newItemGo.GetComponent<IInventoryItemInitializer>();
+                inventoryItem.Initialize(item);
             }
         }
 
@@ -113,7 +161,7 @@ namespace IslandBoy
                         mouseInventoryItem.Count -= _maxStack - countRef;
                         thisInventoryItem.Count = _maxStack;
                     }
-                    else if(thisInventoryItem.Count < _maxStack)
+                    else if(thisInventoryItem.Count <= _maxStack)
                     {
                         mouseInventoryItem.Count = 0;
                     }
