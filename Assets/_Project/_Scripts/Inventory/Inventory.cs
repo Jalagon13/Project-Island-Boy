@@ -10,9 +10,23 @@ namespace IslandBoy
         [SerializeField] private int _maxStack;
         [SerializeField] private InventorySlot[] _inventorySlots;
 
+        private MouseItemHolder _mouseItemHolder;
+
+        public InventorySlot[] InventorySlots { get { return _inventorySlots; } }
+
         private void Awake()
         {
             _pr.PlayerInventory = this;
+            _mouseItemHolder = transform.GetChild(2).GetComponent<MouseItemHolder>();
+        }
+
+        private void Start()
+        {
+            foreach (InventorySlot slot in _inventorySlots)
+            {
+                slot.MouseItemHolder = _mouseItemHolder;
+                slot.MaxStack = _maxStack;
+            }
         }
 
         public bool AddItem(ItemObject item)

@@ -12,7 +12,19 @@ namespace IslandBoy
         private int _count;
 
         public ItemObject Item { get { return _item; } }
-        public int Count { get { return _count; } }
+        public int Count { get { return _count; }
+            set 
+            { 
+                _count = value;
+
+                UpdateCounter();
+
+                if (_count <= 0)
+                {
+                    Destroy(gameObject);
+                }
+            }
+        }
 
         public void Initialize(ItemObject item)
         {

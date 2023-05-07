@@ -10,7 +10,7 @@ namespace IslandBoy
         private ToolObject _item;
         private int _currentDurability;
 
-        public ToolObject Item { get { return _item; } }
+        public ItemObject Item { get { return _item; } }
 
         public void Initialize(ItemObject item)
         {
