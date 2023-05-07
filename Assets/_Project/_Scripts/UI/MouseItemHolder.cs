@@ -7,6 +7,14 @@ namespace IslandBoy
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private GameObject _inventoryItemPrefab;
 
+        public InventoryItem InventoryItem 
+        { 
+            get 
+            { 
+                return transform.GetChild(0).GetComponent<InventoryItem>();
+            } 
+        }
+
         private void Update()
         {
             UpdatePosition();
@@ -15,6 +23,12 @@ namespace IslandBoy
         private void UpdatePosition()
         {
             transform.position = Camera.main.WorldToScreenPoint(_pr.MousePositionReference);
+        }
+
+        public void DeleteMouseItem()
+        {
+            if(transform.GetChild(0).gameObject != null)
+                Destroy(transform.GetChild(0).gameObject);
         }
 
         public void CreateMouseItem(ItemObject item)

@@ -63,12 +63,13 @@ namespace IslandBoy
                         {
                             if (ThisItemObject().Stackable)
                             {
-                                var mouseInventoryItem = _mouseItemHolder.transform.GetChild(0).GetComponent<InventoryItem>();
+                                
+                                
                                 var thisInventoryItem = transform.GetChild(0).GetComponent<InventoryItem>();
 
                                 if(thisInventoryItem.Count < _maxStack)
                                 {
-                                    mouseInventoryItem.Count -= 1;
+                                    _mouseItemHolder.InventoryItem.Count -= 1;
                                     thisInventoryItem.Count += 1;
                                 }
                             }
@@ -87,8 +88,7 @@ namespace IslandBoy
                         if (_mouseItemHolder.MouseItemObject().Stackable)
                         {
                             CreateItem(_mouseItemHolder.MouseItemObject());
-                            var mouseInventoryItem = _mouseItemHolder.transform.GetChild(0).GetComponent<InventoryItem>();
-                            mouseInventoryItem.Count -= 1;
+                            _mouseItemHolder.InventoryItem.Count -= 1;
                         }
                         else
                         {
@@ -133,10 +133,9 @@ namespace IslandBoy
                 var bigHalf = thisInventoryItem.Count - (thisInventoryItem.Count / 2);
 
                 _mouseItemHolder.CreateMouseItem(thisInventoryItem.Item);
-                var mouseInventoryItem = _mouseItemHolder.transform.GetChild(0).GetComponent<InventoryItem>();
 
                 thisInventoryItem.Count = smallHalf;
-                mouseInventoryItem.Count = bigHalf;
+                _mouseItemHolder.InventoryItem.Count = bigHalf;
             }
             else
             {
@@ -149,21 +148,20 @@ namespace IslandBoy
             if(ThisItemObject() == _mouseItemHolder.MouseItemObject() && ThisItemObject().Stackable)
             {
                 var thisInventoryItem = transform.GetChild(0).GetComponent<InventoryItem>();
-                var mouseInventoryItem = _mouseItemHolder.transform.GetChild(0).GetComponent<InventoryItem>();
 
                 if(thisInventoryItem.Count < _maxStack)
                 {
                     var countRef = thisInventoryItem.Count;
-                    thisInventoryItem.Count += mouseInventoryItem.Count;
+                    thisInventoryItem.Count += _mouseItemHolder.InventoryItem.Count;
 
                     if(thisInventoryItem.Count > _maxStack)
                     {
-                        mouseInventoryItem.Count -= _maxStack - countRef;
+                        _mouseItemHolder.InventoryItem.Count -= _maxStack - countRef;
                         thisInventoryItem.Count = _maxStack;
                     }
                     else if(thisInventoryItem.Count <= _maxStack)
                     {
-                        mouseInventoryItem.Count = 0;
+                        _mouseItemHolder.InventoryItem.Count = 0;
                     }
                 }
             }
