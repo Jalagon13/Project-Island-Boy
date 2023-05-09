@@ -22,6 +22,12 @@ namespace IslandBoy
 
         }
 
+        public bool IsClear()
+        {
+            // need to flesh this out later
+            return true;
+        }
+
         private Vector2 CalcStaPos()
         {
             var playerPosTileCenter = GetCenterOfTilePos(_pr.PlayerPositionReference);

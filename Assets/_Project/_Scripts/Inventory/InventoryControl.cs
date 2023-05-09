@@ -46,11 +46,10 @@ namespace IslandBoy
 
         private void CloseInventory()
         {
+            if (_mouseItemHolder.HasItem()) return;
+
             _mainInventory.gameObject.SetActive(false);
             _inventoryOpen = false;
-
-            // how about for next time make it so the mouse item maybe just drops from inventory when close
-            // need to check how Terraria handles this
 
             foreach (InventorySlot slot in _inventory.InventorySlots)
             {
