@@ -25,6 +25,7 @@ namespace IslandBoy
         public bool IsClear()
         {
             // need to flesh this out later
+            // checks if there is empty space over the STA
             return true;
         }
 

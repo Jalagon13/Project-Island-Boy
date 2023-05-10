@@ -5,13 +5,23 @@ namespace IslandBoy
     public class MouseItemHolder : MonoBehaviour
     {
         [SerializeField] private PlayerReference _pr;
-        [SerializeField] private GameObject _inventoryItemPrefab;
+        [SerializeField] private GameObject _invItemRscPrefab;
+        [SerializeField] private GameObject _invItemToolPrefab;
 
-        public InventoryItem InventoryItem 
+        public InventoryItemRsc InventoryItem 
         { 
             get 
             { 
-                return transform.GetChild(0).GetComponent<InventoryItem>();
+                return transform.GetChild(0).GetComponent<InventoryItemRsc>();
+            } 
+        }
+
+        public GameObject MouseItemGo 
+        { 
+            get 
+            {
+                GameObject item = transform.GetChild(0).gameObject;
+                return item != null ? item : null;
             } 
         }
 
@@ -35,9 +45,16 @@ namespace IslandBoy
         {
             if (!HasItem())
             {
-                GameObject newItemGo = Instantiate(_inventoryItemPrefab, transform);
-                IInventoryItemInitializer inventoryItem = newItemGo.GetComponent<IInventoryItemInitializer>();
-                inventoryItem.Initialize(item);
+                GameObject newItemGo = Instantiate(item is ToolObject ? _invItemToolPrefab : _invItemRscPrefab, transform);
+
+                if(newItemGo.TryGetComponent(out InventoryItemRsc rsc))
+                {
+                    rsc.Initialize((ResourceObject)item);
+                }
+                else if(newItemGo.TryGetComponent(out InventoryItemTool tool))
+                {
+                    tool.Initialize((ToolObject)item, 3);
+                }
             }
         }
 
@@ -46,9 +63,15 @@ namespace IslandBoy
             if (HasItem())
             {
                 var inventoryItem = transform.GetChild(0);
-                var item = inventoryItem.GetComponent<IInventoryItemInitializer>();
 
-                return item.Item;
+                if (inventoryItem.TryGetComponent(out InventoryItemRsc rsc))
+                {
+                    return rsc.Item;
+                }
+                else if (inventoryItem.TryGetComponent(out InventoryItemTool tool))
+                {
+                    return tool.Item;
+                }
             }
 
             Debug.LogError($"MouseItemObject callback from [{name}]. Can not get Item in Mouse Holder because there is no item.");

@@ -3,24 +3,29 @@ using UnityEngine.UI;
 
 namespace IslandBoy
 {
-    public class InventoryItemTool : MonoBehaviour, IInventoryItemInitializer
+    public class InventoryItemTool : MonoBehaviour/*, IInventoryItemDrop*/
     {
         private Image _image;
         private Image _durabilityFill;
         private ToolObject _item;
         private int _currentDurability;
 
-        public ItemObject Item { get { return _item; } }
+        public ToolObject Item { get { return _item; } }
 
-        public void Initialize(ItemObject item)
+        public void Initialize(ToolObject item, int durability)
         {
             _image = GetComponent<Image>();
             _durabilityFill = transform.GetChild(0).GetChild(1).GetComponent<Image>();
 
-            _item = (ToolObject)item;
+            _item = item;
             _image.sprite = item.UIDisplay;
-            _currentDurability = _item.DurabilityReference;
+            _currentDurability = durability;
             UpdateDurabilityCounter();
+        }
+
+        public void DropInventoryItem(Vector2 position)
+        {
+            
         }
 
         private void UpdateDurabilityCounter()

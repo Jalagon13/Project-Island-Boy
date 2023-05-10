@@ -16,7 +16,7 @@ namespace IslandBoy
         {
             _input = new PlayerInput();
             _inventory = GetComponent<Inventory>();
-            _mainInventory = transform.GetChild(1).GetComponent<RectTransform>();
+            _mainInventory = transform.GetChild(0).GetComponent<RectTransform>();
             _mouseItemHolder = transform.GetChild(2).GetComponent<MouseItemHolder>();
 
             _input.Player.ToggleInventory.started += ToggleInventory;

@@ -1,10 +1,10 @@
+using UnityEngine;
+
 namespace IslandBoy
 {
-    public interface IInventoryItemInitializer
+    public interface IInventoryItemDrop
     {
-        public ItemObject Item { get; }
-
-        public void Initialize(ItemObject item);
+        //public void DropInventoryItem(Vector2 position);
 
     }
 }

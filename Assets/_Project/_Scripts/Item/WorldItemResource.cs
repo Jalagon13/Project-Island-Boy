@@ -24,7 +24,7 @@ namespace IslandBoy
 
             for (int i = 0; i < counter; i++)
             {
-                bool addedItem = _pr.PlayerInventory.AddItem(_resourceItem);
+                bool addedItem = _pr.PlayerInventory.AddResource(_resourceItem);
 
                 if (addedItem)
                 {

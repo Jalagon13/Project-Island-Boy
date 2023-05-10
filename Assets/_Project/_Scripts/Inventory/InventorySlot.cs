@@ -65,7 +65,7 @@ namespace IslandBoy
                             {
                                 
                                 
-                                var thisInventoryItem = transform.GetChild(0).GetComponent<InventoryItem>();
+                                var thisInventoryItem = transform.GetChild(0).GetComponent<InventoryItemRsc>();
 
                                 if(thisInventoryItem.Count < _maxStack)
                                 {
@@ -87,8 +87,13 @@ namespace IslandBoy
                     {
                         if (_mouseItemHolder.MouseItemObject().Stackable)
                         {
-                            CreateItem(_mouseItemHolder.MouseItemObject());
-                            _mouseItemHolder.InventoryItem.Count -= 1;
+                            if (!ThisSlotHasItem())
+                            {
+                                GameObject newItemGo = Instantiate(_mouseItemHolder.MouseItemGo, transform);
+                                InventoryItemRsc itemRsc = newItemGo.GetComponent<InventoryItemRsc>();
+                                itemRsc.Count = 1;
+                                _mouseItemHolder.InventoryItem.Count -= 1;
+                            }
                         }
                         else
                         {
@@ -113,19 +118,9 @@ namespace IslandBoy
             }
         }
 
-        private void CreateItem(ItemObject item)
-        {
-            if (!ThisSlotHasItem())
-            {
-                GameObject newItemGo = Instantiate(_inventoryItemPrefab, transform);
-                IInventoryItemInitializer inventoryItem = newItemGo.GetComponent<IInventoryItemInitializer>();
-                inventoryItem.Initialize(item);
-            }
-        }
-
         private void BreakStackInHalf()
         {
-            var thisInventoryItem = transform.GetChild(0).GetComponent<InventoryItem>();
+            var thisInventoryItem = transform.GetChild(0).GetComponent<InventoryItemRsc>();
 
             if(thisInventoryItem.Count > 1)
             {
@@ -147,7 +142,7 @@ namespace IslandBoy
         {
             if(ThisItemObject() == _mouseItemHolder.MouseItemObject() && ThisItemObject().Stackable)
             {
-                var thisInventoryItem = transform.GetChild(0).GetComponent<InventoryItem>();
+                var thisInventoryItem = transform.GetChild(0).GetComponent<InventoryItemRsc>();
 
                 if(thisInventoryItem.Count < _maxStack)
                 {
@@ -188,9 +183,15 @@ namespace IslandBoy
             if (ThisSlotHasItem())
             {
                 var inventoryItem = transform.GetChild(0);
-                var item = inventoryItem.GetComponent<IInventoryItemInitializer>();
-
-                return item.Item;
+                
+                if(inventoryItem.TryGetComponent(out InventoryItemRsc rsc))
+                {
+                    return rsc.Item;
+                }
+                else if(inventoryItem.TryGetComponent(out InventoryItemTool tool))
+                {
+                    return tool.Item;
+                }
             }
 
             Debug.LogError($"GetThisItemObject callback from [{name}]. Can not get Item because there is no item.");

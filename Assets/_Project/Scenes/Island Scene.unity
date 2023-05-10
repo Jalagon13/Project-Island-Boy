@@ -382,7 +382,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
+  _invItemRscPrefab: {fileID: 0}
+  _invItemToolPrefab: {fileID: 0}
 --- !u!114 &12622983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53526,7 +53527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
+  _inventoryItemRscPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _inventoryItemToolPrefab: {fileID: 3640613215537145207, guid: 6f0a09643585ac149a78ecbda336ccf6, type: 3}
   _maxStack: 15
   _inventorySlots:
@@ -66816,7 +66817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _toolItem: {fileID: 11400000, guid: 902774a644957654d84a660b19ecc643, type: 2}
-  _currentDurability: 16
+  _currentDurability: 3
 --- !u!4 &1677522659
 Transform:
   m_ObjectHideFlags: 0
@@ -66897,7 +66898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _toolItem: {fileID: 11400000, guid: 902774a644957654d84a660b19ecc643, type: 2}
-  _currentDurability: 3
+  _currentDurability: 9
 --- !u!4 &1679002347
 Transform:
   m_ObjectHideFlags: 0

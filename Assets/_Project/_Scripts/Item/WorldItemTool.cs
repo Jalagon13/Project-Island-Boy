@@ -18,8 +18,7 @@ namespace IslandBoy
 
         public void AddToInventory()
         {
-            _toolItem.DurabilityReference = _currentDurability;
-            bool addedItem = _pr.PlayerInventory.AddItem(_toolItem);
+            bool addedItem = _pr.PlayerInventory.AddTool(_toolItem, _currentDurability);
 
             if(addedItem)
                 Destroy(gameObject);

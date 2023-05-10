@@ -4,14 +4,14 @@ using UnityEngine.UI;
 
 namespace IslandBoy
 {
-    public class InventoryItem : MonoBehaviour, IInventoryItemInitializer
+    public class InventoryItemRsc : MonoBehaviour/*, IInventoryItemDrop*/
     {
         private Image _image;
         private TextMeshProUGUI _countText;
-        private ItemObject _item;
+        private ResourceObject _item;
         private int _count;
 
-        public ItemObject Item { get { return _item; } }
+        public ResourceObject Item { get { return _item; } }
         public int Count { get { return _count; }
             set 
             { 
@@ -26,7 +26,7 @@ namespace IslandBoy
             }
         }
 
-        public void Initialize(ItemObject item)
+        public void Initialize(ResourceObject item)
         {
             _image = GetComponent<Image>();
             _countText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
@@ -35,6 +35,11 @@ namespace IslandBoy
             _image.sprite = item.UIDisplay;
             _count = 1;
             UpdateCounter();
+        }
+
+        public void DropInventoryItem(Vector2 position)
+        {
+            
         }
 
         public void IncrementCount()
