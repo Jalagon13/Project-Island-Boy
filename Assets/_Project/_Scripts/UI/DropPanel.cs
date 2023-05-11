@@ -5,17 +5,17 @@ namespace IslandBoy
 {
     public class DropPanel : MonoBehaviour, IPointerClickHandler
     {
-        [SerializeField] private MouseItemHolder _mouseItemHolder;
+        [SerializeField] private MouseItemHolder _mih;
         [SerializeField] private SingleTileAction _sta;
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if(eventData.button == PointerEventData.InputButton.Right && _mouseItemHolder.HasItem() && _sta.IsClear())
+            if(eventData.button == PointerEventData.InputButton.Right && _mih.HasItem() && _sta.IsClear())
             {
-                WorldItemManager.Instance.SpawnItem(_sta.gameObject.transform.position, _mouseItemHolder.MouseItemObject(), 
-                    _mouseItemHolder.InventoryItem.Count, _mouseItemHolder.InventoryItem.CurrentParameters);
+                WorldItemManager.Instance.SpawnItem(_sta.gameObject.transform.position, _mih.ItemObject, 
+                    _mih.InventoryItem.Count, _mih.InventoryItem.CurrentParameters);
 
-                Destroy(_mouseItemHolder.MouseItemGo);
+                _mih.DeleteMouseItem();
             }
         }
     }

@@ -6,6 +6,24 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerReference _pr;
 
+        public ItemObject ItemObject
+        {
+            get
+            {
+                if (HasItem())
+                {
+                    var inventoryItem = transform.GetChild(0);
+
+                    InventoryItem item = inventoryItem.GetComponent<InventoryItem>();
+
+                    return item.Item;
+                }
+
+                Debug.LogError($"MouseItemObject callback from [{name}]. Can not get Item in Mouse Holder because there is no item.");
+                return null;
+            }
+        }
+
         public InventoryItem InventoryItem 
         { 
             get 
@@ -14,7 +32,7 @@ namespace IslandBoy
             } 
         }
 
-        public GameObject MouseItemGo 
+        public GameObject ItemGo 
         { 
             get 
             {
@@ -47,21 +65,6 @@ namespace IslandBoy
                 InventoryItem item = newItemGo.GetComponent<InventoryItem>();
                 item.Initialize(itemObject, itemObject.DefaultParameterList);
             }
-        }
-
-        public ItemObject MouseItemObject()
-        {
-            if (HasItem())
-            {
-                var inventoryItem = transform.GetChild(0);
-
-                InventoryItem item = inventoryItem.GetComponent<InventoryItem>();
-
-                return item.Item;
-            }
-
-            Debug.LogError($"MouseItemObject callback from [{name}]. Can not get Item in Mouse Holder because there is no item.");
-            return null;
         }
 
         public bool HasItem()

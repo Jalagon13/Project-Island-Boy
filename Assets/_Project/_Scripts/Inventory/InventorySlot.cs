@@ -23,7 +23,7 @@ namespace IslandBoy
                 {
                     if (ThisSlotHasItem())
                     {
-                        if(ThisItemObject() == _mouseItemHolder.MouseItemObject())
+                        if(ThisItemObject() == _mouseItemHolder.ItemObject)
                         {
                             if (ThisItemObject().Stackable)
                             {
@@ -58,7 +58,7 @@ namespace IslandBoy
                 {
                     if (ThisSlotHasItem())
                     {
-                        if(ThisItemObject() == _mouseItemHolder.MouseItemObject())
+                        if(ThisItemObject() == _mouseItemHolder.ItemObject)
                         {
                             if (ThisItemObject().Stackable)
                             {
@@ -84,13 +84,13 @@ namespace IslandBoy
                     }
                     else
                     {
-                        if (_mouseItemHolder.MouseItemObject().Stackable)
+                        if (_mouseItemHolder.ItemObject.Stackable)
                         {
                             if (!ThisSlotHasItem())
                             {
-                                GameObject newItemGo = Instantiate(_mouseItemHolder.MouseItemGo, transform);
+                                GameObject newItemGo = Instantiate(_mouseItemHolder.ItemGo, transform);
                                 InventoryItem item = newItemGo.GetComponent<InventoryItem>();
-                                item.Initialize(_mouseItemHolder.MouseItemObject(), _mouseItemHolder.MouseItemObject().DefaultParameterList);
+                                item.Initialize(_mouseItemHolder.ItemObject, _mouseItemHolder.ItemObject.DefaultParameterList);
                                 _mouseItemHolder.InventoryItem.Count -= 1;
                             }
                         }
@@ -139,7 +139,7 @@ namespace IslandBoy
 
         private void TryToAddMouseStackToThisStack()
         {
-            if(ThisItemObject() == _mouseItemHolder.MouseItemObject() && ThisItemObject().Stackable)
+            if(ThisItemObject() == _mouseItemHolder.ItemObject && ThisItemObject().Stackable)
             {
                 var thisInventoryItem = transform.GetChild(0).GetComponent<InventoryItem>();
 
