@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 624f3a788e3930a48aafa95be3ffcbe4, type: 3}
   m_Name: '[ItemTool] Wood Ax'
   m_EditorClassIdentifier: 
-  _name: Wood Ax
-  _uiDisplay: {fileID: 563146846, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
-  _stackable: 0
-  _description: 
-  _maxDurability: 20
-  _coolDown: 0.8
+  <Name>k__BackingField: Wood Ax
+  <UiDisplay>k__BackingField: {fileID: 563146846, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  <Stackable>k__BackingField: 0
+  <Description>k__BackingField: CHOPPY CHOP CHOP CHOOOOOPPPPPP
+  <DefaultParameterList>k__BackingField:
+  - Parameter: {fileID: 11400000, guid: 97c28137497da5845bdbc42cd2c6dd6f, type: 2}
+    Value: 100

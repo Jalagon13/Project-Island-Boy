@@ -6,17 +6,7 @@ namespace IslandBoy
     {
         [SerializeField] protected PlayerReference _pr;
         [SerializeField] private ResourceObject _resourceItem;
-
         [SerializeField] private int _currentStack;
-
-        public ResourceObject Test { get { return _resourceItem; } }
-
-        // For when this World Item is spawned.
-        public void InitializeItemInWorld(ResourceObject item, int currentStack)
-        {
-            _resourceItem = item;
-            _currentStack = currentStack;
-        }
 
         public void AddToInventory()
         {
@@ -24,7 +14,7 @@ namespace IslandBoy
 
             for (int i = 0; i < counter; i++)
             {
-                bool addedItem = _pr.PlayerInventory.AddResource(_resourceItem);
+                bool addedItem = _pr.PlayerInventory.AddItem(_resourceItem);
 
                 if (addedItem)
                 {

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eea4153a0022fb44a84b057480c1fa1, type: 3}
   m_Name: '[ItemRsc] Wood'
   m_EditorClassIdentifier: 
-  _name: Wood
-  _uiDisplay: {fileID: -602149933, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
-  _description: 
-  _stackable: 1
+  <Name>k__BackingField: Wood
+  <UiDisplay>k__BackingField: {fileID: -602149933, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  <Stackable>k__BackingField: 1
+  <Description>k__BackingField: WWOOODDD
+  <DefaultParameterList>k__BackingField: []

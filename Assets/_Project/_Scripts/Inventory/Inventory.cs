@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace IslandBoy
@@ -5,8 +6,7 @@ namespace IslandBoy
     public class Inventory : MonoBehaviour
     {
         [SerializeField] private PlayerReference _pr;
-        [SerializeField] private GameObject _inventoryItemRscPrefab;
-        [SerializeField] private GameObject _inventoryItemToolPrefab;
+        [SerializeField] private GameObject _inventoryItemPrefab;
         [SerializeField] private int _maxStack;
         [SerializeField] private InventorySlot[] _inventorySlots;
 
@@ -29,16 +29,16 @@ namespace IslandBoy
             }
         }
 
-        public bool AddResource(ResourceObject resource)
+        public bool AddItem(ItemObject item, List<ItemParameter> itemParameters = null)
         {
             // Check if any slot has the same item with count lower than max stack.
             for (int i = 0; i < _inventorySlots.Length; i++)
             {
                 InventorySlot slot = _inventorySlots[i];
-                InventoryItemRsc itemInSlot = slot.GetComponentInChildren<InventoryItemRsc>();
+                InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
 
                 if (itemInSlot != null &&
-                    itemInSlot.Item == resource &&
+                    itemInSlot.Item == item &&
                     itemInSlot.Count < _maxStack &&
                     itemInSlot.Item.Stackable == true)
                 {
@@ -54,7 +54,7 @@ namespace IslandBoy
                 
                 if(slot.transform.childCount == 0)
                 {
-                    SpawnRscInInventory(resource, slot);
+                    SpawnInventoryItem(item, slot, itemParameters);
                     return true;
                 }
             }
@@ -62,35 +62,11 @@ namespace IslandBoy
             return false;
         }
 
-        private void SpawnRscInInventory(ResourceObject resource, InventorySlot slot)
+        private void SpawnInventoryItem(ItemObject item, InventorySlot slot, List<ItemParameter> itemParameters)
         {
-            GameObject newItemGo = Instantiate(_inventoryItemRscPrefab, slot.transform);
-            InventoryItemRsc newItemRsc = newItemGo.GetComponent<InventoryItemRsc>();
-            newItemRsc.Initialize(resource);
-        }
-
-        public bool AddTool(ToolObject tool, int durability)
-        {
-            // Find an empty slot
-            for (int i = 0; i < _inventorySlots.Length; i++)
-            {
-                InventorySlot slot = _inventorySlots[i];
-
-                if (slot.transform.childCount == 0)
-                {
-                    SpawnToolInInventory(tool, slot, durability);
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        private void SpawnToolInInventory(ToolObject tool, InventorySlot slot, int durability)
-        {
-            GameObject newItemGo = Instantiate(_inventoryItemToolPrefab, slot.transform);
-            InventoryItemTool newItemTool = newItemGo.GetComponent<InventoryItemTool>();
-            newItemTool.Initialize(tool, durability);
+            GameObject inventoryItemGo = Instantiate(_inventoryItemPrefab, slot.transform);
+            InventoryItem invItem = inventoryItemGo.GetComponent<InventoryItem>();
+            invItem.Initialize(item, itemParameters);
         }
     }
 }

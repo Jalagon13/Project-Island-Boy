@@ -5,7 +5,6 @@ namespace IslandBoy
 {
     public class InventorySlot : MonoBehaviour, IPointerClickHandler
     {
-        [SerializeField] private GameObject _inventoryItemPrefab;
         private MouseItemHolder _mouseItemHolder;
         private bool _inventoryOpen;
         private int _maxStack;
@@ -65,7 +64,7 @@ namespace IslandBoy
                             {
                                 
                                 
-                                var thisInventoryItem = transform.GetChild(0).GetComponent<InventoryItemRsc>();
+                                var thisInventoryItem = transform.GetChild(0).GetComponent<InventoryItem>();
 
                                 if(thisInventoryItem.Count < _maxStack)
                                 {
@@ -90,8 +89,8 @@ namespace IslandBoy
                             if (!ThisSlotHasItem())
                             {
                                 GameObject newItemGo = Instantiate(_mouseItemHolder.MouseItemGo, transform);
-                                InventoryItemRsc itemRsc = newItemGo.GetComponent<InventoryItemRsc>();
-                                itemRsc.Count = 1;
+                                InventoryItem item = newItemGo.GetComponent<InventoryItem>();
+                                item.Initialize(_mouseItemHolder.MouseItemObject(), _mouseItemHolder.MouseItemObject().DefaultParameterList);
                                 _mouseItemHolder.InventoryItem.Count -= 1;
                             }
                         }
@@ -120,14 +119,14 @@ namespace IslandBoy
 
         private void BreakStackInHalf()
         {
-            var thisInventoryItem = transform.GetChild(0).GetComponent<InventoryItemRsc>();
+            var thisInventoryItem = transform.GetChild(0).GetComponent<InventoryItem>();
 
             if(thisInventoryItem.Count > 1)
             {
                 var smallHalf = thisInventoryItem.Count / 2;
                 var bigHalf = thisInventoryItem.Count - (thisInventoryItem.Count / 2);
 
-                _mouseItemHolder.CreateMouseItem(thisInventoryItem.Item);
+                _mouseItemHolder.CreateMouseItem(transform.GetChild(0).gameObject, thisInventoryItem.Item);
 
                 thisInventoryItem.Count = smallHalf;
                 _mouseItemHolder.InventoryItem.Count = bigHalf;
@@ -142,7 +141,7 @@ namespace IslandBoy
         {
             if(ThisItemObject() == _mouseItemHolder.MouseItemObject() && ThisItemObject().Stackable)
             {
-                var thisInventoryItem = transform.GetChild(0).GetComponent<InventoryItemRsc>();
+                var thisInventoryItem = transform.GetChild(0).GetComponent<InventoryItem>();
 
                 if(thisInventoryItem.Count < _maxStack)
                 {
@@ -183,15 +182,10 @@ namespace IslandBoy
             if (ThisSlotHasItem())
             {
                 var inventoryItem = transform.GetChild(0);
-                
-                if(inventoryItem.TryGetComponent(out InventoryItemRsc rsc))
-                {
-                    return rsc.Item;
-                }
-                else if(inventoryItem.TryGetComponent(out InventoryItemTool tool))
-                {
-                    return tool.Item;
-                }
+
+                InventoryItem item = inventoryItem.GetComponent<InventoryItem>();
+
+                return item.Item;
             }
 
             Debug.LogError($"GetThisItemObject callback from [{name}]. Can not get Item because there is no item.");

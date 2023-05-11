@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3640613215537145193}
   - component: {fileID: 8291126494027659791}
   m_Layer: 0
-  m_Name: '[UI] InvItemRsc'
+  m_Name: '[UI] InvItem'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,9 +87,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3640613215537145207}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b26b89cdc7929a459afadab2a2c7f62, type: 3}
+  m_Script: {fileID: 11500000, guid: f68f3790c87654343b1e47728d449e7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _durabilityCounterGo: {fileID: 3926137354440818015, guid: 939e9cd5fd11e564ea362e949d5299a9, type: 3}
+  _durabilityParameter:
+    Parameter: {fileID: 11400000, guid: 97c28137497da5845bdbc42cd2c6dd6f, type: 2}
+    Value: 0
 --- !u!1 &7608934773657287306
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace IslandBoy
@@ -6,19 +7,17 @@ namespace IslandBoy
     {
         [SerializeField] protected PlayerReference _pr;
         [SerializeField] private ToolObject _toolItem;
-
-        [SerializeField] private int _currentDurability;
+        [SerializeField] private List<ItemParameter> _currentParameters;
 
         // For when this World Item is spawned.
         public void InitializeItemInWorld(ToolObject item, int currentDurability)
         {
             _toolItem = item;
-            _currentDurability = currentDurability;
         }
 
         public void AddToInventory()
         {
-            bool addedItem = _pr.PlayerInventory.AddTool(_toolItem, _currentDurability);
+            bool addedItem = _pr.PlayerInventory.AddItem(_toolItem, _currentParameters);
 
             if(addedItem)
                 Destroy(gameObject);

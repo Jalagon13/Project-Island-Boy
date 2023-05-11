@@ -1,18 +1,29 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace IslandBoy
 {
     public abstract class ItemObject : ScriptableObject
     {
-        [SerializeField] private string _name;
-        [SerializeField] private Sprite _uiDisplay;
-        [SerializeField] private bool _stackable;
-        [TextArea]
-        [SerializeField] private string _description;
+        [field: SerializeField] public string Name { get; private set; }
+        [field: SerializeField] public Sprite UiDisplay { get; private set; }
+        [field: SerializeField] public bool Stackable { get; private set; }
+        [field: TextArea]
+        [field: SerializeField] public string Description { get; set; }
+        [field: SerializeField] public List<ItemParameter> DefaultParameterList { get; set; }
 
-        public string Name { get { return _name; } }
-        public Sprite UIDisplay { get { return _uiDisplay; } }
-        public bool Stackable { get { return _stackable; } }
-        public string Description { get { return _description; } }
+    }
+
+    [Serializable]
+    public struct ItemParameter : IEquatable<ItemParameter>
+    {
+        public ItemParameterObject Parameter;
+        public int Value;
+
+        public bool Equals(ItemParameter other)
+        {
+            return other.Parameter == Parameter;
+        }
     }
 }
