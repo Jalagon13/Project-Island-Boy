@@ -13,6 +13,7 @@ namespace IslandBoy
         private MouseItemHolder _mouseItemHolder;
 
         public InventorySlot[] InventorySlots { get { return _inventorySlots; } }
+        public int MaxStack { get { return _maxStack; } }
 
         private void Awake()
         {
