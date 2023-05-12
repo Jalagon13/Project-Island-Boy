@@ -9,6 +9,7 @@ namespace IslandBoy
         private Vector2 _playerPosition;
         private Vector2 _mousePosition;
         private Inventory _playerInventory;
+        private InventorySlot _selectedSlot;
 
         /// <summary>
         /// Setting PlayerPositionReference does NOT change the actual position of the player.
@@ -21,6 +22,9 @@ namespace IslandBoy
 
         // This is only SET in the Inventory Script do NOT SET this anywhere else. Only get a refernce for it.
         public Inventory PlayerInventory { get { return _playerInventory; } set { _playerInventory = value; } }
+
+        // This is only SET in HotbarControl Script do NOT SET THIS anywhere else. Only get a reference for it.
+        public InventorySlot SelectedSlot { get { return _selectedSlot; } set { _selectedSlot = value; } }
 
         public bool PlayerInRange(Vector3 posToCheck)
         {

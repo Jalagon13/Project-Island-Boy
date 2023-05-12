@@ -6,20 +6,14 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerReference _pr;
 
-        private StaInput _staInput;
-
         private void Awake()
         {
             transform.SetParent(null);
-            _staInput = GetComponent<StaInput>();
         }
 
         private void Update()
         {
             transform.position = CalcStaPos();
-
-            if (!_staInput.IsHeldDown) return;
-
         }
 
         public bool IsClear()

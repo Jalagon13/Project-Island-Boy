@@ -7,6 +7,7 @@ namespace IslandBoy
 {
     public class HotbarControl : MonoBehaviour
     {
+        [SerializeField] private PlayerReference _pr;
         [SerializeField] private Color _highlightedColor;
         [SerializeField] private Color _notHighlightedColor;
         [SerializeField] private InventorySlot[] _hotbarSlots;
@@ -86,6 +87,8 @@ namespace IslandBoy
             _selectedSlot = _hotbarSlots[_slotIndex];
             var image = _selectedSlot.GetComponent<Image>();
             image.color = _highlightedColor;
+
+            _pr.SelectedSlot = _selectedSlot;
         }
 
         private void UnHighlightPrevious()
