@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +13,7 @@ namespace IslandBoy
             GameObject newItemGo = Instantiate(_itemBasePrefab, worldPos, Quaternion.identity);
             WorldItem newItem = newItemGo.GetComponent<WorldItem>();
 
-            if (stack == -1)
+            if (stack < 0)
                 stack = _pr.PlayerInventory.MaxStack;
 
             if (!item.Stackable)

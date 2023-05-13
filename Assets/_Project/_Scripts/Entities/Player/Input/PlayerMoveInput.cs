@@ -12,6 +12,8 @@ namespace IslandBoy
         private Vector2 _moveDirection;
         private bool _isFacingRight;
 
+        public float Speed { get { return _speed; } set { _speed = value; } }
+
         public Vector2 MoveDirection { get { return _moveDirection; } }
         public bool IsFacingRight { get { return _isFacingRight; } }
 

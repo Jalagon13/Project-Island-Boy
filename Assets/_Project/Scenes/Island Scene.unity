@@ -25425,7 +25425,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -250621267
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Time: 0.175
   m_Parameters:
     serializedVersion: 3
@@ -48497,6 +48497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
+  _hitAmount: 0
 --- !u!114 &727510222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54302,7 +54303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _highlightedColor: {r: 0.7924528, g: 0.620594, b: 0.16746168, a: 1}
+  _highlightedColor: {r: 0.8679245, g: 0.79648834, b: 0.19978638, a: 1}
   _notHighlightedColor: {r: 0.1882353, g: 0.5176471, b: 0.8117647, a: 1}
   _hotbarSlots:
   - {fileID: 3757946712520576334}
@@ -64339,6 +64340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eafcc57bd31c59246a06821a925e50a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _cooldown: 0.55
   _wooshSound: {fileID: 8300000, guid: 693f775d985d5c542a5f4361e1922d53, type: 3}
 --- !u!1001 &1481059140

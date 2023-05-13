@@ -5,12 +5,15 @@ namespace IslandBoy
 {
     public class ActionControl : MonoBehaviour
     {
+        [SerializeField] private PlayerReference _pr;
         [SerializeField] private float _cooldown;
         [SerializeField] private AudioClip _wooshSound;
 
         private SingleTileAction _sta;
         private PlayerInput _input;
         private Animator _animator;
+        private PlayerMoveInput _moveInput;
+        private Camera _camera;
         private readonly int _idleHash = Animator.StringToHash("[Anim] AC Idle");
         private readonly int _rightSwingHash = Animator.StringToHash("[Anim] AC Swing Right");
         private float _counter;
@@ -25,7 +28,9 @@ namespace IslandBoy
             _input.Player.PrimaryAction.performed += SetIsHeldDown;
             _input.Player.PrimaryAction.canceled += SetIsHeldDown;
 
+            _camera = Camera.main;
             _animator = GetComponent<Animator>();
+            _moveInput = transform.root.GetComponent<PlayerMoveInput>();
             _sta = transform.GetChild(0).GetComponent<SingleTileAction>();
             _sta.transform.parent = null;
         }
@@ -66,12 +71,15 @@ namespace IslandBoy
             if (_counter < _cooldown) return;
 
             _counter = 0f;
+            _moveInput.Speed = 1.5f;
+
             AudioManager.Instance.PlayClip(_wooshSound, false, true);
-            AnimStateManager.ChangeAnimationState(_animator, _rightSwingHash);
+            AnimStateManager.ChangeAnimationState(_animator, GetAnimationHash());
         }
 
         public void PlayIdle()
         {
+            _moveInput.Speed = 3f;
             AnimStateManager.ChangeAnimationState(_animator, _idleHash);
         }
 
@@ -83,6 +91,44 @@ namespace IslandBoy
         private void SetIsHeldDown(InputAction.CallbackContext context)
         {
             _isHeldDown = context.performed;
+        }
+
+        private int GetAnimationHash()
+        {
+            var cursorAngle = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            var playerVec = (Vector2)cursorAngle - _pr.PlayerPositionReference;
+            float angle = Mathf.Atan2(playerVec.y, playerVec.x) * Mathf.Rad2Deg;
+
+            if (angle < 0)
+            {
+                angle = Mathf.Abs(angle);
+                float leftover = 180 - angle;
+                angle = 180 + leftover;
+            }
+
+            if ((angle < 45 && angle > 0) || (angle < 359.999 && angle > 315))
+            {
+                // play right swing animation
+                return _rightSwingHash;
+            }
+            else if (angle < 135 && angle > 45)
+            {
+                // play up swing animation
+                return _rightSwingHash;
+            }
+            else if (angle < 225 && angle > 135)
+            {
+                // play left swing animation
+                return _rightSwingHash;
+            }
+            else if (angle < 315 && angle > 225)
+            {
+                // play down swing animation
+                return _rightSwingHash;
+            }
+
+            return 0;
+            //Ctx.PR.IsFacingRight.SetBool((angle < 90 && angle > 0) || (angle < 360 && angle > 270));
         }
     }
 }

@@ -5,13 +5,7 @@ namespace IslandBoy
     public class SingleTileAction : MonoBehaviour
     {
         [SerializeField] private PlayerReference _pr;
-
-        private SingleTileIndicator _indicator;
-
-        private void Awake()
-        {
-            _indicator = GetComponent<SingleTileIndicator>();
-        }
+        [SerializeField] private int _hitAmount;
 
         private void Update()
         {
