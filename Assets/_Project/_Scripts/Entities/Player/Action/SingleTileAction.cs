@@ -6,9 +6,11 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerReference _pr;
 
+        private SingleTileIndicator _indicator;
+
         private void Awake()
         {
-            transform.SetParent(null);
+            _indicator = GetComponent<SingleTileIndicator>();
         }
 
         private void Update()
@@ -21,6 +23,19 @@ namespace IslandBoy
             // need to flesh this out later
             // checks if there is empty space over the STA
             return true;
+        }
+
+        public void HitTile()
+        {
+            var colliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
+
+            foreach (var collider in colliders)
+            {
+                IBreakable breakable = collider.GetComponent<IBreakable>();
+
+                if (breakable != null)
+                    breakable.Hit();
+            }
         }
 
         private Vector2 CalcStaPos()

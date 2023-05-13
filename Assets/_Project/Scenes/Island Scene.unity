@@ -25377,7 +25377,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 365239132}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25426,7 +25426,7 @@ TrailRenderer:
   m_SortingLayerID: -250621267
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Time: 0.2
+  m_Time: 0.175
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -25435,28 +25435,37 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.4999987
-        inSlope: 0
-        outSlope: 0
+        value: 0.085105896
+        inSlope: 5.0784793
+        outSlope: 5.0784793
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
+        inWeight: 0
+        outWeight: 0.6937163
+      - serializedVersion: 3
+        time: 0.17075913
+        value: 0.50001365
+        inSlope: -0.076202735
+        outSlope: -0.076202735
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.46576482
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
         value: 0
-        inSlope: 0
-        outSlope: 0
+        inSlope: -0.53321207
+        outSlope: -0.53321207
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
+        inWeight: 0.774957
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 0.8117647}
       key1: {r: 1, g: 1, b: 1, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -48451,6 +48460,7 @@ GameObject:
   m_Component:
   - component: {fileID: 727510220}
   - component: {fileID: 727510221}
+  - component: {fileID: 727510222}
   m_Layer: 0
   m_Name: SingleTileAction
   m_TagString: Untagged
@@ -48487,6 +48497,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
+--- !u!114 &727510222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727510219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b4585edc5381b4ba9970e7142eb1ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _indicatorEmptyColor: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 0.5254902}
+  _canHitColor: {r: 1, g: 0.96575993, b: 0, a: 1}
 --- !u!1001 &735958206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53634,7 +53658,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.6}
+  m_Offset: {x: 0, y: 0.6686666}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -53645,7 +53669,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.25, y: 1}
+  m_Size: {x: 0.25, y: 1.1373122}
   m_EdgeRadius: 0
 --- !u!1001 &964004015
 PrefabInstance:
@@ -64315,6 +64339,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eafcc57bd31c59246a06821a925e50a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cooldown: 0.55
+  _wooshSound: {fileID: 8300000, guid: 693f775d985d5c542a5f4361e1922d53, type: 3}
 --- !u!1001 &1481059140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70878,7 +70904,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838497372}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.70667475, w: 0.7075386}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -70887,7 +70913,7 @@ Transform:
   - {fileID: 775425427}
   m_Father: {fileID: 1476208521}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.93}
 --- !u!114 &1838497374
 MonoBehaviour:
   m_ObjectHideFlags: 0
