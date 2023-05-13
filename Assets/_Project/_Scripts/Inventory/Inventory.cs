@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,6 +6,8 @@ namespace IslandBoy
 {
     public class Inventory : MonoBehaviour
     {
+        public static event Action AddItemEvent;
+
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private GameObject _inventoryItemPrefab;
         [SerializeField] private AudioClip _popSound;
@@ -45,7 +48,7 @@ namespace IslandBoy
                     itemInSlot.Item.Stackable == true)
                 {
                     itemInSlot.IncrementCount();
-                    AudioManager.Instance.PlayClip(_popSound, false, true);
+                    OnAddItem();
                     return true;
                 }
             }
@@ -58,12 +61,20 @@ namespace IslandBoy
                 if(slot.transform.childCount == 0)
                 {
                     SpawnInventoryItem(item, slot, itemParameters);
-                    AudioManager.Instance.PlayClip(_popSound, false, true);
+                    OnAddItem();
                     return true;
                 }
             }
 
             return false;
+        }
+
+        private void OnAddItem()
+        {
+            Debug.Log(AddItemEvent == null);
+                
+            AddItemEvent?.Invoke();
+            AudioManager.Instance.PlayClip(_popSound, false, true);
         }
 
         private void SpawnInventoryItem(ItemObject item, InventorySlot slot, List<ItemParameter> itemParameters)
