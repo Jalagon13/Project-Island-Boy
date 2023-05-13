@@ -69,10 +69,27 @@ namespace IslandBoy
             return false;
         }
 
+        public bool Contains(ItemObject item, int amount)
+        {
+            for (int i = 0; i < _inventorySlots.Length; i++)
+            {
+                InventorySlot slot = _inventorySlots[i];
+                InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+
+                if (itemInSlot == null)
+                    continue;
+
+                if(itemInSlot.Item == item && itemInSlot.Count >= amount)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private void OnAddItem()
         {
-            Debug.Log(AddItemEvent == null);
-                
             AddItemEvent?.Invoke();
             AudioManager.Instance.PlayClip(_popSound, false, true);
         }
