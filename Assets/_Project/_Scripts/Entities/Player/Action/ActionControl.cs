@@ -16,6 +16,9 @@ namespace IslandBoy
         private Camera _camera;
         private readonly int _idleHash = Animator.StringToHash("[Anim] AC Idle");
         private readonly int _rightSwingHash = Animator.StringToHash("[Anim] AC Swing Right");
+        private readonly int _upSwingHash = Animator.StringToHash("[Anim] AC Swing Up");
+        private readonly int _leftSwingHash = Animator.StringToHash("[Anim] AC Swing Left");
+        private readonly int _downSwingHash = Animator.StringToHash("[Anim] AC Swing Down");
         private float _counter;
         private bool _isHeldDown;
 
@@ -108,23 +111,19 @@ namespace IslandBoy
 
             if ((angle < 45 && angle > 0) || (angle < 359.999 && angle > 315))
             {
-                // play right swing animation
                 return _rightSwingHash;
             }
             else if (angle < 135 && angle > 45)
             {
-                // play up swing animation
-                return _rightSwingHash;
+                return _upSwingHash;
             }
             else if (angle < 225 && angle > 135)
             {
-                // play left swing animation
-                return _rightSwingHash;
+                return _leftSwingHash;
             }
             else if (angle < 315 && angle > 225)
             {
-                // play down swing animation
-                return _rightSwingHash;
+                return _downSwingHash;
             }
 
             return 0;

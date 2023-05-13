@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace IslandBoy
@@ -44,11 +42,13 @@ namespace IslandBoy
 
         public void ChangeToHitColor()
         {
+            _sr.transform.localScale = new Vector3(1.15f, 1.15f, 1.15f);
             _sr.color = _canHitColor;
         }
 
         public void ChangeToEmptyColor()
         {
+            _sr.transform.localScale = Vector3.one;
             _sr.color = _indicatorEmptyColor;
         }
     }

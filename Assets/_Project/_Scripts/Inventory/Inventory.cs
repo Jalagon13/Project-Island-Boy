@@ -7,6 +7,7 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private GameObject _inventoryItemPrefab;
+        [SerializeField] private AudioClip _popSound;
         [SerializeField] private int _maxStack;
         [SerializeField] private InventorySlot[] _inventorySlots;
 
@@ -44,6 +45,7 @@ namespace IslandBoy
                     itemInSlot.Item.Stackable == true)
                 {
                     itemInSlot.IncrementCount();
+                    AudioManager.Instance.PlayClip(_popSound, false, true);
                     return true;
                 }
             }
@@ -56,6 +58,7 @@ namespace IslandBoy
                 if(slot.transform.childCount == 0)
                 {
                     SpawnInventoryItem(item, slot, itemParameters);
+                    AudioManager.Instance.PlayClip(_popSound, false, true);
                     return true;
                 }
             }

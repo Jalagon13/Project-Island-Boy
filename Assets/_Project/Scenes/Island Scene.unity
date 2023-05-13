@@ -48510,7 +48510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b4585edc5381b4ba9970e7142eb1ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _indicatorEmptyColor: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 0.5254902}
+  _indicatorEmptyColor: {r: 0, g: 0, b: 0, a: 0.21176471}
   _canHitColor: {r: 1, g: 0.96575993, b: 0, a: 1}
 --- !u!1001 &735958206
 PrefabInstance:
@@ -54249,6 +54249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
+  _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
   _maxStack: 100
   _inventorySlots:
   - {fileID: 3757946712520576334}
@@ -62882,8 +62883,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 214a4eb840a5cf14c93ad1a49c4f34bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemBasePrefab: {fileID: 2489024353066422585, guid: 70e5e36319e9f5545863331e8b2fd2ce, type: 3}
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
+  _itemBasePrefab: {fileID: 2489024353066422585, guid: 70e5e36319e9f5545863331e8b2fd2ce, type: 3}
+  _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
 --- !u!4 &1413193844
 Transform:
   m_ObjectHideFlags: 0
