@@ -30,30 +30,16 @@ namespace IslandBoy
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            // need to add code later on to disable attractor when invetory full and enable it when inventory has space.
             if (collision.CompareTag("Collect"))
             {
-                AddToInventory();
+                var leftover = _pr.Inventory.AddItem(_item, _currentStack, _currentParameters);
+
+                if (leftover == 0)
+                    Destroy(gameObject);
+                else
+                    _currentStack = leftover;
             }
-        }
-
-        public void AddToInventory()
-        {
-            var counter = _currentStack;
-
-            for (int i = 0; i < counter; i++)
-            {
-                bool addedItem = _pr.PlayerInventory.AddItem(_item, _currentParameters);
-
-                if (addedItem)
-                {
-                    _currentStack--;
-                    continue;
-                }
-
-                return;
-            }
-
-            Destroy(gameObject);
         }
     }
 }

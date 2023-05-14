@@ -99,7 +99,7 @@ namespace IslandBoy
         private int GetAnimationHash()
         {
             var cursorAngle = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            var playerVec = (Vector2)cursorAngle - _pr.PlayerPositionReference;
+            var playerVec = (Vector2)cursorAngle - _pr.PositionReference;
             float angle = Mathf.Atan2(playerVec.y, playerVec.x) * Mathf.Rad2Deg;
 
             if (angle < 0)

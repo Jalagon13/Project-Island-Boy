@@ -8,7 +8,10 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private GameObject _rscSlotPrefab;
+        [SerializeField] private Color _craftableColor;
+        [SerializeField] private Color _unCraftableColor;
 
+        private Image _craftSlotBackround;
         private Image _outputImage;
         private RectTransform _rscPanel;
         private RectTransform _rscSlots;
@@ -26,6 +29,7 @@ namespace IslandBoy
 
         public void Initialize(Recipe recipe)
         {
+            _craftSlotBackround = GetComponent<Image>();
             _outputImage = transform.GetChild(0).GetComponent<Image>();
             _rscPanel = transform.GetChild(1).GetComponent<RectTransform>();
             _rscSlots = transform.GetChild(1).GetChild(0).GetComponent<RectTransform>();
@@ -33,8 +37,10 @@ namespace IslandBoy
             _outputImage.sprite = recipe.OutputItem.UiDisplay;
 
             Inventory.AddItemEvent += CheckIfCanCraft;
+            DropPanel.OnDropEvent += CheckIfCanCraft;
+            CheckIfCanCraft();
 
-            if(_rscSlots.transform.childCount > 0)
+            if (_rscSlots.transform.childCount > 0)
             {
                 foreach (Transform child in _rscSlots.transform)
                 {
@@ -52,16 +58,31 @@ namespace IslandBoy
 
         private void CheckIfCanCraft()
         {
-            bool var = false;
+            bool canCraft = false;
 
             foreach (ItemAmount ia in _recipe.ResourceList)
             {
-                var = _pr.PlayerInventory.Contains(ia.Item, ia.Amount);
+                canCraft = _pr.Inventory.Contains(ia.Item, ia.Amount);
 
-                if (!var) break;
+                if (!canCraft) break;
             }
 
-            Debug.Log($"Can craft this?: {var}");
+            if (canCraft)
+                SetCraftable();
+            else
+                SetUnCraftable();
+        }
+
+        private void SetCraftable()
+        {
+            _craftSlotBackround.color = _craftableColor;
+            _outputImage.color = Color.white;
+        }
+
+        private void SetUnCraftable()
+        {
+            _craftSlotBackround.color = _unCraftableColor;
+            _outputImage.color = Color.black;
         }
     }
 }

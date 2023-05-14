@@ -17,7 +17,7 @@ namespace IslandBoy
 
         private void SetPosition()
         {
-            _position = new(_pr.PlayerPositionReference.x, _pr.PlayerPositionReference.y, -10);
+            _position = new(_pr.PositionReference.x, _pr.PositionReference.y, -10);
             transform.position = _position;
         }
     }

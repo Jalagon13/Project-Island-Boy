@@ -245,6 +245,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _rscSlotPrefab: {fileID: 3401008477222750777, guid: fb05475d13b3d20499b8c38723ea99f1, type: 3}
+  _craftableColor: {r: 0.16862746, g: 0.29411766, b: 0.8392157, a: 1}
+  _unCraftableColor: {r: 0.11740828, g: 0.21548556, b: 0.6415094, a: 1}
 --- !u!1 &7873512437576500975
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ namespace IslandBoy
 
         public void GimmeItem(ItemObject item)
         {
-            WorldItemManager.Instance.SpawnItem(_pr.PlayerPositionReference, item);
+            WorldItemManager.Instance.SpawnItem(_pr.PositionReference, item);
         }
     }
 }

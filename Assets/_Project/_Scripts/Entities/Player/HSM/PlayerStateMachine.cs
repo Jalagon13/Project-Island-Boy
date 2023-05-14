@@ -38,7 +38,7 @@ namespace IslandBoy
         private void Update()
         {
             _currentState.UpdateStates();
-            _pr.PlayerPositionReference = transform.position;
+            _pr.PositionReference = transform.position;
             _pr.MousePositionReference = (Vector2)_mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         }
 

@@ -21,7 +21,7 @@ namespace IslandBoy
 
         private void Awake()
         {
-            _pr.PlayerInventory = this;
+            _pr.Inventory = this;
             _mouseItemHolder = transform.GetChild(2).GetComponent<MouseItemHolder>();
         }
 
@@ -34,7 +34,27 @@ namespace IslandBoy
             }
         }
 
-        public bool AddItem(ItemObject item, List<ItemParameter> itemParameters = null)
+        public int AddItem(ItemObject item, int amount, List<ItemParameter> itemParameters = null)
+        {
+            // return leftover if there is.
+            for (int i = 0; i < amount; i++)
+            {
+                bool added = Add(item, amount, itemParameters);
+
+                if (!added)
+                {
+                    AudioManager.Instance.PlayClip(_popSound, false, true);
+                    AddItemEvent?.Invoke();
+                    return amount - i;
+                }
+            }
+
+            AudioManager.Instance.PlayClip(_popSound, false, true);
+            AddItemEvent?.Invoke();
+            return 0;
+        }
+
+        private bool Add(ItemObject item, int amount, List<ItemParameter> itemParameters = null)
         {
             // Check if any slot has the same item with count lower than max stack.
             for (int i = 0; i < _inventorySlots.Length; i++)
@@ -48,7 +68,6 @@ namespace IslandBoy
                     itemInSlot.Item.Stackable == true)
                 {
                     itemInSlot.IncrementCount();
-                    OnAddItem();
                     return true;
                 }
             }
@@ -57,11 +76,10 @@ namespace IslandBoy
             for (int i = 0; i < _inventorySlots.Length; i++)
             {
                 InventorySlot slot = _inventorySlots[i];
-                
-                if(slot.transform.childCount == 0)
+
+                if (slot.transform.childCount == 0)
                 {
                     SpawnInventoryItem(item, slot, itemParameters);
-                    OnAddItem();
                     return true;
                 }
             }
@@ -86,12 +104,6 @@ namespace IslandBoy
             }
 
             return false;
-        }
-
-        private void OnAddItem()
-        {
-            AddItemEvent?.Invoke();
-            AudioManager.Instance.PlayClip(_popSound, false, true);
         }
 
         private void SpawnInventoryItem(ItemObject item, InventorySlot slot, List<ItemParameter> itemParameters)

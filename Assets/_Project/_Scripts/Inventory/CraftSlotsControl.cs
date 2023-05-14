@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace IslandBoy
@@ -8,6 +6,7 @@ namespace IslandBoy
     {
         [SerializeField] private RecipeDatabaseObject _rdb;
         [SerializeField] private GameObject _craftSlotPrefab;
+        [SerializeField] private RectTransform _craftSlotsRect;
 
         private void Start()
         {
@@ -16,7 +15,7 @@ namespace IslandBoy
 
         private void RefreshCraftingMenu()
         {
-            if (transform.childCount > 0)
+            if (_craftSlotsRect.transform.childCount > 0)
             {
                 foreach (Transform child in transform)
                 {
@@ -26,7 +25,7 @@ namespace IslandBoy
 
             for (int i = 0; i < _rdb.Database.Length; i++)
             {
-                GameObject cs = Instantiate(_craftSlotPrefab, transform);
+                GameObject cs = Instantiate(_craftSlotPrefab, _craftSlotsRect.transform);
                 CraftSlot craftSlot = cs.GetComponent<CraftSlot>();
                 craftSlot.Initialize(_rdb.Database[i]);
             }

@@ -13,7 +13,7 @@ namespace IslandBoy
 
         private SpriteRenderer _sr;
         private Vector2 _dropPosition;
-        private int _durability = 6;
+        private int _durability = 1;
 
         private void Awake()
         {

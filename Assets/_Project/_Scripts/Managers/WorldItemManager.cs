@@ -17,7 +17,7 @@ namespace IslandBoy
             WorldItem newItem = newItemGo.GetComponent<WorldItem>();
 
             if (stack < 0)
-                stack = _pr.PlayerInventory.MaxStack;
+                stack = _pr.Inventory.MaxStack;
 
             if (!item.Stackable)
                 stack = 1;

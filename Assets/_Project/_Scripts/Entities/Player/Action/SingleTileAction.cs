@@ -34,7 +34,7 @@ namespace IslandBoy
 
         private Vector2 CalcStaPos()
         {
-            var playerPosTileCenter = GetCenterOfTilePos(_pr.PlayerPositionReference);
+            var playerPosTileCenter = GetCenterOfTilePos(_pr.PositionReference);
             var dir = (_pr.MousePositionReference - playerPosTileCenter).normalized;
 
             return GetCenterOfTilePos(playerPosTileCenter + dir);

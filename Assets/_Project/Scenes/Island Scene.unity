@@ -54205,6 +54205,7 @@ GameObject:
   - component: {fileID: 985348835}
   - component: {fileID: 985348836}
   - component: {fileID: 985348837}
+  - component: {fileID: 985348838}
   m_Layer: 0
   m_Name: Inventory
   m_TagString: Untagged
@@ -54250,7 +54251,7 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
-  _maxStack: 100
+  _maxStack: 99
   _inventorySlots:
   - {fileID: 3757946712520576334}
   - {fileID: 1297885313}
@@ -54316,6 +54317,21 @@ MonoBehaviour:
   - {fileID: 2026296194}
   - {fileID: 1341779243}
   - {fileID: 1533726540}
+--- !u!114 &985348838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985348833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b7e7a7ca66e57847a915a4ea448ce7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rdb: {fileID: 11400000, guid: fcf2c4799313803409b1c09f21fc9c77, type: 2}
+  _craftSlotPrefab: {fileID: 6449567880495286189, guid: 28a3b174ebf164c4eb2f397a56b59ac6, type: 3}
+  _craftSlotsRect: {fileID: 2120751445}
 --- !u!1001 &991950966
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75638,7 +75654,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2120751445}
   - component: {fileID: 2120751447}
-  - component: {fileID: 2120751448}
   m_Layer: 0
   m_Name: CraftSlots
   m_TagString: Untagged
@@ -75692,20 +75707,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &2120751448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2120751444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b7e7a7ca66e57847a915a4ea448ce7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rdb: {fileID: 11400000, guid: fcf2c4799313803409b1c09f21fc9c77, type: 2}
-  _craftSlotPrefab: {fileID: 6449567880495286189, guid: 28a3b174ebf164c4eb2f397a56b59ac6, type: 3}
 --- !u!1001 &2127260384
 PrefabInstance:
   m_ObjectHideFlags: 0
