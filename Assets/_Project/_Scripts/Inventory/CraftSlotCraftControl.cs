@@ -5,6 +5,7 @@ namespace IslandBoy
     public class CraftSlotCraftControl : MonoBehaviour
     {
         [SerializeField] private PlayerReference _pr;
+        [SerializeField] private AudioClip _popSound;
         [SerializeField] private GameObject _inventoryItemPrefab;
 
         private MouseItemHolder _mouseItemHolder;
@@ -28,6 +29,8 @@ namespace IslandBoy
             {
                 _pr.Inventory.RemoveItem(ia.Item, ia.Amount);
             }
+
+            AudioManager.Instance.PlayClip(_popSound, false, true);
 
             _cs.CheckIfCanCraft();
         }

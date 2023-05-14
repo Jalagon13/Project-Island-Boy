@@ -7,7 +7,9 @@ namespace IslandBoy
 {
     public class InventorySlot : MonoBehaviour, IPointerClickHandler
     {
-        public static event Action SlotClickedEvent; 
+        public static event Action SlotClickedEvent;
+
+        [SerializeField] private AudioClip _popSound;
 
         private MouseItemHolder _mouseItemHolder;
         private bool _inventoryOpen;
@@ -78,6 +80,7 @@ namespace IslandBoy
                     else
                     {
                         _mouseItemHolder.GiveItemToSlot(transform);
+                        PlaySound();
                     }
                 }
                 else
@@ -98,14 +101,13 @@ namespace IslandBoy
                         {
                             if (ItemObject.Stackable)
                             {
-                                
-                                
                                 var thisInventoryItem = transform.GetChild(0).GetComponent<InventoryItem>();
 
                                 if(thisInventoryItem.Count < _maxStack)
                                 {
                                     _mouseItemHolder.InventoryItem.Count -= 1;
                                     thisInventoryItem.Count += 1;
+                                    PlaySound();
                                 }
                             }
                             else
@@ -128,11 +130,13 @@ namespace IslandBoy
                                 InventoryItem item = newItemGo.GetComponent<InventoryItem>();
                                 item.Initialize(_mouseItemHolder.ItemObject, _mouseItemHolder.ItemObject.DefaultParameterList);
                                 _mouseItemHolder.InventoryItem.Count -= 1;
+                                PlaySound();
                             }
                         }
                         else
                         {
                             _mouseItemHolder.GiveItemToSlot(transform);
+                            PlaySound();
                         }
                     }
                 }
@@ -168,6 +172,7 @@ namespace IslandBoy
 
                 thisInventoryItem.Count = smallHalf;
                 _mouseItemHolder.InventoryItem.Count = bigHalf;
+                PlaySound();
             }
             else
             {
@@ -190,10 +195,12 @@ namespace IslandBoy
                     {
                         _mouseItemHolder.InventoryItem.Count -= _maxStack - countRef;
                         thisInventoryItem.Count = _maxStack;
+                        PlaySound();
                     }
                     else if(thisInventoryItem.Count <= _maxStack)
                     {
                         _mouseItemHolder.InventoryItem.Count = 0;
+                        PlaySound();
                     }
                 }
             }
@@ -208,6 +215,7 @@ namespace IslandBoy
 
                 thisItem.SetParent(_mouseItemHolder.transform, false);
                 mouseItem.SetParent(transform, false);
+                PlaySound();
             }
         }
 
@@ -215,11 +223,17 @@ namespace IslandBoy
         {
             var item = transform.GetChild(0);
             item.SetParent(_mouseItemHolder.transform, false);
+            PlaySound();
         }
 
         private bool HasItem()
         {
             return transform.childCount > 0;
+        }
+
+        private void PlaySound()
+        {
+            AudioManager.Instance.PlayClip(_popSound, false, true);
         }
     }
 }
