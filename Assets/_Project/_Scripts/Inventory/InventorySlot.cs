@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -5,6 +6,8 @@ namespace IslandBoy
 {
     public class InventorySlot : MonoBehaviour, IPointerClickHandler
     {
+        public static event Action SlotClickedEvent; 
+
         private MouseItemHolder _mouseItemHolder;
         private bool _inventoryOpen;
         private int _maxStack;
@@ -115,6 +118,8 @@ namespace IslandBoy
                     }
                 }
             }
+
+            SlotClickedEvent?.Invoke();
         }
 
         private void BreakStackInHalf()

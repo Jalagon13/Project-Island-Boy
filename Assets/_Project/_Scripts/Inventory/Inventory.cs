@@ -87,6 +87,26 @@ namespace IslandBoy
             return false;
         }
 
+        public void RemoveItem(ItemObject item, int amount)
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                for (int j = 0; j < _inventorySlots.Length; j++)
+                {
+                    InventorySlot slot = _inventorySlots[j];
+                    InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+
+                    if (itemInSlot == null)
+                        continue;
+
+                    if (itemInSlot.Item == item)
+                        itemInSlot.Count--;
+                }
+            }
+        }
+
+
+
         public bool Contains(ItemObject item, int amount)
         {
             for (int i = 0; i < _inventorySlots.Length; i++)

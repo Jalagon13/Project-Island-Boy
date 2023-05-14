@@ -57,13 +57,13 @@ namespace IslandBoy
                 Destroy(transform.GetChild(0).gameObject);
         }
 
-        public void CreateMouseItem(GameObject itemGo, ItemObject itemObject)
+        public void CreateMouseItem(GameObject itemGo, ItemObject itemObject, int count = 1)
         {
             if (!HasItem())
             {
                 GameObject newItemGo = Instantiate(itemGo, transform);
                 InventoryItem item = newItemGo.GetComponent<InventoryItem>();
-                item.Initialize(itemObject, itemObject.DefaultParameterList);
+                item.Initialize(itemObject, itemObject.DefaultParameterList, count);
             }
         }
 

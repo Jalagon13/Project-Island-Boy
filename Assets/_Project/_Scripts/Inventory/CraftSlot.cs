@@ -11,11 +11,23 @@ namespace IslandBoy
         [SerializeField] private Color _craftableColor;
         [SerializeField] private Color _unCraftableColor;
 
-        private Image _craftSlotBackround;
-        private Image _outputImage;
         private RectTransform _rscPanel;
         private RectTransform _rscSlots;
+        private Image _craftSlotBackround;
+        private Image _outputImage;
         private Recipe _recipe;
+        private bool _canCraft;
+
+        public bool CanCraft { get { return _canCraft; } }
+        public Recipe Recipe { get { return _recipe; } }
+
+        private void Awake()
+        {
+            _craftSlotBackround = GetComponent<Image>();
+            _outputImage = transform.GetChild(0).GetComponent<Image>();
+            _rscPanel = transform.GetChild(1).GetComponent<RectTransform>();
+            _rscSlots = transform.GetChild(1).GetChild(0).GetComponent<RectTransform>();
+        }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
@@ -29,15 +41,12 @@ namespace IslandBoy
 
         public void Initialize(Recipe recipe)
         {
-            _craftSlotBackround = GetComponent<Image>();
-            _outputImage = transform.GetChild(0).GetComponent<Image>();
-            _rscPanel = transform.GetChild(1).GetComponent<RectTransform>();
-            _rscSlots = transform.GetChild(1).GetChild(0).GetComponent<RectTransform>();
             _recipe = recipe;
             _outputImage.sprite = recipe.OutputItem.UiDisplay;
 
             Inventory.AddItemEvent += CheckIfCanCraft;
             DropPanel.OnDropEvent += CheckIfCanCraft;
+            InventorySlot.SlotClickedEvent += CheckIfCanCraft;
             CheckIfCanCraft();
 
             if (_rscSlots.transform.childCount > 0)
@@ -77,12 +86,14 @@ namespace IslandBoy
         {
             _craftSlotBackround.color = _craftableColor;
             _outputImage.color = Color.white;
+            _canCraft = true;
         }
 
         private void SetUnCraftable()
         {
             _craftSlotBackround.color = _unCraftableColor;
             _outputImage.color = Color.black;
+            _canCraft = false;
         }
     }
 }

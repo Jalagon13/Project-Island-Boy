@@ -8,6 +8,13 @@ namespace IslandBoy
         [SerializeField] private GameObject _craftSlotPrefab;
         [SerializeField] private RectTransform _craftSlotsRect;
 
+        private MouseItemHolder _mouseItemHolder;
+
+        private void Awake()
+        {
+            _mouseItemHolder = transform.GetChild(2).GetComponent<MouseItemHolder>();
+        }
+
         private void Start()
         {
             RefreshCraftingMenu();
@@ -26,8 +33,12 @@ namespace IslandBoy
             for (int i = 0; i < _rdb.Database.Length; i++)
             {
                 GameObject cs = Instantiate(_craftSlotPrefab, _craftSlotsRect.transform);
+
                 CraftSlot craftSlot = cs.GetComponent<CraftSlot>();
+                CraftSlotCraftControl craftSlotCraftControl = cs.GetComponent<CraftSlotCraftControl>();
+
                 craftSlot.Initialize(_rdb.Database[i]);
+                craftSlotCraftControl.MouseItemHolder = _mouseItemHolder;
             }
         }
     }

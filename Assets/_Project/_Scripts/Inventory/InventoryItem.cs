@@ -33,13 +33,13 @@ namespace IslandBoy
             }
         }
 
-        public void Initialize(ItemObject item, List<ItemParameter> itemParameters = null)
+        public void Initialize(ItemObject item, List<ItemParameter> itemParameters = null, int count = 1)
         {
             _image = GetComponent<Image>();
             _countText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
             _item = item;
             _image.sprite = item.UiDisplay;
-            _count = 1;
+            _count = count;
             _currentParameters = itemParameters;
 
             SetUpDurabilityCounter();

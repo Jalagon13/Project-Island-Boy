@@ -163,7 +163,9 @@ GameObject:
   - component: {fileID: 3926979908778272059}
   - component: {fileID: 2409570686420198269}
   - component: {fileID: 2432644234524686432}
+  - component: {fileID: 8264587770041999043}
   - component: {fileID: 3556255958571879958}
+  - component: {fileID: 7824127527109668474}
   m_Layer: 0
   m_Name: '[UI] CraftSlot'
   m_TagString: Untagged
@@ -231,6 +233,62 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8264587770041999043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6449567880495286189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 2432644234524686432}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7824127527109668474}
+        m_TargetAssemblyTypeName: IslandBoy.CraftSlotCraftControl, Assembly-CSharp
+        m_MethodName: TryToCraft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3556255958571879958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,6 +305,20 @@ MonoBehaviour:
   _rscSlotPrefab: {fileID: 3401008477222750777, guid: fb05475d13b3d20499b8c38723ea99f1, type: 3}
   _craftableColor: {r: 0.16862746, g: 0.29411766, b: 0.8392157, a: 1}
   _unCraftableColor: {r: 0.11740828, g: 0.21548556, b: 0.6415094, a: 1}
+--- !u!114 &7824127527109668474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6449567880495286189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b76e36a4cf7d244684eaca08399aa5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
+  _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
 --- !u!1 &7873512437576500975
 GameObject:
   m_ObjectHideFlags: 0
