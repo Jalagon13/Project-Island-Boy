@@ -89,19 +89,26 @@ namespace IslandBoy
 
         public void RemoveItem(ItemObject item, int amount)
         {
-            for (int i = 0; i < amount; i++)
+            var counter = 0;
+
+            for (int j = 0; j < _inventorySlots.Length; j++)
             {
-                for (int j = 0; j < _inventorySlots.Length; j++)
-                {
-                    InventorySlot slot = _inventorySlots[j];
-                    InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+                if (counter >= amount) return;
 
-                    if (itemInSlot == null)
-                        continue;
+                InventorySlot slot = _inventorySlots[j];
+                InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
 
-                    if (itemInSlot.Item == item)
-                        itemInSlot.Count--;
-                }
+                repeat:
+                if (itemInSlot == null || itemInSlot.Item != item)
+                    continue;
+
+                if (itemInSlot.Item == item)
+                    itemInSlot.Count--;
+
+                counter++;
+
+                if (counter < amount)
+                    goto repeat;
             }
         }
 
@@ -109,18 +116,22 @@ namespace IslandBoy
 
         public bool Contains(ItemObject item, int amount)
         {
+            var counter = amount;
+
             for (int i = 0; i < _inventorySlots.Length; i++)
             {
                 InventorySlot slot = _inventorySlots[i];
                 InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
 
-                if (itemInSlot == null)
+                if (itemInSlot == null || itemInSlot.Item != item)
                     continue;
 
-                if(itemInSlot.Item == item && itemInSlot.Count >= amount)
-                {
+                counter -= itemInSlot.Count;
+
+                if (counter > 0)
+                    continue;
+                else
                     return true;
-                }
             }
 
             return false;

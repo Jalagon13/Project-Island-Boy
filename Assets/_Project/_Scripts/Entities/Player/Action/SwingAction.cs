@@ -6,6 +6,18 @@ namespace IslandBoy
 {
     public class SwingAction : MonoBehaviour
     {
+        [SerializeField] private PlayerReference _pr;
 
+        private SpriteRenderer _sr;
+
+        private void Awake()
+        {
+            _sr = transform.GetChild(1).GetChild(1).GetComponent<SpriteRenderer>();
+        }
+
+        private void OnEnable()
+        {
+            _sr.sprite = _pr.SelectedSlot.Item != null ? _pr.SelectedSlot.Item.UiDisplay : null;
+        }
     }
 }

@@ -25425,7 +25425,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -250621267
   m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Time: 0.175
   m_Parameters:
     serializedVersion: 3
@@ -70833,7 +70833,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1838497373
 Transform:
   m_ObjectHideFlags: 0
@@ -70863,6 +70863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b499737bb5bf936428838012042eecde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
 --- !u!1001 &1845380352
 PrefabInstance:
   m_ObjectHideFlags: 0

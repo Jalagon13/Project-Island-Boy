@@ -15,6 +15,22 @@ namespace IslandBoy
         public MouseItemHolder MouseItemHolder { set { _mouseItemHolder = value; } }
         public bool InventoryOpen { set { _inventoryOpen = value; } }
         public int MaxStack { set { _maxStack = value; } }
+        public ItemObject Item
+        { 
+            get 
+            {
+                if (ThisSlotHasItem())
+                {
+                    var inventoryItem = transform.GetChild(0);
+
+                    InventoryItem item = inventoryItem.GetComponent<InventoryItem>();
+
+                    return item.Item;
+                }
+
+                return null;
+            } 
+        }
 
         public void OnPointerClick(PointerEventData eventData)
         {
@@ -26,9 +42,9 @@ namespace IslandBoy
                 {
                     if (ThisSlotHasItem())
                     {
-                        if(ThisItemObject() == _mouseItemHolder.ItemObject)
+                        if(Item == _mouseItemHolder.ItemObject)
                         {
-                            if (ThisItemObject().Stackable)
+                            if (Item.Stackable)
                             {
                                 TryToAddMouseStackToThisStack();
                             }
@@ -61,9 +77,9 @@ namespace IslandBoy
                 {
                     if (ThisSlotHasItem())
                     {
-                        if(ThisItemObject() == _mouseItemHolder.ItemObject)
+                        if(Item == _mouseItemHolder.ItemObject)
                         {
-                            if (ThisItemObject().Stackable)
+                            if (Item.Stackable)
                             {
                                 
                                 
@@ -107,7 +123,7 @@ namespace IslandBoy
                 {
                     if (ThisSlotHasItem())
                     {
-                        if (ThisItemObject().Stackable)
+                        if (Item.Stackable)
                         {
                             BreakStackInHalf();
                         }
@@ -144,7 +160,7 @@ namespace IslandBoy
 
         private void TryToAddMouseStackToThisStack()
         {
-            if(ThisItemObject() == _mouseItemHolder.ItemObject && ThisItemObject().Stackable)
+            if(Item == _mouseItemHolder.ItemObject && Item.Stackable)
             {
                 var thisInventoryItem = transform.GetChild(0).GetComponent<InventoryItem>();
 
@@ -180,21 +196,6 @@ namespace IslandBoy
             {
                 Debug.LogError($"SwapThisItemAndMouseItem callback from [{name}]. Trying to swap items but missing 1 or more items");
             }
-        }
-
-        private ItemObject ThisItemObject()
-        {
-            if (ThisSlotHasItem())
-            {
-                var inventoryItem = transform.GetChild(0);
-
-                InventoryItem item = inventoryItem.GetComponent<InventoryItem>();
-
-                return item.Item;
-            }
-
-            Debug.LogError($"GetThisItemObject callback from [{name}]. Can not get Item because there is no item.");
-            return null;
         }
 
         private void GiveThisItemToMouseHolder()
