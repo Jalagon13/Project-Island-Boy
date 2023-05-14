@@ -71,7 +71,7 @@ namespace IslandBoy
 
         private void PerformSwing()
         {
-            if (_counter < _cooldown) return;
+            if (_counter < _cooldown || PointerHandler.IsOverLayer(5)) return;
 
             _counter = 0f;
             _moveInput.Speed = 1.5f;
