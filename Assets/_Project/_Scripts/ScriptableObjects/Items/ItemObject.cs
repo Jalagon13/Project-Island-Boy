@@ -13,6 +13,8 @@ namespace IslandBoy
         [field: SerializeField] public string Description { get; set; }
         [field: SerializeField] public List<ItemParameter> DefaultParameterList { get; set; }
 
+        public abstract ToolType ToolType { get; }
+
     }
 
     [Serializable]

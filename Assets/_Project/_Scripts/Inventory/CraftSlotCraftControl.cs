@@ -28,6 +28,8 @@ namespace IslandBoy
             {
                 _pr.Inventory.RemoveItem(ia.Item, ia.Amount);
             }
+
+            _cs.CheckIfCanCraft();
         }
     }
 }

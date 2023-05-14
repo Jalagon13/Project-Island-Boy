@@ -8,9 +8,11 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private AudioClip _wooshSound;
-        [SerializeField] private float _baseCooldown;
-        [SerializeField] private int _basePower;
-        [SerializeField] private float _baseSwingSpeedMultiplier = 1;
+        [Header("Base Stats")]
+        [SerializeField] private ToolType _baseToolType;
+        [SerializeField] private ItemParameter _basePower;
+        [SerializeField] private ItemParameter _baseCooldown;
+        [SerializeField] private ItemParameter _baseSwingSpeedMultiplier;
 
         private SingleTileAction _sta;
         private PlayerInput _input;
@@ -35,12 +37,14 @@ namespace IslandBoy
             _input.Player.PrimaryAction.performed += SetIsHeldDown;
             _input.Player.PrimaryAction.canceled += SetIsHeldDown;
 
-            _camera = Camera.main;
             _animator = GetComponent<Animator>();
-            _animator.speed = 1 * _baseSwingSpeedMultiplier;
+            _animator.speed = 1 * _baseSwingSpeedMultiplier.Value;
             _moveInput = transform.root.GetComponent<PlayerMoveInput>();
+            _camera = Camera.main;
+
             _sta = transform.GetChild(0).GetComponent<SingleTileAction>();
-            _sta.BasePower = _basePower;
+            _sta.BasePower = _basePower.Value;
+            _sta.BaseToolType = _baseToolType;
             _sta.transform.parent = null;
         }
 
@@ -63,8 +67,8 @@ namespace IslandBoy
         {
             _counter += Time.deltaTime;
 
-            if (_counter > _baseCooldown)
-                _counter = _baseCooldown;
+            if (_counter > CalcParameter(_baseCooldown))
+                _counter = CalcParameter(_baseCooldown);
 
             if (_isHeldDown)
                 PerformSwing();
@@ -77,7 +81,7 @@ namespace IslandBoy
 
         private void PerformSwing()
         {
-            if (_counter < _baseCooldown || PointerHandler.IsOverLayer(5) || _performingSwing) return;
+            if (_counter < CalcParameter(_baseCooldown) || PointerHandler.IsOverLayer(5) || _performingSwing) return;
 
             AnimStateManager.ChangeAnimationState(_animator, GetAnimationHash());
         }
@@ -86,9 +90,25 @@ namespace IslandBoy
         {
             _performingSwing = true;
             _moveInput.Speed = 1.5f;
-            _animator.speed = 1 * _baseSwingSpeedMultiplier;
+            _animator.speed = 1 * CalcParameter(_baseSwingSpeedMultiplier);
 
             AudioManager.Instance.PlayClip(_wooshSound, false, true);
+        }
+
+        private float CalcParameter(ItemParameter baseParameter)
+        {
+            var item = _pr.SelectedSlot.Item;
+
+            if (item == null)
+                return baseParameter.Value;
+
+            if (item.DefaultParameterList.Contains(baseParameter))
+            {
+                int index = item.DefaultParameterList.IndexOf(baseParameter);
+                return item.DefaultParameterList[index].Value;
+            }
+
+            return baseParameter.Value;
         }
 
         public void SwingEnd()

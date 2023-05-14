@@ -65,7 +65,7 @@ namespace IslandBoy
             }
         }
 
-        private void CheckIfCanCraft()
+        public void CheckIfCanCraft()
         {
             bool canCraft = false;
 

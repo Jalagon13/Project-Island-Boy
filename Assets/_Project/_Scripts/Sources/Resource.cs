@@ -5,11 +5,13 @@ namespace IslandBoy
 {
     public class Resource : MonoBehaviour, IBreakable
     {
-        [SerializeField] private int _hitPoints;
-        [SerializeField] private AudioClip _chopSound;
-        [SerializeField] private AudioClip _breakSound;
+        [SerializeField] private float _hitPoints;
+        [SerializeField] private ToolType _harvestType;
         [SerializeField] private ItemObject _dropItem;
         [SerializeField] private int _count;
+        [Header("Game Feel")]
+        [SerializeField] private AudioClip _chopSound;
+        [SerializeField] private AudioClip _breakSound;
 
         private SpriteRenderer _sr;
         private Vector2 _dropPosition;
@@ -20,14 +22,16 @@ namespace IslandBoy
             _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
         }
 
-        public int HitPoints { get { return _hitPoints; } set { _hitPoints = value; } }
+        public float HitPoints { get { return _hitPoints; } set { _hitPoints = value; } }
 
-        public void Hit(int amount)
+        public void Hit(float amount, ToolType toolType)
         {
+            if (toolType != _harvestType) return;
+            Debug.Log(amount);
             AudioManager.Instance.PlayClip(_chopSound, false, true);
             StartCoroutine(Tremble());
-            _hitPoints -= amount;
 
+            _hitPoints -= amount;
             if (_hitPoints <= 0)
                 Break();
         }

@@ -2,9 +2,9 @@ namespace IslandBoy
 {
     public interface IBreakable
     {
-        public int HitPoints { get; set; }
+        public float HitPoints { get; set; }
 
-        public void Hit(int amount);
+        public void Hit(float amount, ToolType toolType);
 
         public void Break();
     }
