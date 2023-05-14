@@ -17,7 +17,7 @@ namespace IslandBoy
 
         private void OnEnable()
         {
-            _sr.sprite = _pr.SelectedSlot.Item != null ? _pr.SelectedSlot.Item.UiDisplay : null;
+            _sr.sprite = _pr.SelectedSlot.ItemObject != null ? _pr.SelectedSlot.ItemObject.UiDisplay : null;
         }
     }
 }

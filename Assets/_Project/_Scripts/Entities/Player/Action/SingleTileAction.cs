@@ -6,6 +6,7 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private ItemParameter _powerParameter;
+        [SerializeField] private ItemParameter _durabilityParameter;
 
         private float _basePower;
         private ToolType _baseToolType;
@@ -34,21 +35,43 @@ namespace IslandBoy
                 IBreakable breakable = collider.GetComponent<IBreakable>();
 
                 if (breakable != null)
-                    breakable.Hit(CalcPower(), CalcToolType());
+                {
+                    if (breakable.Hit(CalcPower(), CalcToolType()))
+                        ModifyDurability();
+                }
+            }
+        }
+
+        private void ModifyDurability()
+        {
+            if (_pr.SelectedSlot.CurrentParameters.Count <= 0) return;
+
+            var itemParams = _pr.SelectedSlot.CurrentParameters;
+
+            if (itemParams.Contains(_durabilityParameter))
+            {
+                int index = itemParams.IndexOf(_durabilityParameter);
+                float newValue = itemParams[index].Value - 1;
+                itemParams[index] = new ItemParameter
+                {
+                    Parameter = _durabilityParameter.Parameter,
+                    Value = newValue
+                };
+
+                _pr.SelectedSlot.InventoryItem.UpdateDurabilityCounter();
             }
         }
 
         private float CalcPower()
         {
-            var item = _pr.SelectedSlot.Item;
+            if (_pr.SelectedSlot.CurrentParameters.Count <= 0) return _basePower;
 
-            if (item == null)
-                return _basePower;
+            var itemParams = _pr.SelectedSlot.CurrentParameters;
 
-            if (item.DefaultParameterList.Contains(_powerParameter))
+            if (itemParams.Contains(_powerParameter))
             {
-                int index = item.DefaultParameterList.IndexOf(_powerParameter);
-                return item.DefaultParameterList[index].Value;
+                int index = itemParams.IndexOf(_powerParameter);
+                return itemParams[index].Value;
             }
             
             return _basePower;
@@ -56,7 +79,7 @@ namespace IslandBoy
 
         private ToolType CalcToolType()
         {
-            var item = _pr.SelectedSlot.Item;
+            var item = _pr.SelectedSlot.ItemObject;
             return item == null ? _baseToolType : item.ToolType;
         }
 

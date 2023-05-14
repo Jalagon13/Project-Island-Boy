@@ -97,7 +97,7 @@ namespace IslandBoy
 
         private float CalcParameter(ItemParameter baseParameter)
         {
-            var item = _pr.SelectedSlot.Item;
+            var item = _pr.SelectedSlot.ItemObject;
 
             if (item == null)
                 return baseParameter.Value;

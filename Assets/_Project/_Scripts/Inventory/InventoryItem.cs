@@ -40,25 +40,28 @@ namespace IslandBoy
             _item = item;
             _image.sprite = item.UiDisplay;
             _count = count;
-            _currentParameters = itemParameters;
+            _currentParameters = itemParameters != null ? new(itemParameters) : new();
 
-            SetUpDurabilityCounter();
+            UpdateDurabilityCounter();
             UpdateCounter();
         }
 
-        public void SetUpDurabilityCounter()
+        public void UpdateDurabilityCounter()
         {
             if(_currentParameters == null) return;
             if (!_currentParameters.Contains(_durabilityParameter)) return;
 
             int index = _item.DefaultParameterList.IndexOf(_durabilityParameter);
-            int currentDurability = (int)_currentParameters[index].Value;
-            int maxDurability = (int)_item.DefaultParameterList[index].Value;
+            float currentDurability = _currentParameters[index].Value;
+            float maxDurability = _item.DefaultParameterList[index].Value;
 
             GameObject durabilityCounterGo = Instantiate(_durabilityCounterGo, transform);
             DurabilityCounter counter = durabilityCounterGo.GetComponent<DurabilityCounter>();
 
             counter.UpdateDurabilityCounter(maxDurability, currentDurability);
+
+            if (currentDurability == 0)
+                Destroy(gameObject);
         }
 
         public void IncrementCount()

@@ -102,12 +102,12 @@ namespace IslandBoy
                 if (itemInSlot == null || itemInSlot.Item != item)
                     continue;
 
-                if (itemInSlot.Item == item)
-                    itemInSlot.Count--;
-
+                itemInSlot.Count--;
                 counter++;
 
-                if (counter < amount)
+                if (itemInSlot.Count == 0)
+                    continue;
+                else if (counter < amount)
                     goto repeat;
             }
         }

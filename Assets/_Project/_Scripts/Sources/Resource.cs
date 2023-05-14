@@ -24,16 +24,18 @@ namespace IslandBoy
 
         public float HitPoints { get { return _hitPoints; } set { _hitPoints = value; } }
 
-        public void Hit(float amount, ToolType toolType)
+        public bool Hit(float amount, ToolType toolType)
         {
-            if (toolType != _harvestType) return;
-            Debug.Log(amount);
+            if (toolType != _harvestType) return false;
+
             AudioManager.Instance.PlayClip(_chopSound, false, true);
             StartCoroutine(Tremble());
 
             _hitPoints -= amount;
             if (_hitPoints <= 0)
                 Break();
+
+            return true;
         }
 
         public void Break()

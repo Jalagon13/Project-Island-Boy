@@ -14,7 +14,7 @@ namespace IslandBoy
             _fillImage = transform.GetChild(1).GetComponent<Image>();
         }
 
-        public void UpdateDurabilityCounter(int maxDurability, int currentDurability)
+        public void UpdateDurabilityCounter(float maxDurability, float currentDurability)
         {
             _fillImage.fillAmount = Mathf.Clamp01(Mathf.InverseLerp(0, maxDurability, currentDurability));
         }

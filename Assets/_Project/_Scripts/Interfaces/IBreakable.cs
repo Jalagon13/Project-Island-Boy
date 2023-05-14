@@ -4,7 +4,7 @@ namespace IslandBoy
     {
         public float HitPoints { get; set; }
 
-        public void Hit(float amount, ToolType toolType);
+        public bool Hit(float amount, ToolType toolType);
 
         public void Break();
     }

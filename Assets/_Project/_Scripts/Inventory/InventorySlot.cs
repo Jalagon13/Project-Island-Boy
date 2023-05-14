@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -15,21 +16,37 @@ namespace IslandBoy
         public MouseItemHolder MouseItemHolder { set { _mouseItemHolder = value; } }
         public bool InventoryOpen { set { _inventoryOpen = value; } }
         public int MaxStack { set { _maxStack = value; } }
-        public ItemObject Item
+        public ItemObject ItemObject
         { 
             get 
             {
-                if (ThisSlotHasItem())
-                {
-                    var inventoryItem = transform.GetChild(0);
+                if (!HasItem()) return null;
 
-                    InventoryItem item = inventoryItem.GetComponent<InventoryItem>();
-
-                    return item.Item;
-                }
-
-                return null;
+                var inventoryItem = transform.GetChild(0);
+                InventoryItem item = inventoryItem.GetComponent<InventoryItem>();
+                return item.Item;
             } 
+        }
+        public InventoryItem InventoryItem
+        {
+            get
+            {
+                if (!HasItem()) return null;
+
+                var inventoryItem = transform.GetChild(0);
+                return inventoryItem.GetComponent<InventoryItem>();
+            }
+        }
+
+        public List<ItemParameter> CurrentParameters
+        {
+            get
+            {
+                if (!HasItem()) return new();
+
+                var inventoryItem = transform.GetChild(0);
+                return inventoryItem.GetComponent<InventoryItem>().CurrentParameters;
+            }
         }
 
         public void OnPointerClick(PointerEventData eventData)
@@ -40,11 +57,11 @@ namespace IslandBoy
             {
                 if (_mouseItemHolder.HasItem())
                 {
-                    if (ThisSlotHasItem())
+                    if (HasItem())
                     {
-                        if(Item == _mouseItemHolder.ItemObject)
+                        if(ItemObject == _mouseItemHolder.ItemObject)
                         {
-                            if (Item.Stackable)
+                            if (ItemObject.Stackable)
                             {
                                 TryToAddMouseStackToThisStack();
                             }
@@ -65,7 +82,7 @@ namespace IslandBoy
                 }
                 else
                 {
-                    if (ThisSlotHasItem())
+                    if (HasItem())
                     {
                         GiveThisItemToMouseHolder();
                     }
@@ -75,11 +92,11 @@ namespace IslandBoy
             {
                 if (_mouseItemHolder.HasItem())
                 {
-                    if (ThisSlotHasItem())
+                    if (HasItem())
                     {
-                        if(Item == _mouseItemHolder.ItemObject)
+                        if(ItemObject == _mouseItemHolder.ItemObject)
                         {
-                            if (Item.Stackable)
+                            if (ItemObject.Stackable)
                             {
                                 
                                 
@@ -105,7 +122,7 @@ namespace IslandBoy
                     {
                         if (_mouseItemHolder.ItemObject.Stackable)
                         {
-                            if (!ThisSlotHasItem())
+                            if (!HasItem())
                             {
                                 GameObject newItemGo = Instantiate(_mouseItemHolder.ItemGo, transform);
                                 InventoryItem item = newItemGo.GetComponent<InventoryItem>();
@@ -121,9 +138,9 @@ namespace IslandBoy
                 }
                 else
                 {
-                    if (ThisSlotHasItem())
+                    if (HasItem())
                     {
-                        if (Item.Stackable)
+                        if (ItemObject.Stackable)
                         {
                             BreakStackInHalf();
                         }
@@ -160,7 +177,7 @@ namespace IslandBoy
 
         private void TryToAddMouseStackToThisStack()
         {
-            if(Item == _mouseItemHolder.ItemObject && Item.Stackable)
+            if(ItemObject == _mouseItemHolder.ItemObject && ItemObject.Stackable)
             {
                 var thisInventoryItem = transform.GetChild(0).GetComponent<InventoryItem>();
 
@@ -184,17 +201,13 @@ namespace IslandBoy
 
         private void SwapThisItemAndMouseItem()
         {
-            if(ThisSlotHasItem() && _mouseItemHolder.HasItem())
+            if(HasItem() && _mouseItemHolder.HasItem())
             {
                 var thisItem = transform.GetChild(0);
                 var mouseItem = _mouseItemHolder.transform.GetChild(0);
 
                 thisItem.SetParent(_mouseItemHolder.transform, false);
                 mouseItem.SetParent(transform, false);
-            }
-            else
-            {
-                Debug.LogError($"SwapThisItemAndMouseItem callback from [{name}]. Trying to swap items but missing 1 or more items");
             }
         }
 
@@ -204,7 +217,7 @@ namespace IslandBoy
             item.SetParent(_mouseItemHolder.transform, false);
         }
 
-        private bool ThisSlotHasItem()
+        private bool HasItem()
         {
             return transform.childCount > 0;
         }
