@@ -17,7 +17,7 @@ namespace IslandBoy
             _cs = GetComponent<CraftSlot>();
         }
 
-        public void TryToCraft()
+        public void TryToCraft() // connected to slot button
         {
             if (!_cs.CanCraft) return;
             if (_mouseItemHolder.HasItem()) return;

@@ -21,6 +21,7 @@ namespace IslandBoy
         private readonly int _downSwingHash = Animator.StringToHash("[Anim] AC Swing Down");
         private float _counter;
         private bool _isHeldDown;
+        private bool _performingSwing;
 
         public bool IsHeldDown { get { return _isHeldDown; } }
 
@@ -50,7 +51,7 @@ namespace IslandBoy
 
         private void Start()
         {
-            PlayIdle();
+            SwingEnd();
         }
 
         private void FixedUpdate()
@@ -71,18 +72,25 @@ namespace IslandBoy
 
         private void PerformSwing()
         {
-            if (_counter < _cooldown || PointerHandler.IsOverLayer(5)) return;
+            if (_counter < _cooldown || PointerHandler.IsOverLayer(5) || _performingSwing) return;
 
-            _counter = 0f;
-            _moveInput.Speed = 1.5f;
-
-            AudioManager.Instance.PlayClip(_wooshSound, false, true);
             AnimStateManager.ChangeAnimationState(_animator, GetAnimationHash());
         }
 
-        public void PlayIdle()
+        public void SwingStart()
         {
+            _performingSwing = true;
+            _moveInput.Speed = 1.5f;
+
+            AudioManager.Instance.PlayClip(_wooshSound, false, true);
+        }
+
+        public void SwingEnd()
+        {
+            _performingSwing = false;
             _moveInput.Speed = 3f;
+            _counter = 0f;
+
             AnimStateManager.ChangeAnimationState(_animator, _idleHash);
         }
 

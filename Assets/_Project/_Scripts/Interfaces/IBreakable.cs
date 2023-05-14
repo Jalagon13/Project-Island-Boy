@@ -4,7 +4,7 @@ namespace IslandBoy
     {
         public int HitPoints { get; set; }
 
-        public void Hit();
+        public void Hit(int amount);
 
         public void Break();
     }

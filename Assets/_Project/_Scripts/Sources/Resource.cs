@@ -13,7 +13,6 @@ namespace IslandBoy
 
         private SpriteRenderer _sr;
         private Vector2 _dropPosition;
-        private int _durability = 1;
 
         private void Awake()
         {
@@ -23,13 +22,13 @@ namespace IslandBoy
 
         public int HitPoints { get { return _hitPoints; } set { _hitPoints = value; } }
 
-        public void Hit()
+        public void Hit(int amount)
         {
             AudioManager.Instance.PlayClip(_chopSound, false, true);
             StartCoroutine(Tremble());
-            _durability--;
+            _hitPoints -= amount;
 
-            if(_durability <= 0)
+            if (_hitPoints <= 0)
                 Break();
         }
 

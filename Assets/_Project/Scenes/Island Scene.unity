@@ -25426,7 +25426,7 @@ TrailRenderer:
   m_SortingLayerID: -250621267
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Time: 0.175
+  m_Time: 0.125
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -48497,7 +48497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _hitAmount: 0
+  _defaultHitAmount: 35
 --- !u!114 &727510222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64359,7 +64359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _cooldown: 0.55
+  _cooldown: 0.35
   _wooshSound: {fileID: 8300000, guid: 693f775d985d5c542a5f4361e1922d53, type: 3}
 --- !u!1001 &1481059140
 PrefabInstance:
