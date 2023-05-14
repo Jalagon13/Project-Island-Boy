@@ -52,8 +52,8 @@ namespace IslandBoy
             if (!_currentParameters.Contains(_durabilityParameter)) return;
 
             int index = _item.DefaultParameterList.IndexOf(_durabilityParameter);
-            int currentDurability = _currentParameters[index].Value;
-            int maxDurability = _item.DefaultParameterList[index].Value;
+            int currentDurability = (int)_currentParameters[index].Value;
+            int maxDurability = (int)_item.DefaultParameterList[index].Value;
 
             GameObject durabilityCounterGo = Instantiate(_durabilityCounterGo, transform);
             DurabilityCounter counter = durabilityCounterGo.GetComponent<DurabilityCounter>();

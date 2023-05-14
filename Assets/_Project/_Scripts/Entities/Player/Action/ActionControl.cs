@@ -3,11 +3,14 @@ using UnityEngine.InputSystem;
 
 namespace IslandBoy
 {
+    // Implement Swing Speed, Cooldown, and Power attributes for resource gathering
     public class ActionControl : MonoBehaviour
     {
         [SerializeField] private PlayerReference _pr;
-        [SerializeField] private float _cooldown;
         [SerializeField] private AudioClip _wooshSound;
+        [SerializeField] private float _baseCooldown;
+        [SerializeField] private int _basePower;
+        [SerializeField] private float _baseSwingSpeedMultiplier = 1;
 
         private SingleTileAction _sta;
         private PlayerInput _input;
@@ -34,8 +37,10 @@ namespace IslandBoy
 
             _camera = Camera.main;
             _animator = GetComponent<Animator>();
+            _animator.speed = 1 * _baseSwingSpeedMultiplier;
             _moveInput = transform.root.GetComponent<PlayerMoveInput>();
             _sta = transform.GetChild(0).GetComponent<SingleTileAction>();
+            _sta.BasePower = _basePower;
             _sta.transform.parent = null;
         }
 
@@ -58,8 +63,8 @@ namespace IslandBoy
         {
             _counter += Time.deltaTime;
 
-            if (_counter > _cooldown)
-                _counter = _cooldown;
+            if (_counter > _baseCooldown)
+                _counter = _baseCooldown;
 
             if (_isHeldDown)
                 PerformSwing();
@@ -72,7 +77,7 @@ namespace IslandBoy
 
         private void PerformSwing()
         {
-            if (_counter < _cooldown || PointerHandler.IsOverLayer(5) || _performingSwing) return;
+            if (_counter < _baseCooldown || PointerHandler.IsOverLayer(5) || _performingSwing) return;
 
             AnimStateManager.ChangeAnimationState(_animator, GetAnimationHash());
         }
@@ -81,6 +86,7 @@ namespace IslandBoy
         {
             _performingSwing = true;
             _moveInput.Speed = 1.5f;
+            _animator.speed = 1 * _baseSwingSpeedMultiplier;
 
             AudioManager.Instance.PlayClip(_wooshSound, false, true);
         }

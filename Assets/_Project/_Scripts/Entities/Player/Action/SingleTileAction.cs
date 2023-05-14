@@ -5,7 +5,10 @@ namespace IslandBoy
     public class SingleTileAction : MonoBehaviour
     {
         [SerializeField] private PlayerReference _pr;
-        [SerializeField] private int _defaultHitAmount;
+
+        private int _basePower;
+
+        public int BasePower { set { _basePower = value; } }
 
         private void Update()
         {
@@ -28,7 +31,7 @@ namespace IslandBoy
                 IBreakable breakable = collider.GetComponent<IBreakable>();
 
                 if (breakable != null)
-                    breakable.Hit(_defaultHitAmount);
+                    breakable.Hit(_basePower);
             }
         }
 

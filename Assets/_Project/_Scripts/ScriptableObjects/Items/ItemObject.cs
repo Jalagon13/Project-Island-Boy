@@ -19,7 +19,7 @@ namespace IslandBoy
     public struct ItemParameter : IEquatable<ItemParameter>
     {
         public ItemParameterObject Parameter;
-        public int Value;
+        public float Value;
 
         public bool Equals(ItemParameter other)
         {
