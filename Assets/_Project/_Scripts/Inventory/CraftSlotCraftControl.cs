@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 namespace IslandBoy
 {
     public class CraftSlotCraftControl : MonoBehaviour
     {
+        public static event Action ItemCraftedEvent;
+
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private AudioClip _popSound;
         [SerializeField] private GameObject _inventoryItemPrefab;
@@ -31,8 +34,7 @@ namespace IslandBoy
             }
 
             AudioManager.Instance.PlayClip(_popSound, false, true);
-
-            _cs.CheckIfCanCraft();
+            ItemCraftedEvent?.Invoke();
         }
     }
 }

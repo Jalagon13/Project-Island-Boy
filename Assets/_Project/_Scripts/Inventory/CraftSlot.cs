@@ -29,6 +29,14 @@ namespace IslandBoy
             _rscSlots = transform.GetChild(1).GetChild(0).GetComponent<RectTransform>();
         }
 
+        private void OnDestroy()
+        {
+            Inventory.AddItemEvent -= CheckIfCanCraft;
+            DropPanel.OnDropEvent -= CheckIfCanCraft;
+            InventorySlot.SlotClickedEvent -= CheckIfCanCraft;
+            CraftSlotCraftControl.ItemCraftedEvent -= CheckIfCanCraft;
+        }
+
         public void OnPointerEnter(PointerEventData eventData)
         {
             _rscPanel.gameObject.SetActive(true);
@@ -47,8 +55,14 @@ namespace IslandBoy
             Inventory.AddItemEvent += CheckIfCanCraft;
             DropPanel.OnDropEvent += CheckIfCanCraft;
             InventorySlot.SlotClickedEvent += CheckIfCanCraft;
-            CheckIfCanCraft();
+            CraftSlotCraftControl.ItemCraftedEvent += CheckIfCanCraft;
 
+            InitializeResourceSlots();
+            CheckIfCanCraft();
+        }
+
+        private void InitializeResourceSlots()
+        {
             if (_rscSlots.transform.childCount > 0)
             {
                 foreach (Transform child in _rscSlots.transform)
@@ -57,7 +71,7 @@ namespace IslandBoy
                 }
             }
 
-            foreach (ItemAmount ia in recipe.ResourceList)
+            foreach (ItemAmount ia in _recipe.ResourceList)
             {
                 GameObject rs = Instantiate(_rscSlotPrefab, _rscSlots.transform);
                 RscSlot rescSlot = rs.GetComponent<RscSlot>();

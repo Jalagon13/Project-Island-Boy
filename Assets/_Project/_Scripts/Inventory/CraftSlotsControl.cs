@@ -35,9 +35,9 @@ namespace IslandBoy
                 GameObject cs = Instantiate(_craftSlotPrefab, _craftSlotsRect.transform);
 
                 CraftSlot craftSlot = cs.GetComponent<CraftSlot>();
-                CraftSlotCraftControl craftSlotCraftControl = cs.GetComponent<CraftSlotCraftControl>();
-
                 craftSlot.Initialize(_rdb.Database[i]);
+
+                CraftSlotCraftControl craftSlotCraftControl = cs.GetComponent<CraftSlotCraftControl>();
                 craftSlotCraftControl.MouseItemHolder = _mouseItemHolder;
             }
         }
