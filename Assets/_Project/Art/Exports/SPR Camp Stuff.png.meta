@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: af330eec8c8456947a3af33db472c35f
+guid: 954f438adddea594dac0fb494f0869ae
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -111,7 +111,7 @@ TextureImporter:
         x: 0
         y: 0
         width: 16
-        height: 32
+        height: 25
       alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,8 +119,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9779d093adc161c47913d90762e12665
-      internalID: 1275373618
+      spriteID: a411786eb537be142b45b6ec573e3ed2
+      internalID: 586656638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ws_sleeping_bag
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 32
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec4716f1882211745bc2848b71ec525a
+      internalID: -90063712
       vertices: []
       indices: 
       edges: []
@@ -136,7 +157,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ws_campfire: 1275373618
+      SPR Camp Stuff_1: -768599380
+      ws_campfire: 586656638
+      ws_sleeping_bag: -90063712
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -89,7 +89,7 @@ namespace IslandBoy
         public void SwingStart()
         {
             _performingSwing = true;
-            _moveInput.Speed = 1.75f;
+            _moveInput.Speed = 1f;
             _animator.speed = 1 * CalcParameter(_baseSwingSpeedMultiplier);
 
             AudioManager.Instance.PlayClip(_wooshSound, false, true);
