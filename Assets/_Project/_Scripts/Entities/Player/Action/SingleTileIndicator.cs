@@ -42,13 +42,13 @@ namespace IslandBoy
 
         public void ChangeToHitColor()
         {
-            _sr.transform.localScale = new Vector3(1.15f, 1.15f, 1.15f);
+            _sr.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
             _sr.color = _canHitColor;
         }
 
         public void ChangeToEmptyColor()
         {
-            _sr.transform.localScale = Vector3.one;
+            _sr.transform.localScale = new Vector3(0.85f, 0.85f, 0.85f);
             _sr.color = _indicatorEmptyColor;
         }
     }

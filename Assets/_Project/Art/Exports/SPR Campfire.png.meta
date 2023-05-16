@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f59011461ecd73f4bafc48709d902230
+guid: af330eec8c8456947a3af33db472c35f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,22 +105,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rsc_tree
+      name: ws_campfire
       rect:
         serializedVersion: 2
-        x: 12
-        y: 2
-        width: 40
-        height: 73
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 0
+        y: 0
+        width: 16
+        height: 32
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2cc47ab847a5c54488ddaf5c89160f71
-      internalID: -1302916514
+      spriteID: 9779d093adc161c47913d90762e12665
+      internalID: 1275373618
       vertices: []
       indices: 
       edges: []
@@ -136,7 +136,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      rsc_tree: -1302916514
+      ws_campfire: 1275373618
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
