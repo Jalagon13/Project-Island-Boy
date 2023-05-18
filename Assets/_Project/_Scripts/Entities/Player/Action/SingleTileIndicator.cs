@@ -20,23 +20,40 @@ namespace IslandBoy
         {
             if (transform.hasChanged)
             {
+                _stHpCanvas.HideHpCanvas();
+
                 var colliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
                 int breakableCount = 0;
+                IBreakable breakable = null;
 
                 foreach (var collider in colliders)
                 {
-                    IBreakable breakable = collider.GetComponent<IBreakable>();
-
-                    if (breakable != null)
+                    if(collider.TryGetComponent(out IBreakable b))
                     {
+                        breakable = b;
                         breakableCount++;
                     }
                 }
 
                 if (breakableCount > 0)
+                {
                     ChangeToHit();
+                    
+                    if (breakable == null) 
+                    {
+                        transform.hasChanged = false;
+                        return;
+                    }
+                    
+                    if (breakable.CurrentHitPoints < breakable.MaxHitPoints)
+                    {
+                        _stHpCanvas.ShowHpCanvas(breakable.MaxHitPoints, breakable.CurrentHitPoints);
+                    }
+                }
                 else
+                {
                     ChangeToEmpty();
+                }
 
                 transform.hasChanged = false;
             }

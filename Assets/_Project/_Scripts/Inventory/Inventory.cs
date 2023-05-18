@@ -10,11 +10,13 @@ namespace IslandBoy
 
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private GameObject _inventoryItemPrefab;
+        [SerializeField] private GameObject _itemPickupSignPrefab;
         [SerializeField] private AudioClip _popSound;
         [SerializeField] private int _maxStack;
         [SerializeField] private InventorySlot[] _inventorySlots;
 
         private MouseItemHolder _mouseItemHolder;
+        private Dictionary<ItemObject, ItemPickupSign> _itemPickups = new();
 
         public InventorySlot[] InventorySlots { get { return _inventorySlots; } }
         public int MaxStack { get { return _maxStack; } }
@@ -43,15 +45,36 @@ namespace IslandBoy
 
                 if (!added)
                 {
-                    AudioManager.Instance.PlayClip(_popSound, false, true);
-                    AddItemEvent?.Invoke();
-                    return amount - i;
+                    int leftOver = amount - i;
+                    SpawnPickupSign(item, amount - leftOver);
+                    return leftOver;
                 }
             }
 
-            AudioManager.Instance.PlayClip(_popSound, false, true);
-            AddItemEvent?.Invoke();
+            SpawnPickupSign(item, amount);
             return 0;
+        }
+
+        private void SpawnPickupSign(ItemObject item, int amount)
+        {
+            AudioManager.Instance.PlayClip(_popSound, false, true);
+
+            if (_itemPickups.ContainsKey(item))
+            {
+                if (_itemPickups.TryGetValue(item, out ItemPickupSign pickup))
+                {
+                    pickup.Refresh(amount);
+                }
+            }
+            else
+            {
+                GameObject itemPickupSign = Instantiate(_itemPickupSignPrefab);
+                ItemPickupSign pickup = itemPickupSign.GetComponent<ItemPickupSign>();
+                pickup.Initialize(amount, item.Name, () => { _itemPickups.Remove(item); });
+                _itemPickups.Add(item, pickup);
+            }
+
+            AddItemEvent?.Invoke();
         }
 
         private bool Add(ItemObject item, int amount, List<ItemParameter> itemParameters = null)
@@ -111,8 +134,6 @@ namespace IslandBoy
                     goto repeat;
             }
         }
-
-
 
         public bool Contains(ItemObject item, int amount)
         {
