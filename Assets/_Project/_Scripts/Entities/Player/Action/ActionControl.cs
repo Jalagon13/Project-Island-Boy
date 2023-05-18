@@ -19,14 +19,14 @@ namespace IslandBoy
         private Animator _animator;
         private PlayerMoveInput _moveInput;
         private Camera _camera;
+        private float _counter;
+        private bool _isHeldDown;
+        private bool _performingSwing;
         private readonly int _idleHash = Animator.StringToHash("[Anim] AC Idle");
         private readonly int _rightSwingHash = Animator.StringToHash("[Anim] AC Swing Right");
         private readonly int _upSwingHash = Animator.StringToHash("[Anim] AC Swing Up");
         private readonly int _leftSwingHash = Animator.StringToHash("[Anim] AC Swing Left");
         private readonly int _downSwingHash = Animator.StringToHash("[Anim] AC Swing Down");
-        private float _counter;
-        private bool _isHeldDown;
-        private bool _performingSwing;
 
         public bool IsHeldDown { get { return _isHeldDown; } }
 

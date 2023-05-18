@@ -8,11 +8,19 @@ namespace IslandBoy
         [SerializeField] private ItemParameter _powerParameter;
         [SerializeField] private ItemParameter _durabilityParameter;
 
-        private float _basePower;
+        private SingleTileHpCanvas _stHpCanvas;
+        private SingleTileIndicator _stIndicator;
         private ToolType _baseToolType;
+        private float _basePower;
 
         public float BasePower { set { _basePower = value; } }
         public ToolType BaseToolType { set { _baseToolType = value; } }
+
+        private void Awake()
+        {
+            _stHpCanvas = GetComponent<SingleTileHpCanvas>();
+            _stIndicator = GetComponent<SingleTileIndicator>();
+        }
 
         private void Update()
         {
@@ -37,7 +45,19 @@ namespace IslandBoy
                 if (breakable != null)
                 {
                     if (breakable.Hit(CalcPower(), CalcToolType()))
+                    {
                         ModifyDurability();
+
+                        if (breakable.CurrentHitPoints <= 0)
+                        {
+                            _stHpCanvas.HideHpCanvas();
+                            _stIndicator.ChangeToEmpty();
+                        }
+                        else
+                        {
+                            _stHpCanvas.ShowHpCanvas(breakable.MaxHitPoints, breakable.CurrentHitPoints);
+                        }
+                    }
                 }
             }
         }

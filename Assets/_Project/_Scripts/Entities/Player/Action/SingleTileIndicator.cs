@@ -7,11 +7,13 @@ namespace IslandBoy
         [SerializeField] private Color _indicatorEmptyColor;
         [SerializeField] private Color _canHitColor;
 
+        private SingleTileHpCanvas _stHpCanvas;
         private SpriteRenderer _sr;
 
         private void Awake()
         {
-            _sr = transform.GetChild(0).GetComponent<SpriteRenderer>(); 
+            _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
+            _stHpCanvas = GetComponent<SingleTileHpCanvas>();
         }
 
         private void Update()
@@ -32,24 +34,26 @@ namespace IslandBoy
                 }
 
                 if (breakableCount > 0)
-                    ChangeToHitColor();
+                    ChangeToHit();
                 else
-                    ChangeToEmptyColor();
+                    ChangeToEmpty();
 
                 transform.hasChanged = false;
             }
         }
 
-        public void ChangeToHitColor()
+        public void ChangeToHit()
         {
             _sr.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
             _sr.color = _canHitColor;
         }
 
-        public void ChangeToEmptyColor()
+        public void ChangeToEmpty()
         {
             _sr.transform.localScale = new Vector3(0.85f, 0.85f, 0.85f);
             _sr.color = _indicatorEmptyColor;
+
+            _stHpCanvas.HideHpCanvas();
         }
     }
 }

@@ -5,7 +5,7 @@ namespace IslandBoy
 {
     public class Resource : MonoBehaviour, IBreakable
     {
-        [SerializeField] private float _hitPoints;
+        [SerializeField] private float _maxHitPoints;
         [SerializeField] private ToolType _harvestType;
         [SerializeField] private ItemObject _dropItem;
         [SerializeField] private int _count;
@@ -15,14 +15,17 @@ namespace IslandBoy
 
         private SpriteRenderer _sr;
         private Vector2 _dropPosition;
+        private float _currentHitPoints;
 
         private void Awake()
         {
             _dropPosition = transform.position + new Vector3(0, 0.5f, 0);
             _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
+            _currentHitPoints = _maxHitPoints;
         }
 
-        public float HitPoints { get { return _hitPoints; } set { _hitPoints = value; } }
+        public float MaxHitPoints { get { return _maxHitPoints; } set { _maxHitPoints = value; } }
+        public float CurrentHitPoints { get { return _currentHitPoints; } set { _currentHitPoints = value; } }
 
         public bool Hit(float amount, ToolType toolType)
         {
@@ -31,8 +34,8 @@ namespace IslandBoy
             AudioManager.Instance.PlayClip(_chopSound, false, true);
             StartCoroutine(Tremble());
 
-            _hitPoints -= amount;
-            if (_hitPoints <= 0)
+            _currentHitPoints -= amount;
+            if (_currentHitPoints <= 0)
                 Break();
 
             return true;
