@@ -9,7 +9,7 @@ namespace IslandBoy
     public class AudioManager : Singleton<AudioManager>
     {
         [Header("Awake Clips")]
-        [SerializeField] private AudioClip _wavesCrashing;
+        [SerializeField] private AudioClip _forestAmbSound;
 
         private readonly static int _audioSourceNum = 10;
         private Queue<AudioSource> _audioSources = new Queue<AudioSource>();
@@ -27,7 +27,7 @@ namespace IslandBoy
                 _audioSources.Enqueue(audioSource);
             }
 
-            PlayClip(_wavesCrashing, true, false, 0.05f);
+            PlayClip(_forestAmbSound, true, false, 0.75f);
         }
 
         public void PlayClip(AudioClip clip, bool looping, bool randPitch, float volume = 0.5f, float pitch = 1f)

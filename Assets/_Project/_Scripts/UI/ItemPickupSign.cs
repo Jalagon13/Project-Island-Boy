@@ -41,7 +41,7 @@ namespace IslandBoy
                 {
                     if (itemPickupSign == this) return;
 
-                    transform.position += new Vector3(0f, 0.4f, 0f);
+                    transform.position += new Vector3(0f, 0.5f, 0f);
 
                     goto checkAgain;
                 }
