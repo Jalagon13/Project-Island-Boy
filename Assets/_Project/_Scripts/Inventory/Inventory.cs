@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace IslandBoy
 {
@@ -46,17 +48,19 @@ namespace IslandBoy
                 if (!added)
                 {
                     int leftOver = amount - i;
-                    SpawnPickupSign(item, amount - leftOver);
+                    StartCoroutine(SpawnPickupSign(item, amount - leftOver));
                     return leftOver;
                 }
             }
 
-            SpawnPickupSign(item, amount);
+            StartCoroutine(SpawnPickupSign(item, amount));
             return 0;
         }
 
-        private void SpawnPickupSign(ItemObject item, int amount)
+        private IEnumerator SpawnPickupSign(ItemObject item, int amount)
         {
+            yield return new WaitForSeconds(Random.Range(0, 0.01f));
+
             AudioManager.Instance.PlayClip(_popSound, false, true);
 
             if (_itemPickups.ContainsKey(item))

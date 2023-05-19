@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace IslandBoy
 {
@@ -15,6 +16,7 @@ namespace IslandBoy
         private Action _onDestroy;
         private int _currentStack;
         private string _currentItemName;
+        private bool _freeze;
 
         private void Awake()
         {
@@ -31,6 +33,7 @@ namespace IslandBoy
             _currentStack = amount;
             _currentItemName = itemName;
             _itemText.text = $"+{_currentStack} {_currentItemName}";
+            _onDestroy = OnDestry;
 
             checkAgain:
             var colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(2f, 0.25f), 0f);
@@ -47,7 +50,6 @@ namespace IslandBoy
                 }
             }
 
-            _onDestroy = OnDestry;
             StartCoroutine(DestroyTimer(_disappearTimer));
         }
 
