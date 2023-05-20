@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 18628221550060222}
   - component: {fileID: 526804819}
   - component: {fileID: 8190150308612687111}
+  - component: {fileID: -876497895402974190}
   m_Layer: 5
   m_Name: '[UI] InvSlot'
   m_TagString: Untagged
@@ -115,3 +116,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
+--- !u!114 &-876497895402974190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8647233024045866355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dac6655e5615e4499e90a1c24acea0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _powerParameter:
+    Parameter: {fileID: 11400000, guid: c4b64d6fc16075a4ca7fd3181eeb7f65, type: 2}
+    Value: 0
+  _coolDownParameter:
+    Parameter: {fileID: 11400000, guid: c25902e3274ad0a4a97f3515779aecea, type: 2}
+    Value: 0

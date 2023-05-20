@@ -19,10 +19,15 @@ namespace IslandBoy
             Hide();
         }
 
-        public void Show(string content, string header = "")
+        public void Show(string content, string header = "", Vector2 pivot = default)
         {
-            Instance._tooltip.SetText(content, header);
-            Instance._tooltip.gameObject.SetActive(true);
+            if(pivot == default)
+            {
+                pivot = new Vector2(-0.1f, -0.1f);
+            }
+            _tooltip.SetPivot(pivot);
+            _tooltip.SetText(content, header);
+            _tooltip.gameObject.SetActive(true);
 
             if (string.IsNullOrEmpty(header))
                 Hide();
@@ -30,7 +35,7 @@ namespace IslandBoy
 
         public void Hide()
         {
-            Instance._tooltip.gameObject.SetActive(false);
+            _tooltip.gameObject.SetActive(false);
         }
     }
 }

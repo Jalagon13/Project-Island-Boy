@@ -1,3 +1,4 @@
+using System.Text;
 using UnityEngine;
 
 namespace IslandBoy
@@ -17,9 +18,32 @@ namespace IslandBoy
 
         public override ToolType ToolType => Type;
 
+        public override int ConsumeValue => 0;
+
         public override void ExecuteAction(SelectedSlotControl control)
         {
             
+        }
+
+        public override string GetDescription()
+        {
+            string powerDesc = string.Empty;
+            string cooldownDesc = string.Empty;
+
+            foreach (var item in DefaultParameterList)
+            {
+                switch (item.Parameter.ParameterName)
+                {
+                    case "Power":
+                        powerDesc = $"{item.Value} {ToolType} Power<br>";
+                        break;
+                    case "Cooldown":
+                        cooldownDesc = $"{item.Value}s Cooldown<br>";
+                        break;
+                }
+            }
+
+            return $"{powerDesc}{cooldownDesc}";
         }
     }
 }

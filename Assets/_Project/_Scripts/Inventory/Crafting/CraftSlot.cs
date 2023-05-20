@@ -13,6 +13,7 @@ namespace IslandBoy
 
         private RectTransform _rscPanel;
         private RectTransform _rscSlots;
+        private CraftSlotImageHover _hoverImage;
         private Image _craftSlotBackround;
         private Image _outputImage;
         private Recipe _recipe;
@@ -27,6 +28,7 @@ namespace IslandBoy
             _outputImage = transform.GetChild(0).GetComponent<Image>();
             _rscPanel = transform.GetChild(1).GetComponent<RectTransform>();
             _rscSlots = transform.GetChild(1).GetChild(0).GetComponent<RectTransform>();
+            _hoverImage = transform.GetChild(0).GetComponent<CraftSlotImageHover>();
         }
 
         private void OnDisable()
@@ -56,6 +58,7 @@ namespace IslandBoy
         {
             _recipe = recipe;
             _outputImage.sprite = recipe.OutputItem.UiDisplay;
+            _hoverImage.OutputItem = recipe.OutputItem;
 
             Inventory.AddItemEvent += CheckIfCanCraft;
             DropPanel.OnDropEvent += CheckIfCanCraft;

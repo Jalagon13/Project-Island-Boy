@@ -13,16 +13,6 @@ namespace IslandBoy
         [SerializeField] private TMP_Text _contentField;
         [SerializeField] private LayoutElement _layoutElement;
 
-        public void SetText(string content, string header = "")
-        {
-            _headerField.gameObject.SetActive(!string.IsNullOrEmpty(header));
-
-            if (_headerField.gameObject.activeSelf)
-                _headerField.text = header;
-
-            _contentField.text = content;
-        }
-
         private void Update()
         {
             if (Application.isEditor)
@@ -34,6 +24,21 @@ namespace IslandBoy
 
                 transform.position = mousePos;
             }
+        }
+
+        public void SetText(string content, string header = "")
+        {
+            _headerField.gameObject.SetActive(!string.IsNullOrEmpty(header));
+
+            if (_headerField.gameObject.activeSelf)
+                _headerField.text = header;
+
+            _contentField.text = content;
+        }
+
+        public void SetPivot(Vector2 pivot)
+        {
+            GetComponent<RectTransform>().pivot = pivot;
         }
     }
 }

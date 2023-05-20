@@ -22,6 +22,8 @@ namespace IslandBoy
 
         public override ToolType ToolType => ToolType.Ax;
 
+        public override int ConsumeValue => _value;
+
         public override void ExecuteAction(SelectedSlotControl control)
         {
             switch (_consumeType) 
@@ -39,6 +41,11 @@ namespace IslandBoy
             AudioManager.Instance.PlayClip(_consumeSound, false, false);
             control.PR.SelectedSlot.InventoryItem.Count--;
             control.RestoreStat(_consumeType, _value);
+        }
+
+        public override string GetDescription()
+        {
+            return $"Can be eaten<br>+ {_value} {_consumeType}";
         }
     }
 }

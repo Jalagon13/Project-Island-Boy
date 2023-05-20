@@ -15,7 +15,7 @@ namespace IslandBoy
         private bool _inventoryOpen;
         private int _maxStack;
 
-        public MouseItemHolder MouseItemHolder { set { _mouseItemHolder = value; } }
+        public MouseItemHolder MouseItemHolder { get { return _mouseItemHolder; } set { _mouseItemHolder = value; } }
         public bool InventoryOpen { set { _inventoryOpen = value; } }
         public int MaxStack { set { _maxStack = value; } }
         public ItemObject ItemObject
@@ -80,6 +80,7 @@ namespace IslandBoy
                     else
                     {
                         _mouseItemHolder.GiveItemToSlot(transform);
+                        TooltipManager.Instance.Show(ItemObject.GetDescription(), ItemObject.Name);
                         PlaySound();
                     }
                 }
@@ -88,6 +89,7 @@ namespace IslandBoy
                     if (HasItem())
                     {
                         GiveThisItemToMouseHolder();
+                        TooltipManager.Instance.Hide();
                     }
                 }
             }
@@ -107,17 +109,25 @@ namespace IslandBoy
                                 {
                                     _mouseItemHolder.InventoryItem.Count -= 1;
                                     thisInventoryItem.Count += 1;
+                                    
+                                    if(_mouseItemHolder.HasItem())
+                                        TooltipManager.Instance.Hide();
+                                    else
+                                        TooltipManager.Instance.Show(ItemObject.GetDescription(), ItemObject.Name);
+
                                     PlaySound();
                                 }
                             }
                             else
                             {
                                 SwapThisItemAndMouseItem();
+                                TooltipManager.Instance.Hide();
                             }
                         }
                         else
                         {
                             SwapThisItemAndMouseItem();
+                            TooltipManager.Instance.Hide();
                         }
                     }
                     else
@@ -130,12 +140,15 @@ namespace IslandBoy
                                 InventoryItem item = newItemGo.GetComponent<InventoryItem>();
                                 item.Initialize(_mouseItemHolder.ItemObject, _mouseItemHolder.ItemObject.DefaultParameterList);
                                 _mouseItemHolder.InventoryItem.Count -= 1;
+
+                                TooltipManager.Instance.Hide();
                                 PlaySound();
                             }
                         }
                         else
                         {
                             _mouseItemHolder.GiveItemToSlot(transform);
+                            TooltipManager.Instance.Show(ItemObject.GetDescription(), ItemObject.Name);
                             PlaySound();
                         }
                     }
@@ -147,10 +160,12 @@ namespace IslandBoy
                         if (ItemObject.Stackable)
                         {
                             BreakStackInHalf();
+                            TooltipManager.Instance.Hide();
                         }
                         else
                         {
                             GiveThisItemToMouseHolder();
+                            TooltipManager.Instance.Hide();
                         }
                     }
                 }
@@ -195,11 +210,13 @@ namespace IslandBoy
                     {
                         _mouseItemHolder.InventoryItem.Count -= _maxStack - countRef;
                         thisInventoryItem.Count = _maxStack;
+                        TooltipManager.Instance.Show(ItemObject.GetDescription(), ItemObject.Name);
                         PlaySound();
                     }
                     else if(thisInventoryItem.Count <= _maxStack)
                     {
                         _mouseItemHolder.InventoryItem.Count = 0;
+                        TooltipManager.Instance.Show(ItemObject.GetDescription(), ItemObject.Name);
                         PlaySound();
                     }
                 }

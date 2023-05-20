@@ -7,9 +7,16 @@ namespace IslandBoy
     {
         public override ToolType ToolType => ToolType.Ax;
 
+        public override int ConsumeValue => 0;
+
         public override void ExecuteAction(SelectedSlotControl control)
         {
             
+        }
+
+        public override string GetDescription()
+        {
+            return string.Empty;
         }
     }
 }

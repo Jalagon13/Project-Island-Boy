@@ -12,6 +12,8 @@ namespace IslandBoy
 
         public override ToolType ToolType => ToolType.Ax;
 
+        public override int ConsumeValue => 0;
+
         public override void ExecuteAction(SelectedSlotControl control)
         {
             if (control.SingleTileAction.IsClear())
@@ -20,6 +22,11 @@ namespace IslandBoy
                 control.PR.SelectedSlot.InventoryItem.Count--;
                 control.SingleTileAction.PlaceDeployable(_prefabToDeploy);
             }
+        }
+
+        public override string GetDescription()
+        {
+            return "Can be placed";
         }
     }
 }
