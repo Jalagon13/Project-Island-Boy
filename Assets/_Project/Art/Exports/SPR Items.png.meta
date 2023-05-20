@@ -129,8 +129,8 @@ TextureImporter:
       name: item_wood
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 48
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -192,7 +192,7 @@ TextureImporter:
       name: item_stone
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 0
         width: 16
         height: 16
@@ -213,6 +213,27 @@ TextureImporter:
       name: item_berry
       rect:
         serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1484876c14ac9647bac9b965d557c5f
+      internalID: 1211993972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_torch
+      rect:
+        serializedVersion: 2
         x: 32
         y: 0
         width: 16
@@ -224,8 +245,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1484876c14ac9647bac9b965d557c5f
-      internalID: 1211993972
+      spriteID: 2bb99a8a3f2070e41b21c39611209897
+      internalID: -1995232107
       vertices: []
       indices: 
       edges: []
@@ -243,6 +264,7 @@ TextureImporter:
     nameFileIdTable:
       item_berry: 1211993972
       item_stone: -512641925
+      item_torch: -1995232107
       item_wood: -602149933
       item_wood_axe: 563146846
       item_wood_pickaxe: 1392384841

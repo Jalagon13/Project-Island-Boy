@@ -29,8 +29,13 @@ namespace IslandBoy
 
         private void SelectedSlotAction(InputAction.CallbackContext context)
         {
-            if (PR.SelectedSlot.ItemObject == null) return;
-            PR.SelectedSlot.ItemObject.ExecuteAction(this);
+            if (PR.SelectedSlot.ItemObject != null)
+                PR.SelectedSlot.ItemObject.ExecuteAction(this);
+        }
+
+        public void DeployPrefab(GameObject prefab)
+        {
+
         }
 
         public void RestoreStat(ConsumeType cType, int value)
