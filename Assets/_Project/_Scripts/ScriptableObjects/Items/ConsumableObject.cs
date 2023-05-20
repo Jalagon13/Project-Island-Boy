@@ -37,6 +37,7 @@ namespace IslandBoy
             }
 
             AudioManager.Instance.PlayClip(_consumeSound, false, false);
+            control.PR.SelectedSlot.InventoryItem.Count--;
             control.RestoreStat(_consumeType, _value);
         }
     }

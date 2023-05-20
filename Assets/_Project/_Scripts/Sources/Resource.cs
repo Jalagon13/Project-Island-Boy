@@ -27,7 +27,10 @@ namespace IslandBoy
 
         public bool Hit(float amount, ToolType toolType)
         {
-            if (toolType != _harvestType) return false;
+            if(_harvestType != ToolType.Indifferent)
+            {
+                if (toolType != _harvestType) return false;
+            }
 
             AudioManager.Instance.PlayClip(_hitSound, false, true);
             StartCoroutine(Tremble());

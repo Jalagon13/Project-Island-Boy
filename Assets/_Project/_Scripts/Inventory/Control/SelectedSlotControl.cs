@@ -45,8 +45,6 @@ namespace IslandBoy
                     HealthBar.AddTo(value);
                     break;
             }
-
-            PR.SelectedSlot.InventoryItem.Count--;
         }
     }
 }

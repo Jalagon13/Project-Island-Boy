@@ -8,13 +8,18 @@ namespace IslandBoy
     public class DeployObject : ItemObject
     {
         [SerializeField] private GameObject _prefabToDeploy;
+        [SerializeField] private AudioClip _deploySound;
 
         public override ToolType ToolType => ToolType.Ax;
 
         public override void ExecuteAction(SelectedSlotControl control)
         {
-            if(control.SingleTileAction.IsClear())
+            if (control.SingleTileAction.IsClear())
+            {
+                AudioManager.Instance.PlayClip(_deploySound, false, true);
+                control.PR.SelectedSlot.InventoryItem.Count--;
                 control.SingleTileAction.PlaceDeployable(_prefabToDeploy);
+            }
         }
     }
 }

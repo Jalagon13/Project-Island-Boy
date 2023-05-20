@@ -94605,7 +94605,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Many have died in pursuit of these cores. Venture down at your own discretion.
+  m_text: 'Adventurer: "Many have died in pursuit of these cores. Venture down at
+    your own discretion."'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
   m_sharedMaterial: {fileID: 4835514525599508895, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
@@ -97160,7 +97161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _wooshSound: {fileID: 8300000, guid: 693f775d985d5c542a5f4361e1922d53, type: 3}
-  _baseToolType: 0
+  _baseToolType: 1
   _basePower:
     Parameter: {fileID: 11400000, guid: c4b64d6fc16075a4ca7fd3181eeb7f65, type: 2}
     Value: 30
@@ -106963,8 +106964,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Legend has it that there are vast cores of energy found deep beneath the
-    surface.
+  m_text: 'Adventurer: "Legend has it that there are vast cores of energy found deep
+    beneath the surface."'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
   m_sharedMaterial: {fileID: 4835514525599508895, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
@@ -106991,8 +106992,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 29
+  m_fontSizeBase: 29
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -109548,8 +109549,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: However, It is gaurded by ancient monsters and traps set by those who came
-    long before.
+  m_text: 'Adventurer: "However, It is gaurded by ancient monsters and traps set
+    by those who came long before."'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
   m_sharedMaterial: {fileID: 4835514525599508895, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
@@ -109576,8 +109577,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 27
+  m_fontSizeBase: 27
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
