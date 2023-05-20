@@ -15,5 +15,10 @@ namespace IslandBoy
         [field: SerializeField] public ToolType Type { get; set; }
 
         public override ToolType ToolType => Type;
+
+        public override void ExecuteAction(SelectedSlotControl control)
+        {
+            
+        }
     }
 }

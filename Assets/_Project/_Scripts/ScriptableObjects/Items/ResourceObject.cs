@@ -6,5 +6,10 @@ namespace IslandBoy
     public class ResourceObject : ItemObject
     {
         public override ToolType ToolType => ToolType.Ax;
+
+        public override void ExecuteAction(SelectedSlotControl control)
+        {
+            
+        }
     }
 }
