@@ -9,10 +9,10 @@ namespace IslandBoy
     {
         [SerializeField] private int _maxValue;
         [SerializeField] private float _coolDown;
-        [SerializeField] private Image _fillImage;
-        [SerializeField] private Image _cdFillImage;
-        [SerializeField] private TextMeshProUGUI _counter;
 
+        private Image _fillImage;
+        private Image _cdFillImage;
+        private TextMeshProUGUI _counter;
         protected int _currentValue;
         private float _cdCounter;
 
@@ -22,6 +22,10 @@ namespace IslandBoy
 
         private void Awake()
         {
+            _fillImage = transform.GetChild(0).GetChild(0).GetComponent<Image>();
+            _cdFillImage = transform.GetChild(3).GetComponent<Image>();
+            _counter = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+
             _currentValue = _maxValue;
             _cdFillImage.enabled = false;
         }
