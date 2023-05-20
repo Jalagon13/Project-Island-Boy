@@ -67,6 +67,41 @@ namespace IslandBoy
             }
         }
 
+        public bool TryToCraftItem(GameObject itemGo, ItemObject outputItem, int outputAmount)
+        {
+            if (HasItem())
+            {
+                if (ItemObject.Stackable)
+                {
+                    if(ItemObject == outputItem)
+                    {
+                        if(InventoryItem.Count < _pr.Inventory.MaxStack && (_pr.Inventory.MaxStack - InventoryItem.Count) >= outputAmount)
+                        {
+                            InventoryItem.Count += outputAmount;
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                CreateMouseItem(itemGo, outputItem, outputAmount);
+                return true;
+            }
+        }
+
         public bool HasItem()
         {
             return transform.childCount > 0;

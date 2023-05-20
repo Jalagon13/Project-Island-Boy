@@ -62,6 +62,11 @@ namespace IslandBoy
             }
         }
 
+        public void PlaceDeployable(GameObject deployable)
+        {
+            Debug.Log(deployable.name);
+        }
+
         private void ModifyDurability()
         {
             if (_pr.SelectedSlot.CurrentParameters.Count <= 0) return;

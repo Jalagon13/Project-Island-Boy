@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace IslandBoy
 {
+    [CreateAssetMenu(fileName = "New Deployable", menuName = "Create Item/New Deployable")]
     public class DeployObject : ItemObject
     {
         [SerializeField] private GameObject _prefabToDeploy;
@@ -12,7 +13,8 @@ namespace IslandBoy
 
         public override void ExecuteAction(SelectedSlotControl control)
         {
-            control.DeployPrefab(_prefabToDeploy);
+            if(control.SingleTileAction.IsClear())
+                control.SingleTileAction.PlaceDeployable(_prefabToDeploy);
         }
     }
 }

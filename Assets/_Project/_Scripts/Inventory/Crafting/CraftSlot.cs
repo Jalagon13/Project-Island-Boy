@@ -29,6 +29,11 @@ namespace IslandBoy
             _rscSlots = transform.GetChild(1).GetChild(0).GetComponent<RectTransform>();
         }
 
+        private void OnDisable()
+        {
+            _rscPanel.gameObject.SetActive(false);
+        }
+
         private void OnDestroy()
         {
             Inventory.AddItemEvent -= CheckIfCanCraft;

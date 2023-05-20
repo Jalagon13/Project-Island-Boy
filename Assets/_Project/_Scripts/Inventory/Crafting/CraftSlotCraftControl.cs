@@ -24,9 +24,7 @@ namespace IslandBoy
         public void TryToCraft() // connected to slot button
         {
             if (!_cs.CanCraft) return;
-            if (_mouseItemHolder.HasItem()) return;
-
-            _mouseItemHolder.CreateMouseItem(_inventoryItemPrefab, _cs.Recipe.OutputItem, _cs.Recipe.OutputAmount);
+            if (!_mouseItemHolder.TryToCraftItem(_inventoryItemPrefab, _cs.Recipe.OutputItem, _cs.Recipe.OutputAmount)) return;
 
             foreach (ItemAmount ia in _cs.Recipe.ResourceList)
             {

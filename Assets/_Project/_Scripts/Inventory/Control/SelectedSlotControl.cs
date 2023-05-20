@@ -8,6 +8,7 @@ namespace IslandBoy
         [field:SerializeField] public PlayerReference PR { get; private set; }
         [field:SerializeField] public HealthBar HealthBar { get; private set; }
         [field:SerializeField] public EnergyBar EnergyBar { get; private set; }
+        [field:SerializeField] public SingleTileAction SingleTileAction { get; private set; }
 
         private PlayerInput _input;
 
@@ -31,11 +32,6 @@ namespace IslandBoy
         {
             if (PR.SelectedSlot.ItemObject != null)
                 PR.SelectedSlot.ItemObject.ExecuteAction(this);
-        }
-
-        public void DeployPrefab(GameObject prefab)
-        {
-
         }
 
         public void RestoreStat(ConsumeType cType, int value)
