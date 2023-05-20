@@ -17,7 +17,7 @@ namespace IslandBoy
 
         private void Awake()
         {
-            _dropPosition = transform.position + new Vector3(0, 0.5f, 0);
+            _dropPosition = transform.position + new Vector3(0.5f, 0.5f, 0);
             _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
             _currentHitPoints = _maxHitPoints;
         }
@@ -48,7 +48,7 @@ namespace IslandBoy
 
             foreach (var loot in _lootTable.ReturnLoot())
             {
-                WorldItemManager.Instance.SpawnItem(transform.position, loot.Key, loot.Value);
+                WorldItemManager.Instance.SpawnItem(_dropPosition, loot.Key, loot.Value);
             }
 
             Destroy(gameObject);

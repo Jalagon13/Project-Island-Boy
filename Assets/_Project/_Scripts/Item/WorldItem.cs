@@ -10,12 +10,19 @@ namespace IslandBoy
 
         private ItemObject _item;
         private List<ItemParameter> _currentParameters;
-        private int _currentStack;
         private SpriteRenderer _sr;
+        private int _currentStack;
+        private bool _canCollect;
 
         private void Awake()
         {
             _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        }
+
+        private IEnumerator Start()
+        {
+            yield return new WaitForSeconds(0.5f);
+            _canCollect = true;
         }
 
         public void Initialize(ItemObject item, int currentStack, List<ItemParameter> currentParameters)
@@ -28,10 +35,10 @@ namespace IslandBoy
             gameObject.name = $"[Item] {item.Name}";
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerStay2D(Collider2D collision)
         {
             // need to add code later on to disable attractor when invetory full and enable it when inventory has space.
-            if (collision.CompareTag("Collect"))
+            if (collision.CompareTag("Collect") && _canCollect)
             {
                 var leftover = _pr.Inventory.AddItem(_item, _currentStack, _currentParameters);
 

@@ -62196,7 +62196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5566038, g: 0.5362402, b: 0, a: 1}
+  m_Color: {r: 0.5566038, g: 0.5362402, b: 0, a: 0.89411765}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -70630,7 +70630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _indicatorEmptyColor: {r: 0, g: 0, b: 0, a: 0.21176471}
-  _canHitColor: {r: 1, g: 0.96575993, b: 0, a: 1}
+  _canHitColor: {r: 1, g: 0.96575993, b: 0, a: 0.92156863}
 --- !u!114 &727510223
 MonoBehaviour:
   m_ObjectHideFlags: 0
