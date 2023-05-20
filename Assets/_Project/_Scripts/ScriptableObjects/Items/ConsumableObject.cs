@@ -27,11 +27,11 @@ namespace IslandBoy
             switch (_consumeType) 
             { 
                 case ConsumeType.Energy:
-                    if (control.EnergyBar.CurrentEnergy >= control.EnergyBar.MaxEnergy || control.EnergyBar.InCoolDown) 
+                    if (control.EnergyBar.CurrentValue >= control.EnergyBar.MaxValue || control.EnergyBar.InCoolDown) 
                         return;
                     break;
                 case ConsumeType.Health:
-                    if(control.HealthBar.CurrentHealth >= control.HealthBar.MaxHealth || control.HealthBar.InCoolDown) 
+                    if(control.HealthBar.CurrentValue >= control.HealthBar.MaxValue || control.HealthBar.InCoolDown) 
                         return;
                     break;
             }

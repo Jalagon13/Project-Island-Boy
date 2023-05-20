@@ -4480,12 +4480,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6451c7d5c1ab1d48a7e8f5ee1245553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxEnergy: 100
+  _maxValue: 100
   _coolDown: 4
   _fillImage: {fileID: 1953917944}
   _cdFillImage: {fileID: 2137284052}
-  _healthBar: {fileID: 409587497}
   _counter: {fileID: 1206528337}
+  _healthBar: {fileID: 409587497}
 --- !u!1001 &154407665
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38299,7 +38299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e51ed46e43bfed44b819f85ab4191b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 100
+  _maxValue: 100
   _coolDown: 4
   _fillImage: {fileID: 70981813}
   _cdFillImage: {fileID: 393221572}

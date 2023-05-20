@@ -30,7 +30,6 @@ namespace IslandBoy
         private void SelectedSlotAction(InputAction.CallbackContext context)
         {
             if (PR.SelectedSlot.ItemObject == null) return;
-
             PR.SelectedSlot.ItemObject.ExecuteAction(this);
         }
 
@@ -39,10 +38,10 @@ namespace IslandBoy
             switch (cType)
             {
                 case ConsumeType.Energy:
-                    EnergyBar.AddToEnergy(value);
+                    EnergyBar.AddTo(value);
                     break;
                 case ConsumeType.Health:
-                    HealthBar.AddToHealth(value);
+                    HealthBar.AddTo(value);
                     break;
             }
 
