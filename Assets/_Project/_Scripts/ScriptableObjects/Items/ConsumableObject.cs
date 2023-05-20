@@ -31,7 +31,8 @@ namespace IslandBoy
                         return;
                     break;
                 case ConsumeType.Health:
-                    if(control.HealthBar.CurrentHealth >= control.HealthBar.MaxHealth) return;
+                    if(control.HealthBar.CurrentHealth >= control.HealthBar.MaxHealth || control.HealthBar.InCoolDown) 
+                        return;
                     break;
             }
 

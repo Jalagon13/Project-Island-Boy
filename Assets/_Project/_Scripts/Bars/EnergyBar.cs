@@ -11,7 +11,7 @@ namespace IslandBoy
         [SerializeField] private int _maxEnergy;
         [SerializeField] private float _coolDown;
         [SerializeField] private Image _fillImage;
-        [SerializeField] private Image _coolDownFillImage;
+        [SerializeField] private Image _cdFillImage;
         [SerializeField] private HealthBar _healthBar;
         [SerializeField] private TextMeshProUGUI _counter;
 
@@ -25,7 +25,7 @@ namespace IslandBoy
         private void Awake()
         {
             _currentEnergy = _maxEnergy;
-            _coolDownFillImage.enabled = false;
+            _cdFillImage.enabled = false;
         }
 
         private void Start()
@@ -53,7 +53,7 @@ namespace IslandBoy
 
         private void UpdateCoolDownUI()
         {
-            _coolDownFillImage.fillAmount = Mathf.Clamp01(1 - Mathf.InverseLerp(0, _coolDown, _cdCounter));
+            _cdFillImage.fillAmount = Mathf.Clamp01(1 - Mathf.InverseLerp(0, _coolDown, _cdCounter));
         }
 
         public void AddToEnergy(int value)
@@ -70,13 +70,13 @@ namespace IslandBoy
         private IEnumerator Cooldown()
         {
             _cdCounter = 0f;
-            _coolDownFillImage.enabled = true;
+            _cdFillImage.enabled = true;
             while(_cdCounter < _coolDown)
             {
                 yield return new WaitForSeconds(0.01f);
                 UpdateCoolDownUI();
             }
-            _coolDownFillImage.enabled = false;
+            _cdFillImage.enabled = false;
         }
 
         private void DrainEnergy()
