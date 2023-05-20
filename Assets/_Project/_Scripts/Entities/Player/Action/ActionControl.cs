@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,8 @@ namespace IslandBoy
     // Implement Swing Speed, Cooldown, and Power attributes for resource gathering
     public class ActionControl : MonoBehaviour
     {
+        public static event Action SwingPerformEvent;
+
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private AudioClip _wooshSound;
         [Header("Base Stats")]
@@ -91,6 +94,7 @@ namespace IslandBoy
             _performingSwing = true;
             _moveInput.Speed = 1f;
             _animator.speed = 1 * CalcParameter(_baseSwingSpeedMultiplier);
+            SwingPerformEvent?.Invoke(); // connected to EnergyBar class
 
             AudioManager.Instance.PlayClip(_wooshSound, false, true);
         }
