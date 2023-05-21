@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ws_mine_level_entrance
+      name: ws_cave_level_descend
       rect:
         serializedVersion: 2
         x: 0
@@ -168,7 +168,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ws_mine_level_exit
+      name: ws_cave_level_ascend
       rect:
         serializedVersion: 2
         x: 0
@@ -201,8 +201,8 @@ TextureImporter:
     nameFileIdTable:
       rsc_mossy_stone: -801796302
       rsc_stone: 1293468864
-      ws_mine_level_entrance: -363508920
-      ws_mine_level_exit: 1449772273
+      ws_cave_level_ascend: 1449772273
+      ws_cave_level_descend: -363508920
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
