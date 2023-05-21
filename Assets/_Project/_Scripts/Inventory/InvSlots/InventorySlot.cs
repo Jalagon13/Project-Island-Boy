@@ -170,7 +170,7 @@ namespace IslandBoy
                     }
                 }
             }
-
+            Debug.Log("Test");
             SlotClickedEvent?.Invoke();
         }
 

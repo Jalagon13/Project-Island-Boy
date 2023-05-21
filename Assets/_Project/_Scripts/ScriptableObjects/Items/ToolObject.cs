@@ -35,10 +35,10 @@ namespace IslandBoy
                 switch (item.Parameter.ParameterName)
                 {
                     case "Power":
-                        powerDesc = $"- {item.Value} {ToolType} Power<br>";
+                        powerDesc = $"• {item.Value} {ToolType} Power<br>";
                         break;
                     case "Cooldown":
-                        cooldownDesc = $"- {item.Value}s Cooldown<br>";
+                        cooldownDesc = $"• {item.Value}s Cooldown<br>";
                         break;
                 }
             }

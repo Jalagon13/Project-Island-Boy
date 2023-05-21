@@ -26,7 +26,7 @@ namespace IslandBoy
 
         public override string GetDescription()
         {
-            return $"- Can be placed<br>{Description}";
+            return $"• Can be placed<br>{Description}";
         }
     }
 }
