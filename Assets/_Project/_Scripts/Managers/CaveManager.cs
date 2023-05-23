@@ -10,21 +10,32 @@ namespace IslandBoy
 
         private void Start()
         {
-            InstantiateLevel();
+            CreateNewLevel();
         }
 
-        public void CreateNewLevel()
-        {
-            InstantiateLevel();
-        }
-
-        public void InstantiateLevel()
+        public int CreateNewLevel()
         {
             GameObject level = Instantiate(_caveLevelPrefab, Vector3.zero, Quaternion.identity);
             level.transform.SetParent(transform);
 
             CaveLevel cl = level.GetComponent<CaveLevel>();
-            cl.Initialize(level.transform.GetSiblingIndex());
+            var levelIndex = level.transform.GetSiblingIndex();
+
+            cl.Initialize(levelIndex);
+
+            return levelIndex;
+        }
+
+        public void TransitionToLevel(int index)
+        {
+            // play transition animations here
+
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+
+            transform.GetChild(index).gameObject.SetActive(true);
         }
     }
 }

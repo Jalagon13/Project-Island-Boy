@@ -11,7 +11,6 @@ namespace IslandBoy
         [SerializeField] private GameObject _stonePrefab;
         [SerializeField] private GameObject _ascendPrefab;
         [SerializeField] private GameObject _descendPrefab;
-        [SerializeField] private GameObject _playerPrefab;
         [Header("Generation Parameters")]
         [SerializeField] private float _nearEdgeDetectLength;
         [SerializeField] private float _chance;
@@ -19,6 +18,7 @@ namespace IslandBoy
 
         private GameObject _assetHolder;
         private GameObject _ascendGo;
+        private GameObject _player;
 
         private void Awake()
         {
@@ -27,13 +27,8 @@ namespace IslandBoy
 
         private void Start()
         {
-            GenerateCaveLevel();
-        }
+            _player = GameObject.FindGameObjectWithTag("Player");
 
-        public void GenerateButton() => GenerateCaveLevel();
-
-        public void GenerateCaveLevel()
-        {
             DestroyAssets();
             InstantiateAscendStairs();
             MovePlayerToSpawnPos();
@@ -42,7 +37,7 @@ namespace IslandBoy
 
         private void MovePlayerToSpawnPos()
         {
-            Instantiate(_playerPrefab, _ascendGo.transform.position + new Vector3(1.5f, 0f), Quaternion.identity);
+            _player.transform.position = _ascendGo.transform.position + new Vector3(1.5f, 0f);
         }
 
         private void GenerateStones()

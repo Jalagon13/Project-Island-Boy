@@ -153,7 +153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &947365135
 RectTransform:
   m_ObjectHideFlags: 0
@@ -239,7 +239,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!1 &1169936804
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,7 +757,6 @@ MonoBehaviour:
   _stonePrefab: {fileID: 2594954625819056484, guid: 0ded448220d1fa54594745e5897fb73e, type: 3}
   _ascendPrefab: {fileID: 6505092476044688577, guid: 2f766224577abc7498cf8afec1fc43f3, type: 3}
   _descendPrefab: {fileID: 7508395916073815627, guid: 677081221f8df964280e808ed6df7d00, type: 3}
-  _playerPrefab: {fileID: 4210445617709717791, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
   _nearEdgeDetectLength: 3.5
   _chance: 0.35
   _scale: 10
