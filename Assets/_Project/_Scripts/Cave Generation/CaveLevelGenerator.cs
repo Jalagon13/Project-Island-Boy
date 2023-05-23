@@ -25,6 +25,11 @@ namespace IslandBoy
             _assetHolder = transform.GetChild(1).transform.gameObject;
         }
 
+        private void Start()
+        {
+            GenerateCaveLevel();
+        }
+
         public void GenerateButton() => GenerateCaveLevel();
 
         public void GenerateCaveLevel()
@@ -37,7 +42,7 @@ namespace IslandBoy
 
         private void MovePlayerToSpawnPos()
         {
-            _playerPrefab.transform.position = _ascendGo.transform.position + new Vector3(1.5f, 0f);
+            Instantiate(_playerPrefab, _ascendGo.transform.position + new Vector3(1.5f, 0f), Quaternion.identity);
         }
 
         private void GenerateStones()
@@ -55,7 +60,7 @@ namespace IslandBoy
 
                         if (tile != null)
                         {
-                            if (/*!IsNearEdge(pos) || */!ClearToSpawn(pos)) continue;
+                            if (!IsNearEdge(pos) || !ClearToSpawn(pos)) continue;
 
                             GameObject stoneGo = Instantiate(_stonePrefab, pos, Quaternion.identity);
                             stoneGo.transform.SetParent(_assetHolder.transform);
@@ -79,6 +84,9 @@ namespace IslandBoy
 
             _ascendGo = Instantiate(_ascendPrefab, spawnPos, Quaternion.identity);
             _ascendGo.transform.SetParent(_assetHolder.transform);
+
+            GameObject descendGo = Instantiate(_descendPrefab, spawnPos + new Vector2(-1f, 0f), Quaternion.identity);
+            descendGo.transform.SetParent(_assetHolder.transform);
         }
 
         private bool IsNearEdge(Vector3Int pos)
