@@ -23,7 +23,6 @@ namespace IslandBoy
             GameObject level = Instantiate(_caveLevelPrefab, Vector3.zero, Quaternion.identity);
             level.transform.SetParent(transform);
 
-            Debug.Log("Create new level");
             CaveLevel cl = level.GetComponent<CaveLevel>();
             var levelIndex = level.transform.GetSiblingIndex();
 
@@ -39,7 +38,6 @@ namespace IslandBoy
         public void TransitionToLevel(int index, bool isDescending)
         {
             // play transition animations here
-            Debug.Log("Transition");
             foreach (Transform child in transform)
             {
                 child.gameObject.SetActive(false);

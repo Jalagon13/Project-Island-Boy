@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace IslandBoy
@@ -27,7 +25,6 @@ namespace IslandBoy
 
         public void PutPlayerAtEntrance()
         {
-            Debug.Log(_entranceSpawnPoint);
             _player.transform.position = _entranceSpawnPoint;
         }
 

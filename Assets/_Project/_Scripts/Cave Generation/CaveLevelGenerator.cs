@@ -17,21 +17,9 @@ namespace IslandBoy
 
         private GameObject _assetHolder;
 
-        private void Awake()
-        {
-            
-        }
-
-        private void Start()
-        {
-            
-
-        }
-
         public void Generate()
         {
             _assetHolder = transform.GetChild(1).transform.gameObject;
-            Debug.Log("Cave Gen");
             DestroyAssets();
             InstantiateStairs();
             GenerateStones();
@@ -78,7 +66,6 @@ namespace IslandBoy
             ascendGo.transform.SetParent(_assetHolder.transform);
             ascendGo.GetComponent<CaveAscend>().Initialize();
             transform.GetComponent<CaveLevel>().EntranceSpawnPoint = ascendGo.transform.position + new Vector3(1.5f, 0f);
-            Debug.Log(transform.GetComponent<CaveLevel>().EntranceSpawnPoint);
 
             GameObject descendGo = Instantiate(_descendPrefab, spawnPos + new Vector2(-2f, 0f), Quaternion.identity);
             descendGo.transform.SetParent(_assetHolder.transform); // temp
