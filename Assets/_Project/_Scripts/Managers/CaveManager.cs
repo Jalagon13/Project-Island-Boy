@@ -15,6 +15,7 @@ namespace IslandBoy
         {
             CurrentLevelIndex = -1;
             CreateNewLevel();
+            TransitionToLevel(CurrentLevelIndex, true);
         }
 
         public int CreateNewLevel()
@@ -22,6 +23,7 @@ namespace IslandBoy
             GameObject level = Instantiate(_caveLevelPrefab, Vector3.zero, Quaternion.identity);
             level.transform.SetParent(transform);
 
+            Debug.Log("Create new level");
             CaveLevel cl = level.GetComponent<CaveLevel>();
             var levelIndex = level.transform.GetSiblingIndex();
 
@@ -29,21 +31,26 @@ namespace IslandBoy
 
             PreviousLevelIndex = CurrentLevelIndex;
             CurrentLevelIndex = levelIndex;
+            level.GetComponent<CaveLevelGenerator>().Generate();
 
             return levelIndex;
         }
 
-        public void TransitionToLevel(int index, Vector2 spawnPos)
+        public void TransitionToLevel(int index, bool isDescending)
         {
             // play transition animations here
-
+            Debug.Log("Transition");
             foreach (Transform child in transform)
             {
                 child.gameObject.SetActive(false);
             }
 
             transform.GetChild(index).gameObject.SetActive(true);
-            transform.GetComponent<CaveLevel>().SpawnPlayer(spawnPos);
+
+            if (isDescending)
+                transform.GetChild(index).GetComponent<CaveLevel>().PutPlayerAtEntrance();
+            else
+                transform.GetChild(index).GetComponent<CaveLevel>().PutPlayerAtBackPoint();
         }
     }
 }

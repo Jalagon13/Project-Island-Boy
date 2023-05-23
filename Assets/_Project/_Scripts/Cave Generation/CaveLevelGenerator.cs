@@ -16,17 +16,22 @@ namespace IslandBoy
         [SerializeField] private float _scale;
 
         private GameObject _assetHolder;
-        private GameObject _ascendGo;
-        private CaveLevel _caveLevel;
 
         private void Awake()
         {
-            _assetHolder = transform.GetChild(1).transform.gameObject;
-            _caveLevel = GetComponent<CaveLevel>();
+            
         }
 
         private void Start()
         {
+            
+
+        }
+
+        public void Generate()
+        {
+            _assetHolder = transform.GetChild(1).transform.gameObject;
+            Debug.Log("Cave Gen");
             DestroyAssets();
             InstantiateStairs();
             GenerateStones();
@@ -69,13 +74,15 @@ namespace IslandBoy
             Vector2 pos = _caveFloor.cellBounds.center * (Random.insideUnitCircle * 2.5f);
             Vector2 spawnPos = new(Mathf.FloorToInt(pos.x), Mathf.FloorToInt(pos.y));
 
-            _ascendGo = Instantiate(_ascendPrefab, spawnPos, Quaternion.identity);
-            _ascendGo.transform.SetParent(_assetHolder.transform);
-            _ascendGo.GetComponent<CaveAscend>().CaveLevel = _caveLevel; // temp
+            GameObject ascendGo = Instantiate(_ascendPrefab, spawnPos, Quaternion.identity);
+            ascendGo.transform.SetParent(_assetHolder.transform);
+            ascendGo.GetComponent<CaveAscend>().Initialize();
+            transform.GetComponent<CaveLevel>().EntranceSpawnPoint = ascendGo.transform.position + new Vector3(1.5f, 0f);
+            Debug.Log(transform.GetComponent<CaveLevel>().EntranceSpawnPoint);
 
             GameObject descendGo = Instantiate(_descendPrefab, spawnPos + new Vector2(-2f, 0f), Quaternion.identity);
-            descendGo.transform.SetParent(_assetHolder.transform);
-            descendGo.GetComponent<CaveDescend>().CaveLevel = _caveLevel; // temp
+            descendGo.transform.SetParent(_assetHolder.transform); // temp
+            descendGo.GetComponent<CaveDescend>().Initialize();
         }
 
         private bool IsNearEdge(Vector3Int pos)

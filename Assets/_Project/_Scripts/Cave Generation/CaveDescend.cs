@@ -6,9 +6,12 @@ namespace IslandBoy
     public class CaveDescend : MonoBehaviour, IPointerClickHandler
     {
         private int _descendLevelIndex = -2;
-        private CaveLevel _level;
+        private CaveLevel _caveLevel;
 
-        public CaveLevel CaveLevel {set { _level = value; } }
+        public void Initialize()
+        {
+            _caveLevel = transform.parent.transform.parent.transform.GetComponent<CaveLevel>();
+        }
 
         public void OnPointerClick(PointerEventData eventData)
         {
@@ -17,8 +20,8 @@ namespace IslandBoy
             if (_descendLevelIndex == -2)
                 _descendLevelIndex = CaveManager.Instance.CreateNewLevel();
 
-            _level.SpawnPosition = transform.position + new Vector3(0.5f, 0.5f);
-            CaveManager.Instance.TransitionToLevel(_descendLevelIndex, _level.EntranceSpawnPosition);
+            _caveLevel.BackPoint = transform.position + new Vector3(0.5f, 0.5f);
+            CaveManager.Instance.TransitionToLevel(_descendLevelIndex, true);
         }
     }
 }

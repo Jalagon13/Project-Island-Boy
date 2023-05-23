@@ -6,16 +6,16 @@ namespace IslandBoy
 {
     public class CaveLevel : MonoBehaviour
     {
-        private int _index;
-        private Vector2 _spawnPosition;
-        private Vector2 _entranceSpawnPosition;
         private GameObject _player;
+        private Vector2 _backPoint;
+        private Vector2 _entranceSpawnPoint;
+        private int _index;
 
         public int Index { get { return _index; } }
-        public Vector2 SpawnPosition { get { return _spawnPosition; } set { _spawnPosition = value; } }
-        public Vector2 EntranceSpawnPosition { get { return _entranceSpawnPosition; } set { _entranceSpawnPosition = value; } }
+        public Vector2 BackPoint { get { return _backPoint; } set { _backPoint = value; } }
+        public Vector2 EntranceSpawnPoint { get { return _entranceSpawnPoint; } set {_entranceSpawnPoint = value; } }
 
-        private void Start()
+        private void Awake()
         {
             _player = GameObject.FindGameObjectWithTag("Player");
         }
@@ -25,9 +25,15 @@ namespace IslandBoy
             _index = index;
         }
 
-        public void SpawnPlayer(Vector2 pos)
+        public void PutPlayerAtEntrance()
         {
-            _player.transform.position = pos;
+            Debug.Log(_entranceSpawnPoint);
+            _player.transform.position = _entranceSpawnPoint;
+        }
+
+        public void PutPlayerAtBackPoint()
+        {
+            _player.transform.position = _backPoint;
         }
     }
 }
