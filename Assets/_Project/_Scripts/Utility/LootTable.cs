@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -17,9 +16,7 @@ namespace IslandBoy
 
             foreach (Loot loot in Table)
             {
-                int randValueBtween0and99 = Random.Range(0, 100);
-
-                if (randValueBtween0and99 < loot.Chance)
+                if (Random.Range(0, 100) < loot.Chance)
                 {
                     int dropAmount = Random.Range(loot.Min, loot.Max + 1);
                     lootReturn.Add(loot.Item, dropAmount);
