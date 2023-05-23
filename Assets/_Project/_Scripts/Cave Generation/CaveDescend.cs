@@ -9,6 +9,7 @@ namespace IslandBoy
 
         public void OnPointerClick(PointerEventData eventData)
         {
+            Debug.Log("Click");
             if(_descendLevelIndex == -2)
             {
                 _descendLevelIndex = CaveManager.Instance.CreateNewLevel();
