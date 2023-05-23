@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
@@ -18,26 +17,19 @@ namespace IslandBoy
 
         private GameObject _assetHolder;
         private GameObject _ascendGo;
-        private GameObject _player;
+        private CaveLevel _caveLevel;
 
         private void Awake()
         {
             _assetHolder = transform.GetChild(1).transform.gameObject;
+            _caveLevel = GetComponent<CaveLevel>();
         }
 
         private void Start()
         {
-            _player = GameObject.FindGameObjectWithTag("Player");
-
             DestroyAssets();
-            InstantiateAscendStairs();
-            MovePlayerToSpawnPos();
+            InstantiateStairs();
             GenerateStones();
-        }
-
-        private void MovePlayerToSpawnPos()
-        {
-            _player.transform.position = _ascendGo.transform.position + new Vector3(1.5f, 0f);
         }
 
         private void GenerateStones()
@@ -72,16 +64,18 @@ namespace IslandBoy
             return colliders.Length <= 0;
         }
 
-        private void InstantiateAscendStairs()
+        private void InstantiateStairs()
         {
-            Vector2 pos = _caveFloor.cellBounds.center * (Random.insideUnitCircle * 3f);
+            Vector2 pos = _caveFloor.cellBounds.center * (Random.insideUnitCircle * 2.5f);
             Vector2 spawnPos = new(Mathf.FloorToInt(pos.x), Mathf.FloorToInt(pos.y));
 
             _ascendGo = Instantiate(_ascendPrefab, spawnPos, Quaternion.identity);
             _ascendGo.transform.SetParent(_assetHolder.transform);
+            _ascendGo.GetComponent<CaveAscend>().CaveLevel = _caveLevel; // temp
 
-            GameObject descendGo = Instantiate(_descendPrefab, spawnPos + new Vector2(-1f, 0f), Quaternion.identity);
+            GameObject descendGo = Instantiate(_descendPrefab, spawnPos + new Vector2(-2f, 0f), Quaternion.identity);
             descendGo.transform.SetParent(_assetHolder.transform);
+            descendGo.GetComponent<CaveDescend>().CaveLevel = _caveLevel; // temp
         }
 
         private bool IsNearEdge(Vector3Int pos)
