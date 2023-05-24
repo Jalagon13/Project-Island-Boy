@@ -7,6 +7,7 @@ namespace IslandBoy
     public class CaveBehavior : MonoBehaviour
     {
         private CaveLevel _caveLevel;
+        private bool _isQuitting;
 
         public void Initialize()
         {
@@ -15,7 +16,14 @@ namespace IslandBoy
 
         private void OnDestroy()
         {
+            if (_isQuitting) return;
+
             _caveLevel.TryToSpawnStairs(transform.position);
+        }
+
+        private void OnApplicationQuit()
+        {
+            _isQuitting = true;
         }
     }
 }

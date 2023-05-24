@@ -8,6 +8,9 @@ namespace IslandBoy
     {
         [SerializeField] private GameObject _caveLevelPrefab;
 
+        private int _activeIndex = -1;
+
+        public int ActiveIndex { get { return _activeIndex; } }
         public int CurrentLevelIndex { get; private set; }
         public int PreviousLevelIndex { get; private set; }
 
@@ -23,17 +26,17 @@ namespace IslandBoy
             GameObject level = Instantiate(_caveLevelPrefab, Vector3.zero, Quaternion.identity);
             level.transform.SetParent(transform);
 
-            var levelIndex = level.transform.GetSiblingIndex();
+            var newLevelIndex = level.transform.GetSiblingIndex();
 
             PreviousLevelIndex = CurrentLevelIndex;
-            CurrentLevelIndex = levelIndex;
+            CurrentLevelIndex = newLevelIndex;
 
             CaveLevel cl = level.GetComponent<CaveLevel>();
-            cl.FloorNum = PreviousLevelIndex == -1 ? 1 : transform.GetChild(PreviousLevelIndex).GetComponent<CaveLevel>().FloorNum + 1;
+            cl.FloorNum = PreviousLevelIndex == -1 ? 1 : transform.GetChild(_activeIndex).GetComponent<CaveLevel>().FloorNum + 1;
 
             level.GetComponent<CaveLevelGenerator>().Generate();
 
-            return levelIndex;
+            return newLevelIndex;
         }
 
         public void TransitionToLevel(int index, bool isDescending)
@@ -45,6 +48,7 @@ namespace IslandBoy
             }
 
             transform.GetChild(index).gameObject.SetActive(true);
+            _activeIndex = index;
 
             if (isDescending)
                 transform.GetChild(index).GetComponent<CaveLevel>().PutPlayerAtEntrance();

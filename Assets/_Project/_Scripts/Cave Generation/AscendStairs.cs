@@ -10,7 +10,7 @@ namespace IslandBoy
 
         public void Initialize()
         {
-            _ascendLevelIndex = CaveManager.Instance.PreviousLevelIndex;
+            _ascendLevelIndex = CaveManager.Instance.ActiveIndex;
             _caveLevel = transform.parent.transform.parent.transform.GetComponent<CaveLevel>();
             _caveLevel.EntranceSpawnPoint = transform.position + new Vector3(1.5f, 0f);
         }
