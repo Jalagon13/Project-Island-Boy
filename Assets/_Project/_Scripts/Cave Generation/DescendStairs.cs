@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 namespace IslandBoy
 {
-    public class CaveDescend : MonoBehaviour, IPointerClickHandler
+    public class DescendStairs : MonoBehaviour, IPointerClickHandler
     {
         private int _descendLevelIndex = -2;
         private CaveLevel _caveLevel;

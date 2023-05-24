@@ -216,8 +216,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHitPoints: 150
-  _harvestType: 2
+  _harvestType: 0
   _hitSound: {fileID: 8300000, guid: db82029e0262e8848ad16558d8a33dbb, type: 3}
   _breakSound: {fileID: 8300000, guid: e2b6630a648447b47a66f7f8325c7440, type: 3}
   _lootTable:
-    <Table>k__BackingField: []
+    <Table>k__BackingField:
+    - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
+      Min: 1
+      Max: 3
+      Chance: 100

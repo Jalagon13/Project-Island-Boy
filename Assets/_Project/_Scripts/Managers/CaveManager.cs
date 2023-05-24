@@ -23,13 +23,14 @@ namespace IslandBoy
             GameObject level = Instantiate(_caveLevelPrefab, Vector3.zero, Quaternion.identity);
             level.transform.SetParent(transform);
 
-            CaveLevel cl = level.GetComponent<CaveLevel>();
             var levelIndex = level.transform.GetSiblingIndex();
-
-            cl.Initialize(levelIndex);
 
             PreviousLevelIndex = CurrentLevelIndex;
             CurrentLevelIndex = levelIndex;
+
+            CaveLevel cl = level.GetComponent<CaveLevel>();
+            cl.FloorNum = PreviousLevelIndex == -1 ? 1 : transform.GetChild(PreviousLevelIndex).GetComponent<CaveLevel>().FloorNum + 1;
+
             level.GetComponent<CaveLevelGenerator>().Generate();
 
             return levelIndex;

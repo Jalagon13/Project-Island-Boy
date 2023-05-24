@@ -9,7 +9,6 @@ namespace IslandBoy
         [SerializeField] private Tilemap _caveFloor;
         [SerializeField] private GameObject _stonePrefab;
         [SerializeField] private GameObject _ascendPrefab;
-        [SerializeField] private GameObject _descendPrefab;
         [Header("Generation Parameters")]
         [SerializeField] private float _nearEdgeDetectLength;
         [SerializeField] private float _chance;
@@ -20,6 +19,7 @@ namespace IslandBoy
         public void Generate()
         {
             _assetHolder = transform.GetChild(1).transform.gameObject;
+
             DestroyAssets();
             InstantiateStairs();
             GenerateStones();
@@ -44,6 +44,7 @@ namespace IslandBoy
 
                             GameObject stoneGo = Instantiate(_stonePrefab, pos, Quaternion.identity);
                             stoneGo.transform.SetParent(_assetHolder.transform);
+                            stoneGo.AddComponent<CaveBehavior>().Initialize();
                         }
                     }
                 }
@@ -62,14 +63,10 @@ namespace IslandBoy
             Vector2 pos = _caveFloor.cellBounds.center * (Random.insideUnitCircle * 2.5f);
             Vector2 spawnPos = new(Mathf.FloorToInt(pos.x), Mathf.FloorToInt(pos.y));
 
-            GameObject ascendGo = Instantiate(_ascendPrefab, spawnPos, Quaternion.identity);
-            ascendGo.transform.SetParent(_assetHolder.transform);
-            ascendGo.GetComponent<CaveAscend>().Initialize();
-            transform.GetComponent<CaveLevel>().EntranceSpawnPoint = ascendGo.transform.position + new Vector3(1.5f, 0f);
-
-            GameObject descendGo = Instantiate(_descendPrefab, spawnPos + new Vector2(-2f, 0f), Quaternion.identity);
-            descendGo.transform.SetParent(_assetHolder.transform); // temp
-            descendGo.GetComponent<CaveDescend>().Initialize();
+            GameObject ascendStairs = Instantiate(_ascendPrefab, spawnPos, Quaternion.identity);
+            ascendStairs.transform.SetParent(_assetHolder.transform);
+            ascendStairs.GetComponent<AscendStairs>().Initialize();
+            transform.GetComponent<CaveLevel>().EntranceSpawnPoint = ascendStairs.transform.position + new Vector3(1.5f, 0f);
         }
 
         private bool IsNearEdge(Vector3Int pos)
