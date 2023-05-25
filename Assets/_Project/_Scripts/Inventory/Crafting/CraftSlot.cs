@@ -98,6 +98,9 @@ namespace IslandBoy
                 if (!canCraft) break;
             }
 
+            if(_recipe.ResourceList.Count <= 0)
+                canCraft = true;
+
             if (canCraft)
                 SetCraftable();
             else

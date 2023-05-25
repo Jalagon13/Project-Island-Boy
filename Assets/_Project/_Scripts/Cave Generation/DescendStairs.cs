@@ -5,6 +5,8 @@ namespace IslandBoy
 {
     public class DescendStairs : MonoBehaviour, IPointerClickHandler
     {
+        [SerializeField] private PlayerReference _pr;
+
         private int _descendLevelIndex = -2;
         private CaveLevel _caveLevel;
 
@@ -15,7 +17,7 @@ namespace IslandBoy
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (eventData.button != PointerEventData.InputButton.Right) return;
+            if (eventData.button != PointerEventData.InputButton.Right || !_pr.PlayerInRange(transform.position + new Vector3(0.5f, 0.5f))) return;
 
             if (_descendLevelIndex == -2)
                 _descendLevelIndex = CaveManager.Instance.CreateNewLevel();

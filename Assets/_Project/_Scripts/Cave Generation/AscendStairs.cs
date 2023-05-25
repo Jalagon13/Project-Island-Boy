@@ -5,6 +5,8 @@ namespace IslandBoy
 {
     public class AscendStairs : MonoBehaviour, IPointerClickHandler
     {
+        [SerializeField] private PlayerReference _pr;
+
         private int _ascendLevelIndex = -1;
         private CaveLevel _caveLevel;
 
@@ -17,7 +19,9 @@ namespace IslandBoy
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if(_ascendLevelIndex == -1)
+            if (eventData.button != PointerEventData.InputButton.Right || !_pr.PlayerInRange(transform.position + new Vector3(0.5f, 0.5f))) return;
+
+            if (_ascendLevelIndex == -1)
             {
                 Debug.Log("Entering upperground");
             }
