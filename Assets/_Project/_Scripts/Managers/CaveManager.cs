@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace IslandBoy
 {
@@ -12,11 +13,26 @@ namespace IslandBoy
         public int CurrentLevelIndex { get; private set; }
         public int PreviousLevelIndex { get; private set; }
 
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnLevelFinishedLoading;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnLevelFinishedLoading;
+        }
+
         private void Start()
         {
             CurrentLevelIndex = -1;
             CreateNewLevel();
             TransitionToLevel(CurrentLevelIndex, true);
+        }
+
+        private void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
+        {
+            Debug.Log(scene.buildIndex);
         }
 
         public int CreateNewLevel()
@@ -52,6 +68,16 @@ namespace IslandBoy
                 transform.GetChild(index).GetComponent<CaveLevel>().PutPlayerAtEntrance();
             else
                 transform.GetChild(index).GetComponent<CaveLevel>().PutPlayerAtBackPoint();
+        }
+
+        public void GoToSurface()
+        {
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+
+            LevelManager.Instance.LoadScene("Surface");
         }
     }
 }

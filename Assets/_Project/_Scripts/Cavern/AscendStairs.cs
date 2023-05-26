@@ -23,7 +23,7 @@ namespace IslandBoy
 
             if (_ascendLevelIndex == -1)
             {
-                Debug.Log("Entering upperground");
+                CaveManager.Instance.GoToSurface();
             }
             else
             {

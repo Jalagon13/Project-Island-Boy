@@ -260,7 +260,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -268,6 +268,27 @@ TextureImporter:
       bones: []
       spriteID: 74361be4f28b2e447ad0649741fbc7e8
       internalID: 1223464883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_bed
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99fecde75f6cb3143bab93e2ff883379
+      internalID: -1855741160
       vertices: []
       indices: 
       edges: []
@@ -283,6 +304,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      item_bed: -1855741160
       item_berry: 1211993972
       item_campfire: 1223464883
       item_stone: -512641925
