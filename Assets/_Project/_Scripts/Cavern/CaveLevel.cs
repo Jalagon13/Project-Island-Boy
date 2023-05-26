@@ -12,6 +12,7 @@ namespace IslandBoy
         private Vector2 _backPoint;
         private Vector2 _entranceSpawnPoint;
         private int _floorNum;
+        private bool _isQuitting;
 
         public Vector2 BackPoint { get { return _backPoint; } set { _backPoint = value; } }
         public Vector2 EntranceSpawnPoint { get { return _entranceSpawnPoint; } set {_entranceSpawnPoint = value; } }
@@ -28,11 +29,18 @@ namespace IslandBoy
         private void OnEnable()
         {
             AppendToCaveLevel.AppendtoCaveEvent += AppendToAssetHolder;
+            _isQuitting = false;
         }
 
         private void OnDisable()
         {
             AppendToCaveLevel.AppendtoCaveEvent -= AppendToAssetHolder;
+            _isQuitting = true;
+        }
+
+        private void OnApplicationQuit()
+        {
+            _isQuitting = true;
         }
 
         private void AppendToAssetHolder(GameObject gameObject)
@@ -42,6 +50,8 @@ namespace IslandBoy
 
         public void TryToSpawnStairs(Vector2 spawnPos)
         {
+            if (_isQuitting) return;
+
             GameObject descendStairs = Instantiate(_descendStairsPrefab, spawnPos, Quaternion.identity);
             descendStairs.transform.SetParent(_assetHolder.transform);
             descendStairs.GetComponent<DescendStairs>().Initialize();
