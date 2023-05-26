@@ -205,6 +205,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8456787867502680800}
   - component: {fileID: 8456787867502680814}
+  - component: {fileID: 6835040223661747825}
   - component: {fileID: 8456787867502680801}
   m_Layer: 0
   m_Name: '[DPLY] Torch'
@@ -256,6 +257,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6835040223661747825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8456787867502680803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81b5ee0d17c6b7e419e1d035cc4dcd32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8456787867502680801
 MonoBehaviour:
   m_ObjectHideFlags: 0

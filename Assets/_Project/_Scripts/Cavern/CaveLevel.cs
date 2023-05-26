@@ -25,6 +25,21 @@ namespace IslandBoy
             _player = GameObject.FindGameObjectWithTag("Player");
         }
 
+        private void OnEnable()
+        {
+            AppendToCaveLevel.AppendtoCaveEvent += AppendToAssetHolder;
+        }
+
+        private void OnDisable()
+        {
+            AppendToCaveLevel.AppendtoCaveEvent -= AppendToAssetHolder;
+        }
+
+        private void AppendToAssetHolder(GameObject gameObject)
+        {
+            gameObject.transform.SetParent(_assetHolder.transform);
+        }
+
         public void TryToSpawnStairs(Vector2 spawnPos)
         {
             GameObject descendStairs = Instantiate(_descendStairsPrefab, spawnPos, Quaternion.identity);
