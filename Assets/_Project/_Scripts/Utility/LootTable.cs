@@ -33,7 +33,7 @@ namespace IslandBoy
         public ItemObject Item;
         public int Min;
         public int Max;
-        [Tooltip("Percent chance between 0% and 100%")]
+        [Range(0.0f, 100.0f)]
         public float Chance;
     }
 }
