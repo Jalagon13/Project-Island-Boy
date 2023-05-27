@@ -29,8 +29,14 @@ namespace IslandBoy
 
         public bool IsClear()
         {
-            // need to flesh this out later
-            // checks if there is empty space over the STA
+            var colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.5f, 0.5f), 0);
+
+            foreach(Collider2D col in colliders)
+            {
+                if(col.gameObject.layer == 3) 
+                    return false;
+            }
+
             return true;
         }
 
