@@ -9,15 +9,26 @@ namespace IslandBoy
         [SerializeField] private Vector2 _playerSpawnPosition;
 
         private GameObject _player;
+        private CaveLevels _caveLevels;
+        private Vector2 _backPoint;
+
+        public CaveLevels CaveLevels { get { return _caveLevels; } }
+        public Vector2 BackPoint { set { _backPoint = value; } }
 
         private void Awake()
         {
             _player = GameObject.FindGameObjectWithTag("Player");
+            _caveLevels = transform.parent.transform.GetComponent<CaveLevels>();
         }
 
-        private void OnEnable()
+        public void SpawnAtEntrance()
         {
             _player.transform.position = _playerSpawnPosition;
+        }
+
+        public void SpawnAtBackPoint()
+        {
+            _player.transform.position = _backPoint;
         }
     }
 }
