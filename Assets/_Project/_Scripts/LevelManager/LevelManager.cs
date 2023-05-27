@@ -37,11 +37,18 @@ namespace IslandBoy
             _currentLevel.Append(obj);
         }
 
-        private void TransitionToSurfaceLevel()
+        public void TransitionToSurfaceLevel()
         {
             _surfaceLevel.gameObject.SetActive(true);
             _caveLevels.gameObject.SetActive(false);
             _currentLevel = _surfaceLevel.GetComponent<IAppendToLevel>();
+        }
+
+        public void TransitionToCaveLevel()
+        {
+            _surfaceLevel.gameObject.SetActive(false);
+            _caveLevels.gameObject.SetActive(true);
+            _currentLevel = _caveLevels.GetComponent<IAppendToLevel>();
         }
     }
 }

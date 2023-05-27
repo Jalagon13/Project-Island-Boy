@@ -30,6 +30,9 @@ namespace IslandBoy
                 case "WS":
                     AppendToWS(obj);
                     break;
+                default:
+                    Debug.LogError($"object {obj.name} could not be appended to Surface Level because TAG not found");
+                    break;
             }
         }
 

@@ -14,7 +14,7 @@ namespace IslandBoy
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _transparentColor = _spriteRenderer.color;
-            _transparentColor.a = 0.5f;
+            _transparentColor.a = 0.25f;
             _originalColor = _spriteRenderer.color;
         }
 
