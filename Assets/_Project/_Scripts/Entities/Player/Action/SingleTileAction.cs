@@ -57,7 +57,7 @@ namespace IslandBoy
                         if (breakable.CurrentHitPoints <= 0)
                         {
                             _stHpCanvas.HideHpCanvas();
-                            _stIndicator.ChangeToEmpty();
+                            _stIndicator.ChangeToOffIndicator();
                         }
                         else
                         {

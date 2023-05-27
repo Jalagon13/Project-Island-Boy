@@ -15,6 +15,10 @@ namespace IslandBoy
         private Vector2 _dropPosition;
         private float _currentHitPoints;
 
+        public ToolType ToolType { get { return _harvestType; } set { _harvestType = value; } }
+        public float MaxHitPoints { get { return _maxHitPoints; } set { _maxHitPoints = value; } }
+        public float CurrentHitPoints { get { return _currentHitPoints; } set { _currentHitPoints = value; } }
+
         private void Awake()
         {
             _dropPosition = transform.position + new Vector3(0.5f, 0.5f, 0);
@@ -22,8 +26,6 @@ namespace IslandBoy
             _currentHitPoints = _maxHitPoints;
         }
 
-        public float MaxHitPoints { get { return _maxHitPoints; } set { _maxHitPoints = value; } }
-        public float CurrentHitPoints { get { return _currentHitPoints; } set { _currentHitPoints = value; } }
 
         public bool Hit(float amount, ToolType toolType)
         {
