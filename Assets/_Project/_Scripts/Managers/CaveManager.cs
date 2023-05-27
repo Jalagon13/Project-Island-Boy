@@ -77,7 +77,7 @@ namespace IslandBoy
                 child.gameObject.SetActive(false);
             }
 
-            LevelManager.Instance.LoadScene("Surface");
+            //LevelManager.Instance.LoadScene("Surface");
         }
     }
 }

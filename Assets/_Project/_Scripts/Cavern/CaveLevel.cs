@@ -28,24 +28,17 @@ namespace IslandBoy
 
         private void OnEnable()
         {
-            AppendToCaveLevel.AppendtoCaveEvent += AppendToAssetHolder;
             _isQuitting = false;
         }
 
         private void OnDisable()
         {
-            AppendToCaveLevel.AppendtoCaveEvent -= AppendToAssetHolder;
             _isQuitting = true;
         }
 
         private void OnApplicationQuit()
         {
             _isQuitting = true;
-        }
-
-        private void AppendToAssetHolder(GameObject gameObject)
-        {
-            gameObject.transform.SetParent(_assetHolder.transform);
         }
 
         public void TryToSpawnStairs(Vector2 spawnPos)
