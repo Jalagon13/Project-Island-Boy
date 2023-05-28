@@ -45,7 +45,6 @@ namespace IslandBoy
         public void TransitionToSurfaceLevel()
         {
             _surfaceLevel.gameObject.SetActive(true);
-            _cavernLevel.Restart();
             _cavernLevel.gameObject.SetActive(false);
             _currentLevel = _surfaceLevel.GetComponent<IAppendToLevel>();
             _globalLight.intensity = 1;

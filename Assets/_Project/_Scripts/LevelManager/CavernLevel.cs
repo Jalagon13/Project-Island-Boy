@@ -9,7 +9,7 @@ namespace IslandBoy
         [Range(0.0f, 100.0f)]
         [SerializeField] private float _rscSpawnChance;
 
-        private int _currentLevelIndex;
+        private int _currentFloorNum = 0;
         private GameObject _currentLevel;
         private GameObject _rscHolder;
         private GameObject _dplyHolder;
@@ -18,6 +18,8 @@ namespace IslandBoy
 
         public void StartCavernRun()
         {
+            _currentFloorNum = 0;
+
             Restart();
             InstantiateLevel();
             PopulateHolders();
@@ -25,14 +27,18 @@ namespace IslandBoy
 
         public void TransitionToNextLevel()
         {
+            _currentFloorNum++;
 
+            Restart();
+            InstantiateLevel();
+            PopulateHolders();
         }
 
         private void PopulateHolders()
         {
-            _rscHolder = transform.GetChild(0).GetChild(1).gameObject;
-            _dplyHolder = transform.GetChild(0).GetChild(2).gameObject;
-            _wsHolder = transform.GetChild(0).GetChild(3).gameObject;
+            _rscHolder = _currentLevel.transform.GetChild(1).gameObject;
+            _dplyHolder = _currentLevel.transform.GetChild(2).gameObject;
+            _wsHolder = _currentLevel.transform.GetChild(3).gameObject;
         }
 
         private void InstantiateLevel()
@@ -44,8 +50,6 @@ namespace IslandBoy
 
         public void Restart()
         {
-            _currentLevelIndex = 0;
-
             foreach (Transform child in transform)
             {
                 Destroy(child.gameObject);
