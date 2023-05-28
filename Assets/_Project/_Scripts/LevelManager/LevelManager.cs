@@ -5,14 +5,13 @@ namespace IslandBoy
 {
     public class LevelManager : Singleton<LevelManager>
     {
+        [SerializeField] private Transform _surfaceBackPoint;
+
         private SurfaceLevel _surfaceLevel;
         private CavernLevel _cavernLevel;
         private GameObject _player;
         private Light2D _globalLight; 
-        private Vector2 _surfaceBackPoint;
         private IAppendToLevel _currentLevel;
-
-        public Vector2 SurfaceBackPoint { set { _surfaceBackPoint = value; } }
 
         protected override void Awake()
         {
@@ -35,7 +34,7 @@ namespace IslandBoy
 
         private void Start()
         {
-            TransitionToCaveLevel();
+            TransitionToSurfaceLevel();
         }
 
         private void AppendToCurrentLevel(GameObject obj)
@@ -46,10 +45,15 @@ namespace IslandBoy
         public void TransitionToSurfaceLevel()
         {
             _surfaceLevel.gameObject.SetActive(true);
+            _cavernLevel.Restart();
             _cavernLevel.gameObject.SetActive(false);
             _currentLevel = _surfaceLevel.GetComponent<IAppendToLevel>();
-            _player.transform.position = _surfaceBackPoint;
             _globalLight.intensity = 1;
+        }
+
+        public void SetPlayerToSurfaceBackpoint()
+        {
+            _player.transform.position = _surfaceBackPoint.position;
         }
 
         public void TransitionToCaveLevel()

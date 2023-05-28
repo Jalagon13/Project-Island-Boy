@@ -42,7 +42,7 @@ namespace IslandBoy
             _currentLevel = level;
         }
 
-        private void Restart()
+        public void Restart()
         {
             _currentLevelIndex = 0;
 
