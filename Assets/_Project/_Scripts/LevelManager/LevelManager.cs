@@ -7,8 +7,7 @@ namespace IslandBoy
 {
     public class LevelManager : Singleton<LevelManager>
     {
-        private SurfaceLevel _surfaceLevel;
-        private CaveLevels _caveLevels;
+        private SurfaceLevel _surface;
         private GameObject _player;
         private Light2D _globalLight; 
         private Vector2 _surfaceBackPoint;
@@ -19,8 +18,7 @@ namespace IslandBoy
         protected override void Awake()
         {
             base.Awake();
-            _surfaceLevel = transform.GetChild(0).GetComponent<SurfaceLevel>();
-            _caveLevels = transform.GetChild(1).GetComponent<CaveLevels>();
+            _surface = transform.GetChild(0).GetComponent<SurfaceLevel>();
             _globalLight = transform.GetChild(2).GetComponent<Light2D>();
             _player = GameObject.FindGameObjectWithTag("Player");
         }
@@ -47,18 +45,15 @@ namespace IslandBoy
 
         public void TransitionToSurfaceLevel()
         {
-            _surfaceLevel.gameObject.SetActive(true);
-            _caveLevels.gameObject.SetActive(false);
-            _currentLevel = _surfaceLevel.GetComponent<IAppendToLevel>();
+            _surface.gameObject.SetActive(true);
+            _currentLevel = _surface.GetComponent<IAppendToLevel>();
             _player.transform.position = _surfaceBackPoint;
             _globalLight.intensity = 1;
         }
 
         public void TransitionToCaveLevel()
         {
-            _surfaceLevel.gameObject.SetActive(false);
-            _caveLevels.gameObject.SetActive(true);
-            _currentLevel = _caveLevels.GetComponent<IAppendToLevel>();
+            _surface.gameObject.SetActive(false);
             _globalLight.intensity = 0;
         }
     }
