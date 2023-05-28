@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -7,7 +5,8 @@ namespace IslandBoy
 {
     public class LevelManager : Singleton<LevelManager>
     {
-        private SurfaceLevel _surface;
+        private SurfaceLevel _surfaceLevel;
+        private CavernLevel _cavernLevel;
         private GameObject _player;
         private Light2D _globalLight; 
         private Vector2 _surfaceBackPoint;
@@ -18,7 +17,8 @@ namespace IslandBoy
         protected override void Awake()
         {
             base.Awake();
-            _surface = transform.GetChild(0).GetComponent<SurfaceLevel>();
+            _surfaceLevel = transform.GetChild(0).GetComponent<SurfaceLevel>();
+            _cavernLevel = transform.GetChild(1).GetComponent<CavernLevel>();
             _globalLight = transform.GetChild(2).GetComponent<Light2D>();
             _player = GameObject.FindGameObjectWithTag("Player");
         }
@@ -35,7 +35,7 @@ namespace IslandBoy
 
         private void Start()
         {
-            TransitionToSurfaceLevel();
+            TransitionToCaveLevel();
         }
 
         private void AppendToCurrentLevel(GameObject obj)
@@ -45,16 +45,25 @@ namespace IslandBoy
 
         public void TransitionToSurfaceLevel()
         {
-            _surface.gameObject.SetActive(true);
-            _currentLevel = _surface.GetComponent<IAppendToLevel>();
+            _surfaceLevel.gameObject.SetActive(true);
+            _cavernLevel.gameObject.SetActive(false);
+            _currentLevel = _surfaceLevel.GetComponent<IAppendToLevel>();
             _player.transform.position = _surfaceBackPoint;
             _globalLight.intensity = 1;
         }
 
         public void TransitionToCaveLevel()
         {
-            _surface.gameObject.SetActive(false);
-            _globalLight.intensity = 0;
+            _surfaceLevel.gameObject.SetActive(false);
+            _cavernLevel.gameObject.SetActive(true);
+            _currentLevel = _cavernLevel.GetComponent<IAppendToLevel>();
+            _globalLight.intensity = 1;
+            _cavernLevel.StartCavernRun();
+        }
+
+        public void DescendToNextLevel()
+        {
+            _cavernLevel.TransitionToNextLevel();
         }
     }
 }

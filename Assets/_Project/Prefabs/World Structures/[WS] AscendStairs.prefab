@@ -263,7 +263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6505092476044688702}
   - component: {fileID: 6505092476044688703}
-  - component: {fileID: 7889645326558521801}
+  - component: {fileID: 2187530453347225498}
   m_Layer: 0
   m_Name: '[WS] AscendStairs'
   m_TagString: Untagged
@@ -315,7 +315,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7889645326558521801
+--- !u!114 &2187530453347225498
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -324,7 +324,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6505092476044688577}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62c3ec09b1f964240bd05a12afd92e05, type: 3}
+  m_Script: {fileID: 11500000, guid: 52add79bdb07c8648a2183452d7dd2ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
