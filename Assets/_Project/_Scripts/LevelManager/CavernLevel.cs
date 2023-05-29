@@ -6,12 +6,13 @@ namespace IslandBoy
 {
     public class CavernLevel : MonoBehaviour, IAppendToLevel
     {
-        [SerializeField] private GameObject _caveLevelPrefab;
+        [SerializeField] private GameObject[] _cavePrefabs;
         [SerializeField] private GameObject _lockedHatch;
         [Range(0.0f, 100.0f)]
         [SerializeField] private float _rscSpawnChance;
 
         private int _currentLevelNum = 0;
+        private int _currentLevelIndex;
         private GameObject _currentLevel;
         private GameObject _rscHolder;
         private GameObject _dplyHolder;
@@ -64,7 +65,15 @@ namespace IslandBoy
 
         private void InstantiateLevel()
         {
-            GameObject level = Instantiate(_caveLevelPrefab);
+            calcIndex:
+            int index = Random.Range(0, _cavePrefabs.Length);
+
+            if (index == _currentLevelIndex)
+                goto calcIndex;
+
+            _currentLevelIndex = index;
+
+            GameObject level = Instantiate(_cavePrefabs[index]);
             level.transform.SetParent(transform);
             _currentLevel = level;
         }

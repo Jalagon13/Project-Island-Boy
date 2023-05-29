@@ -85029,7 +85029,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 847e97e32514f0047a52aa857a3aa89c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _caveLevelPrefab: {fileID: 829667699310889102, guid: e598d82e9bf0ffa48ab07824ec66c47b, type: 3}
+  _cavePrefabs:
+  - {fileID: 829667699310889102, guid: e598d82e9bf0ffa48ab07824ec66c47b, type: 3}
+  - {fileID: 3736086323373390040, guid: 0b888ed9776589f4ab8dcdf65e0ac799, type: 3}
+  - {fileID: 7908450033320516338, guid: 69a6c417a0385b5449c5b41393291b6b, type: 3}
+  - {fileID: 7908450033320516338, guid: e3b41ef2f11d56c4d9e80bb6fbdbf291, type: 3}
   _lockedHatch: {fileID: 5684589201032484555, guid: a42ffd03cd210594e9d416fd264cb73e, type: 3}
   _rscSpawnChance: 85
 --- !u!1001 &1205771806
