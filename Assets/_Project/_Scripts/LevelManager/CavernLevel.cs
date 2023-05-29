@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -6,23 +7,30 @@ namespace IslandBoy
 {
     public class CavernLevel : MonoBehaviour, IAppendToLevel
     {
-        [SerializeField] private GameObject[] _cavePrefabs;
+        [SerializeField] private int _levelAmount;
         [SerializeField] private GameObject _lockedHatch;
+        [SerializeField] private GameObject[] _cavePrefabs;
         [Range(0.0f, 100.0f)]
         [SerializeField] private float _rscSpawnChance;
 
         private int _currentLevelNum = 0;
         private int _currentLevelIndex;
+        private Canvas _caveCanvas;
         private GameObject _currentLevel;
         private GameObject _rscHolder;
         private GameObject _dplyHolder;
         private GameObject _wsHolder;
 
+        private void Awake()
+        {
+            _caveCanvas = transform.parent.GetChild(3).GetComponent<Canvas>();
+        }
 
         public void StartCavernRun()
         {
             _currentLevelNum = 1;
 
+            UpdateUI();
             Restart();
             InstantiateLevel();
             PopulateHolders();
@@ -34,12 +42,19 @@ namespace IslandBoy
         {
             _currentLevelNum++;
 
+            UpdateUI();
             Restart();
             InstantiateLevel();
             PopulateHolders();
             StartCoroutine(ApplyCaveBehaviorToRsc());
         }
 
+        private void UpdateUI()
+        {
+            _caveCanvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"Level {_currentLevelNum} / {_levelAmount}";
+            _caveCanvas.transform.GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>().text = 
+                $"Level {_currentLevelNum} / {_levelAmount} of The Cavern.<br>Portal Core located in the deepest level.";
+        }
         private IEnumerator ApplyCaveBehaviorToRsc()
         {
             yield return new WaitForEndOfFrame();

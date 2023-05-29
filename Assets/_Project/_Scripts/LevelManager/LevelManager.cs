@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -10,7 +11,8 @@ namespace IslandBoy
         private SurfaceLevel _surfaceLevel;
         private CavernLevel _cavernLevel;
         private GameObject _player;
-        private Light2D _globalLight; 
+        private Light2D _globalLight;
+        private Canvas _caveCanvas;
         private IAppendToLevel _currentLevel;
 
         protected override void Awake()
@@ -19,6 +21,7 @@ namespace IslandBoy
             _surfaceLevel = transform.GetChild(0).GetComponent<SurfaceLevel>();
             _cavernLevel = transform.GetChild(1).GetComponent<CavernLevel>();
             _globalLight = transform.GetChild(2).GetComponent<Light2D>();
+            _caveCanvas =  transform.GetChild(3).GetComponent<Canvas>();
             _player = GameObject.FindGameObjectWithTag("Player");
         }
 
@@ -48,6 +51,7 @@ namespace IslandBoy
             _cavernLevel.gameObject.SetActive(false);
             _currentLevel = _surfaceLevel.GetComponent<IAppendToLevel>();
             _globalLight.intensity = 1;
+            _caveCanvas.enabled = false;
         }
 
         public void SetPlayerToSurfaceBackpoint()
@@ -60,13 +64,26 @@ namespace IslandBoy
             _surfaceLevel.gameObject.SetActive(false);
             _cavernLevel.gameObject.SetActive(true);
             _currentLevel = _cavernLevel.GetComponent<IAppendToLevel>();
-            _globalLight.intensity = 1;
+            _globalLight.intensity = 0f;
+            _caveCanvas.enabled = true;
             _cavernLevel.StartCavernRun();
+            StartCoroutine(TransitionScreenTimer());
         }
 
         public void DescendToNextLevel()
         {
             _cavernLevel.TransitionToNextLevel();
+            StartCoroutine(TransitionScreenTimer());
+        }
+
+        private IEnumerator TransitionScreenTimer()
+        {
+            var transitionPanel = _caveCanvas.transform.GetChild(2).GetComponent<RectTransform>();
+            transitionPanel.gameObject.SetActive(true);
+            Time.timeScale = 0;
+            yield return new WaitForSecondsRealtime(4);
+            Time.timeScale = 1;
+            transitionPanel.gameObject.SetActive(false);
         }
     }
 }
