@@ -61350,6 +61350,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b84e0bcaa8d6a984bb218327913cd22b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _forestAmbSound: {fileID: 8300000, guid: 7d103820d5dc901418a2eb5448b2fb63, type: 3}
+  _cavernAmbSound: {fileID: 8300000, guid: 39c8d59b6860d2f4d9baeb77208ca07a, type: 3}
   _surfaceBackPoint: {fileID: 932196185}
 --- !u!1001 &459089129
 PrefabInstance:
