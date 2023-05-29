@@ -54,6 +54,11 @@ namespace IslandBoy
                     {
                         ModifyDurability();
 
+                        if(breakable.CurrentHitPoints <= 0 && collider.TryGetComponent(out CaveBehavior caveBehavior))
+                        {
+                            caveBehavior.DestroyByPlayerAction();
+                        }
+
                         if (breakable.CurrentHitPoints <= 0)
                         {
                             _stHpCanvas.HideHpCanvas();

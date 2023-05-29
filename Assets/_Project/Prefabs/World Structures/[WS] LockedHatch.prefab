@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5684589201032484552}
   - component: {fileID: 5684589201032484553}
   - component: {fileID: 5684589201032484550}
+  - component: {fileID: 6530173996001604451}
   m_Layer: 0
   m_Name: '[WS] LockedHatch'
   m_TagString: WS
@@ -75,6 +76,18 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _keyItem: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
   _descendStairsPrefab: {fileID: 7508395916073815627, guid: 677081221f8df964280e808ed6df7d00, type: 3}
+--- !u!114 &6530173996001604451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5684589201032484555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d82362bfab3ce045b5255bd54700b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5684589201189895975
 GameObject:
   m_ObjectHideFlags: 0

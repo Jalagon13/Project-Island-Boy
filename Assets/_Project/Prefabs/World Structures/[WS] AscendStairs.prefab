@@ -264,9 +264,10 @@ GameObject:
   - component: {fileID: 6505092476044688702}
   - component: {fileID: 6505092476044688703}
   - component: {fileID: 2187530453347225498}
+  - component: {fileID: -2414689584716828869}
   m_Layer: 0
   m_Name: '[WS] AscendStairs'
-  m_TagString: Untagged
+  m_TagString: WS
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -328,3 +329,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
+--- !u!114 &-2414689584716828869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505092476044688577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d82362bfab3ce045b5255bd54700b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

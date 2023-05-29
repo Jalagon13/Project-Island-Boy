@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -6,10 +7,11 @@ namespace IslandBoy
     public class CavernLevel : MonoBehaviour, IAppendToLevel
     {
         [SerializeField] private GameObject _caveLevelPrefab;
+        [SerializeField] private GameObject _lockedHatch;
         [Range(0.0f, 100.0f)]
         [SerializeField] private float _rscSpawnChance;
 
-        private int _currentFloorNum = 0;
+        private int _currentLevelNum = 0;
         private GameObject _currentLevel;
         private GameObject _rscHolder;
         private GameObject _dplyHolder;
@@ -18,20 +20,39 @@ namespace IslandBoy
 
         public void StartCavernRun()
         {
-            _currentFloorNum = 0;
+            _currentLevelNum = 1;
 
             Restart();
             InstantiateLevel();
             PopulateHolders();
+            StartCoroutine(ApplyCaveBehaviorToRsc());
+
         }
 
         public void TransitionToNextLevel()
         {
-            _currentFloorNum++;
+            _currentLevelNum++;
 
             Restart();
             InstantiateLevel();
             PopulateHolders();
+            StartCoroutine(ApplyCaveBehaviorToRsc());
+        }
+
+        private IEnumerator ApplyCaveBehaviorToRsc()
+        {
+            yield return new WaitForEndOfFrame();
+
+            foreach (Transform child in _rscHolder.transform)
+            {
+                child.gameObject.AddComponent<CaveBehavior>();
+                child.GetComponent<CaveBehavior>().Initialize(SpawnLockedHatch);
+            }
+        }
+
+        public void SpawnLockedHatch(Vector3 pos)
+        {
+            Instantiate(_lockedHatch, pos, Quaternion.identity);
         }
 
         private void PopulateHolders()
