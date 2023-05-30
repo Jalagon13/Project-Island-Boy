@@ -7,6 +7,7 @@ namespace IslandBoy
     {
         public void ExitCavern()
         {
+            CursorManager.Instance.SetDefaultCursor();
             LevelManager.Instance.TransitionToSurfaceLevel();
             LevelManager.Instance.SetPlayerToSurfaceBackpoint();
         }

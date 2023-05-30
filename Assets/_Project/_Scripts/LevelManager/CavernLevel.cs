@@ -52,9 +52,8 @@ namespace IslandBoy
 
         private void UpdateUI()
         {
-            _caveCanvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = $"Level {_currentLevelNum} / {_levelAmount}";
-            _caveCanvas.transform.GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>().text = 
-                $"Level {_currentLevelNum} / {_levelAmount} of The Cavern.<br>Portal Core located in the deepest level.";
+            _caveCanvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"Current Level: {_currentLevelNum}";
+            _caveCanvas.transform.GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text = $"Level {_currentLevelNum} of The Cavern.";
         }
         private IEnumerator ApplyCaveBehaviorToRsc()
         {

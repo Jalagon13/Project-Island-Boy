@@ -5,14 +5,11 @@ using UnityEngine.EventSystems;
 
 namespace IslandBoy
 {
-    public class CaveEntrance : MonoBehaviour, IPointerClickHandler
+    public class CaveEntrance : MonoBehaviour
     {
-        [SerializeField] private PlayerReference _pr;
-
-        public void OnPointerClick(PointerEventData eventData)
+        public void EnterCave()
         {
-            if (eventData.button != PointerEventData.InputButton.Right || !_pr.PlayerInRange(transform.position + new Vector3(0.5f, 0.5f))) return;
-
+            CursorManager.Instance.SetDefaultCursor();
             LevelManager.Instance.TransitionToCaveLevel();
         }
     }

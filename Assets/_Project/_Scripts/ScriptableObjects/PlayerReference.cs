@@ -5,7 +5,7 @@ namespace IslandBoy
     [CreateAssetMenu(fileName = "New Player Reference", menuName = "Player Reference")]
     public class PlayerReference : ScriptableObject
     {
-        private const float INTERACT_RANGE = 2f;
+        private const float INTERACT_RANGE = 2.25f;
         private Vector2 _playerPosition;
         private Vector2 _mousePosition;
         private Inventory _playerInventory;

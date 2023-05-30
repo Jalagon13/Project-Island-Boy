@@ -5,14 +5,13 @@ using UnityEngine.EventSystems;
 
 namespace IslandBoy
 {
-    public class PromptInteract : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+    public class PromptInteract : MonoBehaviour, IPointerClickHandler
     {
         public static Action<PromptInteract> PromptInterectEvent;
 
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private RectTransform _promptCanvas;
 
-        private bool _hovering;
         private bool _promptOn;
         private bool _canOpenPrompt;
 
@@ -26,25 +25,6 @@ namespace IslandBoy
         {
             if (!_pr.PlayerInRange(transform.position) && _promptOn)
                 ClosePrompt();
-
-            if (!_hovering) return;
-
-            if (_pr.PlayerInRange(transform.position))
-                CursorManager.Instance.SetPromptCursor();
-            else
-                CursorManager.Instance.SetPromptCursorTransparent();
-        }
-
-        public void OnPointerEnter(PointerEventData eventData)
-        {
-            _hovering = true;
-            CursorManager.Instance.SetPromptCursor();
-        }
-
-        public void OnPointerExit(PointerEventData eventData)
-        {
-            _hovering = false;
-            CursorManager.Instance.SetDefaultCursor();
         }
 
         public void OnPointerClick(PointerEventData eventData)

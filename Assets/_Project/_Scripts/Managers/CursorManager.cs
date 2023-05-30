@@ -18,14 +18,14 @@ namespace IslandBoy
             Cursor.SetCursor(_defaultCursor, Vector2.zero, CursorMode.ForceSoftware);
         }
 
-        public void SetPromptCursor()
-        {
-            Cursor.SetCursor(_promptCursor, Vector2.zero, CursorMode.ForceSoftware);
-        }
+        //public void SetPromptCursor()
+        //{
+        //    Cursor.SetCursor(_promptCursor, Vector2.zero, CursorMode.ForceSoftware);
+        //}
 
-        public void SetPromptCursorTransparent()
-        {
-            Cursor.SetCursor(_promptCursorTransparent, Vector2.zero, CursorMode.ForceSoftware);
-        }
+        //public void SetPromptCursorTransparent()
+        //{
+        //    Cursor.SetCursor(_promptCursorTransparent, Vector2.zero, CursorMode.ForceSoftware);
+        //}
     }
 }
