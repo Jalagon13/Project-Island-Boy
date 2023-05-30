@@ -87,7 +87,7 @@ namespace IslandBoy
             var transitionPanel = _caveCanvas.transform.GetChild(2).GetComponent<RectTransform>();
             transitionPanel.gameObject.SetActive(true);
             Time.timeScale = 0;
-            yield return new WaitForSecondsRealtime(4);
+            yield return new WaitForSecondsRealtime(3.5f);
             Time.timeScale = 1;
             transitionPanel.gameObject.SetActive(false);
         }

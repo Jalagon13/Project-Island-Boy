@@ -323,7 +323,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -331,6 +331,27 @@ TextureImporter:
       bones: []
       spriteID: 8bc87749a10e56e40aaaad60e51103fe
       internalID: 1935163884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_portal_core
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b88bd9c472596a9479a8aaefac6debdc
+      internalID: 1494493913
       vertices: []
       indices: 
       edges: []
@@ -351,6 +372,7 @@ TextureImporter:
       item_campfire: 1223464883
       item_coal: -1651487029
       item_key: 1935163884
+      item_portal_core: 1494493913
       item_stone: -512641925
       item_torch: -1995232107
       item_wood: -602149933

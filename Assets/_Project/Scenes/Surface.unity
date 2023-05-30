@@ -80642,7 +80642,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -250621267
   m_SortingLayer: 2
-  m_SortingOrder: -1
+  m_SortingOrder: -99
   m_Sprite: {fileID: 883676940, guid: 62ea08f92c2779248a315a11272ffe75, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.5058824}
   m_FlipX: 0
@@ -85246,7 +85246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 847e97e32514f0047a52aa857a3aa89c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelAmount: 20
+  _levelAmount: 5
+  _portalRoomPrefab: {fileID: 7908450033320516338, guid: 0c2f5a9f9ed1e21468c10215ccd48265, type: 3}
   _lockedHatch: {fileID: 5684589201032484555, guid: a42ffd03cd210594e9d416fd264cb73e, type: 3}
   _cavePrefabs:
   - {fileID: 829667699310889102, guid: e598d82e9bf0ffa48ab07824ec66c47b, type: 3}
@@ -106137,7 +106138,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -250621267
   m_SortingLayer: 2
-  m_SortingOrder: -1
+  m_SortingOrder: -99
   m_Sprite: {fileID: 485633072, guid: 62ea08f92c2779248a315a11272ffe75, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.5058824}
   m_FlipX: 0

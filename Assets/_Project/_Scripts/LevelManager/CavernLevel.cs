@@ -8,6 +8,7 @@ namespace IslandBoy
     public class CavernLevel : MonoBehaviour, IAppendToLevel
     {
         [SerializeField] private int _levelAmount;
+        [SerializeField] private GameObject _portalRoomPrefab;
         [SerializeField] private GameObject _lockedHatch;
         [SerializeField] private GameObject[] _cavePrefabs;
         [Range(0.0f, 100.0f)]
@@ -80,6 +81,14 @@ namespace IslandBoy
 
         private void InstantiateLevel()
         {
+            if(_currentLevelNum == _levelAmount)
+            {
+                GameObject portalRoom = Instantiate(_portalRoomPrefab);
+                portalRoom.transform.SetParent(transform);
+                _currentLevel = portalRoom;
+                return;
+            }
+
             calcIndex:
             int index = Random.Range(0, _cavePrefabs.Length);
 
