@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -13,6 +14,13 @@ namespace IslandBoy
 
         private bool _hovering;
         private bool _promptOn;
+        private bool _canOpenPrompt;
+
+        private IEnumerator Start()
+        {
+            yield return new WaitForSeconds(0.25f);
+            _canOpenPrompt = true;
+        }
 
         protected virtual void Update()
         {
@@ -41,7 +49,9 @@ namespace IslandBoy
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if(eventData.button == PointerEventData.InputButton.Right && _pr.PlayerInRange(transform.position))
+            if (!_canOpenPrompt) return;
+
+            if (eventData.button == PointerEventData.InputButton.Right && _pr.PlayerInRange(transform.position))
             {
                 if (_promptOn)
                     ClosePrompt();

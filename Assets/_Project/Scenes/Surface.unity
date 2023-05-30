@@ -67619,7 +67619,7 @@ MonoBehaviour:
   m_text: 'Find a way to power your portal to return home!
 
     Missing Portal Cores:
-    5'
+    1'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
   m_sharedMaterial: {fileID: 4835514525599508895, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
@@ -112309,7 +112309,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2129112315
 RectTransform:
   m_ObjectHideFlags: 0
@@ -113194,7 +113194,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 958849679762385508, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
       propertyPath: _dayDurationInSec
-      value: 10
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080374668026579338, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080374668026579338, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080374668026579338, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080374668026579338, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 190.61194
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080374668026579338, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080374668026579338, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 1853043509500595852, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
       propertyPath: m_AnchorMax.y
@@ -114034,6 +114058,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4210445617917970201, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210445617966816271, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210445617966816271, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210445617966816271, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4210445618028646231, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
