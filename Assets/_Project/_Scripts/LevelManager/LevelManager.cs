@@ -84,10 +84,10 @@ namespace IslandBoy
 
         private IEnumerator TransitionScreenTimer()
         {
-            var transitionPanel = _caveCanvas.transform.GetChild(4).GetComponent<RectTransform>();
+            var transitionPanel = _caveCanvas.transform.GetChild(3).GetComponent<RectTransform>();
             transitionPanel.gameObject.SetActive(true);
             Time.timeScale = 0;
-            yield return new WaitForSecondsRealtime(6.5f);
+            yield return new WaitForSecondsRealtime(5f);
             Time.timeScale = 1;
             transitionPanel.gameObject.SetActive(false);
         }

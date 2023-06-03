@@ -53,7 +53,7 @@ namespace IslandBoy
         private void UpdateUI()
         {
             _caveCanvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"Current Level: {_currentLevelNum}";
-            _caveCanvas.transform.GetChild(4).GetChild(0).GetComponent<TextMeshProUGUI>().text = $"Level {_currentLevelNum} of The Cavern.";
+            _caveCanvas.transform.GetChild(3).GetChild(0).GetComponent<TextMeshProUGUI>().text = $"Level {_currentLevelNum} of The Cavern.";
         }
         private IEnumerator ApplyCaveBehaviorToRsc()
         {

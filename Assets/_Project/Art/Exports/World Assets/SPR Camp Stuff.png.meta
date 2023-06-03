@@ -146,6 +146,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: ws_sign
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ae75dad34f6f3643bc4084e7be65c32
+      internalID: 1168968723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -159,6 +180,7 @@ TextureImporter:
     nameFileIdTable:
       SPR Camp Stuff_1: -768599380
       ws_campfire: 586656638
+      ws_sign: 1168968723
       ws_sleeping_bag: -90063712
   spritePackingTag: 
   pSDRemoveMatte: 0
