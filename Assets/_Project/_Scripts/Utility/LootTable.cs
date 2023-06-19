@@ -10,7 +10,15 @@ namespace IslandBoy
     {
         [field:SerializeField] public List<Loot> Table { get; private set; }
 
-        public Dictionary<ItemObject, int> ReturnLoot()
+        public void SpawnLoot(Vector2 spawnPos)
+        {
+            foreach (var loot in ReturnLoot())
+            {
+                WorldItemManager.Instance.SpawnItem(spawnPos, loot.Key, loot.Value);
+            }
+        }
+
+        private Dictionary<ItemObject, int> ReturnLoot()
         {
             Dictionary<ItemObject, int> lootReturn = new();
 

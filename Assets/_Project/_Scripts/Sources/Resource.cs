@@ -47,11 +47,7 @@ namespace IslandBoy
         public void Break()
         {
             AudioManager.Instance.PlayClip(_breakSound, false, true);
-
-            foreach (var loot in _lootTable.ReturnLoot())
-            {
-                WorldItemManager.Instance.SpawnItem(_dropPosition, loot.Key, loot.Value);
-            }
+            _lootTable.SpawnLoot(_dropPosition);
 
             Destroy(gameObject);
         }

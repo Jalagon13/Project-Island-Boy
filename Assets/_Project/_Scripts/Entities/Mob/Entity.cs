@@ -10,6 +10,7 @@ namespace IslandBoy
 
         [SerializeField] private int _maxHealth;
         [SerializeField] private EntityHealthBar _hpBar;
+        [SerializeField] private LootTable _lootTable;
 
         private void Awake()
         {
@@ -34,6 +35,7 @@ namespace IslandBoy
 
         public void OnDeath()
         {
+            _lootTable.SpawnLoot(transform.position);
             Destroy(gameObject);
         }
     }
