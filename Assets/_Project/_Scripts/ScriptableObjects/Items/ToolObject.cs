@@ -28,6 +28,7 @@ namespace IslandBoy
         public override string GetDescription()
         {
             string powerDesc = string.Empty;
+            string damageDesc = string.Empty;
             string cooldownDesc = string.Empty;
 
             foreach (var item in DefaultParameterList)
@@ -37,13 +38,16 @@ namespace IslandBoy
                     case "Power":
                         powerDesc = $"• {item.Value} {ToolType} Power<br>";
                         break;
+                    case "Damage":
+                        damageDesc = $"• {item.Value} Damage<br>";
+                        break;
                     case "Cooldown":
                         cooldownDesc = $"• {item.Value}s Cooldown<br>";
                         break;
                 }
             }
 
-            return $"{powerDesc}{cooldownDesc}{Description}";
+            return $"{powerDesc}{damageDesc}{cooldownDesc}{Description}";
         }
     }
 }

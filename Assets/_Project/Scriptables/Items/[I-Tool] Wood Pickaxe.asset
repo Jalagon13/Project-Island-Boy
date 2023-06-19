@@ -15,6 +15,7 @@ MonoBehaviour:
   <Name>k__BackingField: Wooden Pickaxe
   <UiDisplay>k__BackingField: {fileID: 1392384841, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   <Stackable>k__BackingField: 0
+  <Description>k__BackingField: 
   <DefaultParameterList>k__BackingField:
   - Parameter: {fileID: 11400000, guid: 97c28137497da5845bdbc42cd2c6dd6f, type: 2}
     Value: 40
@@ -22,4 +23,6 @@ MonoBehaviour:
     Value: 0.35
   - Parameter: {fileID: 11400000, guid: c4b64d6fc16075a4ca7fd3181eeb7f65, type: 2}
     Value: 55
+  - Parameter: {fileID: 11400000, guid: 8a8bef37f1c5e3c40ad4319761ff897a, type: 2}
+    Value: 4
   <Type>k__BackingField: 2

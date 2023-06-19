@@ -13,6 +13,7 @@ namespace IslandBoy
         [SerializeField] private AudioClip _wooshSound;
         [Header("Base Stats")]
         [SerializeField] private ToolType _baseToolType;
+        [SerializeField] private ItemParameter _baseDamage;
         [SerializeField] private ItemParameter _basePower;
         [SerializeField] private ItemParameter _baseCooldown;
         [SerializeField] private ItemParameter _baseSwingSpeedMultiplier;
@@ -21,6 +22,7 @@ namespace IslandBoy
         private PlayerInput _input;
         private Animator _animator;
         private PlayerMoveInput _moveInput;
+        private SwingCollider _swingCollider;
         private Camera _camera;
         private float _counter;
         private bool _isHeldDown;
@@ -49,6 +51,9 @@ namespace IslandBoy
             _sta.BasePower = _basePower.Value;
             _sta.BaseToolType = _baseToolType;
             _sta.transform.parent = null;
+
+            _swingCollider = transform.GetChild(0).GetChild(0).GetComponent<SwingCollider>();
+            _swingCollider.BaseDamage = _baseDamage.Value;
         }
 
         private void OnEnable()
