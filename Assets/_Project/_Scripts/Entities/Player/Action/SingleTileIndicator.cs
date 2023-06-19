@@ -5,7 +5,9 @@ namespace IslandBoy
     public class SingleTileIndicator : MonoBehaviour
     {
         [SerializeField] private Color _indicatorEmptyColor;
+        [SerializeField] private Color _indicatorTransparentColor;
         [SerializeField] private Color _canHitColor;
+        [SerializeField] private PlayerReference _pr;
 
         private SingleTileHpCanvas _stHpCanvas;
         private SingleTileAction _sta;
@@ -70,7 +72,12 @@ namespace IslandBoy
         public void ChangeToOffIndicator()
         {
             _sr.transform.localScale = new Vector3(0.85f, 0.85f, 0.85f);
-            _sr.color = _indicatorEmptyColor;
+
+            if (_pr.SelectedSlot.ItemObject is DeployObject)
+                _sr.color = _indicatorTransparentColor;
+            else
+                _sr.color = _indicatorEmptyColor;
+
 
             _stHpCanvas.HideHpCanvas();
         }

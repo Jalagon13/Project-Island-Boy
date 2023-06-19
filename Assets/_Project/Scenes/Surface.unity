@@ -95228,7 +95228,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: There is a core of energy missing somewhere deep beneath the surface.
+  m_text: 'Legend has it there is a Core of Energy located at the bottom of the Cavern. '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
   m_sharedMaterial: {fileID: 4835514525599508895, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
@@ -100857,8 +100857,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "OBJECTIVE: \n- Clear all the Monsters\n- Find and unlock the hidden trap
-    door to \n   progress"
+  m_text: 'OBJECTIVE: Retrieve the Energy Core at the bottom of the Cavern.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
   m_sharedMaterial: {fileID: 4835514525599508895, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
@@ -107385,9 +107384,10 @@ GameObject:
   - component: {fileID: 1890695397}
   - component: {fileID: 1890695398}
   - component: {fileID: 1890695399}
+  - component: {fileID: 1890695400}
   m_Layer: 0
   m_Name: '[NPC] Camper'
-  m_TagString: Untagged
+  m_TagString: WS
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107440,6 +107440,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _promptCanvas: {fileID: 1432291811}
+--- !u!114 &1890695400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890695396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d82362bfab3ce045b5255bd54700b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1891031573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -115551,8 +115563,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
     - target: {fileID: 4210445617613918442, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: _canHitColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210445617613918442, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
       propertyPath: _indicatorEmptyColor.a
-      value: 0.33333334
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4210445617613918442, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
       propertyPath: _indicatorEmptyColor.b
@@ -115565,6 +115581,22 @@ PrefabInstance:
     - target: {fileID: 4210445617613918442, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
       propertyPath: _indicatorEmptyColor.r
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210445617613918442, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: _indicatorTransparentColor.a
+      value: 0.6745098
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210445617613918442, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: _indicatorTransparentColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210445617613918442, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: _indicatorTransparentColor.g
+      value: 0.93379235
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210445617613918442, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: _indicatorTransparentColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4210445617639354664, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
       propertyPath: m_AnchorMax.y
