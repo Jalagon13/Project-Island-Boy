@@ -9,19 +9,19 @@ namespace IslandBoy
         public HealthSystem HealthSystem;
 
         [SerializeField] private int _maxHealth;
-        [SerializeField] private EntityHealthBar _hpBar;
         [SerializeField] private LootTable _lootTable;
 
         private void Awake()
         {
             HealthSystem = new HealthSystem(_maxHealth);
-            _hpBar.SetUp(HealthSystem);
         }
 
         public void Damage(int damageAmount)
         {
             HealthSystem.Damage(damageAmount);
-            
+
+            DamagePopup.Create(transform.position, damageAmount, 0.5f);
+
             if (HealthSystem.IsDead())
             {
                 OnDeath();
