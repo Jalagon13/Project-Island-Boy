@@ -8,11 +8,11 @@ namespace IslandBoy
     {
         [SerializeField] private float _damageAmount;
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerStay2D(Collider2D collision)
         {
             if (collision.TryGetComponent(out PlayerEntity playerEntity))
             {
-                playerEntity.Damage(Mathf.RoundToInt(_damageAmount));
+                playerEntity.Damage(Mathf.RoundToInt(_damageAmount), gameObject);
             }
         }
     }

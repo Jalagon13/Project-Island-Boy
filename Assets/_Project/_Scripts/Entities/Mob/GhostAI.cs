@@ -16,6 +16,11 @@ namespace IslandBoy
             _rb = GetComponent<Rigidbody2D>();
         }
 
+        private void OnDisable()
+        {
+            Debug.Log("Hit");
+        }
+
         private void FixedUpdate()
         {
             _rb.MovePosition(CalcMovePosition());

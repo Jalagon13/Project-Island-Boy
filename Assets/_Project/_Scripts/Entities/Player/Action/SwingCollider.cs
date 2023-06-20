@@ -17,7 +17,7 @@ namespace IslandBoy
         {
             if (collision.gameObject.TryGetComponent(out IHealth<int> health))
             {
-                health.Damage(Mathf.RoundToInt(CalcDamage()));
+                health.Damage(Mathf.RoundToInt(CalcDamage()), transform.root.gameObject);
             }
         }
 

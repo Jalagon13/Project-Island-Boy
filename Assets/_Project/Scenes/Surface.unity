@@ -100152,6 +100152,7 @@ GameObject:
   - component: {fileID: 1648930473}
   - component: {fileID: 1648930475}
   - component: {fileID: 1648930478}
+  - component: {fileID: 1648930479}
   - component: {fileID: 1648930477}
   - component: {fileID: 1648930474}
   - component: {fileID: 1648930476}
@@ -100192,7 +100193,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 999
   _iFrameDuration: 0.17
-  _forcePower: 1000
   _lootTable:
     <Table>k__BackingField:
     - Item: {fileID: 11400000, guid: 126196eef2588a34cb7b61db392d6088, type: 2}
@@ -100241,7 +100241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _speed: 0.6
+  _speed: 1
 --- !u!50 &1648930478
 Rigidbody2D:
   serializedVersion: 4
@@ -100263,6 +100263,51 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1648930479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648930472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6bc1a7ef54a3bf44a24c08540f77967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rb: {fileID: 1648930478}
+  _strength: 16
+  _delay: 0.15
+  _onBegin:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1648930477}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onDone:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1648930477}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1001 &1648947428
 PrefabInstance:
   m_ObjectHideFlags: 0
