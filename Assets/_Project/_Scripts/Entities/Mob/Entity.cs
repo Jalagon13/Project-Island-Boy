@@ -8,18 +8,29 @@ namespace IslandBoy
     {
         public HealthSystem HealthSystem;
 
-        [SerializeField] private int _maxHealth;
+        [SerializeField] protected int _maxHealth;
+        [SerializeField] protected float _iFrameDuration;
         [SerializeField] private LootTable _lootTable;
+
+        protected Timer _iFrameTimer;
 
         private void Awake()
         {
             HealthSystem = new HealthSystem(_maxHealth);
+            _iFrameTimer = new Timer(_iFrameDuration);
         }
 
-        public void Damage(int damageAmount)
+        private void Update()
         {
-            HealthSystem.Damage(damageAmount);
+            _iFrameTimer.Tick(Time.deltaTime);
+        }
 
+        public virtual void Damage(int damageAmount)
+        {
+            if (!CanDamage()) return;
+
+            _iFrameTimer.RemainingSeconds = _iFrameDuration;
+            HealthSystem.Damage(damageAmount);
             DamagePopup.Create(transform.position, damageAmount, 0.5f);
 
             if (HealthSystem.IsDead())
@@ -33,10 +44,15 @@ namespace IslandBoy
             HealthSystem.Heal(healAmount);
         }
 
-        public void OnDeath()
+        public virtual void OnDeath()
         {
             _lootTable.SpawnLoot(transform.position);
             Destroy(gameObject);
+        }
+
+        protected bool CanDamage()
+        {
+            return _iFrameTimer.RemainingSeconds <= 0;
         }
     }
 }

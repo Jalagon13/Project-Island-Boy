@@ -16,8 +16,8 @@ namespace IslandBoy
         protected int _currentValue;
         private float _cdCounter;
 
-        public int CurrentValue { get { return _currentValue; } }
-        public int MaxValue { get { return _maxValue; } }
+        public int CurrentValue { get { return _currentValue; } set { _currentValue = value; } }
+        public int MaxValue { get { return _maxValue; } set { _maxValue = value; } }
         public bool InCoolDown { get { return _cdCounter < _coolDown; } }
 
         private void Awake()
@@ -50,7 +50,9 @@ namespace IslandBoy
             if (_currentValue > _maxValue)
                 _currentValue = _maxValue;
 
-            StartCoroutine(Cooldown());
+            if(value > 0)
+                StartCoroutine(Cooldown());
+
             UpdateUI();
         }
 
@@ -70,6 +72,7 @@ namespace IslandBoy
         {
             _cdFillImage.fillAmount = Mathf.Clamp01(1 - Mathf.InverseLerp(0, _coolDown, _cdCounter));
         }
+
         protected void UpdateUI()
         {
             _fillImage.fillAmount = Mathf.Clamp01(Mathf.InverseLerp(0, _maxValue, _currentValue));
