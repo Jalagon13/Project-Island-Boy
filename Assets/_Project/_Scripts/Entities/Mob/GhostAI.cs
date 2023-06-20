@@ -16,17 +16,16 @@ namespace IslandBoy
         {
             _rb = GetComponent<Rigidbody2D>();
         }
+        private void FixedUpdate()
+        {
+            _rb.MovePosition(CalcMovePosition());
+        }
 
-        private void OnEnable()
+        public void TeleportToPlayer() // attached to Entity _onDamage Event
         {
             var direction = Random.insideUnitCircle.normalized;
 
             _rb.position = _pr.PositionReference + direction * 3.5f;
-        }
-
-        private void FixedUpdate()
-        {
-            _rb.MovePosition(CalcMovePosition());
         }
 
         private Vector2 CalcMovePosition()

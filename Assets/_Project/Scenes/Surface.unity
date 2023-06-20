@@ -100152,9 +100152,9 @@ GameObject:
   - component: {fileID: 1648930473}
   - component: {fileID: 1648930475}
   - component: {fileID: 1648930478}
-  - component: {fileID: 1648930479}
-  - component: {fileID: 1648930477}
   - component: {fileID: 1648930474}
+  - component: {fileID: 1648930477}
+  - component: {fileID: 1648930479}
   - component: {fileID: 1648930476}
   m_Layer: 0
   m_Name: '[MOB] Ghost'
@@ -100191,14 +100191,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d0dbc9cb6ce57468cd3a34f0f5ba65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 999
+  _maxHealth: 24
   _iFrameDuration: 0.17
   _lootTable:
     <Table>k__BackingField:
     - Item: {fileID: 11400000, guid: 126196eef2588a34cb7b61db392d6088, type: 2}
       Min: 1
-      Max: 1
-      Chance: 100
+      Max: 2
+      Chance: 15
+  _onDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1648930477}
+        m_TargetAssemblyTypeName: IslandBoy.GhostAI, Assembly-CSharp
+        m_MethodName: TeleportToPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!58 &1648930475
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -100214,7 +100229,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.4}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.65
 --- !u!114 &1648930476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100241,7 +100256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _speed: 1.5
+  _speed: 1.75
 --- !u!50 &1648930478
 Rigidbody2D:
   serializedVersion: 4

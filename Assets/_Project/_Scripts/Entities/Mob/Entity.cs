@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace IslandBoy
 {
@@ -9,8 +10,9 @@ namespace IslandBoy
         public HealthSystem HealthSystem;
 
         [SerializeField] protected int _maxHealth;
-        [SerializeField] protected float _iFrameDuration;
+        [SerializeField] protected float _iFrameDuration = 0.17f;
         [SerializeField] private LootTable _lootTable;
+        [SerializeField] private UnityEvent _onDamage;
 
         protected Timer _iFrameTimer;
 
@@ -29,8 +31,11 @@ namespace IslandBoy
         {
             if (!CanDamage()) return;
 
-            _iFrameTimer.RemainingSeconds = _iFrameDuration;
             HealthSystem.Damage(damageAmount);
+
+            _onDamage?.Invoke();
+            _iFrameTimer.RemainingSeconds = _iFrameDuration;
+
             DamagePopup.Create(transform.position, damageAmount, 0.5f);
 
             if (sender != null && transform.TryGetComponent(out KnockbackFeedback knockback))
