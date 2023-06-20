@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 066800014098c304ca12dbb82a503ef3
+guid: f5485e0305ada5043b7177c7739ee931
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mob_sensor
+      name: mob_ghost
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 1
         width: 16
-        height: 21
+        height: 24
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7cb40575d077fb4aab7dce7bf9e58a9
-      internalID: -1113237805
+      spriteID: 9be99a2428ca3bc4ea587c35523e08c7
+      internalID: -310388300
       vertices: []
       indices: 
       edges: []
@@ -136,7 +136,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      mob_sensor: -1113237805
+      mob_ghost: -310388300
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

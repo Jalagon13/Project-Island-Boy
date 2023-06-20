@@ -91806,12 +91806,12 @@ SpriteRenderer:
   m_SortingLayerID: -250621267
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1113237805, guid: 066800014098c304ca12dbb82a503ef3, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -310388300, guid: f5485e0305ada5043b7177c7739ee931, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7372549}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1.3125}
+  m_Size: {x: 1, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -100152,7 +100152,7 @@ GameObject:
   - component: {fileID: 1648930475}
   - component: {fileID: 1648930474}
   m_Layer: 0
-  m_Name: '[MOB] Sensor'
+  m_Name: '[MOB] Ghost'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100208,7 +100208,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.4}
   serializedVersion: 2
-  m_Radius: 0.45
+  m_Radius: 0.5
 --- !u!1001 &1648947428
 PrefabInstance:
   m_ObjectHideFlags: 0
