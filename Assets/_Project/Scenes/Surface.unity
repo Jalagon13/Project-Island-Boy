@@ -100241,7 +100241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _speed: 1
+  _speed: 1.5
 --- !u!50 &1648930478
 Rigidbody2D:
   serializedVersion: 4
@@ -100277,7 +100277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rb: {fileID: 1648930478}
   _strength: 16
-  _delay: 0.15
+  _delay: 0.2
   _onBegin:
     m_PersistentCalls:
       m_Calls:

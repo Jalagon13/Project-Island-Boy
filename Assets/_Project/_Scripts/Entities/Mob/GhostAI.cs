@@ -10,15 +10,18 @@ namespace IslandBoy
         [SerializeField] private float _speed;
 
         private Rigidbody2D _rb;
+        private bool _teleport;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
         }
 
-        private void OnDisable()
+        private void OnEnable()
         {
-            Debug.Log("Hit");
+            var direction = Random.insideUnitCircle.normalized;
+
+            _rb.position = _pr.PositionReference + direction * 3.5f;
         }
 
         private void FixedUpdate()
