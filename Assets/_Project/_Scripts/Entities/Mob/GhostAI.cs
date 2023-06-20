@@ -6,16 +6,26 @@ namespace IslandBoy
 {
     public class GhostAI : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        [SerializeField] private PlayerReference _pr;
+        [SerializeField] private float _speed;
+
+        private Rigidbody2D _rb;
+
+        private void Awake()
         {
-        
+            _rb = GetComponent<Rigidbody2D>();
         }
 
-        // Update is called once per frame
-        void Update()
+        private void FixedUpdate()
         {
-        
+            _rb.MovePosition(CalcMovePosition());
+        }
+
+        private Vector2 CalcMovePosition()
+        {
+            Vector2 movement = (_pr.PositionReference - (Vector2)transform.position).normalized * _speed * Time.deltaTime;
+
+            return _rb.position + movement;
         }
     }
 }
