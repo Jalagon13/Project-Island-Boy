@@ -79892,9 +79892,10 @@ GameObject:
   - component: {fileID: 1009217775}
   - component: {fileID: 1009217776}
   - component: {fileID: 1009217773}
+  - component: {fileID: 1009217777}
   m_Layer: 0
   m_Name: '[WS] Sign'
-  m_TagString: Untagged
+  m_TagString: WS
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79956,6 +79957,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1009217777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009217772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d82362bfab3ce045b5255bd54700b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1010868708
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -114842,6 +114855,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 977874901, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: _durabilityParameter.Parameter
+      value: 
+      objectReference: {fileID: 11400000, guid: 97c28137497da5845bdbc42cd2c6dd6f, type: 2}
     - target: {fileID: 1853043509500595852, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

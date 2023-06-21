@@ -4,10 +4,10 @@ namespace IslandBoy
 {
     public class SingleTileIndicator : MonoBehaviour
     {
+        [SerializeField] private PlayerReference _pr;
         [SerializeField] private Color _indicatorEmptyColor;
         [SerializeField] private Color _indicatorTransparentColor;
         [SerializeField] private Color _canHitColor;
-        [SerializeField] private PlayerReference _pr;
 
         private SingleTileHpCanvas _stHpCanvas;
         private SingleTileAction _sta;
@@ -22,6 +22,18 @@ namespace IslandBoy
 
         private void Update()
         {
+            UpdateIndicator();
+
+            if (_pr.SelectedSlot.ItemObject == null) return;
+
+            if(_pr.SelectedSlot.ItemObject.ToolType == ToolType.Sword)
+            {
+                ChangeToOffIndicator();
+            }
+        }
+
+        private void UpdateIndicator()
+        {
             if (transform.hasChanged)
             {
                 _stHpCanvas.HideHpCanvas();
@@ -32,7 +44,7 @@ namespace IslandBoy
 
                 foreach (var collider in colliders)
                 {
-                    if(collider.TryGetComponent(out IBreakable b))
+                    if (collider.TryGetComponent(out IBreakable b))
                     {
                         breakable = b;
                         breakableCount++;
@@ -42,13 +54,13 @@ namespace IslandBoy
                 if (breakableCount > 0)
                 {
                     ChangeToOnIndicator();
-                    
-                    if (breakable == null) 
+
+                    if (breakable == null)
                     {
                         transform.hasChanged = false;
                         return;
                     }
-                    
+
                     if (breakable.CurrentHitPoints < breakable.MaxHitPoints)
                     {
                         _stHpCanvas.ShowHpCanvas(breakable.MaxHitPoints, breakable.CurrentHitPoints);

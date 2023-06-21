@@ -42,6 +42,11 @@ namespace IslandBoy
 
         public void HitTile()
         {
+            if(_pr.SelectedSlot.ItemObject != null)
+            {
+                if (_pr.SelectedSlot.ItemObject.ToolType == ToolType.Sword) return;
+            }
+
             var colliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
 
             foreach (var collider in colliders)

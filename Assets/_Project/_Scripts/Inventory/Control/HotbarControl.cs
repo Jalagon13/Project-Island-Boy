@@ -54,13 +54,13 @@ namespace IslandBoy
 
             UnHighlightPrevious();
 
-            if (scrollNum > 0)
+            if (scrollNum < 0)
             {
                 _slotIndex++;
                 if (_slotIndex > _hotbarSlots.Length - 1)
                     _slotIndex = 0;
             }
-            else if(scrollNum < 0)
+            else if(scrollNum > 0)
             {
                 _slotIndex--;
                 if(_slotIndex < 0)
