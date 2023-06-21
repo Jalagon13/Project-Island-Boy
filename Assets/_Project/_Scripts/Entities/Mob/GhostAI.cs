@@ -8,6 +8,7 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private float _speed;
+        [SerializeField] private float _teleportDistance;
 
         private Rigidbody2D _rb;
         private bool _teleport;
@@ -25,7 +26,7 @@ namespace IslandBoy
         {
             var direction = Random.insideUnitCircle.normalized;
 
-            _rb.position = _pr.PositionReference + direction * 3.5f;
+            _rb.position = _pr.PositionReference + direction * _teleportDistance;
         }
 
         private Vector2 CalcMovePosition()

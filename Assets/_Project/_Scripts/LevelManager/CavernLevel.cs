@@ -36,7 +36,6 @@ namespace IslandBoy
             InstantiateLevel();
             PopulateHolders();
             StartCoroutine(ApplyCaveBehaviorToRsc());
-
         }
 
         public void TransitionToNextLevel()
