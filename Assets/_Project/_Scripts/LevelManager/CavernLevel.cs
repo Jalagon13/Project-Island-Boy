@@ -67,6 +67,8 @@ namespace IslandBoy
 
         public void SpawnLockedHatch(Vector3 pos)
         {
+            if (Random.Range(0, 100) < 75) return;
+
             Instantiate(_lockedHatch, pos, Quaternion.identity);
         }
 
