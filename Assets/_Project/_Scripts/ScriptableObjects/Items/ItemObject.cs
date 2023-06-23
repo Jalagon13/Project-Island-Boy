@@ -18,6 +18,8 @@ namespace IslandBoy
         public abstract void ExecuteAction(SelectedSlotControl control);
         public abstract string GetDescription();
 
+        protected ToolType _baseToolType = ToolType.Ax;
+
     }
 
     [Serializable]

@@ -9,6 +9,7 @@ namespace IslandBoy
         [field:SerializeField] public HealthBar HealthBar { get; private set; }
         [field:SerializeField] public EnergyBar EnergyBar { get; private set; }
         [field:SerializeField] public SingleTileAction SingleTileAction { get; private set; }
+        [field:SerializeField] public Collider2D PlayerEntityCollider { get; private set; }
 
         private PlayerInput _input;
 

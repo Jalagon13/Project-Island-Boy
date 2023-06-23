@@ -20,7 +20,7 @@ namespace IslandBoy
         [SerializeField] private AudioClip _consumeSound;
         [SerializeField] private int _value;
 
-        public override ToolType ToolType => ToolType.Ax;
+        public override ToolType ToolType => _baseToolType;
 
         public override int ConsumeValue => _value;
 

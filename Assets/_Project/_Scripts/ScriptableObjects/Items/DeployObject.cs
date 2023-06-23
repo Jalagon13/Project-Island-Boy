@@ -10,7 +10,7 @@ namespace IslandBoy
         [SerializeField] private GameObject _prefabToDeploy;
         [SerializeField] private AudioClip _deploySound;
 
-        public override ToolType ToolType => ToolType.Ax;
+        public override ToolType ToolType => _baseToolType;
 
         public override int ConsumeValue => 0;
 
