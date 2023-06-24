@@ -5029,7 +5029,6 @@ GameObject:
   - component: {fileID: 942200118308183143}
   - component: {fileID: 7052110859275586736}
   - component: {fileID: 3933085976869050267}
-  - component: {fileID: 190908607}
   m_Layer: 6
   m_Name: '[WS] Bomb'
   m_TagString: WS
@@ -5110,7 +5109,7 @@ MonoBehaviour:
   _detonationTimer: 2
   _explodeRadius: 2
   _breakableDamage: 75
-  _enemyDamage: 1
+  _enemyDamage: 80
 --- !u!114 &7052110859275586736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5144,27 +5143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d82362bfab3ce045b5255bd54700b70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &190908607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3933085976869050213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6bc1a7ef54a3bf44a24c08540f77967, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rb: {fileID: 3933085976869050264}
-  _strength: 16
-  _delay: 0.15
-  _onBegin:
-    m_PersistentCalls:
-      m_Calls: []
-  _onDone:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &3933085978236437021
 GameObject:
   m_ObjectHideFlags: 0
