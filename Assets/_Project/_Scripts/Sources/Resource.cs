@@ -27,17 +27,24 @@ namespace IslandBoy
         }
 
 
-        public bool Hit(float amount, ToolType toolType)
+        public bool Hit(float amount, ToolType toolType = ToolType.None)
         {
             if(_harvestType != ToolType.Indifferent)
             {
-                if (toolType != _harvestType) return false;
+                if (toolType == ToolType.None)
+                    goto noneToolType;
+                else if (toolType != _harvestType) 
+                    return false;
             }
 
+            noneToolType:
+
             AudioManager.Instance.PlayClip(_hitSound, false, true);
+
             StartCoroutine(Tremble());
 
             _currentHitPoints -= amount;
+
             if (_currentHitPoints <= 0)
                 Break();
 
