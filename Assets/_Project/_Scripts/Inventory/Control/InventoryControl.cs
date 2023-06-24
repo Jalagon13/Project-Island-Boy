@@ -66,7 +66,7 @@ namespace IslandBoy
         {
             _mainInventory.gameObject.SetActive(true);
             _inventoryOpen = true;
-            Debug.Log("Test");
+
             if (rdb)
                 _craftSlotsControl.RefreshCraftingMenu(rdb);
 
