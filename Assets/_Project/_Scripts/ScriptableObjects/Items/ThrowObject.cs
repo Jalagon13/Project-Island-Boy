@@ -8,6 +8,7 @@ namespace IslandBoy
     public class ThrowObject : ItemObject
     {
         [SerializeField] private GameObject _prefabToThrow;
+        [SerializeField] private AudioClip _throwSound;
         [SerializeField] private float _throwForce = 15f;
 
         public override ToolType ToolType => _baseToolType;
@@ -21,6 +22,8 @@ namespace IslandBoy
             if(throwObject.TryGetComponent(out Rigidbody2D rb))
             {
                 Vector2 direction = ((Vector3)control.PR.MousePositionReference - rb.transform.position).normalized;
+
+                AudioManager.Instance.PlayClip(_throwSound, false, true);
 
                 rb.AddForce(direction * _throwForce, ForceMode2D.Impulse);
             }
