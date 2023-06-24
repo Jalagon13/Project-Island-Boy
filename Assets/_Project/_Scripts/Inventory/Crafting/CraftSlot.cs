@@ -67,6 +67,8 @@ namespace IslandBoy
 
             InitializeResourceSlots();
             CheckIfCanCraft();
+
+            _rscPanel.gameObject.SetActive(false);
         }
 
         private void InitializeResourceSlots()

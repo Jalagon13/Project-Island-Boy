@@ -9,6 +9,7 @@ namespace IslandBoy
         private MouseItemHolder _mouseItemHolder;
         private PlayerInput _input;
         private RectTransform _mainInventory;
+        private CraftSlotsControl _craftSlotsControl;
         private bool _inventoryOpen;
 
 
@@ -16,6 +17,7 @@ namespace IslandBoy
         {
             _input = new PlayerInput();
             _inventory = GetComponent<Inventory>();
+            _craftSlotsControl = GetComponent<CraftSlotsControl>();
             _mainInventory = transform.GetChild(0).GetComponent<RectTransform>();
             _mouseItemHolder = transform.GetChild(2).GetComponent<MouseItemHolder>();
 
@@ -24,11 +26,13 @@ namespace IslandBoy
         private void OnEnable()
         {
             _input.Enable();
+            CraftStation.OnCraftStationInteract += OpenInventory;
         }
 
         private void OnDisable()
         {
             _input.Disable();
+            CraftStation.OnCraftStationInteract -= OpenInventory;
         }
 
         private void Start()
@@ -48,6 +52,7 @@ namespace IslandBoy
         {
             if (_mouseItemHolder.HasItem()) return;
 
+            _craftSlotsControl.RefreshCraftingMenu(_craftSlotsControl.DefaultRdb);
             _mainInventory.gameObject.SetActive(false);
             _inventoryOpen = false;
 
@@ -57,10 +62,13 @@ namespace IslandBoy
             }
         }
 
-        private void OpenInventory()
+        public void OpenInventory(RecipeDatabaseObject rdb = null)
         {
             _mainInventory.gameObject.SetActive(true);
             _inventoryOpen = true;
+            Debug.Log("Test");
+            if (rdb)
+                _craftSlotsControl.RefreshCraftingMenu(rdb);
 
             foreach (InventorySlot slot in _inventory.InventorySlots)
             {

@@ -1618,7 +1618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b7e7a7ca66e57847a915a4ea448ce7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rdb: {fileID: 11400000, guid: fcf2c4799313803409b1c09f21fc9c77, type: 2}
+  _defaultRdb: {fileID: 11400000, guid: fcf2c4799313803409b1c09f21fc9c77, type: 2}
   _craftSlotPrefab: {fileID: 6449567880495286189, guid: 28a3b174ebf164c4eb2f397a56b59ac6, type: 3}
   _craftSlotsRect: {fileID: 4210445618332476785}
 --- !u!114 &4210445617314236099
@@ -2446,7 +2446,7 @@ MonoBehaviour:
     Value: 3
   _basePower:
     Parameter: {fileID: 11400000, guid: c4b64d6fc16075a4ca7fd3181eeb7f65, type: 2}
-    Value: 30
+    Value: 3333
   _baseCooldown:
     Parameter: {fileID: 11400000, guid: c25902e3274ad0a4a97f3515779aecea, type: 2}
     Value: 0.35
@@ -2907,7 +2907,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -250}
-  m_SizeDelta: {x: 1000, y: 120}
+  m_SizeDelta: {x: 2000, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4210445618332476787
 MonoBehaviour:

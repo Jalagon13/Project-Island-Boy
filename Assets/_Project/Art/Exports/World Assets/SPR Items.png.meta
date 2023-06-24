@@ -365,7 +365,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -373,6 +373,27 @@ TextureImporter:
       bones: []
       spriteID: c11c089ecdfa40c4b89dda0ec9572313
       internalID: -581595869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_construction_table
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6de933c7c381cac4cb5b02d5fc33a26d
+      internalID: 449123009
       vertices: []
       indices: 
       edges: []
@@ -392,6 +413,7 @@ TextureImporter:
       item_berry: 1211993972
       item_campfire: 1223464883
       item_coal: -1651487029
+      item_construction_table: 449123009
       item_key: 1935163884
       item_portal_core: 1494493913
       item_stone: -512641925
