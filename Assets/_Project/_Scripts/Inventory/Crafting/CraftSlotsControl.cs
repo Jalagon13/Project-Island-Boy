@@ -4,7 +4,7 @@ namespace IslandBoy
 {
     public class CraftSlotsControl : MonoBehaviour
     {
-        [SerializeField] private RecipeDatabaseObject _rdb;
+        [SerializeField] private RecipeDatabaseObject _defaultRdb;
         [SerializeField] private GameObject _craftSlotPrefab;
         [SerializeField] private RectTransform _craftSlotsRect;
 
@@ -30,12 +30,12 @@ namespace IslandBoy
                 }
             }
 
-            for (int i = 0; i < _rdb.Database.Length; i++)
+            for (int i = 0; i < _defaultRdb.Database.Length; i++)
             {
                 GameObject cs = Instantiate(_craftSlotPrefab, _craftSlotsRect.transform);
 
                 CraftSlot craftSlot = cs.GetComponent<CraftSlot>();
-                craftSlot.Initialize(_rdb.Database[i]);
+                craftSlot.Initialize(_defaultRdb.Database[i]);
 
                 CraftSlotCraftControl craftSlotCraftControl = cs.GetComponent<CraftSlotCraftControl>();
                 craftSlotCraftControl.MouseItemHolder = _mouseItemHolder;

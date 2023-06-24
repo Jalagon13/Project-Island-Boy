@@ -344,7 +344,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -352,6 +352,27 @@ TextureImporter:
       bones: []
       spriteID: b88bd9c472596a9479a8aaefac6debdc
       internalID: 1494493913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_tool_station
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c11c089ecdfa40c4b89dda0ec9572313
+      internalID: -581595869
       vertices: []
       indices: 
       edges: []
@@ -374,6 +395,7 @@ TextureImporter:
       item_key: 1935163884
       item_portal_core: 1494493913
       item_stone: -512641925
+      item_tool_station: -581595869
       item_torch: -1995232107
       item_wood: -602149933
       item_wood_axe: 563146846
