@@ -8,6 +8,7 @@ namespace IslandBoy
     public class ThrowObject : ItemObject
     {
         [SerializeField] private GameObject _prefabToThrow;
+        [SerializeField] private float _throwForce = 15f;
 
         public override ToolType ToolType => _baseToolType;
 
@@ -19,7 +20,9 @@ namespace IslandBoy
 
             if(throwObject.TryGetComponent(out Rigidbody2D rb))
             {
-                rb.AddForce(Vector2.right * 15, ForceMode2D.Impulse);
+                Vector2 direction = ((Vector3)control.PR.MousePositionReference - rb.transform.position).normalized;
+
+                rb.AddForce(direction * _throwForce, ForceMode2D.Impulse);
             }
 
             control.PR.SelectedSlot.InventoryItem.Count--;
