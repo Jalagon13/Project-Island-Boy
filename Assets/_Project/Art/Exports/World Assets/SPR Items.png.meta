@@ -386,7 +386,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -394,6 +394,27 @@ TextureImporter:
       bones: []
       spriteID: 6de933c7c381cac4cb5b02d5fc33a26d
       internalID: 449123009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_wood_wall
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61a25e861a4cd7f4ebd37c83ded9a22d
+      internalID: 734688836
       vertices: []
       indices: 
       edges: []
@@ -423,6 +444,7 @@ TextureImporter:
       item_wood_axe: 563146846
       item_wood_pickaxe: 1392384841
       item_wood_sword: 851283991
+      item_wood_wall: 734688836
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
