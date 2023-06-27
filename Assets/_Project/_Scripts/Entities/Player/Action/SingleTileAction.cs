@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace IslandBoy
 {
@@ -42,7 +43,14 @@ namespace IslandBoy
 
         public void HitTile()
         {
-            if(_pr.SelectedSlot.ItemObject != null)
+            ApplyDamageToBreakable();
+            DestroyTile(_stIndicator.WallTilemap);
+            DestroyTile(_stIndicator.FloorTilemap);
+        }
+
+        private void ApplyDamageToBreakable()
+        {
+            if (_pr.SelectedSlot.ItemObject != null)
             {
                 if (_pr.SelectedSlot.ItemObject.ToolType == ToolType.Sword) return;
             }
@@ -59,7 +67,7 @@ namespace IslandBoy
                     {
                         ModifyDurability();
 
-                        if(breakable.CurrentHitPoints <= 0 && collider.TryGetComponent(out CaveBehavior caveBehavior))
+                        if (breakable.CurrentHitPoints <= 0 && collider.TryGetComponent(out CaveBehavior caveBehavior))
                         {
                             caveBehavior.DestroyByPlayerAction();
                         }
@@ -76,16 +84,18 @@ namespace IslandBoy
                     }
                 }
             }
+        }
 
+        private void DestroyTile(Tilemap tm)
+        {
             var pos = Vector3Int.FloorToInt(transform.position);
 
-            if (_stIndicator.WallTilemap.HasTile(pos))
-            {
-                RuleTileExtended tile = _stIndicator.WallTilemap.GetTile<RuleTileExtended>(pos);
-                WorldItemManager.Instance.SpawnItem(transform.position, tile.Item, 1);
+            if (!tm.HasTile(pos)) return;
 
-                _stIndicator.WallTilemap.SetTile(pos, null);
-            }
+            RuleTileExtended tile = tm.GetTile<RuleTileExtended>(pos);
+            WorldItemManager.Instance.SpawnItem(transform.position, tile.Item, 1);
+            AudioManager.Instance.PlayClip(tile.BreakSound, false, true);
+            tm.SetTile(pos, null);
         }
 
         public void PlaceDeployable(GameObject deployable)

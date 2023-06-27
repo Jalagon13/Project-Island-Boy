@@ -9,5 +9,6 @@ namespace IslandBoy
     {
         public ItemObject Item;
         public AudioClip BreakSound;
+        public AudioClip PlaceSound;
     }
 }

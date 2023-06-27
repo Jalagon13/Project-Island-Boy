@@ -7,21 +7,21 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private Tilemap _wallTilemap;
+        [SerializeField] private Tilemap _floorTilemap;
         [SerializeField] private Color _indicatorEmptyColor;
         [SerializeField] private Color _indicatorTransparentColor;
         [SerializeField] private Color _canHitColor;
 
         private SingleTileHpCanvas _stHpCanvas;
-        private SingleTileAction _sta;
         private SpriteRenderer _sr;
 
         public Tilemap WallTilemap { get { return _wallTilemap; } }
+        public Tilemap FloorTilemap { get { return _floorTilemap; } }
 
         private void Awake()
         {
             _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
             _stHpCanvas = GetComponent<SingleTileHpCanvas>();
-            _sta = GetComponent<SingleTileAction>();
             //_wallTilemap = GameObject.FindGameObjectWithTag("Wall Tilemap").GetComponent<Tilemap>();
         }
 
@@ -76,7 +76,8 @@ namespace IslandBoy
                 ChangeToOffIndicator();
             }
 
-            if(_wallTilemap.HasTile(Vector3Int.FloorToInt(transform.position)))
+            if(_wallTilemap.HasTile(Vector3Int.FloorToInt(transform.position)) ||
+               _floorTilemap.HasTile(Vector3Int.FloorToInt(transform.position)))
                 ChangeToOnIndicator();
 
             transform.hasChanged = false;
@@ -93,6 +94,7 @@ namespace IslandBoy
             _sr.transform.localScale = new Vector3(0.85f, 0.85f, 0.85f);
 
             if (_pr.SelectedSlot.ItemObject is DeployObject ||
+                _pr.SelectedSlot.ItemObject is FloorObject ||
                 _pr.SelectedSlot.ItemObject is WallObject)
                 _sr.color = _indicatorTransparentColor;
             else
