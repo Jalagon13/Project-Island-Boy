@@ -8,5 +8,6 @@ namespace IslandBoy
     public class RuleTileExtended : RuleTile
     {
         public ItemObject Item;
+        public AudioClip BreakSound;
     }
 }

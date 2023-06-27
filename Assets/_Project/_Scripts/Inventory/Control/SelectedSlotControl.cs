@@ -15,11 +15,16 @@ namespace IslandBoy
         [field:SerializeField] public Tilemap FloorTilemap { get; private set; }
 
         private PlayerInput _input;
+        private bool _isHeldDown;
+        private float _counter;
+        private float _baseCoolDown = 0.17f;
 
         private void Awake()
         {
             _input = new();
             _input.Player.SecondaryAction.started += SelectedSlotAction;
+            _input.Player.SecondaryAction.performed += IsHeldDown;
+            _input.Player.SecondaryAction.canceled += IsHeldDown;
         }
 
         private void OnEnable()
@@ -32,10 +37,34 @@ namespace IslandBoy
             _input.Disable();
         }
 
+        private void Update()
+        {
+            _counter += Time.deltaTime;
+
+            if (_counter > _baseCoolDown)
+                _counter = _baseCoolDown;
+
+            if (_isHeldDown)
+                TryExecuteSlotAction();
+        }
+
+        private void IsHeldDown(InputAction.CallbackContext context)
+        {
+            _isHeldDown = context.performed;
+        }
+
         private void SelectedSlotAction(InputAction.CallbackContext context)
         {
-            if (PR.SelectedSlot.ItemObject != null)
+            TryExecuteSlotAction();
+        }
+
+        private void TryExecuteSlotAction()
+        {
+            if (PR.SelectedSlot.ItemObject != null && _counter >= _baseCoolDown)
+            {
                 PR.SelectedSlot.ItemObject.ExecuteAction(this);
+                _counter = 0;
+            }
         }
 
         public void RestoreStat(ConsumeType cType, int value)
