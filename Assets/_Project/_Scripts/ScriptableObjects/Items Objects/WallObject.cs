@@ -17,11 +17,11 @@ namespace IslandBoy
 
         public override void ExecuteAction(SelectedSlotControl control)
         {
-            var mousePos = Vector3Int.FloorToInt(control.PR.MousePositionReference);
+            var pos = Vector3Int.FloorToInt(control.SingleTileAction.gameObject.transform.position);
 
-            if (!control.WallTilemap.HasTile(mousePos))
+            if (!control.WallTilemap.HasTile(pos) && control.SingleTileAction.IsClear())
             {
-                control.WallTilemap.SetTile(mousePos, _wallTile);
+                control.WallTilemap.SetTile(pos, _wallTile);
                 control.PR.SelectedSlot.InventoryItem.Count--;
                 AudioManager.Instance.PlayClip(_placeSound, false, true);
             }

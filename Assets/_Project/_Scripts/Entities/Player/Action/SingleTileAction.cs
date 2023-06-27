@@ -76,6 +76,16 @@ namespace IslandBoy
                     }
                 }
             }
+
+            var pos = Vector3Int.FloorToInt(transform.position);
+
+            if (_stIndicator.WallTilemap.HasTile(pos))
+            {
+                RuleTileExtended tile = _stIndicator.WallTilemap.GetTile<RuleTileExtended>(pos);
+                WorldItemManager.Instance.SpawnItem(transform.position, tile.Item, 1);
+
+                _stIndicator.WallTilemap.SetTile(pos, null);
+            }
         }
 
         public void PlaceDeployable(GameObject deployable)
@@ -127,7 +137,7 @@ namespace IslandBoy
 
         private Vector2 CalcStaPos()
         {
-            var playerPosTileCenter = GetCenterOfTilePos(_pr.PositionReference + new Vector2(0f, 0.4f));
+            var playerPosTileCenter = GetCenterOfTilePos(_pr.PositionReference/* + new Vector2(0f, 0.4f)*/);
             var dir = (_pr.MousePositionReference - playerPosTileCenter).normalized;
 
             return GetCenterOfTilePos(playerPosTileCenter + dir);
