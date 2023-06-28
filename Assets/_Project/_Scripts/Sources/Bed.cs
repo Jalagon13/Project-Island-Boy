@@ -8,7 +8,7 @@ namespace IslandBoy
     {
         public void EndDay()
         {
-            Debug.Log("Day Ended");
+            TimeManager.Instance.EndDay();
         }
     }
 }

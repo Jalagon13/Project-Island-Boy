@@ -6,8 +6,10 @@ namespace IslandBoy
     public class Timer
     {
         public event Action OnTimerEnd;
+        public bool IsPaused = false;
 
         private float _remainingSeconds;
+
         public float RemainingSeconds
         {
             get { return _remainingSeconds; }
@@ -25,7 +27,7 @@ namespace IslandBoy
 
         public void Tick(float deltaTime)
         {
-            if (_remainingSeconds == 0f) return;
+            if (_remainingSeconds == 0f || IsPaused) return;
 
             _remainingSeconds -= deltaTime;
 
