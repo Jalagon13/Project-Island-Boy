@@ -61434,7 +61434,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &443493517
 RectTransform:
   m_ObjectHideFlags: 0
@@ -61468,7 +61468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8113208, g: 0.77070373, b: 0.20206478, a: 0.8352941}
+  m_Color: {r: 1, g: 0.95459527, b: 0.29622638, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -67148,7 +67148,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &645181999
 RectTransform:
   m_ObjectHideFlags: 0
@@ -68925,7 +68925,7 @@ GameObject:
   - component: {fileID: 702182096}
   - component: {fileID: 702182098}
   - component: {fileID: 702182097}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: DayEndPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68951,8 +68951,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 3.5125122, y: -1.7562256}
+  m_SizeDelta: {x: 56.1987, y: 52.6864}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &702182097
 MonoBehaviour:
@@ -81163,7 +81163,7 @@ GameObject:
   - component: {fileID: 1058477189}
   - component: {fileID: 1058477188}
   m_Layer: 0
-  m_Name: SunMark (10)
+  m_Name: EndMark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87677,7 +87677,7 @@ GameObject:
   - component: {fileID: 1233991614}
   - component: {fileID: 1233991613}
   m_Layer: 0
-  m_Name: SunMark
+  m_Name: StartMark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93261,7 +93261,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1397444028
 RectTransform:
   m_ObjectHideFlags: 0
@@ -94399,7 +94399,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1414924186
 RectTransform:
   m_ObjectHideFlags: 0
@@ -97455,7 +97455,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1499403072
 RectTransform:
   m_ObjectHideFlags: 0
@@ -100238,7 +100238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1612862985
 RectTransform:
   m_ObjectHideFlags: 0
@@ -105043,13 +105043,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eb4c44ff521b16439931b1cc93f6a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dayDurationInSec: 480
+  _dayDurationInSec: 300
   _dayTransitionSound: {fileID: 8300000, guid: b505e92c4f4f6dd41b29b93a35c416a4, type: 3}
   _timeCounterText: {fileID: 645182000}
   _currentDayText: {fileID: 1135402551}
   _dayEndText: {fileID: 804569130}
   _dayEndPanel: {fileID: 702182096}
   _continueButtonRt: {fileID: 1549372716}
+  _sunMarker: {fileID: 443493517}
+  _sunMarkerStartPosition: {x: -475, y: -5}
+  _sunMarkerEndPosition: {x: 475, y: -5}
 --- !u!1001 &1760354779
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -16,6 +16,10 @@ namespace IslandBoy
         [SerializeField] private TextMeshProUGUI _dayEndText;
         [SerializeField] private RectTransform _dayEndPanel;
         [SerializeField] private RectTransform _continueButtonRt;
+        [Header("Sun Marker")]
+        [SerializeField] private RectTransform _sunMarker;
+        [SerializeField] private Vector2 _sunMarkerStartPosition;
+        [SerializeField] private Vector2 _sunMarkerEndPosition;
 
         private Timer _timer;
         private int _currentDay = 1;
@@ -32,12 +36,20 @@ namespace IslandBoy
         {
             _dayEndPanel.gameObject.SetActive(false);
             _currentDayText.text = $"Day {_currentDay}";
+            _sunMarker.localPosition = _sunMarkerStartPosition;
         }
 
         private void Update()
         {
             _timer.Tick(Time.deltaTime);
-            _timeCounterText.text = $"Day Time Left: {Mathf.RoundToInt(_timer.RemainingSeconds)}";
+            //_timeCounterText.text = $"Day Time Left: {Mathf.RoundToInt(_timer.RemainingSeconds)}";
+
+            if (!_timer.IsPaused)
+            {
+                float percentageComplete = (_dayDurationInSec - _timer.RemainingSeconds) / _dayDurationInSec;
+                float xValue = Mathf.Lerp(_sunMarkerStartPosition.x, _sunMarkerEndPosition.x, percentageComplete);
+                _sunMarker.anchoredPosition = new Vector2(xValue, _sunMarkerStartPosition.y);
+            }
         }
 
         public void EndDay()
@@ -68,6 +80,7 @@ namespace IslandBoy
             _timer = new(_dayDurationInSec);
             _timer.IsPaused = false;
             _dayEndPanel.gameObject.SetActive(false);
+            _sunMarker.localPosition = _sunMarkerStartPosition;
         }
 
         private void PlayerPassesOut()
