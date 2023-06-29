@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 858607999}
   - component: {fileID: 858608000}
   - component: {fileID: 858608001}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EntityCollider
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -337,7 +337,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4210445616709956592}
   - component: {fileID: 4210445616709956593}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CollectCollider
   m_TagString: Collect
   m_Icon: {fileID: 0}
@@ -1087,7 +1087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6451c7d5c1ab1d48a7e8f5ee1245553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxValue: 250
+  _maxValue: 100
   _coolDown: 10
   _healthBar: {fileID: 4210445616755471117}
 --- !u!1 &4210445617087751319
@@ -1638,6 +1638,8 @@ MonoBehaviour:
   <EnergyBar>k__BackingField: {fileID: 4210445617035966530}
   <SingleTileAction>k__BackingField: {fileID: 4210445617613918441}
   <PlayerEntityCollider>k__BackingField: {fileID: 858607999}
+  <WallTilemap>k__BackingField: {fileID: 0}
+  <FloorTilemap>k__BackingField: {fileID: 0}
 --- !u!1 &4210445617524027830
 GameObject:
   m_ObjectHideFlags: 0
@@ -1739,6 +1741,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
+  _lockOnSound: {fileID: 8300000, guid: 5c3e112b865d72c438001df96a9db077, type: 3}
+  _wallTilemap: {fileID: 0}
+  _floorTilemap: {fileID: 0}
   _indicatorEmptyColor: {r: 0, g: 0, b: 0, a: 0}
   _indicatorTransparentColor: {r: 1, g: 0.93379235, b: 0, a: 0.6745098}
   _canHitColor: {r: 1, g: 0.96575993, b: 0, a: 1}
@@ -1815,7 +1820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2299,7 +2304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2440,13 +2445,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _wooshSound: {fileID: 8300000, guid: 693f775d985d5c542a5f4361e1922d53, type: 3}
-  _baseToolType: 1
+  _baseToolType: 2
   _baseDamage:
     Parameter: {fileID: 11400000, guid: 8a8bef37f1c5e3c40ad4319761ff897a, type: 2}
     Value: 3
   _basePower:
     Parameter: {fileID: 11400000, guid: c4b64d6fc16075a4ca7fd3181eeb7f65, type: 2}
-    Value: 3333
+    Value: 30
   _baseCooldown:
     Parameter: {fileID: 11400000, guid: c25902e3274ad0a4a97f3515779aecea, type: 2}
     Value: 0.35
@@ -3021,7 +3026,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4210445618357562752}
   - component: {fileID: 4210445618357562753}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BodyCollider
   m_TagString: Player
   m_Icon: {fileID: 0}
