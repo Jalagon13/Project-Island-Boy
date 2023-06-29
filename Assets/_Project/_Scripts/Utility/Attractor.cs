@@ -12,7 +12,7 @@ namespace IslandBoy
 
         private IEnumerator Start()
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.65f);
             _canAttract = true;
         }
 

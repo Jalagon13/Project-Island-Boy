@@ -17,8 +17,8 @@ namespace IslandBoy
         /// Exact same thing with MousePositionReference.
         /// Both PlayerPositionReference and MousePositionReference are set in PlayerStateMachine update function.
         /// </summary>
-        public Vector2 PositionReference { get { return _playerPosition; } set { _playerPosition = value; } }
-        public Vector2 MousePositionReference { get { return _mousePosition; } set { _mousePosition = value; } }
+        public Vector2 Position { get { return _playerPosition; } set { _playerPosition = value; } }
+        public Vector2 MousePosition { get { return _mousePosition; } set { _mousePosition = value; } }
 
         // This is only SET in the Inventory Script do NOT SET this anywhere else. Only get a refernce for it.
         public Inventory Inventory { get { return _playerInventory; } set { _playerInventory = value; } }

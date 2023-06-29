@@ -54,12 +54,12 @@ namespace IslandBoy
 
         private Vector2 CalcSpawnPos()
         {
-            var pos = _pr.PositionReference + (Random.insideUnitCircle * _spawnRangeMax);
-            var posPlayerVector = _pr.PositionReference - pos;
+            var pos = _pr.Position + (Random.insideUnitCircle * _spawnRangeMax);
+            var posPlayerVector = _pr.Position - pos;
 
             if (posPlayerVector.magnitude < _spawnRangeMin)
             {
-                return _pr.PositionReference + (posPlayerVector.normalized * (_spawnRangeMin * 1.5f));
+                return _pr.Position + (posPlayerVector.normalized * (_spawnRangeMin * 1.5f));
             }
 
             return pos;

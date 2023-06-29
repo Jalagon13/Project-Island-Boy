@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2431773557165538604}
   - component: {fileID: -9127506956210456249}
   - component: {fileID: 1571312842935488662}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: '[RSC] Tree'
   m_TagString: RSC
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 37846104541615058}
   - component: {fileID: 4725218046321852110}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,5 +270,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0

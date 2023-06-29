@@ -17,11 +17,11 @@ namespace IslandBoy
 
         public override void ExecuteAction(SelectedSlotControl control)
         {
-            GameObject throwObject = Instantiate(_prefabToThrow, (Vector3)control.PR.PositionReference + new Vector3(0, 0.4f), Quaternion.identity);
+            GameObject throwObject = Instantiate(_prefabToThrow, (Vector3)control.PR.Position + new Vector3(0, 0.4f), Quaternion.identity);
 
             if(throwObject.TryGetComponent(out Rigidbody2D rb))
             {
-                Vector2 direction = ((Vector3)control.PR.MousePositionReference - rb.transform.position).normalized;
+                Vector2 direction = ((Vector3)control.PR.MousePosition - rb.transform.position).normalized;
 
                 AudioManager.Instance.PlayClip(_throwSound, false, true);
 

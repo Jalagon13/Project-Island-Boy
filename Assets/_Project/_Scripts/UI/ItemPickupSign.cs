@@ -20,7 +20,7 @@ namespace IslandBoy
 
         private void Awake()
         {
-            transform.position = _pr.PositionReference + new Vector2(0f, _spawnHeight);
+            transform.position = _pr.Position + new Vector2(0f, _spawnHeight);
         }
 
         private void OnDestroy()
@@ -55,7 +55,7 @@ namespace IslandBoy
 
         public void Refresh(int addAmount)
         {
-            transform.position = _pr.PositionReference + new Vector2(0f, _spawnHeight);
+            transform.position = _pr.Position + new Vector2(0f, _spawnHeight);
 
             _currentStack += addAmount;
             _itemText.text = $"+{_currentStack} {_currentItemName}";

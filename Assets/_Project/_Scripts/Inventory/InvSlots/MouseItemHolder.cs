@@ -48,7 +48,7 @@ namespace IslandBoy
 
         private void UpdatePosition()
         {
-            transform.position = Camera.main.WorldToScreenPoint(_pr.MousePositionReference);
+            transform.position = Camera.main.WorldToScreenPoint(_pr.MousePosition);
         }
 
         public void DeleteMouseItem()

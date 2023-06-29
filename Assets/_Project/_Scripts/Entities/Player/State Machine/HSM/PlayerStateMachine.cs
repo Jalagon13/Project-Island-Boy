@@ -38,8 +38,8 @@ namespace IslandBoy
         private void Update()
         {
             _currentState.UpdateStates();
-            _pr.PositionReference = transform.position;
-            _pr.MousePositionReference = (Vector2)_mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            _pr.Position = transform.position;
+            _pr.MousePosition = (Vector2)_mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         }
 
         public void SpriteFlipHandle()

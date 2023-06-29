@@ -11,7 +11,6 @@ namespace IslandBoy
         [SerializeField] private float _teleportDistance;
 
         private Rigidbody2D _rb;
-        private bool _teleport;
 
         private void Awake()
         {
@@ -26,12 +25,12 @@ namespace IslandBoy
         {
             var direction = Random.insideUnitCircle.normalized;
 
-            _rb.position = _pr.PositionReference + direction * _teleportDistance;
+            _rb.position = _pr.Position + direction * _teleportDistance;
         }
 
         private Vector2 CalcMovePosition()
         {
-            Vector2 movement = (_pr.PositionReference - (Vector2)transform.position).normalized * _speed * Time.deltaTime;
+            Vector2 movement = (_pr.Position - (Vector2)transform.position).normalized * _speed * Time.deltaTime;
 
             return _rb.position + movement;
         }
