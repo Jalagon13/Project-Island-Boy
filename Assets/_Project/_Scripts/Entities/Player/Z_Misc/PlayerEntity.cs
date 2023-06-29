@@ -21,7 +21,9 @@ namespace IslandBoy
             _iFrameTimer.RemainingSeconds = _iFrameDuration;
             _healthBar.AddTo(-damageAmount);
             HealthSystem.Damage(damageAmount);
+
             DamagePopup.Create(transform.position, damageAmount, 0.5f);
+            AudioManager.Instance.PlayClip(_damageSound, false, true);
 
             if (sender != null && transform.TryGetComponent(out KnockbackFeedback knockback))
                 knockback.PlayFeedback(sender);

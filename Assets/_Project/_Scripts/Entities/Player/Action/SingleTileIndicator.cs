@@ -6,7 +6,6 @@ namespace IslandBoy
     public class SingleTileIndicator : MonoBehaviour
     {
         [SerializeField] private PlayerReference _pr;
-        [SerializeField] private AudioClip _lockOnSound;
         [SerializeField] private Tilemap _wallTilemap;
         [SerializeField] private Tilemap _floorTilemap;
         [SerializeField] private Color _indicatorEmptyColor;
@@ -60,7 +59,6 @@ namespace IslandBoy
             if (breakableCount > 0)
             {
                 ChangeToOnIndicator();
-                AudioManager.Instance.PlayClip(_lockOnSound, false, false, 0.35f);
 
                 if (breakable == null)
                 {

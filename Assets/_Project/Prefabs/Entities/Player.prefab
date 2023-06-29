@@ -64,6 +64,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 100
   _iFrameDuration: 0.6666667
+  _damageSound: {fileID: 8300000, guid: 2ea738d159e7e35448fc9470a87096da, type: 3}
+  _deathSound: {fileID: 8300000, guid: 2ea738d159e7e35448fc9470a87096da, type: 3}
   _lootTable:
     <Table>k__BackingField: []
   _onDamage:
@@ -1741,7 +1743,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _lockOnSound: {fileID: 8300000, guid: 5c3e112b865d72c438001df96a9db077, type: 3}
   _wallTilemap: {fileID: 0}
   _floorTilemap: {fileID: 0}
   _indicatorEmptyColor: {r: 0, g: 0, b: 0, a: 0}

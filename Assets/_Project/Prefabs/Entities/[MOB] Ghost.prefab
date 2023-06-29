@@ -173,6 +173,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 24
   _iFrameDuration: 0.17
+  _damageSound: {fileID: 8300000, guid: 6e12573d495d04e4990d3b99e2e474fc, type: 3}
+  _deathSound: {fileID: 8300000, guid: 6e12573d495d04e4990d3b99e2e474fc, type: 3}
   _lootTable:
     <Table>k__BackingField:
     - Item: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
