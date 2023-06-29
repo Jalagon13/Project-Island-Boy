@@ -428,7 +428,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -436,6 +436,27 @@ TextureImporter:
       bones: []
       spriteID: 4600c63408d98c14782519ac3b09b96d
       internalID: 1850925332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_diamond
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60d76c0063893a74ea0234bb06a6a86d
+      internalID: -538633122
       vertices: []
       indices: 
       edges: []
@@ -456,6 +477,7 @@ TextureImporter:
       item_campfire: 1223464883
       item_coal: -1651487029
       item_construction_table: 449123009
+      item_diamond: -538633122
       item_key: 1935163884
       item_portal_core: 1494493913
       item_stone: -512641925
