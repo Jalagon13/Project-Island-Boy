@@ -11,44 +11,49 @@ namespace IslandBoy
         [SerializeField] private Tilemap _walls;
 
         private Vector2 _startPos = Vector2.zero;
-        private int _houseSpaceCounter;
 
         public void TestHousing()
         {
             FloodFill(_startPos);
         }
 
-        private void FloodFill(Vector2 pos)
+        private void FloodFill(Vector2 startPos)
         {
-            Stack<TileBase> tiles = new();
-            var floorTile = _floor.GetTile(Vector3Int.FloorToInt(pos));
-            tiles.Push(floorTile);
+            Stack<Vector2> tiles = new();
+            Stack<Vector2> validPositions = new();
+            tiles.Push(startPos);
 
             while(tiles.Count > 0)
             {
-                TileBase t = tiles.Pop();
-                if(t != null)
+                Vector2 p = tiles.Pop();
+                if(_floor.HasTile(Vector3Int.FloorToInt(p)))
                 {
-                    if (!_walls.HasTile(Vector3Int.FloorToInt(pos)))
+                    if (_walls.HasTile(Vector3Int.FloorToInt(p)))
                     {
-                        _houseSpaceCounter++;
-                        tiles.Push(_floor.GetTile(Vector3Int.FloorToInt(new Vector2(pos.x - 1, pos.y))));
-                        tiles.Push(_floor.GetTile(Vector3Int.FloorToInt(new Vector2(pos.x + 1, pos.y))));
-                        tiles.Push(_floor.GetTile(Vector3Int.FloorToInt(new Vector2(pos.x, pos.y - 1))));
-                        tiles.Push(_floor.GetTile(Vector3Int.FloorToInt(new Vector2(pos.x, pos.y + 1))));
+                        continue;
                     }
-                    else
+                    else if (!validPositions.Contains(p))
                     {
-                        // there is a floor tile but there is a wall on top of it
+                        validPositions.Push(p);
+                        tiles.Push(new Vector2(p.x - 1, p.y));
+                        tiles.Push(new Vector2(p.x + 1, p.y));
+                        tiles.Push(new Vector2(p.x, p.y - 1));
+                        tiles.Push(new Vector2(p.x, p.y + 1));
                     }
+                }
+                else if(_walls.HasTile(Vector3Int.FloorToInt(p)))
+                {
+                    continue;
                 }
                 else
                 {
-                    // no floor tile in this position
+                    Debug.Log($"There is an empty space at {p} therefore this is not a house");
+                    return;
                 }
             }
 
-            Debug.Log($"valid housing spaces: {_houseSpaceCounter}");
+            Debug.Log($"This is valid housing! # of spaces: {validPositions.Count}");
+            return;
         }
     }
 }
