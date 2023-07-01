@@ -19,29 +19,29 @@ namespace IslandBoy
 
         private void FloodFill(Vector2 startPos)
         {
-            Stack<Vector2> tiles = new();
-            Stack<Vector2> validPositions = new();
-            tiles.Push(startPos);
+            Stack<Vector3Int> tiles = new();
+            Stack<Vector3Int> validPositions = new();
+            tiles.Push(Vector3Int.FloorToInt(startPos));
 
             while(tiles.Count > 0)
             {
-                Vector2 p = tiles.Pop();
-                if(_floor.HasTile(Vector3Int.FloorToInt(p)))
+                var p = Vector3Int.FloorToInt(tiles.Pop());
+                if(_floor.HasTile(p))
                 {
-                    if (_walls.HasTile(Vector3Int.FloorToInt(p)))
+                    if (_walls.HasTile(p) || HasDoor(p))
                     {
                         continue;
                     }
                     else if (!validPositions.Contains(p))
                     {
                         validPositions.Push(p);
-                        tiles.Push(new Vector2(p.x - 1, p.y));
-                        tiles.Push(new Vector2(p.x + 1, p.y));
-                        tiles.Push(new Vector2(p.x, p.y - 1));
-                        tiles.Push(new Vector2(p.x, p.y + 1));
+                        tiles.Push(new Vector3Int(p.x - 1, p.y));
+                        tiles.Push(new Vector3Int(p.x + 1, p.y));
+                        tiles.Push(new Vector3Int(p.x, p.y - 1));
+                        tiles.Push(new Vector3Int(p.x, p.y + 1));
                     }
                 }
-                else if(_walls.HasTile(Vector3Int.FloorToInt(p)))
+                else if(_walls.HasTile(p) || HasDoor(p))
                 {
                     continue;
                 }
@@ -54,6 +54,20 @@ namespace IslandBoy
 
             Debug.Log($"This is valid housing! # of spaces: {validPositions.Count}");
             return;
+        }
+
+        private bool HasDoor(Vector3Int pos)
+        {
+            var centerPos = new Vector2(pos.x + 0.5f, pos.y + 0.5f);
+            var colliders = Physics2D.OverlapCircleAll(centerPos, 0.1f);
+
+            foreach (Collider2D col in colliders)
+            {
+                if(col.TryGetComponent(out Door door))
+                    return true;
+            }
+
+            return false;
         }
     }
 }
