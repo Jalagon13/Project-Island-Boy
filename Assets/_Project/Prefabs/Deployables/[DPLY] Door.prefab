@@ -220,6 +220,8 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _openSprite: {fileID: 2135872218, guid: 86aecb705c543a948a0d95c4e351f0e1, type: 3}
   _closeSprite: {fileID: -173459065, guid: 86aecb705c543a948a0d95c4e351f0e1, type: 3}
+  _doorOpenSound: {fileID: 8300000, guid: cb20e28fd019a0e46978681528c6abc2, type: 3}
+  _doorCloseSound: {fileID: 8300000, guid: 2ab52be466951404b803306e15576ec6, type: 3}
 --- !u!114 &4329796873306376217
 MonoBehaviour:
   m_ObjectHideFlags: 0
