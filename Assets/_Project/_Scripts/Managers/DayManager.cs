@@ -146,7 +146,7 @@ namespace IslandBoy
             }
 
             Debug.Log($"{startPos} is valid housing! # of spaces: {validPositions.Count}");
-            Instantiate(_minerNpcPrefab, validPositions[4], Quaternion.identity);
+            Instantiate(_minerNpcPrefab, validPositions[2], Quaternion.identity);
             return;
         }
 
