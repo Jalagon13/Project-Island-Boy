@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
 
 namespace IslandBoy
 {
@@ -11,6 +10,7 @@ namespace IslandBoy
     {
         [SerializeField] private float _dayDurationInSec;
         [SerializeField] private AudioClip _dayTransitionSound;
+        [SerializeField] private GameObject _minerNpcPrefab;
         [SerializeField] private Tilemap _floor;
         [SerializeField] private Tilemap _walls;
         [Header("References")]
@@ -113,7 +113,7 @@ namespace IslandBoy
         private void CheckHousing(Vector2 startPos)
         {
             Stack<Vector3Int> tiles = new();
-            Stack<Vector3Int> validPositions = new();
+            List<Vector3Int> validPositions = new();
             tiles.Push(Vector3Int.FloorToInt(startPos));
 
             while (tiles.Count > 0)
@@ -127,7 +127,7 @@ namespace IslandBoy
                     }
                     else if (!validPositions.Contains(p))
                     {
-                        validPositions.Push(p);
+                        validPositions.Add(p);
                         tiles.Push(new Vector3Int(p.x - 1, p.y));
                         tiles.Push(new Vector3Int(p.x + 1, p.y));
                         tiles.Push(new Vector3Int(p.x, p.y - 1));
@@ -146,6 +146,7 @@ namespace IslandBoy
             }
 
             Debug.Log($"{startPos} is valid housing! # of spaces: {validPositions.Count}");
+            Instantiate(_minerNpcPrefab, validPositions[4], Quaternion.identity);
             return;
         }
 
