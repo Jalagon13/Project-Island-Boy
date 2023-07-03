@@ -46,7 +46,7 @@ namespace IslandBoy
             _currentDayText.text = $"Day {_currentDay}";
             _sunMarker.localPosition = _sunMarkerStartPosition;
 
-            SpawnCrabs();
+            //SpawnCrabs();
         }
 
         private void Update()
@@ -88,7 +88,7 @@ namespace IslandBoy
                 CheckHousing(pos);
             }
 
-            SpawnCrabs();
+            //SpawnCrabs();
         }
 
         private void SpawnCrabs()
@@ -101,7 +101,7 @@ namespace IslandBoy
             _crabMobs.Clear();
 
             int crabCounter = 0;
-            int crabMax = 4;
+            int crabMax = Random.Range(1, 2);
 
             while(crabCounter < crabMax)
             {

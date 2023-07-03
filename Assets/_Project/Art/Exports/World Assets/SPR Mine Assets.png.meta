@@ -209,6 +209,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: rsc_pile_sand
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ef51dd094a993147975af4aa21aa19f
+      internalID: -2095676522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rsc_pile_grass
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 459f926ad932ab44c8d65e2d82d80f82
+      internalID: 1696362461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -220,6 +262,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      rsc_pile_grass: 1696362461
+      rsc_pile_sand: -2095676522
       rsc_portal_core: -801796302
       rsc_stone: 1293468864
       ws_cave_level_ascend: 1449772273

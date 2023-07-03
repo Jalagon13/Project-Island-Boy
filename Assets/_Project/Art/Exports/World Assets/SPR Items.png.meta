@@ -470,7 +470,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -478,6 +478,48 @@ TextureImporter:
       bones: []
       spriteID: 113a2620275736d4fad886b44b412326
       internalID: 811161192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_sand
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ce6f8e335d56bd43a4dc70bf1e31066
+      internalID: -966422323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_grass
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d17a8057570f27d44abb7089b2b45a00
+      internalID: 456514419
       vertices: []
       indices: 
       edges: []
@@ -499,8 +541,10 @@ TextureImporter:
       item_coal: -1651487029
       item_construction_table: 449123009
       item_diamond: -538633122
+      item_grass: 456514419
       item_key: 1935163884
       item_portal_core: 1494493913
+      item_sand: -966422323
       item_sapling: 811161192
       item_stone: -512641925
       item_tool_station: -581595869
