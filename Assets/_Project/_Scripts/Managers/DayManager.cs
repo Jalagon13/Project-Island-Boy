@@ -11,6 +11,9 @@ namespace IslandBoy
         [SerializeField] private float _dayDurationInSec;
         [SerializeField] private AudioClip _dayTransitionSound;
         [SerializeField] private GameObject _minerNpcPrefab;
+        [SerializeField] private GameObject _crabMobPrefab;
+        [SerializeField] private TileBase _sandTile;
+        [SerializeField] private Tilemap _island;
         [SerializeField] private Tilemap _floor;
         [SerializeField] private Tilemap _walls;
         [Header("References")]
@@ -26,6 +29,7 @@ namespace IslandBoy
 
         private Timer _timer;
         private List<Vector2> _bedPositions = new();
+        private List<GameObject> _crabMobs = new();
         private int _currentDay = 1;
 
         protected override void Awake()
@@ -41,6 +45,8 @@ namespace IslandBoy
             _dayEndPanel.gameObject.SetActive(false);
             _currentDayText.text = $"Day {_currentDay}";
             _sunMarker.localPosition = _sunMarkerStartPosition;
+
+            SpawnCrabs();
         }
 
         private void Update()
@@ -80,6 +86,35 @@ namespace IslandBoy
             foreach (Vector2 pos in _bedPositions)
             {
                 CheckHousing(pos);
+            }
+
+            SpawnCrabs();
+        }
+
+        private void SpawnCrabs()
+        {
+            foreach (GameObject crab in _crabMobs)
+            {
+                Destroy(crab);
+            }
+
+            _crabMobs.Clear();
+
+            int crabCounter = 0;
+            int crabMax = 4;
+
+            while(crabCounter < crabMax)
+            {
+                var xVal = Random.Range(_island.cellBounds.xMin, _island.cellBounds.xMax);
+                var yVal = Random.Range(_island.cellBounds.yMin, _island.cellBounds.yMax);
+                var pos = Vector3Int.FloorToInt(new Vector2(xVal, yVal));
+
+                if (_island.HasTile(pos) && _island.GetTile(pos) == _sandTile)
+                {
+                    var crab = Instantiate(_crabMobPrefab, pos, Quaternion.identity);
+                    _crabMobs.Add(crab);
+                    crabCounter++;
+                }
             }
         }
 
