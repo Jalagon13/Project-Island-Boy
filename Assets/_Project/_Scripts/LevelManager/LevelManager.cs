@@ -6,7 +6,7 @@ namespace IslandBoy
 {
     public class LevelManager : Singleton<LevelManager>
     {
-        [SerializeField] private AudioClip _forestAmbSound;
+        [SerializeField] private AudioClip _surfaceAmbSound;
         [SerializeField] private AudioClip _cavernAmbSound;
         [SerializeField] private Transform _surfaceBackPoint;
 
@@ -55,7 +55,7 @@ namespace IslandBoy
             _globalLight.intensity = 1;
             _caveCanvas.enabled = false;
             AudioManager.Instance.StopClip(_cavernAmbSound);
-            AudioManager.Instance.PlayClip(_forestAmbSound, true, false, 0.75f);
+            AudioManager.Instance.PlayClip(_surfaceAmbSound, true, false, 0.15f);
         }
 
         public void SetPlayerToSurfaceBackpoint()
@@ -70,7 +70,7 @@ namespace IslandBoy
             _currentLevel = _cavernLevel.GetComponent<IAppendToLevel>();
             _globalLight.intensity = 0f;
             _caveCanvas.enabled = true;
-            AudioManager.Instance.StopClip(_forestAmbSound);
+            AudioManager.Instance.StopClip(_surfaceAmbSound);
             AudioManager.Instance.PlayClip(_cavernAmbSound, true, false, 0.75f);
             _cavernLevel.StartCavernRun();
             StartCoroutine(TransitionScreenTimer());
