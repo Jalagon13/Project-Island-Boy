@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68bf4ea4f5c28014ab531977f7ce41f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PR: {fileID: 0}
+  PR: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxHealth: 9
   _iFrameDuration: 0.17
   _damageSound: {fileID: 8300000, guid: 8b0bc9a35fb412c4c9b00c8def95c58a, type: 3}
@@ -98,6 +98,10 @@ MonoBehaviour:
       Min: 2
       Max: 4
       Chance: 100
+    - Item: {fileID: 11400000, guid: 126196eef2588a34cb7b61db392d6088, type: 2}
+      Min: 1
+      Max: 3
+      Chance: 60
   _onDamage:
     m_PersistentCalls:
       m_Calls: []

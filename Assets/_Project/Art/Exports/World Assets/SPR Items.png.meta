@@ -449,7 +449,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -457,6 +457,27 @@ TextureImporter:
       bones: []
       spriteID: 60d76c0063893a74ea0234bb06a6a86d
       internalID: -538633122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_sapling
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 113a2620275736d4fad886b44b412326
+      internalID: 811161192
       vertices: []
       indices: 
       edges: []
@@ -480,6 +501,7 @@ TextureImporter:
       item_diamond: -538633122
       item_key: 1935163884
       item_portal_core: 1494493913
+      item_sapling: 811161192
       item_stone: -512641925
       item_tool_station: -581595869
       item_torch: -1995232107
