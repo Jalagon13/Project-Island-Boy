@@ -8,8 +8,8 @@ namespace IslandBoy
 {
     public class Entity : MonoBehaviour, IHealth<int>
     {
+        public PlayerReference PR;
         public HealthSystem HealthSystem;
-        public Action OnMove;
 
         [SerializeField] protected int _maxHealth;
         [SerializeField] protected float _iFrameDuration = 0.17f;
@@ -20,16 +20,15 @@ namespace IslandBoy
 
         protected Timer _iFrameTimer;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             HealthSystem = new HealthSystem(_maxHealth);
             _iFrameTimer = new Timer(_iFrameDuration);
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             _iFrameTimer.Tick(Time.deltaTime);
-            OnMove?.Invoke();
         }
 
         public virtual void Damage(int damageAmount, GameObject sender = null)
