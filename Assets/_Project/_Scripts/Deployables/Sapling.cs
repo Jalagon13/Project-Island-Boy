@@ -6,16 +6,14 @@ namespace IslandBoy
 {
     public class Sapling : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
+        [SerializeField] private float _growthTimerSec;
+        [SerializeField] private GameObject _treePrefab;
 
-        // Update is called once per frame
-        void Update()
+        private IEnumerator Start()
         {
-        
+            yield return new WaitForSeconds(_growthTimerSec);
+            Instantiate(_treePrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 }

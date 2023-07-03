@@ -20,11 +20,19 @@ namespace IslandBoy
         {
             if (_ctx.AI.reachedDestination)
                 ChangeToIdleState(animator);
+
+            if(IsStuck())
+                ChangeToIdleState(animator);
         }
 
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             _ctx.OnMove -= Move;
+        }
+
+        private bool IsStuck()
+        {
+            return _ctx.AI.velocity.magnitude < 0.1f;
         }
 
         private void Move()
