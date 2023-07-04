@@ -13,6 +13,7 @@ namespace IslandBoy
         [field:SerializeField] public Collider2D PlayerEntityCollider { get; private set; }
         [field:SerializeField] public Tilemap WallTilemap { get; private set; }
         [field:SerializeField] public Tilemap FloorTilemap { get; private set; }
+        [field:SerializeField] public Tilemap IslandTilemap { get; private set; }
 
         private PlayerInput _input;
         private bool _isHeldDown;
