@@ -51,6 +51,7 @@ namespace IslandBoy
 
         private void IsHeldDown(InputAction.CallbackContext context)
         {
+            Debug.Log("Held down");
             _isHeldDown = context.performed;
         }
 
@@ -63,6 +64,7 @@ namespace IslandBoy
         {
             if (PR.SelectedSlot.ItemObject != null && _counter >= _baseCoolDown)
             {
+                Debug.Log("Slot Action");
                 PR.SelectedSlot.ItemObject.ExecuteAction(this);
                 _counter = 0;
             }
