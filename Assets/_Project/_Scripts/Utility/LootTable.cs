@@ -12,13 +12,13 @@ namespace IslandBoy
 
         public void SpawnLoot(Vector2 spawnPos)
         {
-            foreach (var loot in ReturnLoot())
+            foreach (var loot in Loot())
             {
                 WorldItemManager.Instance.SpawnItem(spawnPos, loot.Key, loot.Value);
             }
         }
 
-        private Dictionary<ItemObject, int> ReturnLoot()
+        public Dictionary<ItemObject, int> Loot()
         {
             Dictionary<ItemObject, int> lootReturn = new();
 

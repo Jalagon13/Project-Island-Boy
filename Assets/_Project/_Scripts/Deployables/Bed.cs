@@ -8,12 +8,12 @@ namespace IslandBoy
     {
         private void Start()
         {
-            DayManager.Instance.PushBedPosition(transform.position);
+            IslandManager.Instance.PushBedPosition(transform.position);
         }
 
         private void OnDestroy()
         {
-            DayManager.Instance.PopBedPosition(transform.position);
+            IslandManager.Instance.PopBedPosition(transform.position);
         }
 
         public void EndDay()

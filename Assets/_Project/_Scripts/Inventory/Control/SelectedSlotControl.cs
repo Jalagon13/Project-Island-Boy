@@ -21,7 +21,7 @@ namespace IslandBoy
         private Action<SelectedSlotControl, float> _onThrow;
         private PlayerInput _input;
         private bool _isHeldDown, _isCharging;
-        private float _baseCoolDown = 0.17f, _minThrowForce = 5f, _maxThrowForce = 20f, _maxChargeTime = 0.75f;
+        private float _baseCoolDown = 0.17f, _minThrowForce = 5f, _maxThrowForce = 25f, _maxChargeTime = 0.75f;
         private float _counter, _chargeSpeed, _currentThrowForce;
 
         public bool HeldDown { get { return _isHeldDown; } }

@@ -17,12 +17,13 @@ namespace IslandBoy
             SpawnItem(new Vector2(5, 0), _testItem2, 4);
         }
 
-        public void SpawnItem(Vector2 worldPos, ItemObject item, int stack = -1, List<ItemParameter> parameterList = null)
+        public GameObject SpawnItem(Vector2 worldPos, ItemObject item, int stack = -1, List<ItemParameter> parameterList = null, bool playAudio = true)
         {
-            AudioManager.Instance.PlayClip(_popSound, false, true, 1);
-
             GameObject newItemGo = Instantiate(_itemBasePrefab, worldPos, Quaternion.identity);
             WorldItem newItem = newItemGo.GetComponent<WorldItem>();
+
+            if (playAudio)
+                AudioManager.Instance.PlayClip(_popSound, false, true, 1);
 
             if (stack < 0)
                 stack = _pr.Inventory.MaxStack;
@@ -31,6 +32,8 @@ namespace IslandBoy
                 stack = 1;
 
             newItem.Initialize(item, stack, parameterList);
+
+            return newItemGo;
         }
     }
 }
