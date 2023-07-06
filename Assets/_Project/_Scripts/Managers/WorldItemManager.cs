@@ -8,11 +8,13 @@ namespace IslandBoy
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private GameObject _itemBasePrefab;
         [SerializeField] private AudioClip _popSound;
-        [SerializeField] private ItemObject _testItem;
+        [SerializeField] private ItemObject _testItem1;
+        [SerializeField] private ItemObject _testItem2;
 
         public void SpawnTestItem()
         {
-            SpawnItem(new Vector2(6, 0), _testItem, 10);
+            SpawnItem(new Vector2(4, 0), _testItem1, 5);
+            SpawnItem(new Vector2(5, 0), _testItem2, 4);
         }
 
         public void SpawnItem(Vector2 worldPos, ItemObject item, int stack = -1, List<ItemParameter> parameterList = null)
