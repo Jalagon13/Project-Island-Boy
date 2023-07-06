@@ -9,7 +9,6 @@ namespace IslandBoy
     {
         [SerializeField] private GameObject _prefabToThrow;
         [SerializeField] private AudioClip _throwSound;
-        [SerializeField] private float _throwForce = 15f;
 
         public override ToolType ToolType => _baseToolType;
 
@@ -17,15 +16,21 @@ namespace IslandBoy
 
         public override void ExecuteAction(SelectedSlotControl control)
         {
+            control.IsCharging = true;
+            control.OnThrow = Throw;
+        }
+
+        private void Throw(SelectedSlotControl control, float force)
+        {
             GameObject throwObject = Instantiate(_prefabToThrow, (Vector3)control.PR.Position + new Vector3(0, 0.4f), Quaternion.identity);
 
-            if(throwObject.TryGetComponent(out Rigidbody2D rb))
+            if (throwObject.TryGetComponent(out Rigidbody2D rb))
             {
                 Vector2 direction = ((Vector3)control.PR.MousePosition - rb.transform.position).normalized;
 
                 AudioManager.Instance.PlayClip(_throwSound, false, true);
 
-                rb.AddForce(direction * _throwForce, ForceMode2D.Impulse);
+                rb.AddForce(direction * force, ForceMode2D.Impulse);
             }
 
             control.PR.SelectedSlot.InventoryItem.Count--;

@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 namespace IslandBoy
 {
@@ -14,11 +16,17 @@ namespace IslandBoy
         [field:SerializeField] public Tilemap WallTilemap { get; private set; }
         [field:SerializeField] public Tilemap FloorTilemap { get; private set; }
         [field:SerializeField] public Tilemap IslandTilemap { get; private set; }
+        [field:SerializeField] public Slider ThrowSlider { get; private set; }
 
+        private Action<SelectedSlotControl, float> _onThrow;
         private PlayerInput _input;
-        private bool _isHeldDown;
-        private float _counter;
-        private float _baseCoolDown = 0.17f;
+        private bool _isHeldDown, _isCharging;
+        private float _baseCoolDown = 0.17f, _minThrowForce = 5f, _maxThrowForce = 20f, _maxChargeTime = 0.75f;
+        private float _counter, _chargeSpeed, _currentThrowForce;
+
+        public bool HeldDown { get { return _isHeldDown; } }
+        public bool IsCharging { get { return _isCharging; } set { _isCharging = true; } }
+        public Action<SelectedSlotControl, float> OnThrow { set { _onThrow = value; } }
 
         private void Awake()
         {
@@ -26,6 +34,13 @@ namespace IslandBoy
             _input.Player.SecondaryAction.started += SelectedSlotAction;
             _input.Player.SecondaryAction.performed += IsHeldDown;
             _input.Player.SecondaryAction.canceled += IsHeldDown;
+        }
+
+        private void Start()
+        {
+            _chargeSpeed = (_maxThrowForce - _minThrowForce) / _maxChargeTime;
+            _currentThrowForce = _minThrowForce;
+            ThrowSlider.gameObject.SetActive(false);
         }
 
         private void OnEnable()
@@ -45,14 +60,36 @@ namespace IslandBoy
             if (_counter > _baseCoolDown)
                 _counter = _baseCoolDown;
 
-            if (_isHeldDown)
+            if (_isHeldDown && !_isCharging)
                 TryExecuteSlotAction();
+
+            if (_isCharging)
+            {
+                _currentThrowForce += _chargeSpeed * Time.deltaTime;
+                var maxMinDiff = _maxThrowForce - _minThrowForce;
+                var maxCurrDiff = _maxThrowForce - _currentThrowForce;
+                ThrowSlider.gameObject.SetActive(true);
+                ThrowSlider.value = (maxMinDiff - maxCurrDiff) / maxMinDiff;
+
+                if (_currentThrowForce >= _maxThrowForce)
+                    _currentThrowForce = _maxThrowForce;
+            }
         }
 
         private void IsHeldDown(InputAction.CallbackContext context)
         {
-            Debug.Log("Held down");
             _isHeldDown = context.performed;
+
+            if (!_isHeldDown && _isCharging)
+                Throw();
+        }
+
+        private void Throw()
+        {
+            _isCharging = false;
+            ThrowSlider.gameObject.SetActive(false);
+            _onThrow?.Invoke(this, _currentThrowForce);
+            _currentThrowForce = _minThrowForce;
         }
 
         private void SelectedSlotAction(InputAction.CallbackContext context)
@@ -64,7 +101,6 @@ namespace IslandBoy
         {
             if (PR.SelectedSlot.ItemObject != null && _counter >= _baseCoolDown)
             {
-                Debug.Log("Slot Action");
                 PR.SelectedSlot.ItemObject.ExecuteAction(this);
                 _counter = 0;
             }
