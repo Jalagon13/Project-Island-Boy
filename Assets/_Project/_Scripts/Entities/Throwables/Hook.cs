@@ -46,6 +46,9 @@ namespace IslandBoy
             {
                 _foundItem = true;
                 _reelItem = item;
+
+                if (_reelItem.TryGetComponent(out ItemSeaWander isw))
+                    isw.StopWander();
             }
         }
 

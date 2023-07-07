@@ -20,7 +20,7 @@ namespace IslandBoy
         {
             if (collision.gameObject.CompareTag("Collect") && _canAttract)
             {
-                transform.root.position = Vector3.MoveTowards(transform.root.position, collision.transform.root.position, _attractSpeed * Time.deltaTime);
+                transform.root.position = Vector2.MoveTowards(transform.root.position, collision.transform.root.position, _attractSpeed * Time.deltaTime);
             }
         }
     }

@@ -34,17 +34,12 @@ namespace IslandBoy
                 Vector2 spawnPosition = Camera.main.ViewportToWorldPoint(new Vector2(randomX, randomY));
 
                 var itemGo = WorldItemManager.Instance.SpawnItem(spawnPosition, loot.Key, loot.Value, null, false);
-                itemGo.AddComponent<ItemSeaWander>().Wander(_pr);
+                itemGo.AddComponent<ItemSeaWander>().StartWander(_pr);
 
-                yield return new WaitForSeconds(Random.Range(3f, 7f));
+                yield return new WaitForSeconds(Random.Range(1f, 5f));
             }
 
             StartCoroutine(Start());
-        }
-
-        private bool Is01(float a)
-        {
-            return a > 0 && a < 1;
         }
 
         public void PushBedPosition(Vector2 pos)

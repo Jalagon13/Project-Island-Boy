@@ -2977,8 +2977,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1191605595}
   - {fileID: 1849927180}
+  - {fileID: 1191605595}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -84169,21 +84169,25 @@ MonoBehaviour:
   _seaLoot:
     <Table>k__BackingField:
     - Item: {fileID: 11400000, guid: 0dfdab92c062a1048b4bf56b3ab6b606, type: 2}
-      Min: 3
-      Max: 6
-      Chance: 100
-    - Item: {fileID: 11400000, guid: 5c9f401f7ef970f46acd10660535fa44, type: 2}
-      Min: 2
-      Max: 4
-      Chance: 30
-    - Item: {fileID: 11400000, guid: fd017aa0c3651ff4ebe27044cacd3b70, type: 2}
       Min: 1
       Max: 2
-      Chance: 10
+      Chance: 65
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Min: 1
+      Max: 3
+      Chance: 40
+    - Item: {fileID: 11400000, guid: 5c9f401f7ef970f46acd10660535fa44, type: 2}
+      Min: 1
+      Max: 2
+      Chance: 15
     - Item: {fileID: 11400000, guid: 126196eef2588a34cb7b61db392d6088, type: 2}
       Min: 1
-      Max: 2
-      Chance: 5
+      Max: 1
+      Chance: 15
+    - Item: {fileID: 11400000, guid: fd017aa0c3651ff4ebe27044cacd3b70, type: 2}
+      Min: 1
+      Max: 1
+      Chance: 10
 --- !u!4 &1004821115
 Transform:
   m_ObjectHideFlags: 0
@@ -85366,7 +85370,7 @@ RectTransform:
   m_Children:
   - {fileID: 581968440}
   m_Father: {fileID: 419003653}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -88879,7 +88883,7 @@ RectTransform:
   m_Children:
   - {fileID: 1016137629}
   m_Father: {fileID: 419003653}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -90717,14 +90721,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6788941923804019790, guid: d61a3eaccba3ee34c8def39d165a770d, type: 3}
-      propertyPath: _testItem1
-      value: 
-      objectReference: {fileID: 11400000, guid: eda396b7b43f560449c873844d3f2fff, type: 2}
-    - target: {fileID: 6788941923804019790, guid: d61a3eaccba3ee34c8def39d165a770d, type: 3}
-      propertyPath: _testItem2
-      value: 
-      objectReference: {fileID: 11400000, guid: 2aa49c2486a9af147b68795c5f29e7de, type: 2}
     - target: {fileID: 6788941923804019791, guid: d61a3eaccba3ee34c8def39d165a770d, type: 3}
       propertyPath: m_Name
       value: WorldItemManager

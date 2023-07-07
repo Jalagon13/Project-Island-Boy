@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace IslandBoy
@@ -7,6 +6,8 @@ namespace IslandBoy
     [CreateAssetMenu(fileName = "New Throw Object", menuName = "Create Item/New Throw Object")]
     public class ThrowObject : ItemObject
     {
+        public static event Action ThrowEvent;
+
         [SerializeField] private GameObject _prefabToThrow;
         [SerializeField] private AudioClip _throwSound;
 
@@ -33,6 +34,7 @@ namespace IslandBoy
                 rb.AddForce(direction * force, ForceMode2D.Impulse);
             }
 
+            ThrowEvent?.Invoke();
             control.PR.SelectedSlot.InventoryItem.Count--;
         }
 
