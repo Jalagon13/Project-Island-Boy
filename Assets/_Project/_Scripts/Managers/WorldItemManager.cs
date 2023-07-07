@@ -7,16 +7,19 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private ItemObject _startingHooks;
+        [SerializeField] private ItemObject _startingShovel;
         [SerializeField] private GameObject _itemBasePrefab;
         [SerializeField] private AudioClip _popSound;
 
         private void Start()
         {
-            SpawnItem(_pr.Position, _startingHooks, 30, null, false);
+            SpawnItem(_pr.Position, _startingShovel, 1, _startingShovel.DefaultParameterList, false);
+            SpawnItem(_pr.Position, _startingHooks, 35, null, false);
         }
 
         public GameObject SpawnItem(Vector2 worldPos, ItemObject item, int stack = -1, List<ItemParameter> parameterList = null, bool playAudio = true)
         {
+            Debug.Log(item.Name);
             GameObject newItemGo = Instantiate(_itemBasePrefab, worldPos, Quaternion.identity);
             WorldItem newItem = newItemGo.GetComponent<WorldItem>();
 

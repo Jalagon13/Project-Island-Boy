@@ -69,7 +69,7 @@ namespace IslandBoy
             {
                 _reelItem.transform.position = transform.position;
 
-                if(Vector2.Distance(transform.position, _playerPos) < 2f)
+                if(Vector2.Distance(transform.position, _playerPos) < 1.5f)
                 {
                     Destroy(_lr.gameObject);
                     Destroy(gameObject);

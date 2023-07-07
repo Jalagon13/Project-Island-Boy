@@ -1235,8 +1235,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 596563527}
-  - {fileID: 1867854599}
-  - {fileID: 763720239}
+  - {fileID: 1020131191}
+  - {fileID: 301602444}
   m_Father: {fileID: 406241215}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2253,6 +2253,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 300965478}
   m_CullTransparentMesh: 1
+--- !u!1001 &301602443
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 165907945}
+    m_Modifications:
+    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430966720473861475, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+      propertyPath: m_Name
+      value: '[RSC] Sand Pile (1)'
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+--- !u!4 &301602444 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+  m_PrefabInstance: {fileID: 301602443}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &314647549
 GameObject:
   m_ObjectHideFlags: 0
@@ -82905,68 +82967,6 @@ Transform:
   m_Father: {fileID: 218986512}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &763720238
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 165907945}
-    m_Modifications:
-    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430966720473861475, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_Name
-      value: '[RSC] Sand Pile (2)'
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
---- !u!4 &763720239 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-  m_PrefabInstance: {fileID: 763720238}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &794776620
 GameObject:
   m_ObjectHideFlags: 0
@@ -84425,6 +84425,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016137628}
   m_CullTransparentMesh: 1
+--- !u!1001 &1020131190
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 165907945}
+    m_Modifications:
+    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430966720473861475, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+      propertyPath: m_Name
+      value: '[RSC] Sand Pile'
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+--- !u!4 &1020131191 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
+  m_PrefabInstance: {fileID: 1020131190}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1058477186
 GameObject:
   m_ObjectHideFlags: 0
@@ -88890,72 +88952,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1001 &1867854598
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 165907945}
-    m_Modifications:
-    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430966720473861475, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_Name
-      value: '[RSC] Sand Pile (1)'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1430966720473861475, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
---- !u!4 &1867854599 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1430966720473861474, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
-  m_PrefabInstance: {fileID: 1867854598}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1879503723
 GameObject:
   m_ObjectHideFlags: 0
