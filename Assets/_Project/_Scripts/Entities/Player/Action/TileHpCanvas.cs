@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace IslandBoy
 {
-    public class SingleTileHpCanvas : MonoBehaviour
+    public class TileHpCanvas : MonoBehaviour
     {
         private RectTransform _hpCanvas;
         private Image _fillImage;

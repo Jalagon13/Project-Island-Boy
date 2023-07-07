@@ -7,6 +7,8 @@ namespace IslandBoy
 {
     public class HotbarControl : MonoBehaviour
     {
+        public static event Action OnSelectedSlotUpdated;
+
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private Color _highlightedColor;
         [SerializeField] private Color _notHighlightedColor;
@@ -89,6 +91,8 @@ namespace IslandBoy
             image.color = _highlightedColor;
 
             _pr.SelectedSlot = _selectedSlot;
+
+            OnSelectedSlotUpdated?.Invoke(); // attached to TileIndicator
         }
 
         private void UnHighlightPrevious()

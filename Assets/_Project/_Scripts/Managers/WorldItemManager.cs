@@ -13,7 +13,6 @@ namespace IslandBoy
 
         private void Start()
         {
-            SpawnItem(new Vector2(-0.5f, 0f), _startingShovel, 1, _startingShovel.DefaultParameterList, false);
             SpawnItem(new Vector2(-0.5f, 0f), _startingHooks, 35, null, false);
         }
 

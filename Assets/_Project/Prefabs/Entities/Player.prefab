@@ -1881,7 +1881,7 @@ MonoBehaviour:
   <PR>k__BackingField: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   <HealthBar>k__BackingField: {fileID: 4210445616755471117}
   <EnergyBar>k__BackingField: {fileID: 4210445617035966530}
-  <SingleTileAction>k__BackingField: {fileID: 4210445617613918441}
+  <SingleTileAction>k__BackingField: {fileID: 0}
   <PlayerEntityCollider>k__BackingField: {fileID: 858607999}
   <WallTilemap>k__BackingField: {fileID: 0}
   <FloorTilemap>k__BackingField: {fileID: 0}
@@ -1929,7 +1929,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4210445617613918440}
-  - component: {fileID: 4210445617613918441}
+  - component: {fileID: 1867400571357877626}
   - component: {fileID: 4210445617613918442}
   - component: {fileID: 4210445617613918443}
   m_Layer: 0
@@ -1956,7 +1956,7 @@ Transform:
   m_Father: {fileID: 4210445617939061677}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4210445617613918441
+--- !u!114 &1867400571357877626
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1965,7 +1965,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4210445617613918447}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 603308611a4ebbb40b385d7d2dfc130f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e6842db49b47fe43804f660d994f084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
@@ -1990,6 +1990,7 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _wallTilemap: {fileID: 0}
   _floorTilemap: {fileID: 0}
+  _islandTilemap: {fileID: 0}
   _indicatorEmptyColor: {r: 0, g: 0, b: 0, a: 0}
   _indicatorTransparentColor: {r: 1, g: 0.93379235, b: 0, a: 0.6745098}
   _canHitColor: {r: 1, g: 0.96575993, b: 0, a: 1}
@@ -2095,7 +2096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mih: {fileID: 4210445617151221922}
-  _sta: {fileID: 4210445617613918441}
+  _sta: {fileID: 0}
 --- !u!1 &4210445617706081780
 GameObject:
   m_ObjectHideFlags: 0

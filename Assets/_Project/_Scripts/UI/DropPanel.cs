@@ -9,7 +9,7 @@ namespace IslandBoy
         public static event Action OnDropEvent;
 
         [SerializeField] private MouseItemHolder _mih;
-        [SerializeField] private SingleTileAction _sta;
+        [SerializeField] private TileAction _sta;
 
         public void OnPointerClick(PointerEventData eventData)
         {

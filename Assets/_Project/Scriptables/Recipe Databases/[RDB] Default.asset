@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: '[RDB] Default'
   m_EditorClassIdentifier: 
   Database:
+  - OutputItem: {fileID: 11400000, guid: a6b964e0566e65045b84f8a24dafe246, type: 2}
+    OutputAmount: 6
+    ResourceList:
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Amount: 1
   - OutputItem: {fileID: 11400000, guid: 094c99f31de27a34bb5bfa75e568b3b6, type: 2}
     OutputAmount: 1
     ResourceList:

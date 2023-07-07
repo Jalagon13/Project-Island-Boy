@@ -15,7 +15,7 @@ namespace IslandBoy
         private Vector2 _dropPosition;
         private float _currentHitPoints;
 
-        public ToolType ToolType { get { return _harvestType; } set { _harvestType = value; } }
+        public ToolType BreakType { get { return _harvestType; } set { _harvestType = value; } }
         public float MaxHitPoints { get { return _maxHitPoints; } set { _maxHitPoints = value; } }
         public float CurrentHitPoints { get { return _currentHitPoints; } set { _currentHitPoints = value; } }
 

@@ -3,24 +3,25 @@ using UnityEngine.Tilemaps;
 
 namespace IslandBoy
 {
-    public class SingleTileAction : MonoBehaviour
+    public class TileAction : MonoBehaviour
     {
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private ItemParameter _powerParameter;
         [SerializeField] private ItemParameter _durabilityParameter;
 
-        private SingleTileHpCanvas _stHpCanvas;
-        private SingleTileIndicator _stIndicator;
+        private TileHpCanvas _stHpCanvas;
+        private TileIndicator _ti;
         private ToolType _baseToolType;
         private float _basePower;
+        private bool _brokeRscThisFrame; // used to stop any logic after damage has been applied to breakable
 
         public float BasePower { set { _basePower = value; } }
-        public ToolType BaseToolType { set { _baseToolType = value; } }
+        public ToolType BaseToolType { get { return _baseToolType; } set { _baseToolType = value; } }
 
         private void Awake()
         {
-            _stHpCanvas = GetComponent<SingleTileHpCanvas>();
-            _stIndicator = GetComponent<SingleTileIndicator>();
+            _stHpCanvas = GetComponent<TileHpCanvas>();
+            _ti = GetComponent<TileIndicator>();
         }
 
         private void Update()
@@ -43,17 +44,35 @@ namespace IslandBoy
 
         public void HitTile()
         {
+            _brokeRscThisFrame = false;
+
             ApplyDamageToBreakable();
-            DestroyTile(_stIndicator.WallTilemap);
-            DestroyTile(_stIndicator.FloorTilemap);
+            ShovelTileLogic();
+            DestroyTile(_ti.WallTilemap);
+            DestroyTile(_ti.FloorTilemap);
+        }
+
+        private void ShovelTileLogic()
+        {
+            if (_pr.SelectedSlot.ItemObject != null)
+                if (_pr.SelectedSlot.ItemObject.ToolType != ToolType.Shovel) return;
+            if (_pr.SelectedSlot.ItemObject == null) return;
+            if (!_ti.IslandTilemap.HasTile(Vector3Int.FloorToInt(transform.position))) return;
+            if (!IsClear()) return;
+            if (_brokeRscThisFrame) return;
+
+            DestroyTile(_ti.IslandTilemap);
+            ModifyDurability();
+
+            _brokeRscThisFrame = false;
+
+            _ti.UpdateLogic();
         }
 
         private void ApplyDamageToBreakable()
         {
             if (_pr.SelectedSlot.ItemObject != null)
-            {
                 if (_pr.SelectedSlot.ItemObject.ToolType == ToolType.Sword) return;
-            }
 
             var colliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
 
@@ -67,15 +86,16 @@ namespace IslandBoy
                     {
                         ModifyDurability();
 
-                        if (breakable.CurrentHitPoints <= 0 && collider.TryGetComponent(out CaveBehavior caveBehavior))
-                        {
-                            caveBehavior.DestroyByPlayerAction();
-                        }
-
                         if (breakable.CurrentHitPoints <= 0)
                         {
+                            _brokeRscThisFrame = true;
                             _stHpCanvas.HideHpCanvas();
-                            _stIndicator.ChangeToOffIndicator();
+                            _ti.ChangeToOffIndicator();
+
+                            _ti.UpdateLogic();
+
+                            if(collider.TryGetComponent(out CaveBehavior caveBehavior))
+                                caveBehavior.DestroyByPlayerAction();
                         }
                         else
                         {

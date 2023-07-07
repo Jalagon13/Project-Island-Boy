@@ -4,7 +4,7 @@ namespace IslandBoy
     {
         public float MaxHitPoints { get; set; }
         public float CurrentHitPoints { get; set; }
-        public ToolType ToolType { get; set; }
+        public ToolType BreakType { get; set; }
 
         public bool Hit(float amount, ToolType toolType);
 

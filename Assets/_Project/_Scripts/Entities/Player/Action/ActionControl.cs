@@ -18,7 +18,7 @@ namespace IslandBoy
         [SerializeField] private ItemParameter _baseCooldown;
         [SerializeField] private ItemParameter _baseSwingSpeedMultiplier;
 
-        private SingleTileAction _sta;
+        private TileAction _sta;
         private PlayerInput _input;
         private Animator _animator;
         private PlayerMoveInput _moveInput;
@@ -47,7 +47,7 @@ namespace IslandBoy
             _moveInput = transform.root.GetComponent<PlayerMoveInput>();
             _camera = Camera.main;
 
-            _sta = transform.GetChild(0).GetComponent<SingleTileAction>();
+            _sta = transform.GetChild(0).GetComponent<TileAction>();
             _sta.BasePower = _basePower.Value;
             _sta.BaseToolType = _baseToolType;
             _sta.transform.parent = null;
