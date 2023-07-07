@@ -13,13 +13,12 @@ namespace IslandBoy
 
         private void Start()
         {
-            SpawnItem(_pr.Position, _startingShovel, 1, _startingShovel.DefaultParameterList, false);
-            SpawnItem(_pr.Position, _startingHooks, 35, null, false);
+            SpawnItem(new Vector2(-0.5f, 0f), _startingShovel, 1, _startingShovel.DefaultParameterList, false);
+            SpawnItem(new Vector2(-0.5f, 0f), _startingHooks, 35, null, false);
         }
 
         public GameObject SpawnItem(Vector2 worldPos, ItemObject item, int stack = -1, List<ItemParameter> parameterList = null, bool playAudio = true)
         {
-            Debug.Log(item.Name);
             GameObject newItemGo = Instantiate(_itemBasePrefab, worldPos, Quaternion.identity);
             WorldItem newItem = newItemGo.GetComponent<WorldItem>();
 
