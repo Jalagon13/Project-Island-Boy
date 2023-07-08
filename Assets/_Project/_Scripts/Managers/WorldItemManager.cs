@@ -7,13 +7,14 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private ItemObject _startingHooks;
-        [SerializeField] private ItemObject _startingShovel;
+        [SerializeField] private ItemObject _bricks;
         [SerializeField] private GameObject _itemBasePrefab;
         [SerializeField] private AudioClip _popSound;
 
         private void Start()
         {
             SpawnItem(new Vector2(-0.5f, 0f), _startingHooks, 35, null, false);
+            SpawnItem(new Vector2(-0.5f, 0f), _bricks, 99, null, false);
         }
 
         public GameObject SpawnItem(Vector2 worldPos, ItemObject item, int stack = -1, List<ItemParameter> parameterList = null, bool playAudio = true)

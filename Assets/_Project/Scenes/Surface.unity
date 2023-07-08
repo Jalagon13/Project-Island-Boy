@@ -1215,6 +1215,7 @@ GameObject:
   - component: {fileID: 165907950}
   - component: {fileID: 165907949}
   - component: {fileID: 165907948}
+  - component: {fileID: 165907951}
   m_Layer: 0
   m_Name: Island
   m_TagString: Untagged
@@ -1664,6 +1665,18 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
+--- !u!114 &165907951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165907944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 923b81cf0da16c643a6bd7cf24a76a5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &177854455
 GameObject:
   m_ObjectHideFlags: 0
@@ -4121,7 +4134,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 11
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -90596,6 +90609,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4210445617314236099, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: <WallTilemap>k__BackingField
+      value: 
+      objectReference: {fileID: 1658634108}
+    - target: {fileID: 4210445617314236099, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: <FloorTilemap>k__BackingField
+      value: 
+      objectReference: {fileID: 154193936}
+    - target: {fileID: 4210445617314236099, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: <IslandTilemap>k__BackingField
+      value: 
+      objectReference: {fileID: 165907947}
     - target: {fileID: 4210445617613918442, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
       propertyPath: _wallTilemap
       value: 
@@ -90656,8 +90681,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4210445617613918441, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
 --- !u!1001 &6788941922529696829
 PrefabInstance:
@@ -90710,6 +90734,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6788941923804019790, guid: d61a3eaccba3ee34c8def39d165a770d, type: 3}
+      propertyPath: _bricks
+      value: 
+      objectReference: {fileID: 11400000, guid: 0dfdab92c062a1048b4bf56b3ab6b606, type: 2}
     - target: {fileID: 6788941923804019791, guid: d61a3eaccba3ee34c8def39d165a770d, type: 3}
       propertyPath: m_Name
       value: WorldItemManager

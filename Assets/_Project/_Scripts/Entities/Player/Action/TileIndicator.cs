@@ -53,8 +53,40 @@ namespace IslandBoy
             ShovelTileIndicatorLogic();
             WorldTileIndicatorLogic();
             SwordIndicatorLogic();
+            IndifferentIndicatorLogic();
 
             transform.hasChanged = false;
+        }
+
+        private void IndifferentIndicatorLogic()
+        {
+            var colliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
+
+            List<IBreakable> indifferentObjects = new();
+
+            foreach (var collider in colliders)
+            {
+                if (collider.TryGetComponent(out IBreakable breakable))
+                {
+                    if (breakable.BreakType == ToolType.Indifferent)
+                        indifferentObjects.Add(breakable);
+                }
+            }
+
+            if (indifferentObjects.Count > 0)
+            {
+                foreach (var breakable in indifferentObjects)
+                {
+                    ChangeToOnIndicator();
+
+                    if (breakable.CurrentHitPoints < breakable.MaxHitPoints)
+                    {
+                        _stHpCanvas.ShowHpCanvas(breakable.MaxHitPoints, breakable.CurrentHitPoints);
+                    }
+
+                    break;
+                }
+            }
         }
 
         private void WorldTileIndicatorLogic()
