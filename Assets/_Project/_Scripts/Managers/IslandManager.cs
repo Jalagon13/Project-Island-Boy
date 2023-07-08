@@ -10,6 +10,8 @@ namespace IslandBoy
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private GameObject _minerNpcPrefab;
         [SerializeField] private GameObject _crabMobPrefab;
+        [SerializeField] private GameObject _sandPilePrefab;
+        [SerializeField] private GameObject _grassPilePrefab;
         [SerializeField] private TileBase _sandTile;
         [SerializeField] private Tilemap _island;
         [SerializeField] private Tilemap _floor;
@@ -18,6 +20,7 @@ namespace IslandBoy
 
         private List<Vector2> _bedPositions = new();
         private List<GameObject> _crabMobs = new();
+        private List<GameObject> _sandTiles = new();
 
         private IEnumerator Start()
         {
@@ -62,31 +65,95 @@ namespace IslandBoy
             }
         }
 
-        private void SpawnCrabs()
+        public void SpawnPiles()
+        {
+            foreach (GameObject tile in _sandTiles)
+                Destroy(tile);
+
+            _sandTiles.Clear();
+
+            BoundsInt bounds = _island.cellBounds;
+
+            List<Vector3Int> sandTiles = new();
+
+            foreach (Vector3Int pos in bounds.allPositionsWithin)
+            {
+                if (_island.HasTile(pos) && _island.GetTile(pos) == _sandTile)
+                {
+                    sandTiles.Add(pos);
+                }
+            }
+
+            foreach (var item in sandTiles)
+            {
+                var randPos = sandTiles[Random.Range(0, sandTiles.Count)];
+
+                if (ClearToSpawn(randPos) && !IsNearRsc(randPos))
+                {
+                    var tile = Instantiate(_sandPilePrefab, randPos, Quaternion.identity);
+
+                    _sandTiles.Add(tile);
+                }
+            }
+        }
+
+        private bool IsNearRsc(Vector3Int pos)
+        {
+            var colliders = Physics2D.OverlapCircleAll(new Vector2(pos.x + 0.5f, pos.y + 0.5f), 3.5f);
+
+            foreach (var collider in colliders)
+            {
+                if (collider.TryGetComponent(out Resource rsc))
+                    return true;
+            }
+
+            return false;
+        }
+
+        public void SpawnCrabs()
         {
             foreach (GameObject crab in _crabMobs)
-            {
                 Destroy(crab);
-            }
 
             _crabMobs.Clear();
 
-            int crabCounter = 0;
-            int crabMax = Random.Range(1, 2);
+            BoundsInt bounds = _island.cellBounds;
 
-            while (crabCounter < crabMax)
+            List<Vector3Int> sandTiles = new();
+
+            foreach (Vector3Int pos in bounds.allPositionsWithin)
             {
-                var xVal = Random.Range(_island.cellBounds.xMin, _island.cellBounds.xMax);
-                var yVal = Random.Range(_island.cellBounds.yMin, _island.cellBounds.yMax);
-                var pos = Vector3Int.FloorToInt(new Vector2(xVal, yVal));
-
                 if (_island.HasTile(pos) && _island.GetTile(pos) == _sandTile)
                 {
-                    var crab = Instantiate(_crabMobPrefab, pos, Quaternion.identity);
-                    _crabMobs.Add(crab);
-                    crabCounter++;
+                    sandTiles.Add(pos);
                 }
             }
+
+            if (sandTiles.Count < 40) return;
+
+            int crabMax = sandTiles.Count / 40;
+            int crabCount = 0;
+
+            while(crabCount < crabMax)
+            {
+                var randPos = sandTiles[Random.Range(0, sandTiles.Count)];
+
+                if (ClearToSpawn(randPos))
+                {
+                    var crab = Instantiate(_crabMobPrefab, randPos, Quaternion.identity);
+
+                    _crabMobs.Add(crab);
+
+                    crabCount++;
+                }
+            }
+        }
+
+        private bool ClearToSpawn(Vector3Int pos)
+        {
+            var colliders = Physics2D.OverlapCircleAll(new Vector2(pos.x + 0.5f, pos.y + 0.5f), 0.45f);
+
+            return colliders.Length <= 0;
         }
 
         private void CheckHousing(Vector2 startPos)

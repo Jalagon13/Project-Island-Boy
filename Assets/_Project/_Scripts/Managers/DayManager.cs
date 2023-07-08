@@ -61,6 +61,8 @@ namespace IslandBoy
             _dayEndText.text = $"Day {_currentDay} Completed!";
 
             IslandManager.Instance.CheckBedsForHousing();
+            IslandManager.Instance.SpawnPiles();
+            IslandManager.Instance.SpawnCrabs();
         }
 
         public void ContinueButton()
