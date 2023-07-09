@@ -14,7 +14,7 @@ namespace IslandBoy
         private void Start()
         {
             SpawnItem(new Vector2(-0.5f, 0f), _startingHooks, 35, null, false);
-            SpawnItem(new Vector2(-0.5f, 0f), _bricks, 99, null, false);
+            //SpawnItem(new Vector2(-0.5f, 0f), _bricks, 99, null, false);
         }
 
         public GameObject SpawnItem(Vector2 worldPos, ItemObject item, int stack = -1, List<ItemParameter> parameterList = null, bool playAudio = true)

@@ -27,7 +27,7 @@ namespace IslandBoy
 
         public override string GetDescription()
         {
-            return Description;
+            return $"• World Tile, can extend island<br>{Description} ";
         }
     }
 }

@@ -62,7 +62,7 @@ namespace IslandBoy
 
             IslandManager.Instance.CheckBedsForHousing();
             IslandManager.Instance.SpawnPiles();
-            IslandManager.Instance.SpawnCrabs();
+            //IslandManager.Instance.SpawnCrabs();
         }
 
         public void ContinueButton()

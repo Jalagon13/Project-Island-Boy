@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -13,6 +14,7 @@ namespace IslandBoy
         [SerializeField] private GameObject _sandPilePrefab;
         [SerializeField] private GameObject _grassPilePrefab;
         [SerializeField] private TileBase _sandTile;
+        [SerializeField] private TileBase _grassTile;
         [SerializeField] private Tilemap _island;
         [SerializeField] private Tilemap _floor;
         [SerializeField] private Tilemap _walls;
@@ -20,7 +22,6 @@ namespace IslandBoy
 
         private List<Vector2> _bedPositions = new();
         private List<GameObject> _crabMobs = new();
-        private List<GameObject> _sandTiles = new();
 
         private IEnumerator Start()
         {
@@ -67,43 +68,44 @@ namespace IslandBoy
 
         public void SpawnPiles()
         {
-            foreach (GameObject tile in _sandTiles)
-                Destroy(tile);
+            SpawnPile(_sandTile, _sandPilePrefab);
+            SpawnPile(_grassTile, _grassPilePrefab);
+        }
 
-            _sandTiles.Clear();
-
+        private void SpawnPile(TileBase tileToLookFor, GameObject pilePrefab)
+        {
             BoundsInt bounds = _island.cellBounds;
 
-            List<Vector3Int> sandTiles = new();
+            List<Vector3Int> clearTilePos = new();
 
             foreach (Vector3Int pos in bounds.allPositionsWithin)
             {
-                if (_island.HasTile(pos) && _island.GetTile(pos) == _sandTile)
+                if (_island.GetTile(pos) == tileToLookFor && TileAreaClear(pos))
                 {
-                    sandTiles.Add(pos);
+                    clearTilePos.Add(pos);
                 }
             }
 
-            foreach (var item in sandTiles)
+            for(int i = 0; i < clearTilePos.Count; i++)
             {
-                var randPos = sandTiles[Random.Range(0, sandTiles.Count)];
+                var pos = clearTilePos[Random.Range(0, clearTilePos.Count)];
 
-                if (ClearToSpawn(randPos) && !IsNearRsc(randPos))
+                if (TileAreaClear(pos) && !IsNear(pilePrefab, pos, 3f))
                 {
-                    var tile = Instantiate(_sandPilePrefab, randPos, Quaternion.identity);
-
-                    _sandTiles.Add(tile);
+                    var go = Instantiate(pilePrefab, pos, Quaternion.identity);
+                    go.name = pilePrefab.name;
                 }
             }
+            
         }
 
-        private bool IsNearRsc(Vector3Int pos)
+        private bool IsNear(GameObject prefab, Vector3Int pos, float radiusToCheck)
         {
-            var colliders = Physics2D.OverlapCircleAll(new Vector2(pos.x + 0.5f, pos.y + 0.5f), 3.5f);
+            var colliders = Physics2D.OverlapCircleAll(new Vector2(pos.x + 0.5f, pos.y + 0.5f), radiusToCheck);
 
             foreach (var collider in colliders)
             {
-                if (collider.TryGetComponent(out Resource rsc))
+                if (collider.gameObject.name == prefab.name)
                     return true;
             }
 
@@ -138,7 +140,7 @@ namespace IslandBoy
             {
                 var randPos = sandTiles[Random.Range(0, sandTiles.Count)];
 
-                if (ClearToSpawn(randPos))
+                if (TileAreaClear(randPos))
                 {
                     var crab = Instantiate(_crabMobPrefab, randPos, Quaternion.identity);
 
@@ -149,9 +151,9 @@ namespace IslandBoy
             }
         }
 
-        private bool ClearToSpawn(Vector3Int pos)
+        private bool TileAreaClear(Vector3Int pos)
         {
-            var colliders = Physics2D.OverlapCircleAll(new Vector2(pos.x + 0.5f, pos.y + 0.5f), 0.45f);
+            var colliders = Physics2D.OverlapCircleAll(new Vector2(pos.x + 0.5f, pos.y + 0.5f), 0.3f);
 
             return colliders.Length <= 0;
         }
