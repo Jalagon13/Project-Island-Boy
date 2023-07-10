@@ -13,7 +13,7 @@ namespace IslandBoy
 
         public override void ExecuteAction(SelectedSlotControl control)
         {
-            var mousePos = Vector3Int.FloorToInt(control.SingleTileAction.gameObject.transform.position);
+            var mousePos = Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position);
 
             if (!control.WallTilemap.HasTile(mousePos) && !control.FloorTilemap.HasTile(mousePos))
             {

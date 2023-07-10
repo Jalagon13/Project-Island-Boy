@@ -48,8 +48,14 @@ namespace IslandBoy
 
             ApplyDamageToBreakable();
             ShovelTileLogic();
+            HammerTileLogic();
             DestroyTile(_ti.WallTilemap);
             DestroyTile(_ti.FloorTilemap);
+        }
+
+        private void HammerTileLogic()
+        {
+
         }
 
         private void ShovelTileLogic()

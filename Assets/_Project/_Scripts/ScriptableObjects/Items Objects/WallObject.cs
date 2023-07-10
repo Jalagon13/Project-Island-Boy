@@ -14,9 +14,9 @@ namespace IslandBoy
 
         public override void ExecuteAction(SelectedSlotControl control)
         {
-            var pos = Vector3Int.FloorToInt(control.SingleTileAction.gameObject.transform.position);
+            var pos = Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position);
 
-            if (!control.WallTilemap.HasTile(pos) && control.SingleTileAction.IsClear())
+            if (!control.WallTilemap.HasTile(pos) && control.TileAction.IsClear())
             {
                 control.WallTilemap.SetTile(pos, _wallTile);
                 control.PR.SelectedSlot.InventoryItem.Count--;

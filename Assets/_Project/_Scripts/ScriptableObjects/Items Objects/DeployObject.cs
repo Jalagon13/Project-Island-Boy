@@ -16,11 +16,11 @@ namespace IslandBoy
 
         public override void ExecuteAction(SelectedSlotControl control)
         {
-            if (control.SingleTileAction.IsClear())
+            if (control.TileAction.IsClear())
             {
                 AudioManager.Instance.PlayClip(_deploySound, false, true);
                 control.PR.SelectedSlot.InventoryItem.Count--;
-                control.SingleTileAction.PlaceDeployable(_prefabToDeploy);
+                control.TileAction.PlaceDeployable(_prefabToDeploy);
             }
         }
 
