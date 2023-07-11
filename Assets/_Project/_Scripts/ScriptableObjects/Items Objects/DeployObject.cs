@@ -16,7 +16,8 @@ namespace IslandBoy
 
         public override void ExecuteAction(SelectedSlotControl control)
         {
-            if (control.TileAction.IsClear())
+            if (control.TileAction.IsClear() && 
+                !control.WallTilemap.HasTile(Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position)))
             {
                 AudioManager.Instance.PlayClip(_deploySound, false, true);
                 control.PR.SelectedSlot.InventoryItem.Count--;

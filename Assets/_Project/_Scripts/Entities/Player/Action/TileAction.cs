@@ -46,9 +46,9 @@ namespace IslandBoy
         {
             _brokeRscThisFrame = false;
 
+            HammerTileLogic();
             ApplyDamageToBreakable();
             ShovelTileLogic();
-            HammerTileLogic();
         }
 
         private void HammerTileLogic()
@@ -56,6 +56,7 @@ namespace IslandBoy
             if (_pr.SelectedSlot.ItemObject != null)
                 if (_pr.SelectedSlot.ItemObject.ToolType != ToolType.Hammer) return;
             if (_pr.SelectedSlot.ItemObject == null) return;
+            if (!IsClear()) return;
 
             if (_ti.WallTilemap.HasTile(Vector3Int.FloorToInt(transform.position)))
             {
