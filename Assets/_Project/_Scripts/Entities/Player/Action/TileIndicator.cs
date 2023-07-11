@@ -53,9 +53,22 @@ namespace IslandBoy
             ShovelTileIndicatorLogic();
             WorldTileIndicatorLogic();
             SwordIndicatorLogic();
+            HammerTileIndicatorLogic();
             IndifferentIndicatorLogic();
 
             transform.hasChanged = false;
+        }
+
+        private void HammerTileIndicatorLogic()
+        {
+            if (_pr.SelectedSlot.ItemObject != null)
+                if (_pr.SelectedSlot.ItemObject.ToolType != ToolType.Hammer) return;
+            if (_pr.SelectedSlot.ItemObject == null) return;
+
+            if(_floorTilemap.HasTile(Vector3Int.FloorToInt(transform.position)) || _wallTilemap.HasTile(Vector3Int.FloorToInt(transform.position)))
+                ChangeToOnIndicator();
+            else
+                ChangeToOffIndicator();
         }
 
         private void IndifferentIndicatorLogic()

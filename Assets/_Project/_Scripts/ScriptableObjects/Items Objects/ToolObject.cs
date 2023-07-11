@@ -10,7 +10,8 @@ namespace IslandBoy
         Ax,
         Pickaxe,
         Sword,
-        Shovel
+        Shovel,
+        Hammer
     }
 
     [CreateAssetMenu(fileName = "New Tool", menuName = "Create Item/New Tool")]

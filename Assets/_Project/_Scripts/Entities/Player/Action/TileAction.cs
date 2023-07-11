@@ -49,13 +49,24 @@ namespace IslandBoy
             ApplyDamageToBreakable();
             ShovelTileLogic();
             HammerTileLogic();
-            DestroyTile(_ti.WallTilemap);
-            DestroyTile(_ti.FloorTilemap);
         }
 
         private void HammerTileLogic()
         {
+            if (_pr.SelectedSlot.ItemObject != null)
+                if (_pr.SelectedSlot.ItemObject.ToolType != ToolType.Hammer) return;
+            if (_pr.SelectedSlot.ItemObject == null) return;
 
+            if (_ti.WallTilemap.HasTile(Vector3Int.FloorToInt(transform.position)))
+            {
+                DestroyTile(_ti.WallTilemap);
+                ModifyDurability();
+            }
+            else if (_ti.FloorTilemap.HasTile(Vector3Int.FloorToInt(transform.position)))
+            {
+                DestroyTile(_ti.FloorTilemap);
+                ModifyDurability();
+            }
         }
 
         private void ShovelTileLogic()

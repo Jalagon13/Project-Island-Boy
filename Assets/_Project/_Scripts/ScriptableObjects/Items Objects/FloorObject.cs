@@ -13,11 +13,11 @@ namespace IslandBoy
 
         public override void ExecuteAction(SelectedSlotControl control)
         {
-            var mousePos = Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position);
+            var pos = Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position);
 
-            if (!control.WallTilemap.HasTile(mousePos) && !control.FloorTilemap.HasTile(mousePos))
+            if (!control.WallTilemap.HasTile(pos) && !control.FloorTilemap.HasTile(pos) && control.IslandTilemap.HasTile(pos))
             {
-                control.FloorTilemap.SetTile(mousePos, _floorTile);
+                control.FloorTilemap.SetTile(pos, _floorTile);
                 control.PR.SelectedSlot.InventoryItem.Count--;
                 AudioManager.Instance.PlayClip(_floorTile.PlaceSound, false, true);
             }

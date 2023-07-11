@@ -16,7 +16,7 @@ namespace IslandBoy
         {
             var pos = Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position);
 
-            if (!control.WallTilemap.HasTile(pos) && control.TileAction.IsClear())
+            if (!control.WallTilemap.HasTile(pos) && control.TileAction.IsClear() && control.IslandTilemap.HasTile(pos))
             {
                 control.WallTilemap.SetTile(pos, _wallTile);
                 control.PR.SelectedSlot.InventoryItem.Count--;
