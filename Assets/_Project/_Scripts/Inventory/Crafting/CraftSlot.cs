@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -17,6 +18,7 @@ namespace IslandBoy
         private Image _craftSlotBackround;
         private Image _outputImage;
         private Recipe _recipe;
+        private TextMeshProUGUI _amountText;
         private bool _canCraft;
 
         public bool CanCraft { get { return _canCraft; } }
@@ -26,9 +28,10 @@ namespace IslandBoy
         {
             _craftSlotBackround = GetComponent<Image>();
             _outputImage = transform.GetChild(0).GetComponent<Image>();
+            _hoverImage = transform.GetChild(0).GetComponent<CraftSlotImageHover>();
             _rscPanel = transform.GetChild(1).GetComponent<RectTransform>();
             _rscSlots = transform.GetChild(1).GetChild(0).GetComponent<RectTransform>();
-            _hoverImage = transform.GetChild(0).GetComponent<CraftSlotImageHover>();
+            _amountText = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         }
 
         private void OnDisable()
@@ -59,6 +62,7 @@ namespace IslandBoy
             _recipe = recipe;
             _outputImage.sprite = recipe.OutputItem.UiDisplay;
             _hoverImage.OutputItem = recipe.OutputItem;
+            _amountText.text = recipe.OutputAmount == 1 ? string.Empty : recipe.OutputAmount.ToString();
 
             Inventory.AddItemEvent += CheckIfCanCraft;
             DropPanel.OnDropEvent += CheckIfCanCraft;

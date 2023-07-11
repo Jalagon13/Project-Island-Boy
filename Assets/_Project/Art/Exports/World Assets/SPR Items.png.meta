@@ -554,7 +554,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -562,6 +562,27 @@ TextureImporter:
       bones: []
       spriteID: e9abc49dccb7b944c88c6ef8a6572212
       internalID: -887866084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_wood_hammer
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64945f009b6597e4dae449b200073487
+      internalID: 1204406958
       vertices: []
       indices: 
       edges: []
@@ -595,6 +616,7 @@ TextureImporter:
       item_wood: -602149933
       item_wood_axe: 563146846
       item_wood_floor: 1850925332
+      item_wood_hammer: 1204406958
       item_wood_pickaxe: 1392384841
       item_wood_shovel: -887866084
       item_wood_sword: 851283991
