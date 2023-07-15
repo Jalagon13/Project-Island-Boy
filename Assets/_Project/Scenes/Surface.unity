@@ -84121,17 +84121,17 @@ MonoBehaviour:
   _seaLoot:
     <Table>k__BackingField:
     - Item: {fileID: 11400000, guid: 0dfdab92c062a1048b4bf56b3ab6b606, type: 2}
-      Min: 1
-      Max: 3
+      Min: 4
+      Max: 8
       Chance: 45
-    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
-      Min: 1
-      Max: 3
-      Chance: 35
     - Item: {fileID: 11400000, guid: 5c9f401f7ef970f46acd10660535fa44, type: 2}
-      Min: 1
-      Max: 2
-      Chance: 35
+      Min: 3
+      Max: 6
+      Chance: 30
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Min: 2
+      Max: 3
+      Chance: 30
     - Item: {fileID: 11400000, guid: 126196eef2588a34cb7b61db392d6088, type: 2}
       Min: 1
       Max: 1

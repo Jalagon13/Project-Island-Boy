@@ -13,11 +13,6 @@ MonoBehaviour:
   m_Name: '[RDB] Tool Station'
   m_EditorClassIdentifier: 
   Database:
-  - OutputItem: {fileID: 11400000, guid: a6b964e0566e65045b84f8a24dafe246, type: 2}
-    OutputAmount: 6
-    ResourceList:
-    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
-      Amount: 1
   - OutputItem: {fileID: 11400000, guid: f9306cafa82c97447bc4f47c37ef4b10, type: 2}
     OutputAmount: 1
     ResourceList:
@@ -38,6 +33,16 @@ MonoBehaviour:
     ResourceList:
     - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
       Amount: 4
+  - OutputItem: {fileID: 11400000, guid: fb9c53bc5a9014142b9e07f97db75202, type: 2}
+    OutputAmount: 1
+    ResourceList:
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Amount: 4
+  - OutputItem: {fileID: 11400000, guid: a6b964e0566e65045b84f8a24dafe246, type: 2}
+    OutputAmount: 6
+    ResourceList:
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Amount: 1
   - OutputItem: {fileID: 11400000, guid: 1f177d75b0703de479882f571f78e34b, type: 2}
     OutputAmount: 2
     ResourceList:
