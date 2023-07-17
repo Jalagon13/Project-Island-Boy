@@ -89838,6 +89838,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2100728451, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 1853043509500595852, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -89862,10 +89866,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2963529343931073653, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
-      propertyPath: _itemPickupSignPrefab
-      value: 
-      objectReference: {fileID: 5710743294088674228, guid: bca8909c4368cb446bcfdf33c0e3171b, type: 3}
     - target: {fileID: 3283614366744884474, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

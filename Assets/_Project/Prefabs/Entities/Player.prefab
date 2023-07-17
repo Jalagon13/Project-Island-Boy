@@ -1796,8 +1796,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
-  _itemPickupSignPrefab: {fileID: 5710743294088674228, guid: bca8909c4368cb446bcfdf33c0e3171b, type: 3}
-  _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
   _maxStack: 99
   _onPickupItem:
     m_PersistentCalls:
@@ -2315,6 +2313,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 834aa37b4a83ac5449155e13ea1ed8da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _itemPickupSignPrefab: {fileID: 5710743294088674228, guid: bca8909c4368cb446bcfdf33c0e3171b, type: 3}
+  _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
+  _disappearTimer: 2.5
 --- !u!1 &4210445617714157972
 GameObject:
   m_ObjectHideFlags: 0

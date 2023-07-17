@@ -14,7 +14,6 @@ namespace IslandBoy
 
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private GameObject _inventoryItemPrefab;
-        [SerializeField] private AudioClip _popSound;
         [SerializeField] private int _maxStack;
         [SerializeField] private UnityEvent<ItemObject, int> _onPickupItem;
         [SerializeField] private InventorySlot[] _inventorySlots;

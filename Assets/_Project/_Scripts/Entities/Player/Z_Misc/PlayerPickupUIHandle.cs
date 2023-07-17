@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,19 +9,26 @@ namespace IslandBoy
     public class PlayerPickupUIHandle : MonoBehaviour
     {
         [SerializeField] private GameObject _itemPickupSignPrefab;
+        [SerializeField] private AudioClip _popSound;
+        [SerializeField] private float _disappearTimer;
 
-        private Dictionary<ItemObject, ItemPickupSign> _itemPickups = new();
+        private Dictionary<ItemObject, ItemPickupSign> _itemPickups;
         private bool _processing;
+
+        private void Awake()
+        {
+            _itemPickups = new();
+        }
 
         public void PickupUIHandle(ItemObject item, int amount)
         {
-            Debug.Log(item.name + " " + amount);
-
+            AudioManager.Instance.PlayClip(_popSound, false, true);
             GameObject itemPickupSign = Instantiate(_itemPickupSignPrefab);
             ItemPickupSign pickup = itemPickupSign.GetComponent<ItemPickupSign>();
 
+            pickup.Initialize(amount, item.Name);
+
             _itemPickups.Add(item, pickup);
-            Debug.Log(_itemPickups.Count);
 
             if (!_processing)
                 ProcessPickupUIs();
@@ -42,29 +48,33 @@ namespace IslandBoy
 
         private async Task OverlapCheck()
         {
-            var first = _itemPickups.First();
-            var ipsGoPosition = first.Value.gameObject.transform.position;
-
             checkAgain:
 
             bool foundOverlap = false;
-            var colliders = Physics2D.OverlapBoxAll(ipsGoPosition, new Vector2(2f, 0.25f), 0.2f);
+            var colliders = Physics2D.OverlapBoxAll(_itemPickups.First().Value.gameObject.transform.position, new Vector2(2f, 0.25f), 0.2f);
 
             foreach (Collider2D collider in colliders)
             {
                 if (!collider.TryGetComponent(out ItemPickupSign ips)) continue;
-                if (ips == first.Value) continue;
+                if (ips == _itemPickups.First().Value) continue;
 
-                ipsGoPosition += new Vector3(0f, 0.5f, 0f);
+                _itemPickups.First().Value.gameObject.transform.position += new Vector3(0f, 0.5f, 0f);
+
                 foundOverlap = true;
-                await Task.Delay(TimeSpan.FromSeconds(0.1f));
+
+                await Task.Delay(TimeSpan.FromSeconds(0.03f));
+                
                 break;
             }
 
             if (foundOverlap)
                 goto checkAgain;
 
-            _itemPickups.Remove(first.Key);
+            await Task.Delay(TimeSpan.FromSeconds(0.1f));
+
+            Destroy(_itemPickups.First().Value.gameObject, _disappearTimer);
+
+            _itemPickups.Remove(_itemPickups.First().Key);
         }
     }
 }
