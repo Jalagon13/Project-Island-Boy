@@ -26,6 +26,8 @@ namespace IslandBoy
 
         public override void ExecuteAction(SelectedSlotControl control)
         {
+            if (PointerHandler.IsOverLayer(5)) return;
+
             switch (_consumeType) 
             { 
                 case ConsumeType.Energy:

@@ -16,6 +16,8 @@ namespace IslandBoy
 
         public override void ExecuteAction(SelectedSlotControl control)
         {
+            if (PointerHandler.IsOverLayer(5)) return;
+
             if (control.TileAction.IsClear() && 
                 !control.WallTilemap.HasTile(Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position)))
             {
