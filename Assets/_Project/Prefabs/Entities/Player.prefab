@@ -582,9 +582,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4210445616709956592}
   - component: {fileID: 4210445616709956593}
+  - component: {fileID: 3852835110712595986}
   m_Layer: 7
   m_Name: CollectCollider
-  m_TagString: Collect
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -620,6 +621,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &3852835110712595986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4210445616709956599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15b457ef7bf15134bac465694d8c4743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4210445616755471105
 GameObject:
   m_ObjectHideFlags: 0
@@ -1786,6 +1799,21 @@ MonoBehaviour:
   _itemPickupSignPrefab: {fileID: 5710743294088674228, guid: bca8909c4368cb446bcfdf33c0e3171b, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
   _maxStack: 99
+  _onPickupItem:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2963529343931073653}
+        m_TargetAssemblyTypeName: IslandBoy.PlayerPickupUIHandle, Assembly-CSharp
+        m_MethodName: PickupUIHandle
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _inventorySlots:
   - {fileID: 9214693776292721774}
   - {fileID: 5460548253891219875}
@@ -2189,6 +2217,7 @@ GameObject:
   - component: {fileID: 4210445617709717786}
   - component: {fileID: 4210445617709717787}
   - component: {fileID: 4210445617709717860}
+  - component: {fileID: 2963529343931073653}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2272,6 +2301,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f68cdae25e6e64642b337e9711993bdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2963529343931073653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4210445617709717791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 834aa37b4a83ac5449155e13ea1ed8da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4210445617714157972

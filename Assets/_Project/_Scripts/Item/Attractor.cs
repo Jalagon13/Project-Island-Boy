@@ -18,7 +18,7 @@ namespace IslandBoy
 
         private void OnTriggerStay2D(Collider2D collision)
         {
-            if (collision.gameObject.CompareTag("Collect") && _canAttract)
+            if (collision.TryGetComponent(out CollectTag collectTag) && _canAttract)
             {
                 transform.root.position = Vector2.MoveTowards(transform.root.position, collision.transform.root.position, _attractSpeed * Time.deltaTime);
             }

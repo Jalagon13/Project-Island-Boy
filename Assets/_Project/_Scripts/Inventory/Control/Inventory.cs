@@ -1,24 +1,25 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 namespace IslandBoy
 {
     public class Inventory : MonoBehaviour
     {
-        public static event Action AddItemEvent;
+        public static event Action AddItemEvent; // connected to craftslot
 
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private GameObject _inventoryItemPrefab;
-        [SerializeField] private GameObject _itemPickupSignPrefab;
         [SerializeField] private AudioClip _popSound;
         [SerializeField] private int _maxStack;
+        [SerializeField] private UnityEvent<ItemObject, int> _onPickupItem;
         [SerializeField] private InventorySlot[] _inventorySlots;
 
         private MouseItemHolder _mouseItemHolder;
-        private Dictionary<ItemObject, ItemPickupSign> _itemPickups = new();
 
         public InventorySlot[] InventorySlots { get { return _inventorySlots; } }
         public int MaxStack { get { return _maxStack; } }
@@ -43,42 +44,20 @@ namespace IslandBoy
             // return leftover if there is.
             for (int i = 0; i < amount; i++)
             {
-                bool added = Add(item, amount, itemParameters);
-
-                if (!added)
+                if (!Add(item, amount, itemParameters))
                 {
                     int leftOver = amount - i;
-                    StartCoroutine(SpawnPickupSign(item, amount - leftOver));
+                    //SpawnPickupSign(item, amount - leftOver);
+                    AddItemEvent?.Invoke();
+                    _onPickupItem?.Invoke(item, amount - leftOver);
                     return leftOver;
                 }
             }
 
-            StartCoroutine(SpawnPickupSign(item, amount));
-            return 0;
-        }
-
-        private IEnumerator SpawnPickupSign(ItemObject item, int amount)
-        {
-            yield return new WaitForSeconds(Random.Range(0, 0.01f));
-
-            AudioManager.Instance.PlayClip(_popSound, false, true);
-
-            if (_itemPickups.ContainsKey(item))
-            {
-                if (_itemPickups.TryGetValue(item, out ItemPickupSign pickup))
-                {
-                    pickup.Refresh(amount);
-                }
-            }
-            else
-            {
-                GameObject itemPickupSign = Instantiate(_itemPickupSignPrefab);
-                ItemPickupSign pickup = itemPickupSign.GetComponent<ItemPickupSign>();
-                pickup.Initialize(amount, item.Name, () => { _itemPickups.Remove(item); });
-                _itemPickups.Add(item, pickup);
-            }
-
+            //SpawnPickupSign(item, amount);
             AddItemEvent?.Invoke();
+            _onPickupItem?.Invoke(item, amount);
+            return 0;
         }
 
         private bool Add(ItemObject item, int amount, List<ItemParameter> itemParameters = null)
