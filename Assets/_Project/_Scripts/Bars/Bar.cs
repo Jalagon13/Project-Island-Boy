@@ -43,7 +43,7 @@ namespace IslandBoy
                 _cdCounter = _coolDown;
         }
 
-        public void AddTo(int value)
+        public virtual void AddTo(int value)
         {
             _currentValue += value;
 

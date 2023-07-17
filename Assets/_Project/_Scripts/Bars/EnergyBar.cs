@@ -22,6 +22,13 @@ namespace IslandBoy
             ThrowObject.ThrowEvent -= DrainEnergy;
         }
 
+        public override void AddTo(int value)
+        {
+            base.AddTo(value);
+
+            _healthBar.Draining = false;
+        }
+
         private void DrainEnergy()
         {
             _currentValue--;
@@ -30,6 +37,7 @@ namespace IslandBoy
             {
                 _currentValue = 0;
                 UpdateUI();
+                _healthBar.Draining = true;
                 StartCoroutine(_healthBar.DrainHp());
             }
             else
