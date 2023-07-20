@@ -15,9 +15,9 @@ namespace IslandBoy
         [SerializeField] private GameObject _grassPilePrefab;
         [SerializeField] private TileBase _sandTile;
         [SerializeField] private TileBase _grassTile;
-        [SerializeField] private Tilemap _island;
-        [SerializeField] private Tilemap _floor;
-        [SerializeField] private Tilemap _walls;
+        [SerializeField] private Tilemap _islandTm;
+        [SerializeField] private Tilemap _floorTm;
+        [SerializeField] private Tilemap _wallsTm;
         [SerializeField] private LootTable _seaLoot;
 
         private List<Vector2> _bedPositions = new();
@@ -38,7 +38,7 @@ namespace IslandBoy
                 Vector2 spawnPosition = Camera.main.ViewportToWorldPoint(new Vector2(randomX, randomY));
 
                 var itemGo = WorldItemManager.Instance.SpawnItem(spawnPosition, loot.Key, loot.Value, null, false);
-                itemGo.AddComponent<ItemSeaWander>().StartWander(_island);
+                itemGo.AddComponent<ItemSeaWander>().StartWander(_islandTm);
 
                 yield return new WaitForSeconds(Random.Range(1f, 5f));
             }
@@ -74,13 +74,13 @@ namespace IslandBoy
 
         private void SpawnPile(TileBase tileToLookFor, GameObject pilePrefab)
         {
-            BoundsInt bounds = _island.cellBounds;
+            BoundsInt bounds = _islandTm.cellBounds;
 
             List<Vector3Int> clearTilePos = new();
 
             foreach (Vector3Int pos in bounds.allPositionsWithin)
             {
-                if (_island.GetTile(pos) == tileToLookFor && TileAreaClear(pos))
+                if (_islandTm.GetTile(pos) == tileToLookFor && TileAreaClear(pos))
                 {
                     clearTilePos.Add(pos);
                 }
@@ -90,7 +90,7 @@ namespace IslandBoy
             {
                 var pos = clearTilePos[Random.Range(0, clearTilePos.Count)];
 
-                if (TileAreaClear(pos) && !IsNear(pilePrefab, pos, 3f))
+                if (TileAreaClear(pos) && !IsNear(pilePrefab, pos, 3f) && !_wallsTm.HasTile(pos) && !_floorTm.HasTile(pos))
                 {
                     var go = Instantiate(pilePrefab, pos, Quaternion.identity);
                     go.name = pilePrefab.name;
@@ -119,13 +119,13 @@ namespace IslandBoy
 
             _crabMobs.Clear();
 
-            BoundsInt bounds = _island.cellBounds;
+            BoundsInt bounds = _islandTm.cellBounds;
 
             List<Vector3Int> sandTiles = new();
 
             foreach (Vector3Int pos in bounds.allPositionsWithin)
             {
-                if (_island.HasTile(pos) && _island.GetTile(pos) == _sandTile)
+                if (_islandTm.HasTile(pos) && _islandTm.GetTile(pos) == _sandTile)
                 {
                     sandTiles.Add(pos);
                 }
@@ -153,36 +153,44 @@ namespace IslandBoy
 
         private bool TileAreaClear(Vector3Int pos)
         {
-            var colliders = Physics2D.OverlapCircleAll(new Vector2(pos.x + 0.5f, pos.y + 0.5f), 0.3f);
+            var colliders = Physics2D.OverlapCircleAll(new Vector2(pos.x + 0.5f, pos.y + 0.5f), 0.25f);
 
-            return colliders.Length <= 0;
+            foreach (var collider in colliders)
+            {
+                if(collider.gameObject.layer == 3)
+                    return false;
+            }
+
+            return true;
         }
 
         private void CheckHousing(Vector2 startPos)
         {
             Stack<Vector3Int> tiles = new();
-            List<Vector3Int> validPositions = new();
+            List<Vector3Int> floorTilePositions = new(); // list of positions of tile that have a floor and no wall or door on it.
             tiles.Push(Vector3Int.FloorToInt(startPos));
 
+            // checks if this is an enclosed space with flooring everywhere
             while (tiles.Count > 0)
             {
                 var p = Vector3Int.FloorToInt(tiles.Pop());
-                if (_floor.HasTile(p))
+
+                if (_floorTm.HasTile(p))
                 {
-                    if (_walls.HasTile(p) || HasDoor(p))
+                    if (_wallsTm.HasTile(p) || HasDoor(p))
                     {
                         continue;
                     }
-                    else if (!validPositions.Contains(p))
+                    else if (!floorTilePositions.Contains(p))
                     {
-                        validPositions.Add(p);
+                        floorTilePositions.Add(p);
                         tiles.Push(new Vector3Int(p.x - 1, p.y));
                         tiles.Push(new Vector3Int(p.x + 1, p.y));
                         tiles.Push(new Vector3Int(p.x, p.y - 1));
                         tiles.Push(new Vector3Int(p.x, p.y + 1));
                     }
                 }
-                else if (_walls.HasTile(p) || HasDoor(p))
+                else if (_wallsTm.HasTile(p) || HasDoor(p))
                 {
                     continue;
                 }
@@ -193,8 +201,31 @@ namespace IslandBoy
                 }
             }
 
-            Debug.Log($"{startPos} is valid housing! # of spaces: {validPositions.Count}");
-            Instantiate(_minerNpcPrefab, validPositions[2], Quaternion.identity);
+            // first check how many free floor spaces are there in the floorTilePositions list
+            List<Vector3Int> clearFloorTiles = new();
+            foreach (var pos in floorTilePositions)
+            {
+                if (TileAreaClear(pos))
+                {
+                    clearFloorTiles.Add(pos);
+                }
+            }
+
+            // if minimum number of clear floor tiles is below the set minimum, this is not a valid housing
+            int minClearFloorTileAmount = 5;
+            if (clearFloorTiles.Count < minClearFloorTileAmount)
+            {
+                Debug.Log($"Not enough free space in this closed area (clear floor tiles count: " +
+                    $"{clearFloorTiles.Count} | minimum clear tiles needed: {minClearFloorTileAmount}) therefore {startPos} is not a house");
+                return;
+            }
+
+            // find a random position of the clear floor tiles and spawn the NPC there
+            var randFloorTile = clearFloorTiles[Random.Range(0, clearFloorTiles.Count)];
+            var spawnNpcPosition = new Vector2(randFloorTile.x + 0.5f, randFloorTile.y + 0.5f);
+
+            Debug.Log($"{startPos} is valid housing! # of spaces: {clearFloorTiles.Count}");
+            Instantiate(_minerNpcPrefab, spawnNpcPosition, Quaternion.identity);
             return;
         }
 

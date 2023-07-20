@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -14,21 +15,24 @@ namespace IslandBoy
         private Collider2D _doorCollider;
         private SpriteRenderer _sr;
         private bool _opened;
+        private bool _canInteract;
 
         private void Awake()
         {
-            _doorCollider = transform.GetChild(0).GetComponent<Collider2D>();
-            _sr = transform.GetChild(1).GetComponent<SpriteRenderer>();
+            _doorCollider = transform.GetChild(1).GetComponent<Collider2D>();
+            _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
         }
 
-        private void Start()
+        private IEnumerator Start()
         {
             Close();
+            yield return new WaitForSeconds(0.15f);
+            _canInteract = true;
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if(eventData.button == PointerEventData.InputButton.Right && _pr.PlayerInRange(transform.position))
+            if(eventData.button == PointerEventData.InputButton.Right && _pr.PlayerInRange(transform.position) && _canInteract)
             {
                 if (_opened)
                     Close();
