@@ -22,6 +22,7 @@ namespace IslandBoy
 
         private List<Vector2> _bedPositions = new();
         private List<GameObject> _crabMobs = new();
+        private bool _minerNpcSpawned;
 
         private IEnumerator Start()
         {
@@ -221,11 +222,14 @@ namespace IslandBoy
             }
 
             // find a random position of the clear floor tiles and spawn the NPC there
+            if (_minerNpcSpawned) return;
+
             var randFloorTile = clearFloorTiles[Random.Range(0, clearFloorTiles.Count)];
             var spawnNpcPosition = new Vector2(randFloorTile.x + 0.5f, randFloorTile.y + 0.5f);
 
             Debug.Log($"{startPos} is valid housing! # of spaces: {clearFloorTiles.Count}");
             Instantiate(_minerNpcPrefab, spawnNpcPosition, Quaternion.identity);
+            _minerNpcSpawned = true;
             return;
         }
 

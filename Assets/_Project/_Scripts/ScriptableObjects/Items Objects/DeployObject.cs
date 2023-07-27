@@ -8,6 +8,7 @@ namespace IslandBoy
     public class DeployObject : ItemObject
     {
         [SerializeField] private GameObject _prefabToDeploy;
+        [SerializeField] private RuleTile _exclusiveDeployTile;
         [SerializeField] private AudioClip _deploySound;
 
         public override ToolType ToolType => _baseToolType;
@@ -17,6 +18,13 @@ namespace IslandBoy
         public override void ExecuteAction(SelectedSlotControl control)
         {
             if (PointerHandler.IsOverLayer(5)) return;
+
+            if(_exclusiveDeployTile != null)
+            {
+                var taPos = Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position);
+
+                if (control.IslandTilemap.GetTile(taPos) != _exclusiveDeployTile) return;
+            }
 
             if (control.TileAction.IsClear() && 
                 !control.WallTilemap.HasTile(Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position)))

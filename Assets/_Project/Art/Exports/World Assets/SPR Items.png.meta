@@ -210,7 +210,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: item_berry
+      name: item_fish
       rect:
         serializedVersion: 2
         x: 16
@@ -575,7 +575,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -599,11 +599,11 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       item_bed: -1855741160
-      item_berry: 1211993972
       item_campfire: 1223464883
       item_coal: -1651487029
       item_construction_table: 449123009
       item_diamond: -538633122
+      item_fish: 1211993972
       item_grass: 456514419
       item_hook: -1546665967
       item_key: 1935163884
