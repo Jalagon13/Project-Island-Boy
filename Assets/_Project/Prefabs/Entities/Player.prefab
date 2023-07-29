@@ -306,7 +306,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 120}
+  m_AnchoredPosition: {x: 0, y: 90}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2100728452
@@ -728,6 +728,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxValue: 100
   _coolDown: 4
+  _drainRate: 0.5
 --- !u!1 &4210445616782556175
 GameObject:
   m_ObjectHideFlags: 0
@@ -1796,7 +1797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
-  _maxStack: 99
+  _maxStack: 999
   _onPickupItem:
     m_PersistentCalls:
       m_Calls:

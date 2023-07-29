@@ -13,11 +13,11 @@ namespace IslandBoy
 
         public void EnterCave()
         {
-            if (!_pr.Inventory.Contains(_diamondItem, _cost)) return;
+            //if (!_pr.Inventory.Contains(_diamondItem, _cost)) return;
+            //_pr.Inventory.RemoveItem(_diamondItem, _cost);
+            //CursorManager.Instance.SetDefaultCursor();
 
-            _pr.Inventory.RemoveItem(_diamondItem, _cost);
-
-            CursorManager.Instance.SetDefaultCursor();
+            LevelManager.Instance.LoadUnderground();
         }
     }
 }
