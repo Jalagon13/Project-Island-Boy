@@ -111,9 +111,6 @@ namespace IslandBoy
                             _ti.ChangeToOffIndicator();
 
                             _ti.UpdateLogic();
-
-                            if(collider.TryGetComponent(out CaveBehavior caveBehavior))
-                                caveBehavior.DestroyByPlayerAction();
                         }
                         else
                         {

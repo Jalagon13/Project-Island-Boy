@@ -18,7 +18,6 @@ namespace IslandBoy
             _pr.Inventory.RemoveItem(_diamondItem, _cost);
 
             CursorManager.Instance.SetDefaultCursor();
-            LevelManager.Instance.TransitionToCaveLevel();
         }
     }
 }
