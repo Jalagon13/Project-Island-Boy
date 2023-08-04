@@ -8,15 +8,16 @@ namespace IslandBoy
 {
     public class UndergroundGeneration : MonoBehaviour
     {
-        [SerializeField] private Tilemap _testTmPrefab;
         [SerializeField] private int _chunkSideLength = 12;
+        [SerializeField] private Tilemap[] _caveChunkPrefabs;
 
         private Tilemap _undergroundTm;
         private List<Vector2> _backlog = new();
-        private static Vector2[,] _chunkSpawnPositions = new Vector2[4,4];
-        private int _currentRowIndex;
-        private int _currentColIndex;
-        private int _genDirection;
+        private static Vector2[,] _spawnPositions = new Vector2[4,4];
+        private int _currRowIndex;
+        private int _currColIndex;
+        private int _direction;
+        private int _lastChunkElement;
         private bool _generationComplete;
 
         private void Awake()
@@ -27,126 +28,137 @@ namespace IslandBoy
         private void Start()
         {
             // populates the matrix with positions so the first row of the [,] is the first row of the positions etc. makes coding easier
-            for (int i = 0; i < _chunkSpawnPositions.GetLength(0); i++)
+            for (int i = 0; i < _spawnPositions.GetLength(0); i++)
             {
-                for (int j = 0; j < _chunkSpawnPositions.GetLength(1); j++)
+                for (int j = 0; j < _spawnPositions.GetLength(1); j++)
                 {
-                    _chunkSpawnPositions[i, j] = new Vector2(j * _chunkSideLength, -i * _chunkSideLength); 
+                    _spawnPositions[i, j] = new Vector2(j * _chunkSideLength, -i * _chunkSideLength); 
                 }
             }
         }
 
-        public void GenerateLevel()
+        public void GenerateNewLevel()
         {
             _generationComplete = false;
 
             _undergroundTm.ClearAllTiles();
 
-            _backlog = new();
+            _currRowIndex = random.Range(0, 4);
+            _currColIndex = 0;
 
-            _currentRowIndex = random.Range(0, 4);
-            _currentColIndex = 0;
+            Vector2 firstRoomSpawnPos = _spawnPositions[_currRowIndex, _currColIndex];
+            SpawnChunk(random.Range(0, 2), firstRoomSpawnPos);
 
-            Vector2 firstRoomSpawnPos = _chunkSpawnPositions[_currentRowIndex, _currentColIndex];
-            SpawnChunk(_testTmPrefab, firstRoomSpawnPos);
+            _direction = random.Range(1, 6);
 
-            _backlog.Add(firstRoomSpawnPos);
+            StartCoroutine(Generate());
 
-            _genDirection = random.Range(1, 6);
+            // fill in the rest of the rooms with filler rooms
+        }
+
+        private IEnumerator Generate()
+        {
+            int counter = 0;
 
             while (_generationComplete == false)
             {
+                yield return new WaitForSeconds(0.75f);
                 TryGenerateNextRoom();
+                counter++;
+                if (counter > 100)
+                {
+                    Debug.Log("counter went over 100");
+                    break;
+                }
             }
         }
 
         private void TryGenerateNextRoom()
         {
-            // 1 & 2 -> generate room up, 3 & 4 -> generate room down, 5 -> generate room right.
-            if (_genDirection == 1 || _genDirection == 2)
+            // if last room was T1, place next room either T1 or T2 then start algorithm again.
+            if(_lastChunkElement == 1 || _lastChunkElement == 3)
             {
-                // check if spawn pos exists
-                if (_currentRowIndex == 0)
+                // if on the last column, 
+                if(_currColIndex == 3)
                 {
-                    // row does not exists, generate room either down or right
-                    _genDirection = random.Range(3, 6);
-                    Debug.Log($"Can't generate up room, try again. New Gen Direction: {_genDirection}");
-                    return;
-                }
-                else
-                {
-                    // move row index "up"
-                    _currentRowIndex--;
-
-                    if (_backlog.Contains(_chunkSpawnPositions[_currentRowIndex, _currentColIndex]))
-                    {
-                        _genDirection = random.Range(3, 6);
-                        Debug.Log($"Can't generate up room bc room is already taken, try again. New Gen Direction: {_genDirection}");
-                        _currentRowIndex++;
-                        return;
-                    }
-                }
-            }
-            else if (_genDirection == 3 || _genDirection == 4)
-            {
-                if(_currentRowIndex == 3)
-                {
-                    int temp = random.Range(1, 4);
-
-                    if (temp == 1 || temp == 2)
-                        _genDirection = 1;
-                    else if(temp == 3)
-                        _genDirection = 5;
-
-                    Debug.Log($"Can't generate down room, try again. New Gen Direction: {_genDirection}");
-                    return;
-                }
-                else
-                {
-                    _currentRowIndex++;
-
-                    if (_backlog.Contains(_chunkSpawnPositions[_currentRowIndex, _currentColIndex]))
-                    {
-                        int temp = random.Range(1, 4);
-
-                        if (temp == 1 || temp == 2)
-                            _genDirection = 1;
-                        else if (temp == 3)
-                            _genDirection = 5;
-
-                        Debug.Log($"Can't generate down room bc room is already taken, try again. New Gen Direction: {_genDirection}");
-                        _currentRowIndex--;
-                        return;
-                    }
-                }
-            }
-            else if (_genDirection == 5)
-            {
-                if(_currentColIndex == 3)
-                {
-                    Debug.Log("Can't genereate right room. Algorithm done");
+                    // stop algorithm
+                    Debug.Log("Done");
                     _generationComplete = true;
+                }
+                else
+                {
+                    // place either T1 or T2 then start algorithm again
+                    _currColIndex++;
+                    SpawnChunk(random.Range(1, 3) == 1 ? 3 : 2, _spawnPositions[_currRowIndex, _currColIndex]);
+                    _direction = random.Range(1, 6);
+                }
+
+                return;
+            }
+            else if (_direction == 1 || _direction == 2) // 1 & 2 -> generate room up
+            {
+                // move row index "up"
+                _currRowIndex--;
+
+                if (_currRowIndex == 0 || _currRowIndex < 0)
+                {
+                    _currRowIndex = 0;
+
+                    // spawn a T1 room
+                    SpawnChunk(1, _spawnPositions[_currRowIndex, _currColIndex]);
                     return;
                 }
                 else
                 {
-                    _currentColIndex++;
+                    SpawnChunk(0, _spawnPositions[_currRowIndex, _currColIndex]);
+                    _direction = random.Range(1, 4) < 3 ? 1 : 5;
+                    return;
                 }
             }
+            else if (_direction == 3 || _direction == 4) // 3 & 4 -> generate room down
+            {
+                _currRowIndex++;
 
-            SpawnChunk(_testTmPrefab, _chunkSpawnPositions[_currentRowIndex, _currentColIndex]);
-            _backlog.Add(_chunkSpawnPositions[_currentRowIndex, _currentColIndex]);
-            _genDirection = random.Range(1, 6);
-            Debug.Log($"Room Generated! Next Generation Direction: {_genDirection}");
+                if(_currRowIndex == 3 || _currRowIndex > 3)
+                {
+                    _currRowIndex = 3;
+
+                    // spawn a T1 room
+                    SpawnChunk(1, _spawnPositions[_currRowIndex, _currColIndex]);
+                    return;
+                }
+                else
+                {
+                    SpawnChunk(0, _spawnPositions[_currRowIndex, _currColIndex]);
+                    _direction = random.Range(1, 4) < 3 ? 3 : 5;
+                    return;
+                }
+            }
+            else if (_direction == 5) // 5 -> generate room right.
+            {
+                if(_lastChunkElement == 1 || _lastChunkElement == 2 || _lastChunkElement == 3)
+                {
+                    SpawnChunk(random.Range(1, 3) == 1 ? 3 : 2, _spawnPositions[_currRowIndex, _currColIndex]);
+                }
+                else
+                {
+                    SpawnChunk(1, _spawnPositions[_currRowIndex, _currColIndex]);
+                }
+                
+                return;
+
+            }
         }
 
-        private void SpawnChunk(Tilemap tm, Vector2 spawnPos)
+        private void SpawnChunk(int roomType, Vector2 spawnPos)
         {
-            BoundsInt area = tm.cellBounds;
-            TileBase[] tiles = tm.GetTilesBlock(area);
+            BoundsInt area = _caveChunkPrefabs[roomType].cellBounds;
+            TileBase[] tiles = _caveChunkPrefabs[roomType].GetTilesBlock(area);
 
             area = new BoundsInt(Vector3Int.FloorToInt(spawnPos), area.size);
+
             _undergroundTm.SetTilesBlock(area, tiles);
+            _lastChunkElement = roomType;
         }
     }
 }
