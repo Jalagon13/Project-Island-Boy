@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 namespace IslandBoy
 {
@@ -28,6 +29,11 @@ namespace IslandBoy
         {
             foreach (KeyValuePair<ItemObject, int> loot in _seaLoot.Loot())
             {
+                yield return new WaitForSeconds(Random.Range(1f, 5f));
+
+                if (SceneManager.GetActiveScene().buildIndex != 0)
+                    break;
+
                 float randomX = Random.value;
                 float randomY = Random.value;
 
@@ -40,8 +46,6 @@ namespace IslandBoy
 
                 var itemGo = WorldItemManager.Instance.SpawnItem(spawnPosition, loot.Key, loot.Value, null, false);
                 itemGo.AddComponent<ItemSeaWander>().StartWander(_islandTm);
-
-                yield return new WaitForSeconds(Random.Range(1f, 5f));
             }
 
             StartCoroutine(Start());
