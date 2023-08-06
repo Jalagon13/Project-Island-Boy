@@ -52,7 +52,7 @@ namespace IslandBoy
             SceneManager.UnloadSceneAsync(1);
 
             EnableSurfaceObjects(true);
-            _pr.Position = _surfaceReturnPosition;
+            _playerObject.transform.SetPositionAndRotation(_surfaceReturnPosition, Quaternion.identity);
         }
 
         private IEnumerator Load(int sceneIndex)
@@ -90,21 +90,16 @@ namespace IslandBoy
                 {
                     EnableSurfaceObjects(false);
                 }
-                else if (sceneIndex == 0)
-                {
-                    EnableSurfaceObjects(true);
-                    _pr.Position = _surfaceReturnPosition;
-                }
             }
         }
 
-        private void EnableSurfaceObjects(bool _)
+        private void EnableSurfaceObjects(bool foo)
         {
             _surfaceScene.GetRootGameObjects(_rootObjects);
 
             foreach (var go in _rootObjects)
             {
-                go.SetActive(_);
+                go.SetActive(foo);
             }
         }
     }
