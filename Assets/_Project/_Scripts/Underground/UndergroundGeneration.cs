@@ -45,6 +45,7 @@ namespace IslandBoy
 
         public void GenerateNewLevel()
         {
+            // brand new clean slate
             _generationComplete = false;
             _floorTm.ClearAllTiles();
             _wallTm.ClearAllTiles();
@@ -56,9 +57,10 @@ namespace IslandBoy
 
             _direction = random.Range(1, 6);
 
+            // generate the new level
             while (_generationComplete == false)
             {
-                TryGenerateNextRoom();
+                GenerateLevel();
             }
 
             // fill in the rest of the rooms with filler rooms
@@ -118,7 +120,7 @@ namespace IslandBoy
             }
         }
 
-        private void TryGenerateNextRoom()
+        private void GenerateLevel()
         {
             if(_lastChunkElement == 1 || _lastChunkElement == 3)
             {
@@ -189,19 +191,6 @@ namespace IslandBoy
             BoundsInt area = _caveChunkPrefabs[roomType].cellBounds;
             TileBase[] tiles = _caveChunkPrefabs[roomType].GetTilesBlock(area);
             area = new BoundsInt(Vector3Int.FloorToInt(spawnPos), area.size);
-
-            //foreach (Vector3Int pos in area.allPositionsWithin)
-            //{
-            //    if(_caveChunkPrefabs[roomType].GetTile(pos) == _stoneTile)
-            //    {
-            //        _wallTm.SetTile(pos, _stoneTile);
-            //        _floorTm.SetTile(pos, _floorTile);
-            //    }
-            //    else if(_caveChunkPrefabs[roomType].GetTile(pos) == _floorTile)
-            //    {
-            //        _floorTm.SetTile(pos, _floorTile);
-            //    }
-            //}
 
             _floorTm.SetTilesBlock(area, tiles);
             _lastChunkElement = roomType;
