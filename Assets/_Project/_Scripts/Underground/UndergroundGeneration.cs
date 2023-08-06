@@ -9,10 +9,12 @@ namespace IslandBoy
     public class UndergroundGeneration : MonoBehaviour
     {
         [SerializeField] private int _chunkSideLength = 12;
-        [SerializeField] private TileBase _stoneTile;
+        [SerializeField] private TileBase _stoneWallTile;
+        [SerializeField] private TileBase _floorTile;
         [SerializeField] private Tilemap[] _caveChunkPrefabs;
 
-        private Tilemap _undergroundTm;
+        private Tilemap _floorTm;
+        private Tilemap _wallTm;
         private List<Vector2> _usedPositions = new();
         private static Vector2[,] _spawnPositions = new Vector2[4,4];
         private bool _generationComplete;
@@ -23,7 +25,8 @@ namespace IslandBoy
 
         private void Awake()
         {
-            _undergroundTm = transform.GetChild(0).GetComponent<Tilemap>();
+            _floorTm = transform.GetChild(0).GetComponent<Tilemap>();
+            _wallTm = transform.GetChild(1).GetComponent<Tilemap>();
         }
 
         private void Start()
@@ -36,12 +39,15 @@ namespace IslandBoy
                     _spawnPositions[i, j] = new Vector2(j * _chunkSideLength, -i * _chunkSideLength); 
                 }
             }
+
+            GenerateNewLevel();
         }
 
         public void GenerateNewLevel()
         {
             _generationComplete = false;
-            _undergroundTm.ClearAllTiles();
+            _floorTm.ClearAllTiles();
+            _wallTm.ClearAllTiles();
             _currRowIndex = random.Range(0, 4);
             _currColIndex = 0;
             _usedPositions = new();
@@ -85,7 +91,7 @@ namespace IslandBoy
             }
 
             // add a border around the map
-            var bounds = _undergroundTm.cellBounds;
+            var bounds = _floorTm.cellBounds;
             var offset = 5;
 
             bounds.xMax += offset;
@@ -95,9 +101,19 @@ namespace IslandBoy
 
             foreach (Vector3Int pos in bounds.allPositionsWithin)
             {
-                if (_undergroundTm.GetTile(pos) == null)
+                if (_floorTm.GetTile(pos) == null)
                 {
-                    _undergroundTm.SetTile(pos, _stoneTile);
+                    _floorTm.SetTile(pos, _stoneWallTile);
+                }
+            }
+
+            // separate the floor and wall tiles to their own tilemap
+            foreach (Vector3Int pos in bounds.allPositionsWithin)
+            {
+                if (_floorTm.GetTile(pos) == _stoneWallTile)
+                {
+                    _floorTm.SetTile(pos, _floorTile);
+                    _wallTm.SetTile(pos, _stoneWallTile);
                 }
             }
         }
@@ -122,8 +138,6 @@ namespace IslandBoy
                     else if (_currRowIndex == 0)
                         _direction = 3;
                 }
-
-                return;
             }
             else if (_direction == 1 || _direction == 2) // 1 & 2 -> generate room up
             {
@@ -132,9 +146,8 @@ namespace IslandBoy
                 if (_currRowIndex == 0 || _currRowIndex < 0)
                 {
                     _currRowIndex = 0;
-
-                    SpawnChunk(1, _spawnPositions[_currRowIndex, _currColIndex]);
                     _direction = 3;
+                    SpawnChunk(1, _spawnPositions[_currRowIndex, _currColIndex]);
                 }
                 else
                 {
@@ -149,9 +162,8 @@ namespace IslandBoy
                 if(_currRowIndex == 3 || _currRowIndex > 3)
                 {
                     _currRowIndex = 3;
-
-                    SpawnChunk(1, _spawnPositions[_currRowIndex, _currColIndex]);
                     _direction = 1;
+                    SpawnChunk(1, _spawnPositions[_currRowIndex, _currColIndex]);
                 }
                 else
                 {
@@ -178,7 +190,20 @@ namespace IslandBoy
             TileBase[] tiles = _caveChunkPrefabs[roomType].GetTilesBlock(area);
             area = new BoundsInt(Vector3Int.FloorToInt(spawnPos), area.size);
 
-            _undergroundTm.SetTilesBlock(area, tiles);
+            //foreach (Vector3Int pos in area.allPositionsWithin)
+            //{
+            //    if(_caveChunkPrefabs[roomType].GetTile(pos) == _stoneTile)
+            //    {
+            //        _wallTm.SetTile(pos, _stoneTile);
+            //        _floorTm.SetTile(pos, _floorTile);
+            //    }
+            //    else if(_caveChunkPrefabs[roomType].GetTile(pos) == _floorTile)
+            //    {
+            //        _floorTm.SetTile(pos, _floorTile);
+            //    }
+            //}
+
+            _floorTm.SetTilesBlock(area, tiles);
             _lastChunkElement = roomType;
 
             if(!_usedPositions.Contains(spawnPos))
