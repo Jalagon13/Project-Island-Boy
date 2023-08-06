@@ -8,15 +8,19 @@ namespace IslandBoy
 {
     public class LevelManager : Singleton<LevelManager>
     {
+        [SerializeField] private PlayerReference _pr;
+
+        private Scene _surfaceScene;
         private AsyncOperation _sceneAsync;
-        private Scene _currentScene;
         private GameObject _playerObject;
         private Camera _camera;
-        List<GameObject> _rootObjects;
+        private List<GameObject> _rootObjects;
+        private Vector2 _surfaceReturnPosition;
 
         protected override void Awake()
         {
             base.Awake();
+            _surfaceScene = SceneManager.GetSceneByBuildIndex(0);
             _playerObject = GameObject.Find("Player");
             _camera = Camera.main;
             _rootObjects = new();
@@ -24,8 +28,31 @@ namespace IslandBoy
 
         public void LoadUnderground()
         {
-            _currentScene = SceneManager.GetActiveScene();
+            if(SceneManager.GetActiveScene().buildIndex != 0)
+            {
+                Debug.Log("Can not load underground because current scene is not surface");
+                return;
+            }
+
+            _surfaceReturnPosition = _pr.Position;
             StartCoroutine(Load(1));
+        }
+
+        public void LoadSurface()
+        {
+            if(SceneManager.GetActiveScene().buildIndex != 1)
+            {
+                Debug.Log("Can not load surface because current scene is not underground");
+                return;
+            }
+
+            SceneManager.MoveGameObjectToScene(_playerObject, _surfaceScene);
+            SceneManager.MoveGameObjectToScene(_camera.gameObject, _surfaceScene);
+            SceneManager.SetActiveScene(_surfaceScene);
+            SceneManager.UnloadSceneAsync(1);
+
+            EnableSurfaceObjects(true);
+            _pr.Position = _surfaceReturnPosition;
         }
 
         private IEnumerator Load(int sceneIndex)
@@ -59,17 +86,25 @@ namespace IslandBoy
                 SceneManager.MoveGameObjectToScene(_camera.gameObject, sceneToLoad);
                 SceneManager.SetActiveScene(sceneToLoad);
 
-                DisableSurfaceGameObjects();
+                if(sceneIndex == 1)
+                {
+                    EnableSurfaceObjects(false);
+                }
+                else if (sceneIndex == 0)
+                {
+                    EnableSurfaceObjects(true);
+                    _pr.Position = _surfaceReturnPosition;
+                }
             }
         }
 
-        private void DisableSurfaceGameObjects()
+        private void EnableSurfaceObjects(bool _)
         {
-            _currentScene.GetRootGameObjects(_rootObjects);
+            _surfaceScene.GetRootGameObjects(_rootObjects);
 
             foreach (var go in _rootObjects)
             {
-                go.SetActive(false);
+                go.SetActive(_);
             }
         }
     }
