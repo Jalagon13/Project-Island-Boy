@@ -452,8 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1cf18c303ee53647b524064994863b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chunkSideLength: 10
-  _stoneWallTile: {fileID: 11400000, guid: 18644ea5358575f4694248ee33a2c3aa, type: 2}
+  _wallTile: {fileID: 11400000, guid: 18644ea5358575f4694248ee33a2c3aa, type: 2}
   _floorTile: {fileID: 11400000, guid: 0184801a711830146bf6180e1bf4973c, type: 2}
   _caveChunkPrefabs:
   - {fileID: 2681210377434889964, guid: b34b3373b53b06b4dbc9947d3a74f9d9, type: 3}

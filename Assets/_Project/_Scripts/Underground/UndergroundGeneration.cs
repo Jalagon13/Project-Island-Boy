@@ -8,8 +8,7 @@ namespace IslandBoy
 {
     public class UndergroundGeneration : MonoBehaviour
     {
-        [SerializeField] private int _chunkSideLength = 12;
-        [SerializeField] private TileBase _stoneWallTile;
+        [SerializeField] private TileBase _wallTile;
         [SerializeField] private TileBase _floorTile;
         [SerializeField] private Tilemap[] _caveChunkPrefabs;
 
@@ -22,11 +21,13 @@ namespace IslandBoy
         private int _currRowIndex;
         private int _currColIndex;
         private int _direction;
+        private int _chunkSideLength;
 
         private void Awake()
         {
             _floorTm = transform.GetChild(0).GetComponent<Tilemap>();
             _wallTm = transform.GetChild(1).GetComponent<Tilemap>();
+            _chunkSideLength = _caveChunkPrefabs[0].cellBounds.size.x;
         }
 
         private void Start()
@@ -105,17 +106,17 @@ namespace IslandBoy
             {
                 if (_floorTm.GetTile(pos) == null)
                 {
-                    _floorTm.SetTile(pos, _stoneWallTile);
+                    _floorTm.SetTile(pos, _wallTile);
                 }
             }
 
             // separate the floor and wall tiles to their own tilemap
             foreach (Vector3Int pos in bounds.allPositionsWithin)
             {
-                if (_floorTm.GetTile(pos) == _stoneWallTile)
+                if (_floorTm.GetTile(pos) == _wallTile)
                 {
                     _floorTm.SetTile(pos, _floorTile);
-                    _wallTm.SetTile(pos, _stoneWallTile);
+                    _wallTm.SetTile(pos, _wallTile);
                 }
             }
         }
