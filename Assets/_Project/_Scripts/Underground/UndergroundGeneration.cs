@@ -8,15 +8,18 @@ namespace IslandBoy
 {
     public class UndergroundGeneration : MonoBehaviour
     {
+        [SerializeField] private GameObject _ugExitPrefab;
         [SerializeField] private TileBase _wallTile;
         [SerializeField] private TileBase _floorTile;
         [SerializeField] private Tilemap[] _caveChunkPrefabs;
 
         private Tilemap _floorTm;
         private Tilemap _wallTm;
+        private GameObject _worldStructs;
         private List<Vector2> _usedPositions = new();
         private static Vector2[,] _spawnPositions = new Vector2[4,4];
         private bool _generationComplete;
+        private bool _spawnExitLeftSide;
         private int _lastChunkElement;
         private int _currRowIndex;
         private int _currColIndex;
@@ -27,6 +30,7 @@ namespace IslandBoy
         {
             _floorTm = transform.GetChild(0).GetComponent<Tilemap>();
             _wallTm = transform.GetChild(1).GetComponent<Tilemap>();
+            _worldStructs = transform.GetChild(2).gameObject;
             _chunkSideLength = _caveChunkPrefabs[0].cellBounds.size.x;
         }
 
@@ -50,11 +54,27 @@ namespace IslandBoy
             _generationComplete = false;
             _floorTm.ClearAllTiles();
             _wallTm.ClearAllTiles();
+            _usedPositions = new();
+            _spawnExitLeftSide = random.Range(0, 2) == 0;
             _currRowIndex = random.Range(0, 4);
             _currColIndex = 0;
-            _usedPositions = new();
+
+            foreach (Transform transform in _worldStructs.transform)
+            {
+                Destroy(transform.gameObject);
+            }
 
             SpawnChunk(random.Range(0, 2), _spawnPositions[_currRowIndex, _currColIndex]);
+
+            if (_spawnExitLeftSide)
+            {
+                // spawn exit on the center of the first spawn chunk
+                var spawnPos = new Vector2(_spawnPositions[_currRowIndex, _currColIndex].x + (_chunkSideLength / 2), _spawnPositions[_currRowIndex, _currColIndex].y + (_chunkSideLength / 2));
+                GameObject foo = Instantiate(_ugExitPrefab, spawnPos, Quaternion.identity);
+                foo.transform.SetParent(_worldStructs.transform);
+
+                GameObject.Find("Player").transform.SetPositionAndRotation(new Vector2(spawnPos.x + 0.5f, spawnPos.y - 1), Quaternion.identity);
+            }
 
             _direction = random.Range(1, 6);
 
@@ -129,6 +149,15 @@ namespace IslandBoy
                 {
                     _generationComplete = true;
                     _direction = 0;
+
+                    if(_spawnExitLeftSide == false)
+                    {
+                        var spawnPos = new Vector2(_spawnPositions[_currRowIndex, _currColIndex].x + (_chunkSideLength / 2), _spawnPositions[_currRowIndex, _currColIndex].y + (_chunkSideLength / 2));
+                        GameObject foo = Instantiate(_ugExitPrefab, spawnPos, Quaternion.identity);
+                        foo.transform.SetParent(_worldStructs.transform);
+
+                        GameObject.Find("Player").transform.SetPositionAndRotation(new Vector2(spawnPos.x + 0.5f, spawnPos.y - 1), Quaternion.identity);
+                    }
                 }
                 else
                 {
