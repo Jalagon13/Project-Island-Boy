@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,8 @@ namespace IslandBoy
         [SerializeField] private GameObject _ugExitPrefab;
         [SerializeField] private TileBase _wallTile;
         [SerializeField] private TileBase _floorTile;
-        [SerializeField] private Tilemap[] _caveChunkPrefabs;
+        //[SerializeField] private Tilemap[] _caveChunkPrefabs;
+        [SerializeField] private ChunkGroup[] _chunkGroups;
 
         private Tilemap _floorTm;
         private Tilemap _wallTm;
@@ -31,7 +33,8 @@ namespace IslandBoy
             _floorTm = transform.GetChild(0).GetComponent<Tilemap>();
             _wallTm = transform.GetChild(1).GetComponent<Tilemap>();
             _worldStructs = transform.GetChild(2).gameObject;
-            _chunkSideLength = _caveChunkPrefabs[0].cellBounds.size.x;
+            //_chunkSideLength = _caveChunkPrefabs[0].cellBounds.size.x;
+            _chunkSideLength = _chunkGroups[0].RandomTilemap.cellBounds.size.x;
         }
 
         private void Start()
@@ -67,14 +70,7 @@ namespace IslandBoy
             SpawnChunk(random.Range(0, 2), _spawnPositions[_currRowIndex, _currColIndex]);
 
             if (_spawnExitLeftSide)
-            {
-                // spawn exit on the center of the first spawn chunk
-                var spawnPos = new Vector2(_spawnPositions[_currRowIndex, _currColIndex].x + (_chunkSideLength / 2), _spawnPositions[_currRowIndex, _currColIndex].y + (_chunkSideLength / 2));
-                GameObject foo = Instantiate(_ugExitPrefab, spawnPos, Quaternion.identity);
-                foo.transform.SetParent(_worldStructs.transform);
-
-                GameObject.Find("Player").transform.SetPositionAndRotation(new Vector2(spawnPos.x + 0.5f, spawnPos.y - 1), Quaternion.identity);
-            }
+                SpawnPlayer();
 
             _direction = random.Range(1, 6);
 
@@ -151,13 +147,7 @@ namespace IslandBoy
                     _direction = 0;
 
                     if(_spawnExitLeftSide == false)
-                    {
-                        var spawnPos = new Vector2(_spawnPositions[_currRowIndex, _currColIndex].x + (_chunkSideLength / 2), _spawnPositions[_currRowIndex, _currColIndex].y + (_chunkSideLength / 2));
-                        GameObject foo = Instantiate(_ugExitPrefab, spawnPos, Quaternion.identity);
-                        foo.transform.SetParent(_worldStructs.transform);
-
-                        GameObject.Find("Player").transform.SetPositionAndRotation(new Vector2(spawnPos.x + 0.5f, spawnPos.y - 1), Quaternion.identity);
-                    }
+                        SpawnPlayer();
                 }
                 else
                 {
@@ -216,10 +206,22 @@ namespace IslandBoy
             }
         }
 
+        private void SpawnPlayer()
+        {
+            // spawn exit on the center of the first spawn chunk
+            var spawnPos = new Vector2(_spawnPositions[_currRowIndex, _currColIndex].x + (_chunkSideLength / 2), _spawnPositions[_currRowIndex, _currColIndex].y + (_chunkSideLength / 2));
+            GameObject foo = Instantiate(_ugExitPrefab, spawnPos, Quaternion.identity);
+            foo.transform.SetParent(_worldStructs.transform);
+
+            GameObject player = GameObject.Find("Player");
+            if (player != null)
+                player.transform.SetPositionAndRotation(new Vector2(spawnPos.x + 0.5f, spawnPos.y - 1), Quaternion.identity);
+        }
         private void SpawnChunk(int roomType, Vector2 spawnPos)
         {
-            BoundsInt area = _caveChunkPrefabs[roomType].cellBounds;
-            TileBase[] tiles = _caveChunkPrefabs[roomType].GetTilesBlock(area);
+            Tilemap tilemap = _chunkGroups[roomType].RandomTilemap;
+            BoundsInt area = tilemap.cellBounds;
+            TileBase[] tiles = tilemap.GetTilesBlock(area);
             area = new BoundsInt(Vector3Int.FloorToInt(spawnPos), area.size);
 
             _floorTm.SetTilesBlock(area, tiles);
@@ -228,5 +230,13 @@ namespace IslandBoy
             if(!_usedPositions.Contains(spawnPos))
                 _usedPositions.Add(spawnPos);
         }
+    }
+
+    [Serializable]
+    public class ChunkGroup
+    {
+        [SerializeField] private Tilemap[] _group;
+
+        public Tilemap RandomTilemap { get { return _group[random.Range(0, _group.Length)]; } }
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8567054095236193398}
   - component: {fileID: 8567054095236193399}
   m_Layer: 0
-  m_Name: '[T2] Cave Chunk'
+  m_Name: '[T2] LH Chunk 0'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 1
-      m_TileSpriteIndex: 4
+      m_TileSpriteIndex: 7
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -56,7 +56,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 1
-      m_TileSpriteIndex: 6
+      m_TileSpriteIndex: 8
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -126,7 +126,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 1
-      m_TileSpriteIndex: 4
+      m_TileSpriteIndex: 7
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -136,7 +136,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 1
-      m_TileSpriteIndex: 6
+      m_TileSpriteIndex: 8
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -846,7 +846,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 1
-      m_TileSpriteIndex: 4
+      m_TileSpriteIndex: 7
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -856,7 +856,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 1
-      m_TileSpriteIndex: 6
+      m_TileSpriteIndex: 8
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1057,12 +1057,16 @@ Tilemap:
     m_Data: {fileID: 719846663, guid: c2224cecd72da2f4484f0a90ba275a2c, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: -471875378, guid: c2224cecd72da2f4484f0a90ba275a2c, type: 3}
-  - m_RefCount: 3
-    m_Data: {fileID: -688982863, guid: c2224cecd72da2f4484f0a90ba275a2c, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 3
     m_Data: {fileID: 989333007, guid: c2224cecd72da2f4484f0a90ba275a2c, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 3
-    m_Data: {fileID: 874653563, guid: c2224cecd72da2f4484f0a90ba275a2c, type: 3}
+    m_Data: {fileID: -2025918478, guid: c2224cecd72da2f4484f0a90ba275a2c, type: 3}
+  - m_RefCount: 3
+    m_Data: {fileID: -919192389, guid: c2224cecd72da2f4484f0a90ba275a2c, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 100
     m_Data:
