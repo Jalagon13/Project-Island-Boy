@@ -39,6 +39,8 @@ namespace IslandBoy
 
         private void OnEnable()
         {
+            ExtensionMethods.OnSpawn += AddToUgAssets;
+
             // populates the matrix with positions so the first row of the [,] is the first row of the positions etc. makes coding easier
             for (int i = 0; i < _spawnPositions.GetLength(0); i++)
             {
@@ -49,6 +51,16 @@ namespace IslandBoy
             }
 
             GenerateNewLevel();
+        }
+
+        private void OnDisable()
+        {
+            ExtensionMethods.OnSpawn -= AddToUgAssets;
+        }
+
+        private void AddToUgAssets(object newObj)
+        {
+            _ugAssets.Add((GameObject)newObj);
         }
 
         public void GenerateNewLevel()
@@ -143,6 +155,16 @@ namespace IslandBoy
             }
 
             // generate ores
+
+            for (int i = 0; i < 4; i++)
+            {
+                GenerateOreVein();
+            }
+
+        }
+
+        private void GenerateOreVein()
+        {
             Vector2 originPos = _potentialOreVeinPos[random.Range(0, _potentialOreVeinPos.Count)];
             var oreBlueprint = _oreVeinBlueprints.RandomTilemap;
             int xMultiplier = random.Range(0, 2) == 0 ? 1 : -1;
@@ -150,7 +172,7 @@ namespace IslandBoy
 
             foreach (Vector3Int pos in oreBlueprint.cellBounds.allPositionsWithin)
             {
-                if(oreBlueprint.GetTile(pos) != null)
+                if (oreBlueprint.GetTile(pos) != null)
                 {
                     Vector2 spawnPos = originPos + new Vector2(pos.x * xMultiplier, pos.y * yMultiplier);
 

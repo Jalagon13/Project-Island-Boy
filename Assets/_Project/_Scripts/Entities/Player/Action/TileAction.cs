@@ -136,7 +136,8 @@ namespace IslandBoy
         public void PlaceDeployable(GameObject deployable)
         {
             var position = transform.position -= new Vector3(0.5f, 0.5f);
-            Instantiate(deployable, position, Quaternion.identity);
+            //Instantiate(deployable, position, Quaternion.identity);
+            ExtensionMethods.SpawnObject(deployable, position, Quaternion.identity);
         }
 
         private void ModifyDurability()
