@@ -5,14 +5,16 @@ namespace IslandBoy
 {
     public class PlayerMoveInput : MonoBehaviour
     {
-        [SerializeField] private float _speed = 3f;
+        [SerializeField] private float _speed;
 
         private Rigidbody2D _rb;
         private PlayerInput _playerInput;
         private Vector2 _moveDirection;
         private bool _isFacingRight;
+        private float _baseSpeed;
 
         public float Speed { get { return _speed; } set { _speed = value; } }
+        public float BaseSpeed { get { return _baseSpeed; }}
 
         public Vector2 MoveDirection { get { return _moveDirection; } }
         public bool IsFacingRight { get { return _isFacingRight; } }
@@ -20,6 +22,7 @@ namespace IslandBoy
         private void Awake()
         {
             _playerInput = new();
+            _baseSpeed = _speed;
             _rb = GetComponent<Rigidbody2D>();
         }
 

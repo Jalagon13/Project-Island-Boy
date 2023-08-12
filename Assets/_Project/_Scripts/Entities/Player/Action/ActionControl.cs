@@ -123,7 +123,7 @@ namespace IslandBoy
         public void SwingEnd()
         {
             _performingSwing = false;
-            _moveInput.Speed = 3.5f;
+            _moveInput.Speed = _moveInput.BaseSpeed;
             _counter = 0f;
 
             AnimStateManager.ChangeAnimationState(_animator, _idleHash);

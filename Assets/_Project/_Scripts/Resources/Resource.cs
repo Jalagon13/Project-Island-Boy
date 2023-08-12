@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace IslandBoy
 {
@@ -24,6 +25,14 @@ namespace IslandBoy
             _dropPosition = transform.position + new Vector3(0.5f, 0.5f, 0);
             _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
             _currentHitPoints = _maxHitPoints;
+        }
+
+        private void OnEnable()
+        {
+            if(SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                transform.SetParent(LevelManager.Instance.UndergroundStructureHolder.transform, false);
+            }
         }
 
 

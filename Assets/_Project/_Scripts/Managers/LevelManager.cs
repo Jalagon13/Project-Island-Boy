@@ -13,15 +13,20 @@ namespace IslandBoy
         private Scene _surfaceScene;
         private AsyncOperation _sceneAsync;
         private GameObject _playerObject;
+        private GameObject _tileActionObject;
+        private GameObject _ugStructuresObject;
         private Camera _camera;
         private List<GameObject> _rootObjects;
         private Vector2 _surfaceReturnPosition;
+
+        public GameObject UndergroundStructureHolder { get { return _ugStructuresObject; } }
 
         protected override void Awake()
         {
             base.Awake();
             _surfaceScene = SceneManager.GetSceneByBuildIndex(0);
             _playerObject = GameObject.Find("Player");
+            _tileActionObject = GameObject.Find("TileAction");
             _camera = Camera.main;
             _rootObjects = new();
         }
@@ -33,6 +38,8 @@ namespace IslandBoy
                 Debug.Log("Can not load underground because current scene is not surface");
                 return;
             }
+
+            
 
             _surfaceReturnPosition = _pr.Position;
             StartCoroutine(Load(1));
@@ -47,6 +54,7 @@ namespace IslandBoy
             }
 
             SceneManager.MoveGameObjectToScene(_playerObject, _surfaceScene);
+            SceneManager.MoveGameObjectToScene(_tileActionObject, _surfaceScene);
             SceneManager.MoveGameObjectToScene(_camera.gameObject, _surfaceScene);
             SceneManager.SetActiveScene(_surfaceScene);
             SceneManager.UnloadSceneAsync(1);
@@ -83,13 +91,16 @@ namespace IslandBoy
             if (sceneToLoad.IsValid())
             {
                 SceneManager.MoveGameObjectToScene(_playerObject, sceneToLoad);
+                SceneManager.MoveGameObjectToScene(_tileActionObject, sceneToLoad);
                 SceneManager.MoveGameObjectToScene(_camera.gameObject, sceneToLoad);
                 SceneManager.SetActiveScene(sceneToLoad);
-
-                if(sceneIndex == 1)
+                
+                if (sceneIndex == 1)
                 {
                     EnableSurfaceObjects(false);
                 }
+
+                _ugStructuresObject = GameObject.Find("[WS] Structures");
             }
         }
 
