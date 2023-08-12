@@ -27,15 +27,6 @@ namespace IslandBoy
             _currentHitPoints = _maxHitPoints;
         }
 
-        private void OnEnable()
-        {
-            if(SceneManager.GetActiveScene().buildIndex == 1)
-            {
-                transform.SetParent(LevelManager.Instance.UndergroundStructureHolder.transform, false);
-            }
-        }
-
-
         public bool Hit(float amount, ToolType toolType = ToolType.None)
         {
             if(_harvestType != ToolType.Indifferent)

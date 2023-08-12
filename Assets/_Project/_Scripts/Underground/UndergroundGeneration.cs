@@ -10,15 +10,17 @@ namespace IslandBoy
     public class UndergroundGeneration : MonoBehaviour
     {
         [SerializeField] private GameObject _ugExitPrefab;
+        [SerializeField] private GameObject _stonePrefab;
         [SerializeField] private TileBase _wallTile;
         [SerializeField] private TileBase _floorTile;
-        //[SerializeField] private Tilemap[] _caveChunkPrefabs;
-        [SerializeField] private ChunkGroup[] _chunkGroups;
+        [SerializeField] private TilemapGroup _oreVeinBlueprints;
+        [SerializeField] private TilemapGroup[] _chunkGroups;
 
         private Tilemap _floorTm;
         private Tilemap _wallTm;
-        private GameObject _worldStructs;
+        private List<GameObject> _ugAssets = new();
         private List<Vector2> _usedPositions = new();
+        private List<Vector2> _potentialOreVeinPos = new();
         private static Vector2[,] _spawnPositions = new Vector2[4,4];
         private bool _generationComplete;
         private bool _spawnExitLeftSide;
@@ -32,12 +34,10 @@ namespace IslandBoy
         {
             _floorTm = transform.GetChild(0).GetComponent<Tilemap>();
             _wallTm = transform.GetChild(1).GetComponent<Tilemap>();
-            _worldStructs = transform.GetChild(2).gameObject;
-            //_chunkSideLength = _caveChunkPrefabs[0].cellBounds.size.x;
             _chunkSideLength = _chunkGroups[0].RandomTilemap.cellBounds.size.x;
         }
 
-        private void Start()
+        private void OnEnable()
         {
             // populates the matrix with positions so the first row of the [,] is the first row of the positions etc. makes coding easier
             for (int i = 0; i < _spawnPositions.GetLength(0); i++)
@@ -58,14 +58,18 @@ namespace IslandBoy
             _floorTm.ClearAllTiles();
             _wallTm.ClearAllTiles();
             _usedPositions = new();
+            _potentialOreVeinPos = new();
             _spawnExitLeftSide = random.Range(0, 2) == 0;
             _currRowIndex = random.Range(0, 4);
             _currColIndex = 0;
 
-            foreach (Transform transform in _worldStructs.transform)
+            // destroy all the world structures
+            foreach (GameObject asset in _ugAssets)
             {
-                Destroy(transform.gameObject);
+                Destroy(asset);
             }
+
+            _ugAssets = new();
 
             SpawnChunk(random.Range(0, 2), _spawnPositions[_currRowIndex, _currColIndex]);
 
@@ -120,19 +124,38 @@ namespace IslandBoy
 
             foreach (Vector3Int pos in bounds.allPositionsWithin)
             {
+                // separate the floor and wall tiles to their own tilemap
                 if (_floorTm.GetTile(pos) == null)
-                {
-                    _floorTm.SetTile(pos, _wallTile);
-                }
-            }
-
-            // separate the floor and wall tiles to their own tilemap
-            foreach (Vector3Int pos in bounds.allPositionsWithin)
-            {
-                if (_floorTm.GetTile(pos) == _wallTile)
                 {
                     _floorTm.SetTile(pos, _floorTile);
                     _wallTm.SetTile(pos, _wallTile);
+                }
+                else if (_floorTm.GetTile(pos) == _wallTile) 
+                {
+                    _floorTm.SetTile(pos, _floorTile);
+                    _wallTm.SetTile(pos, _wallTile);
+                }
+
+                // if there iss an empty space on the wall TM, add it to ore vein position list
+                if (_wallTm.GetTile(pos) == null) 
+                    _potentialOreVeinPos.Add(new Vector2(pos.x, pos.y));
+
+            }
+
+            // generate ores
+            Vector2 originPos = _potentialOreVeinPos[random.Range(0, _potentialOreVeinPos.Count)];
+            var oreBlueprint = _oreVeinBlueprints.RandomTilemap;
+            int xMultiplier = random.Range(0, 2) == 0 ? 1 : -1;
+            int yMultiplier = random.Range(0, 2) == 0 ? 1 : -1;
+
+            foreach (Vector3Int pos in oreBlueprint.cellBounds.allPositionsWithin)
+            {
+                if(oreBlueprint.GetTile(pos) != null)
+                {
+                    Vector2 spawnPos = originPos + new Vector2(pos.x * xMultiplier, pos.y * yMultiplier);
+
+                    if (_wallTm.GetTile(Vector3Int.FloorToInt(spawnPos)) == null)
+                        _ugAssets.Add(Instantiate(_stonePrefab, spawnPos, Quaternion.identity));
                 }
             }
         }
@@ -210,20 +233,20 @@ namespace IslandBoy
         {
             // spawn exit on the center of the first spawn chunk
             var spawnPos = new Vector2(_spawnPositions[_currRowIndex, _currColIndex].x + (_chunkSideLength / 2), _spawnPositions[_currRowIndex, _currColIndex].y + (_chunkSideLength / 2));
-            GameObject foo = Instantiate(_ugExitPrefab, spawnPos, Quaternion.identity);
-            foo.transform.SetParent(_worldStructs.transform);
+            _ugAssets.Add(Instantiate(_ugExitPrefab, spawnPos, Quaternion.identity));
 
             GameObject player = GameObject.Find("Player");
             if (player != null)
                 player.transform.SetPositionAndRotation(new Vector2(spawnPos.x + 0.5f, spawnPos.y - 1), Quaternion.identity);
         }
+
         private void SpawnChunk(int roomType, Vector2 spawnPos)
         {
             Tilemap tilemap = _chunkGroups[roomType].RandomTilemap;
             BoundsInt area = tilemap.cellBounds;
             TileBase[] tiles = tilemap.GetTilesBlock(area);
             area = new BoundsInt(Vector3Int.FloorToInt(spawnPos), area.size);
-
+            
             _floorTm.SetTilesBlock(area, tiles);
             _lastChunkElement = roomType;
 
@@ -233,7 +256,7 @@ namespace IslandBoy
     }
 
     [Serializable]
-    public class ChunkGroup
+    public class TilemapGroup
     {
         [SerializeField] private Tilemap[] _group;
 

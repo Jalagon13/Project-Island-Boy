@@ -14,12 +14,9 @@ namespace IslandBoy
         private AsyncOperation _sceneAsync;
         private GameObject _playerObject;
         private GameObject _tileActionObject;
-        private GameObject _ugStructuresObject;
         private Camera _camera;
         private List<GameObject> _rootObjects;
         private Vector2 _surfaceReturnPosition;
-
-        public GameObject UndergroundStructureHolder { get { return _ugStructuresObject; } }
 
         protected override void Awake()
         {
@@ -99,8 +96,6 @@ namespace IslandBoy
                 {
                     EnableSurfaceObjects(false);
                 }
-
-                _ugStructuresObject = GameObject.Find("[WS] Structures");
             }
         }
 
