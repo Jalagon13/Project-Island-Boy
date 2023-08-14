@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using random = UnityEngine.Random;
 
@@ -10,6 +11,7 @@ namespace IslandBoy
     public class UndergroundGeneration : MonoBehaviour
     {
         [SerializeField] private GameObject _ugExitPrefab;
+        [SerializeField] private GameObject _ugStaircasePrefab;
         [SerializeField] private GameObject _stonePrefab;
         [SerializeField] private GameObject _coalPrefab;
         [SerializeField] private TileBase _wallTile;
@@ -26,6 +28,7 @@ namespace IslandBoy
         private static Vector2Int[,] _chunkPositions = new Vector2Int[4,4];
         private bool _generationComplete;
         private bool _spawnExitLeftSide;
+        private bool _canSpawnStaircase = true;
         private int _lastChunkElement;
         private int _currRowIndex;
         private int _currColIndex;
@@ -41,7 +44,7 @@ namespace IslandBoy
 
         private void OnEnable()
         {
-            ExtensionMethods.OnSpawn += AddToUgAssets;
+            ExtensionMethods.OnSpawn += RegisterUgAsset;
 
             // populates the matrix with positions so the first row of the [,] is the first row of the positions etc. makes coding easier
             for (int i = 0; i < _chunkPositions.GetLength(0); i++)
@@ -57,18 +60,21 @@ namespace IslandBoy
 
         private void OnDisable()
         {
-            ExtensionMethods.OnSpawn -= AddToUgAssets;
+            ExtensionMethods.OnSpawn -= RegisterUgAsset;
+            _canSpawnStaircase = false;
         }
 
-        private void AddToUgAssets(object newObj)
+        private void RegisterUgAsset(object newObj)
         {
-            _ugAssets.Add((GameObject)newObj);
+            GameObject newAsset = (GameObject)newObj;
+            _ugAssets.Add(newAsset);
         }
 
         public void GenerateNewLevel()
         {
             // brand new clean slate
             _generationComplete = false;
+            _canSpawnStaircase = false;
             _floorTm.ClearAllTiles();
             _wallTm.ClearAllTiles();
             _usedPositions = new();
@@ -80,11 +86,13 @@ namespace IslandBoy
             // destroy all the world structures
             foreach (GameObject asset in _ugAssets)
             {
+                Debug.Log("BEFORE" + _canSpawnStaircase);
                 Destroy(asset);
             }
-
             _ugAssets = new();
 
+
+            // spawn starting room and player
             SpawnChunk(random.Range(0, 2), _chunkPositions[_currRowIndex, _currColIndex]);
 
             if (_spawnExitLeftSide)
@@ -170,15 +178,25 @@ namespace IslandBoy
                     int randYVal = (int)random.Range(_chunkPositions[i, j].y + shrinkVal, _chunkPositions[i, j].y + _chunkSideLength - shrinkVal);
                     Vector2Int randSpawnPos = new(randXVal, randYVal);
 
+                    // 75% chance of  spawning an ore vein in a chunk
                     if(random.Range(0, 4) < 3)
                     {
                         GenerateRscClump(_oreVeinBp.RandomTilemap, randSpawnPos, _coalPrefab);
                     }
-
+                    // 100% chance of spawning a stone scatter in a chunk
                     GenerateRscClump(_stoneScatterBp.RandomTilemap, randSpawnPos, _stonePrefab);
                 }
             }
 
+            StartCoroutine(Delay());
+        }
+
+        // this is bc Destroy() happens near the end of the frame
+        private IEnumerator Delay()
+        {
+            yield return new WaitForEndOfFrame();
+            _canSpawnStaircase = true;
+            Debug.Log("AFTERE" + _canSpawnStaircase);
         }
 
         private void GenerateRscClump(Tilemap blueprint, Vector2Int originPos, GameObject objectToSpawn)
@@ -190,15 +208,38 @@ namespace IslandBoy
             {
                 if (blueprint.GetTile(cellPos) != null)
                 {
-                    //Vector3 spawnPos = originPos + new Vector2Int(pos.x * xMultiplier, pos.y * yMultiplier);
                     Vector3 spawnPos = new(originPos.x + (cellPos.x * xMultiplier), originPos.y + (cellPos.y * yMultiplier));
 
                     if (_wallTm.GetTile(Vector3Int.FloorToInt(spawnPos)) == null && IsTileClear(spawnPos))
                     {
-                        _ugAssets.Add(Instantiate(objectToSpawn, spawnPos, Quaternion.identity));
+                        SpawnUndergroundResource(objectToSpawn, spawnPos);
                     }
                 }
             }
+        }
+
+        private void SpawnUndergroundResource(GameObject obj, Vector2 spawnPos)
+        {
+            GameObject rscObject = Instantiate(obj, spawnPos, Quaternion.identity);
+            _ugAssets.Add(rscObject);
+
+            rscObject.AddComponent<UndergroundBehavior>();
+            rscObject.GetComponent<UndergroundBehavior>().RegisterAsset(() =>
+            {
+
+                Debug.Log(_canSpawnStaircase);
+                // on resource destroy
+                if (_canSpawnStaircase && random.Range(0, 100) < 50)
+                {
+                    GameObject staircase = Instantiate(_ugStaircasePrefab, spawnPos, Quaternion.identity);
+                    _ugAssets.Add(staircase);
+
+                    if (staircase.TryGetComponent(out UndergroundStaircase us))
+                    {
+                        us.GoDownAction = GenerateNewLevel;
+                    }
+                }
+            });
         }
 
         // why u not working??

@@ -42,7 +42,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.5, y: 0.5}
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Exit
+  m_text: Yeah!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -343,8 +343,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -250621267
   m_SortingLayer: 2
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 1449772273, guid: f26f48daf8f5428489afd48be52c6594, type: 3}
+  m_SortingOrder: -3
+  m_Sprite: {fileID: -363508920, guid: f26f48daf8f5428489afd48be52c6594, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -421,7 +421,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Are you sure you want to exit the Underground?
+  m_text: Go down the staircase?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
   m_sharedMaterial: {fileID: 4835514525599508895, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
@@ -624,9 +624,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 3470106991848545397}
-        m_TargetAssemblyTypeName: IslandBoy.UndergroundExit, Assembly-CSharp
-        m_MethodName: ExitUnderground
+      - m_Target: {fileID: 7566965246865324157}
+        m_TargetAssemblyTypeName: IslandBoy.UndergroundStaircase, Assembly-CSharp
+        m_MethodName: GoDownTheStaircase
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -747,10 +747,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3470106991848545399}
   - component: {fileID: 3470106991848545386}
-  - component: {fileID: 3470106991848545397}
+  - component: {fileID: 7566965246865324157}
   - component: {fileID: 3470106991848545396}
   m_Layer: 0
-  m_Name: '[WS] UG Exit'
+  m_Name: '[WS] UG Staircase'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -801,7 +801,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3470106991848545397
+--- !u!114 &7566965246865324157
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -810,7 +810,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3470106991848545398}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57b48ae576da1794182c18af29bf15c9, type: 3}
+  m_Script: {fileID: 11500000, guid: 078191f77389c3c4e834e28f15c89d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &3470106991848545396
