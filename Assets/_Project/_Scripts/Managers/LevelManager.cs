@@ -36,8 +36,6 @@ namespace IslandBoy
                 return;
             }
 
-            
-
             _surfaceReturnPosition = _pr.Position;
             StartCoroutine(Load(1));
         }

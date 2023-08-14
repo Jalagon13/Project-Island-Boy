@@ -12,6 +12,11 @@ namespace IslandBoy
         private int _currentStack;
         private string _currentItemName;
 
+        private void Start()
+        {
+            Destroy(gameObject, 8);
+        }
+
         public void Initialize(int amount, string itemName)
         {
             _currentStack = amount;

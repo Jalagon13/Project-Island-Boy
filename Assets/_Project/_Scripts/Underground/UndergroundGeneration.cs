@@ -11,9 +11,11 @@ namespace IslandBoy
     {
         [SerializeField] private GameObject _ugExitPrefab;
         [SerializeField] private GameObject _stonePrefab;
+        [SerializeField] private GameObject _coalPrefab;
         [SerializeField] private TileBase _wallTile;
         [SerializeField] private TileBase _floorTile;
-        [SerializeField] private TilemapGroup _oreVeinBlueprints;
+        [SerializeField] private TilemapGroup _oreVeinBp;
+        [SerializeField] private TilemapGroup _stoneScatterBp;
         [SerializeField] private TilemapGroup[] _chunkGroups;
 
         private Tilemap _floorTm;
@@ -21,7 +23,7 @@ namespace IslandBoy
         private List<GameObject> _ugAssets = new();
         private List<Vector2> _usedPositions = new();
         private List<Vector2> _potentialOreVeinPos = new();
-        private static Vector2[,] _spawnPositions = new Vector2[4,4];
+        private static Vector2Int[,] _chunkPositions = new Vector2Int[4,4];
         private bool _generationComplete;
         private bool _spawnExitLeftSide;
         private int _lastChunkElement;
@@ -42,11 +44,11 @@ namespace IslandBoy
             ExtensionMethods.OnSpawn += AddToUgAssets;
 
             // populates the matrix with positions so the first row of the [,] is the first row of the positions etc. makes coding easier
-            for (int i = 0; i < _spawnPositions.GetLength(0); i++)
+            for (int i = 0; i < _chunkPositions.GetLength(0); i++)
             {
-                for (int j = 0; j < _spawnPositions.GetLength(1); j++)
+                for (int j = 0; j < _chunkPositions.GetLength(1); j++)
                 {
-                    _spawnPositions[i, j] = new Vector2(j * _chunkSideLength, -i * _chunkSideLength); 
+                    _chunkPositions[i, j] = new Vector2Int(j * _chunkSideLength, -i * _chunkSideLength); 
                 }
             }
 
@@ -83,39 +85,41 @@ namespace IslandBoy
 
             _ugAssets = new();
 
-            SpawnChunk(random.Range(0, 2), _spawnPositions[_currRowIndex, _currColIndex]);
+            SpawnChunk(random.Range(0, 2), _chunkPositions[_currRowIndex, _currColIndex]);
 
             if (_spawnExitLeftSide)
+            {
                 SpawnPlayer();
+            }
 
             _direction = random.Range(1, 6);
 
             // generate the new level
             while (_generationComplete == false)
             {
-                GenerateLevel();
+                GenerateTilemap();
             }
 
             // fill in the rest of the rooms with filler rooms
             List<Vector2> spawnPosCopy = new();
 
-            for (int i = 0; i < _spawnPositions.GetLength(0); i++)
+            for (int i = 0; i < _chunkPositions.GetLength(0); i++)
             {
-                for (int j = 0; j < _spawnPositions.GetLength(1); j++)
+                for (int j = 0; j < _chunkPositions.GetLength(1); j++)
                 {
-                    spawnPosCopy.Add(_spawnPositions[i, j]);
+                    spawnPosCopy.Add(_chunkPositions[i, j]);
                 }
             }
 
             List<Vector2> unUsedPositions = new();
 
-            for (int i = 0; i < _spawnPositions.GetLength(0); i++)
+            for (int i = 0; i < _chunkPositions.GetLength(0); i++)
             {
-                for (int j = 0; j < _spawnPositions.GetLength(1); j++)
+                for (int j = 0; j < _chunkPositions.GetLength(1); j++)
                 {
-                    if(!_usedPositions.Contains(_spawnPositions[i, j]))
+                    if(!_usedPositions.Contains(_chunkPositions[i, j]))
                     {
-                        unUsedPositions.Add(_spawnPositions[i, j]);
+                        unUsedPositions.Add(_chunkPositions[i, j]);
                     }
                 }
             }
@@ -149,40 +153,69 @@ namespace IslandBoy
                 }
 
                 // if there iss an empty space on the wall TM, add it to ore vein position list
-                if (_wallTm.GetTile(pos) == null) 
+                if (_wallTm.GetTile(pos) == null)
+                {
                     _potentialOreVeinPos.Add(new Vector2(pos.x, pos.y));
-
+                }
             }
 
-            // generate ores
+            // generate ores I can try to pick a random position in each chunk, and try to spawn 1 to 2 ore veins in thoughs chunks
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < _chunkPositions.GetLength(0); i++)
             {
-                GenerateOreVein();
+                for (int j = 0; j < _chunkPositions.GetLength(1); j++)
+                {
+                    int shrinkVal = 2;
+                    int randXVal = (int)random.Range(_chunkPositions[i, j].x + shrinkVal, _chunkPositions[i, j].x + _chunkSideLength - shrinkVal);
+                    int randYVal = (int)random.Range(_chunkPositions[i, j].y + shrinkVal, _chunkPositions[i, j].y + _chunkSideLength - shrinkVal);
+                    Vector2Int randSpawnPos = new(randXVal, randYVal);
+
+                    if(random.Range(0, 4) < 3)
+                    {
+                        GenerateRscClump(_oreVeinBp.RandomTilemap, randSpawnPos, _coalPrefab);
+                    }
+
+                    GenerateRscClump(_stoneScatterBp.RandomTilemap, randSpawnPos, _stonePrefab);
+                }
             }
 
         }
 
-        private void GenerateOreVein()
+        private void GenerateRscClump(Tilemap blueprint, Vector2Int originPos, GameObject objectToSpawn)
         {
-            Vector2 originPos = _potentialOreVeinPos[random.Range(0, _potentialOreVeinPos.Count)];
-            var oreBlueprint = _oreVeinBlueprints.RandomTilemap;
             int xMultiplier = random.Range(0, 2) == 0 ? 1 : -1;
             int yMultiplier = random.Range(0, 2) == 0 ? 1 : -1;
 
-            foreach (Vector3Int pos in oreBlueprint.cellBounds.allPositionsWithin)
+            foreach (Vector3Int cellPos in blueprint.cellBounds.allPositionsWithin)
             {
-                if (oreBlueprint.GetTile(pos) != null)
+                if (blueprint.GetTile(cellPos) != null)
                 {
-                    Vector2 spawnPos = originPos + new Vector2(pos.x * xMultiplier, pos.y * yMultiplier);
+                    //Vector3 spawnPos = originPos + new Vector2Int(pos.x * xMultiplier, pos.y * yMultiplier);
+                    Vector3 spawnPos = new(originPos.x + (cellPos.x * xMultiplier), originPos.y + (cellPos.y * yMultiplier));
 
-                    if (_wallTm.GetTile(Vector3Int.FloorToInt(spawnPos)) == null)
-                        _ugAssets.Add(Instantiate(_stonePrefab, spawnPos, Quaternion.identity));
+                    if (_wallTm.GetTile(Vector3Int.FloorToInt(spawnPos)) == null && IsTileClear(spawnPos))
+                    {
+                        _ugAssets.Add(Instantiate(objectToSpawn, spawnPos, Quaternion.identity));
+                    }
                 }
             }
         }
 
-        private void GenerateLevel()
+        // why u not working??
+        private bool IsTileClear(Vector2 pos)
+        {
+            var colliders = Physics2D.OverlapBoxAll(new Vector2(pos.x + 0.5f, pos.y + 0.5f), new Vector2(0.5f, 0.5f), 0);
+
+            foreach (Collider2D col in colliders)
+            {
+                if (col.gameObject.layer == 3 || col.gameObject.layer == 7)
+                    return false;
+            }
+
+            return true;
+        }
+
+        private void GenerateTilemap()
         {
             if(_lastChunkElement == 1 || _lastChunkElement == 3)
             {
@@ -197,7 +230,7 @@ namespace IslandBoy
                 else
                 {
                     _currColIndex++;
-                    SpawnChunk(random.Range(1, 4) < 3 ? 2 : 3, _spawnPositions[_currRowIndex, _currColIndex]);
+                    SpawnChunk(random.Range(1, 4) < 3 ? 2 : 3, _chunkPositions[_currRowIndex, _currColIndex]);
                     _direction = random.Range(1, 5);
 
                     if (_currRowIndex == 3)
@@ -214,11 +247,11 @@ namespace IslandBoy
                 {
                     _currRowIndex = 0;
                     _direction = 3;
-                    SpawnChunk(1, _spawnPositions[_currRowIndex, _currColIndex]);
+                    SpawnChunk(1, _chunkPositions[_currRowIndex, _currColIndex]);
                 }
                 else
                 {
-                    SpawnChunk(0, _spawnPositions[_currRowIndex, _currColIndex]);
+                    SpawnChunk(0, _chunkPositions[_currRowIndex, _currColIndex]);
                     _direction = random.Range(1, 4) < 3 ? 1 : 5;
                 }
             }
@@ -230,11 +263,11 @@ namespace IslandBoy
                 {
                     _currRowIndex = 3;
                     _direction = 1;
-                    SpawnChunk(1, _spawnPositions[_currRowIndex, _currColIndex]);
+                    SpawnChunk(1, _chunkPositions[_currRowIndex, _currColIndex]);
                 }
                 else
                 {
-                    SpawnChunk(0, _spawnPositions[_currRowIndex, _currColIndex]);
+                    SpawnChunk(0, _chunkPositions[_currRowIndex, _currColIndex]);
                     _direction = random.Range(1, 4) < 3 ? 3 : 5;
                 }
             }
@@ -242,11 +275,11 @@ namespace IslandBoy
             {
                 if(_lastChunkElement == 1 || _lastChunkElement == 2 || _lastChunkElement == 3)
                 {
-                    SpawnChunk(random.Range(1, 3) == 1 ? 3 : 2, _spawnPositions[_currRowIndex, _currColIndex]);
+                    SpawnChunk(random.Range(1, 3) == 1 ? 3 : 2, _chunkPositions[_currRowIndex, _currColIndex]);
                 }
                 else
                 {
-                    SpawnChunk(1, _spawnPositions[_currRowIndex, _currColIndex]);
+                    SpawnChunk(1, _chunkPositions[_currRowIndex, _currColIndex]);
                 }
             }
         }
@@ -254,12 +287,15 @@ namespace IslandBoy
         private void SpawnPlayer()
         {
             // spawn exit on the center of the first spawn chunk
-            var spawnPos = new Vector2(_spawnPositions[_currRowIndex, _currColIndex].x + (_chunkSideLength / 2), _spawnPositions[_currRowIndex, _currColIndex].y + (_chunkSideLength / 2));
+            var spawnPos = new Vector2(_chunkPositions[_currRowIndex, _currColIndex].x + (_chunkSideLength / 2), _chunkPositions[_currRowIndex, _currColIndex].y + (_chunkSideLength / 2));
             _ugAssets.Add(Instantiate(_ugExitPrefab, spawnPos, Quaternion.identity));
 
             GameObject player = GameObject.Find("Player");
+
             if (player != null)
+            {
                 player.transform.SetPositionAndRotation(new Vector2(spawnPos.x + 0.5f, spawnPos.y - 1), Quaternion.identity);
+            }
         }
 
         private void SpawnChunk(int roomType, Vector2 spawnPos)
