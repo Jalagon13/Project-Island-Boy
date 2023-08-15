@@ -10,12 +10,15 @@ namespace IslandBoy
 {
     public class UndergroundGeneration : MonoBehaviour
     {
+        [Header("Prefabs")]
         [SerializeField] private GameObject _ugExitPrefab;
         [SerializeField] private GameObject _ugStaircasePrefab;
         [SerializeField] private GameObject _stonePrefab;
         [SerializeField] private GameObject _coalPrefab;
+        [Header("Tiles")]
         [SerializeField] private TileBase _wallTile;
         [SerializeField] private TileBase _floorTile;
+        [Header("Tilemap Groups")]
         [SerializeField] private TilemapGroup _oreVeinBp;
         [SerializeField] private TilemapGroup _stoneScatterBp;
         [SerializeField] private TilemapGroup[] _chunkGroups;
