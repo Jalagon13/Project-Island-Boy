@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 namespace IslandBoy
@@ -11,12 +12,13 @@ namespace IslandBoy
         [SerializeField] private PlayerReference _pr;
 
         private Scene _surfaceScene;
+        private Vector2 _surfaceReturnPosition;
         private AsyncOperation _sceneAsync;
         private GameObject _playerObject;
         private GameObject _tileActionObject;
-        private Camera _camera;
         private List<GameObject> _rootObjects;
-        private Vector2 _surfaceReturnPosition;
+        private Camera _camera;
+        private Light2D _globalLight;
 
         protected override void Awake()
         {
@@ -24,6 +26,7 @@ namespace IslandBoy
             _surfaceScene = SceneManager.GetSceneByBuildIndex(0);
             _playerObject = GameObject.Find("Player");
             _tileActionObject = GameObject.Find("TileAction");
+            _globalLight = transform.GetChild(1).GetComponent<Light2D>();
             _camera = Camera.main;
             _rootObjects = new();
         }
@@ -32,10 +35,11 @@ namespace IslandBoy
         {
             if(SceneManager.GetActiveScene().buildIndex != 0)
             {
-                Debug.Log("Can not load underground because current scene is not surface");
+                Debug.LogError("Can not load underground because current scene is not surface");
                 return;
             }
 
+            _globalLight.intensity = 0;
             _surfaceReturnPosition = _pr.Position;
             StartCoroutine(Load(1));
         }
@@ -44,9 +48,11 @@ namespace IslandBoy
         {
             if(SceneManager.GetActiveScene().buildIndex != 1)
             {
-                Debug.Log("Can not load surface because current scene is not underground");
+                Debug.LogError("Can not load surface because current scene is not underground");
                 return;
             }
+
+            _globalLight.intensity = 1;
 
             SceneManager.MoveGameObjectToScene(_playerObject, _surfaceScene);
             SceneManager.MoveGameObjectToScene(_tileActionObject, _surfaceScene);
@@ -89,7 +95,7 @@ namespace IslandBoy
                 SceneManager.MoveGameObjectToScene(_tileActionObject, sceneToLoad);
                 SceneManager.MoveGameObjectToScene(_camera.gameObject, sceneToLoad);
                 SceneManager.SetActiveScene(sceneToLoad);
-                
+
                 if (sceneIndex == 1)
                 {
                     EnableSurfaceObjects(false);

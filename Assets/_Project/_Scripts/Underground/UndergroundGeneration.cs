@@ -86,7 +86,6 @@ namespace IslandBoy
             // destroy all the world structures
             foreach (GameObject asset in _ugAssets)
             {
-                Debug.Log("BEFORE" + _canSpawnStaircase);
                 Destroy(asset);
             }
             _ugAssets = new();
@@ -196,7 +195,6 @@ namespace IslandBoy
         {
             yield return new WaitForEndOfFrame();
             _canSpawnStaircase = true;
-            Debug.Log("AFTERE" + _canSpawnStaircase);
         }
 
         private void GenerateRscClump(Tilemap blueprint, Vector2Int originPos, GameObject objectToSpawn)
@@ -208,17 +206,18 @@ namespace IslandBoy
             {
                 if (blueprint.GetTile(cellPos) != null)
                 {
-                    Vector3 spawnPos = new(originPos.x + (cellPos.x * xMultiplier), originPos.y + (cellPos.y * yMultiplier));
+                    Vector2 spawnPos = new(originPos.x + (cellPos.x * xMultiplier), originPos.y + (cellPos.y * yMultiplier));
+                    Vector3Int position = Vector3Int.FloorToInt(spawnPos);
 
-                    if (_wallTm.GetTile(Vector3Int.FloorToInt(spawnPos)) == null && IsTileClear(spawnPos))
+                    if (_wallTm.GetTile(position) == null && IsTileClear(spawnPos))
                     {
-                        SpawnUndergroundResource(objectToSpawn, spawnPos);
+                        SpawnResource(objectToSpawn, spawnPos);
                     }
                 }
             }
         }
 
-        private void SpawnUndergroundResource(GameObject obj, Vector2 spawnPos)
+        private void SpawnResource(GameObject obj, Vector2 spawnPos)
         {
             GameObject rscObject = Instantiate(obj, spawnPos, Quaternion.identity);
             _ugAssets.Add(rscObject);
@@ -226,8 +225,6 @@ namespace IslandBoy
             rscObject.AddComponent<UndergroundBehavior>();
             rscObject.GetComponent<UndergroundBehavior>().RegisterAsset(() =>
             {
-
-                Debug.Log(_canSpawnStaircase);
                 // on resource destroy
                 if (_canSpawnStaircase && random.Range(0, 100) < 50)
                 {
@@ -242,18 +239,11 @@ namespace IslandBoy
             });
         }
 
-        // why u not working??
         private bool IsTileClear(Vector2 pos)
         {
-            var colliders = Physics2D.OverlapBoxAll(new Vector2(pos.x + 0.5f, pos.y + 0.5f), new Vector2(0.5f, 0.5f), 0);
+            var colliders = Physics2D.OverlapCircleAll(new Vector2(pos.x + 0.5f, pos.y + 0.5f), 0.25f);
 
-            foreach (Collider2D col in colliders)
-            {
-                if (col.gameObject.layer == 3 || col.gameObject.layer == 7)
-                    return false;
-            }
-
-            return true;
+            return colliders.Length == 0;
         }
 
         private void GenerateTilemap()
