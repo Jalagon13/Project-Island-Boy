@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using random = UnityEngine.Random;
@@ -18,6 +19,8 @@ namespace IslandBoy
         [Header("Tiles")]
         [SerializeField] private TileBase _wallTile;
         [SerializeField] private TileBase _floorTile;
+        [Header("Events")]
+        [SerializeField] private UnityEvent _onGenerateLevel;
         [Header("Tilemap Groups")]
         [SerializeField] private TilemapGroup _oreVeinBp;
         [SerializeField] private TilemapGroup _stoneScatterBp;
@@ -85,6 +88,7 @@ namespace IslandBoy
             _spawnExitLeftSide = random.Range(0, 2) == 0;
             _currRowIndex = random.Range(0, 4);
             _currColIndex = 0;
+            _onGenerateLevel?.Invoke();
 
             // destroy all the world structures
             foreach (GameObject asset in _ugAssets)

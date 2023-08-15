@@ -458,6 +458,21 @@ MonoBehaviour:
   _coalPrefab: {fileID: 2594954625819056484, guid: e989bdb3b75d6cb4087b5511fcc9ea66, type: 3}
   _wallTile: {fileID: 11400000, guid: 18644ea5358575f4694248ee33a2c3aa, type: 2}
   _floorTile: {fileID: 11400000, guid: 0184801a711830146bf6180e1bf4973c, type: 2}
+  _onGenerateLevel:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1544793581}
+        m_TargetAssemblyTypeName: IslandBoy.UndergroundCanvas, Assembly-CSharp
+        m_MethodName: IncrementLevelCounter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _oreVeinBp:
     _group:
     - {fileID: 1995905834040469728, guid: b3d827cefe8a5de4cbb184b0798f1b99, type: 3}
@@ -527,7 +542,7 @@ RectTransform:
   - {fileID: 1238365037}
   - {fileID: 644009468}
   m_Father: {fileID: 1544793580}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -643,7 +658,7 @@ RectTransform:
   m_Children:
   - {fileID: 873582350}
   m_Father: {fileID: 1544793580}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -756,6 +771,7 @@ GameObject:
   - component: {fileID: 1544793579}
   - component: {fileID: 1544793578}
   - component: {fileID: 1544793577}
+  - component: {fileID: 1544793581}
   m_Layer: 5
   m_Name: UG Canvas
   m_TagString: Untagged
@@ -836,8 +852,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1525254019}
   - {fileID: 1225981023}
+  - {fileID: 1525254019}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -846,6 +862,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1544793581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544793576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11add89f4fbe3f24d9095b190769d208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _counterText: {fileID: 644009469}
 --- !u!1 &1834801738
 GameObject:
   m_ObjectHideFlags: 0

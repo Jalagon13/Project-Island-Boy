@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace IslandBoy
 {
@@ -10,6 +11,7 @@ namespace IslandBoy
         [SerializeField] private GameObject _prefabToDeploy;
         [SerializeField] private RuleTile _exclusiveDeployTile;
         [SerializeField] private AudioClip _deploySound;
+        [SerializeField] private Tilemap _test;
 
         public override ToolType ToolType => _baseToolType;
 
@@ -23,11 +25,10 @@ namespace IslandBoy
             {
                 var taPos = Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position);
 
-                if (control.IslandTilemap.GetTile(taPos) != _exclusiveDeployTile) return;
+                if (control.TMR.GroundTilemap.GetTile(taPos) != _exclusiveDeployTile) return;
             }
 
-            if (control.TileAction.IsClear() && 
-                !control.WallTilemap.HasTile(Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position)))
+            if (control.TileAction.IsClear() && !control.WallTilemap.HasTile(Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position)))
             {
                 AudioManager.Instance.PlayClip(_deploySound, false, true);
                 control.PR.SelectedSlot.InventoryItem.Count--;

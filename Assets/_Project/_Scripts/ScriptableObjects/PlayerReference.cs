@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 
 namespace IslandBoy
 {
-    [CreateAssetMenu(fileName = "New Player Reference", menuName = "Player Reference")]
+    [CreateAssetMenu(fileName = "New Player Reference", menuName = "New Reference/Player Reference")]
     public class PlayerReference : ScriptableObject
     {
         private const float INTERACT_RANGE = 2.25f;

@@ -9,13 +9,14 @@ namespace IslandBoy
     public class SelectedSlotControl : MonoBehaviour
     {
         [field:SerializeField] public PlayerReference PR { get; private set; }
+        [field:SerializeField] public TilemapReferences TMR { get; private set; }
         [field:SerializeField] public HealthBar HealthBar { get; private set; }
         [field:SerializeField] public EnergyBar EnergyBar { get; private set; }
         [field:SerializeField] public TileAction TileAction { get; private set; }
         [field:SerializeField] public Collider2D PlayerEntityCollider { get; private set; }
-        [field:SerializeField] public Tilemap WallTilemap { get; private set; }
-        [field:SerializeField] public Tilemap FloorTilemap { get; private set; }
-        [field:SerializeField] public Tilemap IslandTilemap { get; private set; }
+        //[field:SerializeField] public Tilemap WallTilemap { get; private set; }
+        //[field:SerializeField] public Tilemap FloorTilemap { get; private set; }
+        //[field:SerializeField] public Tilemap IslandTilemap { get; private set; }
         [field:SerializeField] public Slider ThrowSlider { get; private set; }
 
         private Action<SelectedSlotControl, float> _onThrow;
