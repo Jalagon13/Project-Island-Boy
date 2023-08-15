@@ -26,7 +26,7 @@ namespace IslandBoy
         [SerializeField] private TilemapGroup _stoneScatterBp;
         [SerializeField] private TilemapGroup[] _chunkGroups;
 
-        private Tilemap _floorTm;
+        private Tilemap _groundTm;
         private Tilemap _wallTm;
         private List<GameObject> _ugAssets = new();
         private List<Vector2> _usedPositions = new();
@@ -43,8 +43,8 @@ namespace IslandBoy
 
         private void Awake()
         {
-            _floorTm = transform.GetChild(0).GetComponent<Tilemap>();
-            _wallTm = transform.GetChild(1).GetComponent<Tilemap>();
+            _groundTm = transform.GetChild(0).GetComponent<Tilemap>();
+            _wallTm = transform.GetChild(2).GetComponent<Tilemap>();
             _chunkSideLength = _chunkGroups[0].RandomTilemap.cellBounds.size.x;
         }
 
@@ -81,7 +81,7 @@ namespace IslandBoy
             // brand new clean slate
             _generationComplete = false;
             _canSpawnStaircase = false;
-            _floorTm.ClearAllTiles();
+            _groundTm.ClearAllTiles();
             _wallTm.ClearAllTiles();
             _usedPositions = new();
             _potentialOreVeinPos = new();
@@ -144,7 +144,7 @@ namespace IslandBoy
             }
 
             // add a border around the map
-            var bounds = _floorTm.cellBounds;
+            var bounds = _groundTm.cellBounds;
             var offset = 5;
 
             bounds.xMax += offset;
@@ -155,14 +155,14 @@ namespace IslandBoy
             foreach (Vector3Int pos in bounds.allPositionsWithin)
             {
                 // separate the floor and wall tiles to their own tilemap
-                if (_floorTm.GetTile(pos) == null)
+                if (_groundTm.GetTile(pos) == null)
                 {
-                    _floorTm.SetTile(pos, _floorTile);
+                    _groundTm.SetTile(pos, _floorTile);
                     _wallTm.SetTile(pos, _wallTile);
                 }
-                else if (_floorTm.GetTile(pos) == _wallTile) 
+                else if (_groundTm.GetTile(pos) == _wallTile) 
                 {
-                    _floorTm.SetTile(pos, _floorTile);
+                    _groundTm.SetTile(pos, _floorTile);
                     _wallTm.SetTile(pos, _wallTile);
                 }
 
@@ -343,7 +343,7 @@ namespace IslandBoy
             TileBase[] tiles = tilemap.GetTilesBlock(area);
             area = new BoundsInt(Vector3Int.FloorToInt(spawnPos), area.size);
             
-            _floorTm.SetTilesBlock(area, tiles);
+            _groundTm.SetTilesBlock(area, tiles);
             _lastChunkElement = roomType;
 
             if(!_usedPositions.Contains(spawnPos))

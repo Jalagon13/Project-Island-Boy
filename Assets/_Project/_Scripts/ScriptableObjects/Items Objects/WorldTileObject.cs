@@ -17,9 +17,9 @@ namespace IslandBoy
         {
             var mousePos = Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position);
 
-            if (!control.IslandTilemap.HasTile(mousePos))
+            if (!control.TMR.GroundTilemap.HasTile(mousePos))
             {
-                control.IslandTilemap.SetTile(mousePos, _worldTile);
+                control.TMR.GroundTilemap.SetTile(mousePos, _worldTile);
                 control.PR.SelectedSlot.InventoryItem.Count--;
                 AudioManager.Instance.PlayClip(_worldTile.PlaceSound, false, true);
             }

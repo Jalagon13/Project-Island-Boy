@@ -11,7 +11,6 @@ namespace IslandBoy
         [SerializeField] private GameObject _prefabToDeploy;
         [SerializeField] private RuleTile _exclusiveDeployTile;
         [SerializeField] private AudioClip _deploySound;
-        [SerializeField] private Tilemap _test;
 
         public override ToolType ToolType => _baseToolType;
 
@@ -28,7 +27,11 @@ namespace IslandBoy
                 if (control.TMR.GroundTilemap.GetTile(taPos) != _exclusiveDeployTile) return;
             }
 
-            if (control.TileAction.IsClear() && !control.WallTilemap.HasTile(Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position)))
+            bool wallTmHasTile = control.TMR.WallTilemap.HasTile(Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position));
+            bool groundTmHasTile = control.TMR.GroundTilemap.HasTile(Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position));
+            bool tilActionClear = control.TileAction.IsClear();
+
+            if (tilActionClear && !wallTmHasTile && groundTmHasTile)
             {
                 AudioManager.Instance.PlayClip(_deploySound, false, true);
                 control.PR.SelectedSlot.InventoryItem.Count--;

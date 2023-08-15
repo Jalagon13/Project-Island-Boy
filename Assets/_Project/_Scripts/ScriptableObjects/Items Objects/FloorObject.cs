@@ -15,9 +15,9 @@ namespace IslandBoy
         {
             var pos = Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position);
 
-            if (!control.WallTilemap.HasTile(pos) && !control.FloorTilemap.HasTile(pos) && control.IslandTilemap.HasTile(pos))
+            if (!control.TMR.WallTilemap.HasTile(pos) && !control.TMR.FloorTilemap.HasTile(pos) && control.TMR.GroundTilemap.HasTile(pos))
             {
-                control.FloorTilemap.SetTile(pos, _floorTile);
+                control.TMR.FloorTilemap.SetTile(pos, _floorTile);
                 control.PR.SelectedSlot.InventoryItem.Count--;
                 AudioManager.Instance.PlayClip(_floorTile.PlaceSound, false, true);
             }

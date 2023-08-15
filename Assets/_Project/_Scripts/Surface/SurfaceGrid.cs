@@ -12,7 +12,7 @@ namespace IslandBoy
         [SerializeField] private Tilemap _surfaceFloorTm;
         [SerializeField] private Tilemap _surfaceWallTm;
 
-        private void Start()
+        private void OnEnable()
         {
             _tmr.GroundTilemap = _surfaceGroundTm;
             _tmr.FloorTilemap = _surfaceFloorTm;
