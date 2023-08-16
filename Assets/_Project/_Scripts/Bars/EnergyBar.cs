@@ -13,13 +13,13 @@ namespace IslandBoy
         private void OnEnable()
         {
             ActionControl.SwingPerformEvent += DrainEnergy;
-            ThrowObject.ThrowEvent += DrainEnergy;
+            LaunchObject.LaunchEvent += DrainEnergy;
         }
 
         private void OnDisable()
         {
             ActionControl.SwingPerformEvent -= DrainEnergy;
-            ThrowObject.ThrowEvent -= DrainEnergy;
+            LaunchObject.LaunchEvent -= DrainEnergy;
         }
 
         public override void AddTo(int value)

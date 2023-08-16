@@ -24,7 +24,7 @@ namespace IslandBoy
 
         public bool HeldDown { get { return _isHeldDown; } }
         public bool IsCharging { get { return _isCharging; } set { _isCharging = true; } }
-        public Action<SelectedSlotControl, float> OnThrow { set { _onThrow = value; } }
+        public Action<SelectedSlotControl, float> OnLaunch { set { _onThrow = value; } }
 
         private void Awake()
         {

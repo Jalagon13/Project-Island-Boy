@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    [CreateAssetMenu(fileName = "New Throw Object", menuName = "Create Item/New Throw Object")]
-    public class ThrowObject : ItemObject
+    [CreateAssetMenu(fileName = "New Launch Object", menuName = "Create Item/New Launch Object")]
+    public class LaunchObject : ItemObject
     {
-        public static event Action ThrowEvent;
+        public static event Action LaunchEvent;
 
         [SerializeField] private GameObject _prefabToThrow;
         [SerializeField] private AudioClip _throwSound;
@@ -20,10 +20,10 @@ namespace IslandBoy
             if (PointerHandler.IsOverLayer(5)) return;
 
             control.IsCharging = true;
-            control.OnThrow = Throw;
+            control.OnLaunch = Launch;
         }
 
-        private void Throw(SelectedSlotControl control, float force)
+        private void Launch(SelectedSlotControl control, float force)
         {
             GameObject throwObject = Instantiate(_prefabToThrow, (Vector3)control.PR.Position + new Vector3(0, 0.4f), Quaternion.identity);
 
@@ -36,9 +36,8 @@ namespace IslandBoy
                 rb.AddForce(direction * force, ForceMode2D.Impulse);
             }
 
-            ThrowEvent?.Invoke();
+            LaunchEvent?.Invoke();
             
-
             if (Stackable)
             {
                 control.PR.SelectedSlot.InventoryItem.Count--;
