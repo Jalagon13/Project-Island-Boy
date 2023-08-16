@@ -73,12 +73,12 @@ SpriteRenderer:
   m_SortingLayerID: -250621267
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -310388300, guid: f5485e0305ada5043b7177c7739ee931, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.7372549}
+  m_Sprite: {fileID: 1005839574, guid: a89cf0f683df5c24c9a61c2d4a51d4eb, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1.5}
+  m_Size: {x: 0.6875, y: 1.6875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -171,16 +171,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d0dbc9cb6ce57468cd3a34f0f5ba65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PR: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxHealth: 24
   _iFrameDuration: 0.17
   _damageSound: {fileID: 8300000, guid: 6e12573d495d04e4990d3b99e2e474fc, type: 3}
   _deathSound: {fileID: 8300000, guid: 6e12573d495d04e4990d3b99e2e474fc, type: 3}
   _lootTable:
     <Table>k__BackingField:
-    - Item: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
-      Min: 1
-      Max: 1
-      Chance: 25
     - Item: {fileID: 11400000, guid: 65856b614b96bd049b6c87f82972ccab, type: 2}
       Min: 2
       Max: 4

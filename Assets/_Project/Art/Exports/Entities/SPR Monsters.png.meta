@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f5485e0305ada5043b7177c7739ee931
+guid: a89cf0f683df5c24c9a61c2d4a51d4eb
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mob_ghost
+      name: mon_ghost
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1
-        width: 16
-        height: 24
+        x: 2
+        y: 2
+        width: 11
+        height: 27
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,8 +119,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9be99a2428ca3bc4ea587c35523e08c7
-      internalID: -310388300
+      spriteID: 305e44cf05aefac46a571463f93fca1f
+      internalID: 1005839574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mon_zombie
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 1
+        width: 14
+        height: 26
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88d7298919baf17408104d1b178ae558
+      internalID: -187104496
       vertices: []
       indices: 
       edges: []
@@ -136,7 +157,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      mob_ghost: -310388300
+      mon_ghost: 1005839574
+      mon_zombie: -187104496
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
