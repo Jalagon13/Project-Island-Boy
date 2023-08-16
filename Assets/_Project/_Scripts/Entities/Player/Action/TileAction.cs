@@ -139,7 +139,7 @@ namespace IslandBoy
             ExtensionMethods.SpawnObject(deployable, position, Quaternion.identity);
         }
 
-        private void ModifyDurability()
+        public void ModifyDurability()
         {
             if (_pr.SelectedSlot.CurrentParameters.Count <= 0) return;
 

@@ -37,7 +37,16 @@ namespace IslandBoy
             }
 
             ThrowEvent?.Invoke();
-            control.PR.SelectedSlot.InventoryItem.Count--;
+            
+
+            if (Stackable)
+            {
+                control.PR.SelectedSlot.InventoryItem.Count--;
+            }
+            else
+            {
+                control.TileAction.ModifyDurability();
+            }
         }
 
         public override string GetDescription()
