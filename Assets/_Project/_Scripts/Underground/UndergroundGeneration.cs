@@ -21,6 +21,7 @@ namespace IslandBoy
         [SerializeField] private TileBase _floorTile;
         [Header("Events")]
         [SerializeField] private UnityEvent _onGenerateLevel;
+        [SerializeField] private UnityEvent<Vector2> _onResourceBroken;
         [Header("Tilemap Groups")]
         [SerializeField] private TilemapGroup _oreVeinBp;
         [SerializeField] private TilemapGroup _stoneScatterBp;
@@ -78,6 +79,18 @@ namespace IslandBoy
 
         public void GenerateNewLevel()
         {
+            ResetVariables();
+            SpawnPlayerAndStartingRoom();
+            GenerateLevel();
+            GenerateFillerRooms();
+            GenerateBorder();
+            
+
+            StartCoroutine(EndOfFrame()); // this is bc Destroy() happens near the end of the frame
+        }
+
+        private void ResetVariables()
+        {
             // brand new clean slate
             _generationComplete = false;
             _canSpawnStaircase = false;
@@ -88,7 +101,7 @@ namespace IslandBoy
             _spawnExitLeftSide = random.Range(0, 2) == 0;
             _currRowIndex = random.Range(0, 4);
             _currColIndex = 0;
-            _onGenerateLevel?.Invoke();
+            
 
             // destroy all the world structures
             foreach (GameObject asset in _ugAssets)
@@ -96,8 +109,10 @@ namespace IslandBoy
                 Destroy(asset);
             }
             _ugAssets = new();
+        }
 
-
+        private void SpawnPlayerAndStartingRoom()
+        {
             // spawn starting room and player
             SpawnChunk(random.Range(0, 2), _chunkPositions[_currRowIndex, _currColIndex]);
 
@@ -107,13 +122,19 @@ namespace IslandBoy
             }
 
             _direction = random.Range(1, 6);
+        }
 
+        private void GenerateLevel()
+        {
             // generate the new level
             while (_generationComplete == false)
             {
                 GenerateTilemap();
             }
+        }
 
+        private void GenerateFillerRooms()
+        {
             // fill in the rest of the rooms with filler rooms
             List<Vector2> spawnPosCopy = new();
 
@@ -131,7 +152,7 @@ namespace IslandBoy
             {
                 for (int j = 0; j < _chunkPositions.GetLength(1); j++)
                 {
-                    if(!_usedPositions.Contains(_chunkPositions[i, j]))
+                    if (!_usedPositions.Contains(_chunkPositions[i, j]))
                     {
                         unUsedPositions.Add(_chunkPositions[i, j]);
                     }
@@ -142,7 +163,10 @@ namespace IslandBoy
             {
                 SpawnChunk(4, pos);
             }
+        }
 
+        private void GenerateBorder()
+        {
             // add a border around the map
             var bounds = _groundTm.cellBounds;
             var offset = 5;
@@ -160,7 +184,7 @@ namespace IslandBoy
                     _groundTm.SetTile(pos, _floorTile);
                     _wallTm.SetTile(pos, _wallTile);
                 }
-                else if (_groundTm.GetTile(pos) == _wallTile) 
+                else if (_groundTm.GetTile(pos) == _wallTile)
                 {
                     _groundTm.SetTile(pos, _floorTile);
                     _wallTm.SetTile(pos, _wallTile);
@@ -172,51 +196,52 @@ namespace IslandBoy
                     _potentialOreVeinPos.Add(new Vector2(pos.x, pos.y));
                 }
             }
+        }
 
+        private void GenerateOres()
+        {
             // generate ores I can try to pick a random position in each chunk, and try to spawn 1 to 2 ore veins in thoughs chunks
 
             for (int i = 0; i < _chunkPositions.GetLength(0); i++)
             {
                 for (int j = 0; j < _chunkPositions.GetLength(1); j++)
                 {
-                    int shrinkVal = 2;
-                    int randXVal = (int)random.Range(_chunkPositions[i, j].x + shrinkVal, _chunkPositions[i, j].x + _chunkSideLength - shrinkVal);
-                    int randYVal = (int)random.Range(_chunkPositions[i, j].y + shrinkVal, _chunkPositions[i, j].y + _chunkSideLength - shrinkVal);
+                    int shrinkVal = 3;
+                    var position = _chunkPositions[i, j];
+                    int randXVal = (int)random.Range(position.x + shrinkVal, position.x + _chunkSideLength - shrinkVal);
+                    int randYVal = (int)random.Range(position.y + shrinkVal, position.y + _chunkSideLength - shrinkVal);
                     Vector2Int randSpawnPos = new(randXVal, randYVal);
 
-                    // 75% chance of  spawning an ore vein in a chunk
-                    if(random.Range(0, 4) < 3)
-                    {
-                        GenerateRscClump(_oreVeinBp.RandomTilemap, randSpawnPos, _coalPrefab);
-                    }
-                    // 100% chance of spawning a stone scatter in a chunk
+                    GenerateRscClump(_oreVeinBp.RandomTilemap, randSpawnPos, _coalPrefab, true);
                     GenerateRscClump(_stoneScatterBp.RandomTilemap, randSpawnPos, _stonePrefab);
                 }
             }
-
-            StartCoroutine(Delay());
         }
 
-        // this is bc Destroy() happens near the end of the frame
-        private IEnumerator Delay()
+        private IEnumerator EndOfFrame() 
         {
             yield return new WaitForEndOfFrame();
+            GenerateOres();
             _canSpawnStaircase = true;
+            _onGenerateLevel?.Invoke();
         }
 
-        private void GenerateRscClump(Tilemap blueprint, Vector2Int originPos, GameObject objectToSpawn)
+        private void GenerateRscClump(Tilemap blueprint, Vector2Int originPos, GameObject objectToSpawn, bool curtailSpawn = false)
         {
-            int xMultiplier = random.Range(0, 2) == 0 ? 1 : -1;
-            int yMultiplier = random.Range(0, 2) == 0 ? 1 : -1;
+            int xMultiplier = random.Range(0, 1) == 0 ? 1 : -1;
+            int yMultiplier = random.Range(0, 1) == 0 ? 1 : -1;
 
             foreach (Vector3Int cellPos in blueprint.cellBounds.allPositionsWithin)
             {
                 if (blueprint.GetTile(cellPos) != null)
                 {
-                    Vector2 spawnPos = new(originPos.x + (cellPos.x * xMultiplier), originPos.y + (cellPos.y * yMultiplier));
-                    Vector3Int position = Vector3Int.FloorToInt(spawnPos);
+                    if (random.Range(0, 4) == 0 && curtailSpawn)
+                        continue;
 
-                    if (_wallTm.GetTile(position) == null && IsTileClear(spawnPos))
+                    Vector2 position = new(originPos.x + (cellPos.x * xMultiplier), originPos.y + (cellPos.y * yMultiplier));
+                    Vector3Int spawnPos = Vector3Int.FloorToInt(position);
+
+                    if (_wallTm.GetTile(spawnPos) == null && IsTileClear(spawnPos))
                     {
                         SpawnResource(objectToSpawn, spawnPos);
                     }
@@ -224,7 +249,7 @@ namespace IslandBoy
             }
         }
 
-        private void SpawnResource(GameObject obj, Vector2 spawnPos)
+        private void SpawnResource(GameObject obj, Vector3Int spawnPos)
         {
             GameObject rscObject = Instantiate(obj, spawnPos, Quaternion.identity);
             _ugAssets.Add(rscObject);
@@ -243,10 +268,12 @@ namespace IslandBoy
                         us.GoDownAction = GenerateNewLevel;
                     }
                 }
+
+                _onResourceBroken?.Invoke(new Vector2(spawnPos.x, spawnPos.y));
             });
         }
 
-        private bool IsTileClear(Vector2 pos)
+        private bool IsTileClear(Vector3Int pos)
         {
             var colliders = Physics2D.OverlapCircleAll(new Vector2(pos.x + 0.5f, pos.y + 0.5f), 0.25f);
 
