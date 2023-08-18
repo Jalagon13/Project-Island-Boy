@@ -4,13 +4,14 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public class CrabIdle : StateMachineBehaviour
+    public class ZombieIdle : StateMachineBehaviour
     {
-        private CrabEntity _ctx;
+        private ZombieEntity _ctx;
 
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            _ctx = animator.transform.root.GetComponent<CrabEntity>();
+            Debug.Log("Entering Idle State");
+            _ctx = animator.transform.root.GetComponent<ZombieEntity>();
             _ctx.OnMove += Idle;
             _ctx.StartCoroutine(IdleDuration(animator));
         }
@@ -32,13 +33,10 @@ namespace IslandBoy
 
         private IEnumerator IdleDuration(Animator animator)
         {
-            yield return new WaitForSeconds(Random.Range(3f, 5f));
-            ChangeToMoveState(animator);
+            yield return new WaitForSeconds(Random.Range(2f, 2f));
+            _ctx.ChangeToMoveState(animator);
         }
 
-        private void ChangeToMoveState(Animator animator)
-        {
-            AnimStateManager.ChangeAnimationState(animator, _ctx.HashMove);
-        }
+
     }
 }

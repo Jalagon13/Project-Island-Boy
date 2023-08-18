@@ -20,7 +20,7 @@ namespace IslandBoy
             Debug.Log("Recalculating Grid callback");
 
             GridGraph gg = _ap.data.gridGraph;
-            gg.SetDimensions(50, 50, 1);
+            gg.SetDimensions(100, 100, 0.4f);
             gg.center = new(20, -10);
 
             gg.Scan();

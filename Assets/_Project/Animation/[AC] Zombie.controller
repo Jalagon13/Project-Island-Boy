@@ -19,7 +19,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: '[Anm] CrabChase'
+  m_Name: '[Anm] ZombieChase'
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -46,7 +46,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: '[Anm] CrabMove'
+  m_Name: '[Anm] ZombieMove'
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -84,7 +84,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: '[AC] Crab'
+  m_Name: '[AC] Zombie'
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
@@ -107,7 +107,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: '[Anm] CrabIdle'
+  m_Name: '[Anm] ZombieIdle'
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []

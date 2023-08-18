@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public class CrabChase : StateMachineBehaviour
+    public class ZombieChase : StateMachineBehaviour
     {
-        private CrabEntity _ctx;
+        private ZombieEntity _ctx;
 
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            _ctx = animator.transform.root.GetComponent<CrabEntity>();
+            _ctx = animator.transform.root.GetComponent<ZombieEntity>();
             _ctx.OnMove += Chase;
         }
 
