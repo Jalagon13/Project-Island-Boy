@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using random = UnityEngine.Random;
 
@@ -11,6 +10,7 @@ namespace IslandBoy
 {
     public class UndergroundGeneration : MonoBehaviour
     {
+        [SerializeField] private TilemapReferences _tmr;
         [Header("Prefabs")]
         [SerializeField] private GameObject _ugExitPrefab;
         [SerializeField] private GameObject _ugStaircasePrefab;
@@ -27,8 +27,8 @@ namespace IslandBoy
         [SerializeField] private TilemapGroup _stoneScatterBp;
         [SerializeField] private TilemapGroup[] _chunkGroups;
 
-        private Tilemap _groundTm;
-        private Tilemap _wallTm;
+        //private Tilemap _groundTm;
+        //private Tilemap _wallTm;
         private List<GameObject> _ugAssets = new();
         private List<Vector2> _usedPositions = new();
         private List<Vector2> _potentialOreVeinPos = new();
@@ -44,8 +44,8 @@ namespace IslandBoy
 
         private void Awake()
         {
-            _groundTm = transform.GetChild(0).GetComponent<Tilemap>();
-            _wallTm = transform.GetChild(2).GetComponent<Tilemap>();
+            //_groundTm = transform.GetChild(0).GetComponent<Tilemap>();
+            //_wallTm = transform.GetChild(2).GetComponent<Tilemap>();
             _chunkSideLength = _chunkGroups[0].RandomTilemap.cellBounds.size.x;
         }
 
@@ -94,8 +94,8 @@ namespace IslandBoy
             // brand new clean slate
             _generationComplete = false;
             _canSpawnStaircase = false;
-            _groundTm.ClearAllTiles();
-            _wallTm.ClearAllTiles();
+            _tmr.GroundTilemap.ClearAllTiles();
+            _tmr.WallTilemap.ClearAllTiles();
             _usedPositions = new();
             _potentialOreVeinPos = new();
             _spawnExitLeftSide = random.Range(0, 2) == 0;
@@ -168,7 +168,7 @@ namespace IslandBoy
         private void GenerateBorder()
         {
             // add a border around the map
-            var bounds = _groundTm.cellBounds;
+            var bounds = _tmr.GroundTilemap.cellBounds;
             var offset = 5;
 
             bounds.xMax += offset;
@@ -179,19 +179,19 @@ namespace IslandBoy
             foreach (Vector3Int pos in bounds.allPositionsWithin)
             {
                 // separate the floor and wall tiles to their own tilemap
-                if (_groundTm.GetTile(pos) == null)
+                if (_tmr.GroundTilemap.GetTile(pos) == null)
                 {
-                    _groundTm.SetTile(pos, _floorTile);
-                    _wallTm.SetTile(pos, _wallTile);
+                    _tmr.GroundTilemap.SetTile(pos, _floorTile);
+                    _tmr.WallTilemap.SetTile(pos, _wallTile);
                 }
-                else if (_groundTm.GetTile(pos) == _wallTile)
+                else if (_tmr.GroundTilemap.GetTile(pos) == _wallTile)
                 {
-                    _groundTm.SetTile(pos, _floorTile);
-                    _wallTm.SetTile(pos, _wallTile);
+                    _tmr.GroundTilemap.SetTile(pos, _floorTile);
+                    _tmr.WallTilemap.SetTile(pos, _wallTile);
                 }
 
                 // if there iss an empty space on the wall TM, add it to ore vein position list
-                if (_wallTm.GetTile(pos) == null)
+                if (_tmr.WallTilemap.GetTile(pos) == null)
                 {
                     _potentialOreVeinPos.Add(new Vector2(pos.x, pos.y));
                 }
@@ -241,7 +241,7 @@ namespace IslandBoy
                     Vector2 position = new(originPos.x + (cellPos.x * xMultiplier), originPos.y + (cellPos.y * yMultiplier));
                     Vector3Int spawnPos = Vector3Int.FloorToInt(position);
 
-                    if (_wallTm.GetTile(spawnPos) == null && IsTileClear(spawnPos))
+                    if (_tmr.WallTilemap.GetTile(spawnPos) == null && IsTileClear(spawnPos))
                     {
                         SpawnResource(objectToSpawn, spawnPos);
                     }
@@ -370,7 +370,7 @@ namespace IslandBoy
             TileBase[] tiles = tilemap.GetTilesBlock(area);
             area = new BoundsInt(Vector3Int.FloorToInt(spawnPos), area.size);
             
-            _groundTm.SetTilesBlock(area, tiles);
+            _tmr.GroundTilemap.SetTilesBlock(area, tiles);
             _lastChunkElement = roomType;
 
             if(!_usedPositions.Contains(spawnPos))

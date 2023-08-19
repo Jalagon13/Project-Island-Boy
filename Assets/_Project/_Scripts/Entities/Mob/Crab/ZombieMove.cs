@@ -44,6 +44,7 @@ namespace IslandBoy
         private Vector2 CalcWanderPos()
         {
             GraphNode startNode = AstarPath.active.GetNearest(_ctx.transform.position, NNConstraint.Default).node;
+
             List<GraphNode> nodes = PathUtilities.BFS(startNode, 20);
             Vector3 singleRandomPoint = PathUtilities.GetPointsOnNodes(nodes, 1)[0];
 

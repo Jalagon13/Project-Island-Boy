@@ -12,6 +12,13 @@ namespace IslandBoy
         [SerializeField] private Tilemap _ugFloorTm;
         [SerializeField] private Tilemap ugWallTm;
 
+        private void Awake()
+        {
+            _tmr.GroundTilemap = _ugGroundTm;
+            _tmr.FloorTilemap = _ugFloorTm;
+            _tmr.WallTilemap = ugWallTm;
+        }
+
         private void OnEnable()
         {
             _tmr.GroundTilemap = _ugGroundTm;

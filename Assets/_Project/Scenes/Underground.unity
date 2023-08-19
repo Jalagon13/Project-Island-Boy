@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &12291860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,7 +258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &392341347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -755,6 +755,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 1963475749}
   _monster: {fileID: 8560427171654549071, guid: 64500d3032b4c6a4e90b42d01a16430c, type: 3}
+  _tmr: {fileID: 0}
 --- !u!1 &873582349
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,6 +952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1cf18c303ee53647b524064994863b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tmr: {fileID: 11400000, guid: ec06355a14da7574295ea6e79aaebb6f, type: 2}
   _ugExitPrefab: {fileID: 3470106991848545398, guid: a822e8e64ee68bc49b544bc05f3f8c12, type: 3}
   _ugStaircasePrefab: {fileID: 3470106991848545398, guid: 4924c96d20b5d5c47bcebf56adaf9601, type: 3}
   _stonePrefab: {fileID: 2594954625819056484, guid: 0ded448220d1fa54594745e5897fb73e, type: 3}
