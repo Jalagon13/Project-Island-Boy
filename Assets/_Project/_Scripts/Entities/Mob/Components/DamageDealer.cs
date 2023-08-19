@@ -12,7 +12,10 @@ namespace IslandBoy
         {
             if (collision.TryGetComponent(out PlayerEntity playerEntity))
             {
-                playerEntity.Damage(Mathf.RoundToInt(_damageAmount), gameObject);
+                int damageAmount = Mathf.RoundToInt(_damageAmount);
+                GameObject sender = transform.root.gameObject;
+
+                playerEntity.Damage(damageAmount, sender);
             }
         }
     }

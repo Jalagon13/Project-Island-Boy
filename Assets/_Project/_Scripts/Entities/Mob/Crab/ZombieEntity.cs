@@ -17,16 +17,47 @@ namespace IslandBoy
         public Action OnMove;
         public IAstarAI AI;
 
+        private float _despawnCd = 8f;
+        private Timer _despawnTimer;
+
         protected override void Awake()
         {
             base.Awake();
             AI = GetComponent<IAstarAI>();
+            _despawnTimer = new(_despawnCd);
+            _despawnTimer.OnTimerEnd += OnDespawnTimerEnd;
         }
 
         protected override void Update()
         {
             base.Update();
             OnMove?.Invoke();
+
+            _despawnTimer.Tick(Time.deltaTime);
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if(collision.TryGetComponent(out FrustumCollider fc))
+            {
+                _despawnTimer.IsPaused = true;
+                _despawnTimer.RemainingSeconds = _despawnCd;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.TryGetComponent(out FrustumCollider fc))
+            {
+                _despawnTimer.IsPaused = false;
+                _despawnTimer.RemainingSeconds = _despawnCd;
+            }
+        }
+
+        public void OnDespawnTimerEnd()
+        {
+            _despawnTimer.OnTimerEnd -= OnDespawnTimerEnd;
+            Destroy(gameObject);
         }
 
         public void Seek(Vector2 pos)
