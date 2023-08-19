@@ -12,7 +12,7 @@ namespace IslandBoy
         [SerializeField] private GameObject _monster;
         [SerializeField] private TilemapReferences _tmr;
 
-        private float _spawnChance = 10; // in percent
+        private float _baseSpawnChance = 10; // in percent
         private int _maxSpawns = 5;
         private int _currentSpawns;
 
@@ -69,22 +69,32 @@ namespace IslandBoy
             float spawnRatio = _currentSpawns / _maxSpawns;
 
             if (spawnRatio >= 0 && spawnRatio < 0.2f)
-                return _spawnChance + 2;
+                return _baseSpawnChance + 2;
             else if (spawnRatio >= 0.2f && spawnRatio < 0.4f)
-                return _spawnChance + 1.5f;
+                return _baseSpawnChance + 1.5f;
             else if (spawnRatio >= 0.4f && spawnRatio < 0.6)
-                return _spawnChance + 1f;
+                return _baseSpawnChance + 1f;
             else if (spawnRatio >= 0.6f && spawnRatio < 0.8)
-                return _spawnChance + 0.5f;
+                return _baseSpawnChance + 0.5f;
             else if (spawnRatio >= 0.8f && spawnRatio < 1)
-                return _spawnChance;
+                return _baseSpawnChance;
 
-            return _spawnChance;
+            return _baseSpawnChance;
         }
 
         public void TestSpawnMob()
         {
+            Debug.Log("Spawn Mob");
 
+            Vector3 spawnPoint;
+
+            do
+            {
+                spawnPoint = GetSpawnPosition();
+            } while (!IsValidSpawnPosition(spawnPoint));
+
+            Instantiate(_monster, spawnPoint, Quaternion.identity);
+            _currentSpawns++;
         }
     }
 }

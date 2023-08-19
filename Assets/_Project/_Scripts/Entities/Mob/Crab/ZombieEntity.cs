@@ -17,7 +17,7 @@ namespace IslandBoy
         public Action OnMove;
         public IAstarAI AI;
 
-        private float _despawnCd = 8f;
+        private float _despawnCd = 15f;
         private Timer _despawnTimer;
 
         protected override void Awake()

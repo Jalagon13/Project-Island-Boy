@@ -12,7 +12,7 @@ namespace IslandBoy
 
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            Debug.Log("Entering Chase State");
+            //Debug.Log("Entering Chase State");
             _ctx = animator.transform.root.GetComponent<ZombieEntity>();
             _ctx.AI.maxSpeed = _chaseSpeed;
             _chasePos = _ctx.PR.Position;

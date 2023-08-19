@@ -12,7 +12,7 @@ namespace IslandBoy
 
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            Debug.Log("Entering Move State");
+            //Debug.Log("Entering Move State");
             _ctx = animator.transform.root.GetComponent<ZombieEntity>();
             _ctx.OnMove += Move;
             _wanderPos = CalcWanderPos();
