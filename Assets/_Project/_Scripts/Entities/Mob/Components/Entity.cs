@@ -13,12 +13,15 @@ namespace IslandBoy
 
         [SerializeField] protected int _maxHealth;
         [SerializeField] protected float _iFrameDuration = 0.17f;
+        [SerializeField] protected float _moveSpeed;
         [SerializeField] protected AudioClip _damageSound;
         [SerializeField] protected AudioClip _deathSound;
         [SerializeField] private LootTable _lootTable;
         [SerializeField] private UnityEvent _onDamage;
 
         protected Timer _iFrameTimer;
+        
+        public float BaseMoveSpeed { get { return _moveSpeed; } }
 
         protected virtual void Awake()
         {

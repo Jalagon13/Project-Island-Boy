@@ -12,13 +12,18 @@ namespace IslandBoy
         {
             Debug.Log("Entering Idle State");
             _ctx = animator.transform.root.GetComponent<ZombieEntity>();
+            _ctx.AI.isStopped = true;
             _ctx.OnMove += Idle;
             _ctx.StartCoroutine(IdleDuration(animator));
         }
 
         override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-
+            if (_ctx.PlayerClose())
+            {
+                _ctx.AI.isStopped = false;
+                _ctx.ChangeToChaseState(animator);
+            }
         }
 
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -28,12 +33,13 @@ namespace IslandBoy
 
         private void Idle()
         {
-
+            
         }
 
         private IEnumerator IdleDuration(Animator animator)
         {
-            yield return new WaitForSeconds(Random.Range(2f, 2f));
+            yield return new WaitForSeconds(Random.Range(2f, 4f));
+            _ctx.AI.isStopped = false;
             _ctx.ChangeToMoveState(animator);
         }
 

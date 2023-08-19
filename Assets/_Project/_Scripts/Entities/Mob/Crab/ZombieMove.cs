@@ -14,7 +14,6 @@ namespace IslandBoy
         {
             Debug.Log("Entering Move State");
             _ctx = animator.transform.root.GetComponent<ZombieEntity>();
-
             _ctx.OnMove += Move;
             _wanderPos = CalcWanderPos();
         }
@@ -23,14 +22,12 @@ namespace IslandBoy
         {
             if (_ctx.AI.reachedDestination)
             {
-                Debug.Log("Reached Destination");
                 _ctx.ChangeToIdleState(animator);
             }
 
-            if (_ctx.IsStuck())
+            if (_ctx.PlayerClose())
             {
-                //Debug.Log("Stuck");
-                //_ctx.ChangeToIdleState(animator);
+                _ctx.ChangeToChaseState(animator);
             }
         }
 

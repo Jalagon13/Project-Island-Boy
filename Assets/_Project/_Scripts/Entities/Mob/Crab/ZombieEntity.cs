@@ -9,6 +9,8 @@ namespace IslandBoy
 {
     public class ZombieEntity : Entity
     {
+        [SerializeField] private float _agroDistance;
+
         public readonly int HashIdle = Animator.StringToHash("[Anm] ZombieIdle");
         public readonly int HashMove = Animator.StringToHash("[Anm] ZombieMove");
         public readonly int HashChase = Animator.StringToHash("[Anm] ZombieChase");
@@ -43,9 +45,19 @@ namespace IslandBoy
             AnimStateManager.ChangeAnimationState(animator, HashMove);
         }
 
+        public void ChangeToChaseState(Animator animator)
+        {
+            AnimStateManager.ChangeAnimationState(animator, HashChase);
+        }
+
+        public bool PlayerClose()
+        {
+            return Vector3.Distance(gameObject.transform.position, PR.Position) < _agroDistance;
+        }
+
         public bool IsStuck()
         {
-            return AI.velocity.magnitude < 0.1f;
+            return AI.velocity.magnitude < 0.2f;
         }
     }
 }

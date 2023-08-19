@@ -9,14 +9,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4027962016378523654}
-  - component: {fileID: 7108774424614647485}
+  - component: {fileID: 3032305186878018489}
+  - component: {fileID: 9148219481338597626}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4027962016378523654
 Transform:
   m_ObjectHideFlags: 0
@@ -24,15 +25,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5794495667997123428}
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8560427171654549068}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
---- !u!70 &7108774424614647485
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &3032305186878018489
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,12 +43,25 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.15, y: 0}
-  m_Size: {x: 0.3, y: 0.6}
+  m_Offset: {x: 0.01813984, y: 0.27}
+  m_Size: {x: 0.797493, y: 0.797493}
   m_Direction: 0
+--- !u!114 &9148219481338597626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5794495667997123428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d8c5ed8a3d5d5241abf99eb3e941f90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageAmount: 12
 --- !u!1 &8560427171654549071
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,8 +151,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PR: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _maxHealth: 9
+  _maxHealth: 45
   _iFrameDuration: 0.17
+  _moveSpeed: 1
   _damageSound: {fileID: 8300000, guid: 8b0bc9a35fb412c4c9b00c8def95c58a, type: 3}
   _deathSound: {fileID: 8300000, guid: 4991035dcefc46b45b8a25d8caf2c6a0, type: 3}
   _lootTable:
@@ -154,6 +169,7 @@ MonoBehaviour:
   _onDamage:
     m_PersistentCalls:
       m_Calls: []
+  _agroDistance: 5.75
 --- !u!114 &8560427171654549062
 MonoBehaviour:
   m_ObjectHideFlags: 0
