@@ -8,7 +8,7 @@ namespace IslandBoy
     {
         private ZombieEntity _ctx;
         private Vector2 _chasePos;
-        private float _chaseSpeed = 1.5f;
+        private float _chaseSpeed = 2.75f;
 
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {

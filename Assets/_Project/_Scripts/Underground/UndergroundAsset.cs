@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public class UndergroundBehavior : MonoBehaviour
+    public class UndergroundAsset : MonoBehaviour
     {
         private Action _destroyAction;
         private bool _applicationQuitting;

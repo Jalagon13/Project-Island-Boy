@@ -101,7 +101,6 @@ namespace IslandBoy
             _spawnExitLeftSide = random.Range(0, 2) == 0;
             _currRowIndex = random.Range(0, 4);
             _currColIndex = 0;
-            
 
             // destroy all the world structures
             foreach (GameObject asset in _ugAssets)
@@ -254,8 +253,8 @@ namespace IslandBoy
             GameObject rscObject = Instantiate(obj, spawnPos, Quaternion.identity);
             _ugAssets.Add(rscObject);
 
-            rscObject.AddComponent<UndergroundBehavior>();
-            rscObject.GetComponent<UndergroundBehavior>().RegisterAsset(() =>
+            rscObject.AddComponent<UndergroundAsset>();
+            rscObject.GetComponent<UndergroundAsset>().RegisterAsset(() =>
             {
                 // on resource destroy
                 if (_canSpawnStaircase && random.Range(0, 100) < 50)
@@ -263,10 +262,7 @@ namespace IslandBoy
                     GameObject staircase = Instantiate(_ugStaircasePrefab, spawnPos, Quaternion.identity);
                     _ugAssets.Add(staircase);
 
-                    if (staircase.TryGetComponent(out UndergroundStaircase us))
-                    {
-                        us.GoDownAction = GenerateNewLevel;
-                    }
+                    staircase.GetComponent<UndergroundStaircase>().GoDownAction = GenerateNewLevel;
                 }
 
                 _onResourceBroken?.Invoke(new Vector2(spawnPos.x, spawnPos.y));

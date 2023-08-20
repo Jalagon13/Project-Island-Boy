@@ -12,13 +12,10 @@ namespace IslandBoy
         private void Awake()
         {
             _ap = GetComponent<AstarPath>();
-            Debug.Log(_ap == null);
         }
 
         public void RecalculateGrid() // calleed from UG Grid generation event
         {
-            Debug.Log("Recalculating Grid callback");
-
             GridGraph gg = _ap.data.gridGraph;
             gg.SetDimensions(100, 100, 0.4f);
             gg.center = new(20, -10);
