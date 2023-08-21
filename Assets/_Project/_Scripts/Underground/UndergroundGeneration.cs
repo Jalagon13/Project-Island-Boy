@@ -27,8 +27,6 @@ namespace IslandBoy
         [SerializeField] private TilemapGroup _stoneScatterBp;
         [SerializeField] private TilemapGroup[] _chunkGroups;
 
-        //private Tilemap _groundTm;
-        //private Tilemap _wallTm;
         private List<GameObject> _ugAssets = new();
         private List<Vector2> _usedPositions = new();
         private List<Vector2> _potentialOreVeinPos = new();
@@ -44,8 +42,6 @@ namespace IslandBoy
 
         private void Awake()
         {
-            //_groundTm = transform.GetChild(0).GetComponent<Tilemap>();
-            //_wallTm = transform.GetChild(2).GetComponent<Tilemap>();
             _chunkSideLength = _chunkGroups[0].RandomTilemap.cellBounds.size.x;
         }
 
@@ -84,7 +80,6 @@ namespace IslandBoy
             GenerateLevel();
             GenerateFillerRooms();
             GenerateBorder();
-            
 
             StartCoroutine(EndOfFrame()); // this is bc Destroy() happens near the end of the frame
         }

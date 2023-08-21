@@ -12,7 +12,7 @@ namespace IslandBoy
         [SerializeField] private GameObject _monster;
         [SerializeField] private TilemapReferences _tmr;
 
-        private float _baseSpawnChance = 40; // in percent
+        private float _baseSpawnChance = 35; // in percent
         private int _currentSpawns;
         private List<GameObject> _mobList = new();
 

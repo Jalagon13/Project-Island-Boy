@@ -251,6 +251,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: rsc_iron_ore
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 312b138367b222e458b30f190afd2350
+      internalID: -1313561144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rsc_coal_ore
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 958b95b06955c11469b2825daa32aa6c
+      internalID: 815461575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -262,6 +304,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      rsc_coal_ore: 815461575
+      rsc_iron_ore: -1313561144
       rsc_pile_grass: 1696362461
       rsc_pile_sand: -2095676522
       rsc_portal_core: -801796302
