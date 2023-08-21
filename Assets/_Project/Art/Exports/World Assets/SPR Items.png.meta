@@ -591,6 +591,27 @@ TextureImporter:
       name: item_fishing_rod
       rect:
         serializedVersion: 2
+        x: 96
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f20821dbf0e5a542a08fbd93c31c8d7
+      internalID: 1879242436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_iron_ore
+      rect:
+        serializedVersion: 2
         x: 80
         y: 0
         width: 16
@@ -602,8 +623,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f20821dbf0e5a542a08fbd93c31c8d7
-      internalID: 1879242436
+      spriteID: 42585cf6567aa2b429df0e11ee0bc46d
+      internalID: 1648958029
       vertices: []
       indices: 
       edges: []
@@ -628,6 +649,7 @@ TextureImporter:
       item_fishing_rod: 1879242436
       item_grass: 456514419
       item_hook: -1546665967
+      item_iron_ore: 1648958029
       item_key: 1935163884
       item_portal_core: 1494493913
       item_sand: -966422323
