@@ -15,7 +15,8 @@ namespace IslandBoy
         [SerializeField] private GameObject _ugExitPrefab;
         [SerializeField] private GameObject _ugStaircasePrefab;
         [SerializeField] private GameObject _stonePrefab;
-        [SerializeField] private GameObject _coalPrefab;
+        [SerializeField] private GameObject _ironOrePrefab;
+        [SerializeField] private GameObject _coalOrePrefab;
         [Header("Tiles")]
         [SerializeField] private TileBase _wallTile;
         [SerializeField] private TileBase _floorTile;
@@ -200,16 +201,25 @@ namespace IslandBoy
             {
                 for (int j = 0; j < _chunkPositions.GetLength(1); j++)
                 {
-                    int shrinkVal = 3;
-                    var position = _chunkPositions[i, j];
-                    int randXVal = (int)random.Range(position.x + shrinkVal, position.x + _chunkSideLength - shrinkVal);
-                    int randYVal = (int)random.Range(position.y + shrinkVal, position.y + _chunkSideLength - shrinkVal);
-                    Vector2Int randSpawnPos = new(randXVal, randYVal);
+                    if(random.Range(0, 2) == 0)
+                        GenerateRscClump(_oreVeinBp.RandomTilemap, RandomChunkPosition(i, j), _ironOrePrefab, true);
+                    if(random.Range(0, 2) == 0)
+                        GenerateRscClump(_oreVeinBp.RandomTilemap, RandomChunkPosition(i, j), _coalOrePrefab, true);
 
-                    GenerateRscClump(_oreVeinBp.RandomTilemap, randSpawnPos, _coalPrefab, true);
-                    GenerateRscClump(_stoneScatterBp.RandomTilemap, randSpawnPos, _stonePrefab);
+                    GenerateRscClump(_stoneScatterBp.RandomTilemap, RandomChunkPosition(i, j), _stonePrefab);
                 }
             }
+        }
+
+        private Vector2Int RandomChunkPosition(int i, int j)
+        {
+            int shrinkVal = 2;
+            var position = _chunkPositions[i, j];
+            int randXVal = (int)random.Range(position.x + shrinkVal, position.x + _chunkSideLength - shrinkVal);
+            int randYVal = (int)random.Range(position.y + shrinkVal, position.y + _chunkSideLength - shrinkVal);
+            Vector2Int randSpawnPos = new(randXVal, randYVal);
+
+            return randSpawnPos;
         }
 
         private IEnumerator EndOfFrame() 

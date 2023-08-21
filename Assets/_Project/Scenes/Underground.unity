@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &12291860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,7 +258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &392341347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -821,7 +821,8 @@ MonoBehaviour:
   _ugExitPrefab: {fileID: 3470106991848545398, guid: a822e8e64ee68bc49b544bc05f3f8c12, type: 3}
   _ugStaircasePrefab: {fileID: 3470106991848545398, guid: 4924c96d20b5d5c47bcebf56adaf9601, type: 3}
   _stonePrefab: {fileID: 2594954625819056484, guid: 0ded448220d1fa54594745e5897fb73e, type: 3}
-  _coalPrefab: {fileID: 2594954625819056484, guid: e989bdb3b75d6cb4087b5511fcc9ea66, type: 3}
+  _ironOrePrefab: {fileID: 2594954625819056484, guid: e989bdb3b75d6cb4087b5511fcc9ea66, type: 3}
+  _coalOrePrefab: {fileID: 2594954625819056484, guid: 7c31b8c95a0e5b842863ded876346dd0, type: 3}
   _wallTile: {fileID: 11400000, guid: 18644ea5358575f4694248ee33a2c3aa, type: 2}
   _floorTile: {fileID: 11400000, guid: 0184801a711830146bf6180e1bf4973c, type: 2}
   _onGenerateLevel:
@@ -884,6 +885,8 @@ MonoBehaviour:
     - {fileID: 1995905834040469728, guid: 9a3e41b4ecf4b6e4e81a20c5cc747ce8, type: 3}
     - {fileID: 1995905834040469728, guid: b25855cac35aff54ca01b478f814372d, type: 3}
     - {fileID: 1995905834040469728, guid: 6d2cbf953e1a621448ee7ff9dd5fe1e9, type: 3}
+    - {fileID: 1995905834040469728, guid: 14daa72d14b5ea141858e2536c60a58c, type: 3}
+    - {fileID: 1995905834040469728, guid: 3396f8475d5016a47bf6e417823041bf, type: 3}
   _stoneScatterBp:
     _group:
     - {fileID: 1995905834040469728, guid: 8fe35ab56efb4784a894a574b3ca0d74, type: 3}
