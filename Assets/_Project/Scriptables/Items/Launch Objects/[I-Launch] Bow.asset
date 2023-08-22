@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b48e90e43a081924283740da00ff416a, type: 3}
-  m_Name: '[I-Launch] Bomb'
+  m_Name: '[I-Launch] Bow'
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Bomb
-  <UiDisplay>k__BackingField: {fileID: -1565230189, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
-  <Stackable>k__BackingField: 1
+  <Name>k__BackingField: Bow
+  <UiDisplay>k__BackingField: {fileID: 1529562530, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  <Stackable>k__BackingField: 0
   <Description>k__BackingField: 
   <DefaultParameterList>k__BackingField:
+  - Parameter: {fileID: 11400000, guid: 97c28137497da5845bdbc42cd2c6dd6f, type: 2}
+    Value: 35
   - Parameter: {fileID: 11400000, guid: 8ce2b1259fb6a35469e952361487c905, type: 2}
-    Value: 1.25
-  _prefabToThrow: {fileID: 3933085976869050213, guid: 9252b9aed92306f489c07fb639caa477, type: 3}
+    Value: 1.5
+  _prefabToThrow: {fileID: 6869286514326003167, guid: f10bcf5ae9c63f74e8eea0514827ae94, type: 3}
   _throwSound: {fileID: 8300000, guid: 693f775d985d5c542a5f4361e1922d53, type: 3}
   _chargeTime: 0
   _launchForce: 5

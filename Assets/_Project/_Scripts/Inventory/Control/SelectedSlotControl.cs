@@ -15,16 +15,17 @@ namespace IslandBoy
         [field:SerializeField] public TileAction TileAction { get; private set; }
         [field:SerializeField] public Collider2D PlayerEntityCollider { get; private set; }
         [field:SerializeField] public Slider ThrowSlider { get; private set; }
+        [field:SerializeField] public ItemParameter ChargeTimeParameter { get; private set; }
 
-        private Action<SelectedSlotControl, float> _onThrow;
+        private Action<SelectedSlotControl, float> _onLaunch;
         private PlayerInput _input;
         private bool _isHeldDown, _isCharging;
-        private float _baseCoolDown = 0.17f, _minThrowForce = 5f, _maxThrowForce = 30f, _maxChargeTime = 1.5f;
+        private float _baseCoolDown = 0.17f, _minThrowForce = 5f, _maxThrowForce = 25f, _maxChargeTime = 1.5f, _baseChargeTime = 1.5f;
         private float _counter, _chargeSpeed, _currentThrowForce;
 
         public bool HeldDown { get { return _isHeldDown; } }
         public bool IsCharging { get { return _isCharging; } set { _isCharging = true; } }
-        public Action<SelectedSlotControl, float> OnLaunch { set { _onThrow = value; } }
+        public Action<SelectedSlotControl, float> OnLaunch { set { _onLaunch = value; } }
 
         private void Awake()
         {
@@ -44,11 +45,13 @@ namespace IslandBoy
         private void OnEnable()
         {
             _input.Enable();
+            HotbarControl.OnSelectedSlotUpdated += UpdateChargeTime;
         }
 
         private void OnDisable()
         {
             _input.Disable();
+            HotbarControl.OnSelectedSlotUpdated -= UpdateChargeTime;
         }
 
         private void Update()
@@ -74,6 +77,25 @@ namespace IslandBoy
             }
         }
 
+        private void UpdateChargeTime()
+        {
+            if (PR.SelectedSlot.CurrentParameters.Count <= 0) return;
+            Debug.Log("Test1");
+            var itemParams = PR.SelectedSlot.CurrentParameters;
+
+            if (itemParams.Contains(ChargeTimeParameter))
+            {
+                Debug.Log("Test2");
+                int index = itemParams.IndexOf(ChargeTimeParameter);
+                _maxChargeTime = itemParams[index].Value;
+                _chargeSpeed = (_maxThrowForce - _minThrowForce) / _maxChargeTime;
+            }
+            else
+            {
+                _maxChargeTime = _baseChargeTime;
+            }
+        }
+
         private void IsHeldDown(InputAction.CallbackContext context)
         {
             _isHeldDown = context.performed;
@@ -86,7 +108,7 @@ namespace IslandBoy
         {
             _isCharging = false;
             ThrowSlider.gameObject.SetActive(false);
-            _onThrow?.Invoke(this, _currentThrowForce);
+            _onLaunch?.Invoke(this, _currentThrowForce);
             _currentThrowForce = _minThrowForce;
         }
 

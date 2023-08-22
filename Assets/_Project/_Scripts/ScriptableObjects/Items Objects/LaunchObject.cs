@@ -10,6 +10,8 @@ namespace IslandBoy
 
         [SerializeField] private GameObject _prefabToThrow;
         [SerializeField] private AudioClip _throwSound;
+        [Header("Optional force added or subtracted")]
+        [SerializeField] private float _launchForce;
 
         public override ToolType ToolType => _baseToolType;
 
@@ -33,7 +35,9 @@ namespace IslandBoy
 
                 AudioManager.Instance.PlayClip(_throwSound, false, true);
 
-                rb.AddForce(direction * force, ForceMode2D.Impulse);
+                var launchForce = (direction * (force + _launchForce));
+
+                rb.AddForce(launchForce, ForceMode2D.Impulse);
             }
 
             LaunchEvent?.Invoke();
@@ -50,7 +54,7 @@ namespace IslandBoy
 
         public override string GetDescription()
         {
-            return $"• Can be thrown<br>{Description}";
+            return $"• Can be launched<br>{Description}";
         }
     }
 }

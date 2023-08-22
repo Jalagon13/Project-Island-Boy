@@ -19,5 +19,9 @@ MonoBehaviour:
   <DefaultParameterList>k__BackingField:
   - Parameter: {fileID: 11400000, guid: 97c28137497da5845bdbc42cd2c6dd6f, type: 2}
     Value: 35
+  - Parameter: {fileID: 11400000, guid: 8ce2b1259fb6a35469e952361487c905, type: 2}
+    Value: 1.5
   _prefabToThrow: {fileID: 8574012380604078391, guid: 58b7261fa25a6ca4093ffe372031c55d, type: 3}
   _throwSound: {fileID: 8300000, guid: 693f775d985d5c542a5f4361e1922d53, type: 3}
+  _chargeTime: 0
+  _launchForce: 5

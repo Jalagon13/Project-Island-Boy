@@ -617,7 +617,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -625,6 +625,48 @@ TextureImporter:
       bones: []
       spriteID: 42585cf6567aa2b429df0e11ee0bc46d
       internalID: 1648958029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_arrow
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62994d49e7df50a4c92f52bf59e6dc94
+      internalID: -110451255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_bow
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0370cd890369711458e6c22d320f0014
+      internalID: 1529562530
       vertices: []
       indices: 
       edges: []
@@ -640,7 +682,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      item_arrow: -110451255
       item_bed: -1855741160
+      item_bow: 1529562530
       item_campfire: 1223464883
       item_coal: -1651487029
       item_construction_table: 449123009

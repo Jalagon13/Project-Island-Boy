@@ -92,7 +92,7 @@ namespace IslandBoy
 
             _pr.SelectedSlot = _selectedSlot;
 
-            OnSelectedSlotUpdated?.Invoke(); // attached to TileIndicator
+            OnSelectedSlotUpdated?.Invoke(); // attached to TileIndicator and SelectedSlotControl
         }
 
         private void UnHighlightPrevious()
