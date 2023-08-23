@@ -19,7 +19,7 @@ namespace IslandBoy
 
         override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            if (_ctx.PlayerClose())
+            if (_ctx.PlayerClose() && _ctx.CanGetToPlayer())
             {
                 _ctx.AI.isStopped = false;
                 _ctx.ChangeToChaseState(animator);

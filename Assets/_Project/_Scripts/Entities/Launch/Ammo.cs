@@ -44,15 +44,17 @@ namespace IslandBoy
 
             if(colGo.TryGetComponent(out Resource rsc))
             {
-                rsc.Hit(_damage / 3);
-                Destroy(gameObject);
+                rsc.Hit(0);
             }
+
+            if (colGo.layer == 3 && collision.isTrigger == false)
+                Destroy(gameObject);
         }
 
         public void Setup(ItemObject launchObject, ItemObject ammoObject, float multiplier)
         {
             int launchPower = Mathf.RoundToInt(ExtractPower(launchObject) * multiplier);
-            int ammoPower = ExtractPower(ammoObject);
+            int ammoPower = Mathf.RoundToInt(ExtractPower(ammoObject) * multiplier);
 
             _damage = launchPower + ammoPower;
         }

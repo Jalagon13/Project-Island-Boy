@@ -23,7 +23,7 @@ namespace IslandBoy
         {
             _chasePos = _ctx.PR.Position; 
 
-            if (!_ctx.PlayerClose())
+            if (!_ctx.PlayerClose() || !_ctx.CanGetToPlayer())
             {
                 _ctx.ChangeToIdleState(animator);
             }

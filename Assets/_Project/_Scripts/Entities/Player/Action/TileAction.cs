@@ -102,7 +102,8 @@ namespace IslandBoy
                 {
                     if (breakable.Hit(CalcPower(), CalcToolType()))
                     {
-                        ModifyDurability();
+                        if(_pr.SelectedSlot.ItemObject is ToolObject)
+                            ModifyDurability();
 
                         if (breakable.CurrentHitPoints <= 0)
                         {

@@ -16,6 +16,7 @@ namespace IslandBoy
         public readonly int HashChase = Animator.StringToHash("[Anm] ZombieChase");
         public Action OnMove;
         public IAstarAI AI;
+        public Seeker Seeker;
 
         private float _despawnCd = 15f;
         private Timer _despawnTimer;
@@ -24,6 +25,7 @@ namespace IslandBoy
         {
             base.Awake();
             AI = GetComponent<IAstarAI>();
+            Seeker = GetComponent<Seeker>();
             _despawnTimer = new(_despawnCd);
             _despawnTimer.OnTimerEnd += OnDespawnTimerEnd;
         }
@@ -84,6 +86,13 @@ namespace IslandBoy
         public bool PlayerClose()
         {
             return Vector3.Distance(gameObject.transform.position, PR.Position) < _agroDistance;
+        }
+
+        public bool CanGetToPlayer()
+        {
+            Path path = ABPath.Construct(gameObject.transform.position, PR.Position);
+
+            return !path.error;
         }
 
         public bool IsStuck()

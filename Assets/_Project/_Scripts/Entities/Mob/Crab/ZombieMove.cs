@@ -25,7 +25,7 @@ namespace IslandBoy
                 _ctx.ChangeToIdleState(animator);
             }
 
-            if (_ctx.PlayerClose())
+            if (_ctx.PlayerClose() && _ctx.CanGetToPlayer())
             {
                 _ctx.ChangeToChaseState(animator);
             }
