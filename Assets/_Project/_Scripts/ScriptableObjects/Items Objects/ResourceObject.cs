@@ -6,7 +6,8 @@ namespace IslandBoy
     public class ResourceObject : ItemObject
     {
         public override ToolType ToolType => _baseToolType;
-
+        public override AmmoType AmmoType => _baseAmmoType;
+        public override GameObject AmmoPrefab => null;
         public override int ConsumeValue => 0;
 
         public override void ExecuteAction(SelectedSlotControl control)

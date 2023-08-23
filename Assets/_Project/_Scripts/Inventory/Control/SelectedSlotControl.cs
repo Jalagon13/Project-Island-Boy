@@ -26,6 +26,16 @@ namespace IslandBoy
         public bool HeldDown { get { return _isHeldDown; } }
         public bool IsCharging { get { return _isCharging; } set { _isCharging = true; } }
         public Action<SelectedSlotControl, float> OnLaunch { set { _onLaunch = value; } }
+        public float ThrowForcePercentage 
+        { 
+            get 
+            {
+                float a = _maxThrowForce - _minThrowForce;
+                float b = _currentThrowForce - _minThrowForce;
+
+                return b / a; 
+            }
+        }
 
         private void Awake()
         {
@@ -80,12 +90,10 @@ namespace IslandBoy
         private void UpdateChargeTime()
         {
             if (PR.SelectedSlot.CurrentParameters.Count <= 0) return;
-            Debug.Log("Test1");
             var itemParams = PR.SelectedSlot.CurrentParameters;
 
             if (itemParams.Contains(ChargeTimeParameter))
             {
-                Debug.Log("Test2");
                 int index = itemParams.IndexOf(ChargeTimeParameter);
                 _maxChargeTime = itemParams[index].Value;
                 _chargeSpeed = (_maxThrowForce - _minThrowForce) / _maxChargeTime;

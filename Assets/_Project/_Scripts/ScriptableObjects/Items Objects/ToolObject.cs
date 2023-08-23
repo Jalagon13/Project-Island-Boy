@@ -20,7 +20,8 @@ namespace IslandBoy
         [field: SerializeField] public ToolType Type { get; set; }
 
         public override ToolType ToolType => Type;
-
+        public override AmmoType AmmoType => _baseAmmoType;
+        public override GameObject AmmoPrefab => null;
         public override int ConsumeValue => 0;
 
         public override void ExecuteAction(SelectedSlotControl control)

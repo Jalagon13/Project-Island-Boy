@@ -140,6 +140,25 @@ namespace IslandBoy
             return false;
         }
 
+        public ItemObject GetAmmoItem(AmmoType ammoType)
+        {
+            for (int i = 0; i < _inventorySlots.Length; i++)
+            {
+                InventorySlot slot = _inventorySlots[i];
+
+                if (slot.ItemObject == null) continue;
+
+                if (slot.ItemObject.AmmoType == ammoType)
+                {
+                    GameObject ammoPrefab = slot.ItemObject.AmmoPrefab;
+                    if (ammoPrefab != null)
+                        return slot.ItemObject;
+                }
+            }
+
+            return null;
+        }
+
         private void SpawnInventoryItem(ItemObject item, InventorySlot slot, List<ItemParameter> itemParameters)
         {
             GameObject inventoryItemGo = Instantiate(_inventoryItemPrefab, slot.transform);

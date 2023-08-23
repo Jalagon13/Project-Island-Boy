@@ -14,11 +14,14 @@ namespace IslandBoy
         [field: SerializeField] public List<ItemParameter> DefaultParameterList { get; set; }
 
         public abstract ToolType ToolType { get; }
+        public abstract AmmoType AmmoType { get; }
+        public abstract GameObject AmmoPrefab { get; }
         public abstract int ConsumeValue { get; }
         public abstract void ExecuteAction(SelectedSlotControl control);
         public abstract string GetDescription();
 
         protected ToolType _baseToolType = ToolType.Ax;
+        protected AmmoType _baseAmmoType = AmmoType.None;
 
     }
 

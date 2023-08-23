@@ -9,7 +9,8 @@ namespace IslandBoy
         [SerializeField] private RuleTileExtended _wallTile;
 
         public override ToolType ToolType => _baseToolType;
-
+        public override AmmoType AmmoType => _baseAmmoType;
+        public override GameObject AmmoPrefab => null;
         public override int ConsumeValue => 0;
 
         public override void ExecuteAction(SelectedSlotControl control)

@@ -8,18 +8,33 @@ namespace IslandBoy
     {
         public static event Action LaunchEvent;
 
-        [SerializeField] private GameObject _prefabToThrow;
+        [SerializeField] private PlayerReference _pr;
+        [SerializeField] private GameObject _throwPrefab;
         [SerializeField] private AudioClip _throwSound;
-        [Header("Optional force added or subtracted")]
-        [SerializeField] private float _launchForce;
+        [SerializeField] private float _launchForce = 5f; // Optional force added or subtracted
+        [SerializeField] private AmmoType _ammoType;
 
         public override ToolType ToolType => _baseToolType;
-
+        public override AmmoType AmmoType => _baseAmmoType;
+        public override GameObject AmmoPrefab => null;
         public override int ConsumeValue => 0;
+
+        private ItemObject _ammoObject;
 
         public override void ExecuteAction(SelectedSlotControl control)
         {
             if (PointerHandler.IsOverLayer(5)) return;
+
+            _ammoObject = null;
+
+            if (_ammoType != AmmoType.None)
+            {
+                ItemObject ammoObject = _pr.Inventory.GetAmmoItem(_ammoType);
+
+                if (ammoObject == null) return;
+
+                _ammoObject = ammoObject;
+            }
 
             control.IsCharging = true;
             control.OnLaunch = Launch;
@@ -27,29 +42,35 @@ namespace IslandBoy
 
         private void Launch(SelectedSlotControl control, float force)
         {
-            GameObject throwObject = Instantiate(_prefabToThrow, (Vector3)control.PR.Position + new Vector3(0, 0.4f), Quaternion.identity);
+            Vector2 launchPosition = (Vector3)control.PR.Position + new Vector3(0, 0.4f);
 
-            if (throwObject.TryGetComponent(out Rigidbody2D rb))
+            GameObject launchPrefab = _ammoObject == null ? _throwPrefab : _ammoObject.AmmoPrefab;
+            GameObject launchObject = Instantiate(launchPrefab, launchPosition, Quaternion.identity);
+            Rigidbody2D rb = launchObject.GetComponent<Rigidbody2D>();
+
+            Vector2 direction = ((Vector3)control.PR.MousePosition - rb.transform.position).normalized;
+            Vector2 launchForce = (direction * (force + _launchForce));
+
+            if(launchObject.TryGetComponent(out Ammo arrow))
             {
-                Vector2 direction = ((Vector3)control.PR.MousePosition - rb.transform.position).normalized;
-
-                AudioManager.Instance.PlayClip(_throwSound, false, true);
-
-                var launchForce = (direction * (force + _launchForce));
-
-                rb.AddForce(launchForce, ForceMode2D.Impulse);
+                arrow.Setup(this, _ammoObject, control.ThrowForcePercentage);
             }
 
-            LaunchEvent?.Invoke();
-            
+            rb.AddForce(launchForce, ForceMode2D.Impulse);
+
+            if (_ammoObject != null)
+            {
+                _pr.Inventory.RemoveItem(_ammoObject, 1);
+                _ammoObject = null;
+            }
+
             if (Stackable)
-            {
                 control.PR.SelectedSlot.InventoryItem.Count--;
-            }
             else
-            {
                 control.TileAction.ModifyDurability();
-            }
+
+            AudioManager.Instance.PlayClip(_throwSound, false, true);
+            LaunchEvent?.Invoke();
         }
 
         public override string GetDescription()
