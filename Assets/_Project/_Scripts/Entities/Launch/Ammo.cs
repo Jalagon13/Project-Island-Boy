@@ -33,11 +33,18 @@ namespace IslandBoy
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.layer == 7) return;
+            GameObject colGo = collision.gameObject;
+            if (colGo.layer == 7) return;
 
-            if (collision.gameObject.TryGetComponent(out IHealth<int> health))
+            if (colGo.TryGetComponent(out IHealth<int> health))
             {
                 health.Damage(_damage, gameObject);
+                Destroy(gameObject);
+            }
+
+            if(colGo.TryGetComponent(out Resource rsc))
+            {
+                rsc.Hit(_damage / 3);
                 Destroy(gameObject);
             }
         }
@@ -48,8 +55,6 @@ namespace IslandBoy
             int ammoPower = ExtractPower(ammoObject);
 
             _damage = launchPower + ammoPower;
-
-
         }
 
         private int ExtractPower(ItemObject item)

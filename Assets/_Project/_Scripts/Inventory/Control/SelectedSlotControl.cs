@@ -56,12 +56,14 @@ namespace IslandBoy
         {
             _input.Enable();
             HotbarControl.OnSelectedSlotUpdated += UpdateChargeTime;
+            HotbarControl.OnSelectedSlotUpdated += ResetLaunch;
         }
 
         private void OnDisable()
         {
             _input.Disable();
             HotbarControl.OnSelectedSlotUpdated -= UpdateChargeTime;
+            HotbarControl.OnSelectedSlotUpdated -= ResetLaunch;
         }
 
         private void Update()
@@ -109,14 +111,16 @@ namespace IslandBoy
             _isHeldDown = context.performed;
 
             if (!_isHeldDown && _isCharging)
-                Throw();
+            {
+                _onLaunch?.Invoke(this, _currentThrowForce);
+                ResetLaunch();
+            }
         }
 
-        private void Throw()
+        private void ResetLaunch()
         {
             _isCharging = false;
             ThrowSlider.gameObject.SetActive(false);
-            _onLaunch?.Invoke(this, _currentThrowForce);
             _currentThrowForce = _minThrowForce;
         }
 
