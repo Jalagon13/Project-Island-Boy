@@ -92,7 +92,8 @@ namespace IslandBoy
         {
             Path path = ABPath.Construct(gameObject.transform.position, PR.Position);
 
-            return !path.error;
+            // WIP
+            return true;
         }
 
         public bool IsStuck()

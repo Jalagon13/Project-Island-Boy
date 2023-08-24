@@ -323,7 +323,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 5, y: 5, z: 5, w: 5}
       outline: []
       physicsShape: []
@@ -331,6 +331,69 @@ TextureImporter:
       bones: []
       spriteID: 100fb1ef8683f5d4d867a7f030c5cb02
       internalID: -505856833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_head
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 4
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e00794664739c94b84d4226a1d0fed6
+      internalID: 1369651022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_chest
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 4
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9e9cfb1e94187d4f863df6b46003511
+      internalID: -711384130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_legs
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 3
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b3bc6db168290d418f98c759243f082
+      internalID: 1245048942
       vertices: []
       indices: 
       edges: []
@@ -349,11 +412,14 @@ TextureImporter:
       9sprite_mm_full: -505856833
       uc_nrg_icon: -513854623
       ui_bar: -1058533567
+      ui_chest: -711384130
       ui_down_arrow: 1741322809
       ui_fill: -1558005462
+      ui_head: 1369651022
       ui_hp_icon: 181257697
       ui_inventory_slot: 2075716197
       ui_inventory_toggle: -1149747449
+      ui_legs: 1245048942
       ui_mana_icon: -301881112
       ui_sun_mark: -1565230189
       ui_sun_marker: -1176373306
