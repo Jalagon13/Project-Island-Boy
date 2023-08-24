@@ -15,6 +15,7 @@ namespace IslandBoy
 
         public abstract ToolType ToolType { get; }
         public abstract AmmoType AmmoType { get; }
+        public abstract ArmorType ArmorType { get; }
         public abstract GameObject AmmoPrefab { get; }
         public abstract int ConsumeValue { get; }
         public abstract void ExecuteAction(SelectedSlotControl control);
@@ -22,6 +23,7 @@ namespace IslandBoy
 
         protected ToolType _baseToolType = ToolType.Ax;
         protected AmmoType _baseAmmoType = AmmoType.None;
+        protected ArmorType _baseArmorType = ArmorType.None;
 
     }
 

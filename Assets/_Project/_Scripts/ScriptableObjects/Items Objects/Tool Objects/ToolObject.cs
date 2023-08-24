@@ -21,6 +21,7 @@ namespace IslandBoy
 
         public override ToolType ToolType => Type;
         public override AmmoType AmmoType => _baseAmmoType;
+        public override ArmorType ArmorType => _baseArmorType;
         public override GameObject AmmoPrefab => null;
         public override int ConsumeValue => 0;
 
