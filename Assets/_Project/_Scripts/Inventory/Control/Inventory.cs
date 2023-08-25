@@ -16,11 +16,11 @@ namespace IslandBoy
         [SerializeField] private GameObject _inventoryItemPrefab;
         [SerializeField] private int _maxStack;
         [SerializeField] private UnityEvent<ItemObject, int> _onPickupItem;
-        [SerializeField] private InventorySlot[] _inventorySlots;
+        [SerializeField] private Slot[] _allSlots;
 
         private MouseItemHolder _mouseItemHolder;
 
-        public InventorySlot[] InventorySlots { get { return _inventorySlots; } }
+        public Slot[] InventorySlots { get { return _allSlots; } }
         public int MaxStack { get { return _maxStack; } }
 
         private void Awake()
@@ -31,7 +31,7 @@ namespace IslandBoy
 
         private void Start()
         {
-            foreach (InventorySlot slot in _inventorySlots)
+            foreach (Slot slot in _allSlots)
             {
                 slot.MouseItemHolder = _mouseItemHolder;
                 slot.MaxStack = _maxStack;
@@ -62,9 +62,13 @@ namespace IslandBoy
         private bool Add(ItemObject item, int amount, List<ItemParameter> itemParameters = null)
         {
             // Check if any slot has the same item with count lower than max stack.
-            for (int i = 0; i < _inventorySlots.Length; i++)
+            for (int i = 0; i < _allSlots.Length; i++)
             {
-                InventorySlot slot = _inventorySlots[i];
+                Slot slot = _allSlots[i];
+
+                if (slot is not InventorySlot)
+                    continue;
+
                 InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
 
                 if (itemInSlot != null &&
@@ -78,9 +82,9 @@ namespace IslandBoy
             }
 
             // Find an empty slot
-            for (int i = 0; i < _inventorySlots.Length; i++)
+            for (int i = 0; i < _allSlots.Length; i++)
             {
-                InventorySlot slot = _inventorySlots[i];
+                Slot slot = _allSlots[i];
 
                 if (slot.transform.childCount == 0)
                 {
@@ -96,11 +100,11 @@ namespace IslandBoy
         {
             var counter = 0;
 
-            for (int j = 0; j < _inventorySlots.Length; j++)
+            for (int j = 0; j < _allSlots.Length; j++)
             {
                 if (counter >= amount) return;
 
-                InventorySlot slot = _inventorySlots[j];
+                Slot slot = _allSlots[j];
                 InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
 
                 repeat:
@@ -121,9 +125,9 @@ namespace IslandBoy
         {
             var counter = amount;
 
-            for (int i = 0; i < _inventorySlots.Length; i++)
+            for (int i = 0; i < _allSlots.Length; i++)
             {
-                InventorySlot slot = _inventorySlots[i];
+                Slot slot = _allSlots[i];
                 InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
 
                 if (itemInSlot == null || itemInSlot.Item != item)
@@ -142,9 +146,9 @@ namespace IslandBoy
 
         public ItemObject GetAmmoItem(AmmoType ammoType)
         {
-            for (int i = 0; i < _inventorySlots.Length; i++)
+            for (int i = 0; i < _allSlots.Length; i++)
             {
-                InventorySlot slot = _inventorySlots[i];
+                Slot slot = _allSlots[i];
 
                 if (slot.ItemObject == null) continue;
 
@@ -159,7 +163,7 @@ namespace IslandBoy
             return null;
         }
 
-        private void SpawnInventoryItem(ItemObject item, InventorySlot slot, List<ItemParameter> itemParameters)
+        private void SpawnInventoryItem(ItemObject item, Slot slot, List<ItemParameter> itemParameters)
         {
             GameObject inventoryItemGo = Instantiate(_inventoryItemPrefab, slot.transform);
             InventoryItem invItem = inventoryItemGo.GetComponent<InventoryItem>();

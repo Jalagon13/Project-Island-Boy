@@ -16,5 +16,9 @@ MonoBehaviour:
   <UiDisplay>k__BackingField: {fileID: -972602597, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   <Stackable>k__BackingField: 0
   <Description>k__BackingField: 
-  <DefaultParameterList>k__BackingField: []
+  <DefaultParameterList>k__BackingField:
+  - Parameter: {fileID: 11400000, guid: af1c414ed53fdb44f971059ce55ff9c0, type: 2}
+    Value: 2
+  - Parameter: {fileID: 11400000, guid: 97c28137497da5845bdbc42cd2c6dd6f, type: 2}
+    Value: 20
   _armorType: 3

@@ -56,7 +56,7 @@ namespace IslandBoy
             _mainInventory.gameObject.SetActive(false);
             _inventoryOpen = false;
 
-            foreach (InventorySlot slot in _inventory.InventorySlots)
+            foreach (Slot slot in _inventory.InventorySlots)
             {
                 slot.InventoryOpen = false;
             }
@@ -70,7 +70,7 @@ namespace IslandBoy
             if (rdb)
                 _craftSlotsControl.RefreshCraftingMenu(rdb);
 
-            foreach (InventorySlot slot in _inventory.InventorySlots)
+            foreach (Slot slot in _inventory.InventorySlots)
             {
                 slot.InventoryOpen = true;
             }
