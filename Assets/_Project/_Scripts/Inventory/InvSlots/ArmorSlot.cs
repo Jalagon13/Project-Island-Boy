@@ -13,7 +13,7 @@ namespace IslandBoy
         [SerializeField] private ItemParameter _durabilityParameter;
 
         private int _defense;
-        private static int _counterThreshold = 15; // for every x amount of damage taken, reduce durability by 1
+        private static int _counterThreshold = 20; // for every x amount of damage taken, reduce durability by 1
         private int _counter; // keeps track of damage taken;
 
         public override void OnPointerClick(PointerEventData eventData)
@@ -51,14 +51,31 @@ namespace IslandBoy
             }
         }
 
-        public void DecreaseDurability(int incomingDamage) // connected to PlayerEntity
+        public void DamageArmor(int incomingDamage) // connected to PlayerEntity
         {
             if (InventoryItem == null) return;
+
+            _counter += incomingDamage;
+
+            int decreaseAmount = 0;
+
+            while(_counter >= _counterThreshold)
+            {
+                _counter -= _counterThreshold;
+                decreaseAmount++;
+            }
+
+            DecreaseDurability(decreaseAmount);
+        }
+
+        private void DecreaseDurability(int decreaseAmount) 
+        {
+            if (InventoryItem == null || decreaseAmount == 0) return;
 
             var itemParams = InventoryItem.CurrentParameters;
 
             int index = itemParams.IndexOf(_durabilityParameter);
-            float newValue = itemParams[index].Value - incomingDamage;
+            float newValue = itemParams[index].Value - decreaseAmount;
             itemParams[index] = new ItemParameter
             {
                 Parameter = _durabilityParameter.Parameter,
@@ -73,6 +90,7 @@ namespace IslandBoy
         private IEnumerator FrameDelay()
         {
             yield return new WaitForEndOfFrame();
+
             if (!HasItem())
             {
                 UnEquipArmor();
@@ -89,6 +107,7 @@ namespace IslandBoy
         {
             _pr.AddDefense(-_defense);
             _defense = 0;
+            _counter = 0;
         }
 
         private int GetDefenseFromItem()
