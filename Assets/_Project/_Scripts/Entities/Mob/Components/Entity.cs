@@ -17,7 +17,7 @@ namespace IslandBoy
         [SerializeField] protected AudioClip _damageSound;
         [SerializeField] protected AudioClip _deathSound;
         [SerializeField] private LootTable _lootTable;
-        [SerializeField] private UnityEvent _onDamage;
+        [SerializeField] protected UnityEvent<int> _onDamage;
 
         protected Timer _iFrameTimer;
         
@@ -34,16 +34,16 @@ namespace IslandBoy
             _iFrameTimer.Tick(Time.deltaTime);
         }
 
-        public virtual void Damage(int damageAmount, GameObject sender = null)
+        public virtual void Damage(int incomingDamage, GameObject sender = null)
         {
             if (!CanDamage()) return;
 
-            HealthSystem.Damage(damageAmount);
+            HealthSystem.Damage(incomingDamage);
 
-            _onDamage?.Invoke();
+            _onDamage?.Invoke(incomingDamage);
             _iFrameTimer.RemainingSeconds = _iFrameDuration;
 
-            DamagePopup.Create(transform.position, damageAmount, 0.5f);
+            DamagePopup.Create(transform.position, incomingDamage, 0.5f);
             AudioManager.Instance.PlayClip(_damageSound, false, true);
 
             if (sender != null && transform.TryGetComponent(out KnockbackFeedback knockback))

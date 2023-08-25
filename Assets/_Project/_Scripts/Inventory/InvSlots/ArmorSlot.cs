@@ -7,7 +7,14 @@ namespace IslandBoy
 {
     public class ArmorSlot : Slot
     {
+        [SerializeField] private PlayerReference _pr;
         [SerializeField] private ArmorType _slotArmorType;
+        [SerializeField] private ItemParameter _defenseParameter;
+        [SerializeField] private ItemParameter _durabilityParameter;
+
+        private int _defense;
+        private static int _counterThreshold = 15; // for every x amount of damage taken, reduce durability by 1
+        private int _counter; // keeps track of damage taken;
 
         public override void OnPointerClick(PointerEventData eventData)
         {
@@ -19,6 +26,7 @@ namespace IslandBoy
                     {
                         if (HasItem())
                         {
+                            UnEquipArmor();
                             SwapThisItemAndMouseItem();
                             EquipArmor();
                         }
@@ -43,15 +51,57 @@ namespace IslandBoy
             }
         }
 
+        public void DecreaseDurability(int incomingDamage) // connected to PlayerEntity
+        {
+            if (InventoryItem == null) return;
+
+            var itemParams = InventoryItem.CurrentParameters;
+
+            int index = itemParams.IndexOf(_durabilityParameter);
+            float newValue = itemParams[index].Value - incomingDamage;
+            itemParams[index] = new ItemParameter
+            {
+                Parameter = _durabilityParameter.Parameter,
+                Value = newValue
+            };
+
+            InventoryItem.UpdateDurabilityCounter();
+
+            StartCoroutine(FrameDelay());
+        }
+
+        private IEnumerator FrameDelay()
+        {
+            yield return new WaitForEndOfFrame();
+            if (!HasItem())
+            {
+                UnEquipArmor();
+            }
+        }
+
         private void EquipArmor()
         {
-            // clear current armor values
-            // set armor values
+            _defense = GetDefenseFromItem();
+            _pr.AddDefense(_defense);
         }
 
         private void UnEquipArmor()
         {
-            // clear current armor values
+            _pr.AddDefense(-_defense);
+            _defense = 0;
+        }
+
+        private int GetDefenseFromItem()
+        {
+            var itemParams = InventoryItem.CurrentParameters;
+
+            if (itemParams.Contains(_defenseParameter))
+            {
+                int index = itemParams.IndexOf(_defenseParameter);
+                return (int)itemParams[index].Value;
+            }
+
+            return 0;
         }
     }
 }

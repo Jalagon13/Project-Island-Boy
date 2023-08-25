@@ -14,6 +14,7 @@ namespace IslandBoy
         private TextMeshProUGUI _countText;
         private ItemObject _item;
         private List<ItemParameter> _currentParameters;
+        private GameObject _durabilityCounterRef;
         private int _count;
 
         public ItemObject Item { get { return _item; } }
@@ -55,12 +56,16 @@ namespace IslandBoy
             float currentDurability = _currentParameters[index].Value;
             float maxDurability = _item.DefaultParameterList[index].Value;
 
-            GameObject durabilityCounterGo = Instantiate(_durabilityCounterGo, transform);
-            DurabilityCounter counter = durabilityCounterGo.GetComponent<DurabilityCounter>();
+            if(_durabilityCounterRef == null)
+            {
+                _durabilityCounterRef = Instantiate(_durabilityCounterGo, transform);
+            }
 
+            DurabilityCounter counter = _durabilityCounterRef.GetComponent<DurabilityCounter>();
             counter.UpdateDurabilityCounter(maxDurability, currentDurability);
 
-            if (currentDurability == 0)
+
+            if (currentDurability <= 0)
                 Destroy(gameObject);
         }
 
