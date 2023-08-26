@@ -20,18 +20,18 @@ namespace IslandBoy
         [SerializeField] private Vector2 _markerEndPosition;
 
         private Timer _timer;
-        private Light2D _globalLight;
         private Volume _globalVolume;
         private float _duration;
         private float _phasePercent;
         private bool _isDay;
 
+        public Volume GlobalVolume { get { return _globalVolume; } set { _globalVolume = value; } }
+
         protected override void Awake()
         {
             base.Awake();
 
-            _globalLight = transform.GetChild(1).GetComponent<Light2D>();
-            _globalVolume = transform.GetChild(2).GetComponent<Volume>();
+            _globalVolume = transform.GetChild(1).GetComponent<Volume>();
         }
 
         private void Start()

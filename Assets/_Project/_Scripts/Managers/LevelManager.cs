@@ -18,7 +18,7 @@ namespace IslandBoy
         private GameObject _tileActionObject;
         private List<GameObject> _rootObjects;
         private Camera _camera;
-        //private Light2D _globalLight;
+        private Light2D _globalLight;
         private Canvas _canvas;
 
         protected override void Awake()
@@ -27,7 +27,8 @@ namespace IslandBoy
             _surfaceScene = SceneManager.GetSceneByBuildIndex(0);
             _playerObject = GameObject.Find("Player");
             _tileActionObject = GameObject.Find("TileAction");
-            //_globalLight = transform.GetChild(1).GetComponent<Light2D>();
+            _globalLight = transform.GetChild(1).GetComponent<Light2D>();
+
             _canvas = transform.GetChild(0).GetComponent<Canvas>();
             _canvas.gameObject.SetActive(false);
             _camera = Camera.main;
@@ -43,8 +44,10 @@ namespace IslandBoy
             }
 
             _canvas.gameObject.SetActive(true);
-            //_globalLight.intensity = 0;
+            _globalLight.intensity = 0;
             _surfaceReturnPosition = _pr.Position;
+
+            DayNightManager.Instance.GlobalVolume.enabled = false;
 
             StartCoroutine(Load(1));
         }
@@ -58,8 +61,9 @@ namespace IslandBoy
             }
 
             _canvas.gameObject.SetActive(false);
-            //_globalLight.intensity = 1;
+            _globalLight.intensity = 1;
 
+            DayNightManager.Instance.GlobalVolume.enabled = true;
             SceneManager.MoveGameObjectToScene(_playerObject, _surfaceScene);
             SceneManager.MoveGameObjectToScene(_tileActionObject, _surfaceScene);
             SceneManager.MoveGameObjectToScene(_camera.gameObject, _surfaceScene);
