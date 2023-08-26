@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 namespace IslandBoy
@@ -18,7 +20,19 @@ namespace IslandBoy
         [SerializeField] private Vector2 _markerEndPosition;
 
         private Timer _timer;
+        private Light2D _globalLight;
+        private Volume _globalVolume;
         private float _duration;
+        private float _phasePercent;
+        private bool _isDay;
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            _globalLight = transform.GetChild(1).GetComponent<Light2D>();
+            _globalVolume = transform.GetChild(2).GetComponent<Volume>();
+        }
 
         private void Start()
         {
@@ -38,10 +52,30 @@ namespace IslandBoy
 
             if (!_timer.IsPaused)
             {
-                float percentageComplete = (_duration - _timer.RemainingSeconds) / _duration;
-                float xValue = Mathf.Lerp(_markerStartPosition.x, _markerEndPosition.x, percentageComplete);
-                _marker.anchoredPosition = new Vector2(xValue, _markerStartPosition.y);
+                MoveMarker();
+                VolumeHandle();
             }
+        }
+
+        private void VolumeHandle()
+        {
+            if (_phasePercent <= 0.1f)
+            {
+                float percent = _phasePercent / 0.1f;
+                _globalVolume.weight = Mathf.Lerp(0.5f, _isDay ? 0 : 1, percent);
+            }
+            else if(_phasePercent >= 0.9f && _phasePercent <= 1f)
+            {
+                float percent =  1 - ((1f - _phasePercent) * 10);
+                _globalVolume.weight = Mathf.Lerp(_isDay ? 0 : 1, 0.5f, percent);
+            }
+        }
+
+        private void MoveMarker()
+        {
+            _phasePercent = (_duration - _timer.RemainingSeconds) / _duration;
+            float xValue = Mathf.Lerp(_markerStartPosition.x, _markerEndPosition.x, _phasePercent);
+            _marker.anchoredPosition = new Vector2(xValue, _markerStartPosition.y);
         }
 
         private void StartDay()
@@ -50,6 +84,7 @@ namespace IslandBoy
             _timer = new(_dayDurationInSec);
             _timer.OnTimerEnd += StartNight;
             _duration = _dayDurationInSec;
+            _isDay = true;
 
             UpdateMarker(_sunSprite);
         }
@@ -60,6 +95,7 @@ namespace IslandBoy
             _timer = new(_nightDurationInSec);
             _timer.OnTimerEnd += StartDay;
             _duration = _nightDurationInSec;
+            _isDay = false;
 
             UpdateMarker(_moonSprite);
         }
