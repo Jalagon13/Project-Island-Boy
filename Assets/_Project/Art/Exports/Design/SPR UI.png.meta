@@ -398,6 +398,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: ui_housing_logo
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 3
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c1728dc53323a5408212687488a4f62
+      internalID: -1898290835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_moon_marker
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 16
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5b7483922e865242b3ad805e70519fe
+      internalID: 1183265060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -416,11 +458,13 @@ TextureImporter:
       ui_down_arrow: 1741322809
       ui_fill: -1558005462
       ui_head_slot: 1369651022
+      ui_housing_logo: -1898290835
       ui_hp_icon: 181257697
       ui_inventory_slot: 2075716197
       ui_inventory_toggle: -1149747449
       ui_legs_slot: 1245048942
       ui_mana_icon: -301881112
+      ui_moon_marker: 1183265060
       ui_sun_mark: -1565230189
       ui_sun_marker: -1176373306
   spritePackingTag: 

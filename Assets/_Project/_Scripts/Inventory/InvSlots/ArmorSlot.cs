@@ -13,7 +13,7 @@ namespace IslandBoy
         [SerializeField] private ItemParameter _durabilityParameter;
 
         private int _defense;
-        private static int _counterThreshold = 20; // for every x amount of damage taken, reduce durability by 1
+        private static readonly int _counterThreshold = 20; // for every x amount of damage taken, reduce durability by 1
         private int _counter; // keeps track of damage taken;
 
         public override void OnPointerClick(PointerEventData eventData)
