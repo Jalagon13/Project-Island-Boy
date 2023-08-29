@@ -57,6 +57,8 @@ namespace IslandBoy
 
         private void SpawnMob()
         {
+            return;
+
             Vector3 spawnPoint;
 
             do

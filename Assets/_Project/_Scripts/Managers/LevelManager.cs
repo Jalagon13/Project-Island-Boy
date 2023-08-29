@@ -11,20 +11,18 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerReference _pr;
 
-        private Scene _surfaceScene;
         private Vector2 _surfaceReturnPosition;
         private AsyncOperation _sceneAsync;
         private GameObject _playerObject;
         private GameObject _tileActionObject;
         private List<GameObject> _rootObjects;
-        private Camera _camera;
         private Light2D _globalLight;
+        private Camera _camera;
         private Canvas _canvas;
 
         protected override void Awake()
         {
             base.Awake();
-            _surfaceScene = SceneManager.GetSceneByBuildIndex(0);
             _playerObject = GameObject.Find("Player");
             _tileActionObject = GameObject.Find("TileAction");
             _globalLight = transform.GetChild(1).GetComponent<Light2D>();
@@ -43,13 +41,52 @@ namespace IslandBoy
                 return;
             }
 
+            DayNightManager.Instance.GlobalVolume.enabled = false;
+
             _canvas.gameObject.SetActive(true);
             _globalLight.intensity = 0;
             _surfaceReturnPosition = _pr.Position;
 
-            DayNightManager.Instance.GlobalVolume.enabled = false;
+            StartCoroutine(GenerateScene());
+        }
 
-            StartCoroutine(Load(1));
+        private IEnumerator GenerateScene()
+        {
+            yield return StartCoroutine(GenerateUndergroundScene());
+
+            Scene surface = SceneManager.GetSceneByBuildIndex(0);
+            Scene underground = SceneManager.GetSceneByBuildIndex(1);
+
+            if (underground.IsValid())
+            {
+                SceneManager.MoveGameObjectToScene(_playerObject, underground);
+                SceneManager.MoveGameObjectToScene(_tileActionObject, underground);
+                SceneManager.MoveGameObjectToScene(_camera.gameObject, underground);
+                SceneManager.SetActiveScene(underground);
+
+                EnableSceneObjects(surface, false);
+                EnableSceneObjects(underground, true);
+            }
+        }
+
+        private IEnumerator GenerateUndergroundScene()
+        {
+            if (_sceneAsync != null) yield break;
+
+            _sceneAsync = SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+            _sceneAsync.allowSceneActivation = false;
+
+            while (_sceneAsync.progress < 0.9f)
+            {
+                yield return null;
+            }
+
+            _sceneAsync.allowSceneActivation = true;
+
+            while (!_sceneAsync.isDone)
+            {
+                yield return null;
+            }
         }
 
         public void LoadSurface()
@@ -63,59 +100,26 @@ namespace IslandBoy
             _canvas.gameObject.SetActive(false);
             _globalLight.intensity = 1;
 
-            DayNightManager.Instance.GlobalVolume.enabled = true;
-            SceneManager.MoveGameObjectToScene(_playerObject, _surfaceScene);
-            SceneManager.MoveGameObjectToScene(_tileActionObject, _surfaceScene);
-            SceneManager.MoveGameObjectToScene(_camera.gameObject, _surfaceScene);
-            SceneManager.SetActiveScene(_surfaceScene);
-            SceneManager.UnloadSceneAsync(1);
+            Scene surface = SceneManager.GetSceneByBuildIndex(0);
+            Scene underground = SceneManager.GetSceneByBuildIndex(1);
 
-            EnableSurfaceObjects(true);
+            DayNightManager.Instance.GlobalVolume.enabled = true;
+            SceneManager.MoveGameObjectToScene(_playerObject, surface);
+            SceneManager.MoveGameObjectToScene(_tileActionObject, surface);
+            SceneManager.MoveGameObjectToScene(_camera.gameObject, surface);
+            SceneManager.SetActiveScene(surface);
+
+            EnableSceneObjects(underground, false);
+            EnableSceneObjects(surface, true);
+
             _playerObject.transform.SetPositionAndRotation(_surfaceReturnPosition, Quaternion.identity);
         }
 
-        private IEnumerator Load(int sceneIndex)
+        
+
+        private void EnableSceneObjects(Scene scene, bool foo)
         {
-            AsyncOperation scene = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
-            scene.allowSceneActivation = false;
-            _sceneAsync = scene;
-
-            while (scene.progress < 0.9f)
-            {
-                yield return null;
-            }
-
-            StartCoroutine(EnableScene(sceneIndex));
-        }
-
-        private IEnumerator EnableScene(int sceneIndex)
-        {
-            _sceneAsync.allowSceneActivation = true;
-
-            while (!_sceneAsync.isDone)
-            {
-                yield return null;
-            }
-
-            Scene sceneToLoad = SceneManager.GetSceneByBuildIndex(sceneIndex);
-
-            if (sceneToLoad.IsValid())
-            {
-                SceneManager.MoveGameObjectToScene(_playerObject, sceneToLoad);
-                SceneManager.MoveGameObjectToScene(_tileActionObject, sceneToLoad);
-                SceneManager.MoveGameObjectToScene(_camera.gameObject, sceneToLoad);
-                SceneManager.SetActiveScene(sceneToLoad);
-
-                if (sceneIndex == 1)
-                {
-                    EnableSurfaceObjects(false);
-                }
-            }
-        }
-
-        private void EnableSurfaceObjects(bool foo)
-        {
-            _surfaceScene.GetRootGameObjects(_rootObjects);
+            scene.GetRootGameObjects(_rootObjects);
 
             foreach (var go in _rootObjects)
             {

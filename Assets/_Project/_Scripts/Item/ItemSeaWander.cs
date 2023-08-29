@@ -11,6 +11,11 @@ namespace IslandBoy
         private Vector2 _dir;
         private float _speed;
 
+        private void OnDisable()
+        {
+            Destroy(gameObject);
+        }
+
         private void FixedUpdate()
         {
             if (_rb == null) return;

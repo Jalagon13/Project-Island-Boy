@@ -9,7 +9,7 @@ namespace IslandBoy
     {
         private AstarPath _ap;
 
-        private void Awake()
+        private void OnEnable()
         {
             _ap = GetComponent<AstarPath>();
         }

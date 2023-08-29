@@ -29,17 +29,11 @@ namespace IslandBoy
         [SerializeField] private TilemapGroup[] _chunkGroups;
 
         private List<GameObject> _ugAssets = new();
-        private List<Vector2> _usedPositions = new();
-        private List<Vector2> _potentialOreVeinPos = new();
+        private List<Vector2> _usedPositions = new(), _potentialOreVeinPos = new();
         private static Vector2Int[,] _chunkPositions = new Vector2Int[4,4];
-        private bool _generationComplete;
-        private bool _spawnExitLeftSide;
-        private bool _canSpawnStaircase = true;
-        private int _lastChunkElement;
-        private int _currRowIndex;
-        private int _currColIndex;
-        private int _direction;
-        private int _chunkSideLength;
+        private bool _generationComplete, _canSpawnStaircase = true, _spawnExitLeftSide;
+        private int _lastChunkElement, _currRowIndex, _currColIndex, _direction, _chunkSideLength;
+        private Vector2 _leftSideSpawnPos, _rightSideSpawnPos, _playerSpawnPos;
 
         private void Awake()
         {
@@ -50,22 +44,27 @@ namespace IslandBoy
         {
             ExtensionMethods.OnSpawn += RegisterUgAsset;
 
-            // populates the matrix with positions so the first row of the [,] is the first row of the positions etc. makes coding easier
-            for (int i = 0; i < _chunkPositions.GetLength(0); i++)
-            {
-                for (int j = 0; j < _chunkPositions.GetLength(1); j++)
-                {
-                    _chunkPositions[i, j] = new Vector2Int(j * _chunkSideLength, -i * _chunkSideLength); 
-                }
-            }
-
-            GenerateNewLevel();
+            SpawnPlayer();
         }
 
         private void OnDisable()
         {
             ExtensionMethods.OnSpawn -= RegisterUgAsset;
             _canSpawnStaircase = false;
+        }
+
+        private void Start()
+        {
+            // populates the matrix with positions so the first row of the [,] is the first row of the positions etc. makes coding easier
+            for (int i = 0; i < _chunkPositions.GetLength(0); i++)
+            {
+                for (int j = 0; j < _chunkPositions.GetLength(1); j++)
+                {
+                    _chunkPositions[i, j] = new Vector2Int(j * _chunkSideLength, -i * _chunkSideLength);
+                }
+            }
+
+            GenerateNewLevel();
         }
 
         private void RegisterUgAsset(object newObj)
@@ -111,10 +110,8 @@ namespace IslandBoy
             // spawn starting room and player
             SpawnChunk(random.Range(0, 2), _chunkPositions[_currRowIndex, _currColIndex]);
 
-            if (_spawnExitLeftSide)
-            {
-                SpawnPlayer();
-            }
+            _leftSideSpawnPos = new Vector2(_chunkPositions[_currRowIndex, _currColIndex].x + (_chunkSideLength / 2),
+                        _chunkPositions[_currRowIndex, _currColIndex].y + (_chunkSideLength / 2));
 
             _direction = random.Range(1, 6);
         }
@@ -225,6 +222,9 @@ namespace IslandBoy
         private IEnumerator EndOfFrame() 
         {
             yield return new WaitForEndOfFrame();
+
+            SpawnExitPrefab(_spawnExitLeftSide ? _leftSideSpawnPos : _rightSideSpawnPos);
+            SpawnPlayer();
             GenerateOres();
             _canSpawnStaircase = true;
             _onGenerateLevel?.Invoke();
@@ -278,7 +278,19 @@ namespace IslandBoy
         {
             var colliders = Physics2D.OverlapCircleAll(new Vector2(pos.x + 0.5f, pos.y + 0.5f), 0.25f);
 
-            return colliders.Length == 0;
+            foreach (Collider2D collider in colliders)
+            {
+                if(collider.TryGetComponent(out FrustumCollider fc))
+                {
+                    continue;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private void GenerateTilemap()
@@ -289,9 +301,8 @@ namespace IslandBoy
                 {
                     _generationComplete = true;
                     _direction = 0;
-
-                    if(_spawnExitLeftSide == false)
-                        SpawnPlayer();
+                    _rightSideSpawnPos = new Vector2(_chunkPositions[_currRowIndex, _currColIndex].x + (_chunkSideLength / 2), 
+                        _chunkPositions[_currRowIndex, _currColIndex].y + (_chunkSideLength / 2));
                 }
                 else
                 {
@@ -350,17 +361,22 @@ namespace IslandBoy
             }
         }
 
+        private void SpawnExitPrefab(Vector2 spawnPos)
+        {
+            _ugAssets.Add(Instantiate(_ugExitPrefab, spawnPos, Quaternion.identity));
+            _playerSpawnPos = new Vector2(spawnPos.x + 0.5f, spawnPos.y - 1);
+        }
+
         private void SpawnPlayer()
         {
-            // spawn exit on the center of the first spawn chunk
-            var spawnPos = new Vector2(_chunkPositions[_currRowIndex, _currColIndex].x + (_chunkSideLength / 2), _chunkPositions[_currRowIndex, _currColIndex].y + (_chunkSideLength / 2));
-            _ugAssets.Add(Instantiate(_ugExitPrefab, spawnPos, Quaternion.identity));
-
-            GameObject player = GameObject.Find("Player");
-
-            if (player != null)
+            if (_playerSpawnPos != Vector2.zero)
             {
-                player.transform.SetPositionAndRotation(new Vector2(spawnPos.x + 0.5f, spawnPos.y - 1), Quaternion.identity);
+                GameObject player = GameObject.Find("Player");
+
+                if (player != null)
+                {
+                    player.transform.SetPositionAndRotation(_playerSpawnPos, Quaternion.identity);
+                }
             }
         }
 
