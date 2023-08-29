@@ -20,7 +20,19 @@ SpriteAtlas:
       readable: 0
       crunchedCompression: 0
       sRGB: 1
-    platformSettings: []
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 4096
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
     packingSettings:
       serializedVersion: 2
       padding: 4
@@ -32,7 +44,10 @@ SpriteAtlas:
     secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
-    - {fileID: 102900000, guid: f74f771ae1128914dbcf76bab3a19dbd, type: 3}
+    - {fileID: 102900000, guid: a49da33a40469834694167abee07efe1, type: 3}
+    - {fileID: 102900000, guid: f2cea180da48f4f41b16743188a3a304, type: 3}
+    - {fileID: 102900000, guid: 703d386222e87c849a7f2532e8bc840d, type: 3}
+    - {fileID: 102900000, guid: e31f8b10331a8ac4d8750a1bbe67673e, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -231,7 +246,6 @@ SpriteAtlas:
   - {fileID: -45278380, guid: c2224cecd72da2f4484f0a90ba275a2c, type: 3}
   - {fileID: -1006392663, guid: d1fdf00d255e2d942a949c35bbb7ace1, type: 3}
   - {fileID: 1001675587, guid: d1fdf00d255e2d942a949c35bbb7ace1, type: 3}
-  - {fileID: 1094963970, guid: d1fdf00d255e2d942a949c35bbb7ace1, type: 3}
   - {fileID: 223816973, guid: 864f2f2db994e484aaf36087ee11e2e5, type: 3}
   - {fileID: 1325263547, guid: 1c0da41fba6c82c4687b01381cb85902, type: 3}
   - {fileID: -730454844, guid: 1c0da41fba6c82c4687b01381cb85902, type: 3}
@@ -433,7 +447,6 @@ SpriteAtlas:
   - SPR Stone Wall_21
   - spr_player
   - spr_island_boy
-  - spr_druid
   - ft_wood
   - tile_grass
   - tile_deep_water

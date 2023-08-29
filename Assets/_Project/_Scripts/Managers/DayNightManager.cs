@@ -37,6 +37,7 @@ namespace IslandBoy
         private void Start()
         {
             StartDay();
+            _timer.Tick(_dayDurationInSec * 0.1f);
         }
 
         private void OnDisable()
