@@ -30,6 +30,11 @@ namespace IslandBoy
             _despawnTimer.OnTimerEnd += OnDespawnTimerEnd;
         }
 
+        private void OnDisable()
+        {
+            Destroy(gameObject);
+        }
+
         protected override void Update()
         {
             base.Update();

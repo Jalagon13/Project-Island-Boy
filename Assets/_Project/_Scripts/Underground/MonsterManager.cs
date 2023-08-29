@@ -14,51 +14,33 @@ namespace IslandBoy
 
         private float _baseSpawnChance = 35; // in percent
         private int _currentSpawns;
-        private List<GameObject> _mobList = new();
+        //private List<GameObject> _mobList = new();
 
-        private IEnumerator Start()
+        private void OnEnable()
+        {
+            _currentSpawns = 0;
+
+            StartCoroutine(SpawnMonsterTimer());
+        }
+
+        private void OnDisable()
+        {
+            StopAllCoroutines();
+        }
+
+        private IEnumerator SpawnMonsterTimer()
         {
             yield return new WaitForSeconds(1f);
 
-            TryToSpawnMob();
-            StartCoroutine(Start());
-        }
-
-        public void ResetMonsters() // hooked to UndergroundGeneration unityEvent;
-        {
-            foreach (GameObject mob in _mobList)
-            {
-                Destroy(mob);
-            }
-
-            StartCoroutine(Delay());
-        }
-
-        private IEnumerator Delay()
-        {
-            yield return new WaitForEndOfFrame();
-
-            _mobList = new();
-            _currentSpawns = 0;
-
-            for (int i = 0; i < 10; i++)
+            if (Random.Range(0, 100f) < CalcSpawnChance())
             {
                 SpawnMob();
             }
-        }
 
-        private void TryToSpawnMob()
-        {
-            if(Random.Range(0, 100f) < CalcSpawnChance() && _currentSpawns < _maxSpawns)
-            {
-                SpawnMob();
-            }
+            StartCoroutine(SpawnMonsterTimer());
         }
-
         private void SpawnMob()
         {
-            return;
-
             Vector3 spawnPoint;
 
             do
@@ -72,31 +54,28 @@ namespace IslandBoy
         private void Spawn(GameObject monster, Vector3 spawnPos)
         {
             GameObject entity = Instantiate(monster, spawnPos, Quaternion.identity);
-            _mobList.Add(entity);
-            _currentSpawns++;
 
             entity.AddComponent<UndergroundAsset>();
             entity.GetComponent<UndergroundAsset>().RegisterAsset(() =>
             {
                 _currentSpawns--;
-                _mobList.Remove(entity);
             });
+
+            _currentSpawns++;
         }
 
         private bool IsValidSpawnPosition(Vector3 pos)
         {
             var colliders = Physics2D.OverlapCircleAll(new Vector2(pos.x + 0.5f, pos.y + 0.5f), 0.25f);
 
-            if (colliders.Length > 0)
-                return false;
-
-            return true;
+            return colliders.Length <= 0;
         }
 
         private Vector3 GetSpawnPosition()
         {
             var grid = AstarPath.active.data.gridGraph;
             GraphNode randomNode;
+
             do
             {
                 randomNode = grid.nodes[Random.Range(0, grid.nodes.Length)];
@@ -107,6 +86,8 @@ namespace IslandBoy
 
         private float CalcSpawnChance()
         {
+            if (_currentSpawns >= _maxSpawns) return -1;
+
             float spawnRatio = _currentSpawns / _maxSpawns;
             float chanceAddOn = 3f;
 

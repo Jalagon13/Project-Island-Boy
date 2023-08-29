@@ -30,10 +30,10 @@ namespace IslandBoy
 
         private List<GameObject> _ugAssets = new();
         private List<Vector2> _usedPositions = new(), _potentialOreVeinPos = new();
-        private static Vector2Int[,] _chunkPositions = new Vector2Int[4,4];
-        private bool _generationComplete, _canSpawnStaircase = true, _spawnExitLeftSide;
-        private int _lastChunkElement, _currRowIndex, _currColIndex, _direction, _chunkSideLength;
+        private Vector2Int[,] _chunkPositions = new Vector2Int[4,4];
         private Vector2 _leftSideSpawnPos, _rightSideSpawnPos, _playerSpawnPos;
+        private bool _generationComplete, _spawnExitLeftSide;
+        private int _lastChunkElement, _currRowIndex, _currColIndex, _direction, _chunkSideLength;
 
         private void Awake()
         {
@@ -50,7 +50,6 @@ namespace IslandBoy
         private void OnDisable()
         {
             ExtensionMethods.OnSpawn -= RegisterUgAsset;
-            _canSpawnStaircase = false;
         }
 
         private void Start()
@@ -88,7 +87,6 @@ namespace IslandBoy
         {
             // brand new clean slate
             _generationComplete = false;
-            _canSpawnStaircase = false;
             _tmr.GroundTilemap.ClearAllTiles();
             _tmr.WallTilemap.ClearAllTiles();
             _usedPositions = new();
@@ -226,7 +224,6 @@ namespace IslandBoy
             SpawnExitPrefab(_spawnExitLeftSide ? _leftSideSpawnPos : _rightSideSpawnPos);
             SpawnPlayer();
             GenerateOres();
-            _canSpawnStaircase = true;
             _onGenerateLevel?.Invoke();
         }
 
@@ -261,16 +258,9 @@ namespace IslandBoy
             rscObject.AddComponent<UndergroundAsset>();
             rscObject.GetComponent<UndergroundAsset>().RegisterAsset(() =>
             {
-                // on resource destroy
-                if (_canSpawnStaircase && random.Range(0, 100) < 50)
-                {
-                    GameObject staircase = Instantiate(_ugStaircasePrefab, spawnPos, Quaternion.identity);
-                    _ugAssets.Add(staircase);
-
-                    staircase.GetComponent<UndergroundStaircase>().GoDownAction = GenerateNewLevel;
-                }
-
-                _onResourceBroken?.Invoke(new Vector2(spawnPos.x, spawnPos.y));
+                // on resource destroy, update the pathfinding map
+                var pos = new Vector2(spawnPos.x, spawnPos.y);
+                _onResourceBroken?.Invoke(pos);
             });
         }
 
