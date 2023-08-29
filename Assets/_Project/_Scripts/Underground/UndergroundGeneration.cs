@@ -17,6 +17,8 @@ namespace IslandBoy
         [SerializeField] private GameObject _stonePrefab;
         [SerializeField] private GameObject _ironOrePrefab;
         [SerializeField] private GameObject _coalOrePrefab;
+        [SerializeField] private GameObject _grassPilePrefab;
+        [SerializeField] private GameObject _sandPilePrefab;
         [Header("Tiles")]
         [SerializeField] private TileBase _wallTile;
         [SerializeField] private TileBase _floorTile;
@@ -196,12 +198,11 @@ namespace IslandBoy
             {
                 for (int j = 0; j < _chunkPositions.GetLength(1); j++)
                 {
-                    if(random.Range(0, 2) == 0)
-                        GenerateRscClump(_oreVeinBp.RandomTilemap, RandomChunkPosition(i, j), _ironOrePrefab, true);
-                    if(random.Range(0, 2) == 0)
-                        GenerateRscClump(_oreVeinBp.RandomTilemap, RandomChunkPosition(i, j), _coalOrePrefab, true);
+                    if (random.Range(0, 2) == 0)
+                        GenerateRscClump(_oreVeinBp.RandomTilemap, RandomChunkPosition(i, j), _ironOrePrefab);
 
-                    GenerateRscClump(_stoneScatterBp.RandomTilemap, RandomChunkPosition(i, j), _stonePrefab);
+                    GenerateRscClump(_oreVeinBp.RandomTilemap, RandomChunkPosition(i, j), _coalOrePrefab, true);
+                    GenerateRscClump(_stoneScatterBp.RandomTilemap, RandomChunkPosition(i, j), _stonePrefab, true);
                 }
             }
         }
@@ -253,7 +254,8 @@ namespace IslandBoy
 
         private void SpawnResource(GameObject obj, Vector3Int spawnPos)
         {
-            GameObject rscObject = Instantiate(obj, spawnPos, Quaternion.identity);
+            GameObject pile = random.Range(0, 2) == 0 ? _grassPilePrefab : _sandPilePrefab;
+            GameObject rscObject = Instantiate(random.Range(0, 10) < 8 ? obj : pile, spawnPos, Quaternion.identity);
             _ugAssets.Add(rscObject);
 
             rscObject.AddComponent<UndergroundAsset>();
