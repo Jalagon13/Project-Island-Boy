@@ -315,10 +315,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: item_key
+      name: item_undead_soul
       rect:
         serializedVersion: 2
-        x: 0
+        x: 16
         y: 16
         width: 16
         height: 16
@@ -336,10 +336,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: item_portal_core
+      name: item_portal_to_home
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 16
         width: 16
         height: 16
@@ -680,7 +680,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -701,7 +701,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -722,7 +722,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -757,13 +757,13 @@ TextureImporter:
       item_grass: 456514419
       item_hook: -1546665967
       item_iron_ore: 1648958029
-      item_key: 1935163884
-      item_portal_core: 1494493913
+      item_portal_to_home: 1494493913
       item_sand: -966422323
       item_sapling: 811161192
       item_stone: -512641925
       item_tool_station: -581595869
       item_torch: -1995232107
+      item_undead_soul: 1935163884
       item_wood: -602149933
       item_wood_axe: 563146846
       item_wood_chestplate: -848097959

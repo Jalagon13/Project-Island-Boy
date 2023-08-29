@@ -158,14 +158,26 @@ MonoBehaviour:
   _deathSound: {fileID: 8300000, guid: 4991035dcefc46b45b8a25d8caf2c6a0, type: 3}
   _lootTable:
     <Table>k__BackingField:
-    - Item: {fileID: 11400000, guid: 65856b614b96bd049b6c87f82972ccab, type: 2}
-      Min: 2
-      Max: 4
-      Chance: 100
+    - Item: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
+      Min: 1
+      Max: 2
+      Chance: 50
     - Item: {fileID: 11400000, guid: 126196eef2588a34cb7b61db392d6088, type: 2}
       Min: 1
+      Max: 2
+      Chance: 20
+    - Item: {fileID: 11400000, guid: 677079ef2dd70d94c990c69dd2c5f246, type: 2}
+      Min: 2
       Max: 3
-      Chance: 60
+      Chance: 10
+    - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
+      Min: 1
+      Max: 4
+      Chance: 10
+    - Item: {fileID: 11400000, guid: 5a3f6b55d552aaa458d30163600d0320, type: 2}
+      Min: 2
+      Max: 3
+      Chance: 5
   _onDamage:
     m_PersistentCalls:
       m_Calls: []
