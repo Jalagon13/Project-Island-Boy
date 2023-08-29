@@ -8,13 +8,13 @@ namespace IslandBoy
 {
     public class MonsterManager : MonoBehaviour
     {
-        [SerializeField] private int _maxSpawns = 30;
+        [SerializeField] private PlayerReference _pr;
+        [SerializeField] private int _maxSpawns;
         [SerializeField] private GameObject _monster;
         [SerializeField] private TilemapReferences _tmr;
 
         private float _baseSpawnChance = 35; // in percent
         private int _currentSpawns;
-        //private List<GameObject> _mobList = new();
 
         private void OnEnable()
         {
@@ -66,9 +66,10 @@ namespace IslandBoy
 
         private bool IsValidSpawnPosition(Vector3 pos)
         {
-            var colliders = Physics2D.OverlapCircleAll(new Vector2(pos.x + 0.5f, pos.y + 0.5f), 0.25f);
+            //var posCheck = new Vector2(pos.x + 0.5f, pos.y + 0.5f);
+            //var colliders = Physics2D.OverlapCircleAll(posCheck, 0.25f);
 
-            return colliders.Length <= 0;
+            return !_pr.PlayerInRange(pos, 8)/* && colliders.Length <= 0*/;
         }
 
         private Vector3 GetSpawnPosition()

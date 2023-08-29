@@ -15,8 +15,8 @@ namespace IslandBoy
         public readonly int HashMove = Animator.StringToHash("[Anm] ZombieMove");
         public readonly int HashChase = Animator.StringToHash("[Anm] ZombieChase");
         public Action OnMove;
-        public IAstarAI AI;
         public Seeker Seeker;
+        public IAstarAI AI;
 
         private float _despawnCd = 15f;
         private Timer _despawnTimer;

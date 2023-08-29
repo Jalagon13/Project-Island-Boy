@@ -34,6 +34,11 @@ namespace IslandBoy
             return Vector2.Distance(posToCheck, _playerPosition) < INTERACT_RANGE;
         }
 
+        public bool PlayerInRange(Vector3 posToCheck, float customDistance)
+        {
+            return Vector2.Distance(posToCheck, _playerPosition) < customDistance;
+        }
+
         public void AddDefense(int val)
         {
             _defense += val;

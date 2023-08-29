@@ -76,9 +76,9 @@ namespace IslandBoy
         {
             ResetVariables();
             SpawnPlayerAndStartingRoom();
-            GenerateLevel();
-            GenerateFillerRooms();
-            GenerateBorder();
+            DrawCave();
+            DrawFillerRooms();
+            DrawBorder();
 
             StartCoroutine(EndOfFrame()); // this is bc Destroy() happens near the end of the frame
         }
@@ -114,16 +114,16 @@ namespace IslandBoy
             _direction = random.Range(1, 6);
         }
 
-        private void GenerateLevel()
+        private void DrawCave()
         {
             // generate the new level
             while (_generationComplete == false)
             {
-                GenerateTilemap();
+                DrawTilemap();
             }
         }
 
-        private void GenerateFillerRooms()
+        private void DrawFillerRooms()
         {
             // fill in the rest of the rooms with filler rooms
             List<Vector2> spawnPosCopy = new();
@@ -155,7 +155,7 @@ namespace IslandBoy
             }
         }
 
-        private void GenerateBorder()
+        private void DrawBorder()
         {
             // add a border around the map
             var bounds = _tmr.GroundTilemap.cellBounds;
@@ -222,6 +222,7 @@ namespace IslandBoy
             yield return new WaitForEndOfFrame();
 
             SpawnExitPrefab(_spawnExitLeftSide ? _leftSideSpawnPos : _rightSideSpawnPos);
+            SpawnStaircasePrefab(_spawnExitLeftSide ? _rightSideSpawnPos : _leftSideSpawnPos);
             SpawnPlayer();
             GenerateOres();
             _onGenerateLevel?.Invoke();
@@ -283,7 +284,7 @@ namespace IslandBoy
             return true;
         }
 
-        private void GenerateTilemap()
+        private void DrawTilemap()
         {
             if(_lastChunkElement == 1 || _lastChunkElement == 3)
             {
@@ -355,6 +356,11 @@ namespace IslandBoy
         {
             _ugAssets.Add(Instantiate(_ugExitPrefab, spawnPos, Quaternion.identity));
             _playerSpawnPos = new Vector2(spawnPos.x + 0.5f, spawnPos.y - 1);
+        }
+
+        private void SpawnStaircasePrefab(Vector2 spawnPos)
+        {
+            _ugAssets.Add(Instantiate(_ugStaircasePrefab, spawnPos, Quaternion.identity));
         }
 
         private void SpawnPlayer()
