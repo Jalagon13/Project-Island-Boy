@@ -9,9 +9,9 @@ namespace IslandBoy
     public class MonsterManager : MonoBehaviour
     {
         [SerializeField] private PlayerReference _pr;
-        [SerializeField] private int _maxSpawns;
-        [SerializeField] private GameObject _monster;
         [SerializeField] private TilemapReferences _tmr;
+        [SerializeField] private GameObject _monster;
+        [SerializeField] private int _maxSpawns;
 
         private float _baseSpawnChance = 35; // in percent
         private int _currentSpawns;

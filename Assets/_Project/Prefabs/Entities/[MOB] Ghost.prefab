@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8185108151527052084}
   - component: {fileID: 8185108151527052107}
+  - component: {fileID: 8251616752830793470}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -84,6 +85,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!95 &8251616752830793470
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8185108151527052085}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 04a4269591771764fbf3359a0442c2cf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8185108152331113635
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,8 +117,7 @@ GameObject:
   - component: {fileID: 8185108152331113634}
   - component: {fileID: 8185108152331113632}
   - component: {fileID: 8185108152331113637}
-  - component: {fileID: 8185108152331113633}
-  - component: {fileID: 8185108152331113638}
+  - component: {fileID: 5837387525370324223}
   - component: {fileID: 8185108152331113636}
   - component: {fileID: 8185108152331113639}
   m_Layer: 0
@@ -159,7 +180,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8185108152331113633
+--- !u!114 &5837387525370324223
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,38 +189,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 8185108152331113635}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1d0dbc9cb6ce57468cd3a34f0f5ba65, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a21377688aa1974b833f36837c3bf32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PR: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxHealth: 24
   _iFrameDuration: 0.17
+  _moveSpeed: 1
   _damageSound: {fileID: 8300000, guid: 6e12573d495d04e4990d3b99e2e474fc, type: 3}
   _deathSound: {fileID: 8300000, guid: 6e12573d495d04e4990d3b99e2e474fc, type: 3}
   _lootTable:
-    <Table>k__BackingField:
-    - Item: {fileID: 11400000, guid: 65856b614b96bd049b6c87f82972ccab, type: 2}
-      Min: 2
-      Max: 4
-      Chance: 100
+    <Table>k__BackingField: []
   _onDamage:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8185108152331113638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8185108152331113635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aa58f3ca7ba2a24d863a32a1db0ed46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _speed: 1.675
-  _teleportDistance: 5
+  _tmr: {fileID: 11400000, guid: ec06355a14da7574295ea6e79aaebb6f, type: 2}
+  _agroDistance: 10
 --- !u!114 &8185108152331113636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,46 +222,10 @@ MonoBehaviour:
   _delay: 0.35
   _onBegin:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8185108152331113638}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _onDone:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8185108152331113638}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 8185108152331113638}
-        m_TargetAssemblyTypeName: IslandBoy.GhostAI, Assembly-CSharp
-        m_MethodName: TeleportToPlayer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &8185108152331113639
 MonoBehaviour:
   m_ObjectHideFlags: 0
