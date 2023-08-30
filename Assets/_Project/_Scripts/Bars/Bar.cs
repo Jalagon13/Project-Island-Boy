@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace IslandBoy
@@ -9,6 +11,7 @@ namespace IslandBoy
     {
         [SerializeField] private int _maxValue;
         [SerializeField] private float _coolDown;
+        [SerializeField] protected UnityEvent _onValueDepleted;
 
         private Image _fillImage;
         private Image _cdFillImage;
@@ -16,9 +19,17 @@ namespace IslandBoy
         protected int _currentValue;
         private float _cdCounter;
 
-        public int CurrentValue { get { return _currentValue; } set { _currentValue = value; } }
-        public int MaxValue { get { return _maxValue; } set { _maxValue = value; } }
         public bool InCoolDown { get { return _cdCounter < _coolDown; } }
+        public int MaxValue { get { return _maxValue; } set { _maxValue = value; } }
+        public int CurrentValue { get { return _currentValue; } 
+            set 
+            {
+                _currentValue = value;
+
+                if (_currentValue <= 0)
+                    _onValueDepleted?.Invoke();
+            } 
+        }
 
         private void Awake()
         {

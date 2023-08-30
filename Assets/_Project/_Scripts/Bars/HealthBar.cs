@@ -21,7 +21,7 @@ namespace IslandBoy
 
             _currentValue--;
             UpdateUI();
-            StartCoroutine(DrainHp());
+            //StartCoroutine(DrainHp());
         }
     }
 }
