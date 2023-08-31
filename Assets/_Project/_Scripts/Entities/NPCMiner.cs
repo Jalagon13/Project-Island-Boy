@@ -9,7 +9,13 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private ItemObject _diamondItem;
+        [SerializeField] private AudioClip _spawnClip;
         [SerializeField] private int _cost;
+
+        private void Start()
+        {
+            AudioManager.Instance.PlayClip(_spawnClip, false, false);
+        }
 
         public void EnterCave()
         {

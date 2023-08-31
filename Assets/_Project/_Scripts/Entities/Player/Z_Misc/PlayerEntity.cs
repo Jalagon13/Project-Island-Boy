@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace IslandBoy
 {
@@ -77,6 +78,11 @@ namespace IslandBoy
             _onDeath?.Invoke();
             yield return new WaitForSeconds(_deathTimer);
             _onRespawn?.Invoke();
+
+            if(SceneManager.GetActiveScene().buildIndex != 0)
+            {
+                LevelManager.Instance.LoadSurface();
+            }
 
             transform.root.gameObject.transform.SetPositionAndRotation(PR.SpawnPosition, Quaternion.identity);
         }

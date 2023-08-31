@@ -7,17 +7,22 @@ namespace IslandBoy
     public class HousingCheckButton : MonoBehaviour
     {
         [SerializeField] private TilemapReferences _tmr;
+        [SerializeField] private GameObject _minerNpcPrefab;
 
-        private void CheckHousing(Vector2 startPos)
+        private bool _minerSpawned;
+
+        public void CheckHousing()
         {
-            Stack<Vector3Int> tiles = new();
-            List<Vector3Int> floorTilePositions = new(); // list of positions of tile that have a floor and no wall or door on it.
-            tiles.Push(Vector3Int.FloorToInt(startPos));
+            if (_minerSpawned)
+                return;
 
             // checks if this is an enclosed space with flooring everywhere
-            while (tiles.Count > 0)
+            Stack<Vector3Int> tilesToCheck = new();
+            List<Vector3Int> floorTilePositions = new(); // list of positions of tile that have a floor and no wall or door on it.
+            tilesToCheck.Push(Vector3Int.FloorToInt(transform.root.position));
+            while (tilesToCheck.Count > 0)
             {
-                var p = Vector3Int.FloorToInt(tiles.Pop());
+                var p = tilesToCheck.Pop();
 
                 if (_tmr.FloorTilemap.HasTile(p))
                 {
@@ -28,10 +33,10 @@ namespace IslandBoy
                     else if (!floorTilePositions.Contains(p))
                     {
                         floorTilePositions.Add(p);
-                        tiles.Push(new Vector3Int(p.x - 1, p.y));
-                        tiles.Push(new Vector3Int(p.x + 1, p.y));
-                        tiles.Push(new Vector3Int(p.x, p.y - 1));
-                        tiles.Push(new Vector3Int(p.x, p.y + 1));
+                        tilesToCheck.Push(new Vector3Int(p.x - 1, p.y));
+                        tilesToCheck.Push(new Vector3Int(p.x + 1, p.y));
+                        tilesToCheck.Push(new Vector3Int(p.x, p.y - 1));
+                        tilesToCheck.Push(new Vector3Int(p.x, p.y + 1));
                     }
                 }
                 else if (_tmr.WallTilemap.HasTile(p) || HasDoor(p))
@@ -40,40 +45,38 @@ namespace IslandBoy
                 }
                 else
                 {
-                    Debug.Log($"There is an empty space at {p} therefore {startPos} is not a house");
+                    Debug.Log($"There is an empty space at {p} therefore {transform.root.position} is not a house");
                     return;
                 }
             }
 
             // first check how many free floor spaces are there in the floorTilePositions list
-            List<Vector3Int> clearFloorTiles = new();
-            foreach (var pos in floorTilePositions)
+            List<Vector3Int> freeFloorSpaces = new();
+            foreach (Vector3Int pos in floorTilePositions)
             {
                 if (TileAreaClear(pos))
                 {
-                    clearFloorTiles.Add(pos);
+                    freeFloorSpaces.Add(pos);
                 }
             }
 
             // if minimum number of clear floor tiles is below the set minimum, this is not a valid housing
             int minClearFloorTileAmount = 5;
-            if (clearFloorTiles.Count < minClearFloorTileAmount)
+            if (freeFloorSpaces.Count < minClearFloorTileAmount)
             {
                 Debug.Log($"Not enough free space in this closed area (clear floor tiles count: " +
-                    $"{clearFloorTiles.Count} | minimum clear tiles needed: {minClearFloorTileAmount}) therefore {startPos} is not a house");
+                    $"{freeFloorSpaces.Count} | minimum clear tiles needed: {minClearFloorTileAmount}) therefore " +
+                    $"{transform.root.position} is not a house");
                 return;
             }
 
             // find a random position of the clear floor tiles and spawn the NPC there
-            //if (_minerNpcSpawned) return;
+            Vector3Int randFloorSpace = freeFloorSpaces[Random.Range(0, freeFloorSpaces.Count)];
+            Vector2 spawnNpcPosition = new(randFloorSpace.x + 0.5f, randFloorSpace.y + 0.5f);
 
-            //var randFloorTile = clearFloorTiles[Random.Range(0, clearFloorTiles.Count)];
-            //var spawnNpcPosition = new Vector2(randFloorTile.x + 0.5f, randFloorTile.y + 0.5f);
-
-            //Debug.Log($"{startPos} is valid housing! # of spaces: {clearFloorTiles.Count}");
-            //Instantiate(_minerNpcPrefab, spawnNpcPosition, Quaternion.identity);
-            //_minerNpcSpawned = true;
-            return;
+            Debug.Log($"{transform.root.position} is valid housing! # of spaces: {freeFloorSpaces.Count}");
+            Instantiate(_minerNpcPrefab, spawnNpcPosition, Quaternion.identity);
+            _minerSpawned = true;
         }
 
         private bool HasDoor(Vector3Int pos)

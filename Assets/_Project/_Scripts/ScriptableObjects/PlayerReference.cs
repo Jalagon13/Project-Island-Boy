@@ -8,6 +8,7 @@ namespace IslandBoy
     {
         private const float INTERACT_RANGE = 2.25f;
         private int _defense; // set to 0 in PlayerEntity
+        private Vector2 _spawnPosition;
         private Vector2 _playerPosition;
         private Vector2 _mousePosition;
         private Inventory _playerInventory;
@@ -21,6 +22,7 @@ namespace IslandBoy
         /// </summary>
         public Vector2 Position { get { return _playerPosition; } set { _playerPosition = value; } }
         public Vector2 MousePosition { get { return _mousePosition; } set { _mousePosition = value; } }
+        public Vector2 SpawnPosition { get { return _spawnPosition; } }
 
         // This is only SET in the Inventory Script do NOT SET this anywhere else. Only get a refernce for it.
         public Inventory Inventory { get { return _playerInventory; } set { _playerInventory = value; } }
@@ -37,6 +39,11 @@ namespace IslandBoy
         public bool PlayerInRange(Vector3 posToCheck, float customDistance)
         {
             return Vector2.Distance(posToCheck, _playerPosition) < customDistance;
+        }
+
+        public void SetSpawnPosition(Vector2 pos)
+        {
+            _spawnPosition = pos;
         }
 
         public void AddDefense(int val)

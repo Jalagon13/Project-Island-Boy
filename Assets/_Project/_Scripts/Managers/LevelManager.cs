@@ -10,6 +10,8 @@ namespace IslandBoy
     public class LevelManager : Singleton<LevelManager>
     {
         [SerializeField] private PlayerReference _pr;
+        [SerializeField] private AudioClip _beachAmbSound;
+        [SerializeField] private AudioClip _caveAmbSound;
 
         private Vector2 _surfaceReturnPosition;
         private AsyncOperation _sceneAsync;
@@ -18,19 +20,22 @@ namespace IslandBoy
         private List<GameObject> _rootObjects;
         private Light2D _globalLight;
         private Camera _camera;
-        private Canvas _canvas;
 
         protected override void Awake()
         {
             base.Awake();
             _playerObject = GameObject.Find("Player");
             _tileActionObject = GameObject.Find("TileAction");
-            _globalLight = transform.GetChild(1).GetComponent<Light2D>();
+            _globalLight = transform.GetChild(0).GetComponent<Light2D>();
 
-            _canvas = transform.GetChild(0).GetComponent<Canvas>();
-            _canvas.gameObject.SetActive(false);
             _camera = Camera.main;
             _rootObjects = new();
+        }
+
+        private void Start()
+        {
+            AudioManager.Instance.PlayClip(_beachAmbSound, true, false, 0.25f);
+            AudioManager.Instance.StopClip(_caveAmbSound);
         }
 
         public void LoadUnderground()
@@ -42,8 +47,9 @@ namespace IslandBoy
             }
 
             DayNightManager.Instance.GlobalVolume.enabled = false;
+            AudioManager.Instance.PlayClip(_caveAmbSound, true, false);
+            AudioManager.Instance.StopClip(_beachAmbSound);
 
-            _canvas.gameObject.SetActive(true);
             _globalLight.intensity = 0;
             _surfaceReturnPosition = _pr.Position;
 
@@ -97,13 +103,14 @@ namespace IslandBoy
                 return;
             }
 
-            _canvas.gameObject.SetActive(false);
             _globalLight.intensity = 1;
 
             Scene surface = SceneManager.GetSceneByBuildIndex(0);
             Scene underground = SceneManager.GetSceneByBuildIndex(1);
 
             DayNightManager.Instance.GlobalVolume.enabled = true;
+            AudioManager.Instance.PlayClip(_beachAmbSound, true, false, 0.25f);
+            AudioManager.Instance.StopClip(_caveAmbSound);
             SceneManager.MoveGameObjectToScene(_playerObject, surface);
             SceneManager.MoveGameObjectToScene(_tileActionObject, surface);
             SceneManager.MoveGameObjectToScene(_camera.gameObject, surface);
