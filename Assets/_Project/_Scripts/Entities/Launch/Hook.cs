@@ -71,15 +71,22 @@ namespace IslandBoy
 
                 if(Vector2.Distance(transform.position, _playerPos) < 1.5f)
                 {
-                    Destroy(_lr.gameObject);
-                    Destroy(gameObject);
+                    OnReachPlayer();
                 }
             }
             else if(Vector2.Distance(transform.position, _playerPos) < 0.5f)
             {
-                Destroy(_lr.gameObject);
-                Destroy(gameObject);
+                OnReachPlayer();
             }
+        }
+
+        private void OnReachPlayer()
+        {
+            if(_foundItem)
+                _pr.LevelSystem.AddExperience(8);
+
+            Destroy(_lr.gameObject);
+            Destroy(gameObject);
         }
     }
 }
