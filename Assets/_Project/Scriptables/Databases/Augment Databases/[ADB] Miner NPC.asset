@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80cb8fbeddd9c0e468fa6ac5bed8c50c, type: 3}
+  m_Name: '[ADB] Miner NPC'
+  m_EditorClassIdentifier: 
+  Database:
+  - Name: Miner Scroll I
+    Description: 
+    LevelsRequired: 0
+    RecipeSprite: {fileID: 2118457468, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+    AugmentOutputs:
+    - {fileID: 11400000, guid: f9a1edf4f0e9b9943963c70ebba1a3cc, type: 2}
+    - {fileID: 11400000, guid: 01dfa07e3397dbf4394d64962683e510, type: 2}
+    - {fileID: 11400000, guid: f62d8e4fc1d52ef4d89382f951ae4199, type: 2}
+  - Name: Miner Scroll II
+    Description: 
+    LevelsRequired: 10
+    RecipeSprite: {fileID: 2118457468, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+    AugmentOutputs:
+    - {fileID: 11400000, guid: f9a1edf4f0e9b9943963c70ebba1a3cc, type: 2}
+    - {fileID: 11400000, guid: 01dfa07e3397dbf4394d64962683e510, type: 2}
+    - {fileID: 11400000, guid: f62d8e4fc1d52ef4d89382f951ae4199, type: 2}
+  - Name: Miner Scroll III
+    Description: 
+    LevelsRequired: 15
+    RecipeSprite: {fileID: 2118457468, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+    AugmentOutputs:
+    - {fileID: 11400000, guid: f9a1edf4f0e9b9943963c70ebba1a3cc, type: 2}
+    - {fileID: 11400000, guid: 01dfa07e3397dbf4394d64962683e510, type: 2}
+    - {fileID: 11400000, guid: f62d8e4fc1d52ef4d89382f951ae4199, type: 2}

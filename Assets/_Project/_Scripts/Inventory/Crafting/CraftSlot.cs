@@ -61,7 +61,7 @@ namespace IslandBoy
         {
             _recipe = recipe;
             _outputImage.sprite = recipe.OutputItem.UiDisplay;
-            _hoverImage.OutputItem = recipe.OutputItem;
+            _hoverImage.SetItemDescription(recipe.OutputItem);
             _amountText.text = recipe.OutputAmount == 1 ? string.Empty : recipe.OutputAmount.ToString();
 
             Inventory.AddItemEvent += CheckIfCanCraft;
@@ -123,7 +123,7 @@ namespace IslandBoy
         private void SetUnCraftable()
         {
             _craftSlotBackround.color = _unCraftableColor;
-            _outputImage.color = Color.black;
+            _outputImage.color = new Color(0.25f, 0.25f, 0.25f, 1);
             _canCraft = false;
         }
     }

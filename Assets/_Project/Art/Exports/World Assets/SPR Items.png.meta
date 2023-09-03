@@ -734,6 +734,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: item_miner_scroll
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b296cdfb20cc6646af685b7912e4a8e
+      internalID: 2118457468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_xp
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe05c152abf3113499fc67efb4eae49a
+      internalID: -955445017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -757,6 +799,7 @@ TextureImporter:
       item_grass: 456514419
       item_hook: -1546665967
       item_iron_ore: 1648958029
+      item_miner_scroll: 2118457468
       item_portal_to_home: 1494493913
       item_sand: -966422323
       item_sapling: 811161192
@@ -775,6 +818,7 @@ TextureImporter:
       item_wood_shovel: -887866084
       item_wood_sword: 851283991
       item_wood_wall: 734688836
+      item_xp: -955445017
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

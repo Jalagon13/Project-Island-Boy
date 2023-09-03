@@ -9,14 +9,29 @@ namespace IslandBoy
     {
         public ItemObject OutputItem { get; set; }
 
+        private string _content;
+        private string _header;
+
         private void OnDisable()
         {
             TooltipManager.Instance.Hide();
         }
 
+        public void SetItemDescription(ItemObject item)
+        {
+            _content = item.GetDescription();
+            _header = item.Name;
+        }
+
+        public void SetCustomDescription(string content, string header)
+        {
+            _content = content;
+            _header = header;
+        }
+
         public void OnPointerEnter(PointerEventData eventData)
         {
-            TooltipManager.Instance.Show(OutputItem.GetDescription(), OutputItem.Name, new Vector2(-0.1f, 1.45f));
+            TooltipManager.Instance.Show(_content, _header, new Vector2(-0.1f, 1.45f));
         }
 
         public void OnPointerExit(PointerEventData eventData)

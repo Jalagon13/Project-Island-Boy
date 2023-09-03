@@ -3165,7 +3165,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2963529343931073653}
-        m_TargetAssemblyTypeName: IslandBoy.PlayerPickupUIHandle, Assembly-CSharp
+        m_TargetAssemblyTypeName: IslandBoy.PlayerPickupUI, Assembly-CSharp
         m_MethodName: PickupUIHandle
         m_Mode: 0
         m_Arguments:
@@ -3267,6 +3267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _defaultRdb: {fileID: 11400000, guid: fcf2c4799313803409b1c09f21fc9c77, type: 2}
   _craftSlotPrefab: {fileID: 6449567880495286189, guid: 28a3b174ebf164c4eb2f397a56b59ac6, type: 3}
+  _augmentSlotPrefab: {fileID: 6449567880495286189, guid: 533efc6c9c785ed4ba7bca63909a14ec, type: 3}
   _craftSlotsRect: {fileID: 4210445618332476785}
 --- !u!114 &4210445617314236099
 MonoBehaviour:
@@ -3701,6 +3702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 834aa37b4a83ac5449155e13ea1ed8da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _itemPickupSignPrefab: {fileID: 5710743294088674228, guid: bca8909c4368cb446bcfdf33c0e3171b, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
   _disappearTimer: 2.5
@@ -3731,8 +3733,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 99
-      value: 1000000
+      time: 100
+      value: 100000
       inSlope: 2
       outSlope: 2
       tangentMode: 0
@@ -5430,6 +5432,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelText: {fileID: 611625724}
+  _expGainSound: {fileID: 8300000, guid: b505e92c4f4f6dd41b29b93a35c416a4, type: 3}
+  _levelUpSound: {fileID: 8300000, guid: b505e92c4f4f6dd41b29b93a35c416a4, type: 3}
 --- !u!1 &8028295016217093938
 GameObject:
   m_ObjectHideFlags: 0

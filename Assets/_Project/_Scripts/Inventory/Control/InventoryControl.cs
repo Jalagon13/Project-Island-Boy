@@ -26,18 +26,25 @@ namespace IslandBoy
         private void OnEnable()
         {
             _input.Enable();
-            CraftStation.OnCraftStationInteract += OpenInventory;
+            CraftStation.OnCraftStationInteract += CraftStationInteract;
         }
 
         private void OnDisable()
         {
             _input.Disable();
-            CraftStation.OnCraftStationInteract -= OpenInventory;
+            CraftStation.OnCraftStationInteract -= CraftStationInteract;
         }
 
         private void Start()
         {
             CloseInventory();
+        }
+
+        private void CraftStationInteract(RecipeDatabaseObject rdb, AugmentDatabaseObject adb)
+        {
+            OpenInventory();
+
+            _craftSlotsControl.RefreshCraftingMenu(rdb, adb);
         }
 
         public void ToggleInventory(InputAction.CallbackContext context)
@@ -52,7 +59,7 @@ namespace IslandBoy
         {
             if (_mouseItemHolder.HasItem()) return;
 
-            _craftSlotsControl.RefreshCraftingMenu(_craftSlotsControl.DefaultRdb);
+            _craftSlotsControl.RefreshCraftingMenu(_craftSlotsControl.DefaultRdb, null);
             _mainInventory.gameObject.SetActive(false);
             _inventoryOpen = false;
 
@@ -62,13 +69,10 @@ namespace IslandBoy
             }
         }
 
-        public void OpenInventory(RecipeDatabaseObject rdb = null)
+        public void OpenInventory()
         {
             _mainInventory.gameObject.SetActive(true);
             _inventoryOpen = true;
-
-            if (rdb)
-                _craftSlotsControl.RefreshCraftingMenu(rdb);
 
             foreach (Slot slot in _inventory.InventorySlots)
             {
