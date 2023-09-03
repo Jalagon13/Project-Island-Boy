@@ -17,7 +17,6 @@ namespace IslandBoy
         private int _experienceToNextLevel;
 
         public int LevelNumber { get { return _level; } }
-        public int ExperienceToNextLevel { get { return _experienceToNextLevel - (int)_experienceCurve.Evaluate(_level - 1); } }
         public float ExperienceNormalized { get { return (float)_experience / _experienceToNextLevel; } }
 
         public LevelSystem(AnimationCurve experienceCurve)
@@ -42,7 +41,12 @@ namespace IslandBoy
                 OnLevelChanged?.Invoke(this, EventArgs.Empty);
             }
 
-            OnExperienceChanged?.Invoke(this, EventArgs.Empty);
+            OnExperienceChanged?.Invoke(this, new ExperienceEventArgs { ExperienceAmount = amount});
         }
+    }
+
+    public class ExperienceEventArgs : EventArgs
+    {
+        public int ExperienceAmount { get; set; }
     }
 }

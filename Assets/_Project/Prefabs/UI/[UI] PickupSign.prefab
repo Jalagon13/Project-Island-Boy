@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5710743292547407745}
   - component: {fileID: 5710743292547407750}
   m_Layer: 0
-  m_Name: ItemText
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 5710743294088674230}
   - component: {fileID: 5710743294088674225}
   m_Layer: 0
-  m_Name: '[UI] ItemPickupSign'
+  m_Name: '[UI] PickupSign'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -283,8 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _itemText: {fileID: 5710743292547407750}
-  _disappearTimer: 1.75
+  _text: {fileID: 5710743292547407750}
 --- !u!61 &5710743294088674225
 BoxCollider2D:
   m_ObjectHideFlags: 0

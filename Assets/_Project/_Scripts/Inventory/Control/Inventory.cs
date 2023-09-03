@@ -46,14 +46,12 @@ namespace IslandBoy
                 if (!Add(item, amount, itemParameters))
                 {
                     int leftOver = amount - i;
-                    //SpawnPickupSign(item, amount - leftOver);
                     AddItemEvent?.Invoke();
                     _onPickupItem?.Invoke(item, amount - leftOver);
                     return leftOver;
                 }
             }
 
-            //SpawnPickupSign(item, amount);
             AddItemEvent?.Invoke();
             _onPickupItem?.Invoke(item, amount);
             return 0;

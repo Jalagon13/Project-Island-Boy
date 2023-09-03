@@ -1412,6 +1412,17 @@ MonoBehaviour:
   _surfaceGroundTm: {fileID: 165907947}
   _surfaceFloorTm: {fileID: 154193936}
   _surfaceWallTm: {fileID: 1658634108}
+--- !u!114 &540321420 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2963529343931073653, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+  m_PrefabInstance: {fileID: 4210445617155456036}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 834aa37b4a83ac5449155e13ea1ed8da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &596563526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79904,6 +79915,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2963529343931073653, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: _pr
+      value: 
+      objectReference: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
     - target: {fileID: 3283614366729755156, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -80868,6 +80883,18 @@ PrefabInstance:
       propertyPath: _levelUpSound
       value: 
       objectReference: {fileID: 8300000, guid: b505e92c4f4f6dd41b29b93a35c416a4, type: 3}
+    - target: {fileID: 4210445617314236103, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: _onPickupItem.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 540321420}
+    - target: {fileID: 4210445617314236103, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: _onPickupItem.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PickupUIHandle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210445617314236103, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: _onPickupItem.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: IslandBoy.PlayerPickupUI, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4210445617613918442, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
       propertyPath: _wallTilemap
       value: 

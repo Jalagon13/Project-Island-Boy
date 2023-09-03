@@ -12,7 +12,7 @@ namespace IslandBoy
 
         private LevelSystem _playerLevelSystem;
 
-        private void Start()
+        private void Awake()
         {
             _playerLevelSystem = new(_levelCurve);
             _pr.SetPlayerLevelSystem(_playerLevelSystem);
