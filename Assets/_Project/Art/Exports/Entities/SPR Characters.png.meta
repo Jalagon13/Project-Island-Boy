@@ -109,7 +109,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 3
+        y: 1
         width: 11
         height: 23
       alignment: 9
@@ -130,11 +130,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 18
-        y: 3
+        y: 1
         width: 11
         height: 23
       alignment: 9
-      pivot: {x: 0.49999967, y: 0.025691604}
+      pivot: {x: 0.4999997, y: 0.0256916}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -142,6 +142,27 @@ TextureImporter:
       bones: []
       spriteID: 44db025760c32a942aac9a56b06d5fb8
       internalID: 1001675587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_wizard
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 1
+        width: 15
+        height: 28
+      alignment: 9
+      pivot: {x: 0.4999997, y: 0.0256916}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dfdd20e758bb9e488b11c62670e9eac
+      internalID: -1975342335
       vertices: []
       indices: 
       edges: []
@@ -160,6 +181,7 @@ TextureImporter:
       spr_druid: 1094963970
       spr_island_boy: 1001675587
       spr_player: -1006392663
+      spr_wizard: -1975342335
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

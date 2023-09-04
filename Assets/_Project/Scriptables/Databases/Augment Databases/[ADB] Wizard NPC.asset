@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80cb8fbeddd9c0e468fa6ac5bed8c50c, type: 3}
-  m_Name: '[ADB] Miner NPC'
+  m_Name: '[ADB] Wizard NPC'
   m_EditorClassIdentifier: 
   Database:
-  - Name: Miner Scroll I
-    Description: "\u2022 Can be Equiped to Mining Tools"
+  - Name: Augment Vessel
+    Description: "\u2022 ???"
     LevelsRequired: 5
     RecipeSprite: {fileID: 2118457468, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
     AugmentOutputs:
