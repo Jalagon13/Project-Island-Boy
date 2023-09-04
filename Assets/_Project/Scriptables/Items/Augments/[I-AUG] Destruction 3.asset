@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eccc5d634e8792f409551eb73598082c, type: 3}
-  m_Name: '[I-AUG] Durability 3'
+  m_Name: '[I-AUG] Destruction 3'
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Durability III
+  <Name>k__BackingField: Rune of Destruction 3
   <UiDisplay>k__BackingField: {fileID: 2118457468, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   <Stackable>k__BackingField: 0
-  <Description>k__BackingField: 
-  <DefaultParameterList>k__BackingField:
-  - Parameter: {fileID: 11400000, guid: 97c28137497da5845bdbc42cd2c6dd6f, type: 2}
-    Value: 45
+  <Description>k__BackingField: "\u2022 75% chance to deal 200% damage to resources\n\u2022
+    Can be equipped to Pickaxes, Axes, and Shovels"
+  <DefaultParameterList>k__BackingField: []

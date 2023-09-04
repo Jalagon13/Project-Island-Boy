@@ -14,24 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Database:
   - Name: Miner Scroll I
-    Description: 
-    LevelsRequired: 0
-    RecipeSprite: {fileID: 2118457468, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
-    AugmentOutputs:
-    - {fileID: 11400000, guid: f9a1edf4f0e9b9943963c70ebba1a3cc, type: 2}
-    - {fileID: 11400000, guid: 01dfa07e3397dbf4394d64962683e510, type: 2}
-    - {fileID: 11400000, guid: f62d8e4fc1d52ef4d89382f951ae4199, type: 2}
-  - Name: Miner Scroll II
-    Description: 
-    LevelsRequired: 10
-    RecipeSprite: {fileID: 2118457468, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
-    AugmentOutputs:
-    - {fileID: 11400000, guid: f9a1edf4f0e9b9943963c70ebba1a3cc, type: 2}
-    - {fileID: 11400000, guid: 01dfa07e3397dbf4394d64962683e510, type: 2}
-    - {fileID: 11400000, guid: f62d8e4fc1d52ef4d89382f951ae4199, type: 2}
-  - Name: Miner Scroll III
-    Description: 
-    LevelsRequired: 15
+    Description: "\u2022 Can be Equiped to Mining Tools"
+    LevelsRequired: 5
     RecipeSprite: {fileID: 2118457468, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
     AugmentOutputs:
     - {fileID: 11400000, guid: f9a1edf4f0e9b9943963c70ebba1a3cc, type: 2}

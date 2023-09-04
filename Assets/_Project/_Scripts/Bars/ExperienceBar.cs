@@ -22,7 +22,7 @@ namespace IslandBoy
 
         public void TESTAddExp()
         {
-            _levelSystem.AddExperience(5);
+            _levelSystem.AddExperience(500);
         }
 
         public void SetLevelSystem(LevelSystem ls)
@@ -60,7 +60,7 @@ namespace IslandBoy
 
         private void SetLevelText(int level)
         {
-            _levelText.text = $"LVL: {level}" /*+ $"DIFF: {_levelSystem.ExperienceToNextLevel}"*/;
+            _levelText.text = $"{level}" /*+ $"DIFF: {_levelSystem.ExperienceToNextLevel}"*/;
         }
     }
 }

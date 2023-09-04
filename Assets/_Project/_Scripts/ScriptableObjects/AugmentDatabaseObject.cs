@@ -15,6 +15,7 @@ namespace IslandBoy
     public class AugmentRecipe
     {
         public string Name;
+        [field: TextArea]
         public string Description;
         public int LevelsRequired;
         public Sprite RecipeSprite;

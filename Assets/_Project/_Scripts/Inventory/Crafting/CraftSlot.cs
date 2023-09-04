@@ -9,8 +9,6 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private GameObject _rscSlotPrefab;
-        [SerializeField] private Color _craftableColor;
-        [SerializeField] private Color _unCraftableColor;
 
         private RectTransform _rscPanel;
         private RectTransform _rscSlots;
@@ -115,14 +113,12 @@ namespace IslandBoy
 
         private void SetCraftable()
         {
-            _craftSlotBackround.color = _craftableColor;
             _outputImage.color = Color.white;
             _canCraft = true;
         }
 
         private void SetUnCraftable()
         {
-            _craftSlotBackround.color = _unCraftableColor;
             _outputImage.color = new Color(0.25f, 0.25f, 0.25f, 1);
             _canCraft = false;
         }

@@ -24,7 +24,7 @@ namespace IslandBoy
 
         public override string GetDescription()
         {
-            return string.Empty;
+            return Description;
         }
     }
 }

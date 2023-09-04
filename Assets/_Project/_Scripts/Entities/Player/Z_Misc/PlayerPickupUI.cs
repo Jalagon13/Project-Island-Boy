@@ -34,10 +34,13 @@ namespace IslandBoy
 
         private void LevelSystem_OnExperienceChanged(object sender, System.EventArgs e)
         {
+            ExperienceEventArgs args = e as ExperienceEventArgs;
+
+            if (args.ExperienceAmount <= 0) return;
+
             AudioManager.Instance.PlayClip(_popSound, false, true);
             GameObject itemPickupSign = Instantiate(_itemPickupSignPrefab);
             PickupSign pickup = itemPickupSign.GetComponent<PickupSign>();
-            ExperienceEventArgs args = e as ExperienceEventArgs;
             pickup.Initialize($"+{args.ExperienceAmount} EXP", Color.green);
 
             _itemPickups.Add(pickup);

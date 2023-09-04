@@ -37,6 +37,7 @@ namespace IslandBoy
 
                 AugmentSlot augSlot = augSlotGo.GetComponent<AugmentSlot>();
                 augSlot.Initialize(adb.Database[i]);
+                augSlot.MouseItemHolder = _mouseItemHolder;
             }
         }
 

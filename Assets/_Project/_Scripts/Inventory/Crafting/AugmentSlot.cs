@@ -10,7 +10,9 @@ namespace IslandBoy
     public class AugmentSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] private PlayerReference _pr;
+        [SerializeField] private AudioClip _popSound;
         [SerializeField] private GameObject _rscSlotPrefab;
+        [SerializeField] private GameObject _inventoryItemPrefab;
 
         private RectTransform _rscPanel;
         private RectTransform _rscSlots;
@@ -19,7 +21,10 @@ namespace IslandBoy
         private Image _outputImage;
         private AugmentRecipe _ar;
         private TextMeshProUGUI _amountText;
+        private MouseItemHolder _mouseItemHolder;
         private bool _canCraft;
+
+        public MouseItemHolder MouseItemHolder { set { _mouseItemHolder = value; } }
 
         private void Awake()
         {
@@ -46,12 +51,14 @@ namespace IslandBoy
             _rscPanel.gameObject.SetActive(false);
         }
 
-        public void TryToCraft()
+        public void TryToCraft() // connected to slot button
         {
-            Debug.Log("Craft Augment");
+            if (!_canCraft) return;
+            if (!_mouseItemHolder.TryToCraftItem(_inventoryItemPrefab, _ar.AugmentOutputs[Random.Range(0, _ar.AugmentOutputs.Count)], 1)) return;
+
+            AudioManager.Instance.PlayClip(_popSound, false, true);
+            _pr.LevelSystem.SubtractLevels(_ar.LevelsRequired);
         }
-
-
 
         public void Initialize(AugmentRecipe ar)
         {
@@ -74,9 +81,9 @@ namespace IslandBoy
 
         private void CheckIfCanCraft()
         {
-            bool canCraft = _pr.LevelSystem.LevelNumber >= _ar.LevelsRequired;
+            _canCraft = _pr.LevelSystem.LevelNumber >= _ar.LevelsRequired;
 
-            if (canCraft)
+            if (_canCraft)
                 SetCraftable();
             else
                 SetUnCraftable();
@@ -84,14 +91,12 @@ namespace IslandBoy
 
         private void SetCraftable()
         {
-            //_craftSlotBackround.color = _craftableColor;
             _outputImage.color = Color.white;
             _canCraft = true;
         }
 
         private void SetUnCraftable()
         {
-            //_craftSlotBackround.color = _unCraftableColor;
             _outputImage.color = new Color(0.25f, 0.25f, 0.25f, 1);
             _canCraft = false;
         }

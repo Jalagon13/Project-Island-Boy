@@ -28,6 +28,20 @@ namespace IslandBoy
             _experienceToNextLevel = (int)_experienceCurve.Evaluate(1);
         }
 
+        public void SubtractLevels(int amount)
+        {
+            _level -= amount;
+
+            if(_level < 0)
+                _level = 0;
+
+            _experience = (int)_experienceCurve.Evaluate(_level);
+            _totalExperience = (int)_experienceCurve.Evaluate(_level);
+
+            OnLevelChanged?.Invoke(this, EventArgs.Empty);
+            OnExperienceChanged?.Invoke(this, new ExperienceEventArgs { ExperienceAmount = -1 });
+        }
+
         public void AddExperience(int amount)
         {
             _experience += amount;
