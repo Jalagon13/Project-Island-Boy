@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace IslandBoy
 {
-    public class InventoryItem : MonoBehaviour/*, IInventoryItemDrop*/
+    public class InventoryItem : MonoBehaviour
     {
         [SerializeField] private GameObject _durabilityCounterGo;
         [SerializeField] private ItemParameter _durabilityParameter;
@@ -14,11 +14,15 @@ namespace IslandBoy
         private TextMeshProUGUI _countText;
         private ItemObject _item;
         private List<ItemParameter> _currentParameters;
+        private List<IAugment> _augmentList = new();
         private GameObject _durabilityCounterRef;
-        private int _count;
+        private int _count, _augmentOnItem;
+        private bool _hasAugments, _itemReadyToExecute;
 
         public ItemObject Item { get { return _item; } }
         public List<ItemParameter> CurrentParameters { get { return _currentParameters; } }
+        public bool HasAugments { get { return _hasAugments; } }
+        public int AugmentsOnItem { get { return _augmentOnItem; } }
 
         public int Count { get { return _count; }
             set 
@@ -38,13 +42,40 @@ namespace IslandBoy
         {
             _image = GetComponent<Image>();
             _countText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-            _item = item;
             _image.sprite = item.UiDisplay;
             _count = count;
+            _item = item;
             _currentParameters = itemParameters != null ? new(itemParameters) : new();
 
-            UpdateDurabilityCounter();
             UpdateCounter();
+        }
+
+        public void InitializeAugment(AugmentObject augmentItem)
+        {
+            if (_augmentOnItem >= 3) return;
+
+            GameObject ag = Instantiate(augmentItem.Augment, transform);
+            IAugment augment = ag.GetComponent<IAugment>();
+            _augmentList.Add(augment);
+            _augmentOnItem++;
+            _hasAugments = true;
+        }
+
+        public void ReadyItem()
+        {
+            _itemReadyToExecute = true;
+        }
+
+        public void ExecuteAugments(TileAction ta)
+        {
+            if (!_itemReadyToExecute) return;
+
+            foreach (IAugment augment in _augmentList)
+            {
+                augment.Execute(ta);
+            }
+
+            _itemReadyToExecute = false;
         }
 
         public void UpdateDurabilityCounter()

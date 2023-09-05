@@ -27,7 +27,7 @@ namespace IslandBoy
 
         public override void ExecuteAction(SelectedSlotControl control)
         {
-            
+            control.PR.SelectedSlot.InventoryItem.ReadyItem();
         }
 
         public override string GetDescription()

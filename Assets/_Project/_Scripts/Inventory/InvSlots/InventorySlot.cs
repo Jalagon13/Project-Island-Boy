@@ -57,7 +57,12 @@ namespace IslandBoy
                 {
                     if (HasItem())
                     {
-                        if(ItemObject == _mouseItemHolder.ItemObject)
+                        if (CanEquipAugment())
+                        {
+                            InventoryItem.InitializeAugment(_mouseItemHolder.ItemObject as AugmentObject);
+                            _mouseItemHolder.DeleteMouseItem();
+                        }
+                        else if(ItemObject == _mouseItemHolder.ItemObject)
                         {
                             if (ItemObject.Stackable)
                             {
@@ -129,6 +134,14 @@ namespace IslandBoy
                 }
             }
             SlotClickedEvent?.Invoke();
+        }
+
+        // expand on these conditions later
+        private bool CanEquipAugment()
+        {
+            return _mouseItemHolder.ItemObject is AugmentObject && 
+                ItemObject is ToolObject && 
+                InventoryItem.AugmentsOnItem < 3;
         }
     }
 }

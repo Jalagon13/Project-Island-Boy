@@ -7,6 +7,9 @@ namespace IslandBoy
     [CreateAssetMenu(fileName = "New Augment", menuName = "Create Item/New Augment")]
     public class AugmentObject : ItemObject
     {
+        [field: SerializeField] public GameObject Augment { get; private set; }
+        [field: SerializeField] public int Test { get; private set; }
+
         public override ToolType ToolType => _baseToolType;
 
         public override AmmoType AmmoType => _baseAmmoType;

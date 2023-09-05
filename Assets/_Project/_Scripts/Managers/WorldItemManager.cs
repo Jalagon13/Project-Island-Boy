@@ -17,7 +17,7 @@ namespace IslandBoy
         protected override void Awake()
         {
             base.Awake();
-            SpawnItem(new Vector2(2f, -3f), _startingHooks, 1, null, false);
+            SpawnItem(new Vector2(1f, -4f), _startingHooks, 1, null, false);
         }
 
         private IEnumerator Start()

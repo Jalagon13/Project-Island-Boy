@@ -18,7 +18,7 @@ namespace IslandBoy
         [SerializeField] private ItemParameter _baseCooldown;
         [SerializeField] private ItemParameter _baseSwingSpeedMultiplier;
 
-        private TileAction _sta;
+        private TileAction _ta;
         private PlayerInput _input;
         private Animator _animator;
         private PlayerMoveInput _moveInput;
@@ -47,10 +47,10 @@ namespace IslandBoy
             _moveInput = transform.root.GetComponent<PlayerMoveInput>();
             _camera = Camera.main;
 
-            _sta = transform.GetChild(0).GetComponent<TileAction>();
-            _sta.BasePower = _basePower.Value;
-            _sta.BaseToolType = _baseToolType;
-            _sta.transform.parent = null;
+            _ta = transform.GetChild(0).GetComponent<TileAction>();
+            _ta.BasePower = _basePower.Value;
+            _ta.BaseToolType = _baseToolType;
+            _ta.transform.parent = null;
 
             _swingCollider = transform.GetChild(0).GetChild(0).GetComponent<SwingCollider>();
             _swingCollider.BaseDamage = _baseDamage.Value;
@@ -131,7 +131,7 @@ namespace IslandBoy
 
         public void HitAtStaIndicator()
         {
-            _sta.HitTile();
+            _ta.HitTile();
         }
 
         private void SetIsHeldDown(InputAction.CallbackContext context)

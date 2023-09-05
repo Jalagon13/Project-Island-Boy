@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: '[ADB] Wizard NPC'
   m_EditorClassIdentifier: 
   Database:
-  - Name: Augment Vessel
+  - Name: Augment Vessel I
     Description: "\u2022 ???"
-    LevelsRequired: 5
+    LevelsRequired: 0
     RecipeSprite: {fileID: 2118457468, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
     AugmentOutputs:
     - {fileID: 11400000, guid: f9a1edf4f0e9b9943963c70ebba1a3cc, type: 2}

@@ -49,6 +49,11 @@ namespace IslandBoy
             HammerTileLogic();
             ApplyDamageToBreakable();
             ShovelTileLogic();
+
+            if (_pr.SelectedSlot.InventoryItem.HasAugments)
+            {
+                _pr.SelectedSlot.InventoryItem.ExecuteAugments(this);
+            }
         }
 
         private void HammerTileLogic()
