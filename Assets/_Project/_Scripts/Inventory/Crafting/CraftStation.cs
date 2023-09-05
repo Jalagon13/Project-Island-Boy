@@ -6,11 +6,11 @@ namespace IslandBoy
 {
     public class CraftStation : MonoBehaviour, IPointerClickHandler
     {
-        public static event Action<RecipeDatabaseObject, AugmentDatabaseObject> OnCraftStationInteract;
+        public static event Action<RecipeDatabaseObject, RuneDatabaseObject> OnCraftStationInteract;
 
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private RecipeDatabaseObject _rdb;
-        [SerializeField] private AugmentDatabaseObject _adb;
+        [SerializeField] private RuneDatabaseObject _adb;
 
         public void OnPointerClick(PointerEventData eventData)
         {

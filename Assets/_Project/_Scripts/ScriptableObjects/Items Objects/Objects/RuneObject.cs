@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    [CreateAssetMenu(fileName = "New Augment", menuName = "Create Item/New Augment")]
-    public class AugmentObject : ItemObject
+    [CreateAssetMenu(fileName = "New Rune", menuName = "Create Item/New Rune")]
+    public class RuneObject : ItemObject
     {
         [field: SerializeField] public GameObject Augment { get; private set; }
         [field: SerializeField] public float Cooldown { get; private set; }

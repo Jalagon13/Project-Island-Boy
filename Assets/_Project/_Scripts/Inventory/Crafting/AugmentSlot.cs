@@ -19,7 +19,7 @@ namespace IslandBoy
         private CraftSlotImageHover _hoverImage;
         private Image _craftSlotBackround;
         private Image _outputImage;
-        private AugmentRecipe _ar;
+        private RuneRecipe _ar;
         private TextMeshProUGUI _amountText;
         private MouseItemHolder _mouseItemHolder;
         private bool _canCraft;
@@ -60,7 +60,7 @@ namespace IslandBoy
             _pr.LevelSystem.SubtractLevels(_ar.LevelsRequired);
         }
 
-        public void Initialize(AugmentRecipe ar)
+        public void Initialize(RuneRecipe ar)
         {
             _ar = ar;
             _outputImage.sprite = ar.RecipeSprite;

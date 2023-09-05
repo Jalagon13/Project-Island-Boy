@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public interface IAugment
+    public interface IRune
     {
         public void Execute(TileAction ta);
     }

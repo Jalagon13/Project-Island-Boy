@@ -18,7 +18,7 @@ namespace IslandBoy
             _mouseItemHolder = transform.GetChild(2).GetComponent<MouseItemHolder>();
         }
 
-        public void RefreshCraftingMenu(RecipeDatabaseObject rdb, AugmentDatabaseObject adb)
+        public void RefreshCraftingMenu(RecipeDatabaseObject rdb, RuneDatabaseObject adb)
         {
             ResetCraftSlots();
 
@@ -29,7 +29,7 @@ namespace IslandBoy
                 SetupADB(adb);
         }
 
-        private void SetupADB(AugmentDatabaseObject adb)
+        private void SetupADB(RuneDatabaseObject adb)
         {
             for (int i = 0; i < adb.Database.Length; i++)
             {

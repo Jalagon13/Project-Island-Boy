@@ -40,7 +40,7 @@ namespace IslandBoy
             CloseInventory();
         }
 
-        private void CraftStationInteract(RecipeDatabaseObject rdb, AugmentDatabaseObject adb)
+        private void CraftStationInteract(RecipeDatabaseObject rdb, RuneDatabaseObject adb)
         {
             OpenInventory();
 

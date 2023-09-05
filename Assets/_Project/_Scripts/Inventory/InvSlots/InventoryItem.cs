@@ -16,7 +16,7 @@ namespace IslandBoy
         private TextMeshProUGUI _countText;
         private ItemObject _item;
         private List<ItemParameter> _currentParameters;
-        private List<IAugment> _augmentList = new();
+        private List<IRune> _augmentList = new();
         private FillControl _durabilityFC;
         private FillControl _cooldownFC;
         private Timer _cooldownTimer;
@@ -63,12 +63,12 @@ namespace IslandBoy
             UpdateCounter();
         }
 
-        public void InitializeAugment(AugmentObject augmentItem)
+        public void InitializeAugment(RuneObject augmentItem)
         {
             if (_augmentOnItem >= 3) return;
 
             GameObject ag = Instantiate(augmentItem.Augment, transform);
-            IAugment augment = ag.GetComponent<IAugment>();
+            IRune augment = ag.GetComponent<IRune>();
 
             _augmentList.Add(augment);
             _augmentOnItem++;
@@ -95,7 +95,7 @@ namespace IslandBoy
         {
             if (!_canExecuteAugments) return;
 
-            foreach (IAugment augment in _augmentList)
+            foreach (IRune augment in _augmentList)
             {
                 augment.Execute(ta);
             }

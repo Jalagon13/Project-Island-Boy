@@ -59,7 +59,7 @@ namespace IslandBoy
                     {
                         if (CanEquipAugment())
                         {
-                            InventoryItem.InitializeAugment(_mouseItemHolder.ItemObject as AugmentObject);
+                            InventoryItem.InitializeAugment(_mouseItemHolder.ItemObject as RuneObject);
                             _mouseItemHolder.DeleteMouseItem();
                         }
                         else if(ItemObject == _mouseItemHolder.ItemObject)
@@ -139,9 +139,9 @@ namespace IslandBoy
         // expand on these conditions later
         private bool CanEquipAugment()
         {
-            if (_mouseItemHolder.ItemObject is AugmentObject && ItemObject is ToolObject && InventoryItem.AugmentsOnItem < 3)
+            if (_mouseItemHolder.ItemObject is RuneObject && ItemObject is ToolObject && InventoryItem.AugmentsOnItem < 3)
             {
-                AugmentObject mouseAugmentObj = _mouseItemHolder.ItemObject as AugmentObject;
+                RuneObject mouseAugmentObj = _mouseItemHolder.ItemObject as RuneObject;
                 ToolObject slotToolObj = ItemObject as ToolObject;
 
                 if (mouseAugmentObj.CombatableToolTypes.Contains(slotToolObj.ToolType))

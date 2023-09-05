@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eccc5d634e8792f409551eb73598082c, type: 3}
-  m_Name: '[I-AUG] Rune of Greed 1'
+  m_Name: '[I-Rune] Greed 1'
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Rune of Greed I
-  <UiDisplay>k__BackingField: {fileID: 2118457468, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  <UiDisplay>k__BackingField: {fileID: 1210640472, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   <Stackable>k__BackingField: 0
   <Description>k__BackingField: 
   <DefaultParameterList>k__BackingField: []
   <Augment>k__BackingField: {fileID: 3926137354440818015, guid: 664fa5223203f5d4285508d5228b22b4, type: 3}
-  <Cooldown>k__BackingField: 3
-  <CombatableToolTypes>k__BackingField: 0300000003000000
+  <Cooldown>k__BackingField: 15
+  <CombatableToolTypes>k__BackingField: 03000000

@@ -25,7 +25,7 @@ namespace IslandBoy
             _countText.text = ia.Amount.ToString();
         }
 
-        public void InitializeExpSlot(AugmentRecipe ar)
+        public void InitializeExpSlot(RuneRecipe ar)
         {
             _rscImage = transform.GetChild(1).GetComponent<Image>();
             _countText = transform.GetChild(2).GetComponent<TextMeshProUGUI>();

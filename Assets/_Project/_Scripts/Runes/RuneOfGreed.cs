@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public class Augment : MonoBehaviour, IAugment
+    public class RuneOfGreed : MonoBehaviour, IRune
     {
         public void Execute(TileAction ta)
         {
