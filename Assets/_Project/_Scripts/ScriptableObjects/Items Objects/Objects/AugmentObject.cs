@@ -8,7 +8,8 @@ namespace IslandBoy
     public class AugmentObject : ItemObject
     {
         [field: SerializeField] public GameObject Augment { get; private set; }
-        [field: SerializeField] public int Test { get; private set; }
+        [field: SerializeField] public float Cooldown { get; private set; }
+        [field: SerializeField] public List<ToolType> CombatableToolTypes { get; private set; }
 
         public override ToolType ToolType => _baseToolType;
 

@@ -139,9 +139,16 @@ namespace IslandBoy
         // expand on these conditions later
         private bool CanEquipAugment()
         {
-            return _mouseItemHolder.ItemObject is AugmentObject && 
-                ItemObject is ToolObject && 
-                InventoryItem.AugmentsOnItem < 3;
+            if (_mouseItemHolder.ItemObject is AugmentObject && ItemObject is ToolObject && InventoryItem.AugmentsOnItem < 3)
+            {
+                AugmentObject mouseAugmentObj = _mouseItemHolder.ItemObject as AugmentObject;
+                ToolObject slotToolObj = ItemObject as ToolObject;
+
+                if (mouseAugmentObj.CombatableToolTypes.Contains(slotToolObj.ToolType))
+                    return true;
+            }
+
+            return false;
         }
     }
 }

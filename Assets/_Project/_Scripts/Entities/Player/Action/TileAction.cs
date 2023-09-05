@@ -50,10 +50,7 @@ namespace IslandBoy
             ApplyDamageToBreakable();
             ShovelTileLogic();
 
-            if (_pr.SelectedSlot.InventoryItem.HasAugments)
-            {
-                _pr.SelectedSlot.InventoryItem.ExecuteAugments(this);
-            }
+
         }
 
         private void HammerTileLogic()
@@ -148,6 +145,9 @@ namespace IslandBoy
         public void ModifyDurability()
         {
             if (_pr.SelectedSlot.CurrentParameters.Count <= 0) return;
+
+            if (_pr.SelectedSlot.InventoryItem.HasAugments)
+                _pr.SelectedSlot.InventoryItem.ExecuteAugments(this);
 
             var itemParams = _pr.SelectedSlot.CurrentParameters;
 

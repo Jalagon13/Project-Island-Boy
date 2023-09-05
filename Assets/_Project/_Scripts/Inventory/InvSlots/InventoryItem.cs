@@ -73,7 +73,7 @@ namespace IslandBoy
             _augmentList.Add(augment);
             _augmentOnItem++;
             _hasAugments = true;
-            _cooldown = 3f;
+            _cooldown += augmentItem.Cooldown;
 
             if (_cooldownFC == null)
             {
