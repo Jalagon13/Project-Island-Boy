@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -8,6 +9,7 @@ namespace IslandBoy
     public class InventoryItem : MonoBehaviour
     {
         [SerializeField] private GameObject _durabilityCounterGo;
+        [SerializeField] private GameObject _cooldownCounterGo;
         [SerializeField] private ItemParameter _durabilityParameter;
 
         private Image _image;
@@ -15,15 +17,17 @@ namespace IslandBoy
         private ItemObject _item;
         private List<ItemParameter> _currentParameters;
         private List<IAugment> _augmentList = new();
-        private GameObject _durabilityCounterRef;
+        private FillControl _durabilityFC;
+        private FillControl _cooldownFC;
+        private Timer _cooldownTimer;
+        private float _cooldown;
         private int _count, _augmentOnItem;
-        private bool _hasAugments, _itemReadyToExecute;
+        private bool _hasAugments, _canExecuteAugments, _inCooldown;
 
         public ItemObject Item { get { return _item; } }
         public List<ItemParameter> CurrentParameters { get { return _currentParameters; } }
         public bool HasAugments { get { return _hasAugments; } }
         public int AugmentsOnItem { get { return _augmentOnItem; } }
-
         public int Count { get { return _count; }
             set 
             { 
@@ -35,6 +39,15 @@ namespace IslandBoy
                 {
                     Destroy(gameObject);
                 }
+            }
+        }
+
+        private void FixedUpdate()
+        {
+            if(_cooldownTimer != null)
+            {
+                _cooldownTimer.Tick(Time.deltaTime);
+                _cooldownFC.UpdateFill(_cooldown, _cooldownTimer != null ? _cooldownTimer.RemainingSeconds : 0);
             }
         }
 
@@ -56,26 +69,49 @@ namespace IslandBoy
 
             GameObject ag = Instantiate(augmentItem.Augment, transform);
             IAugment augment = ag.GetComponent<IAugment>();
+
             _augmentList.Add(augment);
             _augmentOnItem++;
             _hasAugments = true;
+            _cooldown = 3f;
+
+            if (_cooldownFC == null)
+            {
+                GameObject cc = Instantiate(_cooldownCounterGo, transform);
+                _cooldownFC = cc.GetComponent<FillControl>();
+                _cooldownFC.HideFill();
+            }
         }
 
         public void ReadyItem()
         {
-            _itemReadyToExecute = true;
+            if(!_inCooldown && _hasAugments && !_canExecuteAugments)
+            {
+                _canExecuteAugments = true;
+            }
         }
 
         public void ExecuteAugments(TileAction ta)
         {
-            if (!_itemReadyToExecute) return;
+            if (!_canExecuteAugments) return;
 
             foreach (IAugment augment in _augmentList)
             {
                 augment.Execute(ta);
             }
 
-            _itemReadyToExecute = false;
+            _cooldownTimer = new(_cooldown);
+            _cooldownTimer.OnTimerEnd += CooldownEnd;
+            _cooldownFC.ShowFill();
+            _canExecuteAugments = false;
+            _inCooldown = true;
+        }
+
+        private void CooldownEnd()
+        {
+            _cooldownTimer = null;
+            _inCooldown = false;
+            _cooldownFC.HideFill();
         }
 
         public void UpdateDurabilityCounter()
@@ -87,13 +123,13 @@ namespace IslandBoy
             float currentDurability = _currentParameters[index].Value;
             float maxDurability = _item.DefaultParameterList[index].Value;
 
-            if(_durabilityCounterRef == null)
+            if(_durabilityFC == null)
             {
-                _durabilityCounterRef = Instantiate(_durabilityCounterGo, transform);
+                GameObject dc = Instantiate(_durabilityCounterGo, transform);
+                _durabilityFC = dc.GetComponent<FillControl>();
             }
 
-            DurabilityCounter counter = _durabilityCounterRef.GetComponent<DurabilityCounter>();
-            counter.UpdateDurabilityCounter(maxDurability, currentDurability);
+            _durabilityFC.UpdateFill(maxDurability, currentDurability);
 
 
             if (currentDurability <= 0)

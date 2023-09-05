@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _durabilityCounterGo: {fileID: 3926137354440818015, guid: 939e9cd5fd11e564ea362e949d5299a9, type: 3}
+  _cooldownCounterGo: {fileID: 3926137354440818015, guid: d222b67be0296e349af32e82747fc56e, type: 3}
   _durabilityParameter:
     Parameter: {fileID: 11400000, guid: 97c28137497da5845bdbc42cd2c6dd6f, type: 2}
     Value: 0
