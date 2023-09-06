@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 1830213567290729489}
   - component: {fileID: 3955304174954924006}
   m_Layer: 0
-  m_Name: '[UI] Rune of Greed I'
+  m_Name: '[Rune] Destruction I'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0059c3150cb446b429d6a5d999cb9fdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tmr: {fileID: 0}
 --- !u!1 &8176227449540118679
 GameObject:
   m_ObjectHideFlags: 0

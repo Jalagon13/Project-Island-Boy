@@ -47,10 +47,8 @@ namespace IslandBoy
             _brokeRscThisFrame = false;
 
             HammerTileLogic();
-            ApplyDamageToBreakable();
+            DamageBreakable();
             ShovelTileLogic();
-
-
         }
 
         private void HammerTileLogic()
@@ -89,12 +87,27 @@ namespace IslandBoy
             _ti.UpdateLogic();
         }
 
-        private void ApplyDamageToBreakable()
+        private void DamageBreakable()
+        {
+            if (ApplyDamageToBreakable(transform.position))
+            {
+                ModifyDurability();
+                ExecuteAugments();
+            }
+        }
+
+        private void ExecuteAugments()
+        {
+            if (_pr.SelectedSlot.InventoryItem.HasAugments)
+                _pr.SelectedSlot.InventoryItem.ExecuteAugments(this);
+        }
+
+        public bool ApplyDamageToBreakable(Vector3 pos)
         {
             if (_pr.SelectedSlot.ItemObject != null)
-                if (_pr.SelectedSlot.ItemObject.ToolType == ToolType.Sword) return;
+                if (_pr.SelectedSlot.ItemObject.ToolType == ToolType.Sword) return false;
 
-            var colliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
+            var colliders = Physics2D.OverlapCircleAll(pos, 0.2f);
 
             foreach (var collider in colliders)
             {
@@ -104,9 +117,6 @@ namespace IslandBoy
                 {
                     if (breakable.Hit(CalcPower(), CalcToolType()))
                     {
-                        if(_pr.SelectedSlot.ItemObject is ToolObject)
-                            ModifyDurability();
-
                         if (breakable.CurrentHitPoints <= 0)
                         {
                             _brokeRscThisFrame = true;
@@ -119,9 +129,13 @@ namespace IslandBoy
                         {
                             _stHpCanvas.ShowHpCanvas(breakable.MaxHitPoints, breakable.CurrentHitPoints);
                         }
+
+                        return true;
                     }
                 }
             }
+
+            return false;
         }
 
         private void DestroyTile(Tilemap tm)
@@ -144,10 +158,8 @@ namespace IslandBoy
 
         public void ModifyDurability()
         {
+            if (_pr.SelectedSlot.ItemObject is not ToolObject) return;
             if (_pr.SelectedSlot.CurrentParameters.Count <= 0) return;
-
-            if (_pr.SelectedSlot.InventoryItem.HasAugments)
-                _pr.SelectedSlot.InventoryItem.ExecuteAugments(this);
 
             var itemParams = _pr.SelectedSlot.CurrentParameters;
 
