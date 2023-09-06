@@ -95,9 +95,14 @@ namespace IslandBoy
         {
             if (!_canExecuteAugments) return;
 
-            foreach (IRune augment in _augmentList)
+            foreach (IRune rune in _augmentList)
             {
-                augment.Execute(ta);
+                rune.Initialize(ta, _augmentList);
+            }
+
+            foreach (IRune rune in _augmentList)
+            {
+                rune.Execute();
             }
 
             _cooldownTimer = new(_cooldown);

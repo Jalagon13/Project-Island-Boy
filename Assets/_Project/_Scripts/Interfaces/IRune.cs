@@ -6,6 +6,7 @@ namespace IslandBoy
 {
     public interface IRune
     {
-        public void Execute(TileAction ta);
+        public void Initialize(TileAction ta, List<IRune> runeList);
+        public void Execute();
     }
 }

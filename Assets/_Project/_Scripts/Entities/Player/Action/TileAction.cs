@@ -98,6 +98,8 @@ namespace IslandBoy
 
         private void ExecuteAugments()
         {
+            if(_pr.SelectedSlot.InventoryItem == null) return;
+
             if (_pr.SelectedSlot.InventoryItem.HasAugments)
                 _pr.SelectedSlot.InventoryItem.ExecuteAugments(this);
         }
