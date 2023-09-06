@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 138.00005}
+  m_AnchoredPosition: {x: -64, y: 138.00005}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7971596344661407682
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.029988218, b: 0, a: 1}
+  m_Color: {r: 0.019819975, g: 1, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -86,9 +86,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6422778731007008595}
   - component: {fileID: 1830213567290729489}
-  - component: {fileID: 3955304174954924006}
+  - component: {fileID: 301777971236602052}
   m_Layer: 0
-  m_Name: '[Rune] Destruction I'
+  m_Name: '[Rune] Greed I'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,7 +124,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3926137354440818015}
   m_CullTransparentMesh: 1
---- !u!114 &3955304174954924006
+--- !u!114 &301777971236602052
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,10 +133,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3926137354440818015}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0059c3150cb446b429d6a5d999cb9fdd, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b964a9240e6bf345b918f3451da6c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tmr: {fileID: 0}
 --- !u!1 &8176227449540118679
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +171,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 138}
+  m_AnchoredPosition: {x: -64, y: 138}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2030592213800350901

@@ -777,7 +777,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: item_rune
+      name: item_red_rune
       rect:
         serializedVersion: 2
         x: 16
@@ -793,6 +793,27 @@ TextureImporter:
       bones: []
       spriteID: 785aefb42fb992b4993f9cb0449cc8eb
       internalID: 1210640472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_green_rune
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f886982b3010aaf4eb8718d70894db7f
+      internalID: 1558334950
       vertices: []
       indices: 
       edges: []
@@ -818,11 +839,12 @@ TextureImporter:
       item_fish: 1211993972
       item_fishing_rod: 1879242436
       item_grass: 456514419
+      item_green_rune: 1558334950
       item_hook: -1546665967
       item_iron_ore: 1648958029
       item_miner_scroll: 2118457468
       item_portal_to_home: 1494493913
-      item_rune: 1210640472
+      item_red_rune: 1210640472
       item_sand: -966422323
       item_sapling: 811161192
       item_stone: -512641925

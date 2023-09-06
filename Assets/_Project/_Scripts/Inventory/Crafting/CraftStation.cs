@@ -14,11 +14,9 @@ namespace IslandBoy
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            Debug.Log("THis working?");
 
             if (eventData.button == PointerEventData.InputButton.Right && _pr.PlayerInRange(transform.position))
             {
-                Debug.Log("Inside it");
                 OnCraftStationInteract?.Invoke(_rdb, _adb);
             }
         }

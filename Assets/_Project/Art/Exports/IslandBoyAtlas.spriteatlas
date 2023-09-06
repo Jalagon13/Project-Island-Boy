@@ -77,7 +77,6 @@ SpriteAtlas:
   - {fileID: -1651487029, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -972602597, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1935163884, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
-  - {fileID: 1210640472, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1850925332, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1995232107, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1204406958, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
@@ -96,6 +95,7 @@ SpriteAtlas:
   - {fileID: 456514419, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -602149933, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -512641925, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  - {fileID: 1210640472, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -581595869, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1879242436, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 734688836, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
@@ -103,6 +103,7 @@ SpriteAtlas:
   - {fileID: 1223464883, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1611562402, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -966422323, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  - {fileID: 1558334950, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1648958029, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1392384841, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 563146846, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
@@ -282,7 +283,6 @@ SpriteAtlas:
   - item_coal
   - item_wood_greaves
   - item_undead_soul
-  - item_rune
   - item_wood_floor
   - item_torch
   - item_wood_hammer
@@ -301,6 +301,7 @@ SpriteAtlas:
   - item_grass
   - item_wood
   - item_stone
+  - item_red_rune
   - item_tool_station
   - item_fishing_rod
   - item_wood_wall
@@ -308,6 +309,7 @@ SpriteAtlas:
   - item_campfire
   - item_wood_helmet
   - item_sand
+  - item_green_rune
   - item_iron_ore
   - item_wood_pickaxe
   - item_wood_axe

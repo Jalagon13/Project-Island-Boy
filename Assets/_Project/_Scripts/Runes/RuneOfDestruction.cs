@@ -6,8 +6,6 @@ namespace IslandBoy
 {
     public class RuneOfDestruction : MonoBehaviour, IRune
     {
-        [SerializeField] private TilemapReferences _tmr;
-
         public void Execute(TileAction ta)
         {
             Vector3 origin = ta.gameObject.transform.position;
