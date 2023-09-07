@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 1830213567290729489}
   - component: {fileID: 301777971236602052}
   m_Layer: 0
-  m_Name: '[Rune] Greed I'
+  m_Name: '[Rune] Power I'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b964a9240e6bf345b918f3451da6c3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _abilitySound: {fileID: 8300000, guid: 618fd8388478c024cac70d6e77f3a80e, type: 3}
 --- !u!1 &8176227449540118679
 GameObject:
   m_ObjectHideFlags: 0

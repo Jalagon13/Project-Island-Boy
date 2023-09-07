@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f68f3790c87654343b1e47728d449e7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _readySound: {fileID: 8300000, guid: 910f2ff397338844c8c350510297273d, type: 3}
   _durabilityCounterGo: {fileID: 3926137354440818015, guid: 939e9cd5fd11e564ea362e949d5299a9, type: 3}
   _cooldownCounterGo: {fileID: 3926137354440818015, guid: d222b67be0296e349af32e82747fc56e, type: 3}
   _durabilityParameter:

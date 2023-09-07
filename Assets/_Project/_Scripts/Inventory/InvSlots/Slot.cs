@@ -8,6 +8,7 @@ namespace IslandBoy
     public abstract class Slot : MonoBehaviour, IPointerClickHandler
     {
         [SerializeField] protected AudioClip _popSound;
+        [SerializeField] protected AudioClip _runeEquipSound;
 
         protected MouseItemHolder _mouseItemHolder;
         protected int _maxStack;
@@ -127,7 +128,7 @@ namespace IslandBoy
 
         protected void PlaySound()
         {
-            AudioManager.Instance.PlayClip(_popSound, false, true);
+            AudioManager.Instance.PlayClip(_popSound, false, true, 0.75f);
         }
     }
 }

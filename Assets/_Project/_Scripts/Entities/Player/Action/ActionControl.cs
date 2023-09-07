@@ -101,7 +101,7 @@ namespace IslandBoy
             _animator.speed = 1 * CalcParameter(_baseSwingSpeedMultiplier);
             SwingPerformEvent?.Invoke(); // connected to EnergyBar class
 
-            AudioManager.Instance.PlayClip(_wooshSound, false, true);
+            AudioManager.Instance.PlayClip(_wooshSound, false, true, 0.75f);
         }
 
         private float CalcParameter(ItemParameter baseParameter)

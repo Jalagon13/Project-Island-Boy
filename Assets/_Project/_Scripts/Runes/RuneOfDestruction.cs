@@ -2,13 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace IslandBoy
 {
     public class RuneOfDestruction : MonoBehaviour, IRune
     {
+        [SerializeField] private AudioClip _abilitySound;
+
         private TileAction _ta;
-        private List<Action<Vector2>> _modifierList = new();
+        private List<Action<Vector2>> _abilityList = new();
 
         public void Initialize(TileAction ta, List<IRune> runeList)
         {
@@ -16,15 +19,24 @@ namespace IslandBoy
 
             foreach(IRune rune in runeList)
             {
-                if (rune is RuneOfGreed)
+                if (rune is RuneOfPower)
                 {
-                    RuneOfGreed modifier = (RuneOfGreed)rune;
-                    _modifierList.Add(modifier.Modifier);
+                    RuneOfPower ability = (RuneOfPower)rune;
+                    _abilityList.Add(ability.Ability);
                 }
             }
         }
 
         public void Execute()
+        {
+            StartCoroutine(Delay());
+
+            //AudioManager.Instance.PlayClip(_abilitySound, false, true);
+
+            
+        }
+
+        private IEnumerator Delay()
         {
             Vector3 origin = _ta.gameObject.transform.position;
 
@@ -38,19 +50,22 @@ namespace IslandBoy
                         nx == -1 && ny == -1 ||
                         nx == 1 && ny == -1) continue;
 
-                    var pos = new Vector3(origin.x + nx, origin.y + ny, 0);
+                    yield return new WaitForSeconds(0.1f);
 
-                    foreach (Action<Vector2> modifier in _modifierList)
+                    var pos = new Vector3(origin.x + nx, origin.y + ny, 0);
+                    foreach (Action<Vector2> ability in _abilityList)
                     {
-                        modifier(pos);
+                        ability(pos);
                     }
 
                     if (_ta.ApplyDamageToBreakable(pos))
+                    {
                         _ta.ModifyDurability();
+                    }
                 }
             }
 
-            _modifierList.Clear();
+            _abilityList.Clear();
         }
     }
 }

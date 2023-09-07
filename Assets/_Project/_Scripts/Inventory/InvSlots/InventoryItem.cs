@@ -8,6 +8,7 @@ namespace IslandBoy
 {
     public class InventoryItem : MonoBehaviour
     {
+        [SerializeField] private AudioClip _readySound;
         [SerializeField] private GameObject _durabilityCounterGo;
         [SerializeField] private GameObject _cooldownCounterGo;
         [SerializeField] private ItemParameter _durabilityParameter;
@@ -85,10 +86,44 @@ namespace IslandBoy
 
         public void ReadyItem()
         {
-            if(!_inCooldown && _hasAugments && !_canExecuteAugments)
+            var mouseItemHolder = transform.parent.GetComponent<Slot>().MouseItemHolder;
+
+            if(!_inCooldown && _hasAugments && !_canExecuteAugments && !mouseItemHolder.HasItem())
             {
                 _canExecuteAugments = true;
+
+                AudioManager.Instance.PlayClip(_readySound, false, true);
+
+                StartCoroutine(ReadyAnimation());
+                StartCoroutine(CD());
             }
+        }
+
+        private IEnumerator CD()
+        {
+            yield return new WaitForSeconds(5f);
+            UnreadyItem();
+        }
+
+        private IEnumerator ReadyAnimation()
+        {
+            var rt = transform.GetComponent<RectTransform>();
+            var growthCounter = 8;
+            var growthDelay = 0.05f;
+            var growthAmount = 0.02f;
+
+            for (int i = 0; i < growthCounter; i++)
+            {
+                yield return new WaitForSeconds(growthDelay);
+                rt.localScale = new Vector3(rt.localScale.x + growthAmount, rt.localScale.y + growthAmount);
+            }
+            for (int i = 0; i < growthCounter; i++)
+            {
+                yield return new WaitForSeconds(growthDelay);
+                rt.localScale = new Vector3(rt.localScale.x - growthAmount, rt.localScale.y - growthAmount);
+            }
+
+            StartCoroutine(ReadyAnimation());
         }
 
         public void ExecuteAugments(TileAction ta)
@@ -105,11 +140,20 @@ namespace IslandBoy
                 rune.Execute();
             }
 
+            UnreadyItem();
+        }
+
+        private void UnreadyItem()
+        {
             _cooldownTimer = new(_cooldown);
             _cooldownTimer.OnTimerEnd += CooldownEnd;
             _cooldownFC.ShowFill();
             _canExecuteAugments = false;
             _inCooldown = true;
+
+            StopAllCoroutines();
+            var rt = transform.GetComponent<RectTransform>();
+            rt.localScale = Vector3.one;
         }
 
         private void CooldownEnd()

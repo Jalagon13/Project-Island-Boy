@@ -59,6 +59,7 @@ namespace IslandBoy
                     {
                         if (CanEquipAugment())
                         {
+                            AudioManager.Instance.PlayClip(_runeEquipSound, false, true);
                             InventoryItem.InitializeAugment(_mouseItemHolder.ItemObject as RuneObject);
                             _mouseItemHolder.DeleteMouseItem();
                         }

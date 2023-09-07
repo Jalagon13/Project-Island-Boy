@@ -34,7 +34,7 @@ namespace IslandBoy
 
         private void Start()
         {
-            AudioManager.Instance.PlayClip(_beachAmbSound, true, false, 0.25f);
+            AudioManager.Instance.PlayClip(_beachAmbSound, true, false, 0.1f);
             AudioManager.Instance.StopClip(_caveAmbSound);
         }
 
@@ -109,7 +109,7 @@ namespace IslandBoy
             Scene underground = SceneManager.GetSceneByBuildIndex(1);
 
             DayNightManager.Instance.GlobalVolume.enabled = true;
-            AudioManager.Instance.PlayClip(_beachAmbSound, true, false, 0.25f);
+            AudioManager.Instance.PlayClip(_beachAmbSound, true, false, 0.1f);
             AudioManager.Instance.StopClip(_caveAmbSound);
             SceneManager.MoveGameObjectToScene(_playerObject, surface);
             SceneManager.MoveGameObjectToScene(_tileActionObject, surface);

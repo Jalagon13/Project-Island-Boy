@@ -28,7 +28,14 @@ namespace IslandBoy
 
         public override string GetDescription()
         {
-            return Description;
+            string cooldownDesc = $"• {Cooldown}s Cooldown<br>";
+
+            foreach (ToolType tt in CombatableToolTypes)
+            {
+
+            }
+
+            return $"{Description}<br>{cooldownDesc}";
         }
     }
 }

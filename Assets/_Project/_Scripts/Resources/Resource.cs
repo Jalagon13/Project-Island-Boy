@@ -39,7 +39,7 @@ namespace IslandBoy
 
             noneToolType:
 
-            AudioManager.Instance.PlayClip(_hitSound, false, true);
+            AudioManager.Instance.PlayClip(_hitSound, false, true, 0.7f);
 
             StartCoroutine(Tremble());
 
@@ -53,7 +53,7 @@ namespace IslandBoy
 
         public void Break()
         {
-            AudioManager.Instance.PlayClip(_breakSound, false, true);
+            AudioManager.Instance.PlayClip(_breakSound, false, true, 0.75f);
             _lootTable.SpawnLoot(_dropPosition);
             StopAllCoroutines();
 
