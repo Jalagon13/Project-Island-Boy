@@ -22,16 +22,6 @@ namespace IslandBoy
         public bool CanCraft { get { return _canCraft; } }
         public Recipe Recipe { get { return _recipe; } }
 
-        private void Awake()
-        {
-            _craftSlotBackround = GetComponent<Image>();
-            _outputImage = transform.GetChild(0).GetComponent<Image>();
-            _hoverImage = transform.GetChild(0).GetComponent<CraftSlotImageHover>();
-            _rscPanel = transform.GetChild(1).GetComponent<RectTransform>();
-            _rscSlots = transform.GetChild(1).GetChild(0).GetComponent<RectTransform>();
-            _amountText = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-        }
-
         private void OnDisable()
         {
             _rscPanel.gameObject.SetActive(false);
@@ -57,6 +47,13 @@ namespace IslandBoy
 
         public void Initialize(Recipe recipe)
         {
+            _craftSlotBackround = GetComponent<Image>();
+            _outputImage = transform.GetChild(0).GetComponent<Image>();
+            _hoverImage = transform.GetChild(0).GetComponent<CraftSlotImageHover>();
+            _rscPanel = transform.GetChild(1).GetComponent<RectTransform>();
+            _rscSlots = transform.GetChild(1).GetChild(0).GetComponent<RectTransform>();
+            _amountText = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+
             _recipe = recipe;
             _outputImage.sprite = recipe.OutputItem.UiDisplay;
             _hoverImage.SetItemDescription(recipe.OutputItem);

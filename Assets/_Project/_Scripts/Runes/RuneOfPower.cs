@@ -32,6 +32,8 @@ namespace IslandBoy
         {
             yield return new WaitForSeconds(0.1f);
             _ta.ApplyDamageToBreakable(pos);
+            yield return new WaitForSeconds(0.1f);
+            _ta.ApplyDamageToBreakable(pos);
             // additional game feel here.
             //AudioManager.Instance.PlayClip(_abilitySound, false, true);
         }

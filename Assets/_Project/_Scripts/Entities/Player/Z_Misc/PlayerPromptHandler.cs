@@ -13,7 +13,7 @@ namespace IslandBoy
 
         private void OnDisable()
         {
-            PromptInteract.PromptInterectEvent += PromptTracker;
+            PromptInteract.PromptInterectEvent -= PromptTracker;
         }
 
         private void PromptTracker(PromptInteract promptInteract)

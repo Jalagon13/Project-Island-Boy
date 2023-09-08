@@ -13,6 +13,16 @@ MonoBehaviour:
   m_Name: '[RDB] Tool Station'
   m_EditorClassIdentifier: 
   Database:
+  - OutputItem: {fileID: 11400000, guid: a6b964e0566e65045b84f8a24dafe246, type: 2}
+    OutputAmount: 1
+    ResourceList:
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Amount: 4
+  - OutputItem: {fileID: 11400000, guid: 1f177d75b0703de479882f571f78e34b, type: 2}
+    OutputAmount: 4
+    ResourceList:
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Amount: 2
   - OutputItem: {fileID: 11400000, guid: f9306cafa82c97447bc4f47c37ef4b10, type: 2}
     OutputAmount: 1
     ResourceList:
@@ -38,20 +48,3 @@ MonoBehaviour:
     ResourceList:
     - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
       Amount: 4
-  - OutputItem: {fileID: 11400000, guid: a6b964e0566e65045b84f8a24dafe246, type: 2}
-    OutputAmount: 6
-    ResourceList:
-    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
-      Amount: 1
-  - OutputItem: {fileID: 11400000, guid: 1f177d75b0703de479882f571f78e34b, type: 2}
-    OutputAmount: 2
-    ResourceList:
-    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
-      Amount: 1
-  - OutputItem: {fileID: 11400000, guid: 5a3f6b55d552aaa458d30163600d0320, type: 2}
-    OutputAmount: 1
-    ResourceList:
-    - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
-      Amount: 4
-    - Item: {fileID: 11400000, guid: d7c6d1b0dd1a7944c8bb8f1caeaf296e, type: 2}
-      Amount: 1

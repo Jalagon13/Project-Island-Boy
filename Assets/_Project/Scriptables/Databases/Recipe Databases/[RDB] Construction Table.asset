@@ -14,22 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Database:
   - OutputItem: {fileID: 11400000, guid: c67ec61e0f752f845be2a959a4108887, type: 2}
-    OutputAmount: 3
+    OutputAmount: 4
     ResourceList:
     - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
       Amount: 1
   - OutputItem: {fileID: 11400000, guid: c471fb80a5facc043b05c95d8df96e43, type: 2}
-    OutputAmount: 3
+    OutputAmount: 4
     ResourceList:
     - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
       Amount: 1
-  - OutputItem: {fileID: 11400000, guid: eda396b7b43f560449c873844d3f2fff, type: 2}
-    OutputAmount: 1
-    ResourceList:
-    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
-      Amount: 5
   - OutputItem: {fileID: 11400000, guid: f64092d6d0d834f43aed2758782adce6, type: 2}
     OutputAmount: 1
     ResourceList:
     - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
-      Amount: 5
+      Amount: 2
