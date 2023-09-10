@@ -68,7 +68,10 @@ namespace IslandBoy
             if (Stackable)
                 control.PR.SelectedSlot.InventoryItem.Count--;
             else
+            {
+                Debug.Log("Dur");
                 control.TileAction.ModifyDurability();
+            }
 
             AudioManager.Instance.PlayClip(_throwSound, false, true);
             LaunchEvent?.Invoke();

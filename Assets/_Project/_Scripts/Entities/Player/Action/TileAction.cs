@@ -160,7 +160,7 @@ namespace IslandBoy
 
         public void ModifyDurability()
         {
-            if (_pr.SelectedSlot.ItemObject is not ToolObject) return;
+            //if (_pr.SelectedSlot.ItemObject is not ToolObject) return;
             if (_pr.SelectedSlot.CurrentParameters.Count <= 0) return;
 
             var itemParams = _pr.SelectedSlot.CurrentParameters;

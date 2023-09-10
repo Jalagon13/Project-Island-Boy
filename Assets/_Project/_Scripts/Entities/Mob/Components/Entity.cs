@@ -23,6 +23,8 @@ namespace IslandBoy
         
         public float BaseMoveSpeed { get { return _moveSpeed; } }
 
+        public LootTable LootTable { get { return _lootTable; } }
+
         protected virtual void Awake()
         {
             HealthSystem = new HealthSystem(_maxHealth);
@@ -50,7 +52,7 @@ namespace IslandBoy
                 knockback.PlayFeedback(sender);
 
             if (HealthSystem.IsDead())
-                OnDeath();
+                KillEntity();
         }
 
         public void Heal(int healAmount)
@@ -58,7 +60,7 @@ namespace IslandBoy
             HealthSystem.Heal(healAmount);
         }
 
-        public virtual void OnDeath()
+        public virtual void KillEntity()
         {
             _lootTable.SpawnLoot(transform.position);
 

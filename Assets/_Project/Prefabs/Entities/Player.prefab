@@ -3619,6 +3619,7 @@ GameObject:
   - component: {fileID: 4210445617709717860}
   - component: {fileID: 2963529343931073653}
   - component: {fileID: 4210445617155456040}
+  - component: {fileID: 1116718348}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3759,6 +3760,20 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1116718348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4210445617709717791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff67b025ed5b7f54e9cf1e1e28479c62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tmr: {fileID: 11400000, guid: ec06355a14da7574295ea6e79aaebb6f, type: 2}
+  _fishMobPrefab: {fileID: 5403894629318991451, guid: 6129b3ceaa08f964b8631f34c3878515, type: 3}
 --- !u!1 &4210445617714157972
 GameObject:
   m_ObjectHideFlags: 0
@@ -5484,8 +5499,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -285.99976, y: 162.00003}
-  m_SizeDelta: {x: 419.2715, y: 100}
+  m_AnchoredPosition: {x: -285.99976, y: 238}
+  m_SizeDelta: {x: 476.45, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &4592444884992251375
 CanvasRenderer:

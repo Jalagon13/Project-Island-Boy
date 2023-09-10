@@ -40,7 +40,7 @@ namespace IslandBoy
                 knockback.PlayFeedback(sender);
 
             if (HealthSystem.IsDead())
-                OnDeath();
+                KillEntity();
         }
 
         private int CalcDamage(int damage)
@@ -53,7 +53,7 @@ namespace IslandBoy
             return dmg;
         }
 
-        public override void OnDeath()
+        public override void KillEntity()
         {
             foreach (Slot slot in PR.Inventory.InventorySlots)
             {

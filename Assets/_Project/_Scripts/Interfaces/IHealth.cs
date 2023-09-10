@@ -6,6 +6,6 @@ namespace IslandBoy
     {
         void Damage(T damageAmount, GameObject sender = null);
         void Heal(T healAmount);
-        void OnDeath();
+        void KillEntity();
     }
 }
