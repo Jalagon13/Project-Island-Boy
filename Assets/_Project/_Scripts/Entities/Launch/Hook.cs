@@ -13,9 +13,9 @@ namespace IslandBoy
         private LineRenderer _lr;
         private Rigidbody2D _rb;
         private SpriteRenderer _sr;
-        private WorldItem _reelItem;
+        private FishEntity _fish;
         private Vector2 _playerPos;
-        private bool _foundItem;
+        private bool _fishFound;
         private bool _isReeling;
 
         private void Awake()
@@ -34,7 +34,7 @@ namespace IslandBoy
 
             if(_rb.velocity.magnitude < 0.5f)
             {
-                ReelInItem();
+                ReelInFish();
             }
 
             RotateSpriteTowards(_playerPos);
@@ -42,13 +42,11 @@ namespace IslandBoy
 
         private void OnTriggerStay2D(Collider2D collision)
         {
-            if(_isReeling && collision.TryGetComponent(out WorldItem item) && !_foundItem)
+            if(_isReeling && collision.TryGetComponent(out FishEntity fish) && !_fishFound)
             {
-                _foundItem = true;
-                _reelItem = item;
-
-                if (_reelItem.TryGetComponent(out ItemSeaWander isw))
-                    isw.StopWander();
+                _fishFound = true;
+                _fish = fish;
+                _fish.StopWander();
             }
         }
 
@@ -60,21 +58,21 @@ namespace IslandBoy
             _sr.transform.rotation = Quaternion.Euler(Vector3.forward * (angle + offset));
         }
 
-        private void ReelInItem()
+        private void ReelInFish()
         {
             _isReeling = true;
             transform.position = Vector2.MoveTowards(transform.position, _playerPos, _reelSpeed * Time.deltaTime);
 
-            if(_reelItem != null)
+            if(_fish != null)
             {
-                _reelItem.transform.position = transform.position;
+                _fish.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
 
-                if(Vector2.Distance(transform.position, _playerPos) < 1.5f)
+                if(Vector2.Distance(transform.position, _playerPos) < 0.15f)
                 {
                     OnReachPlayer();
                 }
             }
-            else if(Vector2.Distance(transform.position, _playerPos) < 0.5f)
+            else if(Vector2.Distance(transform.position, _playerPos) < 0.075f)
             {
                 OnReachPlayer();
             }
@@ -82,11 +80,27 @@ namespace IslandBoy
 
         private void OnReachPlayer()
         {
-            if(_foundItem)
-                _pr.LevelSystem.AddExperience(8);
-
+            LootFish();
             Destroy(_lr.gameObject);
             Destroy(gameObject);
+        }
+
+        private void LootFish()
+        {
+            if (_fishFound)
+            {
+                LootDirectly();
+                Destroy(_fish.gameObject);
+                _pr.LevelSystem.AddExperience(8);
+            }
+        }
+
+        private void LootDirectly()
+        {
+            foreach (var item in _fish.LootTable.Loot())
+            {
+                _pr.Inventory.AddItem(item.Key, item.Value);
+            }
         }
     }
 }

@@ -80869,10 +80869,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 984624644, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
-      propertyPath: _sonarSound
-      value: 
-      objectReference: {fileID: 8300000, guid: e39d47e88bba8d749b7fe6690b1467ac, type: 3}
     - target: {fileID: 41697274200016292, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -80920,14 +80916,6 @@ PrefabInstance:
     - target: {fileID: 1853043509500595852, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2147896572043429994, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 476.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 2147896572043429994, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 238
       objectReference: {fileID: 0}
     - target: {fileID: 3283614366729755156, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
       propertyPath: m_AnchorMax.y
@@ -82215,6 +82203,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6788941923804019790, guid: d61a3eaccba3ee34c8def39d165a770d, type: 3}
+      propertyPath: _fishMobPrefab
+      value: 
+      objectReference: {fileID: 5403894629318991451, guid: 6129b3ceaa08f964b8631f34c3878515, type: 3}
     - target: {fileID: 6788941923804019791, guid: d61a3eaccba3ee34c8def39d165a770d, type: 3}
       propertyPath: m_Name
       value: WorldItemManager

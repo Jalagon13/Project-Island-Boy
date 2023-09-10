@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 namespace IslandBoy
 {
-    public class ItemSeaWander : MonoBehaviour
+    public class FishEntity : Entity
     {
         private Rigidbody2D _rb;
         private Vector2 _dir;
@@ -21,15 +21,6 @@ namespace IslandBoy
             if (_rb == null) return;
 
             _rb.MovePosition(_rb.position + _dir * _speed * Time.deltaTime);
-        }
-
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if(collision.TryGetComponent(out IslandTag tag))
-            {
-                StopWander();
-                Destroy(gameObject, 0.5f);
-            }
         }
 
         public void StopWander()
@@ -64,9 +55,9 @@ namespace IslandBoy
 
             var hits = Physics2D.RaycastAll(averagePosition, perpOffset);
 
-            foreach(var hit in hits)
+            foreach (var hit in hits)
             {
-                if(hit.transform.TryGetComponent(out IslandTag islandTag))
+                if (hit.transform.TryGetComponent(out IslandTag islandTag))
                 {
                     _dir = ((hit.point + (perpOffset * Random.Range(6f, 8f))) - (Vector2)transform.position).normalized;
                 }
