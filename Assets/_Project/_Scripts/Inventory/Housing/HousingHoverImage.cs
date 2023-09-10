@@ -7,6 +7,16 @@ namespace IslandBoy
 {
     public class HousingHoverImage : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
+        private void Start()
+        {
+            
+        }
+
+        private void OnDisable()
+        {
+            TooltipManager.Instance.Hide();
+        }
+
         public void OnPointerEnter(PointerEventData eventData)
         {
             string header = "House Scanner";

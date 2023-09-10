@@ -1,20 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace IslandBoy
 {
     public class HousingCheckButton : MonoBehaviour
     {
+        [SerializeField] private PlayerReference _pr;
         [SerializeField] private TilemapReferences _tmr;
         [SerializeField] private GameObject _minerNpcPrefab;
+        [SerializeField] private AudioClip _sonarSound;
+        [SerializeField] private AudioClip _moveInSound;
 
         private bool _minerSpawned;
+        private Button _button;
+        private Image _buttonBgImage;
+        private Image _buttonIconImage;
+        private HousingHoverImage _buttonHoverImage;
+        private TextMeshProUGUI _feedbackText;
+        private Color _originalButtonColor;
+
+        private void Awake()
+        {
+            _button = transform.GetComponent<Button>();
+            _buttonBgImage = transform.GetComponent<Image>();
+            _buttonIconImage = transform.GetChild(0).GetComponent<Image>();
+            _buttonHoverImage = transform.GetChild(0).GetComponent<HousingHoverImage>();
+            _originalButtonColor = _buttonBgImage.color;
+            _feedbackText = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+            _feedbackText.enabled = false;
+        }
+
+        private void OnDisable()
+        {
+            EnableButton();
+        }
 
         public void CheckHousing()
         {
             if (_minerSpawned)
                 return;
+
+            AudioManager.Instance.PlayClip(_sonarSound, false, false);
 
             // checks if this is an enclosed space with flooring everywhere
             Stack<Vector3Int> tilesToCheck = new();
@@ -45,7 +74,7 @@ namespace IslandBoy
                 }
                 else
                 {
-                    Debug.Log($"There is an empty space at {p} therefore {transform.root.position} is not a house");
+                    DisplayFeedback("No valid housing found around you. Make sure there are no empty spaces!", Color.yellow);
                     return;
                 }
             }
@@ -64,9 +93,7 @@ namespace IslandBoy
             int minClearFloorTileAmount = 5;
             if (freeFloorSpaces.Count < minClearFloorTileAmount)
             {
-                Debug.Log($"Not enough free space in this closed area (clear floor tiles count: " +
-                    $"{freeFloorSpaces.Count} | minimum clear tiles needed: {minClearFloorTileAmount}) therefore " +
-                    $"{transform.root.position} is not a house");
+                DisplayFeedback("No valid housing found around you. Space is too small!", Color.yellow);
                 return;
             }
 
@@ -74,9 +101,59 @@ namespace IslandBoy
             Vector3Int randFloorSpace = freeFloorSpaces[Random.Range(0, freeFloorSpaces.Count)];
             Vector2 spawnNpcPosition = new(randFloorSpace.x + 0.5f, randFloorSpace.y + 0.5f);
 
-            Debug.Log($"{transform.root.position} is valid housing! # of spaces: {freeFloorSpaces.Count}");
-            Instantiate(_minerNpcPrefab, spawnNpcPosition, Quaternion.identity);
+            StartCoroutine(SpawnAdventurer(spawnNpcPosition));
+        }
+
+        private IEnumerator SpawnAdventurer(Vector2 spawnPos)
+        {
+            yield return new WaitForSeconds(1f);
+
+            DisplayFeedback("Housing found! Miner has moved in!", Color.green);
+            Instantiate(_minerNpcPrefab, spawnPos, Quaternion.identity);
+            AudioManager.Instance.PlayClip(_moveInSound, false, false);
             _minerSpawned = true;
+
+            _pr.LevelSystem.AddExperience(3000);
+        }
+
+        private void DisplayFeedback(string text, Color textColor)
+        {
+            DisableButton();
+
+            _feedbackText.enabled = true;
+            _feedbackText.text = text;
+            _feedbackText.color = textColor;
+
+            StartCoroutine(ButtonDelay());
+        }
+
+        private IEnumerator ButtonDelay()
+        {
+            yield return new WaitForSeconds(5f);
+
+            EnableButton();
+        }
+
+        private void DisableButton()
+        {
+            var tempColor = _originalButtonColor;
+            tempColor.a = 0.5f;
+            _buttonBgImage.color = tempColor;
+            _buttonIconImage.color = tempColor;
+            _button.enabled = false;
+            _buttonHoverImage.enabled = false;
+        }
+
+        private void EnableButton()
+        {
+            var tempColor = _originalButtonColor;
+            tempColor.a = 1;
+            _buttonBgImage.color = tempColor;
+            _buttonIconImage.color = tempColor;
+            _button.enabled = true;
+            _buttonHoverImage.enabled = true;
+
+            _feedbackText.enabled = false;
         }
 
         private bool HasDoor(Vector3Int pos)
