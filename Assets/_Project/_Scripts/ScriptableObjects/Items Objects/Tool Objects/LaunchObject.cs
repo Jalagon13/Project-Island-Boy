@@ -43,22 +43,15 @@ namespace IslandBoy
 
         private void Launch(SelectedSlotControl control, float force)
         {
-            Vector2 launchPosition = (Vector3)control.PR.Position + new Vector3(0, 0.4f);
+            LaunchProjectile(control, force);
+            AfterLaunch(control);
 
-            GameObject launchPrefab = _ammoObject == null ? _throwPrefab : _ammoObject.AmmoPrefab;
-            GameObject launchObject = Instantiate(launchPrefab, launchPosition, Quaternion.identity);
-            Rigidbody2D rb = launchObject.GetComponent<Rigidbody2D>();
+            AudioManager.Instance.PlayClip(_throwSound, false, true);
+            LaunchEvent?.Invoke();
+        }
 
-            Vector2 direction = ((Vector3)control.PR.MousePosition - rb.transform.position).normalized;
-            Vector2 launchForce = (direction * (force + _launchForce));
-
-            if(launchObject.TryGetComponent(out Ammo arrow))
-            {
-                arrow.Setup(this, _ammoObject, control.ThrowForcePercentage);
-            }
-
-            rb.AddForce(launchForce, ForceMode2D.Impulse);
-
+        private void AfterLaunch(SelectedSlotControl control)
+        {
             if (_ammoObject != null)
             {
                 _pr.Inventory.RemoveItem(_ammoObject, 1);
@@ -68,13 +61,26 @@ namespace IslandBoy
             if (Stackable)
                 control.PR.SelectedSlot.InventoryItem.Count--;
             else
-            {
-                Debug.Log("Dur");
                 control.TileAction.ModifyDurability();
+        }
+
+        private void LaunchProjectile(SelectedSlotControl control, float force)
+        {
+            Vector2 launchPosition = (Vector3)control.PR.Position + new Vector3(0, 0.4f);
+
+            GameObject launchPrefab = _ammoObject == null ? _throwPrefab : _ammoObject.AmmoPrefab;
+            GameObject launchObject = Instantiate(launchPrefab, launchPosition, Quaternion.identity);
+            Rigidbody2D rb = launchObject.GetComponent<Rigidbody2D>();
+
+            Vector2 direction = ((Vector3)control.PR.MousePosition - rb.transform.position).normalized;
+            Vector2 launchForce = (direction * (force + _launchForce));
+
+            if (launchObject.TryGetComponent(out Ammo arrow))
+            {
+                arrow.Setup(this, _ammoObject, control.ThrowForcePercentage);
             }
 
-            AudioManager.Instance.PlayClip(_throwSound, false, true);
-            LaunchEvent?.Invoke();
+            rb.AddForce(launchForce, ForceMode2D.Impulse);
         }
 
         public override string GetDescription()
