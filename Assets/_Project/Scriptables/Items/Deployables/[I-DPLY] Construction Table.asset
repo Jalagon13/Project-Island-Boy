@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a615336ceaf7324f8bf499ba37d7395, type: 3}
-  m_Name: '[I-Deploy] Door'
+  m_Name: '[I-DPLY] Construction Table'
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Door
-  <UiDisplay>k__BackingField: {fileID: -173459065, guid: 86aecb705c543a948a0d95c4e351f0e1, type: 3}
+  <Name>k__BackingField: Construction Table
+  <UiDisplay>k__BackingField: {fileID: 449123009, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   <Stackable>k__BackingField: 1
   <Description>k__BackingField: 
   <DefaultParameterList>k__BackingField: []
-  _prefabToDeploy: {fileID: 4329796873306376221, guid: 9500ae6340ae3e045a0919a93ecddba3, type: 3}
+  _prefabToDeploy: {fileID: 8205409246998119316, guid: 96f36bf1f48e1e64b95a3c510c55e81c, type: 3}
   _deploySound: {fileID: 8300000, guid: acc9a292f9a4e9448953f37d61d47e54, type: 3}

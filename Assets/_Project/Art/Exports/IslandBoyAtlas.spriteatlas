@@ -80,10 +80,12 @@ SpriteAtlas:
   - {fileID: 1850925332, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1995232107, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1204406958, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  - {fileID: -1914655730, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -538633122, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1494493913, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1546665967, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -887866084, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  - {fileID: 1962245853, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -955445017, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 851283991, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1529562530, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
@@ -114,8 +116,11 @@ SpriteAtlas:
   - {fileID: 485633072, guid: 62ea08f92c2779248a315a11272ffe75, type: 3}
   - {fileID: 883676940, guid: 62ea08f92c2779248a315a11272ffe75, type: 3}
   - {fileID: -2059306806, guid: 62ea08f92c2779248a315a11272ffe75, type: 3}
-  - {fileID: 586656638, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
+  - {fileID: 1663711594, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
+  - {fileID: 414997368, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
   - {fileID: 1168968723, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
+  - {fileID: -407047741, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
+  - {fileID: 586656638, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
   - {fileID: -90063712, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
   - {fileID: -2124986861, guid: 3d0ff78a03265684f887aa7159f47389, type: 3}
   - {fileID: 1058976245, guid: 3d0ff78a03265684f887aa7159f47389, type: 3}
@@ -286,10 +291,12 @@ SpriteAtlas:
   - item_wood_floor
   - item_torch
   - item_wood_hammer
+  - item_furance
   - item_diamond
   - item_portal_to_home
   - item_hook
   - item_wood_shovel
+  - item_chest
   - item_xp
   - item_wood_sword
   - item_bow
@@ -320,8 +327,11 @@ SpriteAtlas:
   - decal_swing_hit_tutorial
   - decal_move_tutorial
   - decal_sta
+  - ws_tool_station
+  - ws_chest
+  - ws_furnace
+  - ws_construction_table
   - ws_campfire
-  - ws_sign
   - ws_sleeping_bag
   - SPR Wood Wall Tiles_9
   - SPR Wood Wall Tiles_8

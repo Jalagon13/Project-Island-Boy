@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: -250621267
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1663711594, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
+  m_Sprite: {fileID: 414997368, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -152,10 +152,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8205409246998119315}
   - component: {fileID: 8205409246998119313}
-  - component: {fileID: 8056561500821584191}
   - component: {fileID: 8205409246998119314}
-  m_Layer: 5
-  m_Name: '[DPLY] Tool Station'
+  m_Layer: 0
+  m_Name: '[DPLY] Chest'
   m_TagString: DPLY
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -204,21 +203,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8056561500821584191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8205409246998119316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbdee678a440c1240be670a82fa909b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _rdb: {fileID: 11400000, guid: b87cc603e73b3774ab94a148be942fc9, type: 2}
-  _adb: {fileID: 0}
 --- !u!114 &8205409246998119314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,11 +217,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHitPoints: 1
   _harvestType: 1
-  _hitSound: {fileID: 8300000, guid: db82029e0262e8848ad16558d8a33dbb, type: 3}
-  _breakSound: {fileID: 8300000, guid: e2b6630a648447b47a66f7f8325c7440, type: 3}
+  _hitSound: {fileID: 8300000, guid: ab0451a7a02c38c4fad983d16598b836, type: 3}
+  _breakSound: {fileID: 8300000, guid: 1f5e75782a6e8434cba4bce854fb47eb, type: 3}
   _lootTable:
     <Table>k__BackingField:
-    - Item: {fileID: 11400000, guid: 094c99f31de27a34bb5bfa75e568b3b6, type: 2}
+    - Item: {fileID: 11400000, guid: b4bf40d026248694da3e0c77e067b436, type: 2}
       Min: 1
       Max: 1
       Chance: 100

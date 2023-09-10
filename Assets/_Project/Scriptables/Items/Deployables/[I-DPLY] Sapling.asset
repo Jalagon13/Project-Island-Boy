@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a615336ceaf7324f8bf499ba37d7395, type: 3}
-  m_Name: '[I-Deploy] Construction Table'
+  m_Name: '[I-DPLY] Sapling'
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Construction Table
-  <UiDisplay>k__BackingField: {fileID: 449123009, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  <Name>k__BackingField: Sapling
+  <UiDisplay>k__BackingField: {fileID: 811161192, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   <Stackable>k__BackingField: 1
   <Description>k__BackingField: 
   <DefaultParameterList>k__BackingField: []
-  _prefabToDeploy: {fileID: 8205409246998119316, guid: 96f36bf1f48e1e64b95a3c510c55e81c, type: 3}
+  _prefabToDeploy: {fileID: 8456787867502680803, guid: 95bab89a6bb6f644b8d86325a3ac10c7, type: 3}
+  _exclusiveDeployTile: {fileID: 11400000, guid: 30996a349c9d6254ca4af9bfd70e5d9d, type: 2}
   _deploySound: {fileID: 8300000, guid: acc9a292f9a4e9448953f37d61d47e54, type: 3}
