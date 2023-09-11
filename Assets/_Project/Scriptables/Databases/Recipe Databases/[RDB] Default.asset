@@ -46,4 +46,6 @@ MonoBehaviour:
       Amount: 4
   - OutputItem: {fileID: 11400000, guid: b4bf40d026248694da3e0c77e067b436, type: 2}
     OutputAmount: 1
-    ResourceList: []
+    ResourceList:
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Amount: 6
