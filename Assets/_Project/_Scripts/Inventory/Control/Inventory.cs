@@ -10,7 +10,7 @@ namespace IslandBoy
 {
     public class Inventory : MonoBehaviour
     {
-        public static event Action AddItemEvent; // connected to craftslot
+        public EventHandler OnItemAdded; // connected to craftslot
 
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private GameObject _inventoryItemPrefab;
@@ -21,21 +21,14 @@ namespace IslandBoy
         private MouseItemHolder _mouseItemHolder;
 
         public Slot[] InventorySlots { get { return _allSlots; } }
+        public MouseItemHolder MouseItemHolder { get { return _mouseItemHolder; } }
+        public InventoryControl InventoryControl { get { return GetComponent<InventoryControl>(); } }
         public int MaxStack { get { return _maxStack; } }
 
         private void Awake()
         {
             _pr.Inventory = this;
             _mouseItemHolder = transform.GetChild(2).GetComponent<MouseItemHolder>();
-        }
-
-        private void Start()
-        {
-            foreach (Slot slot in _allSlots)
-            {
-                slot.MouseItemHolder = _mouseItemHolder;
-                slot.MaxStack = _maxStack;
-            }
         }
 
         public int AddItem(ItemObject item, int amount, List<ItemParameter> itemParameters = null)
@@ -46,13 +39,13 @@ namespace IslandBoy
                 if (!Add(item, amount, itemParameters))
                 {
                     int leftOver = amount - i;
-                    AddItemEvent?.Invoke();
+                    OnItemAdded?.Invoke(this, EventArgs.Empty);
                     _onPickupItem?.Invoke(item, amount - leftOver);
                     return leftOver;
                 }
             }
 
-            AddItemEvent?.Invoke();
+            OnItemAdded?.Invoke(this, EventArgs.Empty);
             _onPickupItem?.Invoke(item, amount);
             return 0;
         }

@@ -6,19 +6,27 @@ namespace IslandBoy
 {
     public class CraftStation : MonoBehaviour, IPointerClickHandler
     {
-        public static event Action<RecipeDatabaseObject, RuneDatabaseObject> OnCraftStationInteract;
-
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private RecipeDatabaseObject _rdb;
         [SerializeField] private RuneDatabaseObject _adb;
 
         public void OnPointerClick(PointerEventData eventData)
         {
-
             if (eventData.button == PointerEventData.InputButton.Right && _pr.PlayerInRange(transform.position))
             {
-                OnCraftStationInteract?.Invoke(_rdb, _adb);
+                PopulateCraftSlots();
             }
         }
+
+        private void PopulateCraftSlots()
+        {
+            _pr.Inventory.InventoryControl.CraftStationInteract(_rdb, _adb);
+        }
+    }
+
+    public class CraftStationEventArgs : EventArgs
+    {
+        public RecipeDatabaseObject RDB;
+        public RuneDatabaseObject RuneDB;
     }
 }

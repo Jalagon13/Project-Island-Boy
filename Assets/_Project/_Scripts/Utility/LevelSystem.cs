@@ -8,7 +8,7 @@ namespace IslandBoy
     public class LevelSystem
     {
         public event EventHandler OnLevelChanged;
-        public event EventHandler OnExperienceChanged;
+        public event EventHandler<int> OnExperienceChanged;
 
         private AnimationCurve _experienceCurve;
         private int _level;
@@ -39,7 +39,7 @@ namespace IslandBoy
             _totalExperience = (int)_experienceCurve.Evaluate(_level);
 
             OnLevelChanged?.Invoke(this, EventArgs.Empty);
-            OnExperienceChanged?.Invoke(this, new ExperienceEventArgs { ExperienceAmount = -1 });
+            OnExperienceChanged?.Invoke(this, -1);
         }
 
         public void AddExperience(int amount)
@@ -55,12 +55,7 @@ namespace IslandBoy
                 OnLevelChanged?.Invoke(this, EventArgs.Empty);
             }
 
-            OnExperienceChanged?.Invoke(this, new ExperienceEventArgs { ExperienceAmount = amount});
+            OnExperienceChanged?.Invoke(this, amount);
         }
-    }
-
-    public class ExperienceEventArgs : EventArgs
-    {
-        public int ExperienceAmount { get; set; }
     }
 }

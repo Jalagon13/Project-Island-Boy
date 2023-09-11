@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,6 +14,7 @@ namespace IslandBoy
         private RectTransform _rscPanel;
         private RectTransform _rscSlots;
         private CraftSlotImageHover _hoverImage;
+        private CraftSlotCraftControl _cscc;
         private Image _craftSlotBackround;
         private Image _outputImage;
         private Recipe _recipe;
@@ -22,6 +24,11 @@ namespace IslandBoy
         public bool CanCraft { get { return _canCraft; } }
         public Recipe Recipe { get { return _recipe; } }
 
+        private void Awake()
+        {
+            _cscc = GetComponent<CraftSlotCraftControl>();
+        }
+
         private void OnDisable()
         {
             _rscPanel.gameObject.SetActive(false);
@@ -29,10 +36,13 @@ namespace IslandBoy
 
         private void OnDestroy()
         {
-            Inventory.AddItemEvent -= CheckIfCanCraft;
-            DropPanel.OnDropEvent -= CheckIfCanCraft;
-            InventorySlot.SlotClickedEvent -= CheckIfCanCraft;
-            CraftSlotCraftControl.ItemCraftedEvent -= CheckIfCanCraft;
+            //DropPanel.OnDropEvent -= CheckIfCanCraft;
+            _pr.Inventory.OnItemAdded -= CheckIfCanCraft;
+            _cscc.OnItemCrafted -= CheckIfCanCraft;
+            foreach (Slot slot in _pr.Inventory.InventorySlots)
+            {
+                slot.OnSlotClicked -= CheckIfCanCraft;
+            }
         }
 
         public void OnPointerEnter(PointerEventData eventData)
@@ -59,10 +69,13 @@ namespace IslandBoy
             _hoverImage.SetItemDescription(recipe.OutputItem);
             _amountText.text = recipe.OutputAmount == 1 ? string.Empty : recipe.OutputAmount.ToString();
 
-            Inventory.AddItemEvent += CheckIfCanCraft;
-            DropPanel.OnDropEvent += CheckIfCanCraft;
-            InventorySlot.SlotClickedEvent += CheckIfCanCraft;
-            CraftSlotCraftControl.ItemCraftedEvent += CheckIfCanCraft;
+            //DropPanel.OnDropEvent += CheckIfCanCraft;
+            _pr.Inventory.OnItemAdded += CheckIfCanCraft;
+            _cscc.OnItemCrafted += CheckIfCanCraft;
+            foreach (Slot slot in _pr.Inventory.InventorySlots)
+            {
+                slot.OnSlotClicked += CheckIfCanCraft;
+            }
 
             InitializeResourceSlots();
             CheckIfCanCraft();
@@ -88,7 +101,7 @@ namespace IslandBoy
             }
         }
 
-        public void CheckIfCanCraft()
+        public void CheckIfCanCraft(object obj = null, EventArgs args = null)
         {
             bool canCraft = false;
 

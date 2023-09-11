@@ -46,7 +46,7 @@ namespace IslandBoy
             AudioManager.Instance.PlayClip(_levelUpSound, false, true);
         }
 
-        private void LevelSystem_OnExperienceChanged(object sender, System.EventArgs e)
+        private void LevelSystem_OnExperienceChanged(object sender, int e)
         {
             SetExperienceBarSize(_levelSystem.ExperienceNormalized);
 

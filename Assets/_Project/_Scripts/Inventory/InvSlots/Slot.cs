@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,9 @@ namespace IslandBoy
 {
     public abstract class Slot : MonoBehaviour, IPointerClickHandler
     {
+        public EventHandler OnSlotClicked;
+
+        [SerializeField] protected PlayerReference _pr;
         [SerializeField] protected AudioClip _popSound;
         [SerializeField] protected AudioClip _runeEquipSound;
 
@@ -14,8 +18,7 @@ namespace IslandBoy
         protected int _maxStack;
         protected bool _inventoryOpen;
 
-        public MouseItemHolder MouseItemHolder { get { return _mouseItemHolder; } set { _mouseItemHolder = value; } }
-        public int MaxStack { set { _maxStack = value; } }
+        public MouseItemHolder MouseItemHolder { get { return _mouseItemHolder; } }
         public bool InventoryOpen { set { _inventoryOpen = value; } }
         public ItemObject ItemObject
         {
@@ -38,7 +41,6 @@ namespace IslandBoy
                 return inventoryItem.GetComponent<InventoryItem>();
             }
         }
-
         public List<ItemParameter> CurrentParameters
         {
             get
@@ -48,6 +50,12 @@ namespace IslandBoy
                 var inventoryItem = transform.GetChild(0);
                 return inventoryItem.GetComponent<InventoryItem>().CurrentParameters;
             }
+        }
+
+        private void Awake()
+        {
+            _mouseItemHolder = _pr.Inventory.MouseItemHolder;
+            _maxStack = _pr.Inventory.MaxStack;
         }
 
         public abstract void OnPointerClick(PointerEventData eventData);

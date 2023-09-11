@@ -7,12 +7,9 @@ namespace IslandBoy
 {
     public class InventorySlot : Slot
     {
-        public static event Action SlotClickedEvent;
-
         public override void OnPointerClick(PointerEventData eventData)
         {
-            if (!_inventoryOpen) return;
-
+            //if (!_inventoryOpen) return;
             if(eventData.button == PointerEventData.InputButton.Left)
             {
                 if (_mouseItemHolder.HasItem())
@@ -134,7 +131,12 @@ namespace IslandBoy
                     }
                 }
             }
-            SlotClickedEvent?.Invoke();
+            OnSlotClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void RegisterSlotEvent()
+        {
+
         }
 
         // expand on these conditions later

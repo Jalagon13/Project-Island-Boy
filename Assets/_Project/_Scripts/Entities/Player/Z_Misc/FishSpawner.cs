@@ -9,11 +9,12 @@ namespace IslandBoy
     {
         [SerializeField] private TilemapReferences _tmr;
         [SerializeField] private GameObject _fishMobPrefab;
+        [SerializeField] private bool _spawnFish;
 
         private IEnumerator Start()
         {
-            if (SceneManager.GetActiveScene().buildIndex != 0)
-                yield return null;
+            if (SceneManager.GetActiveScene().buildIndex != 0 || !_spawnFish)
+                yield break;
 
             yield return new WaitForSeconds(Random.Range(1f, 5f));
 
