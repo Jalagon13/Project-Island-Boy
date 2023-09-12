@@ -56,6 +56,11 @@ namespace IslandBoy
             HammerTileIndicatorLogic();
             IndifferentIndicatorLogic();
 
+            if (_ta.OverInteractable())
+                ChangeToOnIndicator();
+            else
+                ChangeToOffIndicator();
+
             transform.hasChanged = false;
         }
 

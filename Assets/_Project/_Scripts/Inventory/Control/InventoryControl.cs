@@ -11,6 +11,7 @@ namespace IslandBoy
         [SerializeField] private RecipeDatabaseObject _defaultRdb;
 
         private Inventory _inventory;
+        private PromptControl _promptControl;
         private MouseItemHolder _mouseItemHolder;
         private PlayerInput _input;
         private RectTransform _mainInventory;
@@ -23,6 +24,7 @@ namespace IslandBoy
         {
             _input = new PlayerInput();
             _inventory = GetComponent<Inventory>();
+            _promptControl = GetComponent<PromptControl>();
             _craftSlotsControl = GetComponent<CraftSlotsControl>();
             _mainInventory = transform.GetChild(0).GetComponent<RectTransform>();
             _mouseItemHolder = transform.GetChild(2).GetComponent<MouseItemHolder>();
@@ -65,12 +67,16 @@ namespace IslandBoy
             OpenInventory();
             ActivateCraftSlots(false);
             InteractableHandle(chestOpened);
+
+            _promptControl.PromptHandle(null);
         }
 
         public void CraftStationInteract(Interactable craftStation, RecipeDatabaseObject rdb, RuneDatabaseObject runeDb)
         {
             OpenInventory();
             ActivateCraftSlots(true);
+
+            _promptControl.PromptHandle(null);
 
             if (craftStation == _currentInteractableActive) return;
 
@@ -107,7 +113,7 @@ namespace IslandBoy
             _craftSlotsControl.RefreshCraftingMenu(_defaultRdb, null);
         }
 
-        private void CloseInventory()
+        public void CloseInventory()
         {
             if (_mouseItemHolder.HasItem()) return;
 

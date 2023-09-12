@@ -796,7 +796,7 @@ GameObject:
   - component: {fileID: 3470106991848545399}
   - component: {fileID: 3470106991848545386}
   - component: {fileID: 3470106991848545397}
-  - component: {fileID: 3470106991848545396}
+  - component: {fileID: 7588441199581650150}
   m_Layer: 0
   m_Name: '[WS] UG Exit'
   m_TagString: Untagged
@@ -862,7 +862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57b48ae576da1794182c18af29bf15c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3470106991848545396
+--- !u!114 &7588441199581650150
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -871,11 +871,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3470106991848545398}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e4cffeb3cd9d504691ccae340cf8600, type: 3}
+  m_Script: {fileID: 11500000, guid: 650ea134123f86d40b8fd0e6ebc1f173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _promptCanvas: {fileID: 3470106991534872540}
+  _prompCanvas: {fileID: 3470106991534872531}
 --- !u!1 &6966511661241665480
 GameObject:
   m_ObjectHideFlags: 0

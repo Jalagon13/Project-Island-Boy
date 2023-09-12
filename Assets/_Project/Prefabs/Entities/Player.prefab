@@ -316,9 +316,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ed20a71cd99d6549a28cb6103e2b4af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
   _runeEquipSound: {fileID: 0}
-  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _slotArmorType: 3
   _defenseParameter:
     Parameter: {fileID: 11400000, guid: af1c414ed53fdb44f971059ce55ff9c0, type: 2}
@@ -651,9 +651,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ed20a71cd99d6549a28cb6103e2b4af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
   _runeEquipSound: {fileID: 0}
-  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _slotArmorType: 2
   _defenseParameter:
     Parameter: {fileID: 11400000, guid: af1c414ed53fdb44f971059ce55ff9c0, type: 2}
@@ -3243,6 +3243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b12db26af5b554d875ebfbe37eb407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _defaultRdb: {fileID: 11400000, guid: fcf2c4799313803409b1c09f21fc9c77, type: 2}
 --- !u!114 &4210445617314236097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3280,7 +3281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b7e7a7ca66e57847a915a4ea448ce7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultRdb: {fileID: 11400000, guid: fcf2c4799313803409b1c09f21fc9c77, type: 2}
   _craftSlotPrefab: {fileID: 6449567880495286189, guid: 28a3b174ebf164c4eb2f397a56b59ac6, type: 3}
   _augmentSlotPrefab: {fileID: 6449567880495286189, guid: 533efc6c9c785ed4ba7bca63909a14ec, type: 3}
   _craftSlotsRect: {fileID: 4210445618332476785}
@@ -3616,7 +3616,6 @@ GameObject:
   - component: {fileID: 4210445617709717785}
   - component: {fileID: 4210445617709717786}
   - component: {fileID: 4210445617709717787}
-  - component: {fileID: 4210445617709717860}
   - component: {fileID: 2963529343931073653}
   - component: {fileID: 4210445617155456040}
   - component: {fileID: 1116718348}
@@ -3694,18 +3693,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3.5
---- !u!114 &4210445617709717860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4210445617709717791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f68cdae25e6e64642b337e9711993bdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2963529343931073653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3774,6 +3761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tmr: {fileID: 11400000, guid: ec06355a14da7574295ea6e79aaebb6f, type: 2}
   _fishMobPrefab: {fileID: 5403894629318991451, guid: 6129b3ceaa08f964b8631f34c3878515, type: 3}
+  _spawnFish: 1
 --- !u!1 &4210445617714157972
 GameObject:
   m_ObjectHideFlags: 0
@@ -5689,9 +5677,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ed20a71cd99d6549a28cb6103e2b4af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
   _runeEquipSound: {fileID: 0}
-  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _slotArmorType: 1
   _defenseParameter:
     Parameter: {fileID: 11400000, guid: af1c414ed53fdb44f971059ce55ff9c0, type: 2}

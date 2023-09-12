@@ -30,7 +30,6 @@ namespace IslandBoy
         public override void Interact()
         {
             if (!_canInteract) return;
-
             _pr.Inventory.InventoryControl.CraftStationInteract(this, _rdb, _adb);
         }
     }

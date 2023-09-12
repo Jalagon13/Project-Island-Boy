@@ -4,10 +4,11 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public class MinerNPC : MonoBehaviour
+    public class MinerEntity : Entity
     {
-        public void EnterCave()
+        public void EnterUnderground()
         {
+            PR.Inventory.InventoryControl.CloseInventory();
             LevelManager.Instance.LoadUnderground();
         }
     }

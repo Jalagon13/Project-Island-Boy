@@ -48,3 +48,15 @@ MonoBehaviour:
     ResourceList:
     - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
       Amount: 4
+  - OutputItem: {fileID: 11400000, guid: bcb1af588d1b492479eab026c6521dcb, type: 2}
+    OutputAmount: 1
+    ResourceList:
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Amount: 4
+  - OutputItem: {fileID: 11400000, guid: 677079ef2dd70d94c990c69dd2c5f246, type: 2}
+    OutputAmount: 4
+    ResourceList:
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Amount: 1
+    - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
+      Amount: 1

@@ -40,7 +40,7 @@ namespace IslandBoy
 
         private void Update()
         {
-            transform.position = CenterOfTilePos();
+            transform.SetPositionAndRotation(CenterOfTilePos(), Quaternion.identity);
         }
 
         public bool OverInteractable()
@@ -64,10 +64,17 @@ namespace IslandBoy
 
             foreach (Collider2D col in colliders)
             {
-                if(col.TryGetComponent(out Interactable interact))
+                var results = col.GetComponents<Interactable>();
+
+                foreach (Interactable interactable in results)
                 {
-                    interact.Interact();
+                    interactable.Interact();
                 }
+
+                //if(col.TryGetComponent(out Interactable interact))
+                //{
+                //    interact.Interact();
+                //}
             }
         }
 

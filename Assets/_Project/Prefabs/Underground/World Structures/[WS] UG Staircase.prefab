@@ -748,7 +748,6 @@ GameObject:
   - component: {fileID: 3470106991848545399}
   - component: {fileID: 3470106991848545386}
   - component: {fileID: 7566965246865324157}
-  - component: {fileID: 3470106991848545396}
   m_Layer: 0
   m_Name: '[WS] UG Staircase'
   m_TagString: Untagged
@@ -813,20 +812,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 078191f77389c3c4e834e28f15c89d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3470106991848545396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3470106991848545398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e4cffeb3cd9d504691ccae340cf8600, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _promptCanvas: {fileID: 3470106991534872540}
 --- !u!1 &6966511661241665480
 GameObject:
   m_ObjectHideFlags: 0
