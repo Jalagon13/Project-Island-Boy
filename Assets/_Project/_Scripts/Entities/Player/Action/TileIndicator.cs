@@ -48,7 +48,13 @@ namespace IslandBoy
 
         public void UpdateLogic()
         {
+
+
             ChangeToOffIndicator();
+            if (_ta.OverInteractable())
+                ChangeToOnIndicator();
+            else
+                ChangeToOffIndicator();
             RscHarvestIndicatorLogic();
             ShovelTileIndicatorLogic();
             WorldTileIndicatorLogic();
@@ -56,10 +62,7 @@ namespace IslandBoy
             HammerTileIndicatorLogic();
             IndifferentIndicatorLogic();
 
-            if (_ta.OverInteractable())
-                ChangeToOnIndicator();
-            else
-                ChangeToOffIndicator();
+
 
             transform.hasChanged = false;
         }

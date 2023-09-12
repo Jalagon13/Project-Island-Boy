@@ -890,7 +890,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -898,6 +898,27 @@ TextureImporter:
       bones: []
       spriteID: 9fc9d3e8bbaafae4baa7b49b2a39b447
       internalID: -189099797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_door
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0555bd9718fad03439587646c8926b03
+      internalID: -1112382854
       vertices: []
       indices: 
       edges: []
@@ -922,6 +943,7 @@ TextureImporter:
       item_construction_table: 449123009
       item_cooked_fish: -2128986211
       item_diamond: -538633122
+      item_door: -1112382854
       item_fish: 1211993972
       item_fishing_rod: 1879242436
       item_furance: -1914655730
