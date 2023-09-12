@@ -57,6 +57,7 @@ namespace IslandBoy
 
         public void Initialize(Recipe recipe)
         {
+            _cscc = GetComponent<CraftSlotCraftControl>();
             _craftSlotBackround = GetComponent<Image>();
             _outputImage = transform.GetChild(0).GetComponent<Image>();
             _hoverImage = transform.GetChild(0).GetComponent<CraftSlotImageHover>();

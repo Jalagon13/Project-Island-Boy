@@ -4,14 +4,12 @@ namespace IslandBoy
 {
     public class CraftSlotsControl : MonoBehaviour
     {
-        [SerializeField] private RecipeDatabaseObject _defaultRdb;
+
         [SerializeField] private GameObject _craftSlotPrefab;
         [SerializeField] private GameObject _augmentSlotPrefab;
         [SerializeField] private RectTransform _craftSlotsRect;
 
         private MouseItemHolder _mouseItemHolder;
-
-        public RecipeDatabaseObject DefaultRdb { get { return _defaultRdb; } }
 
         private void Awake()
         {

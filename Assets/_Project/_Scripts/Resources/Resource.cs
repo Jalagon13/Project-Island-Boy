@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 namespace IslandBoy
 {
+    [SelectionBase]
     public class Resource : MonoBehaviour, IBreakable
     {
         [SerializeField] private float _maxHitPoints;

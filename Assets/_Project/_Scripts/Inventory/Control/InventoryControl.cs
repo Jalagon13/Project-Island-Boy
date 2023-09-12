@@ -8,13 +8,15 @@ namespace IslandBoy
     {
         public EventHandler OnInventoryClosed;
 
+        [SerializeField] private RecipeDatabaseObject _defaultRdb;
+
         private Inventory _inventory;
         private MouseItemHolder _mouseItemHolder;
         private PlayerInput _input;
         private RectTransform _mainInventory;
         private RectTransform _craftSlots;
         private CraftSlotsControl _craftSlotsControl;
-        private Chest _currentChestOpen;
+        private Interactable _currentInteractableActive;
         private bool _inventoryOpen;
 
         private void Awake()
@@ -43,30 +45,53 @@ namespace IslandBoy
             CloseInventory();
         }
 
-        public void ChestInteract(Chest chestOpened)
+        private void Update()
         {
-            OpenInventory();
+            if (_currentInteractableActive == null) return;
 
-            _currentChestOpen = chestOpened;
-            _craftSlots.gameObject.SetActive(false);
+            if (!_currentInteractableActive.PlayerInRange())
+            {
+                InteractableHandle(null);
+            }
         }
 
-        public void CraftStationInteract(RecipeDatabaseObject rdb, RuneDatabaseObject runeDb)
+        public void ActivateCraftSlots(bool value)
+        {
+            _craftSlots.gameObject.SetActive(value);
+        }
+
+        public void ChestInteract(Interactable chestOpened)
         {
             OpenInventory();
-            CloseChest();
-            
-            _craftSlots.gameObject.SetActive(true);
+            ActivateCraftSlots(false);
+            InteractableHandle(chestOpened);
+        }
+
+        public void CraftStationInteract(Interactable craftStation, RecipeDatabaseObject rdb, RuneDatabaseObject runeDb)
+        {
+            OpenInventory();
+            ActivateCraftSlots(true);
+
+            if (craftStation == _currentInteractableActive) return;
+
+            if(_currentInteractableActive is CraftStation)
+            {
+                _currentInteractableActive = craftStation;
+                _craftSlotsControl.RefreshCraftingMenu(rdb, runeDb);
+                return;
+            }
+
+            InteractableHandle(craftStation);
+
             _craftSlotsControl.RefreshCraftingMenu(rdb, runeDb);
         }
 
-        private void CloseChest()
+        private void InteractableHandle(Interactable newInteractable)
         {
-            if (_currentChestOpen != null)
-            {
-                _currentChestOpen.EnableChestSlots(false);
-                _currentChestOpen = null;
-            }
+            if (_currentInteractableActive != null)
+                _currentInteractableActive.OnPlayerExitRange?.Invoke();
+
+            _currentInteractableActive = newInteractable;
         }
 
         public void ToggleInventory(InputAction.CallbackContext context)
@@ -77,12 +102,19 @@ namespace IslandBoy
                 OpenInventory();
         }
 
+        public void RefreshCraftSlotsToDefault()
+        {
+            _craftSlotsControl.RefreshCraftingMenu(_defaultRdb, null);
+        }
+
         private void CloseInventory()
         {
             if (_mouseItemHolder.HasItem()) return;
 
-            _craftSlots.gameObject.SetActive(true);
-            _craftSlotsControl.RefreshCraftingMenu(_craftSlotsControl.DefaultRdb, null);
+            InteractableHandle(null);
+            RefreshCraftSlotsToDefault();
+
+
             _mainInventory.gameObject.SetActive(false);
             _inventoryOpen = false;
 
@@ -96,6 +128,8 @@ namespace IslandBoy
 
         public void OpenInventory()
         {
+            ActivateCraftSlots(true);
+
             _mainInventory.gameObject.SetActive(true);
             _inventoryOpen = true;
 

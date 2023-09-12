@@ -6,14 +6,13 @@ using UnityEngine.EventSystems;
 
 namespace IslandBoy
 {
-    public class Chest : MonoBehaviour, IPointerClickHandler
+    public class Chest : Interactable
     {
-        [SerializeField] private PlayerReference _pr;
-
         private Canvas _slotCanvas;
 
-        private void Awake()
+        public override void Awake()
         {
+            base.Awake();
             _slotCanvas = transform.GetChild(2).GetComponent<Canvas>();
         }
 
@@ -27,13 +26,18 @@ namespace IslandBoy
             _pr.Inventory.InventoryControl.OnInventoryClosed -= CloseChest;
         }
 
-        private void Start()
+        public override IEnumerator Start()
         {
+            OnPlayerExitRange += () => EnableChestSlots(false);
             EnableChestSlots(false);
+
+            return base.Start();
         }
 
         private void OnDestroy()
         {
+            EnableChestSlots(false);
+
             foreach (Transform transform in _slotCanvas.transform.GetChild(0))
             {
                 Slot slot = transform.GetComponent<Slot>();
@@ -45,13 +49,12 @@ namespace IslandBoy
             }
         }
 
-        public void OnPointerClick(PointerEventData eventData)
+        public override void Interact()
         {
-            if (eventData.button == PointerEventData.InputButton.Right)
-            {
-                HandleInventoryControl();
-                EnableChestSlots(true);
-            }
+            if (!_canInteract) return;
+
+            HandleInventoryControl();
+            EnableChestSlots(true);
         }
 
         private void CloseChest(object obj, EventArgs args)

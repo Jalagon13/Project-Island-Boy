@@ -80869,6 +80869,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1116718348, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: _spawnFish
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 41697274200016292, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

@@ -24,7 +24,7 @@ namespace IslandBoy
 
         public override void ExecuteAction(SelectedSlotControl control)
         {
-            if (PointerHandler.IsOverLayer(5)) return;
+            if (PointerHandler.IsOverLayer(5) || control.TileAction.OverInteractable()) return;
 
             _ammoObject = null;
 

@@ -4,9 +4,8 @@ using UnityEngine.EventSystems;
 
 namespace IslandBoy
 {
-    public class Door : MonoBehaviour, IPointerClickHandler
+    public class Door : Interactable
     {
-        [SerializeField] private PlayerReference _pr;
         [SerializeField] private Sprite _openSprite;
         [SerializeField] private Sprite _closeSprite;
         [SerializeField] private AudioClip _doorOpenSound;
@@ -15,30 +14,30 @@ namespace IslandBoy
         private Collider2D _doorCollider;
         private SpriteRenderer _sr;
         private bool _opened;
-        private bool _canInteract;
 
-        private void Awake()
+        public override void Awake()
         {
+            base.Awake();
             _doorCollider = transform.GetChild(1).GetComponent<Collider2D>();
             _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
+
         }
 
-        private IEnumerator Start()
+        public override IEnumerator Start()
         {
             Close();
-            yield return new WaitForSeconds(0.15f);
-            _canInteract = true;
+
+            return base.Start();
         }
 
-        public void OnPointerClick(PointerEventData eventData)
+        public override void Interact()
         {
-            if(eventData.button == PointerEventData.InputButton.Right && _pr.PlayerInRange(transform.position) && _canInteract)
-            {
-                if (_opened)
-                    Close();
-                else
-                    Open();
-            }
+            if (!_canInteract) return;
+
+            if (_opened)
+                Close();
+            else
+                Open();
         }
 
         private void Open()

@@ -1,26 +1,37 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace IslandBoy
 {
-    public class CraftStation : MonoBehaviour, IPointerClickHandler
+    public class CraftStation : Interactable
     {
-        [SerializeField] private PlayerReference _pr;
         [SerializeField] private RecipeDatabaseObject _rdb;
         [SerializeField] private RuneDatabaseObject _adb;
 
-        public void OnPointerClick(PointerEventData eventData)
+        public override IEnumerator Start()
         {
-            if (eventData.button == PointerEventData.InputButton.Right && _pr.PlayerInRange(transform.position))
-            {
-                PopulateCraftSlots();
-            }
+            OnPlayerExitRange += () => RefreshCraftSlotsToDefault();
+
+            return base.Start();
         }
 
-        private void PopulateCraftSlots()
+        private void OnDestroy()
         {
-            _pr.Inventory.InventoryControl.CraftStationInteract(_rdb, _adb);
+            RefreshCraftSlotsToDefault();
+        }
+
+        private void RefreshCraftSlotsToDefault()
+        {
+            _pr.Inventory.InventoryControl.RefreshCraftSlotsToDefault();
+        }
+
+        public override void Interact()
+        {
+            if (!_canInteract) return;
+
+            _pr.Inventory.InventoryControl.CraftStationInteract(this, _rdb, _adb);
         }
     }
 

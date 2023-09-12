@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 
 namespace IslandBoy
@@ -11,6 +12,7 @@ namespace IslandBoy
 
         private TileHpCanvas _stHpCanvas;
         private TileIndicator _ti;
+        private PlayerInput _input;
         private ToolType _baseToolType;
         private float _basePower;
         private bool _brokeRscThisFrame; // used to stop any logic after damage has been applied to breakable
@@ -20,18 +22,58 @@ namespace IslandBoy
 
         private void Awake()
         {
+            _input = new();
+            _input.Player.SecondaryAction.started += Interact;
             _stHpCanvas = GetComponent<TileHpCanvas>();
             _ti = GetComponent<TileIndicator>();
         }
 
+        private void OnEnable()
+        {
+            _input.Enable();
+        }
+
+        private void OnDisable()
+        {
+            _input.Disable();
+        }
+
         private void Update()
         {
-            transform.position = CalcStaPos();
+            transform.position = CenterOfTilePos();
+        }
+
+        public bool OverInteractable()
+        {
+            var colliders = Physics2D.OverlapBoxAll(CenterOfTilePos(), new Vector2(0.5f, 0.5f), 0);
+
+            foreach (Collider2D col in colliders)
+            {
+                if (col.TryGetComponent(out Interactable interact))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void Interact(InputAction.CallbackContext context)
+        {
+            var colliders = Physics2D.OverlapBoxAll(CenterOfTilePos(), new Vector2(0.5f, 0.5f), 0);
+
+            foreach (Collider2D col in colliders)
+            {
+                if(col.TryGetComponent(out Interactable interact))
+                {
+                    interact.Interact();
+                }
+            }
         }
 
         public bool IsClear()
         {
-            var colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(0.5f, 0.5f), 0);
+            var colliders = Physics2D.OverlapBoxAll(CenterOfTilePos(), new Vector2(0.5f, 0.5f), 0);
 
             foreach(Collider2D col in colliders)
             {
@@ -200,7 +242,7 @@ namespace IslandBoy
             return item == null ? _baseToolType : item.ToolType;
         }
 
-        private Vector2 CalcStaPos()
+        private Vector2 CenterOfTilePos()
         {
             var playerPosTileCenter = GetCenterOfTilePos(_pr.Position/* + new Vector2(0f, 0.4f)*/);
             var dir = (_pr.MousePosition - playerPosTileCenter).normalized;
