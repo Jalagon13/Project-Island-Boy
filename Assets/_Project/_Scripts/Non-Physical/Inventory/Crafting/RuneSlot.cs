@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace IslandBoy
 {
-    public class AugmentSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class RuneSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private AudioClip _popSound;

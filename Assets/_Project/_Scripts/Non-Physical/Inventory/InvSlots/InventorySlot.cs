@@ -20,7 +20,7 @@ namespace IslandBoy
                         {
                             if (ItemObject.Stackable)
                             {
-                                TryToAddMouseStackToThisStack();
+                                TryToAddMouseStackToThisStack(_maxStack);
                             }
                             else
                             {

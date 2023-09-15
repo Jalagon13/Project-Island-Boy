@@ -48,21 +48,20 @@ namespace IslandBoy
 
         public void UpdateLogic()
         {
-
-
-            ChangeToOffIndicator();
             if (_ta.OverInteractable())
+            {
                 ChangeToOnIndicator();
+            }
             else
+            {
                 ChangeToOffIndicator();
-            RscHarvestIndicatorLogic();
-            ShovelTileIndicatorLogic();
-            WorldTileIndicatorLogic();
-            SwordIndicatorLogic();
-            HammerTileIndicatorLogic();
-            IndifferentIndicatorLogic();
-
-
+                RscHarvestIndicatorLogic();
+                ShovelTileIndicatorLogic();
+                WorldTileIndicatorLogic();
+                SwordIndicatorLogic();
+                HammerTileIndicatorLogic();
+                IndifferentIndicatorLogic();
+            }
 
             transform.hasChanged = false;
         }

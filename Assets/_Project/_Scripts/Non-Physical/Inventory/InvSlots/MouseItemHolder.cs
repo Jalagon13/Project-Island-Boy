@@ -115,5 +115,11 @@ namespace IslandBoy
                 item.SetParent(slot, false);
             }
         }
+
+        public void GiveCopyOfItemToSlot(Transform slot)
+        {
+            var copy = Instantiate(transform.GetChild(0));
+            copy.SetParent(slot, false);
+        }
     }
 }

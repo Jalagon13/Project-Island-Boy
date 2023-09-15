@@ -26,8 +26,7 @@ namespace IslandBoy
             {
                 if (!HasItem()) return null;
 
-                var inventoryItem = transform.GetChild(0);
-                InventoryItem item = inventoryItem.GetComponent<InventoryItem>();
+                InventoryItem item = GetComponentInChildren<InventoryItem>();
                 return item.Item;
             }
         }
@@ -37,8 +36,8 @@ namespace IslandBoy
             {
                 if (!HasItem()) return null;
 
-                var inventoryItem = transform.GetChild(0);
-                return inventoryItem.GetComponent<InventoryItem>();
+                InventoryItem item = GetComponentInChildren<InventoryItem>();
+                return item;
             }
         }
         public List<ItemParameter> CurrentParameters
@@ -81,25 +80,25 @@ namespace IslandBoy
             }
         }
 
-        protected void TryToAddMouseStackToThisStack()
+        protected void TryToAddMouseStackToThisStack(int maxStack)
         {
             if (ItemObject == _mouseItemHolder.ItemObject && ItemObject.Stackable)
             {
-                var thisInventoryItem = transform.GetChild(0).GetComponent<InventoryItem>();
+                InventoryItem item = GetComponentInChildren<InventoryItem>();
 
-                if (thisInventoryItem.Count < _maxStack)
+                if (item.Count < maxStack)
                 {
-                    var countRef = thisInventoryItem.Count;
-                    thisInventoryItem.Count += _mouseItemHolder.InventoryItem.Count;
+                    var countRef = item.Count;
+                    item.Count += _mouseItemHolder.InventoryItem.Count;
 
-                    if (thisInventoryItem.Count > _maxStack)
+                    if (item.Count > maxStack)
                     {
-                        _mouseItemHolder.InventoryItem.Count -= _maxStack - countRef;
-                        thisInventoryItem.Count = _maxStack;
+                        _mouseItemHolder.InventoryItem.Count -= maxStack - countRef;
+                        item.Count = maxStack;
                         TooltipManager.Instance.Show(ItemObject.GetDescription(), ItemObject.Name);
                         PlaySound();
                     }
-                    else if (thisInventoryItem.Count <= _maxStack)
+                    else if (item.Count <= maxStack)
                     {
                         _mouseItemHolder.InventoryItem.Count = 0;
                         TooltipManager.Instance.Show(ItemObject.GetDescription(), ItemObject.Name);
@@ -131,7 +130,9 @@ namespace IslandBoy
 
         protected bool HasItem()
         {
-            return transform.childCount > 0;
+            InventoryItem inventoryItem = GetComponentInChildren<InventoryItem>();
+
+            return inventoryItem != null;
         }
 
         protected void PlaySound()

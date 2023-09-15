@@ -33,7 +33,7 @@ namespace IslandBoy
             {
                 GameObject augSlotGo = Instantiate(_augmentSlotPrefab, _craftSlotsRect.transform);
 
-                AugmentSlot augSlot = augSlotGo.GetComponent<AugmentSlot>();
+                RuneSlot augSlot = augSlotGo.GetComponent<RuneSlot>();
                 augSlot.Initialize(adb.Database[i]);
                 augSlot.MouseItemHolder = _mouseItemHolder;
             }

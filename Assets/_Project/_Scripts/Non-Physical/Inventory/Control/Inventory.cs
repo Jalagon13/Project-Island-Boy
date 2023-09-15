@@ -155,7 +155,7 @@ namespace IslandBoy
             return null;
         }
 
-        private void SpawnInventoryItem(ItemObject item, Slot slot, List<ItemParameter> itemParameters)
+        public void SpawnInventoryItem(ItemObject item, Slot slot, List<ItemParameter> itemParameters)
         {
             GameObject inventoryItemGo = Instantiate(_inventoryItemPrefab, slot.transform);
             InventoryItem invItem = inventoryItemGo.GetComponent<InventoryItem>();
