@@ -11,6 +11,14 @@ namespace IslandBoy
         [SerializeField] private GameObject _fishMobPrefab;
         [SerializeField] private bool _spawnFish;
 
+        private void OnEnable()
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                SpawnFish();
+            }
+        }
+
         private IEnumerator Start()
         {
             if (SceneManager.GetActiveScene().buildIndex != 0 || !_spawnFish)
@@ -25,22 +33,22 @@ namespace IslandBoy
 
         private void SpawnFish()
         {
-            var itemGo = Instantiate(_fishMobPrefab, CalcSpawnPos(), Quaternion.identity);
+            var pos = Vector3Int.FloorToInt(CalcSpawnPos());
+
+            if (_tmr.GroundTilemap.HasTile(pos))
+                return;
+
+            var itemGo = Instantiate(_fishMobPrefab, pos, Quaternion.identity);
             FishEntity fishEntity = itemGo.GetComponent<FishEntity>();
             fishEntity.StartWander(_tmr.GroundTilemap);
         }
 
         private Vector2 CalcSpawnPos()
         {
-            float randomX = Random.value;
-            float randomY = Random.value;
+            Vector2 direction = ((Vector2)transform.position + Random.insideUnitCircle).normalized;
+            Vector2 spawnPos = direction * 25;
 
-            if (Random.value < 0.5f)
-                randomX = randomX < 0.5f ? -0.1f : 1.1f;
-            else
-                randomY = randomY < 0.5f ? -0.1f : 1.1f;
-
-            return Camera.main.ViewportToWorldPoint(new Vector2(randomX, randomY));
+            return spawnPos;
         }
     }
 }

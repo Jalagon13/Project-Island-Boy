@@ -31,7 +31,7 @@ namespace IslandBoy
         public void StartWander(Tilemap islandTilemap)
         {
             _rb = GetComponent<Rigidbody2D>();
-            _speed = Random.Range(1f, 2f);
+            _speed = Random.Range(1f, 3.5f);
 
             BoundsInt bounds = islandTilemap.cellBounds;
             Vector3Int totalPosition = Vector3Int.zero;
@@ -59,7 +59,7 @@ namespace IslandBoy
             {
                 if (hit.transform.TryGetComponent(out IslandTag islandTag))
                 {
-                    _dir = ((hit.point + (perpOffset * Random.Range(6f, 8f))) - (Vector2)transform.position).normalized;
+                    _dir = ((hit.point + (perpOffset * Random.Range(10f, 12f))) - (Vector2)transform.position).normalized;
                 }
             }
 
