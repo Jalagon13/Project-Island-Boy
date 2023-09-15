@@ -23,6 +23,12 @@ namespace IslandBoy
             LaunchObject.LaunchEvent -= DrainEnergy;
         }
 
+        public void ResetEnergy()
+        {
+            CurrentValue = MaxValue;
+            UpdateUI();
+        }
+
         private void DrainEnergy()
         {
             _currentValue--;

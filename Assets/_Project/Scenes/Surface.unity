@@ -83469,6 +83469,17 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &893473845 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4210445617035966530, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+  m_PrefabInstance: {fileID: 4210445617155456036}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6451c7d5c1ab1d48a7e8f5ee1245553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &955186353
 GameObject:
   m_ObjectHideFlags: 0
@@ -85609,6 +85620,38 @@ PrefabInstance:
     - target: {fileID: 669697263, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 858608000, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: _onRespawn.m_PersistentCalls.m_Calls.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 858608000, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: _onRespawn.m_PersistentCalls.m_Calls.Array.data[5].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 858608000, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: _onRespawn.m_PersistentCalls.m_Calls.Array.data[5].m_Target
+      value: 
+      objectReference: {fileID: 893473845}
+    - target: {fileID: 858608000, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: _onRespawn.m_PersistentCalls.m_Calls.Array.data[5].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 858608000, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: _onRespawn.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
+      value: ResetEnergy
+      objectReference: {fileID: 0}
+    - target: {fileID: 858608000, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: _onRespawn.m_PersistentCalls.m_Calls.Array.data[5].m_TargetAssemblyTypeName
+      value: IslandBoy.EnergyBar, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 858608000, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: _onRespawn.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 858608000, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
+      propertyPath: _onRespawn.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 41697274200016292, guid: b4234a2253ec7384d820ec08be0ce49a, type: 3}
       propertyPath: m_AnchorMax.y

@@ -58,7 +58,6 @@ namespace IslandBoy
                 RscHarvestIndicatorLogic();
                 ShovelTileIndicatorLogic();
                 WorldTileIndicatorLogic();
-                SwordIndicatorLogic();
                 HammerTileIndicatorLogic();
                 IndifferentIndicatorLogic();
             }
@@ -117,16 +116,6 @@ namespace IslandBoy
             if (_islandTilemap.HasTile(Vector3Int.FloorToInt(transform.position))) return;
 
             ChangeToOnIndicator();
-        }
-
-        private void SwordIndicatorLogic()
-        {
-            if (_pr.SelectedSlot.ItemObject == null) return;
-
-            if (_pr.SelectedSlot.ItemObject.ToolType == ToolType.Sword)
-            {
-                ChangeToOffIndicator();
-            }
         }
 
         private void ShovelTileIndicatorLogic()
