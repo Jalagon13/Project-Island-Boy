@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: item_wood_axe
+      name: item_stone_axe
       rect:
         serializedVersion: 2
         x: 0
@@ -147,7 +147,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: item_wood_sword
+      name: item_stone_sword
       rect:
         serializedVersion: 2
         x: 16
@@ -168,7 +168,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: item_wood_pickaxe
+      name: item_stone_pickaxe
       rect:
         serializedVersion: 2
         x: 32
@@ -546,7 +546,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: item_wood_shovel
+      name: item_stone_shovel
       rect:
         serializedVersion: 2
         x: 80
@@ -911,7 +911,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -958,19 +958,19 @@ TextureImporter:
       item_sand: -966422323
       item_sapling: 811161192
       item_stone: -512641925
+      item_stone_axe: 563146846
+      item_stone_pickaxe: 1392384841
+      item_stone_shovel: -887866084
+      item_stone_sword: 851283991
       item_tool_station: -581595869
       item_torch: -1995232107
       item_undead_soul: 1935163884
       item_wood: -602149933
-      item_wood_axe: 563146846
       item_wood_chestplate: -848097959
       item_wood_floor: 1850925332
       item_wood_greaves: -972602597
       item_wood_hammer: 1204406958
       item_wood_helmet: 1611562402
-      item_wood_pickaxe: 1392384841
-      item_wood_shovel: -887866084
-      item_wood_sword: 851283991
       item_wood_wall: 734688836
       item_xp: -955445017
   spritePackingTag: 

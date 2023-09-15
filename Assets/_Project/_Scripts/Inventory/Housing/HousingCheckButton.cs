@@ -74,7 +74,7 @@ namespace IslandBoy
                 }
                 else
                 {
-                    DisplayFeedback("No valid housing found around you. Make sure there are no empty spaces!", Color.yellow);
+                    DisplayFeedback("No valid housing found. Make sure you are inside an inclosed area!", Color.yellow);
                     return;
                 }
             }

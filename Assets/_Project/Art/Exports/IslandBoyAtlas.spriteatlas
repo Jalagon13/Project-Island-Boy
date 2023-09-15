@@ -73,6 +73,7 @@ SpriteAtlas:
   - {fileID: 1741322809, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   - {fileID: 579311468, guid: 9a5c6b310101a764d896c0731d189691, type: 3}
   - {fileID: 1624057426, guid: 9a5c6b310101a764d896c0731d189691, type: 3}
+  - {fileID: 1699286570, guid: 0070e4b49bca5c64c8a55ebc8ddfe11c, type: 3}
   - {fileID: -848097959, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1651487029, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -972602597, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
@@ -84,12 +85,13 @@ SpriteAtlas:
   - {fileID: -1914655730, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -2128986211, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -538633122, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  - {fileID: -887866084, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1494493913, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1546665967, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
-  - {fileID: -887866084, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
-  - {fileID: 1962245853, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
-  - {fileID: -955445017, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 851283991, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  - {fileID: 1962245853, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  - {fileID: 563146846, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  - {fileID: -955445017, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1529562530, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1211993972, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 449123009, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
@@ -108,9 +110,8 @@ SpriteAtlas:
   - {fileID: 1611562402, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -966422323, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1558334950, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
-  - {fileID: 1648958029, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1392384841, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
-  - {fileID: 563146846, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  - {fileID: 1648958029, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1112382854, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1302916514, guid: f59011461ecd73f4bafc48709d902230, type: 3}
   - {fileID: 1005839574, guid: a89cf0f683df5c24c9a61c2d4a51d4eb, type: 3}
@@ -287,6 +288,7 @@ SpriteAtlas:
   - ui_down_arrow
   - mob_crab1
   - mob_crab2
+  - ws_portal
   - item_wood_chestplate
   - item_coal
   - item_wood_greaves
@@ -298,12 +300,13 @@ SpriteAtlas:
   - item_furance
   - item_cooked_fish
   - item_diamond
+  - item_stone_shovel
   - item_portal_to_home
   - item_hook
-  - item_wood_shovel
+  - item_stone_sword
   - item_chest
+  - item_stone_axe
   - item_xp
-  - item_wood_sword
   - item_bow
   - item_fish
   - item_construction_table
@@ -322,9 +325,8 @@ SpriteAtlas:
   - item_wood_helmet
   - item_sand
   - item_green_rune
+  - item_stone_pickaxe
   - item_iron_ore
-  - item_wood_pickaxe
-  - item_wood_axe
   - item_door
   - rsc_tree
   - mon_ghost

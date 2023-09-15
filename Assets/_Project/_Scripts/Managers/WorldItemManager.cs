@@ -11,6 +11,17 @@ namespace IslandBoy
         [SerializeField] private TilemapReferences _tmr;
         [SerializeField] private GameObject _itemBasePrefab;
         [SerializeField] private AudioClip _popSound;
+        [SerializeField] private List<ItemObject> _startingItems;
+
+        private IEnumerator Start()
+        {
+            yield return new WaitForEndOfFrame();
+
+            foreach (ItemObject item in _startingItems)
+            {
+                SpawnItem(_pr.Position, item);
+            }
+        }
 
         public GameObject SpawnItem(Vector2 worldPos, ItemObject item, int stack = -1, List<ItemParameter> parameterList = null, bool playAudio = true)
         {

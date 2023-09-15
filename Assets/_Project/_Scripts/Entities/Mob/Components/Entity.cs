@@ -46,13 +46,15 @@ namespace IslandBoy
             _iFrameTimer.RemainingSeconds = _iFrameDuration;
 
             DamagePopup.Create(transform.position, incomingDamage, 0.5f);
-            AudioManager.Instance.PlayClip(_damageSound, false, true);
+            
 
             if (sender != null && transform.TryGetComponent(out KnockbackFeedback knockback))
                 knockback.PlayFeedback(sender);
 
             if (HealthSystem.IsDead())
                 KillEntity();
+            else
+                AudioManager.Instance.PlayClip(_damageSound, false, true);
         }
 
         public void Heal(int healAmount)

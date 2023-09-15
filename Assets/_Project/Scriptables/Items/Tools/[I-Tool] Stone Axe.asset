@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: '[I-Tool] Stone Axe'
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Stone Axe
-  <UiDisplay>k__BackingField: {fileID: -602149933, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  <UiDisplay>k__BackingField: {fileID: 563146846, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   <Stackable>k__BackingField: 0
   <Description>k__BackingField: 
   <DefaultParameterList>k__BackingField:
   - Parameter: {fileID: 11400000, guid: 97c28137497da5845bdbc42cd2c6dd6f, type: 2}
-    Value: 100
+    Value: 80
   - Parameter: {fileID: 11400000, guid: c25902e3274ad0a4a97f3515779aecea, type: 2}
-    Value: 0.33
+    Value: 0.375
   - Parameter: {fileID: 11400000, guid: c4b64d6fc16075a4ca7fd3181eeb7f65, type: 2}
-    Value: 12.5
+    Value: 10
   - Parameter: {fileID: 11400000, guid: 8a8bef37f1c5e3c40ad4319761ff897a, type: 2}
     Value: 4
   <Type>k__BackingField: 2

@@ -126,12 +126,14 @@ namespace IslandBoy
         {
             _outputImage.color = Color.white;
             _canCraft = true;
+            //gameObject.SetActive(true);
         }
 
         private void SetUnCraftable()
         {
             _outputImage.color = new Color(0.25f, 0.25f, 0.25f, 1);
             _canCraft = false;
+            //gameObject.SetActive(false);
         }
     }
 }
