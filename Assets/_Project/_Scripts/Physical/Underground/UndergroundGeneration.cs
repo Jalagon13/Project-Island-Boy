@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Tilemaps;
 using random = UnityEngine.Random;
+using Object = UnityEngine.Object;
 
 namespace IslandBoy
 {
@@ -44,14 +45,14 @@ namespace IslandBoy
 
         private void OnEnable()
         {
-            ExtensionMethods.OnSpawn += RegisterUgAsset;
+            ExtensionMethods.OnSpawnObject += RegisterUgAsset;
 
             SpawnPlayer();
         }
 
         private void OnDisable()
         {
-            ExtensionMethods.OnSpawn -= RegisterUgAsset;
+            ExtensionMethods.OnSpawnObject -= RegisterUgAsset;
         }
 
         private void Start()
@@ -68,9 +69,9 @@ namespace IslandBoy
             GenerateNewLevel();
         }
 
-        private void RegisterUgAsset(object newObj)
+        private void RegisterUgAsset(object obj, Object go)
         {
-            GameObject newAsset = (GameObject)newObj;
+            GameObject newAsset = (GameObject)go;
             _ugAssets.Add(newAsset);
         }
 
