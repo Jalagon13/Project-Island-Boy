@@ -172,7 +172,7 @@ namespace IslandBoy
                         {
                             _brokeRscThisFrame = true;
                             _stHpCanvas.HideHpCanvas();
-                            _ti.ChangeToOffIndicator();
+                            _ti.ChangeToOff();
 
                             _ti.UpdateLogic();
                         }

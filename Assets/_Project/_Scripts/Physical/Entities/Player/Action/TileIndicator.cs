@@ -50,34 +50,33 @@ namespace IslandBoy
         {
             if (_ta.OverInteractable())
             {
-                ChangeToOnIndicator();
+                ChangeToOn();
             }
             else
             {
-                ChangeToOffIndicator();
-                RscHarvestIndicatorLogic();
-                ShovelTileIndicatorLogic();
-                WorldTileIndicatorLogic();
-                HammerTileIndicatorLogic();
-                IndifferentIndicatorLogic();
+                ChangeToOff();
+                RscHarvest();
+                ShovelTile();
+                HammerTile();
+                Indifferent();
             }
 
             transform.hasChanged = false;
         }
 
-        private void HammerTileIndicatorLogic()
+        private void HammerTile()
         {
             if (_pr.SelectedSlot.ItemObject != null)
                 if (_pr.SelectedSlot.ItemObject.ToolType != ToolType.Hammer) return;
             if (_pr.SelectedSlot.ItemObject == null) return;
 
             if(_floorTilemap.HasTile(Vector3Int.FloorToInt(transform.position)) || _wallTilemap.HasTile(Vector3Int.FloorToInt(transform.position)))
-                ChangeToOnIndicator();
+                ChangeToOn();
             else
-                ChangeToOffIndicator();
+                ChangeToOff();
         }
 
-        private void IndifferentIndicatorLogic()
+        private void Indifferent()
         {
             var colliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
 
@@ -96,7 +95,7 @@ namespace IslandBoy
             {
                 foreach (var breakable in indifferentObjects)
                 {
-                    ChangeToOnIndicator();
+                    ChangeToOn();
 
                     if (breakable.CurrentHitPoints < breakable.MaxHitPoints)
                     {
@@ -108,17 +107,7 @@ namespace IslandBoy
             }
         }
 
-        private void WorldTileIndicatorLogic()
-        {
-            if (_pr.SelectedSlot.ItemObject != null)
-                if (_pr.SelectedSlot.ItemObject is not WorldTileObject) return;
-            if (_pr.SelectedSlot.ItemObject == null) return;
-            if (_islandTilemap.HasTile(Vector3Int.FloorToInt(transform.position))) return;
-
-            ChangeToOnIndicator();
-        }
-
-        private void ShovelTileIndicatorLogic()
+        private void ShovelTile()
         {
             if (_pr.SelectedSlot.ItemObject != null)
                 if (_pr.SelectedSlot.ItemObject.ToolType != ToolType.Shovel) return;
@@ -142,7 +131,7 @@ namespace IslandBoy
             {
                 foreach (var breakable in shovelObjects)
                 {
-                    ChangeToOnIndicator();
+                    ChangeToOn();
 
                     if (breakable.CurrentHitPoints < breakable.MaxHitPoints)
                     {
@@ -155,13 +144,13 @@ namespace IslandBoy
             else
             {
                 if (_ta.IsClear())
-                    ChangeToOnIndicator();
+                    ChangeToOn();
                 else
-                    ChangeToOffIndicator();
+                    ChangeToOff();
             }
         }
 
-        private void RscHarvestIndicatorLogic()
+        private void RscHarvest()
         {
             if(_pr.SelectedSlot.ItemObject != null)
                 if (_pr.SelectedSlot.ItemObject.ToolType == ToolType.Shovel) return;
@@ -189,7 +178,7 @@ namespace IslandBoy
             {
                 if(breakable.BreakType == selSlotTType)
                 {
-                    ChangeToOnIndicator();
+                    ChangeToOn();
 
                     if (breakable.CurrentHitPoints < breakable.MaxHitPoints)
                     {
@@ -201,13 +190,13 @@ namespace IslandBoy
             }
         }
 
-        public void ChangeToOnIndicator()
+        public void ChangeToOn()
         {
             _sr.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
             _sr.color = _canHitColor;
         }
 
-        public void ChangeToOffIndicator()
+        public void ChangeToOff()
         {
             _sr.transform.localScale = new Vector3(0.85f, 0.85f, 0.85f);
 
