@@ -80712,18 +80712,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7362213198510845635, guid: a7caeef01e87f404cb023c50273aeaaf, type: 3}
-      propertyPath: _maxHealth
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 7362213198510845635, guid: a7caeef01e87f404cb023c50273aeaaf, type: 3}
-      propertyPath: _deathSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 749e471faf245eb45a1234d046f18a10, type: 3}
-    - target: {fileID: 7362213198510845635, guid: a7caeef01e87f404cb023c50273aeaaf, type: 3}
-      propertyPath: _damageSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 4a2e0c655ba2bda4e9d7e519bf84c9ca, type: 3}
     - target: {fileID: 7995473247580249320, guid: a7caeef01e87f404cb023c50273aeaaf, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -80771,10 +80759,6 @@ PrefabInstance:
     - target: {fileID: 7995473247580249321, guid: a7caeef01e87f404cb023c50273aeaaf, type: 3}
       propertyPath: m_Name
       value: '[NPC] Miner'
-      objectReference: {fileID: 0}
-    - target: {fileID: 7995473247580249321, guid: a7caeef01e87f404cb023c50273aeaaf, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7caeef01e87f404cb023c50273aeaaf, type: 3}

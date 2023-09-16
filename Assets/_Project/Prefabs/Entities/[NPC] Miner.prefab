@@ -360,11 +360,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PR: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _maxHealth: 10
+  _maxHealth: 80
   _iFrameDuration: 0.17
   _moveSpeed: 0
-  _damageSound: {fileID: 8300000, guid: 8b0bc9a35fb412c4c9b00c8def95c58a, type: 3}
-  _deathSound: {fileID: 8300000, guid: 4991035dcefc46b45b8a25d8caf2c6a0, type: 3}
+  _damageSound: {fileID: 8300000, guid: 4a2e0c655ba2bda4e9d7e519bf84c9ca, type: 3}
+  _deathSound: {fileID: 8300000, guid: 749e471faf245eb45a1234d046f18a10, type: 3}
   _lootTable:
     <Table>k__BackingField: []
   _onDamage:
