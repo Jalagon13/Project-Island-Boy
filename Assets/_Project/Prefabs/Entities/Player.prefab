@@ -3188,7 +3188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
-  _maxStack: 999
+  _maxStack: 99
   _onPickupItem:
     m_PersistentCalls:
       m_Calls:

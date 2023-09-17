@@ -10,5 +10,10 @@ namespace IslandBoy
         public ItemObject Item;
         public AudioClip BreakSound;
         public AudioClip PlaceSound;
+
+        public void UpdatePathfinding(Vector2 pos)
+        {
+            AstarManager.Instance.UpdateGrid(pos);
+        }
     }
 }

@@ -22,7 +22,10 @@ namespace IslandBoy
             {
                 control.TMR.WallTilemap.SetTile(pos, _wallTile);
                 control.PR.SelectedSlot.InventoryItem.Count--;
+
                 AudioManager.Instance.PlayClip(_wallTile.PlaceSound, false, true);
+
+                _wallTile.UpdatePathfinding(new(pos.x + 0.5f, pos.y + 0.5f));
             }
         }
 

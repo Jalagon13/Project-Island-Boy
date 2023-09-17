@@ -97,7 +97,6 @@ namespace IslandBoy
 
             HammerTileLogic();
             DamageBreakable();
-            ShovelTileLogic();
         }
 
         private void HammerTileLogic()
@@ -105,7 +104,7 @@ namespace IslandBoy
             if (_pr.SelectedSlot.ItemObject != null)
                 if (_pr.SelectedSlot.ItemObject.ToolType != ToolType.Hammer) return;
             if (_pr.SelectedSlot.ItemObject == null) return;
-            if (!IsClear()) return;
+            //if (!IsClear()) return;
 
             if (_ti.WallTilemap.HasTile(Vector3Int.FloorToInt(transform.position)))
             {
@@ -117,23 +116,6 @@ namespace IslandBoy
                 DestroyTile(_ti.FloorTilemap);
                 ModifyDurability();
             }
-        }
-
-        private void ShovelTileLogic()
-        {
-            if (_pr.SelectedSlot.ItemObject != null)
-                if (_pr.SelectedSlot.ItemObject.ToolType != ToolType.Shovel) return;
-            if (_pr.SelectedSlot.ItemObject == null) return;
-            if (!_ti.IslandTilemap.HasTile(Vector3Int.FloorToInt(transform.position))) return;
-            if (!IsClear()) return;
-            if (_brokeRscThisFrame) return;
-
-            DestroyTile(_ti.IslandTilemap);
-            ModifyDurability();
-
-            _brokeRscThisFrame = false;
-
-            _ti.UpdateLogic();
         }
 
         private void DamageBreakable()
@@ -198,7 +180,9 @@ namespace IslandBoy
             RuleTileExtended tile = tm.GetTile<RuleTileExtended>(pos);
             WorldItemManager.Instance.SpawnItem(transform.position, tile.Item, 1);
             AudioManager.Instance.PlayClip(tile.BreakSound, false, true);
+
             tm.SetTile(pos, null);
+            tile.UpdatePathfinding(new(pos.x + 0.5f, pos.y + 0.5f));
         }
 
         public void PlaceDeployable(GameObject deployable)
