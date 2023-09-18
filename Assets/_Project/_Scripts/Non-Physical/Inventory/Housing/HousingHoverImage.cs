@@ -7,6 +7,9 @@ namespace IslandBoy
 {
     public class HousingHoverImage : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
+        private string _header;
+        private string _content;
+
         private void Start()
         {
             
@@ -19,15 +22,18 @@ namespace IslandBoy
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            string header = "House Scanner";
-            string content = "Adventurers will move into your island if there is vacant housing available.";
-
-            TooltipManager.Instance.Show(content, header, new Vector2(1.1f, -0.1f));
+            TooltipManager.Instance.Show(_content, _header, new Vector2(1.1f, -0.1f));
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
             TooltipManager.Instance.Hide();
+        }
+
+        public void Initialize(string header, string content)
+        {
+            _header = header;
+            _content = content;
         }
     }
 }

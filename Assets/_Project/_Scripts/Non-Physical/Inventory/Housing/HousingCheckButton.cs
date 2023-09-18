@@ -11,6 +11,7 @@ namespace IslandBoy
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private TilemapReferences _tmr;
         [SerializeField] private AdventurerEntity _adventurerPrefab;
+        [SerializeField] private FeedbackHolder _feedbackHolder;
         [SerializeField] private AudioClip _sonarSound;
         [SerializeField] private AudioClip _moveInSound;
         [SerializeField] private List<Resource> _furnitureCheckList;
@@ -19,7 +20,6 @@ namespace IslandBoy
         private Image _buttonBgImage;
         private Image _buttonIconImage;
         private HousingHoverImage _buttonHoverImage;
-        private TextMeshProUGUI _feedbackText;
         private AdventurerEntity _adventurerReference;
         private Color _originalButtonColor;
 
@@ -29,15 +29,20 @@ namespace IslandBoy
             _buttonBgImage = transform.GetComponent<Image>();
             _buttonIconImage = transform.GetChild(0).GetComponent<Image>();
             _buttonHoverImage = transform.GetChild(0).GetComponent<HousingHoverImage>();
-
             _originalButtonColor = _buttonBgImage.color;
-            _feedbackText = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-            _feedbackText.enabled = false;
         }
 
-        private void OnDisable()
+        private void Start()
         {
-            EnableButton();
+            string header = $"{_adventurerPrefab.name} Housing Scanner";
+            string content = "Furniture Requirements:<br>";
+
+            foreach (Resource requirements in _furnitureCheckList)
+            {
+                content += $" * {requirements.ResourceName}<br>";
+            }
+
+            _buttonHoverImage.Initialize(header, content);
         }
 
         public void CheckHousing() // attached to button
@@ -64,7 +69,7 @@ namespace IslandBoy
                 // if there is a tile without floor or wall then it is not an enclosed area
                 if (!_tmr.FloorTilemap.HasTile(p) && !_tmr.WallTilemap.HasTile(p) && !HasDoor(p))
                 {
-                    DisplayFeedback("Not valid housing. Make sure the area around you is enclosed.", Color.yellow);
+                    _feedbackHolder.DisplayFeedback("Not valid housing. Make sure the area around you is enclosed.", Color.yellow);
                     return;
                 }
 
@@ -123,14 +128,14 @@ namespace IslandBoy
             // if floor tile positions are greater than maxHouseSpaceTiles, then housing is too big.
             if (floorTilePositions.Count > maxHouseSpaceTiles)
             {
-                DisplayFeedback("Not valid housing. Enclosed space too large.", Color.yellow);
+                _feedbackHolder.DisplayFeedback("Not valid housing. Enclosed space too large.", Color.yellow);
                 return;
             }
 
             // if there is no doors found then housing not valid
             if (doorPositions.Count <= 0)
             {
-                DisplayFeedback("Not valid housing. No doors found.", Color.yellow);
+                _feedbackHolder.DisplayFeedback("Not valid housing. No doors found.", Color.yellow);
                 return;
             }
 
@@ -149,7 +154,7 @@ namespace IslandBoy
 
                 if (!furnitureFound)
                 {
-                    DisplayFeedback("Not valid housing. Furniture requirements not met.", Color.yellow);
+                    _feedbackHolder.DisplayFeedback("Not valid housing. Furniture requirements not met.", Color.yellow);
                     return;
                 }
             }
@@ -203,7 +208,7 @@ namespace IslandBoy
 
             if (!validDoorFound)
             {
-                DisplayFeedback("Not valid housing. There is no door that leads outside of this space.", Color.yellow);
+                _feedbackHolder.DisplayFeedback("Not valid housing. There is no door that leads outside of this space.", Color.yellow);
                 return;
             }
 
@@ -218,42 +223,23 @@ namespace IslandBoy
         {
             yield return new WaitForSeconds(1f);
 
-            DisplayFeedback("Housing found! Miner has moved in!", Color.green);
-
+            _feedbackHolder.DisplayFeedback("Housing found! Miner has moved in!", Color.green);
             _adventurerReference = Instantiate(_adventurerPrefab, spawnPos, Quaternion.identity);
+
             AudioManager.Instance.PlayClip(_moveInSound, false, false);
-            //_pr.LevelSystem.AddExperience(3000);
         }
 
-        private void DisplayFeedback(string text, Color textColor)
-        {
-            DisableButton();
-
-            _feedbackText.enabled = true;
-            _feedbackText.text = text;
-            _feedbackText.color = textColor;
-
-            StartCoroutine(ButtonDelay());
-        }
-
-        private IEnumerator ButtonDelay()
-        {
-            yield return new WaitForSeconds(5f);
-
-            EnableButton();
-        }
-
-        private void DisableButton()
+        public void DisableButton()
         {
             var tempColor = _originalButtonColor;
-            tempColor.a = 0.5f;
+            tempColor.a = 0.3f;
             _buttonBgImage.color = tempColor;
             _buttonIconImage.color = tempColor;
             _button.enabled = false;
             _buttonHoverImage.enabled = false;
         }
 
-        private void EnableButton()
+        public void EnableButton()
         {
             var tempColor = _originalButtonColor;
             tempColor.a = 1;
@@ -261,8 +247,6 @@ namespace IslandBoy
             _buttonIconImage.color = tempColor;
             _button.enabled = true;
             _buttonHoverImage.enabled = true;
-
-            _feedbackText.enabled = false;
         }
 
         private bool HasDoor(Vector3Int pos)
