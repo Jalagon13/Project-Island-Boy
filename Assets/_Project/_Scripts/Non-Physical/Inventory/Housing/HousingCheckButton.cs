@@ -47,10 +47,13 @@ namespace IslandBoy
 
         public void CheckHousing() // attached to button
         {
-            if (_adventurerReference != null)
-                return;
-
             AudioManager.Instance.PlayClip(_sonarSound, false, false);
+
+            if (_adventurerReference != null)
+            {
+                _feedbackHolder.DisplayFeedback($"{_adventurerPrefab.name} is already occupying this space.", Color.green);
+                return;
+            }
 
             // checks if this is an enclosed space with flooring everywhere
             Stack<Vector3Int> tilesToCheck = new();

@@ -56,6 +56,7 @@ SpriteAtlas:
   - {fileID: -173459065, guid: 86aecb705c543a948a0d95c4e351f0e1, type: 3}
   - {fileID: 2135872218, guid: 86aecb705c543a948a0d95c4e351f0e1, type: 3}
   - {fileID: 2075716197, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
+  - {fileID: -1898290835, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   - {fileID: -505856833, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   - {fileID: 1183265060, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   - {fileID: 181257697, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
@@ -64,7 +65,6 @@ SpriteAtlas:
   - {fileID: -711384130, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   - {fileID: -1565230189, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   - {fileID: 1369651022, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
-  - {fileID: -1898290835, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   - {fileID: -513854623, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   - {fileID: 1245048942, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   - {fileID: -1558005462, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
@@ -271,6 +271,7 @@ SpriteAtlas:
   - ws_door_close
   - ws_door_open
   - ui_inventory_slot
+  - ui_miner_logo
   - 9sprite_mm_full
   - ui_moon_marker
   - ui_hp_icon
@@ -279,7 +280,6 @@ SpriteAtlas:
   - ui_chest_slot
   - ui_sun_mark
   - ui_head_slot
-  - ui_housing_logo
   - uc_nrg_icon
   - ui_legs_slot
   - ui_fill
