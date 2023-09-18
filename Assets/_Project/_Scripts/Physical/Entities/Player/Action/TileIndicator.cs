@@ -51,6 +51,12 @@ namespace IslandBoy
         {
             if (_ta.OverInteractable())
             {
+                if(_ae != null)
+                {
+                    ChangeToOff();
+                    _ae.HideSelectIndicator();
+                }
+
                 bool foundAdventurer = false;
                 var colliders = Physics2D.OverlapCircleAll(transform.position, 0.4f);
 
