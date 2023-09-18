@@ -85,6 +85,7 @@ namespace IslandBoy
                 // check for checklist RSC here, 
                 var centerPos = new Vector2(p.x + 0.5f, p.y + 0.5f);
                 var colliders = Physics2D.OverlapCircleAll(centerPos, 0.25f);
+                bool reqFound = false;
 
                 foreach (var col in colliders)
                 {
@@ -98,10 +99,14 @@ namespace IslandBoy
                             if(rsc.ResourceName == req.ResourceName)
                             {
                                 foundFurniture.Add(rsc);
+                                reqFound = true;
                             }
                         }
                     }
                 }
+
+                if (reqFound)
+                    continue;
 
                 // add floor tile to floorTilePositions and push new tiles to check
                 if (!floorTilePositions.Contains(p))
@@ -202,43 +207,11 @@ namespace IslandBoy
                 return;
             }
 
+            // find a random position of the clear floor tiles and spawn the NPC there
+            Vector3Int randFloorSpace = floorTilePositions[Random.Range(0, floorTilePositions.Count)];
+            Vector2 spawnNpcPosition = new(randFloorSpace.x + 0.5f, randFloorSpace.y + 0.5f);
 
-
-            foreach (Vector3Int pos in wallTilePositions)
-            {
-                _tmr.WallTilemap.SetTile(pos, null);
-            }
-
-
-
-
-
-
-
-
-            //// first check how many free floor spaces are there in the floorTilePositions list
-            //List<Vector3Int> freeFloorSpaces = new();
-            //foreach (Vector3Int pos in floorTilePositions)
-            //{
-            //    if (TileAreaClear(pos))
-            //    {
-            //        freeFloorSpaces.Add(pos);
-            //    }
-            //}
-
-            //// if minimum number of clear floor tiles is below the set minimum, this is not a valid housing
-            //int minClearFloorTileAmount = 5;
-            //if (freeFloorSpaces.Count < minClearFloorTileAmount)
-            //{
-            //    DisplayFeedback("No valid housing found around you. Space is too small!", Color.yellow);
-            //    return;
-            //}
-
-            //// find a random position of the clear floor tiles and spawn the NPC there
-            //Vector3Int randFloorSpace = freeFloorSpaces[Random.Range(0, freeFloorSpaces.Count)];
-            //Vector2 spawnNpcPosition = new(randFloorSpace.x + 0.5f, randFloorSpace.y + 0.5f);
-
-            //StartCoroutine(SpawnAdventurer(spawnNpcPosition));
+            StartCoroutine(SpawnAdventurer(spawnNpcPosition));
         }
 
         private IEnumerator SpawnAdventurer(Vector2 spawnPos)
@@ -304,19 +277,6 @@ namespace IslandBoy
             }
 
             return false;
-        }
-
-        private bool TileAreaClear(Vector3Int pos)
-        {
-            var colliders = Physics2D.OverlapCircleAll(new Vector2(pos.x + 0.5f, pos.y + 0.5f), 0.25f);
-
-            foreach (var collider in colliders)
-            {
-                if (collider.gameObject.layer == 3)
-                    return false;
-            }
-
-            return true;
         }
     }
 }
