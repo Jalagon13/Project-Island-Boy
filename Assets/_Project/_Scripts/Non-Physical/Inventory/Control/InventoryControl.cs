@@ -51,7 +51,7 @@ namespace IslandBoy
         {
             if (_currentInteractableActive == null) return;
 
-            if (!_currentInteractableActive.PlayerInRange())
+            if (!_currentInteractableActive.PlayerInRange(_currentInteractableActive.gameObject.transform.position))
             {
                 InteractableHandle(null);
             }

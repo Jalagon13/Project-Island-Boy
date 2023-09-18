@@ -12,7 +12,7 @@ namespace IslandBoy
         {
             if (_currentPrompt == null) return;
 
-            if (!_currentPrompt.PlayerInRange())
+            if (!_currentPrompt.PlayerInRange(_currentPrompt.gameObject.transform.position))
             {
                 PromptHandle(null);
             }

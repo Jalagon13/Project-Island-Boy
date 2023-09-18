@@ -40,7 +40,7 @@ namespace IslandBoy
                 Open();
         }
 
-        private void Open()
+        public void Open()
         {
             _doorCollider.isTrigger = true;
             _opened = true;
@@ -48,7 +48,7 @@ namespace IslandBoy
             AudioManager.Instance.PlayClip(_doorOpenSound, false, true);
         }
 
-        private void Close()
+        public void Close()
         {
             _doorCollider.isTrigger = false;
             _opened = false;

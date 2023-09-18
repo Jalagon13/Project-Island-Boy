@@ -38,10 +38,21 @@ namespace IslandBoy
 
         private Vector2 CalcWanderPos()
         {
-            GraphNode startNode = AstarPath.active.GetNearest(_ctx.transform.position, NNConstraint.Default).node;
+            calcWanderPos:
 
+            GraphNode startNode = AstarPath.active.GetNearest(_ctx.transform.position, NNConstraint.Default).node;
             List<GraphNode> nodes = PathUtilities.BFS(startNode, 10);
             Vector3 singleRandomPoint = PathUtilities.GetPointsOnNodes(nodes, 1)[0];
+
+            var colliders = Physics2D.OverlapCircleAll(singleRandomPoint, 0.2f);
+
+            foreach (var col in colliders)
+            {
+                if(col.TryGetComponent(out Door door))
+                {
+                    goto calcWanderPos;
+                }
+            }
 
             return singleRandomPoint;
         }

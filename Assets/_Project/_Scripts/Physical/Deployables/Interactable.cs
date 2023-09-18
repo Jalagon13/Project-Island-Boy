@@ -33,5 +33,10 @@ namespace IslandBoy
         {
             return Vector2.Distance(_origin, _pr.Position) < _interactRange;
         }
+
+        public bool PlayerInRange(Vector2 customPos)
+        {
+            return Vector2.Distance(customPos, _pr.Position) < _interactRange;
+        }
     }
 }

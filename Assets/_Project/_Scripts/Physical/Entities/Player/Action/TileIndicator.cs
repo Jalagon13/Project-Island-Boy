@@ -17,6 +17,7 @@ namespace IslandBoy
         private TileHpCanvas _stHpCanvas;
         private TileAction _ta;
         private SpriteRenderer _sr;
+        private AdventurerEntity _ae = null;
 
         public Tilemap WallTilemap { get { return _wallTilemap; } }
         public Tilemap FloorTilemap { get { return _floorTilemap; } }
@@ -50,10 +51,34 @@ namespace IslandBoy
         {
             if (_ta.OverInteractable())
             {
-                ChangeToOn();
+                bool foundAdventurer = false;
+                var colliders = Physics2D.OverlapCircleAll(transform.position, 0.4f);
+
+                foreach (var col in colliders)
+                {
+                    if(col.TryGetComponent(out AdventurerEntity ae))
+                    {
+                        ChangeToOff();
+                        _ae = ae;
+                        _ae.ShowSelectIndicator();
+                        foundAdventurer = true;
+                        return;
+                    }
+                }
+
+                if(!foundAdventurer)
+                {
+                    ChangeToOn();
+                }
             }
             else
             {
+                if(_ae != null)
+                {
+                    _ae.HideSelectIndicator();
+                    _ae = null;
+                }
+
                 ChangeToOff();
                 RscHarvest();
                 ShovelTile();

@@ -10,22 +10,55 @@ namespace IslandBoy
     {
         public readonly int HashIdle = Animator.StringToHash("[Anm] AdventurerIdle");
         public readonly int HashMove = Animator.StringToHash("[Anm] AdventurerMove");
-
         public Action OnMove;
         public Seeker Seeker;
         public IAstarAI AI;
+
+        private SpriteRenderer _selectedIndicator;
 
         protected override void Awake()
         {
             base.Awake();
             AI = GetComponent<IAstarAI>();
             Seeker = GetComponent<Seeker>();
+            _selectedIndicator = transform.GetChild(1).GetComponent<SpriteRenderer>();
+        }
+
+        private void OnEnable()
+        {
+            HideSelectIndicator();
         }
 
         protected override void Update()
         {
             base.Update();
             OnMove?.Invoke();
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if(collision.TryGetComponent(out Door door))
+            {
+                door.Open();
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.TryGetComponent(out Door door))
+            {
+                door.Close();
+            }
+        }
+
+        public void ShowSelectIndicator()
+        {
+            _selectedIndicator.enabled = true;
+        }
+
+        public void HideSelectIndicator()
+        {
+            _selectedIndicator.enabled = false;
         }
 
         public void Seek(Vector2 pos)
