@@ -7,6 +7,7 @@ namespace IslandBoy
     [SelectionBase]
     public class Resource : MonoBehaviour, IBreakable
     {
+        [SerializeField] private string _resourceName;
         [SerializeField] private float _maxHitPoints;
         [SerializeField] private ToolType _harvestType;
         [SerializeField] private AudioClip _hitSound;
@@ -20,6 +21,7 @@ namespace IslandBoy
         public ToolType BreakType { get { return _harvestType; } set { _harvestType = value; } }
         public float MaxHitPoints { get { return _maxHitPoints; } set { _maxHitPoints = value; } }
         public float CurrentHitPoints { get { return _currentHitPoints; } set { _currentHitPoints = value; } }
+        public string ResourceName { get { return _resourceName; } }
 
         private void Awake()
         {

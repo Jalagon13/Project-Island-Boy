@@ -13,7 +13,7 @@ namespace IslandBoy
         [SerializeField] private AdventurerEntity _adventurerPrefab;
         [SerializeField] private AudioClip _sonarSound;
         [SerializeField] private AudioClip _moveInSound;
-        [SerializeField] private List<Resource> _checkList;
+        [SerializeField] private List<Resource> _furnitureCheckList;
 
         private Button _button;
         private Image _buttonBgImage;
@@ -51,6 +51,8 @@ namespace IslandBoy
             Stack<Vector3Int> tilesToCheck = new();
             List<Vector3Int> floorTilePositions = new(); // list of positions of tile that have a floor and no wall or door on it.
             List<Vector3Int> wallTilePositions = new(); // list of wall tiles around the free space
+            List<Vector3Int> doorPositions = new(); // list of all positions of doors if any door is found
+            List<Resource> foundFurniture = new();
             int maxHouseSpaceTiles = 2220;
 
             tilesToCheck.Push(Vector3Int.FloorToInt(transform.root.position));
@@ -62,8 +64,15 @@ namespace IslandBoy
                 // if there is a tile without floor or wall then it is not an enclosed area
                 if (!_tmr.FloorTilemap.HasTile(p) && !_tmr.WallTilemap.HasTile(p) && !HasDoor(p))
                 {
-                    DisplayFeedback("No valid housing found. Make sure the area around you is enclosed.", Color.yellow);
+                    DisplayFeedback("Not valid housing. Make sure the area around you is enclosed.", Color.yellow);
                     return;
+                }
+
+                // if there is a door, add it do the door positions
+                if (HasDoor(p))
+                {
+                    doorPositions.Add(p);
+                    continue;
                 }
 
                 // if tile has a wall, continue
@@ -73,7 +82,26 @@ namespace IslandBoy
                     continue;
                 }
 
-                // check for checklist RSC here
+                // check for checklist RSC here, 
+                var centerPos = new Vector2(p.x + 0.5f, p.y + 0.5f);
+                var colliders = Physics2D.OverlapCircleAll(centerPos, 0.25f);
+
+                foreach (var col in colliders)
+                {
+                    if(col.TryGetComponent(out Resource rsc))
+                    {
+                        if (foundFurniture.Contains(rsc))
+                            continue;
+
+                        foreach (Resource req in _furnitureCheckList)
+                        {
+                            if(rsc.ResourceName == req.ResourceName)
+                            {
+                                foundFurniture.Add(rsc);
+                            }
+                        }
+                    }
+                }
 
                 // add floor tile to floorTilePositions and push new tiles to check
                 if (!floorTilePositions.Contains(p))
@@ -88,18 +116,94 @@ namespace IslandBoy
             }
 
             // if floor tile positions are greater than maxHouseSpaceTiles, then housing is too big.
-            if(floorTilePositions.Count > maxHouseSpaceTiles)
+            if (floorTilePositions.Count > maxHouseSpaceTiles)
             {
-                DisplayFeedback("No valid housing found. Enclosed space too large", Color.yellow);
+                DisplayFeedback("Not valid housing. Enclosed space too large.", Color.yellow);
                 return;
             }
 
-            // loop through all wall tiles and find the "flagged" tiles meaning a wall tile is sticking out and put that in it's own
-            // flagged wall tile list
-            // loop through all flagged wall tiles untill all appropriate wall tiles are flagged by checking it's neighbors
-            // now I have all the border wall tiles to the enclosed space
-            // with these tiles, check for a door by checking if the door is flanked by 2 NON-flagged wall tiles north/south or east/west
-            // if there is at least one door, than this requirement is good.
+            // if there is no doors found then housing not valid
+            if (doorPositions.Count <= 0)
+            {
+                DisplayFeedback("Not valid housing. No doors found.", Color.yellow);
+                return;
+            }
+
+            // if checklist is not compelete, then housing not valid
+            foreach (Resource req in _furnitureCheckList)
+            {
+                bool furnitureFound = false;
+
+                foreach (Resource rsc in foundFurniture)
+                {
+                    if(rsc.ResourceName == req.ResourceName)
+                    {
+                        furnitureFound = true;
+                    }
+                }
+
+                if (!furnitureFound)
+                {
+                    DisplayFeedback("Not valid housing. Furniture requirements not met.", Color.yellow);
+                    return;
+                }
+            }
+
+            // loop through all doors found
+            // a valid door is if the door is flanked n/s or e/w by wall tiles and check if one
+            // side of the empty space door is part of the floor tile positions and one side is not.
+            bool validDoorFound = false;
+
+            foreach (Vector3Int p in doorPositions)
+            {
+                Vector3Int nn = new(p.x, p.y + 1);
+                Vector3Int sn = new(p.x, p.y - 1);
+                Vector3Int en = new(p.x + 1, p.y);
+                Vector3Int wn = new(p.x - 1, p.y);
+
+                if (_tmr.WallTilemap.HasTile(nn) && _tmr.WallTilemap.HasTile(sn))
+                {
+                    int counter = 0;
+
+                    if (floorTilePositions.Contains(en))
+                        counter++;
+
+                    if (floorTilePositions.Contains(wn))
+                        counter++;
+
+                    if(counter == 1)
+                    {
+                        validDoorFound = true;
+                        break;
+                    }
+                }
+
+                if (_tmr.WallTilemap.HasTile(en) && _tmr.WallTilemap.HasTile(wn))
+                {
+                    int counter = 0;
+
+                    if (floorTilePositions.Contains(nn))
+                        counter++;
+
+                    if (floorTilePositions.Contains(sn))
+                        counter++;
+
+                    if (counter == 1)
+                    {
+                        validDoorFound = true;
+                        break;
+                    }
+                }
+            }
+
+            if (!validDoorFound)
+            {
+                DisplayFeedback("Not valid housing. There is no door that leads outside of this space.", Color.yellow);
+                return;
+            }
+
+
+
             foreach (Vector3Int pos in wallTilePositions)
             {
                 _tmr.WallTilemap.SetTile(pos, null);
