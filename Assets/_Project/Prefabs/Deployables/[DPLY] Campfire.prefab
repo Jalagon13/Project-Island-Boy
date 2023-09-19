@@ -117,7 +117,7 @@ Transform:
   m_Children:
   - {fileID: 8205409245417271130}
   - {fileID: 5718360666085955959}
-  - {fileID: 4373044454173794597}
+  - {fileID: 4271903017136435908}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -185,7 +185,7 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _rdb: {fileID: 11400000, guid: 2995d9ea11bc4a4459f830968f363e39, type: 2}
   _adb: {fileID: 0}
---- !u!1001 &3477476258797884055
+--- !u!1001 &4015680142441693558
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -238,7 +238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1483596600131035560, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
       propertyPath: m_Name
-      value: Light
+      value: DynamicLight
       objectReference: {fileID: 0}
     - target: {fileID: 5434674419536051762, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
       propertyPath: m_Intensity
@@ -250,10 +250,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
---- !u!4 &4373044454173794597 stripped
+--- !u!4 &4271903017136435908 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 932903701851796402, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
-  m_PrefabInstance: {fileID: 3477476258797884055}
+  m_PrefabInstance: {fileID: 4015680142441693558}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7720713583222694614
 PrefabInstance:

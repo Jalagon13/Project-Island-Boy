@@ -115,7 +115,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8456787865998434586}
-  - {fileID: 4549310702218122356}
+  - {fileID: 3867150140036246289}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -168,7 +168,7 @@ MonoBehaviour:
       Min: 1
       Max: 1
       Chance: 100
---- !u!1001 &3733540181821482950
+--- !u!1001 &4132253222002989219
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -221,12 +221,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1483596600131035560, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
       propertyPath: m_Name
-      value: Light
+      value: DynamicLight
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
---- !u!4 &4549310702218122356 stripped
+--- !u!4 &3867150140036246289 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 932903701851796402, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
-  m_PrefabInstance: {fileID: 3733540181821482950}
+  m_PrefabInstance: {fileID: 4132253222002989219}
   m_PrefabAsset: {fileID: 0}

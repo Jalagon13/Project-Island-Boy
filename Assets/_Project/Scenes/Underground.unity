@@ -408,7 +408,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &845959348
 MonoBehaviour:
@@ -423,9 +423,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _maxSpawns: 10
-  _monster: {fileID: 8560427171654549071, guid: 64500d3032b4c6a4e90b42d01a16430c, type: 3}
   _tmr: {fileID: 11400000, guid: ec06355a14da7574295ea6e79aaebb6f, type: 2}
+  _monster: {fileID: 8560427171654549071, guid: 64500d3032b4c6a4e90b42d01a16430c, type: 3}
+  _maxSpawns: 10
 --- !u!1 &873582349
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,7 +574,7 @@ GameObject:
   - component: {fileID: 1216520408}
   - component: {fileID: 1216520407}
   m_Layer: 0
-  m_Name: '[Cave] Level'
+  m_Name: '[WS] Cave Grid'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -608,7 +608,7 @@ Transform:
   - {fileID: 478016913}
   - {fileID: 2056613517}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1216520407
 MonoBehaviour:
@@ -628,8 +628,6 @@ MonoBehaviour:
   _stonePrefab: {fileID: 2594954625819056484, guid: 0ded448220d1fa54594745e5897fb73e, type: 3}
   _ironOrePrefab: {fileID: 2594954625819056484, guid: e989bdb3b75d6cb4087b5511fcc9ea66, type: 3}
   _coalOrePrefab: {fileID: 2594954625819056484, guid: 7c31b8c95a0e5b842863ded876346dd0, type: 3}
-  _grassPilePrefab: {fileID: 7060007254537938945, guid: 8b9b87475054b5e4ebbef9314d400488, type: 3}
-  _sandPilePrefab: {fileID: 1430966720473861475, guid: cecef96ad058e634bb3c41c9c872a710, type: 3}
   _wallTile: {fileID: 11400000, guid: 18644ea5358575f4694248ee33a2c3aa, type: 2}
   _floorTile: {fileID: 11400000, guid: 0184801a711830146bf6180e1bf4973c, type: 2}
   _onGenerateLevel:
@@ -647,7 +645,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1597628093}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: IslandBoy.UndergroundAstar, Assembly-CSharp
         m_MethodName: RecalculateGrid
         m_Mode: 1
@@ -662,7 +660,7 @@ MonoBehaviour:
   _onResourceBroken:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1597628093}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: IslandBoy.UndergroundAstar, Assembly-CSharp
         m_MethodName: UpdateGrid
         m_Mode: 0
@@ -726,6 +724,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd9b17a7052a4743bf1a05c2ee607f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _width: 105
+  _height: 105
+  _nodeSize: 0.4
+  _center: {x: 20, y: -10}
   _tmr: {fileID: 11400000, guid: ec06355a14da7574295ea6e79aaebb6f, type: 2}
   _ugGroundTm: {fileID: 1834801741}
   _ugFloorTm: {fileID: 478016911}
@@ -1074,7 +1076,7 @@ RectTransform:
   - {fileID: 1225981023}
   - {fileID: 1525254019}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1094,106 +1096,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _counterText: {fileID: 644009469}
---- !u!1 &1597628090
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1597628092}
-  - component: {fileID: 1597628091}
-  - component: {fileID: 1597628093}
-  m_Layer: 0
-  m_Name: A*
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1597628091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1597628090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78396926cbbfc4ac3b48fc5fc34a87d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  data:
-    dataString: UEsDBBQAAAgIAACAn+v/8ZBlXgIAABMFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF9VE1z2jAQ/SuMzqUDhkDorTWE9EBgQjq5+CLkNdYgSx598JEM/70r2cYOnekJ8d7b3berlT8Jl6YEZpVeap6uVArkR4/4M/nWa8lnONO9klv+AY3mnac29yIaNK/UcoX40IcZVYDVnP2Ue+HFAwSd5JnSxSLdQ6yMNQhnVBhASivroyVCnz1yxp/+zIdc8BRN/ekDT7NB74pHBtKCbqWNsJH1H4LMSSZoUULqPbfqUdTkfQwyid3UCu+cKSG4qa0QeylDqzEtjcNGUJByiq2F+l6fA9/n1qfrBq+zzICtPWl6mXONE6qykl+qGltBzaHydaTC+TrRZBw8VUlX//D9YaAzrYrnpu5w4GvYnLPDK70wamxnrl14/tW4kycqDnQn4D0H+aKWWjmZImm186HOQDRv/95ai3NghxavrN6BrvzP7WAP19D9ORa82Hnq+7gCtkKFeYe7B4038xsNh80wdQpEvYs/Bt7ovrtCNfHEtbFI1V1Kb2+nnPZSsggz8904GystIcC16RIkFfaywTT2/grvuE7ZO+aJ+sdSF6+55g3chQS41Q8Gd9RGnW6XZXJ1WoHJ184KLqE17YkXnFOspKw2rDuTJmzrdEZZJ2zvePp1tcjjhE2j6W46HE3HD8PZrD9iu9lgHGURjYbZdMJI2D0usU8qNpXRejx4a7JNLnHPmm9Ib6lpGbY91fS05B+F6oycy0xtmQaQ6yrDzThoLIKvMl2kHAe0BWu5DPdNPhMiFDtAmtwSJaHTxdlqmrRZElLyo7IeSUgcPhoJ8fBtlzcajhxOvniT7EqufwFQSwMEFAAACAgAAICf6yHP5n5tAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tJKFWbK5kXmSuaGxuYmpoaWlrnFykqWBiVGaUaKRYZq5WbJSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAICf6//xkGVeAgAAEwUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAICf6yHP5n5tAAAAeAAAAAkAJAAAAAAAAAAAAAAAqwIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAABjAwAAAAA=
-    upgradeData: 
-    file_cachedStartup: {fileID: 0}
-    data_cachedStartup: 
-    cacheStartup: 0
-  showNavGraphs: 1
-  showUnwalkableNodes: 1
-  debugMode: 0
-  debugFloor: 0
-  debugRoof: 1
-  manualDebugFloorRoof: 0
-  showSearchTree: 0
-  unwalkableNodeDebugSize: 0.3
-  logPathResults: 0
-  maxNearestNodeDistance: 100
-  scanOnStartup: 1
-  fullGetNearestSearch: 0
-  prioritizeGraphs: 0
-  prioritizeGraphsLimit: 1
-  colorSettings:
-    _SolidColor: {r: 0.11764706, g: 0.4, b: 0.7882353, a: 0.9}
-    _UnwalkableNode: {r: 1, g: 0, b: 0, a: 0.5}
-    _BoundsHandles: {r: 0.29, g: 0.454, b: 0.741, a: 0.9}
-    _ConnectionLowLerp: {r: 0, g: 1, b: 0, a: 0.5}
-    _ConnectionHighLerp: {r: 1, g: 0, b: 0, a: 0.5}
-    _MeshEdgeColor: {r: 0, g: 0, b: 0, a: 0.5}
-    _AreaColors:
-    - {r: 0, g: 0, b: 0, a: 0}
-  tagNames: []
-  heuristic: 2
-  heuristicScale: 1
-  threadCount: 1
-  maxFrameTime: 10
-  batchGraphUpdates: 0
-  graphUpdateBatchingInterval: 0.2
-  euclideanEmbedding:
-    mode: 0
-    seed: 0
-    pivotPointRoot: {fileID: 0}
-    spreadOutCount: 1
-  showGraphs: 1
---- !u!4 &1597628092
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1597628090}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!114 &1597628093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1597628090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b699ebac3b888d41a6e6d73a788c1da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1834801738
 GameObject:
   m_ObjectHideFlags: 0

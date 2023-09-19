@@ -23,11 +23,12 @@ namespace IslandBoy
             _tmr.FloorTilemap = _surfaceFloorTm;
             _tmr.WallTilemap = _surfaceWallTm;
 
-            SetupPathfinding();
+            StartCoroutine(SetupPathfinding());
         }
 
-        private void SetupPathfinding()
+        private IEnumerator SetupPathfinding()
         {
+            yield return new WaitForEndOfFrame();
             AstarManager.Instance.RecalculateGrid(_width, _height, _nodeSize, _center);
         }
     }

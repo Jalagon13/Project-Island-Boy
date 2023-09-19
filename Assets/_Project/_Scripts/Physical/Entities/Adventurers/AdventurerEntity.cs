@@ -15,18 +15,21 @@ namespace IslandBoy
         public IAstarAI AI;
 
         private SpriteRenderer _selectedIndicator;
+        private Animator _animator;
 
         protected override void Awake()
         {
             base.Awake();
             AI = GetComponent<IAstarAI>();
             Seeker = GetComponent<Seeker>();
+            _animator = transform.GetChild(0).GetComponent<Animator>();
             _selectedIndicator = transform.GetChild(1).GetComponent<SpriteRenderer>();
         }
 
         private void OnEnable()
         {
             HideSelectIndicator();
+            ChangeToIdleState(_animator);
         }
 
         protected override void Update()
