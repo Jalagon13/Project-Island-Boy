@@ -10,7 +10,7 @@ namespace IslandBoy
 
         private static GameAssets _i;
 
-        public static GameAssets I
+        public static GameAssets Instance
         {
             get
             {

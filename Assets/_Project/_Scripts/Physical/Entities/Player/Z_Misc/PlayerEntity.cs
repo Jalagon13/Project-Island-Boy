@@ -33,7 +33,7 @@ namespace IslandBoy
 
             HealthSystem.Damage(damageDelt);
 
-            DamagePopup.Create(transform.position, damageDelt, 0.5f);
+            PopupMessage.Create(transform.position, damageDelt.ToString(), Color.red, 0.5f);
             AudioManager.Instance.PlayClip(_damageSound, false, true);
 
             if (sender != null && transform.TryGetComponent(out KnockbackFeedback knockback))

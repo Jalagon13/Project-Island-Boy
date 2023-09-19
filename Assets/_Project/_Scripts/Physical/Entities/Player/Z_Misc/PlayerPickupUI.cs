@@ -37,11 +37,12 @@ namespace IslandBoy
             if (e <= 0) return;
 
             AudioManager.Instance.PlayClip(_popSound, false, true);
-            GameObject itemPickupSign = Instantiate(_itemPickupSignPrefab);
-            PickupSign pickup = itemPickupSign.GetComponent<PickupSign>();
-            pickup.Initialize($"+{e} EXP", Color.green);
+            PopupMessage.Create(transform.position, $"+{e} EXP", Color.green, 0.5f, 1f);
+            //GameObject itemPickupSign = Instantiate(_itemPickupSignPrefab);
+            //PickupSign pickup = itemPickupSign.GetComponent<PickupSign>();
+            //pickup.Initialize($"+{e} EXP", Color.green);
 
-            _itemPickups.Add(pickup);
+            //_itemPickups.Add(pickup);
 
             if (!_processing)
                 StartCoroutine(ProcessPickupUIs());

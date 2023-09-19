@@ -5,13 +5,15 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public class DamagePopup : MonoBehaviour
+    public class PopupMessage : MonoBehaviour
     {
         private static int _sortingOrder;
         private const float DISAPPEAR_TIMER_MAX = 0.5f;
 
         private TextMeshPro _textMesh;
+        private Timer _floatTimter;
         private float _disappearTimer;
+        private bool _canShrink;
         private Color _textColor;
         private Vector3 _moveVector;
 
@@ -20,23 +22,26 @@ namespace IslandBoy
             _textMesh = GetComponent<TextMeshPro>();
         }
 
-        public static DamagePopup Create(Vector2 position, int damageAmount, float textoffset = 0f)
+        public static PopupMessage Create(Vector2 position, string text, Color textColor, float textoffset = 0, float floatTimer = 0.01f)
         {
-            Transform damagePopupTransform = Instantiate(GameAssets.I.pfDamagePopup, position + new Vector2(0, textoffset), Quaternion.identity);
+            Transform popupTransform = Instantiate(GameAssets.Instance.pfDamagePopup, position + new Vector2(0, textoffset), Quaternion.identity);
 
-            DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
-            damagePopup.Setup(damageAmount);
+            PopupMessage popupMessage = popupTransform.GetComponent<PopupMessage>();
+            popupMessage.Setup(text, textColor, floatTimer);
 
-            return damagePopup;
+            return popupMessage;
         }
 
-        public void Setup(int damageAmount)
+        public void Setup(string text, Color textColor, float floatTimer = 0)
         {
-            _textMesh.text = damageAmount.ToString();
-            _textColor = _textMesh.color;
+            _textMesh.text = text;
+            _textMesh.color = textColor;
+            _textColor = textColor;
             _disappearTimer = DISAPPEAR_TIMER_MAX;
             _sortingOrder++;
             _textMesh.sortingOrder = _sortingOrder;
+            _floatTimter = new(floatTimer);
+            _floatTimter.OnTimerEnd += () => { _canShrink = true; };
             _moveVector = new Vector3(0, 1f) * 10f;
         }
 
@@ -44,6 +49,7 @@ namespace IslandBoy
         {
             transform.position += _moveVector * Time.deltaTime;
             _moveVector -= _moveVector * 6f * Time.deltaTime;
+            _floatTimter.Tick(Time.deltaTime);
 
             if (_disappearTimer > DISAPPEAR_TIMER_MAX * 0.5f)
             {
@@ -52,6 +58,9 @@ namespace IslandBoy
             }
             else
             {
+                if (!_canShrink) 
+                    return;
+
                 float decreaseScaleAmount = 1.25f;
                 transform.localScale -= Vector3.one * decreaseScaleAmount * Time.deltaTime;
             }
@@ -61,7 +70,7 @@ namespace IslandBoy
             {
                 float disappearSpeed = 3f;
                 _textColor.a -= disappearSpeed * Time.deltaTime;
-                _textMesh.color = _textColor;
+                //_textMesh.color = _textColor;
 
                 if (_textColor.a < 0)
                 {

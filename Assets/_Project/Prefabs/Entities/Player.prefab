@@ -1080,7 +1080,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
     m_PressedColor: {r: 0.8666667, g: 0.79607844, b: 0.2, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -1894,7 +1894,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -296, y: 10}
+  m_AnchoredPosition: {x: -236, y: 10}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &7674365159586619831
@@ -1917,7 +1917,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 2
   m_StartAxis: 1
-  m_CellSize: {x: 100, y: 100}
+  m_CellSize: {x: 90, y: 90}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -1958,7 +1958,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -191, y: 104}
+  m_AnchoredPosition: {x: -155, y: 104}
   m_SizeDelta: {x: 408.19995, y: 130.20001}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &99933346809164826
@@ -1984,6 +1984,7 @@ MonoBehaviour:
   _feedbackDurationSec: 5
   _checkButtons:
   - {fileID: 984624644}
+  - {fileID: 4298105371525010451}
 --- !u!1 &2564485965674825922
 GameObject:
   m_ObjectHideFlags: 0
@@ -2085,7 +2086,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.50980395, g: 0.50980395, b: 0.50980395, a: 1}
     m_PressedColor: {r: 0.8666667, g: 0.79607844, b: 0.2, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -2632,7 +2633,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f47de66c646eeb440bc6b139cb5053d4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3007,7 +3008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6451c7d5c1ab1d48a7e8f5ee1245553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxValue: 100
+  _maxValue: 175
   _coolDown: 10
   _onValueDepleted:
     m_PersistentCalls:
@@ -3304,7 +3305,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f47de66c646eeb440bc6b139cb5053d4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3597,6 +3598,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PR>k__BackingField: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   <TMR>k__BackingField: {fileID: 11400000, guid: ec06355a14da7574295ea6e79aaebb6f, type: 2}
+  <PickUpTextPrefab>k__BackingField: {fileID: 5710743294088674228, guid: bca8909c4368cb446bcfdf33c0e3171b, type: 3}
   <HealthBar>k__BackingField: {fileID: 4210445616755471117}
   <EnergyBar>k__BackingField: {fileID: 4210445617035966530}
   <TileAction>k__BackingField: {fileID: 1867400571357877626}

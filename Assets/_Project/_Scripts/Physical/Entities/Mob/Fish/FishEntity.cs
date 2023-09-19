@@ -31,7 +31,7 @@ namespace IslandBoy
         public void StartWander(Tilemap islandTilemap)
         {
             _rb = GetComponent<Rigidbody2D>();
-            _speed = Random.Range(1f, 3.5f);
+            _speed = Random.Range(1f, 2f);
 
             BoundsInt bounds = islandTilemap.cellBounds;
             Vector3Int totalPosition = Vector3Int.zero;

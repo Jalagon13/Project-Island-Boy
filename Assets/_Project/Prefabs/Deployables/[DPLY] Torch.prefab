@@ -223,6 +223,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: DynamicLight
       objectReference: {fileID: 0}
+    - target: {fileID: 5434674419536051762, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
+      propertyPath: m_Intensity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5434674419536051762, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
 --- !u!4 &3867150140036246289 stripped
