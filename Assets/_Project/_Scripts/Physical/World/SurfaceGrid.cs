@@ -7,6 +7,11 @@ namespace IslandBoy
 {
     public class SurfaceGrid : MonoBehaviour
     {
+        [SerializeField] private int _width;
+        [SerializeField] private int _height;
+        [SerializeField] private float _nodeSize;
+        [SerializeField] private Vector2 _center;
+        [Header("TM stuff")]
         [SerializeField] private TilemapReferences _tmr;
         [SerializeField] private Tilemap _surfaceGroundTm;
         [SerializeField] private Tilemap _surfaceFloorTm;
@@ -23,12 +28,7 @@ namespace IslandBoy
 
         private void SetupPathfinding()
         {
-            int width = 55;
-            int height = 55;
-            float nodeSize = 0.41f;
-            Vector2 center = new(-2, 3);
-
-            AstarManager.Instance.RecalculateGrid(width, height, nodeSize, center);
+            AstarManager.Instance.RecalculateGrid(_width, _height, _nodeSize, _center);
         }
     }
 }

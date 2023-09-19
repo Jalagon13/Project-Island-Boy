@@ -25,7 +25,7 @@ namespace IslandBoy
         private float _phasePercent;
         private bool _isDay;
 
-        public Volume GlobalVolume { get { return _globalVolume; } set { _globalVolume = value; } }
+        public Volume GlobalVolume { get { return _globalVolume; } }
 
         protected override void Awake()
         {
