@@ -4,19 +4,21 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public class ZombieChase : StateMachineBehaviour
+    public class RusherChase : StateMachineBehaviour
     {
-        private ZombieEntity _ctx;
+        private RusherEntity _ctx;
         private Vector2 _chasePos;
-        private float _chaseSpeed = 2.75f;
+        private float _chaseSpeed = 4f;
 
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             //Debug.Log("Entering Chase State");
-            _ctx = animator.transform.root.GetComponent<ZombieEntity>();
+            _ctx = animator.transform.root.GetComponent<RusherEntity>();
             _ctx.AI.maxSpeed = _chaseSpeed;
             _chasePos = _ctx.PR.Position;
             _ctx.OnMove += Chase;
+
+            AudioManager.Instance.PlayClip(_ctx.AgroClip, false, true);
         }
 
         override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

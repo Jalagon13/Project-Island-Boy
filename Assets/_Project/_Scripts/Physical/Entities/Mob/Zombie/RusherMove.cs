@@ -5,15 +5,15 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public class ZombieMove : StateMachineBehaviour
+    public class RusherMove : StateMachineBehaviour
     {
-        private ZombieEntity _ctx;
+        private RusherEntity _ctx;
         private Vector2 _wanderPos;
 
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             //Debug.Log("Entering Move State");
-            _ctx = animator.transform.root.GetComponent<ZombieEntity>();
+            _ctx = animator.transform.root.GetComponent<RusherEntity>();
             _ctx.OnMove += Move;
             _wanderPos = CalcWanderPos();
         }

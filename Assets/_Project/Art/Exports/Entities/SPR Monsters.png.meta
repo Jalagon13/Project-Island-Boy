@@ -146,6 +146,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: mon_rusher
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 15
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 093d0cd0c6d06584c866b7a9ef78eaef
+      internalID: 1840635774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -158,6 +179,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       mon_ghost: 1005839574
+      mon_rusher: 1840635774
       mon_zombie: -187104496
   spritePackingTag: 
   pSDRemoveMatte: 0

@@ -47,8 +47,8 @@ namespace IslandBoy
             }
 
             DayNightManager.Instance.GlobalVolume.enabled = false;
-            AudioManager.Instance.PlayClip(_caveAmbSound, true, false);
             AudioManager.Instance.StopClip(_beachAmbSound);
+            AudioManager.Instance.PlayClip(_caveAmbSound, true, false);
 
             _globalLight.intensity = 0;
             _surfaceReturnPosition = _pr.Position;

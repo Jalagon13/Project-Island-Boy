@@ -7,8 +7,10 @@ using UnityEngine.Tilemaps;
 
 namespace IslandBoy
 {
-    public class ZombieEntity : Entity
+    public class RusherEntity : Entity
     {
+        public AudioClip AgroClip;
+
         [SerializeField] private float _agroDistance;
 
         public readonly int HashIdle = Animator.StringToHash("[Anm] ZombieIdle");

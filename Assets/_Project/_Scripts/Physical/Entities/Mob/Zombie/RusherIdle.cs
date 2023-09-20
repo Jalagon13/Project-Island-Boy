@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public class ZombieIdle : StateMachineBehaviour
+    public class RusherIdle : StateMachineBehaviour
     {
-        private ZombieEntity _ctx;
+        private RusherEntity _ctx;
 
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             //Debug.Log("Entering Idle State");
-            _ctx = animator.transform.root.GetComponent<ZombieEntity>();
+            _ctx = animator.transform.root.GetComponent<RusherEntity>();
             _ctx.AI.isStopped = true;
             _ctx.OnMove += Idle;
             _ctx.StartCoroutine(IdleDuration(animator));
