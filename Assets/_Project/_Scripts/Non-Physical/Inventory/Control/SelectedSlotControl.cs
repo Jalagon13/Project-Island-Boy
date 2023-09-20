@@ -10,7 +10,6 @@ namespace IslandBoy
     {
         [field:SerializeField] public PlayerReference PR { get; private set; }
         [field:SerializeField] public TilemapReferences TMR { get; private set; }
-        [field:SerializeField] public GameObject PickUpTextPrefab { get; private set; }
         [field:SerializeField] public HealthBar HealthBar { get; private set; }
         [field:SerializeField] public EnergyBar EnergyBar { get; private set; }
         [field:SerializeField] public TileAction TileAction { get; private set; }
@@ -150,10 +149,7 @@ namespace IslandBoy
                     HealthBar.AddTo(value);
                     break;
             }
-            PopupMessage.Create(transform.root.position, value.ToString(), Color.green, 1f, 0.5f);
-            //GameObject itemPickupSign = Instantiate(PickUpTextPrefab);
-            //PickupSign pickup = itemPickupSign.GetComponent<PickupSign>();
-            //pickup.Initialize($"+{value} {cType}", Color.green);
+            PopupMessage.Create(transform.root.position, $"+{value} {cType}", Color.green, 0.5f, 1f);
         }
     }
 }

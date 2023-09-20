@@ -8,15 +8,12 @@ namespace IslandBoy
 {
     public class PlayerEntity : Entity
     {
-        [SerializeField] private Bar _healthBar;
         [SerializeField] private float _deathTimer;
         [SerializeField] private UnityEvent _onDeath;
         [SerializeField] private UnityEvent _onRespawn;
 
         private void Start()
         {
-            _healthBar.MaxValue = _maxHealth;
-            _healthBar.CurrentValue = _maxHealth;
             PR.Defense = 0;
             PR.SetSpawnPosition(transform.position);
         }
@@ -28,8 +25,7 @@ namespace IslandBoy
             int damageDelt = CalcDamage(incomingDamage);
 
             _iFrameTimer.RemainingSeconds = _iFrameDuration;
-            _healthBar.AddTo(-damageDelt);
-            _onDamage?.Invoke(damageDelt);
+            _onDamage?.Invoke(-damageDelt);
 
             HealthSystem.Damage(damageDelt);
 
@@ -85,6 +81,8 @@ namespace IslandBoy
             }
 
             transform.root.gameObject.transform.SetPositionAndRotation(PR.SpawnPosition, Quaternion.identity);
+
+            HealthSystem = new(_maxHealth);
         }
     }
 }

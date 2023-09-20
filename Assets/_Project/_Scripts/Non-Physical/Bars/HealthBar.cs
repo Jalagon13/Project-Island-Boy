@@ -12,6 +12,12 @@ namespace IslandBoy
 
         public bool Draining { get { return _draining; } set { _draining = value; } }
 
+        public void ResetHp()
+        {
+            CurrentValue = MaxValue;
+            UpdateUI();
+        }
+
         public IEnumerator DrainHp()
         {
             yield return new WaitForSeconds(_drainRate);
