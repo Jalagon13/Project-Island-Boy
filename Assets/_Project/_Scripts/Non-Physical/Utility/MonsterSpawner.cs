@@ -22,7 +22,6 @@ namespace IslandBoy
 
         private void OnSceneChanged(Scene current, Scene next)
         {
-            Debug.Log($"Current: {current.buildIndex} Next: {next.buildIndex}");
             if (next.buildIndex == 1)
                 StartCoroutine(SpawnMonsterTimer());
             else

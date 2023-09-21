@@ -269,19 +269,7 @@ namespace IslandBoy
         {
             var colliders = Physics2D.OverlapCircleAll(new Vector2(pos.x + 0.5f, pos.y + 0.5f), 0.25f);
 
-            foreach (Collider2D collider in colliders)
-            {
-                if(collider.TryGetComponent(out FrustumCollider fc))
-                {
-                    continue;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            return colliders.Length <= 0;
         }
 
         private void DrawTilemap()

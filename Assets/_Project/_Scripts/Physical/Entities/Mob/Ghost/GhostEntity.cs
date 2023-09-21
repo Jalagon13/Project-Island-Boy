@@ -18,9 +18,7 @@ namespace IslandBoy
         //public Seeker Seeker;
         //public IAstarAI AI;
 
-        private float _despawnCd = 15f;
         private bool _reachedDestination;
-        private Timer _despawnTimer;
 
         public TilemapReferences TMR { get { return _tmr; } }
         public bool ReachedDestination { get { return _reachedDestination; } set { _reachedDestination = value; } }
@@ -30,8 +28,6 @@ namespace IslandBoy
             base.Awake();
             //AI = GetComponent<IAstarAI>();
             //Seeker = GetComponent<Seeker>();
-            _despawnTimer = new(_despawnCd);
-            _despawnTimer.OnTimerEnd += OnDespawnTimerEnd;
         }
 
         private void OnDisable()
@@ -42,32 +38,6 @@ namespace IslandBoy
         protected void FixedUpdate()
         {
             OnMove?.Invoke();
-
-            _despawnTimer.Tick(Time.deltaTime);
-        }
-
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.TryGetComponent(out FrustumCollider fc))
-            {
-                _despawnTimer.IsPaused = true;
-                _despawnTimer.RemainingSeconds = _despawnCd;
-            }
-        }
-
-        private void OnTriggerExit2D(Collider2D collision)
-        {
-            if (collision.TryGetComponent(out FrustumCollider fc))
-            {
-                _despawnTimer.IsPaused = false;
-                _despawnTimer.RemainingSeconds = _despawnCd;
-            }
-        }
-
-        public void OnDespawnTimerEnd()
-        {
-            _despawnTimer.OnTimerEnd -= OnDespawnTimerEnd;
-            Destroy(gameObject);
         }
 
         public void Seek(Vector2 pos)
