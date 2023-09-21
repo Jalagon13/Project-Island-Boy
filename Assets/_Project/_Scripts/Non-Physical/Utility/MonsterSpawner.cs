@@ -16,12 +16,22 @@ namespace IslandBoy
 
         private void Start()
         {
-            SceneManager.activeSceneChanged += OnSceneChanged;
             OnSceneChanged(new(), SceneManager.GetActiveScene());
+        }
+
+        private void OnEnable()
+        {
+            SceneManager.activeSceneChanged += OnSceneChanged;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.activeSceneChanged -= OnSceneChanged;
         }
 
         private void OnSceneChanged(Scene current, Scene next)
         {
+            Debug.Log(this == null);
             if (next.buildIndex == 1)
                 StartCoroutine(SpawnMonsterTimer());
             else
