@@ -13,9 +13,9 @@ namespace IslandBoy
 
         [SerializeField] private float _agroDistance;
 
-        public readonly int HashIdle = Animator.StringToHash("[Anm] ZombieIdle");
-        public readonly int HashMove = Animator.StringToHash("[Anm] ZombieMove");
-        public readonly int HashChase = Animator.StringToHash("[Anm] ZombieChase");
+        public readonly int HashIdle = Animator.StringToHash("[Anm] RusherIdle");
+        public readonly int HashMove = Animator.StringToHash("[Anm] RusherMove");
+        public readonly int HashChase = Animator.StringToHash("[Anm] RusherChase");
         public Action OnMove;
         public Seeker Seeker;
         public IAstarAI AI;
@@ -30,6 +30,11 @@ namespace IslandBoy
             Seeker = GetComponent<Seeker>();
             _despawnTimer = new(_despawnCd);
             _despawnTimer.OnTimerEnd += OnDespawnTimerEnd;
+        }
+
+        private void Start()
+        {
+            // spawn animation here
         }
 
         private void OnDisable()

@@ -17,6 +17,7 @@ namespace IslandBoy
         private void Start()
         {
             SceneManager.activeSceneChanged += OnSceneChanged;
+            OnSceneChanged(new(), SceneManager.GetActiveScene());
         }
 
         private void OnSceneChanged(Scene current, Scene next)
@@ -42,10 +43,10 @@ namespace IslandBoy
 
         private bool CanSpawn()
         {
-            Debug.Log($"CurrentMon: {_monsterCounter} maxMon: {_maxMonsterCount}");
+            //Debug.Log($"CurrentMon: {_monsterCounter} maxMon: {_maxMonsterCount}");
             float spawnRatio = (float)_monsterCounter / (float)_maxMonsterCount;
             var n = Random.Range(0f, 1f);
-            Debug.Log($"{n}  {spawnRatio}");
+            //Debug.Log($"{n}  {spawnRatio}");
             return n > spawnRatio;
         }
 
