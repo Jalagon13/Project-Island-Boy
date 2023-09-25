@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using Random = UnityEngine.Random;
 
 namespace IslandBoy
 {
     public class AudioManager : Singleton<AudioManager>
     {
+        [SerializeField] private AudioMixerGroup _sfxAMG;
+
         private readonly static int _audioSourceNum = 10;
         private Queue<AudioSource> _audioSources = new Queue<AudioSource>();
 
@@ -70,6 +73,7 @@ namespace IslandBoy
         private void AudioHandle(bool looping, bool randPitch, AudioSource source, AudioClip clip, float volume, float pitch)
         {
             pitch = randPitch ? Random.Range(pitch - 0.1f, pitch + 0.6f) : pitch;
+            source.outputAudioMixerGroup = _sfxAMG;
 
             if (looping)
             {

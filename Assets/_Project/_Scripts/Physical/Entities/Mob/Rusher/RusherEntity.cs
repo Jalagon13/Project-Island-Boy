@@ -27,11 +27,6 @@ namespace IslandBoy
             Seeker = GetComponent<Seeker>();
         }
 
-        private void Start()
-        {
-            // spawn animation here
-        }
-
         private void OnDisable()
         {
             Destroy(gameObject);
