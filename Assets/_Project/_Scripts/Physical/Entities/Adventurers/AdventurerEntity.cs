@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace IslandBoy
 {
@@ -16,6 +17,8 @@ namespace IslandBoy
 
         private SpriteRenderer _selectedIndicator;
         private Animator _animator;
+        private Bed _bed;
+        private bool _canRegister = false;
 
         protected override void Awake()
         {
@@ -30,6 +33,12 @@ namespace IslandBoy
         {
             HideSelectIndicator();
             ChangeToIdleState(_animator);
+            CheckForBed();
+        }
+
+        private void Start()
+        {
+            _canRegister = true;
         }
 
         protected override void Update()
@@ -52,6 +61,19 @@ namespace IslandBoy
             {
                 door.Close();
             }
+        }
+
+        private void CheckForBed()
+        {
+            if (!_canRegister) return;
+
+            if (_bed == null)
+                KillEntity();
+        }
+
+        public void RegisterBed(Bed bed)
+        {
+            _bed = bed;
         }
 
         public void ShowSelectIndicator()

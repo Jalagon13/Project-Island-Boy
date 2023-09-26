@@ -21,6 +21,7 @@ namespace IslandBoy
         private Image _buttonIconImage;
         private HousingHoverImage _buttonHoverImage;
         private AdventurerEntity _adventurerReference;
+        private Bed _bedToRegister;
         private Color _originalButtonColor;
 
         private void Awake()
@@ -35,7 +36,7 @@ namespace IslandBoy
         private void Start()
         {
             string header = $"{_adventurerPrefab.name} Housing Scanner";
-            string content = "Furniture Requirements:<br>";
+            string content = "Furniture Requirements:<br> * Bed<br>";
 
             foreach (Resource requirements in _furnitureCheckList)
             {
@@ -62,6 +63,7 @@ namespace IslandBoy
             List<Vector3Int> doorPositions = new(); // list of all positions of doors if any door is found
             List<Resource> foundFurniture = new();
             int maxHouseSpaceTiles = 50;
+            bool bedFound = false;
 
             tilesToCheck.Push(Vector3Int.FloorToInt(transform.root.position));
 
@@ -92,10 +94,10 @@ namespace IslandBoy
 
                 // check for checklist RSC here, 
                 var centerPos = new Vector2(p.x + 0.5f, p.y + 0.5f);
-                var colliders = Physics2D.OverlapCircleAll(centerPos, 0.25f);
+                var colliders1 = Physics2D.OverlapCircleAll(centerPos, 0.25f);
                 bool reqFound = false;
 
-                foreach (var col in colliders)
+                foreach (var col in colliders1)
                 {
                     if(col.TryGetComponent(out Resource rsc))
                     {
@@ -116,6 +118,22 @@ namespace IslandBoy
                 if (reqFound)
                     continue;
 
+                // check for bed here.
+                if(bedFound)
+                    goto skipBedCheck;
+
+                var colliders2 = Physics2D.OverlapCircleAll(centerPos, 0.25f);
+                foreach (var col in colliders2)
+                {
+                    if(col.TryGetComponent(out Bed bed))
+                    {
+                        _bedToRegister = bed;
+                        bedFound = true;
+                    }
+                }
+
+                skipBedCheck:
+
                 // add floor tile to floorTilePositions and push new tiles to check
                 if (!floorTilePositions.Contains(p))
                 {
@@ -126,6 +144,13 @@ namespace IslandBoy
                     tilesToCheck.Push(new Vector3Int(p.x, p.y - 1));
                     tilesToCheck.Push(new Vector3Int(p.x, p.y + 1));
                 }
+            }
+
+            // if there is no bed, say there is no bed
+            if (!bedFound)
+            {
+                _feedbackHolder.DisplayFeedback("Not valid housing. There is no bed.", Color.yellow);
+                return;
             }
 
             // if floor tile positions are greater than maxHouseSpaceTiles, then housing is too big.
@@ -224,10 +249,12 @@ namespace IslandBoy
 
         private IEnumerator SpawnAdventurer(Vector2 spawnPos)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
 
-            _feedbackHolder.DisplayFeedback("Housing found! Miner has moved in!", Color.green);
+            _feedbackHolder.DisplayFeedback("Housing found! NPC has moved in!", Color.green);
             _adventurerReference = Instantiate(_adventurerPrefab, spawnPos, Quaternion.identity);
+            _adventurerReference.RegisterBed(_bedToRegister);
+            _bedToRegister.RegisterBed(_furnitureCheckList, _adventurerReference);
 
             AudioManager.Instance.PlayClip(_moveInSound, false, false);
         }
