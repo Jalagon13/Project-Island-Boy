@@ -52,7 +52,7 @@ namespace IslandBoy
 
             if (_adventurerReference != null)
             {
-                _feedbackHolder.DisplayFeedback($"{_adventurerPrefab.name} is already occupying this space.", Color.green);
+                _feedbackHolder.DisplayFeedback($"{_adventurerPrefab.name} is already occupying a room", Color.green);
                 return;
             }
 
