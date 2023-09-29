@@ -14,6 +14,8 @@ namespace IslandBoy
         [SerializeField] private AudioClip _breakSound;
         [SerializeField] private LootTable _lootTable;
 
+        private readonly static int _rscIdleHash = Animator.StringToHash("[Anm] RscIdle");
+        private readonly static int _rscHitHash = Animator.StringToHash("[Anm] RscHit");
         private SpriteRenderer _sr;
         private Vector2 _dropPosition;
         private float _currentHitPoints;
@@ -28,6 +30,16 @@ namespace IslandBoy
             _dropPosition = transform.position + new Vector3(0.5f, 0.5f, 0);
             _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
             _currentHitPoints = _maxHitPoints;
+        }
+
+        public void RscIdle()
+        {
+            AnimStateManager.ChangeAnimationState(GetComponent<Animator>(), _rscIdleHash);
+        }
+
+        public void RscHit()
+        {
+            AnimStateManager.ChangeAnimationState(GetComponent<Animator>(), _rscHitHash);
         }
 
         public bool Hit(float amount, ToolType toolType = ToolType.None)
@@ -45,7 +57,8 @@ namespace IslandBoy
             AudioManager.Instance.PlayClip(_hitSound, false, true, 0.7f);
             PopupMessage.Create(transform.position, amount.ToString(), Color.yellow, 0.5f);
 
-            StartCoroutine(Tremble());
+
+            RscHit();
 
             _currentHitPoints -= amount;
 

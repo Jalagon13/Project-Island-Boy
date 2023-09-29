@@ -13,6 +13,8 @@ namespace IslandBoy
         private bool _registered;
         private bool _canCheck = false;
 
+        public bool Registered { get { return _registered; } }
+
         private void OnEnable()
         {
             CheckHousing();
