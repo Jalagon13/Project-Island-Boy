@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &4601071102327490918
+--- !u!1001 &4457538732539718670
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,13 +9,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2594954625054858275, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
-      propertyPath: m_Size.y
-      value: 1.0625
-      objectReference: {fileID: 0}
-    - target: {fileID: 2594954625054858275, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 414997368, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
+      objectReference: {fileID: 1168968723, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
     - target: {fileID: 2594954625054858275, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -23,18 +19,18 @@ PrefabInstance:
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _hitSound
       value: 
-      objectReference: {fileID: 8300000, guid: ab0451a7a02c38c4fad983d16598b836, type: 3}
+      objectReference: {fileID: 8300000, guid: db82029e0262e8848ad16558d8a33dbb, type: 3}
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _breakSound
       value: 
-      objectReference: {fileID: 8300000, guid: 1f5e75782a6e8434cba4bce854fb47eb, type: 3}
+      objectReference: {fileID: 8300000, guid: e2b6630a648447b47a66f7f8325c7440, type: 3}
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _harvestType
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _resourceName
-      value: Chest
+      value: Furnace
       objectReference: {fileID: 0}
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.size
@@ -51,7 +47,7 @@ PrefabInstance:
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Item
       value: 
-      objectReference: {fileID: 11400000, guid: b4bf40d026248694da3e0c77e067b436, type: 2}
+      objectReference: {fileID: 11400000, guid: 21d089cfc9506f74593ca24ca2e7a602, type: 2}
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Chance
       value: 100
@@ -98,7 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2594954625819056484, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: m_Name
-      value: '[DPLY] Chest'
+      value: '[DPLY] Furnace'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -106,23 +102,25 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2594954625819056484, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       insertIndex: 2
-      addedObject: {fileID: 4702964906593109841}
+      addedObject: {fileID: 6793745557258681059}
   m_SourcePrefab: {fileID: 100100000, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
---- !u!1 &2006750220682530818 stripped
+--- !u!1 &1864343632687969642 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2594954625819056484, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
-  m_PrefabInstance: {fileID: 4601071102327490918}
+  m_PrefabInstance: {fileID: 4457538732539718670}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4702964906593109841
+--- !u!114 &6793745557258681059
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2006750220682530818}
+  m_GameObject: {fileID: 1864343632687969642}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bf940bd5057a8d4d8a3bc398a7a21dd, type: 3}
+  m_Script: {fileID: 11500000, guid: cbdee678a440c1240be670a82fa909b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
+  _rdb: {fileID: 11400000, guid: 82b866830c4d277448950dc4b293e681, type: 2}
+  _adb: {fileID: 0}
