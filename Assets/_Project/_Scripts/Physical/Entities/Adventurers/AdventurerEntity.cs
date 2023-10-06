@@ -9,6 +9,7 @@ namespace IslandBoy
 {
     public class AdventurerEntity : Entity
     {
+        public string AdventurerName;
         public readonly int HashIdle = Animator.StringToHash("[Anm] AdventurerIdle");
         public readonly int HashMove = Animator.StringToHash("[Anm] AdventurerMove");
         public Action OnMove;

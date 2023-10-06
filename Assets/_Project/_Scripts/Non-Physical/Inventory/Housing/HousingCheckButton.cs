@@ -34,8 +34,8 @@ namespace IslandBoy
 
         private void Start()
         {
-            string header = $"{_adventurerPrefab.name} Housing Scanner";
-            string content = "Furniture Requirements:<br> * Bed<br>";
+            string header = $"Attract a {_adventurerPrefab.AdventurerName} to your island!";
+            string content = "Requirements:<br> * Bed<br>";
 
             foreach (Resource requirements in _furnitureCheckList)
             {

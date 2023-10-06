@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace IslandBoy
 {
@@ -9,6 +10,7 @@ namespace IslandBoy
     {
         [SerializeField] private PortalSlot _portalSlotPrefab;
         [SerializeField] private RectTransform _reqHolderRect;
+        [SerializeField] private UnityEvent _onPortalComplete;
         [SerializeField] private List<ItemAmount> _upgradeRequirements;
 
         private int _slotsComplete;
@@ -42,7 +44,9 @@ namespace IslandBoy
 
         private void CompletePortal()
         {
+
             // put portal complete logic here.
+            _onPortalComplete?.Invoke();
             Debug.Log("Portal coplete!");
         }
     }
