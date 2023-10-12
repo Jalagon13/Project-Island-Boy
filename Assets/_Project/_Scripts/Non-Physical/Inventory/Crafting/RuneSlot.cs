@@ -36,11 +36,6 @@ namespace IslandBoy
             _amountText = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         }
 
-        private void OnDisable()
-        {
-            _pr.LevelSystem.OnLevelChanged -= LevelSystem_OnLevelChanged;
-        }
-
         public void OnPointerEnter(PointerEventData eventData)
         {
             _rscPanel.gameObject.SetActive(true);
@@ -57,7 +52,6 @@ namespace IslandBoy
             if (!_mouseItemHolder.TryToCraftItem(_inventoryItemPrefab, _ar.AugmentOutputs[Random.Range(0, _ar.AugmentOutputs.Count)], 1)) return;
 
             AudioManager.Instance.PlayClip(_popSound, false, true);
-            _pr.LevelSystem.SubtractLevels(_ar.LevelsRequired);
         }
 
         public void Initialize(RuneRecipe ar)
@@ -66,7 +60,6 @@ namespace IslandBoy
             _outputImage.sprite = ar.RecipeSprite;
             _hoverImage.SetCustomDescription(ar.Description, ar.Name);
             _amountText.text = string.Empty;
-            _pr.LevelSystem.OnLevelChanged += LevelSystem_OnLevelChanged;
 
             InitializeResourceSlots();
             CheckIfCanCraft();
@@ -81,8 +74,6 @@ namespace IslandBoy
 
         private void CheckIfCanCraft()
         {
-            _canCraft = _pr.LevelSystem.LevelNumber >= _ar.LevelsRequired;
-
             if (_canCraft)
                 SetCraftable();
             else

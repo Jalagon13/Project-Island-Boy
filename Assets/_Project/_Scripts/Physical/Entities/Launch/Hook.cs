@@ -91,7 +91,6 @@ namespace IslandBoy
             {
                 LootDirectly();
                 Destroy(_fish.gameObject);
-                _pr.LevelSystem.AddExperience(8);
             }
         }
 

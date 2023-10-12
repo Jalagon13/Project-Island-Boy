@@ -627,7 +627,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &858607998
 Transform:
   m_ObjectHideFlags: 0
@@ -1122,8 +1122,8 @@ MonoBehaviour:
   _sonarSound: {fileID: 8300000, guid: e39d47e88bba8d749b7fe6690b1467ac, type: 3}
   _moveInSound: {fileID: 8300000, guid: ea9714a39923f5a4f81a73da4335e26f, type: 3}
   _furnitureCheckList:
-  - {fileID: 8205409246998119314, guid: b2ae96516c54a4a45a7ae553ce260102, type: 3}
-  - {fileID: 8205409246998119314, guid: 3c82a0ba6d91510459c61244a7a5319b, type: 3}
+  - {fileID: 1864343632687969647, guid: 8db4c4330c3668a40b2551b4a560d3b5, type: 3}
+  - {fileID: 4550774484097823513, guid: cd39e006cc21efa428b4e30d1ad8f42d, type: 3}
 --- !u!1 &992544100
 GameObject:
   m_ObjectHideFlags: 0
@@ -1543,7 +1543,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4210445617155456041}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: IslandBoy.ExperienceBar, Assembly-CSharp
         m_MethodName: TESTAddExp
         m_Mode: 1
@@ -2118,8 +2118,8 @@ MonoBehaviour:
   _sonarSound: {fileID: 8300000, guid: e39d47e88bba8d749b7fe6690b1467ac, type: 3}
   _moveInSound: {fileID: 8300000, guid: ea9714a39923f5a4f81a73da4335e26f, type: 3}
   _furnitureCheckList:
-  - {fileID: 8205409246998119314, guid: b2ae96516c54a4a45a7ae553ce260102, type: 3}
-  - {fileID: 8205409246998119314, guid: 3c82a0ba6d91510459c61244a7a5319b, type: 3}
+  - {fileID: 4852493536478638681, guid: f1bbe27885b70e94ea8d2e4c6be4313e, type: 3}
+  - {fileID: 4550774484097823513, guid: cd39e006cc21efa428b4e30d1ad8f42d, type: 3}
 --- !u!1 &4210445616701943213
 GameObject:
   m_ObjectHideFlags: 0
@@ -3937,7 +3937,6 @@ GameObject:
   - component: {fileID: 4210445617709717786}
   - component: {fileID: 4210445617709717787}
   - component: {fileID: 2963529343931073653}
-  - component: {fileID: 4210445617155456040}
   - component: {fileID: 7367368679322717047}
   m_Layer: 0
   m_Name: Player
@@ -4035,44 +4034,6 @@ MonoBehaviour:
   _itemPickupSignPrefab: {fileID: 5710743294088674228, guid: bca8909c4368cb446bcfdf33c0e3171b, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
   _disappearTimer: 2.5
---- !u!114 &4210445617155456040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4210445617709717791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b0678386f07d814f9f47f623c5890f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _experienceBar: {fileID: 4210445617155456041}
-  _levelCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 100
-      value: 100000
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &7367368679322717047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5721,7 +5682,6 @@ GameObject:
   - component: {fileID: 4210445618795922057}
   - component: {fileID: 4210445618795922059}
   - component: {fileID: 4210445618795922058}
-  - component: {fileID: 4210445617155456041}
   m_Layer: 0
   m_Name: XpBar
   m_TagString: Untagged
@@ -5789,21 +5749,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4210445617155456041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4210445618795922056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abed7a92184de674db830d2797577ee3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _levelText: {fileID: 611625724}
-  _expGainSound: {fileID: 8300000, guid: b505e92c4f4f6dd41b29b93a35c416a4, type: 3}
-  _levelUpSound: {fileID: 8300000, guid: b505e92c4f4f6dd41b29b93a35c416a4, type: 3}
 --- !u!1 &5076955830685592369
 GameObject:
   m_ObjectHideFlags: 0

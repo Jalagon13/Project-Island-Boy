@@ -13,7 +13,6 @@ namespace IslandBoy
         private Vector2 _mousePosition;
         private Inventory _playerInventory;
         private InventorySlot _selectedSlot;
-        private LevelSystem _levelSystem;
 
         /// <summary>
         /// Setting PlayerPositionReference does NOT change the actual position of the player.
@@ -30,13 +29,8 @@ namespace IslandBoy
 
         // This is only SET in HotbarControl Script do NOT SET THIS anywhere else. Only get a reference for it.
         public InventorySlot SelectedSlot { get { return _selectedSlot; } set { _selectedSlot = value; } }
-        public int Defense { get { return _defense; } set { _defense = value; } }
-        public LevelSystem LevelSystem { get { return _levelSystem; } }
 
-        public void SetPlayerLevelSystem(LevelSystem ls)
-        {
-            _levelSystem = ls;
-        }
+        public int Defense { get { return _defense; } set { _defense = value; } }
 
         public bool PlayerInRange(Vector3 posToCheck)
         {
