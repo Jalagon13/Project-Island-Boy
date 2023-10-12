@@ -24,16 +24,5 @@ namespace IslandBoy
             _rscImage.sprite = ia.Item.UiDisplay;
             _countText.text = ia.Amount.ToString();
         }
-
-        public void InitializeExpSlot(RuneRecipe ar)
-        {
-            _rscImage = transform.GetChild(1).GetComponent<Image>();
-            _countText = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-            _imageHover = transform.GetChild(1).GetComponent<RscSlotImageHover>();
-            _imageHover.SetCustomDescription(string.Empty, "Experience Level");
-
-            _rscImage.sprite = _experienceOrbSprite;
-            _countText.text = $"{ar.LevelsRequired}";
-        }
     }
 }

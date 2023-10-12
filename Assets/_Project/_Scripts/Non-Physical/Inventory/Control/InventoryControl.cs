@@ -71,7 +71,7 @@ namespace IslandBoy
             _promptControl.PromptHandle(null);
         }
 
-        public void CraftStationInteract(Interactable craftStation, RecipeDatabaseObject rdb, RuneDatabaseObject runeDb)
+        public void CraftStationInteract(Interactable craftStation, RecipeDatabaseObject rdb)
         {
             OpenInventory();
             ActivateCraftSlots(true);
@@ -83,13 +83,13 @@ namespace IslandBoy
             if(_currentInteractableActive is CraftStation)
             {
                 _currentInteractableActive = craftStation;
-                _craftSlotsControl.RefreshCraftingMenu(rdb, runeDb);
+                _craftSlotsControl.RefreshCraftingMenu(rdb);
                 return;
             }
 
             InteractableHandle(craftStation);
 
-            _craftSlotsControl.RefreshCraftingMenu(rdb, runeDb);
+            _craftSlotsControl.RefreshCraftingMenu(rdb);
         }
 
         private void InteractableHandle(Interactable newInteractable)
@@ -110,7 +110,7 @@ namespace IslandBoy
 
         public void RefreshCraftSlotsToDefault()
         {
-            _craftSlotsControl.RefreshCraftingMenu(_defaultRdb, null);
+            _craftSlotsControl.RefreshCraftingMenu(_defaultRdb);
         }
 
         public void CloseInventory()

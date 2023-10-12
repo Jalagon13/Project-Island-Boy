@@ -54,13 +54,7 @@ namespace IslandBoy
                 {
                     if (HasItem())
                     {
-                        if (CanEquipAugment())
-                        {
-                            AudioManager.Instance.PlayClip(_runeEquipSound, false, true);
-                            InventoryItem.InitializeAugment(_mouseItemHolder.ItemObject as RuneObject);
-                            _mouseItemHolder.DeleteMouseItem();
-                        }
-                        else if(ItemObject == _mouseItemHolder.ItemObject)
+                        if(ItemObject == _mouseItemHolder.ItemObject)
                         {
                             if (ItemObject.Stackable)
                             {
@@ -137,21 +131,6 @@ namespace IslandBoy
         public void RegisterSlotEvent()
         {
 
-        }
-
-        // expand on these conditions later
-        private bool CanEquipAugment()
-        {
-            if (_mouseItemHolder.ItemObject is RuneObject && ItemObject is ToolObject && InventoryItem.AugmentsOnItem < 3)
-            {
-                RuneObject mouseAugmentObj = _mouseItemHolder.ItemObject as RuneObject;
-                ToolObject slotToolObj = ItemObject as ToolObject;
-
-                if (mouseAugmentObj.CombatableToolTypes.Contains(slotToolObj.ToolType))
-                    return true;
-            }
-
-            return false;
         }
     }
 }

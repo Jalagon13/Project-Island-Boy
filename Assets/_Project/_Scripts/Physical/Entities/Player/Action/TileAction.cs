@@ -123,17 +123,9 @@ namespace IslandBoy
             if (ApplyDamageToBreakable(transform.position))
             {
                 ModifyDurability();
-                ExecuteAugments();
             }
         }
 
-        private void ExecuteAugments()
-        {
-            if(_pr.SelectedSlot.InventoryItem == null) return;
-
-            if (_pr.SelectedSlot.InventoryItem.HasAugments)
-                _pr.SelectedSlot.InventoryItem.ExecuteAugments(this);
-        }
 
         public bool ApplyDamageToBreakable(Vector3 pos)
         {

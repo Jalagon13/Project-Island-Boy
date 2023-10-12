@@ -8,7 +8,6 @@ namespace IslandBoy
     public class CraftStation : Interactable
     {
         [SerializeField] private RecipeDatabaseObject _rdb;
-        [SerializeField] private RuneDatabaseObject _adb;
 
         public override IEnumerator Start()
         {
@@ -30,13 +29,7 @@ namespace IslandBoy
         public override void Interact()
         {
             if (!_canInteract) return;
-            _pr.Inventory.InventoryControl.CraftStationInteract(this, _rdb, _adb);
+            _pr.Inventory.InventoryControl.CraftStationInteract(this, _rdb);
         }
-    }
-
-    public class CraftStationEventArgs : EventArgs
-    {
-        public RecipeDatabaseObject RDB;
-        public RuneDatabaseObject RuneDB;
     }
 }

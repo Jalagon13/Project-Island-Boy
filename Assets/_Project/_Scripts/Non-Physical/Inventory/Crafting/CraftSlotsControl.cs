@@ -16,27 +16,12 @@ namespace IslandBoy
             _mouseItemHolder = transform.GetChild(2).GetComponent<MouseItemHolder>();
         }
 
-        public void RefreshCraftingMenu(RecipeDatabaseObject rdb, RuneDatabaseObject adb)
+        public void RefreshCraftingMenu(RecipeDatabaseObject rdb)
         {
             ResetCraftSlots();
 
             if (rdb != null)
                 SetupRDB(rdb);
-
-            if (adb != null)
-                SetupADB(adb);
-        }
-
-        private void SetupADB(RuneDatabaseObject adb)
-        {
-            for (int i = 0; i < adb.Database.Length; i++)
-            {
-                GameObject augSlotGo = Instantiate(_augmentSlotPrefab, _craftSlotsRect.transform);
-
-                RuneSlot augSlot = augSlotGo.GetComponent<RuneSlot>();
-                augSlot.Initialize(adb.Database[i]);
-                augSlot.MouseItemHolder = _mouseItemHolder;
-            }
         }
 
         private void SetupRDB(RecipeDatabaseObject rdb)
