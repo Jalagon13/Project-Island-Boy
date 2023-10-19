@@ -8,14 +8,13 @@ using UnityEngine.UI;
 
 namespace IslandBoy
 {
-    public class DayNightManager : Singleton<DayNightManager>
+    public class DayManager : Singleton<DayManager>
     {
         [SerializeField] private float _dayDurationInSec;
-        [SerializeField] private float _nightDurationInSec;
-        [Header("Sun/Moon Marker")]
+        [Header("Editor Stuff")]
         [SerializeField] private RectTransform _marker;
+        [SerializeField] private RectTransform _panel;
         [SerializeField] private Sprite _sunSprite;
-        [SerializeField] private Sprite _moonSprite;
         [SerializeField] private Vector2 _markerStartPosition;
         [SerializeField] private Vector2 _markerEndPosition;
 
@@ -42,7 +41,6 @@ namespace IslandBoy
 
         private void OnDisable()
         {
-            _timer.OnTimerEnd -= StartNight;
             _timer.OnTimerEnd -= StartDay;
         }
 
@@ -60,12 +58,12 @@ namespace IslandBoy
 
         private void VolumeHandle()
         {
-            if (_phasePercent <= 0.1f)
+            if (_phasePercent <= 0.15f)
             {
                 float percent = _phasePercent / 0.1f;
                 _globalVolume.weight = Mathf.Lerp(0.5f, _isDay ? 0 : 1, percent);
             }
-            else if(_phasePercent >= 0.9f && _phasePercent <= 1f)
+            else if(_phasePercent >= 0.85f && _phasePercent <= 1f)
             {
                 float percent =  1 - ((1f - _phasePercent) * 10);
                 _globalVolume.weight = Mathf.Lerp(_isDay ? 0 : 1, 0.5f, percent);
@@ -79,26 +77,46 @@ namespace IslandBoy
             _marker.anchoredPosition = new Vector2(xValue, _markerStartPosition.y);
         }
 
-        private void StartDay()
+        public void StartDay()
         {
             _marker.localPosition = _markerStartPosition;
             _timer = new(_dayDurationInSec);
-            _timer.OnTimerEnd += StartNight;
+            _timer.OnTimerEnd += EndDay;
             _duration = _dayDurationInSec;
             _isDay = true;
 
+            PanelEnabled(false);
             UpdateMarker(_sunSprite);
         }
 
-        private void StartNight()
+        public void EndDay()
         {
-            _marker.localPosition = _markerStartPosition;
-            _timer = new(_nightDurationInSec);
-            _timer.OnTimerEnd += StartDay;
-            _duration = _nightDurationInSec;
-            _isDay = false;
+            PanelEnabled(true);
+            StartCoroutine(TextSequence());
+        }
 
-            UpdateMarker(_moonSprite);
+        private IEnumerator TextSequence()
+        {
+            var text = _panel.GetChild(0).GetComponent<TextMeshProUGUI>();
+            var button = _panel.GetChild(1).GetComponent<Button>();
+
+            text.gameObject.SetActive(false);
+            button.gameObject.SetActive(false);
+
+            yield return new WaitForSeconds(1f);
+
+            text.text = "Day has ended!";
+            text.gameObject.SetActive(true);
+
+            yield return new WaitForSeconds(2f);
+
+            text.text = "Your stats have been replenished!";
+            button.gameObject.SetActive(true);
+        }
+
+        private void PanelEnabled(bool _)
+        {
+            _panel.gameObject.SetActive(_);
         }
 
         private void UpdateMarker(Sprite sprite)

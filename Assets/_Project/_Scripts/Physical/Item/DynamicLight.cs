@@ -19,13 +19,13 @@ namespace IslandBoy
 
         private void LateUpdate()
         {
-            if (!DayNightManager.Instance.GlobalVolume.isActiveAndEnabled)
+            if (!DayManager.Instance.GlobalVolume.isActiveAndEnabled)
             {
                 _light.intensity = _intensity * 0.25f;
                 return;
             }
 
-            float globalBrightness = DayNightManager.Instance.GlobalVolume.weight;
+            float globalBrightness = DayManager.Instance.GlobalVolume.weight;
             float intensity = _intensity * globalBrightness;
 
             _light.enabled = intensity > 1f;
