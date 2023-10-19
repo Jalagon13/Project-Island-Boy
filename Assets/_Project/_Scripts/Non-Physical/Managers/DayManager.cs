@@ -1,9 +1,8 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 namespace IslandBoy
@@ -18,6 +17,9 @@ namespace IslandBoy
         [SerializeField] private Vector2 _markerStartPosition;
         [SerializeField] private Vector2 _markerEndPosition;
 
+        // Need to implement a system where any system can observe the DayManager and do something depending on if the day ends/begins.
+        private event EventHandler _onDayStart;
+        private event EventHandler _onDayEnd;
         private Timer _timer;
         private Volume _globalVolume;
         private float _duration;
@@ -47,13 +49,32 @@ namespace IslandBoy
         private void Update()
         {
             _timer.Tick(Time.deltaTime);
-            //_timeCounterText.text = $"Day Time Left: {Mathf.RoundToInt(_timer.RemainingSeconds)}";
 
             if (!_timer.IsPaused)
             {
                 MoveMarker();
                 VolumeHandle();
             }
+        }
+
+        public void SubToDayStart(EventHandler function)
+        {
+            _onDayStart += function;
+        }
+
+        public void UnSubToDayStart(EventHandler function)
+        {
+            _onDayStart -= function;
+        }
+
+        public void SubToDayEnd(EventHandler function)
+        {
+            _onDayEnd += function;
+        }
+
+        public void UnSubToDayEnd(EventHandler function)
+        {
+            _onDayEnd -= function;
         }
 
         private void VolumeHandle()
@@ -79,18 +100,28 @@ namespace IslandBoy
 
         public void StartDay()
         {
+            // start day event invoked
+            _onDayStart?.Invoke(this, EventArgs.Empty);
+
+            ResetDay();
+            PanelEnabled(false);
+            UpdateMarker(_sunSprite);
+        }
+
+        private void ResetDay()
+        {
             _marker.localPosition = _markerStartPosition;
             _timer = new(_dayDurationInSec);
             _timer.OnTimerEnd += EndDay;
             _duration = _dayDurationInSec;
             _isDay = true;
-
-            PanelEnabled(false);
-            UpdateMarker(_sunSprite);
         }
 
         public void EndDay()
         {
+            // end day event invoked.
+            _onDayEnd?.Invoke(this, EventArgs.Empty);
+
             PanelEnabled(true);
             StartCoroutine(TextSequence());
         }
