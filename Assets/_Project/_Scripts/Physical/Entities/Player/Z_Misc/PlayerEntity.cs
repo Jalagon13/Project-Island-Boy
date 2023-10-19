@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,16 @@ namespace IslandBoy
         {
             PR.Defense = 0;
             PR.SetSpawnPosition(transform.position);
+        }
+
+        private void OnEnable()
+        {
+            DayManager.Instance.DayTimer.OnTimerEnd += KillEntity;
+        }
+
+        private void OnDisable()
+        {
+            DayManager.Instance.DayTimer.OnTimerEnd -= KillEntity;
         }
 
         public override void Damage(int incomingDamage, GameObject sender = null)

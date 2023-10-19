@@ -17,9 +17,8 @@ namespace IslandBoy
         [SerializeField] private Vector2 _markerStartPosition;
         [SerializeField] private Vector2 _markerEndPosition;
 
-        // Need to implement a system where any system can observe the DayManager and do something depending on if the day ends/begins.
-        private event EventHandler _onDayStart;
-        private event EventHandler _onDayEnd;
+        private event EventHandler _onStartDay;
+        private event EventHandler _onEndDay;
         private Timer _timer;
         private Volume _globalVolume;
         private float _duration;
@@ -27,23 +26,21 @@ namespace IslandBoy
         private bool _isDay;
 
         public Volume GlobalVolume { get { return _globalVolume; } }
+        public EventHandler OnStartDay { get { return _onStartDay; } set { _onStartDay = value; } }
+        public EventHandler OnEndDay { get { return _onEndDay; } set { _onEndDay = value; } }
+        public Timer DayTimer { get { return _timer; } }
 
         protected override void Awake()
         {
             base.Awake();
 
+            _timer = new(_dayDurationInSec);
             _globalVolume = transform.GetChild(1).GetComponent<Volume>();
         }
 
         private void Start()
         {
             StartDay();
-            _timer.Tick(_dayDurationInSec * 0.1f);
-        }
-
-        private void OnDisable()
-        {
-            _timer.OnTimerEnd -= StartDay;
         }
 
         private void Update()
@@ -55,26 +52,6 @@ namespace IslandBoy
                 MoveMarker();
                 VolumeHandle();
             }
-        }
-
-        public void SubToDayStart(EventHandler function)
-        {
-            _onDayStart += function;
-        }
-
-        public void UnSubToDayStart(EventHandler function)
-        {
-            _onDayStart -= function;
-        }
-
-        public void SubToDayEnd(EventHandler function)
-        {
-            _onDayEnd += function;
-        }
-
-        public void UnSubToDayEnd(EventHandler function)
-        {
-            _onDayEnd -= function;
         }
 
         private void VolumeHandle()
@@ -101,8 +78,8 @@ namespace IslandBoy
         public void StartDay()
         {
             // start day event invoked
-            _onDayStart?.Invoke(this, EventArgs.Empty);
-
+            _onStartDay?.Invoke(this, EventArgs.Empty);
+            Debug.Log("Start day");
             ResetDay();
             PanelEnabled(false);
             UpdateMarker(_sunSprite);
@@ -111,17 +88,15 @@ namespace IslandBoy
         private void ResetDay()
         {
             _marker.localPosition = _markerStartPosition;
-            _timer = new(_dayDurationInSec);
-            _timer.OnTimerEnd += EndDay;
+            _timer.RemainingSeconds = _dayDurationInSec;
             _duration = _dayDurationInSec;
             _isDay = true;
         }
 
-        public void EndDay()
+        public void EndDay() // connected to bed
         {
-            // end day event invoked.
-            _onDayEnd?.Invoke(this, EventArgs.Empty);
-
+            _onEndDay?.Invoke(this, EventArgs.Empty);
+            Debug.Log("End Day");
             PanelEnabled(true);
             StartCoroutine(TextSequence());
         }
