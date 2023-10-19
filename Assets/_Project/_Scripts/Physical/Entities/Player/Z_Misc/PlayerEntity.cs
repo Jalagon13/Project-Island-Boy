@@ -16,7 +16,6 @@ namespace IslandBoy
         private void Start()
         {
             PR.Defense = 0;
-            PR.SetSpawnPosition(transform.position);
         }
 
         private void OnEnable()
@@ -85,13 +84,6 @@ namespace IslandBoy
             _onDeath?.Invoke();
             yield return new WaitForSeconds(_deathTimer);
             _onRespawn?.Invoke();
-
-            if(SceneManager.GetActiveScene().buildIndex != 0)
-            {
-                LevelManager.Instance.LoadSurface();
-            }
-
-            transform.root.gameObject.transform.SetPositionAndRotation(PR.SpawnPosition, Quaternion.identity);
 
             HealthSystem = new(_maxHealth);
         }

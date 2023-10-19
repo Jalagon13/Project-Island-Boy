@@ -89,6 +89,7 @@ namespace IslandBoy
         {
             _marker.localPosition = _markerStartPosition;
             _timer.RemainingSeconds = _dayDurationInSec;
+            _timer.IsPaused = false;
             _duration = _dayDurationInSec;
             _isDay = true;
         }
@@ -96,6 +97,7 @@ namespace IslandBoy
         public void EndDay() // connected to bed
         {
             _onEndDay?.Invoke(this, EventArgs.Empty);
+            _timer.IsPaused = true;
             Debug.Log("End Day");
             PanelEnabled(true);
             StartCoroutine(TextSequence());
