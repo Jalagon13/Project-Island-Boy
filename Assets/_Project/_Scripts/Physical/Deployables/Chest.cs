@@ -8,6 +8,7 @@ namespace IslandBoy
 {
     public class Chest : Interactable
     {
+        [SerializeField] private List<ChestInvSlot> _slots = new(); // need to build functionality to populate chests with preset items.
         private Canvas _slotCanvas;
 
         public override void Awake()
@@ -70,5 +71,12 @@ namespace IslandBoy
         {
             _pr.Inventory.InventoryControl.ChestInteract(this);
         }
+    }
+
+    [Serializable]
+    public class ChestInvSlot
+    {
+        public ItemObject OutputItem;
+        public int OutputAmount;
     }
 }
