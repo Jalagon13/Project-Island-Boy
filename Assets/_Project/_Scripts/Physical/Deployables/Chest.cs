@@ -52,7 +52,6 @@ namespace IslandBoy
         public override void Interact()
         {
             if (!_canInteract) return;
-
             HandleInventoryControl();
             EnableChestSlots(true);
         }

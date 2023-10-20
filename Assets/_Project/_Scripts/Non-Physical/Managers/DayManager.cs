@@ -41,6 +41,7 @@ namespace IslandBoy
         private void Start()
         {
             StartDay();
+            _timer.Tick(_dayDurationInSec * 0.25f); // starts the day 25% through.
         }
 
         private void Update()
