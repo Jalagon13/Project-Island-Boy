@@ -8,7 +8,7 @@ namespace IslandBoy
 {
     public class Chest : Interactable
     {
-        [SerializeField] private List<ChestInvSlot> _slots = new(); // need to build functionality to populate chests with preset items.
+        [SerializeField] private List<ChestInvSlot> _presetItems = new(); // need to build functionality to populate chests with preset items.
         private Canvas _slotCanvas;
 
         public override void Awake()
@@ -30,6 +30,7 @@ namespace IslandBoy
         public override IEnumerator Start()
         {
             OnPlayerExitRange += () => EnableChestSlots(false);
+            FillWithPresetItems();
             EnableChestSlots(false);
 
             return base.Start();
@@ -48,6 +49,19 @@ namespace IslandBoy
                     WorldItemManager.Instance.SpawnItem(this.transform.position += offset, slot.ItemObject, slot.InventoryItem.Count);
                 }
             }
+        }
+
+        private void FillWithPresetItems()
+        {
+            var slotTransform = _slotCanvas.transform.GetChild(0);
+            int counter = 0;
+
+            _presetItems.ForEach((chestInvSlot) => 
+            {
+                var chestSlot = slotTransform.GetChild(counter).GetComponent<Slot>();
+                chestSlot.SpawnInventoryItem(chestInvSlot.OutputItem, chestInvSlot.OutputItem.DefaultParameterList, chestInvSlot.OutputAmount);
+                counter++;
+            });
         }
 
         public override void Interact()
