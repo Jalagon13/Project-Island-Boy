@@ -8,51 +8,26 @@ namespace IslandBoy
     {
         [SerializeField] private TilemapReferences _tmr;
 
-        private List<Resource> _furnitureCheckList;
-        private AdventurerEntity _entity;
-        private bool _registered;
         private bool _canCheck = false;
 
-        public bool Registered { get { return _registered; } }
 
-        private void OnEnable()
-        {
-            CheckHousing();
-        }
-
-        private void Start()
+        public void Start()
         {
             _canCheck = true;
         }
 
-        public void RegisterBed(List<Resource> furnitureCheckList, AdventurerEntity adventurerReference)
+        public void TryToEndDay() // connected to bed button
         {
-            _furnitureCheckList = furnitureCheckList;
-            _entity = adventurerReference;
-            _registered = true;
-        }
+            if (!_canCheck) return;
 
-        private void CheckHousing()
-        {
-            if (!_registered || !_canCheck) return;
-            // check if housing requiremenets are met for the entity in question
-
-            // if adventurer is missing, unregister bed.
-            if(_entity == null)
-            {
-                UnRegisterBed();
-                return;
-            }
-
-            // checks if this is an enclosed space with flooring everywhere
             Stack<Vector3Int> tilesToCheck = new();
             List<Vector3Int> floorTilePositions = new(); // list of positions of tile that have a floor and no wall or door on it.
             List<Vector3Int> wallTilePositions = new(); // list of wall tiles around the free space
             List<Vector3Int> doorPositions = new(); // list of all positions of doors if any door is found
-            List<Resource> foundFurniture = new();
             int maxHouseSpaceTiles = 50;
 
-            tilesToCheck.Push(Vector3Int.FloorToInt(transform.root.position));
+            var checkPos = Vector3Int.FloorToInt(transform.root.position);
+            tilesToCheck.Push(checkPos);
 
             while (tilesToCheck.Count > 0)
             {
@@ -62,7 +37,7 @@ namespace IslandBoy
                 if (!_tmr.FloorTilemap.HasTile(p) && !_tmr.WallTilemap.HasTile(p) && !HasDoor(p))
                 {
                     //_feedbackHolder.DisplayFeedback("Not valid housing. Make sure the area around you is enclosed.", Color.yellow);
-                    KillEntity();
+                    Debug.Log("Can't Sleep area is not enclosed");
                     return;
                 }
 
@@ -80,33 +55,6 @@ namespace IslandBoy
                     continue;
                 }
 
-                // check for checklist RSC here, 
-                var centerPos = new Vector2(p.x + 0.5f, p.y + 0.5f);
-                var colliders1 = Physics2D.OverlapCircleAll(centerPos, 0.25f);
-                bool reqFound = false;
-
-                foreach (var col in colliders1)
-                {
-                    if (col.TryGetComponent(out Resource rsc))
-                    {
-                        if (foundFurniture.Contains(rsc))
-                            continue;
-
-                        foreach (Resource req in _furnitureCheckList)
-                        {
-                            if (rsc.ResourceName == req.ResourceName)
-                            {
-                                foundFurniture.Add(rsc);
-                                reqFound = true;
-                            }
-                        }
-                    }
-                }
-
-                if (reqFound)
-                    continue;
-
-
                 // add floor tile to floorTilePositions and push new tiles to check
                 if (!floorTilePositions.Contains(p))
                 {
@@ -123,7 +71,7 @@ namespace IslandBoy
             if (floorTilePositions.Count > maxHouseSpaceTiles)
             {
                 //_feedbackHolder.DisplayFeedback("Not valid housing. Enclosed space too large.", Color.yellow);
-                KillEntity();
+                Debug.Log("Can't Sleep Space too large");
                 return;
             }
 
@@ -131,29 +79,8 @@ namespace IslandBoy
             if (doorPositions.Count <= 0)
             {
                 //_feedbackHolder.DisplayFeedback("Not valid housing. No doors found.", Color.yellow);
-                KillEntity();
+                Debug.Log("Can't Sleep no door found");
                 return;
-            }
-
-            // if checklist is not compelete, then housing not valid
-            foreach (Resource req in _furnitureCheckList)
-            {
-                bool furnitureFound = false;
-
-                foreach (Resource rsc in foundFurniture)
-                {
-                    if (rsc.ResourceName == req.ResourceName)
-                    {
-                        furnitureFound = true;
-                    }
-                }
-
-                if (!furnitureFound)
-                {
-                    //_feedbackHolder.DisplayFeedback("Not valid housing. Furniture requirements not met.", Color.yellow);
-                    KillEntity();
-                    return;
-                }
             }
 
             // loop through all doors found
@@ -206,11 +133,12 @@ namespace IslandBoy
             if (!validDoorFound)
             {
                 //_feedbackHolder.DisplayFeedback("Not valid housing. There is no door that leads outside of this space.", Color.yellow);
-                KillEntity();
+                Debug.Log("Can't Sleep no valid door");
                 return;
             }
 
-            Debug.Log($"{_entity.name}'s place is in tact!");
+            Debug.Log("Going to sleep now!");
+            DayManager.Instance.EndDay();
         }
 
         private bool HasDoor(Vector3Int pos)
@@ -227,17 +155,6 @@ namespace IslandBoy
             return false;
         }
 
-        private void KillEntity()
-        {
-            _entity.KillEntity();
-            UnRegisterBed();
-        }
 
-        private void UnRegisterBed()
-        {
-            _entity = null;
-            _furnitureCheckList.Clear();
-            _registered = false;
-        }
     }
 }
