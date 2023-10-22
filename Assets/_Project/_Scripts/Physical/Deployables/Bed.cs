@@ -20,6 +20,12 @@ namespace IslandBoy
         {
             if (!_canCheck) return;
 
+            if (!DayManager.Instance.CanSleep())
+            {
+                PopupMessage.Create(transform.position, "Too early to sleep!", Color.yellow, new(0.5f, 0.5f), 1f);
+                return;
+            }
+
             Stack<Vector3Int> tilesToCheck = new();
             List<Vector3Int> floorTilePositions = new(); // list of positions of tile that have a floor and no wall or door on it.
             List<Vector3Int> wallTilePositions = new(); // list of wall tiles around the free space
@@ -37,7 +43,7 @@ namespace IslandBoy
                 if (!_tmr.FloorTilemap.HasTile(p) && !_tmr.WallTilemap.HasTile(p) && !HasDoor(p))
                 {
                     //_feedbackHolder.DisplayFeedback("Not valid housing. Make sure the area around you is enclosed.", Color.yellow);
-                    Debug.Log("Can't Sleep area is not enclosed");
+                    PopupMessage.Create(transform.position, "Area not enclosed!", Color.yellow, new(0.5f, 0.5f), 1f);
                     return;
                 }
 
@@ -70,16 +76,14 @@ namespace IslandBoy
             // if floor tile positions are greater than maxHouseSpaceTiles, then housing is too big.
             if (floorTilePositions.Count > maxHouseSpaceTiles)
             {
-                //_feedbackHolder.DisplayFeedback("Not valid housing. Enclosed space too large.", Color.yellow);
-                Debug.Log("Can't Sleep Space too large");
+                PopupMessage.Create(transform.position, "Space too large!", Color.yellow, new(0.5f, 0.5f), 1f);
                 return;
             }
 
             // if there is no doors found then housing not valid
             if (doorPositions.Count <= 0)
             {
-                //_feedbackHolder.DisplayFeedback("Not valid housing. No doors found.", Color.yellow);
-                Debug.Log("Can't Sleep no door found");
+                PopupMessage.Create(transform.position, "No door found!", Color.yellow, new(0.5f, 0.5f), 1f);
                 return;
             }
 
@@ -132,12 +136,10 @@ namespace IslandBoy
 
             if (!validDoorFound)
             {
-                //_feedbackHolder.DisplayFeedback("Not valid housing. There is no door that leads outside of this space.", Color.yellow);
-                Debug.Log("Can't Sleep no valid door");
+                PopupMessage.Create(transform.position, "No valid door!", Color.yellow, new(0.5f, 0.5f), 1f);
                 return;
             }
 
-            Debug.Log("Going to sleep now!");
             DayManager.Instance.EndDay();
         }
 

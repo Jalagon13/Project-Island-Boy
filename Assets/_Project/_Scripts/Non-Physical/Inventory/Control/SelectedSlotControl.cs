@@ -149,7 +149,7 @@ namespace IslandBoy
                     HealthBar.AddTo(value);
                     break;
             }
-            PopupMessage.Create(transform.root.position, $"+{value} {cType}", Color.green, 0.5f, 1f);
+            PopupMessage.Create(transform.root.position, $"+{value} {cType}", Color.green, new(0, 0.5f), 1f);
         }
     }
 }

@@ -9,7 +9,12 @@ namespace IslandBoy
 {
     public class DayManager : Singleton<DayManager>
     {
+        [SerializeField] private PlayerReference _pr;
         [SerializeField] private float _dayDurationInSec;
+        [Range(0, 1f)]
+        [SerializeField] private float _percentTillCanSleep;
+        [Range(0, 1f)]
+        [SerializeField] private float _debugDayPercentage;
         [Header("Editor Stuff")]
         [SerializeField] private RectTransform _marker;
         [SerializeField] private RectTransform _panel;
@@ -23,7 +28,7 @@ namespace IslandBoy
         private Volume _globalVolume;
         private float _duration;
         private float _phasePercent;
-        private bool _isDay;
+        private bool _isDay, _hasDisplayedWarning;
 
         public Volume GlobalVolume { get { return _globalVolume; } }
         public EventHandler OnStartDay { get { return _onStartDay; } set { _onStartDay = value; } }
@@ -33,7 +38,6 @@ namespace IslandBoy
         protected override void Awake()
         {
             base.Awake();
-
             _timer = new(_dayDurationInSec);
             _globalVolume = transform.GetChild(1).GetComponent<Volume>();
         }
@@ -41,7 +45,7 @@ namespace IslandBoy
         private void Start()
         {
             StartDay();
-            _timer.Tick(_dayDurationInSec * 0.25f); // starts the day 25% through.
+            _timer.Tick(_dayDurationInSec * _debugDayPercentage); // starts the day some percent way through
         }
 
         private void Update()
@@ -52,6 +56,11 @@ namespace IslandBoy
             {
                 MoveMarker();
                 VolumeHandle();
+                if(_phasePercent > _percentTillCanSleep && !_hasDisplayedWarning)
+                {
+                    PopupMessage.Create(_pr.Position, "I need to sleep soon..", Color.cyan, new(0f, 0.75f), 1.5f);
+                    _hasDisplayedWarning = true;
+                }
             }
         }
 
@@ -78,9 +87,6 @@ namespace IslandBoy
 
         public void StartDay()
         {
-            // start day event invoked
-            _onStartDay?.Invoke(this, EventArgs.Empty);
-            Debug.Log("Start day");
             ResetDay();
             PanelEnabled(false);
             UpdateMarker(_sunSprite);
@@ -90,16 +96,23 @@ namespace IslandBoy
         {
             _marker.localPosition = _markerStartPosition;
             _timer.RemainingSeconds = _dayDurationInSec;
-            _timer.IsPaused = false;
             _duration = _dayDurationInSec;
+            _hasDisplayedWarning = false;
+            _timer.IsPaused = false;
             _isDay = true;
+            _onStartDay?.Invoke(this, EventArgs.Empty);
+        }
+
+        public bool CanSleep()
+        {
+            return _phasePercent > _percentTillCanSleep;
         }
 
         public void EndDay() // connected to bed
         {
             _onEndDay?.Invoke(this, EventArgs.Empty);
             _timer.IsPaused = true;
-            Debug.Log("End Day");
+
             PanelEnabled(true);
             StartCoroutine(TextSequence());
         }

@@ -35,11 +35,13 @@ namespace IslandBoy
         private void OnEnable()
         {
             DayManager.Instance.OnEndDay += OnEndDay;
+            DayManager.Instance.OnStartDay += OnStartDay;
         }
 
         private void OnDisable()
         {
             DayManager.Instance.OnEndDay -= OnEndDay;
+            DayManager.Instance.OnStartDay -= OnStartDay;
         }
 
         private void Start()
@@ -56,6 +58,23 @@ namespace IslandBoy
         }
 
         private void OnEndDay(object obj, EventArgs e)
+        {
+            TeleportPlayerToSpawn();
+            EnableMovement(false);
+        }
+
+        private void OnStartDay(object obj, EventArgs e)
+        {
+            EnableMovement(true);
+        }
+
+        private void EnableMovement(bool _)
+        {
+            var input = GetComponent<PlayerMoveInput>();
+            input.enabled = _;
+        }
+
+        private void TeleportPlayerToSpawn()
         {
             if (SceneManager.GetActiveScene().buildIndex != 0)
             {
