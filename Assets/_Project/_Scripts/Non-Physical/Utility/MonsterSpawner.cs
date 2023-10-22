@@ -9,6 +9,7 @@ namespace IslandBoy
 {
     public class MonsterSpawner : MonoBehaviour
     {
+        [SerializeField] private TilemapReferences _tmr;
         [SerializeField] private int _maxMonsterCount;
         [SerializeField] private Entity _monsterPrefab;
 
@@ -16,32 +17,14 @@ namespace IslandBoy
 
         private void Start()
         {
-            OnSceneChanged(new(), SceneManager.GetActiveScene());
-        }
-
-        private void OnEnable()
-        {
-            SceneManager.activeSceneChanged += OnSceneChanged;
-        }
-
-        private void OnDisable()
-        {
-            SceneManager.activeSceneChanged -= OnSceneChanged;
-        }
-
-        private void OnSceneChanged(Scene current, Scene next)
-        {
-            if (next.buildIndex == 1)
-                StartCoroutine(SpawnMonsterTimer());
-            else
-                StopAllCoroutines();
+            StartCoroutine(SpawnMonsterTimer());
         }
 
         private IEnumerator SpawnMonsterTimer()
         {
-            yield return new WaitForSeconds(Random.Range(10f, 20f));
+            yield return new WaitForSeconds(Random.Range(1f, 2f));
 
-            if(CanSpawn())
+            if (CanSpawn())
             {
                 yield return SpawnMonsters();
             }
@@ -51,10 +34,8 @@ namespace IslandBoy
 
         private bool CanSpawn()
         {
-            //Debug.Log($"CurrentMon: {_monsterCounter} maxMon: {_maxMonsterCount}");
             float spawnRatio = (float)_monsterCounter / (float)_maxMonsterCount;
             var n = Random.Range(0f, 1f);
-            //Debug.Log($"{n}  {spawnRatio}");
             return n > spawnRatio;
         }
 
@@ -67,7 +48,7 @@ namespace IslandBoy
             for (int i = 0; i < numbMonstersToSpawn; i++)
             {
                 yield return new WaitForSeconds(Random.Range(0.5f, 2f));
-                Spawn(MonsterToSpawn(), CalcSpawnPos()); ;
+                Spawn(MonsterToSpawn(), CalcSpawnPos());
             }
         }
 
@@ -91,10 +72,18 @@ namespace IslandBoy
 
         private Vector2 CalcSpawnPos()
         {
+            calcAgain:
+
             GraphNode startNode = AstarPath.active.GetNearest(transform.position, NNConstraint.Default).node;
 
-            List<GraphNode> nodes = PathUtilities.BFS(startNode, 15);
+            List<GraphNode> nodes = PathUtilities.BFS(startNode, 20);
             Vector3 singleRandomPoint = PathUtilities.GetPointsOnNodes(nodes, 1)[0];
+
+            if (_tmr.WallTilemap.HasTile(Vector3Int.FloorToInt(singleRandomPoint)) || _tmr.FloorTilemap.HasTile(Vector3Int.FloorToInt(singleRandomPoint)))
+            {
+                Debug.Log("Test");
+                goto calcAgain;
+            }
 
             return singleRandomPoint;
         }

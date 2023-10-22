@@ -369,7 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d8c5ed8a3d5d5241abf99eb3e941f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageAmount: 16
+  _damageAmount: 12
 --- !u!1 &8560427171654549071
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,10 +493,6 @@ MonoBehaviour:
   _lootTable:
     <Table>k__BackingField:
     - Item: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
-      Min: 1
-      Max: 3
-      Chance: 10
-    - Item: {fileID: 11400000, guid: 677079ef2dd70d94c990c69dd2c5f246, type: 2}
       Min: 1
       Max: 3
       Chance: 10
