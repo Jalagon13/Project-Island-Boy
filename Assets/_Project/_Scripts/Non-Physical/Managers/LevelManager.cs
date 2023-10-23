@@ -34,8 +34,8 @@ namespace IslandBoy
 
         private void Start()
         {
-            AudioManager.Instance.PlayClip(_beachAmbSound, true, false, 0.1f);
-            AudioManager.Instance.StopClip(_caveAmbSound);
+            //AudioManager.Instance.PlayClip(_beachAmbSound, true, false, 0.1f);
+            //AudioManager.Instance.StopClip(_caveAmbSound);
         }
 
         public void LoadUnderground()
