@@ -48,19 +48,15 @@ namespace IslandBoy
             for (int i = 0; i < numbMonstersToSpawn; i++)
             {
                 yield return new WaitForSeconds(Random.Range(0.5f, 2f));
-                Debug.Log("Spawn try");
+
                 var spawn = CalcSpawnPos();
+
                 if (_tmr.WallTilemap.HasTile(Vector3Int.FloorToInt(spawn)) || _tmr.FloorTilemap.HasTile(Vector3Int.FloorToInt(spawn)))
                 {
-                    Debug.Log("AWOIJG");
                     continue;
                 }
-                else
-                {
-                    Debug.Log(Vector3Int.FloorToInt(spawn));
-                    Debug.Log(_tmr.FloorTilemap.GetTile(Vector3Int.FloorToInt(spawn)));
-                    Spawn(MonsterToSpawn(), spawn);
-                }
+
+                Spawn(MonsterToSpawn(), spawn);
             }
         }
 
