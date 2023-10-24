@@ -23,13 +23,6 @@ namespace IslandBoy
 
         }
 
-        public override IEnumerator Start()
-        {
-            Close();
-
-            return base.Start();
-        }
-
         public override void Interact()
         {
             if (!_canInteract) return;
