@@ -10,7 +10,7 @@ namespace IslandBoy
 {
     public class Inventory : MonoBehaviour
     {
-        public EventHandler OnItemAdded; // connected to craftslot
+        public event EventHandler OnItemAdded; // connected to craftslot
 
         [SerializeField] private PlayerReference _pr;
         //[SerializeField] private GameObject _inventoryItemPrefab;
