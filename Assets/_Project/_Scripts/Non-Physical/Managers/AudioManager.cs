@@ -9,6 +9,8 @@ namespace IslandBoy
 {
     public class AudioManager : Singleton<AudioManager>
     {
+        [SerializeField] private AudioClip _bgMusic;
+        [SerializeField] private AudioClip _ambientSound;
         [SerializeField] private AudioMixerGroup _sfxAMG;
 
         private readonly static int _audioSourceNum = 10;
@@ -26,6 +28,12 @@ namespace IslandBoy
                 audioSource.playOnAwake = false;
                 _audioSources.Enqueue(audioSource);
             }
+        }
+
+        private void Start()
+        {
+            PlayClip(_bgMusic, true, false, 0.075f);
+            PlayClip(_ambientSound, true, false, 0.075f);
         }
 
         public void PlayClip(AudioClip clip, bool looping, bool randPitch, float volume = 0.5f, float pitch = 1f)

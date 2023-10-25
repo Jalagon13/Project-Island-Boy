@@ -6,7 +6,6 @@ namespace IslandBoy
     {
 
         [SerializeField] private GameObject _craftSlotPrefab;
-        [SerializeField] private GameObject _augmentSlotPrefab;
         [SerializeField] private RectTransform _craftSlotsRect;
 
         private MouseItemHolder _mouseItemHolder;
@@ -19,13 +18,13 @@ namespace IslandBoy
         public void RefreshCraftingMenu(RecipeDatabaseObject rdb)
         {
             ResetCraftSlots();
-
-            if (rdb != null)
-                SetupRDB(rdb);
+            SetupRDB(rdb);
         }
 
         private void SetupRDB(RecipeDatabaseObject rdb)
         {
+            if (rdb == null) return;
+
             for (int i = 0; i < rdb.Database.Length; i++)
             {
                 GameObject cs = Instantiate(_craftSlotPrefab, _craftSlotsRect.transform);

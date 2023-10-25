@@ -23,13 +23,6 @@ namespace IslandBoy
 
         }
 
-        public override IEnumerator Start()
-        {
-            Close();
-
-            return base.Start();
-        }
-
         public override void Interact()
         {
             if (!_canInteract) return;
@@ -42,17 +35,21 @@ namespace IslandBoy
 
         public void Open()
         {
-            _doorCollider.isTrigger = true;
+            _doorCollider.gameObject.SetActive(false);
             _opened = true;
             _sr.sprite = _openSprite;
+
+            AstarManager.Instance.UpdateGrid(transform.position);
             AudioManager.Instance.PlayClip(_doorOpenSound, false, true);
         }
 
         public void Close()
         {
-            _doorCollider.isTrigger = false;
+            _doorCollider.gameObject?.SetActive(true);
             _opened = false;
             _sr.sprite = _closeSprite;
+
+            AstarManager.Instance.UpdateGrid(transform.position);
             AudioManager.Instance.PlayClip(_doorCloseSound, false, true);
         }
     }

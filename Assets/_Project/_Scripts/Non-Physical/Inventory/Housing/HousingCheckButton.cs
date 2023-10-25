@@ -148,14 +148,14 @@ namespace IslandBoy
             else
             {
                 // check if there are any already registered beds
-                foreach (Bed bed in foundBeds)
-                {
-                    if (bed.Registered)
-                    {
-                        _feedbackHolder.DisplayFeedback("Not valid housing. An NPC is already occupying this space.", Color.yellow);
-                        return;
-                    }
-                }
+                //foreach (Bed bed in foundBeds)
+                //{
+                //    if (bed.Registered)
+                //    {
+                //        _feedbackHolder.DisplayFeedback("Not valid housing. An NPC is already occupying this space.", Color.yellow);
+                //        return;
+                //    }
+                //}
             }
 
             // if floor tile positions are greater than maxHouseSpaceTiles, then housing is too big.
@@ -252,7 +252,7 @@ namespace IslandBoy
             _feedbackHolder.DisplayFeedback("Housing found! NPC has moved in!", Color.green);
             _adventurerReference = Instantiate(_adventurerPrefab, spawnNpcPosition, Quaternion.identity);
             _adventurerReference.RegisterBed(foundBeds[0]);
-            foundBeds[0].RegisterBed(_furnitureCheckList, _adventurerReference);
+            //foundBeds[0].RegisterBed(_furnitureCheckList, _adventurerReference);
 
             AudioManager.Instance.PlayClip(_moveInSound, false, false);
         }

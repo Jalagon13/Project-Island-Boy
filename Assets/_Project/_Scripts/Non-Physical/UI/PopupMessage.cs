@@ -22,9 +22,9 @@ namespace IslandBoy
             _textMesh = GetComponent<TextMeshPro>();
         }
 
-        public static PopupMessage Create(Vector2 position, string text, Color textColor, float textoffset = 0, float floatTimer = 0.01f)
+        public static PopupMessage Create(Vector2 position, string text, Color textColor, Vector2 textOffset, float floatTimer = 0.01f)
         {
-            Transform popupTransform = Instantiate(GameAssets.Instance.pfDamagePopup, position + new Vector2(0, textoffset), Quaternion.identity);
+            Transform popupTransform = Instantiate(GameAssets.Instance.pfDamagePopup, position + textOffset, Quaternion.identity);
 
             PopupMessage popupMessage = popupTransform.GetComponent<PopupMessage>();
             popupMessage.Setup(text, textColor, floatTimer);
