@@ -9,13 +9,13 @@ namespace IslandBoy
         public EventHandler OnInventoryClosed;
 
         [SerializeField] private RecipeDatabaseObject _defaultRdb;
+        [SerializeField] private TabControl _tabControl;
 
         private Inventory _inventory;
         private PromptControl _promptControl;
         private MouseItemHolder _mouseItemHolder;
         private PlayerInput _input;
         private RectTransform _mainInventory;
-        private RectTransform _craftSlots;
         private CraftSlotsControl _craftSlotsControl;
         private Interactable _currentInteractableActive;
         private bool _inventoryOpen;
@@ -28,7 +28,6 @@ namespace IslandBoy
             _craftSlotsControl = GetComponent<CraftSlotsControl>();
             _mainInventory = transform.GetChild(0).GetComponent<RectTransform>();
             _mouseItemHolder = transform.GetChild(2).GetComponent<MouseItemHolder>();
-            _craftSlots = transform.GetChild(0).GetChild(2).GetComponent<RectTransform>();
 
             _input.Player.ToggleInventory.started += ToggleInventory;
         }
@@ -57,24 +56,19 @@ namespace IslandBoy
             }
         }
 
-        public void ActivateCraftSlots(bool value)
-        {
-            _craftSlots.gameObject.SetActive(value);
-        }
-
         public void ChestInteract(Interactable chestOpened)
         {
             OpenInventory();
-            ActivateCraftSlots(false);
             InteractableHandle(chestOpened);
 
+            _tabControl.DisableAllTabs();
             _promptControl.PromptHandle(null);
         }
 
         public void CraftStationInteract(Interactable craftStation, RecipeDatabaseObject rdb)
         {
             OpenInventory();
-            ActivateCraftSlots(true);
+            _tabControl.OpenCraftTab();
 
             _promptControl.PromptHandle(null);
 
@@ -120,7 +114,6 @@ namespace IslandBoy
             InteractableHandle(null);
             RefreshCraftSlotsToDefault();
 
-
             _mainInventory.gameObject.SetActive(false);
             _inventoryOpen = false;
 
@@ -134,8 +127,7 @@ namespace IslandBoy
 
         public void OpenInventory()
         {
-            ActivateCraftSlots(true);
-
+            _tabControl.OpenCraftTab();
             _mainInventory.gameObject.SetActive(true);
             _inventoryOpen = true;
 
