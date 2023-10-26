@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: '[NPC] Wizard'
   m_EditorClassIdentifier: 
   Name: Wally the Wizard
-  Description: Sells mining equipment!
-  Icon: {fileID: 1598067083, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
-  NPC: {fileID: 7995473247580249321, guid: a7caeef01e87f404cb023c50273aeaaf, type: 3}
+  Description: Sells magic stuff!
+  Icon: {fileID: 1460111371, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
+  NPC: {fileID: 7995473247580249321, guid: beef7df75aa4f4644ba0d61aa4acceb3, type: 3}
   FurnitureCheckList:
   - {fileID: 11400000, guid: e5ab57a91a28c384882e588fbf1e3392, type: 2}
   - {fileID: 11400000, guid: 2aa49c2486a9af147b68795c5f29e7de, type: 2}

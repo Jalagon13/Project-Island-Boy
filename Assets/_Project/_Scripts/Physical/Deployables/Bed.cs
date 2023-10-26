@@ -9,7 +9,10 @@ namespace IslandBoy
         [SerializeField] private TilemapReferences _tmr;
 
         private List<Vector3Int> _floorTilePositions = new();
-        private bool _canCheck = false;
+        private bool _canCheck;
+        private NpcObject _npcClaimed;
+
+        public NpcObject NpcClaimed { get { return _npcClaimed; } set { _npcClaimed = value; } }
 
         public void Start()
         {
@@ -34,8 +37,8 @@ namespace IslandBoy
 
         public bool InValidSpace() // check for floors and walls for house is valid. check furniture too. make floortilePos a global var.
         {
-            Stack<Vector3Int> tilesToCheck = new();
             _floorTilePositions = new(); // list of positions of tile that have a floor and no wall or door on it.
+            Stack<Vector3Int> tilesToCheck = new();
             List<Vector3Int> wallTilePositions = new(); // list of wall tiles around the free space
             List<Vector3Int> doorPositions = new(); // list of all positions of doors if any door is found
             int maxHouseSpaceTiles = 50;
@@ -207,6 +210,7 @@ namespace IslandBoy
                 }
             }
 
+            _npcClaimed = npc;
             return true;
         }
 

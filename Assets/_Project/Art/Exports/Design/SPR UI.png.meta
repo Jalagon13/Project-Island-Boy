@@ -496,7 +496,7 @@ TextureImporter:
         width: 11
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -504,6 +504,27 @@ TextureImporter:
       bones: []
       spriteID: 03c279f7ab019fc44acb1ead522c5955
       internalID: 1598067083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: npc_wizard_icon
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 32
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a8588106ef59774eaaa5d490e9862c7
+      internalID: 1460111371
       vertices: []
       indices: 
       edges: []
@@ -521,6 +542,7 @@ TextureImporter:
     nameFileIdTable:
       9sprite_mm_full: -505856833
       npc_miner_icon: 1598067083
+      npc_wizard_icon: 1460111371
       uc_nrg_icon: -513854623
       ui_bar: -1058533567
       ui_chest_slot: -711384130

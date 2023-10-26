@@ -23,43 +23,115 @@ namespace IslandBoy
 
         private void Start()
         {
-            _npcs.ForEach(npc =>
-            {
-                GameObject ns = Instantiate(_npcSlotPrefab, _npcSlotHolder.transform);
-
-                NpcSlot npcSlot = ns.GetComponent<NpcSlot>();
-                npcSlot.Initialize(npc);
-            });
+            CheckBeds();
         }
 
-        private void UpdateNpcs(object sender, EventArgs e)
+        private void ClearNpcHolder()
+        {
+            if (_npcSlotHolder.transform.childCount > 0)
+            {
+                foreach (Transform child in _npcSlotHolder.transform)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+        }
+
+        private void CheckBeds()
         {
             Bed[] beds = FindObjectsOfType<Bed>();
 
             foreach (NpcObject npc in _npcs)
             {
-                bool foundValidHousing = false;
-                Debug.Log(npc.Name + " " + foundValidHousing);
+                bool npcFoundBed = false;
 
-                // loop through all beds in the world to try to find a valid housing
+                // look through all the beds that are unoccupied
                 foreach (Bed bed in beds)
                 {
-                    foundValidHousing = bed.FindFurniture(npc);
-
-                    if (foundValidHousing)
+                    // if a bed is unoccupied, try to occupy it.
+                    if(bed.NpcClaimed == null)
                     {
-                        // update npc for able to move in.
-                        Debug.Log($"{npc.Name} Can move in!");
-                        break;
+                        npc.MovedIn = bed.FindFurniture(npc);
+
+                        if (npc.MovedIn)
+                        {
+                            npc.MoveInNpc(bed);
+                            GameObject ns = Instantiate(_npcSlotPrefab, _npcSlotHolder.transform);
+                            NpcSlot npcSlot = ns.GetComponent<NpcSlot>();
+                            npcSlot.Initialize(npc);
+                            npcFoundBed = true;
+                        }
                     }
                 }
 
-                if (!foundValidHousing)
+                if (npcFoundBed)
+                    continue;
+
+                // look through all the beds that are occupied
+                foreach (Bed bed in beds)
                 {
-                    // if not, update the npc to not moved in status and don't move it in.
-                    Debug.Log($"{npc.Name} Can NOT move in!");
+                    // if a bed is occupied, check if the occupier can still occuppy it
+                    if (bed.NpcClaimed != null && bed.NpcClaimed != npc)
+                    {
+                        bool occupierCanOccppy = bed.FindFurniture(bed.NpcClaimed);
+
+                        // if the occupier can occupy, continue to next occupied bed
+                        if (occupierCanOccppy)
+                            continue;
+                        else
+                        {
+                            // if not, move them out
+                            bed.NpcClaimed.MoveOutNpc();
+                            bed.NpcClaimed = null;
+
+                            // try to move into this bed
+                            npc.MovedIn = bed.FindFurniture(npc);
+
+                            if (npc.MovedIn)
+                            {
+                                npc.MoveInNpc(bed);
+                                GameObject ns = Instantiate(_npcSlotPrefab, _npcSlotHolder.transform);
+                                NpcSlot npcSlot = ns.GetComponent<NpcSlot>();
+                                npcSlot.Initialize(npc);
+                                npcFoundBed = true;
+                            }
+                        }
+                    }
                 }
+
+                if (npcFoundBed)
+                    continue;
+
+                // look through all the beds that are occupied by this npc
+                foreach (Bed bed in beds)
+                {
+                    if(bed.NpcClaimed == npc)
+                    {
+                        // check if npc can still move in to this
+                        npc.MovedIn = bed.FindFurniture(npc);
+
+                        if (npc.MovedIn)
+                        {
+                            npc.MoveInNpc(bed);
+                            GameObject ns = Instantiate(_npcSlotPrefab, _npcSlotHolder.transform);
+                            NpcSlot npcSlot = ns.GetComponent<NpcSlot>();
+                            npcSlot.Initialize(npc);
+                            npcFoundBed = true;
+                        }
+                    }
+                }
+
+                if (npcFoundBed)
+                    continue;
+
+                npc.MoveOutNpc();
             }
+        }
+
+        private void UpdateNpcs(object sender, EventArgs e)
+        {
+            ClearNpcHolder();
+            CheckBeds();
         }
     }
 }

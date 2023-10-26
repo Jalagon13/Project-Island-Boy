@@ -38,7 +38,8 @@ namespace IslandBoy
             _rscSlots = transform.GetChild(1).GetChild(0).GetComponent<RectTransform>();
             var hover = transform.GetChild(0).GetComponent<HousingHoverImage>();
             var image = transform.GetChild(0).GetComponent<Image>();
-            var description = $"{npc.Description}<br>Status: Not moved in";
+            
+            var description = npc.MovedIn ? $"{npc.Description}<br>Status: <color=green>Moved in!" : $"{npc.Description}<br>Status: <color=red>Not moved in!";
 
             hover.Initialize(npc.Name, description);
             image.sprite = npc.Icon;

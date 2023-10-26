@@ -108,6 +108,7 @@ namespace IslandBoy
             return _phasePercent > _percentTillCanSleep;
         }
 
+        [ContextMenu("End Day")]
         public void EndDay() // connected to bed
         {
             _onEndDay?.Invoke(this, EventArgs.Empty);

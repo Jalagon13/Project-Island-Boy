@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PR: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _maxHealth: 999
+  _maxHealth: 300
   _iFrameDuration: 0.17
   _moveSpeed: 0
   _damageSound: {fileID: 8300000, guid: 4a2e0c655ba2bda4e9d7e519bf84c9ca, type: 3}
@@ -566,8 +566,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Wally the Wizard:
 
-    "You what''s awesome? World peace. You know what
-    else is awesome? Magic!"'
+    "You know what''s awesome? World peace. You know
+    what else is awesome? Magic!"'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
   m_sharedMaterial: {fileID: 4835514525599508895, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
