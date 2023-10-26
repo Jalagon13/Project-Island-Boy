@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace IslandBoy
 {
+
     [CreateAssetMenu(fileName = "[NPC] ", menuName = "New Npc")]
     public class NpcObject : ScriptableObject
     {

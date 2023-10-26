@@ -128,7 +128,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[RSC] Tree'
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9010295086465205499, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:

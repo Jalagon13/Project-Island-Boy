@@ -8,8 +8,8 @@ namespace IslandBoy
     {
         [SerializeField] private TilemapReferences _tmr;
 
+        private List<Vector3Int> _floorTilePositions = new();
         private bool _canCheck = false;
-
 
         public void Start()
         {
@@ -26,8 +26,16 @@ namespace IslandBoy
                 return;
             }
 
+            if (InValidSpace())
+            {
+                DayManager.Instance.EndDay();
+            }
+        }
+
+        public bool InValidSpace() // check for floors and walls for house is valid. check furniture too. make floortilePos a global var.
+        {
             Stack<Vector3Int> tilesToCheck = new();
-            List<Vector3Int> floorTilePositions = new(); // list of positions of tile that have a floor and no wall or door on it.
+            _floorTilePositions = new(); // list of positions of tile that have a floor and no wall or door on it.
             List<Vector3Int> wallTilePositions = new(); // list of wall tiles around the free space
             List<Vector3Int> doorPositions = new(); // list of all positions of doors if any door is found
             int maxHouseSpaceTiles = 50;
@@ -44,7 +52,7 @@ namespace IslandBoy
                 {
                     //_feedbackHolder.DisplayFeedback("Not valid housing. Make sure the area around you is enclosed.", Color.yellow);
                     PopupMessage.Create(transform.position, "Area not enclosed!", Color.yellow, new(0.5f, 0.5f), 1f);
-                    return;
+                    return false;
                 }
 
                 // if there is a door, add it do the door positions
@@ -62,9 +70,9 @@ namespace IslandBoy
                 }
 
                 // add floor tile to floorTilePositions and push new tiles to check
-                if (!floorTilePositions.Contains(p))
+                if (!_floorTilePositions.Contains(p))
                 {
-                    floorTilePositions.Add(p);
+                    _floorTilePositions.Add(p);
 
                     tilesToCheck.Push(new Vector3Int(p.x - 1, p.y));
                     tilesToCheck.Push(new Vector3Int(p.x + 1, p.y));
@@ -74,17 +82,17 @@ namespace IslandBoy
             }
 
             // if floor tile positions are greater than maxHouseSpaceTiles, then housing is too big.
-            if (floorTilePositions.Count > maxHouseSpaceTiles)
+            if (_floorTilePositions.Count > maxHouseSpaceTiles)
             {
                 PopupMessage.Create(transform.position, "Space too large!", Color.yellow, new(0.5f, 0.5f), 1f);
-                return;
+                return false;
             }
 
             // if there is no doors found then housing not valid
             if (doorPositions.Count <= 0)
             {
                 PopupMessage.Create(transform.position, "No door found!", Color.yellow, new(0.5f, 0.5f), 1f);
-                return;
+                return false;
             }
 
             // loop through all doors found
@@ -103,10 +111,10 @@ namespace IslandBoy
                 {
                     int counter = 0;
 
-                    if (floorTilePositions.Contains(en))
+                    if (_floorTilePositions.Contains(en))
                         counter++;
 
-                    if (floorTilePositions.Contains(wn))
+                    if (_floorTilePositions.Contains(wn))
                         counter++;
 
                     if (counter == 1)
@@ -120,10 +128,10 @@ namespace IslandBoy
                 {
                     int counter = 0;
 
-                    if (floorTilePositions.Contains(nn))
+                    if (_floorTilePositions.Contains(nn))
                         counter++;
 
-                    if (floorTilePositions.Contains(sn))
+                    if (_floorTilePositions.Contains(sn))
                         counter++;
 
                     if (counter == 1)
@@ -137,10 +145,69 @@ namespace IslandBoy
             if (!validDoorFound)
             {
                 PopupMessage.Create(transform.position, "No valid door!", Color.yellow, new(0.5f, 0.5f), 1f);
-                return;
+                return false;
             }
 
-            DayManager.Instance.EndDay();
+            return true;
+        }
+
+        public bool FindFurniture(NpcObject npc)
+        {
+            // if in valid space
+            if (InValidSpace())
+            {
+                List<Resource> foundFurniture = new();
+
+                // check floor tile positions and return any furniture found
+                _floorTilePositions.ForEach(p => 
+                {
+                    var centerPos = new Vector2(p.x + 0.5f, p.y + 0.5f);
+                    var colliders = Physics2D.OverlapCircleAll(centerPos, 0.25f);
+
+                    foreach (var col in colliders)
+                    {
+                        if (col.TryGetComponent(out Resource rsc))
+                        {
+                            if (foundFurniture.Contains(rsc))
+                                continue;
+
+                            foreach (DeployObject furniture in npc.FurnitureCheckList)
+                            {
+                                var go = furniture.PrefabToDeploy;
+                                var furnitureRsc = go.GetComponent<Resource>();
+
+                                if (furnitureRsc.ResourceName == rsc.ResourceName)
+                                {
+                                    foundFurniture.Add(rsc);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                });
+
+                foreach (DeployObject furniture in npc.FurnitureCheckList)
+                {
+                    bool furnitureFound = false;
+                    var go = furniture.PrefabToDeploy;
+                    var furnitureRsc = go.GetComponent<Resource>();
+
+                    foreach (Resource found in foundFurniture)
+                    {
+                        if(furnitureRsc.ResourceName == found.ResourceName)
+                        {
+                            furnitureFound = true;
+                        }
+                    }
+
+                    if (!furnitureFound)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         private bool HasDoor(Vector3Int pos)
@@ -156,7 +223,5 @@ namespace IslandBoy
 
             return false;
         }
-
-
     }
 }

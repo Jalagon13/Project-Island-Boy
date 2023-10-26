@@ -16,7 +16,6 @@ namespace IslandBoy
         private void Awake()
         {
             _furniturePanel = transform.GetChild(1).GetComponent<RectTransform>();
-            _rscSlots = transform.GetChild(1).GetChild(0).GetComponent<RectTransform>();
         }
 
         private void OnEnable()
@@ -36,10 +35,12 @@ namespace IslandBoy
 
         public void Initialize(NpcObject npc)
         {
+            _rscSlots = transform.GetChild(1).GetChild(0).GetComponent<RectTransform>();
             var hover = transform.GetChild(0).GetComponent<HousingHoverImage>();
             var image = transform.GetChild(0).GetComponent<Image>();
+            var description = $"{npc.Description}<br>Status: Not moved in";
 
-            hover.Initialize(npc.Name, npc.Description);
+            hover.Initialize(npc.Name, description);
             image.sprite = npc.Icon;
 
             InitializeResourceSlots(npc);
