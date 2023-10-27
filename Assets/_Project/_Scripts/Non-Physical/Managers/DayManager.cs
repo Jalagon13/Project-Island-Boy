@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -29,6 +30,7 @@ namespace IslandBoy
         private float _duration;
         private float _phasePercent;
         private bool _isDay, _hasDisplayedWarning;
+        private List<string> _endDaySlides = new();
 
         public Volume GlobalVolume { get { return _globalVolume; } }
         public EventHandler OnStartDay { get { return _onStartDay; } set { _onStartDay = value; } }
@@ -108,6 +110,16 @@ namespace IslandBoy
             return _phasePercent > _percentTillCanSleep;
         }
 
+        public void AddEndDaySlide(string text)
+        {
+            _endDaySlides.Add(text);
+        }
+
+        public void ClearEndDaySlides()
+        {
+            _endDaySlides.Clear();
+        }
+
         [ContextMenu("End Day")]
         public void EndDay() // connected to bed
         {
@@ -133,8 +145,16 @@ namespace IslandBoy
 
             yield return new WaitForSeconds(2f);
 
+            foreach (string slide in _endDaySlides)
+            {
+                text.text = slide;
+                yield return new WaitForSeconds(2f);
+            }
+
             text.text = "Your stats have been replenished!";
             button.gameObject.SetActive(true);
+
+            _endDaySlides.Clear();
         }
 
         private void PanelEnabled(bool _)

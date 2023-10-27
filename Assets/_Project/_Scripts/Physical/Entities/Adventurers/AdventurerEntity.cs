@@ -48,11 +48,6 @@ namespace IslandBoy
             OnMove?.Invoke();
         }
 
-        private void OnDestroy()
-        {
-            Debug.Log("NPC Killed");
-        }
-
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if(collision.TryGetComponent(out Door door))

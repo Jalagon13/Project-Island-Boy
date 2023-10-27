@@ -27,15 +27,11 @@ namespace IslandBoy
             {
                 npc.MoveOut();
             }
-            
-            CheckBeds();
 
-            foreach (NpcObject npc in npcsFound)
-            {
-                var go = Instantiate(_npcSlotPrefab, _npcSlotHolder);
-                var npcSlot = go.GetComponent<NpcSlot>();
-                npcSlot.Initialize(npc);
-            }
+            ClearNpcHolder();
+            CheckBeds();
+            UpdateNpcSlots();
+            DayManager.Instance.ClearEndDaySlides();
         }
 
         private void ClearNpcHolder()
@@ -51,8 +47,6 @@ namespace IslandBoy
 
         private void CheckBeds()
         {
-            ClearNpcHolder();
-
             Bed[] beds = FindObjectsOfType<Bed>();
             List<Bed> bedsInValidHouse = new();
 
@@ -63,6 +57,7 @@ namespace IslandBoy
                     bedsInValidHouse.Add(bed);
                 else if (bed.NPC != null)
                 {
+                    DayManager.Instance.AddEndDaySlide($"{bed.NPC.Name} has moved out!");
                     bed.NPC.MoveOut();
                     bed.NPC = null;
                 }
@@ -83,6 +78,7 @@ namespace IslandBoy
                     if(unOccupiedValidBeds.Count <= 0)
                         continue;
 
+                    DayManager.Instance.AddEndDaySlide($"{npc.Name} has moved in!");
                     Bed bedToMoveIn = unOccupiedValidBeds.Pop();
                     npc.MoveIn(bedToMoveIn);
                     bedToMoveIn.NPC = npc;
@@ -95,15 +91,23 @@ namespace IslandBoy
                 if (npc1.MovedIn)
                 {
                     if (npc1.Bed == null)
+                    {
+                        DayManager.Instance.AddEndDaySlide($"{npc1.Name} has moved out!");
                         npc1.MoveOut();
+                    }
                 }
             }
         }
 
         private void UpdateNpcs(object sender, EventArgs e)
         {
+            ClearNpcHolder();
             CheckBeds();
+            UpdateNpcSlots();
+        }
 
+        private void UpdateNpcSlots()
+        {
             foreach (NpcObject npc in npcsFound)
             {
                 var go = Instantiate(_npcSlotPrefab, _npcSlotHolder);
