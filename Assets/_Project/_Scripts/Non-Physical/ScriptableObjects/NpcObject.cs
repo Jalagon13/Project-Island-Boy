@@ -13,27 +13,32 @@ namespace IslandBoy
         public string Description;
         public Sprite Icon;
         public GameObject NPC;
-        public List<DeployObject> FurnitureCheckList;
 
-        private bool _movedIn;
+        private bool _movedIn = false;
         private GameObject _worldEntity;
+        private Bed _bed;
 
-        public bool MovedIn { get { return _movedIn; } set { _movedIn = value; Debug.Log("move in set " + _movedIn); } }
+        public bool MovedIn { get { return _movedIn; } }
+        public Bed Bed { get { return _bed; } }
 
-        public void MoveInNpc(Bed homeBed)
+        public void MoveIn(Bed homeBed)
         {
             if(_worldEntity != null)
                 Destroy(_worldEntity);
+
             var pos = homeBed.gameObject.transform.position;
-            Debug.Log($"Spawn pos for {Name}: {pos} Bed name: {homeBed.name}");
             _worldEntity = Instantiate(NPC, pos, Quaternion.identity);
+            _bed = homeBed;
+            _movedIn = true;
         }
 
-        public void MoveOutNpc()
+        public void MoveOut()
         {
             if (_worldEntity != null)
                 Destroy(_worldEntity);
-            Debug.Log($"Moving out {Name}");
+
+            _bed = null;
+            _movedIn = false;
         }
     }
 }

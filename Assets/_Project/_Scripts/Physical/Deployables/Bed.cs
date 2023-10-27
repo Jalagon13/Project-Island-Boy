@@ -10,9 +10,9 @@ namespace IslandBoy
 
         private List<Vector3Int> _floorTilePositions = new();
         private bool _canCheck;
-        private NpcObject _npcClaimed;
+        private NpcObject _npc;
 
-        public NpcObject NpcClaimed { get { return _npcClaimed; } set { _npcClaimed = value; } }
+        public NpcObject NPC { get { return _npc; } set { _npc = value; } }
 
         public void Start()
         {
@@ -151,66 +151,6 @@ namespace IslandBoy
                 return false;
             }
 
-            return true;
-        }
-
-        public bool FindFurniture(NpcObject npc)
-        {
-            // if in valid space
-            if (InValidSpace())
-            {
-                List<Resource> foundFurniture = new();
-
-                // check floor tile positions and return any furniture found
-                _floorTilePositions.ForEach(p => 
-                {
-                    var centerPos = new Vector2(p.x + 0.5f, p.y + 0.5f);
-                    var colliders = Physics2D.OverlapCircleAll(centerPos, 0.25f);
-
-                    foreach (var col in colliders)
-                    {
-                        if (col.TryGetComponent(out Resource rsc))
-                        {
-                            if (foundFurniture.Contains(rsc))
-                                continue;
-
-                            foreach (DeployObject furniture in npc.FurnitureCheckList)
-                            {
-                                var go = furniture.PrefabToDeploy;
-                                var furnitureRsc = go.GetComponent<Resource>();
-
-                                if (furnitureRsc.ResourceName == rsc.ResourceName)
-                                {
-                                    foundFurniture.Add(rsc);
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                });
-
-                foreach (DeployObject furniture in npc.FurnitureCheckList)
-                {
-                    bool furnitureFound = false;
-                    var go = furniture.PrefabToDeploy;
-                    var furnitureRsc = go.GetComponent<Resource>();
-
-                    foreach (Resource found in foundFurniture)
-                    {
-                        if(furnitureRsc.ResourceName == found.ResourceName)
-                        {
-                            furnitureFound = true;
-                        }
-                    }
-
-                    if (!furnitureFound)
-                    {
-                        return false;
-                    }
-                }
-            }
-
-            _npcClaimed = npc;
             return true;
         }
 
