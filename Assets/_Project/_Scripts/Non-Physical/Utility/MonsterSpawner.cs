@@ -22,7 +22,7 @@ namespace IslandBoy
 
         private IEnumerator SpawnMonsterTimer()
         {
-            yield return new WaitForSeconds(Random.Range(10f, 20f));
+            yield return new WaitForSeconds(Random.Range(20f, 30f));
 
             if (CanSpawn())
             {

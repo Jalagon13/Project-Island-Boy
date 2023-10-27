@@ -57,7 +57,7 @@ namespace IslandBoy
                     bedsInValidHouse.Add(bed);
                 else if (bed.NPC != null)
                 {
-                    DayManager.Instance.AddEndDaySlide($"{bed.NPC.Name} has moved out!");
+                    
                     bed.NPC.MoveOut();
                     bed.NPC = null;
                 }
@@ -78,7 +78,6 @@ namespace IslandBoy
                     if(unOccupiedValidBeds.Count <= 0)
                         continue;
 
-                    DayManager.Instance.AddEndDaySlide($"{npc.Name} has moved in!");
                     Bed bedToMoveIn = unOccupiedValidBeds.Pop();
                     npc.MoveIn(bedToMoveIn);
                     bedToMoveIn.NPC = npc;
@@ -91,10 +90,7 @@ namespace IslandBoy
                 if (npc1.MovedIn)
                 {
                     if (npc1.Bed == null)
-                    {
-                        DayManager.Instance.AddEndDaySlide($"{npc1.Name} has moved out!");
                         npc1.MoveOut();
-                    }
                 }
             }
         }
