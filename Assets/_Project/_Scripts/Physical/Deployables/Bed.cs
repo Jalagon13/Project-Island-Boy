@@ -10,6 +10,7 @@ namespace IslandBoy
 
         private List<Vector3Int> _floorTilePositions = new();
         private bool _canCheck;
+        private bool _canSleep;
         private NpcObject _npc;
 
         public NpcObject NPC { get { return _npc; } set { _npc = value; } }
@@ -19,16 +20,38 @@ namespace IslandBoy
             _canCheck = true;
         }
 
+        private void OnEnable()
+        {
+            GameSignals.CAN_SLEEP.AddListener(CanSleepNow);
+            GameSignals.DAY_STARTED.AddListener(CanNotSleep);
+        }
+
+        private void OnDisable()
+        {
+            GameSignals.CAN_SLEEP.RemoveListener(CanSleepNow);
+            GameSignals.DAY_STARTED.RemoveListener(CanNotSleep);
+        }
+
+        private void CanNotSleep(ISignalParameters parameters)
+        {
+            _canSleep = false;
+        }
+
+        private void CanSleepNow(ISignalParameters parameters)
+        {
+            _canSleep = true;
+        }
+
         public void TryToEndDay() // connected to bed button
         {
             if (!_canCheck) return;
 
-            if (!DayManager.Instance.CanSleep())
+            if (!_canSleep)
             {
                 PopupMessage.Create(transform.position, "Too early to sleep!", Color.yellow, new(0.5f, 0.5f), 1f);
                 return;
             }
-
+            Debug.Log("EndDay Dispatched from bed");
             if (InValidSpace())
             {
                 DispatchEndDay();
@@ -38,6 +61,7 @@ namespace IslandBoy
         private void DispatchEndDay()
         {
             // implement optional parameters before dispatch here
+            
             GameSignals.DAY_ENDED.Dispatch();
         }
 

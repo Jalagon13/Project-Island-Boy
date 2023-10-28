@@ -6,9 +6,12 @@ namespace IslandBoy
 {
     public static class GameSignals
     {
+        // DayManager Signals
         public static readonly Signal DAY_STARTED = new("DayStarted");
         public static readonly Signal DAY_ENDED = new("DayEnded");
+        public static readonly Signal DAY_OUT_OF_TIME = new("DayOutOfTime");
         public static readonly Signal NPC_MOVED_IN = new("NpcMovedIn");
         public static readonly Signal NPC_MOVED_OUT = new("NpcMovedOut");
+        public static readonly Signal CAN_SLEEP = new("CanSleep");
     }
 }

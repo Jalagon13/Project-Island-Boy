@@ -30,12 +30,11 @@ namespace IslandBoy
         private bool _isDay, _hasDisplayedWarning;
         private List<string> _endDaySlides = new();
 
-        public Timer DayTimer { get { return _timer; } }
-
         private void Awake()
         {
             _globalVolume = FindObjectOfType<Volume>();
             _timer = new(_dayDurationInSec);
+            _timer.OnTimerEnd += OutOfTime;
         }
 
         private void Start()
@@ -69,9 +68,15 @@ namespace IslandBoy
                 if(_phasePercent > _percentTillCanSleep && !_hasDisplayedWarning)
                 {
                     PopupMessage.Create(_pr.Position, "I need to sleep soon..", Color.cyan, new(0f, 0.75f), 1.5f);
+                    GameSignals.CAN_SLEEP.Dispatch();
                     _hasDisplayedWarning = true;
                 }
             }
+        }
+
+        private void OutOfTime()
+        {
+            GameSignals.DAY_OUT_OF_TIME.Dispatch();
         }
 
         private void NpcMovedIn(ISignalParameters parameters)

@@ -20,12 +20,18 @@ namespace IslandBoy
 
         private void OnEnable()
         {
-            DayManager.Instance.DayTimer.OnTimerEnd += KillEntity;
+            GameSignals.DAY_OUT_OF_TIME.AddListener(KillPlayer);
+            
         }
 
         private void OnDisable()
         {
-            DayManager.Instance.DayTimer.OnTimerEnd -= KillEntity;
+            GameSignals.DAY_OUT_OF_TIME.RemoveListener(KillPlayer);
+        }
+
+        private void KillPlayer(ISignalParameters parameter)
+        {
+            KillEntity();
         }
 
         public override void Damage(int incomingDamage, GameObject sender = null)
