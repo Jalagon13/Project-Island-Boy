@@ -10,11 +10,8 @@ namespace IslandBoy
 {
     public class Inventory : MonoBehaviour
     {
-        public event EventHandler OnItemAdded; // connected to craftslot
-
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private int _maxStack;
-        [SerializeField] private UnityEvent<ItemObject, int> _onPickupItem;
         [SerializeField] private Slot[] _allSlots;
 
         private MouseItemHolder _mouseItemHolder;
@@ -39,15 +36,23 @@ namespace IslandBoy
                 if (!Add(item, amount, itemParameters))
                 {
                     int leftOver = amount - i;
-                    OnItemAdded?.Invoke(this, EventArgs.Empty);
-                    _onPickupItem?.Invoke(item, amount - leftOver);
+                    DispatchItemAdded();
+                    //_onPickupItem?.Invoke(item, amount - leftOver);
                     return leftOver;
                 }
             }
 
-            OnItemAdded?.Invoke(this, EventArgs.Empty);
-            _onPickupItem?.Invoke(item, amount);
+            DispatchItemAdded();
+            //_onPickupItem?.Invoke(item, amount);
             return 0;
+        }
+
+        private void DispatchItemAdded()
+        {
+            Signal signal = GameSignals.ITEM_ADDED;
+            signal.ClearParameters();
+            signal.AddParameter("Inventory", this);
+            signal.Dispatch();
         }
 
         private bool Add(ItemObject item, int amount, List<ItemParameter> itemParameters = null)

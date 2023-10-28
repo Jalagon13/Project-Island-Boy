@@ -5,8 +5,6 @@ namespace IslandBoy
 {
     public class CraftSlotCraftControl : MonoBehaviour
     {
-        public EventHandler OnItemCrafted;
-
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private AudioClip _popSound;
         [SerializeField] private GameObject _inventoryItemPrefab;
@@ -32,7 +30,7 @@ namespace IslandBoy
             }
 
             AudioManager.Instance.PlayClip(_popSound, false, true);
-            OnItemCrafted?.Invoke(this, EventArgs.Empty);
+            GameSignals.ITEM_CRAFTED.Dispatch();
         }
     }
 }

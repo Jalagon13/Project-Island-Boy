@@ -20,13 +20,11 @@ namespace IslandBoy
         private void OnEnable()
         {
             GameSignals.INVENTORY_CLOSE.AddListener(CloseChest);
-            //_pr.Inventory.InventoryControl.OnInventoryClosed += CloseChest;
         }
 
         private void OnDisable()
         {
             GameSignals.INVENTORY_CLOSE.RemoveListener(CloseChest);
-            //_pr.Inventory.InventoryControl.OnInventoryClosed -= CloseChest;
         }
 
         public override IEnumerator Start()

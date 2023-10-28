@@ -8,41 +8,33 @@ namespace IslandBoy
 {
     public class CraftSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        [SerializeField] private PlayerReference _pr;
         [SerializeField] private GameObject _rscSlotPrefab;
 
         private RectTransform _rscPanel;
         private RectTransform _rscSlots;
         private CraftSlotImageHover _hoverImage;
-        private CraftSlotCraftControl _cscc;
-        private Image _craftSlotBackround;
         private Image _outputImage;
         private Recipe _recipe;
         private TextMeshProUGUI _amountText;
+        private Inventory _playerInventory;
         private bool _canCraft;
 
         public bool CanCraft { get { return _canCraft; } }
         public Recipe Recipe { get { return _recipe; } }
 
-        private void Awake()
+        private void OnEnable()
         {
-            _cscc = GetComponent<CraftSlotCraftControl>();
+            GameSignals.ITEM_CRAFTED.AddListener(CheckIfCanCraft);
+            GameSignals.ITEM_ADDED.AddListener(CheckIfCanCraft);
+            GameSignals.SLOT_CLICKED.AddListener(CheckIfCanCraft);
         }
 
         private void OnDisable()
         {
+            GameSignals.ITEM_CRAFTED.RemoveListener(CheckIfCanCraft);
+            GameSignals.ITEM_ADDED.RemoveListener(CheckIfCanCraft);
+            GameSignals.SLOT_CLICKED.RemoveListener(CheckIfCanCraft);
             _rscPanel.gameObject.SetActive(false);
-        }
-
-        private void OnDestroy()
-        {
-            //DropPanel.OnDropEvent -= CheckIfCanCraft;
-            _pr.Inventory.OnItemAdded -= CheckIfCanCraft;
-            _cscc.OnItemCrafted -= CheckIfCanCraft;
-            foreach (Slot slot in _pr.Inventory.InventorySlots)
-            {
-                slot.OnSlotClicked -= CheckIfCanCraft;
-            }
         }
 
         public void OnPointerEnter(PointerEventData eventData)
@@ -57,29 +49,19 @@ namespace IslandBoy
 
         public void Initialize(Recipe recipe)
         {
-            _cscc = GetComponent<CraftSlotCraftControl>();
-            _craftSlotBackround = GetComponent<Image>();
             _outputImage = transform.GetChild(0).GetComponent<Image>();
             _hoverImage = transform.GetChild(0).GetComponent<CraftSlotImageHover>();
             _rscPanel = transform.GetChild(1).GetComponent<RectTransform>();
             _rscSlots = transform.GetChild(1).GetChild(0).GetComponent<RectTransform>();
             _amountText = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+            _playerInventory = transform.root.GetChild(0).GetComponent<Inventory>();
 
             _recipe = recipe;
             _outputImage.sprite = recipe.OutputItem.UiDisplay;
             _hoverImage.SetItemDescription(recipe.OutputItem);
             _amountText.text = recipe.OutputAmount == 1 ? string.Empty : recipe.OutputAmount.ToString();
 
-            //DropPanel.OnDropEvent += CheckIfCanCraft;
-            _pr.Inventory.OnItemAdded += CheckIfCanCraft;
-            _cscc.OnItemCrafted += CheckIfCanCraft;
-            foreach (Slot slot in _pr.Inventory.InventorySlots)
-            {
-                slot.OnSlotClicked += CheckIfCanCraft;
-            }
-
             InitializeResourceSlots();
-            CheckIfCanCraft();
 
             _rscPanel.gameObject.SetActive(false);
         }
@@ -102,13 +84,13 @@ namespace IslandBoy
             }
         }
 
-        public void CheckIfCanCraft(object obj = null, EventArgs args = null)
+        public void CheckIfCanCraft(ISignalParameters parameters)
         {
             bool canCraft = false;
 
             foreach (ItemAmount ia in _recipe.ResourceList)
             {
-                canCraft = _pr.Inventory.Contains(ia.Item, ia.Amount);
+                canCraft = _playerInventory.Contains(ia.Item, ia.Amount);
 
                 if (!canCraft) break;
             }
@@ -126,14 +108,12 @@ namespace IslandBoy
         {
             _outputImage.color = Color.white;
             _canCraft = true;
-            //gameObject.SetActive(true);
         }
 
         private void SetUnCraftable()
         {
             _outputImage.color = new Color(0.25f, 0.25f, 0.25f, 1);
             _canCraft = false;
-            //gameObject.SetActive(false);
         }
     }
 }

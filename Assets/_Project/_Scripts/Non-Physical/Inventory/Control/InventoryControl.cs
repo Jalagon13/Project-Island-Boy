@@ -6,8 +6,6 @@ namespace IslandBoy
 {
     public class InventoryControl : MonoBehaviour
     {
-        //public EventHandler OnInventoryClosed;
-
         [SerializeField] private RecipeDatabaseObject _defaultRdb;
         [SerializeField] private TabControl _tabControl;
 

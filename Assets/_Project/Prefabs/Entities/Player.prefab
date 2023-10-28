@@ -981,7 +981,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96189e898b2936640931f9b8605f3c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _damageParameter:
     Parameter: {fileID: 11400000, guid: 8a8bef37f1c5e3c40ad4319761ff897a, type: 2}
     Value: 0
@@ -1296,6 +1295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
+  _swingSr: {fileID: 4210445618052718212}
   _wooshSound: {fileID: 8300000, guid: 693f775d985d5c542a5f4361e1922d53, type: 3}
   _baseToolType: 2
   _baseDamage:
@@ -1754,7 +1754,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4210445618573967993}
-  - component: {fileID: 4210445618573967994}
   m_Layer: 0
   m_Name: SwingAction
   m_TagString: Untagged
@@ -1779,19 +1778,6 @@ Transform:
   - {fileID: 4210445617524027831}
   m_Father: {fileID: 4210445617939061677}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.93}
---- !u!114 &4210445618573967994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4210445618573967992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b499737bb5bf936428838012042eecde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
 --- !u!1 &4210445618739802554
 GameObject:
   m_ObjectHideFlags: 0

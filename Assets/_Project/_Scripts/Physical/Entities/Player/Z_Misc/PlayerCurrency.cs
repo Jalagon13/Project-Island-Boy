@@ -40,7 +40,7 @@ namespace IslandBoy
         {
             Currency currency = (Currency)sender;
 
-            _coinText.text = currency.Count.ToString();
+            //_coinText.text = currency.Count.ToString();
         }
 
         public void OnDeath()

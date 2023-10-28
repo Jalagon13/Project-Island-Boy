@@ -20,5 +20,8 @@ namespace IslandBoy
         public static readonly Signal INVENTORY_OPEN = new("InventoryOpen");
         public static readonly Signal INVENTORY_CLOSE = new("InventoryClose");
         public static readonly Signal SELECTED_SLOT_UPDATED = new("SelectedSlotUpdated");
+        public static readonly Signal SLOT_CLICKED = new("SlotClicked");
+        public static readonly Signal ITEM_ADDED = new("ItemAdded");
+        public static readonly Signal ITEM_CRAFTED = new("ItemCrafted");
     }
 }
