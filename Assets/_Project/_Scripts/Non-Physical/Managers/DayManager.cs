@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace IslandBoy
 {
-    public class DayManager : Singleton<DayManager>
+    public class DayManager : MonoBehaviour
     {
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private float _dayDurationInSec;
@@ -23,8 +23,6 @@ namespace IslandBoy
         [SerializeField] private Vector2 _markerStartPosition;
         [SerializeField] private Vector2 _markerEndPosition;
 
-        private event EventHandler _onStartDay;
-        private event EventHandler _onEndDay;
         private Timer _timer;
         private Volume _globalVolume;
         private float _duration;
@@ -32,22 +30,32 @@ namespace IslandBoy
         private bool _isDay, _hasDisplayedWarning;
         private List<string> _endDaySlides = new();
 
-        public Volume GlobalVolume { get { return _globalVolume; } }
-        public EventHandler OnStartDay { get { return _onStartDay; } set { _onStartDay = value; } }
-        public EventHandler OnEndDay { get { return _onEndDay; } set { _onEndDay = value; } }
         public Timer DayTimer { get { return _timer; } }
 
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
+            _globalVolume = FindObjectOfType<Volume>();
             _timer = new(_dayDurationInSec);
-            _globalVolume = transform.GetChild(1).GetComponent<Volume>();
         }
 
         private void Start()
         {
             StartDay();
             _timer.Tick(_dayDurationInSec * _debugDayPercentage); // starts the day some percent way through
+        }
+
+        private void OnEnable()
+        {
+            GameSignals.DAY_ENDED.AddListener(EndDay);
+            GameSignals.NPC_MOVED_IN.AddListener(NpcMovedIn);
+            GameSignals.NPC_MOVED_OUT.AddListener(NpcMovedOut);
+        }
+
+        private void OnDisable()
+        {
+            GameSignals.DAY_ENDED.RemoveListener(EndDay);
+            GameSignals.NPC_MOVED_IN.RemoveListener(NpcMovedIn);
+            GameSignals.NPC_MOVED_OUT.RemoveListener(NpcMovedOut);
         }
 
         private void Update()
@@ -64,6 +72,20 @@ namespace IslandBoy
                     _hasDisplayedWarning = true;
                 }
             }
+        }
+
+        private void NpcMovedIn(ISignalParameters parameters)
+        {
+            NpcObject npc = parameters.GetParameter("NpcMovedIn") as NpcObject;
+
+            _endDaySlides.Add($"{npc.Name} has moved in!");
+        }
+
+        private void NpcMovedOut(ISignalParameters parameters)
+        {
+            NpcObject npc = parameters.GetParameter("NpcMovedOut") as NpcObject;
+
+            _endDaySlides.Add($"{npc.Name} has moved out!");
         }
 
         private void VolumeHandle()
@@ -90,6 +112,7 @@ namespace IslandBoy
         public void StartDay()
         {
             ResetDay();
+            DispatchStartDay();
             PanelEnabled(false);
             UpdateMarker(_sunSprite);
         }
@@ -102,7 +125,12 @@ namespace IslandBoy
             _hasDisplayedWarning = false;
             _timer.IsPaused = false;
             _isDay = true;
-            _onStartDay?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void DispatchStartDay()
+        {
+            // implement optional parameters before dispatch here
+            GameSignals.DAY_STARTED.Dispatch();
         }
 
         public bool CanSleep()
@@ -110,20 +138,9 @@ namespace IslandBoy
             return _phasePercent > _percentTillCanSleep;
         }
 
-        public void AddEndDaySlide(string text)
-        {
-            _endDaySlides.Add(text);
-        }
-
-        public void ClearEndDaySlides()
-        {
-            _endDaySlides.Clear();
-        }
-
         [ContextMenu("End Day")]
-        public void EndDay() // connected to bed
+        public void EndDay(ISignalParameters parameters) // connected to bed
         {
-            _onEndDay?.Invoke(this, EventArgs.Empty);
             _timer.IsPaused = true;
 
             PanelEnabled(true);

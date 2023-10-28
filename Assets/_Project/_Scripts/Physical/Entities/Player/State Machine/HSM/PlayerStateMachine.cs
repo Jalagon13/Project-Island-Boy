@@ -34,14 +34,14 @@ namespace IslandBoy
 
         private void OnEnable()
         {
-            DayManager.Instance.OnEndDay += OnEndDay;
-            DayManager.Instance.OnStartDay += OnStartDay;
+            GameSignals.DAY_ENDED.AddListener(OnEndDay);
+            GameSignals.DAY_STARTED.AddListener(OnStartDay);
         }
 
         private void OnDisable()
         {
-            DayManager.Instance.OnEndDay -= OnEndDay;
-            DayManager.Instance.OnStartDay -= OnStartDay;
+            GameSignals.DAY_ENDED.RemoveListener(OnEndDay);
+            GameSignals.DAY_STARTED.RemoveListener(OnStartDay);
         }
 
         private void Start()
@@ -57,13 +57,13 @@ namespace IslandBoy
             _pr.MousePosition = (Vector2)_mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         }
 
-        private void OnEndDay(object obj, EventArgs e)
+        private void OnEndDay(ISignalParameters parameters)
         {
             TeleportPlayerToSpawn();
             EnableMovement(false);
         }
 
-        private void OnStartDay(object obj, EventArgs e)
+        private void OnStartDay(ISignalParameters parameters)
         {
             EnableMovement(true);
         }

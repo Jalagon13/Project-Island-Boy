@@ -28,7 +28,7 @@ namespace IslandBoy
             if(_worldEntity != null)
                 Destroy(_worldEntity);
 
-            DayManager.Instance.AddEndDaySlide($"{Name} has moved in!");
+            DispatchNpcMovedIn();
 
             var pos = homeBed.gameObject.transform.position;
             _worldEntity = Instantiate(NPC, pos, Quaternion.identity);
@@ -36,15 +36,31 @@ namespace IslandBoy
             _movedIn = true;
         }
 
+        private void DispatchNpcMovedIn()
+        {
+            Signal signal = GameSignals.NPC_MOVED_IN;
+            signal.ClearParameters();
+            signal.AddParameter("MovedInNpc", this);
+            signal.Dispatch();
+        }
+
         public void MoveOut()
         {
             if (_worldEntity != null)
                 Destroy(_worldEntity);
 
-            DayManager.Instance.AddEndDaySlide($"{Name} has moved out!");
+            DispatchNpcMovedOut();
 
             _bed = null;
             _movedIn = false;
+        }
+
+        private void DispatchNpcMovedOut()
+        {
+            Signal signal = GameSignals.NPC_MOVED_OUT;
+            signal.ClearParameters();
+            signal.AddParameter("MovedOutNpc", this);
+            signal.Dispatch();
         }
     }
 }

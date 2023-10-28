@@ -13,7 +13,6 @@ namespace IslandBoy
         public event EventHandler OnItemAdded; // connected to craftslot
 
         [SerializeField] private PlayerReference _pr;
-        //[SerializeField] private GameObject _inventoryItemPrefab;
         [SerializeField] private int _maxStack;
         [SerializeField] private UnityEvent<ItemObject, int> _onPickupItem;
         [SerializeField] private Slot[] _allSlots;
