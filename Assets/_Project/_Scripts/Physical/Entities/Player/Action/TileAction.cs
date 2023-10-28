@@ -178,7 +178,7 @@ namespace IslandBoy
             if (!tm.HasTile(pos)) return;
 
             RuleTileExtended tile = tm.GetTile<RuleTileExtended>(pos);
-            WorldItemManager.Instance.SpawnItem(transform.position, tile.Item, 1);
+            GameAssets.Instance.SpawnItem(transform.position, tile.Item, 1);
             AudioManager.Instance.PlayClip(tile.BreakSound, false, true);
 
             tm.SetTile(pos, null);

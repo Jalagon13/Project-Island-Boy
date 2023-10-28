@@ -31,11 +31,13 @@ namespace IslandBoy
         }
         private void OnEnable()
         {
+            GameSignals.CHEST_INTERACT.AddListener(ChestInteract);
             _input.Enable();
         }
 
         private void OnDisable()
         {
+            GameSignals.CHEST_INTERACT.RemoveListener(ChestInteract);
             _input.Disable();
         }
 
@@ -54,8 +56,10 @@ namespace IslandBoy
             }
         }
 
-        public void ChestInteract(Interactable chestOpened)
+        public void ChestInteract(ISignalParameters parameter)
         {
+            Interactable chestOpened = (Interactable)parameter.GetParameter("ChestInteract");
+
             OpenInventory();
             InteractableHandle(chestOpened);
 
@@ -128,6 +132,8 @@ namespace IslandBoy
             _tabControl.OpenCraftTab();
             _mainInventory.gameObject.SetActive(true);
             _inventoryOpen = true;
+
+            GameSignals.INVENTORY_OPEN.Dispatch();
 
             foreach (Slot slot in _inventory.InventorySlots)
             {

@@ -76,7 +76,7 @@ namespace IslandBoy
 
                     PR.Inventory.RemoveItem(itemObj, itemCount);
 
-                    WorldItemManager.Instance.SpawnItem(transform.root.position, itemObj, itemCount);
+                    GameAssets.Instance.SpawnItem(transform.root.position, itemObj, itemCount);
                 }
             }
 
