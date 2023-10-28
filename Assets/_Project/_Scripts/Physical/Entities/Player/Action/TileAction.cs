@@ -13,6 +13,7 @@ namespace IslandBoy
         private TileHpCanvas _stHpCanvas;
         private TileIndicator _ti;
         private PlayerInput _input;
+        private InventorySlot _selectedSlot;
         private ToolType _baseToolType;
         private float _basePower;
         private bool _brokeRscThisFrame; // used to stop any logic after damage has been applied to breakable
@@ -30,17 +31,24 @@ namespace IslandBoy
 
         private void OnEnable()
         {
+            GameSignals.SELECTED_SLOT_UPDATED.AddListener(InjectSelectedSlot);
             _input.Enable();
         }
 
         private void OnDisable()
         {
+            GameSignals.SELECTED_SLOT_UPDATED.RemoveListener(InjectSelectedSlot);
             _input.Disable();
         }
 
         private void Update()
         {
             transform.SetPositionAndRotation(CenterOfTilePos(), Quaternion.identity);
+        }
+
+        private void InjectSelectedSlot(ISignalParameters parameters)
+        {
+            _selectedSlot = (InventorySlot)parameters.GetParameter("SelectedSlot");
         }
 
         public bool OverInteractable()
@@ -101,9 +109,9 @@ namespace IslandBoy
 
         private void HammerTileLogic()
         {
-            if (_pr.SelectedSlot.ItemObject != null)
-                if (_pr.SelectedSlot.ItemObject.ToolType != ToolType.Hammer) return;
-            if (_pr.SelectedSlot.ItemObject == null) return;
+            if (_selectedSlot.ItemObject != null)
+                if (_selectedSlot.ItemObject.ToolType != ToolType.Hammer) return;
+            if (_selectedSlot.ItemObject == null) return;
             //if (!IsClear()) return;
 
             if (_ti.WallTilemap.HasTile(Vector3Int.FloorToInt(transform.position)))
@@ -129,8 +137,8 @@ namespace IslandBoy
 
         public bool ApplyDamageToBreakable(Vector3 pos)
         {
-            if (_pr.SelectedSlot.ItemObject != null)
-                if (_pr.SelectedSlot.ItemObject.ToolType == ToolType.Sword) return false;
+            if (_selectedSlot.ItemObject != null)
+                if (_selectedSlot.ItemObject.ToolType == ToolType.Sword) return false;
 
             var colliders = Physics2D.OverlapCircleAll(pos, 0.2f);
 
@@ -186,9 +194,9 @@ namespace IslandBoy
         public void ModifyDurability()
         {
             //if (_pr.SelectedSlot.ItemObject is not ToolObject) return;
-            if (_pr.SelectedSlot.CurrentParameters.Count <= 0) return;
+            if (_selectedSlot.CurrentParameters.Count <= 0) return;
 
-            var itemParams = _pr.SelectedSlot.CurrentParameters;
+            var itemParams = _selectedSlot.CurrentParameters;
 
             if (itemParams.Contains(_durabilityParameter))
             {
@@ -200,15 +208,15 @@ namespace IslandBoy
                     Value = newValue
                 };
 
-                _pr.SelectedSlot.InventoryItem.UpdateDurabilityCounter();
+                _selectedSlot.InventoryItem.UpdateDurabilityCounter();
             }
         }
 
         private float CalcPower()
         {
-            if (_pr.SelectedSlot.CurrentParameters.Count <= 0) return _basePower;
+            if (_selectedSlot.CurrentParameters.Count <= 0) return _basePower;
 
-            var itemParams = _pr.SelectedSlot.CurrentParameters;
+            var itemParams = _selectedSlot.CurrentParameters;
 
             if (itemParams.Contains(_powerParameter))
             {
@@ -221,7 +229,7 @@ namespace IslandBoy
 
         private ToolType CalcToolType()
         {
-            var item = _pr.SelectedSlot.ItemObject;
+            var item = _selectedSlot.ItemObject;
             return item == null ? _baseToolType : item.ToolType;
         }
 

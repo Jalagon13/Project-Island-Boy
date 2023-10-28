@@ -26,6 +26,8 @@ namespace IslandBoy
         public override GameObject AmmoPrefab => null;
         public override int ConsumeValue => _value;
 
+
+
         public override void ExecuteAction(SelectedSlotControl control)
         {
             if (PointerHandler.IsOverLayer(5)) return;
@@ -43,7 +45,7 @@ namespace IslandBoy
             }
 
             AudioManager.Instance.PlayClip(_consumeSound, false, false);
-            control.PR.SelectedSlot.InventoryItem.Count--;
+            control.SelectedSlot.InventoryItem.Count--;
             control.RestoreStat(_consumeType, _value);
         }
 

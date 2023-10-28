@@ -12,6 +12,14 @@ namespace IslandBoy
         public delegate void SignalListener(ISignalParameters parameters);
         private List<SignalListener> _listenerList = new();
 
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+        }
+
         public Signal(string name)
         {
             _name = name;
@@ -67,14 +75,6 @@ namespace IslandBoy
                 {
                     _parameters.PopParameters();
                 }
-            }
-        }
-
-        public string Name
-        {
-            get
-            {
-                return _name;
             }
         }
     }

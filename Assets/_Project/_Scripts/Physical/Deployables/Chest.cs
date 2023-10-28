@@ -19,12 +19,14 @@ namespace IslandBoy
 
         private void OnEnable()
         {
-            _pr.Inventory.InventoryControl.OnInventoryClosed += CloseChest;
+            GameSignals.INVENTORY_CLOSE.AddListener(CloseChest);
+            //_pr.Inventory.InventoryControl.OnInventoryClosed += CloseChest;
         }
 
         private void OnDisable()
         {
-            _pr.Inventory.InventoryControl.OnInventoryClosed -= CloseChest;
+            GameSignals.INVENTORY_CLOSE.RemoveListener(CloseChest);
+            //_pr.Inventory.InventoryControl.OnInventoryClosed -= CloseChest;
         }
 
         public override IEnumerator Start()
@@ -71,7 +73,7 @@ namespace IslandBoy
             EnableChestSlots(true);
         }
 
-        private void CloseChest(object obj, EventArgs args)
+        private void CloseChest(ISignalParameters parameters)
         {
             EnableChestSlots(false);
         }

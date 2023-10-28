@@ -10,6 +10,7 @@ namespace IslandBoy
         public static event Action SwingPerformEvent;
 
         [SerializeField] private PlayerReference _pr;
+        [SerializeField] private SpriteRenderer _swingSr;
         [SerializeField] private AudioClip _wooshSound;
         [Header("Base Stats")]
         [SerializeField] private ToolType _baseToolType;
@@ -24,6 +25,7 @@ namespace IslandBoy
         private PlayerMoveInput _moveInput;
         private SwingCollider _swingCollider;
         private Camera _camera;
+        private InventorySlot _selectedSlot;
         private float _counter;
         private bool _isHeldDown;
         private bool _performingSwing;
@@ -57,6 +59,7 @@ namespace IslandBoy
 
         private void OnEnable()
         {
+            GameSignals.SELECTED_SLOT_UPDATED.AddListener(ProcessSelectedSlotUpdate);
             GameSignals.DAY_END.AddListener(DisableActions);
             GameSignals.DAY_START.AddListener(EnableActions);
 
@@ -65,6 +68,7 @@ namespace IslandBoy
 
         private void OnDisable()
         {
+            GameSignals.SELECTED_SLOT_UPDATED.RemoveListener(ProcessSelectedSlotUpdate);
             GameSignals.DAY_END.RemoveListener(DisableActions);
             GameSignals.DAY_START.RemoveListener(EnableActions);
 
@@ -85,6 +89,19 @@ namespace IslandBoy
 
             if (_isHeldDown)
                 PerformSwing();
+        }
+
+        private void ProcessSelectedSlotUpdate(ISignalParameters parameters)
+        {
+            _selectedSlot = (InventorySlot)parameters.GetParameter("SelectedSlot");
+            
+            UpdateSwing();
+        }
+
+        private void UpdateSwing()
+        {
+            _swingSr.sprite = _selectedSlot.ItemObject != null ? _selectedSlot.ItemObject.UiDisplay : null;
+            _swingCollider.SelectedSlot = _selectedSlot;
         }
 
         private void DisableActions(ISignalParameters parameters)
@@ -123,7 +140,7 @@ namespace IslandBoy
 
         private float CalcParameter(ItemParameter baseParameter)
         {
-            var item = _pr.SelectedSlot.ItemObject;
+            var item = _selectedSlot.ItemObject;
 
             if (item == null)
                 return baseParameter.Value;

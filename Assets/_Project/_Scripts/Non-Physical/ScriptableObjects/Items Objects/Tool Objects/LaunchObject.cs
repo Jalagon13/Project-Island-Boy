@@ -59,7 +59,7 @@ namespace IslandBoy
             }
 
             if (Stackable)
-                control.PR.SelectedSlot.InventoryItem.Count--;
+                control.SelectedSlot.InventoryItem.Count--;
             else
                 control.TileAction.ModifyDurability();
         }

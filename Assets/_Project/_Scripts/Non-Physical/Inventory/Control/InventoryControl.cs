@@ -6,7 +6,7 @@ namespace IslandBoy
 {
     public class InventoryControl : MonoBehaviour
     {
-        public EventHandler OnInventoryClosed;
+        //public EventHandler OnInventoryClosed;
 
         [SerializeField] private RecipeDatabaseObject _defaultRdb;
         [SerializeField] private TabControl _tabControl;
@@ -117,7 +117,7 @@ namespace IslandBoy
             _mainInventory.gameObject.SetActive(false);
             _inventoryOpen = false;
 
-            OnInventoryClosed?.Invoke(this, EventArgs.Empty);
+            GameSignals.INVENTORY_CLOSE.Dispatch();
 
             foreach (Slot slot in _inventory.InventorySlots)
             {

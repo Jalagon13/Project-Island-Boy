@@ -12,7 +12,6 @@ namespace IslandBoy
         private Vector2 _mousePosition;
         private GameObject _playerGo;
         private Inventory _playerInventory;
-        private InventorySlot _selectedSlot;
         private Currency _currency;
 
         /// <summary>
@@ -29,9 +28,6 @@ namespace IslandBoy
 
         // This is only SET in the Inventory Script do NOT SET this anywhere else. This is for reference only.
         public Inventory Inventory { get { return _playerInventory; } set { _playerInventory = value; } }
-
-        // This is only SET in HotbarControl Script do NOT SET THIS anywhere else. This is for reference only.
-        public InventorySlot SelectedSlot { get { return _selectedSlot; } set { _selectedSlot = value; } }
 
         // This is only SET in the PlayerCurrency do NOT SET this anywhere else. This is for reference only.
         public Currency Currency { get { return _currency; } set { _currency = value; } }

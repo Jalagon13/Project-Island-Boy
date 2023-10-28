@@ -7,9 +7,6 @@ namespace IslandBoy
 {
     public class HotbarControl : MonoBehaviour
     {
-        public static event Action OnSelectedSlotUpdated;
-
-        [SerializeField] private PlayerReference _pr;
         [SerializeField] private Color _highlightedColor;
         [SerializeField] private Color _notHighlightedColor;
         [SerializeField] private InventorySlot[] _hotbarSlots;
@@ -90,9 +87,15 @@ namespace IslandBoy
             var image = _selectedSlot.GetComponent<Image>();
             image.color = _highlightedColor;
 
-            _pr.SelectedSlot = _selectedSlot;
+            DispatchSelectedSlotUpdated();
+        }
 
-            OnSelectedSlotUpdated?.Invoke(); // attached to TileIndicator and SelectedSlotControl
+        private void DispatchSelectedSlotUpdated()
+        {
+            Signal signal = GameSignals.SELECTED_SLOT_UPDATED;
+            signal.ClearParameters();
+            signal.AddParameter("SelectedSlot", _selectedSlot);
+            signal.Dispatch();
         }
 
         private void UnHighlightPrevious()
