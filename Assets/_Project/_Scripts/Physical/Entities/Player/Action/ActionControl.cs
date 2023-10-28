@@ -57,16 +57,16 @@ namespace IslandBoy
 
         private void OnEnable()
         {
-            GameSignals.DAY_ENDED.AddListener(DisableActions);
-            GameSignals.DAY_STARTED.AddListener(EnableActions);
+            GameSignals.DAY_END.AddListener(DisableActions);
+            GameSignals.DAY_START.AddListener(EnableActions);
 
             _input.Enable();
         }
 
         private void OnDisable()
         {
-            GameSignals.DAY_ENDED.RemoveListener(DisableActions);
-            GameSignals.DAY_STARTED.RemoveListener(EnableActions);
+            GameSignals.DAY_END.RemoveListener(DisableActions);
+            GameSignals.DAY_START.RemoveListener(EnableActions);
 
             _input.Disable();
         }

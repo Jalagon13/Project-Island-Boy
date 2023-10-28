@@ -45,14 +45,14 @@ namespace IslandBoy
 
         private void OnEnable()
         {
-            GameSignals.DAY_ENDED.AddListener(EndDay);
+            GameSignals.DAY_END.AddListener(EndDay);
             GameSignals.NPC_MOVED_IN.AddListener(NpcMovedIn);
             GameSignals.NPC_MOVED_OUT.AddListener(NpcMovedOut);
         }
 
         private void OnDisable()
         {
-            GameSignals.DAY_ENDED.RemoveListener(EndDay);
+            GameSignals.DAY_END.RemoveListener(EndDay);
             GameSignals.NPC_MOVED_IN.RemoveListener(NpcMovedIn);
             GameSignals.NPC_MOVED_OUT.RemoveListener(NpcMovedOut);
         }
@@ -81,14 +81,14 @@ namespace IslandBoy
 
         private void NpcMovedIn(ISignalParameters parameters)
         {
-            NpcObject npc = parameters.GetParameter("NpcMovedIn") as NpcObject;
+            NpcObject npc = parameters.GetParameter("MovedInNpc") as NpcObject;
 
             _endDaySlides.Add($"{npc.Name} has moved in!");
         }
 
         private void NpcMovedOut(ISignalParameters parameters)
         {
-            NpcObject npc = parameters.GetParameter("NpcMovedOut") as NpcObject;
+            NpcObject npc = parameters.GetParameter("MovedOutNpc") as NpcObject;
 
             _endDaySlides.Add($"{npc.Name} has moved out!");
         }
@@ -135,7 +135,7 @@ namespace IslandBoy
         private void DispatchStartDay()
         {
             // implement optional parameters before dispatch here
-            GameSignals.DAY_STARTED.Dispatch();
+            GameSignals.DAY_START.Dispatch();
         }
 
         public bool CanSleep()

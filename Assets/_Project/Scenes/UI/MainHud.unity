@@ -7191,7 +7191,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _npcSlotPrefab: {fileID: 6449567880495286189, guid: b7c00b9f77331824e8962692c6d6b5c7, type: 3}
   _npcSlotHolder: {fileID: 707594683422809352}
-  npcsFound: []
+  npcsFound:
+  - {fileID: 11400000, guid: e994b2e582709e94596006615c377da7, type: 2}
+  - {fileID: 11400000, guid: e54a0e216e95d284ba71faae2b23736f, type: 2}
 --- !u!1 &7277875245650234227
 GameObject:
   m_ObjectHideFlags: 0

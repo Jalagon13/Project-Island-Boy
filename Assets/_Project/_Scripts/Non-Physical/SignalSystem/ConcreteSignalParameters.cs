@@ -14,11 +14,13 @@ namespace IslandBoy
 
         public void AddParameter(string key, object value)
         {
+            //Debug.Log($"Adding parameter: {key} Value: {value}");
             _parameterStack.Peek()[key] = value;
         }
 
         public object GetParameter(string key)
         {
+            //Debug.Log($"Key to get: {key}");
             return _parameterStack.Peek()[key];
         }
 

@@ -34,14 +34,14 @@ namespace IslandBoy
 
         private void OnEnable()
         {
-            GameSignals.DAY_ENDED.AddListener(OnEndDay);
-            GameSignals.DAY_STARTED.AddListener(OnStartDay);
+            GameSignals.DAY_END.AddListener(OnEndDay);
+            GameSignals.DAY_START.AddListener(OnStartDay);
         }
 
         private void OnDisable()
         {
-            GameSignals.DAY_ENDED.RemoveListener(OnEndDay);
-            GameSignals.DAY_STARTED.RemoveListener(OnStartDay);
+            GameSignals.DAY_END.RemoveListener(OnEndDay);
+            GameSignals.DAY_START.RemoveListener(OnStartDay);
         }
 
         private void Start()

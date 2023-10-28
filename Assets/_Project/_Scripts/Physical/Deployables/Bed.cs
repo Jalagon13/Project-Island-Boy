@@ -23,13 +23,13 @@ namespace IslandBoy
         private void OnEnable()
         {
             GameSignals.CAN_SLEEP.AddListener(CanSleepNow);
-            GameSignals.DAY_STARTED.AddListener(CanNotSleep);
+            GameSignals.DAY_START.AddListener(CanNotSleep);
         }
 
         private void OnDisable()
         {
             GameSignals.CAN_SLEEP.RemoveListener(CanSleepNow);
-            GameSignals.DAY_STARTED.RemoveListener(CanNotSleep);
+            GameSignals.DAY_START.RemoveListener(CanNotSleep);
         }
 
         private void CanNotSleep(ISignalParameters parameters)
@@ -51,7 +51,7 @@ namespace IslandBoy
                 PopupMessage.Create(transform.position, "Too early to sleep!", Color.yellow, new(0.5f, 0.5f), 1f);
                 return;
             }
-            Debug.Log("EndDay Dispatched from bed");
+
             if (InValidSpace())
             {
                 DispatchEndDay();
@@ -62,7 +62,7 @@ namespace IslandBoy
         {
             // implement optional parameters before dispatch here
             
-            GameSignals.DAY_ENDED.Dispatch();
+            GameSignals.DAY_END.Dispatch();
         }
 
         public bool InValidSpace() // check for floors and walls for house is valid. check furniture too. make floortilePos a global var.

@@ -13,12 +13,12 @@ namespace IslandBoy
 
         private void OnEnable()
         {
-            GameSignals.DAY_ENDED.AddListener(UpdateNpcs);
+            GameSignals.DAY_END.AddListener(UpdateNpcs);
         }
 
         private void OnDisable()
         {
-            GameSignals.DAY_ENDED.RemoveListener(UpdateNpcs);
+            GameSignals.DAY_END.RemoveListener(UpdateNpcs);
         }
 
         private void Start()
@@ -56,7 +56,6 @@ namespace IslandBoy
                     bedsInValidHouse.Add(bed);
                 else if (bed.NPC != null)
                 {
-                    
                     bed.NPC.MoveOut();
                     bed.NPC = null;
                 }
@@ -96,6 +95,7 @@ namespace IslandBoy
 
         private void UpdateNpcs(ISignalParameters parameters)
         {
+            
             ClearNpcHolder();
             CheckBeds();
             UpdateNpcSlots();
