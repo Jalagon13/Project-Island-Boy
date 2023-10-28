@@ -57,17 +57,15 @@ namespace IslandBoy
 
         private void OnEnable()
         {
-            GameSignals.DAY_ENDED.AddListener(DisableActions);
-            GameSignals.DAY_STARTED.AddListener(EnableActions);
-
+            DayManager.Instance.OnEndDay += DisableActions;
+            DayManager.Instance.OnStartDay += EnableActions;
             _input.Enable();
         }
 
         private void OnDisable()
         {
-            GameSignals.DAY_ENDED.RemoveListener(DisableActions);
-            GameSignals.DAY_STARTED.RemoveListener(EnableActions);
-
+            DayManager.Instance.OnEndDay -= DisableActions;
+            DayManager.Instance.OnStartDay -= EnableActions;
             _input.Disable();
         }
 
@@ -87,13 +85,13 @@ namespace IslandBoy
                 PerformSwing();
         }
 
-        private void DisableActions(ISignalParameters parameters)
+        private void DisableActions(object obj, EventArgs e)
         {
             _ta.enabled = false;
             _canPerform = false;
         }
 
-        private void EnableActions(ISignalParameters parameters)
+        private void EnableActions(object obj, EventArgs e)
         {
             _ta.enabled = true; 
             _canPerform = true;

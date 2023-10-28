@@ -13,12 +13,12 @@ namespace IslandBoy
 
         private void OnEnable()
         {
-            GameSignals.DAY_ENDED.AddListener(UpdateNpcs);
+            DayManager.Instance.OnEndDay += UpdateNpcs;
         }
 
         private void OnDisable()
         {
-            GameSignals.DAY_ENDED.RemoveListener(UpdateNpcs);
+            DayManager.Instance.OnEndDay -= UpdateNpcs;
         }
 
         private void Start()
@@ -31,6 +31,7 @@ namespace IslandBoy
             ClearNpcHolder();
             CheckBeds();
             UpdateNpcSlots();
+            DayManager.Instance.ClearEndDaySlides();
         }
 
         private void ClearNpcHolder()
@@ -94,7 +95,7 @@ namespace IslandBoy
             }
         }
 
-        private void UpdateNpcs(ISignalParameters parameters)
+        private void UpdateNpcs(object sender, EventArgs e)
         {
             ClearNpcHolder();
             CheckBeds();

@@ -31,14 +31,8 @@ namespace IslandBoy
 
             if (InValidSpace())
             {
-                DispatchEndDay();
+                DayManager.Instance.EndDay();
             }
-        }
-
-        private void DispatchEndDay()
-        {
-            // implement optional parameters before dispatch here
-            GameSignals.DAY_ENDED.Dispatch();
         }
 
         public bool InValidSpace() // check for floors and walls for house is valid. check furniture too. make floortilePos a global var.
