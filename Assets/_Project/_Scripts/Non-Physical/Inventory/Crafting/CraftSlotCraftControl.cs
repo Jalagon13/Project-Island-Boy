@@ -5,11 +5,11 @@ namespace IslandBoy
 {
     public class CraftSlotCraftControl : MonoBehaviour
     {
-        [SerializeField] private PlayerReference _pr;
         [SerializeField] private AudioClip _popSound;
         [SerializeField] private GameObject _inventoryItemPrefab;
 
         private MouseItemHolder _mouseItemHolder;
+        private Inventory _playerInventory;
         private CraftSlot _cs;
 
         public MouseItemHolder MouseItemHolder { set { _mouseItemHolder = value; } }
@@ -17,6 +17,7 @@ namespace IslandBoy
         private void Awake()
         {
             _cs = GetComponent<CraftSlot>();
+            _playerInventory = transform.root.GetChild(0).GetComponent<Inventory>();
         }
 
         public void TryToCraft() // connected to slot button
@@ -26,7 +27,7 @@ namespace IslandBoy
 
             foreach (ItemAmount ia in _cs.Recipe.ResourceList)
             {
-                _pr.Inventory.RemoveItem(ia.Item, ia.Amount);
+                _playerInventory.RemoveItem(ia.Item, ia.Amount);
             }
 
             AudioManager.Instance.PlayClip(_popSound, false, true);
