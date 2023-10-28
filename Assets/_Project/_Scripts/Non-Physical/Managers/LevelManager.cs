@@ -34,8 +34,8 @@ namespace IslandBoy
 
         private void Start()
         {
-            AudioManager.Instance.PlayClip(_beachAmbSound, true, false, 0.1f);
-            AudioManager.Instance.StopClip(_caveAmbSound);
+            //AudioManager.Instance.PlayClip(_beachAmbSound, true, false, 0.1f);
+            //AudioManager.Instance.StopClip(_caveAmbSound);
         }
 
         public void LoadUnderground()
@@ -46,7 +46,7 @@ namespace IslandBoy
                 return;
             }
 
-            DayNightManager.Instance.GlobalVolume.enabled = false;
+            DayManager.Instance.GlobalVolume.enabled = false;
             AudioManager.Instance.StopClip(_beachAmbSound);
             AudioManager.Instance.PlayClip(_caveAmbSound, true, false);
 
@@ -60,8 +60,8 @@ namespace IslandBoy
         {
             yield return StartCoroutine(GenerateUndergroundScene());
 
-            Scene surface = SceneManager.GetSceneByBuildIndex(0);
-            Scene underground = SceneManager.GetSceneByBuildIndex(1);
+            Scene surface = SceneManager.GetSceneByBuildIndex(1);
+            Scene underground = SceneManager.GetSceneByBuildIndex(2);
 
             if (underground.IsValid())
             {
@@ -105,10 +105,10 @@ namespace IslandBoy
 
             _globalLight.intensity = 1;
 
-            Scene surface = SceneManager.GetSceneByBuildIndex(0);
-            Scene underground = SceneManager.GetSceneByBuildIndex(1);
+            Scene surface = SceneManager.GetSceneByBuildIndex(1);
+            Scene underground = SceneManager.GetSceneByBuildIndex(2);
 
-            DayNightManager.Instance.GlobalVolume.enabled = true;
+            DayManager.Instance.GlobalVolume.enabled = true;
             AudioManager.Instance.PlayClip(_beachAmbSound, true, false, 0.1f);
             AudioManager.Instance.StopClip(_caveAmbSound);
             SceneManager.MoveGameObjectToScene(_playerObject, surface);
@@ -126,6 +126,8 @@ namespace IslandBoy
 
         private void EnableSceneObjects(Scene scene, bool foo)
         {
+            if (!scene.IsValid()) return;
+
             scene.GetRootGameObjects(_rootObjects);
 
             foreach (var go in _rootObjects)

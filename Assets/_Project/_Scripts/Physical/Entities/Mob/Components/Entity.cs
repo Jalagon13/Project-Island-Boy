@@ -45,7 +45,7 @@ namespace IslandBoy
             _onDamage?.Invoke(incomingDamage);
             _iFrameTimer.RemainingSeconds = _iFrameDuration;
 
-            PopupMessage.Create(transform.position, incomingDamage.ToString(), Color.red, 0.5f);
+            PopupMessage.Create(transform.position, incomingDamage.ToString(), Color.yellow, new(0f, 0.5f));
             
 
             if (sender != null && transform.TryGetComponent(out KnockbackFeedback knockback))

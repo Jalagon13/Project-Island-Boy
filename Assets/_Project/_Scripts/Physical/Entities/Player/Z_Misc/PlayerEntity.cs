@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,16 @@ namespace IslandBoy
         private void Start()
         {
             PR.Defense = 0;
-            PR.SetSpawnPosition(transform.position);
+        }
+
+        private void OnEnable()
+        {
+            DayManager.Instance.DayTimer.OnTimerEnd += KillEntity;
+        }
+
+        private void OnDisable()
+        {
+            DayManager.Instance.DayTimer.OnTimerEnd -= KillEntity;
         }
 
         public override void Damage(int incomingDamage, GameObject sender = null)
@@ -29,7 +39,7 @@ namespace IslandBoy
 
             HealthSystem.Damage(damageDelt);
 
-            PopupMessage.Create(transform.position, damageDelt.ToString(), Color.red, 0.5f);
+            PopupMessage.Create(transform.position, damageDelt.ToString(), Color.red, new(0f, 0.5f));
             AudioManager.Instance.PlayClip(_damageSound, false, true);
 
             if (sender != null && transform.TryGetComponent(out KnockbackFeedback knockback))
@@ -72,15 +82,9 @@ namespace IslandBoy
         private IEnumerator Death()
         {
             _onDeath?.Invoke();
+
             yield return new WaitForSeconds(_deathTimer);
             _onRespawn?.Invoke();
-
-            if(SceneManager.GetActiveScene().buildIndex != 0)
-            {
-                LevelManager.Instance.LoadSurface();
-            }
-
-            transform.root.gameObject.transform.SetPositionAndRotation(PR.SpawnPosition, Quaternion.identity);
 
             HealthSystem = new(_maxHealth);
         }

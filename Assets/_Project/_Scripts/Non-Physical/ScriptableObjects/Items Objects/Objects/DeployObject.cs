@@ -18,6 +18,8 @@ namespace IslandBoy
         public override GameObject AmmoPrefab => null;
         public override int ConsumeValue => 0;
 
+        public GameObject PrefabToDeploy { get { return _prefabToDeploy; } }
+
         public override void ExecuteAction(SelectedSlotControl control)
         {
             if (PointerHandler.IsOverLayer(5)) return;

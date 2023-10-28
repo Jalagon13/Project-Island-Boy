@@ -27,13 +27,12 @@ namespace IslandBoy
         private float _counter;
         private bool _isHeldDown;
         private bool _performingSwing;
+        private bool _canPerform = true;
         private readonly int _idleHash = Animator.StringToHash("[Anim] AC Idle");
         private readonly int _rightSwingHash = Animator.StringToHash("[Anim] AC Swing Right");
         private readonly int _upSwingHash = Animator.StringToHash("[Anim] AC Swing Up");
         private readonly int _leftSwingHash = Animator.StringToHash("[Anim] AC Swing Left");
         private readonly int _downSwingHash = Animator.StringToHash("[Anim] AC Swing Down");
-
-        public bool IsHeldDown { get { return _isHeldDown; } }
 
         private void Awake()
         {
@@ -58,11 +57,15 @@ namespace IslandBoy
 
         private void OnEnable()
         {
+            DayManager.Instance.OnEndDay += DisableActions;
+            DayManager.Instance.OnStartDay += EnableActions;
             _input.Enable();
         }
 
         private void OnDisable()
         {
+            DayManager.Instance.OnEndDay -= DisableActions;
+            DayManager.Instance.OnStartDay -= EnableActions;
             _input.Disable();
         }
 
@@ -82,6 +85,18 @@ namespace IslandBoy
                 PerformSwing();
         }
 
+        private void DisableActions(object obj, EventArgs e)
+        {
+            _ta.enabled = false;
+            _canPerform = false;
+        }
+
+        private void EnableActions(object obj, EventArgs e)
+        {
+            _ta.enabled = true; 
+            _canPerform = true;
+        }
+
         private void TryPerformSwing(InputAction.CallbackContext context)
         {
             PerformSwing();
@@ -89,7 +104,7 @@ namespace IslandBoy
 
         private void PerformSwing()
         {
-            if (_counter < CalcParameter(_baseCooldown) || PointerHandler.IsOverLayer(5) || _performingSwing) return;
+            if (_counter < CalcParameter(_baseCooldown) || PointerHandler.IsOverLayer(5) || _performingSwing || !_canPerform) return;
 
             AnimStateManager.ChangeAnimationState(_animator, GetAnimationHash());
         }

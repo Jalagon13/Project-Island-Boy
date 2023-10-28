@@ -10,10 +10,10 @@ namespace IslandBoy
 {
     public class Inventory : MonoBehaviour
     {
-        public EventHandler OnItemAdded; // connected to craftslot
+        public event EventHandler OnItemAdded; // connected to craftslot
 
         [SerializeField] private PlayerReference _pr;
-        [SerializeField] private GameObject _inventoryItemPrefab;
+        //[SerializeField] private GameObject _inventoryItemPrefab;
         [SerializeField] private int _maxStack;
         [SerializeField] private UnityEvent<ItemObject, int> _onPickupItem;
         [SerializeField] private Slot[] _allSlots;
@@ -78,9 +78,8 @@ namespace IslandBoy
             {
                 Slot slot = _allSlots[i];
 
-                if (slot.transform.childCount == 0)
+                if(slot.SpawnInventoryItem(item, itemParameters))
                 {
-                    SpawnInventoryItem(item, slot, itemParameters);
                     return true;
                 }
             }
@@ -153,13 +152,6 @@ namespace IslandBoy
             }
 
             return null;
-        }
-
-        public void SpawnInventoryItem(ItemObject item, Slot slot, List<ItemParameter> itemParameters)
-        {
-            GameObject inventoryItemGo = Instantiate(_inventoryItemPrefab, slot.transform);
-            InventoryItem invItem = inventoryItemGo.GetComponent<InventoryItem>();
-            invItem.Initialize(item, itemParameters);
         }
     }
 }

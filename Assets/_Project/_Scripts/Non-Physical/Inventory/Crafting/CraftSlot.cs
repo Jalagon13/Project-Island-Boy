@@ -98,7 +98,7 @@ namespace IslandBoy
             {
                 GameObject rs = Instantiate(_rscSlotPrefab, _rscSlots.transform);
                 RscSlot rescSlot = rs.GetComponent<RscSlot>();
-                rescSlot.Initialize(ia);
+                rescSlot.Initialize(ia.Item, ia.Amount);
             }
         }
 

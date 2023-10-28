@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2594954625819056483, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2594954625819056483, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -96,7 +96,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[DPLY] Torch'
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9010295086465205499, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
     m_RemovedGameObjects:
     - {fileID: 2594954625136584844, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
     m_AddedGameObjects:

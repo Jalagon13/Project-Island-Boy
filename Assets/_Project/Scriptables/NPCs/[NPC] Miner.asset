@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cec8090e78bb1c1409f9c5adb7603e2a, type: 3}
+  m_Name: '[NPC] Miner'
+  m_EditorClassIdentifier: 
+  Name: Ben the Miner
+  Description: Sells mining equipment!
+  Icon: {fileID: 1598067083, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
+  NPC: {fileID: 7995473247580249321, guid: a7caeef01e87f404cb023c50273aeaaf, type: 3}
+  FurnitureCheckList:
+  - {fileID: 11400000, guid: e5ab57a91a28c384882e588fbf1e3392, type: 2}
+  - {fileID: 11400000, guid: 094c99f31de27a34bb5bfa75e568b3b6, type: 2}

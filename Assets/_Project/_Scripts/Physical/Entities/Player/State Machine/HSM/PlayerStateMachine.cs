@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace IslandBoy
 {
@@ -20,6 +22,8 @@ namespace IslandBoy
 
         private void Awake()
         {
+            _pr.PlayerGO = gameObject;
+            _pr.SpawnPoint = transform.position;
             _mainCamera = Camera.main;
             _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
             _rightDirScale = _sr.transform.localScale;
@@ -28,11 +32,22 @@ namespace IslandBoy
             _moveInput = GetComponent<PlayerMoveInput>();
         }
 
+        private void OnEnable()
+        {
+            DayManager.Instance.OnEndDay += OnEndDay;
+            DayManager.Instance.OnStartDay += OnStartDay;
+        }
+
+        private void OnDisable()
+        {
+            DayManager.Instance.OnEndDay -= OnEndDay;
+            DayManager.Instance.OnStartDay -= OnStartDay;
+        }
+
         private void Start()
         {
             _currentState = _states.Grounded();
             _currentState.EnterState();
-            //Cursor.SetCursor(_cursorSprite.texture, Vector2.zero, CursorMode.ForceSoftware);
         }
 
         private void Update()
@@ -40,6 +55,33 @@ namespace IslandBoy
             _currentState.UpdateStates();
             _pr.Position = transform.position;
             _pr.MousePosition = (Vector2)_mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        }
+
+        private void OnEndDay(object obj, EventArgs e)
+        {
+            TeleportPlayerToSpawn();
+            EnableMovement(false);
+        }
+
+        private void OnStartDay(object obj, EventArgs e)
+        {
+            EnableMovement(true);
+        }
+
+        private void EnableMovement(bool _)
+        {
+            var input = GetComponent<PlayerMoveInput>();
+            input.enabled = _;
+        }
+
+        private void TeleportPlayerToSpawn()
+        {
+            if (SceneManager.GetActiveScene().buildIndex != 0)
+            {
+                LevelManager.Instance.LoadSurface();
+            }
+
+            transform.SetPositionAndRotation(_pr.SpawnPoint, Quaternion.identity);
         }
 
         public void SpriteFlipHandle()
