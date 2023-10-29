@@ -12,9 +12,8 @@ namespace IslandBoy
         [field:SerializeField] public TilemapReferences TMR { get; private set; }
         [field:SerializeField] public HealthBar HealthBar { get; private set; }
         [field:SerializeField] public EnergyBar EnergyBar { get; private set; }
-        [field:SerializeField] public TileAction TileAction { get; private set; }
-        [field:SerializeField] public Collider2D PlayerEntityCollider { get; private set; }
         [field:SerializeField] public Slider ThrowSlider { get; private set; }
+        public TileAction TileAction { get; private set; }
         public InventorySlot SelectedSlot { get; private set; }
         [field:SerializeField] public ItemParameter ChargeTimeParameter { get; private set; }
 
@@ -43,6 +42,8 @@ namespace IslandBoy
             _input.Player.SecondaryAction.started += SelectedSlotAction;
             _input.Player.SecondaryAction.performed += IsHeldDown;
             _input.Player.SecondaryAction.canceled += IsHeldDown;
+
+            TileAction = FindObjectOfType<TileAction>();
         }
 
         private void Start()
@@ -148,20 +149,6 @@ namespace IslandBoy
                 SelectedSlot.ItemObject.ExecuteAction(this);
                 _counter = 0;
             }
-        }
-
-        public void RestoreStat(ConsumeType cType, int value)
-        {
-            switch (cType)
-            {
-                case ConsumeType.Energy:
-                    EnergyBar.AddTo(value);
-                    break;
-                case ConsumeType.Health:
-                    HealthBar.AddTo(value);
-                    break;
-            }
-            PopupMessage.Create(transform.root.position, $"+{value} {cType}", Color.green, new(0, 0.5f), 1f);
         }
     }
 }

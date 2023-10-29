@@ -9,6 +9,8 @@ namespace IslandBoy
     {
         [SerializeField] private RecipeDatabaseObject _rdb;
 
+        private bool _appQuitting;
+
         public override IEnumerator Start()
         {
             OnPlayerExitRange += () => RefreshCraftSlotsToDefault();
@@ -16,8 +18,15 @@ namespace IslandBoy
             return base.Start();
         }
 
+        private void OnApplicationQuit()
+        {
+            _appQuitting = true;
+        }
+
         private void OnDestroy()
         {
+            if (_appQuitting) return;
+
             RefreshCraftSlotsToDefault();
         }
 

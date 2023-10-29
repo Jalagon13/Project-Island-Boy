@@ -22,5 +22,9 @@ namespace IslandBoy
         public static readonly Signal ITEM_ADDED = new("ItemAdded");
         public static readonly Signal ITEM_CRAFTED = new("ItemCrafted");
         public static readonly Signal CHEST_INTERACT = new("ChestInteract");
+        public static readonly Signal CONSUME_ITEM_TRY = new("ConsumeItemTry");
+        public static readonly Signal CONSUME_ITEM_SUCCESS = new("ConsumeItemSuccess");
+        public static readonly Signal SWING_PERFORMED = new("SwingPerformed");
+        public static readonly Signal OBJECT_LAUNCHED = new("ObjectLaunched");
     }
 }

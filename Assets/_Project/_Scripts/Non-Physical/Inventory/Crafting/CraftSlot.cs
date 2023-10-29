@@ -112,7 +112,6 @@ namespace IslandBoy
 
         private void SetCraftable()
         {
-            Debug.Log($"Output image null: {_outputImage == null}");
             _outputImage.color = Color.white;
             _canCraft = true;
         }

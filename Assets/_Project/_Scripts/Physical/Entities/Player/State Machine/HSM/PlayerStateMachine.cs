@@ -10,7 +10,6 @@ namespace IslandBoy
     public class PlayerStateMachine : MonoBehaviour
     {
         [SerializeField] private PlayerReference _pr;
-        [SerializeField] private List<ItemObject> _startingItems;
 
         private static Vector3 _rightDirScale;
         private static Vector3 _leftDirScale;
@@ -47,17 +46,10 @@ namespace IslandBoy
             GameSignals.DAY_START.RemoveListener(OnStartDay);
         }
 
-        private IEnumerator Start()
+        private void Start()
         {
             _currentState = _states.Grounded();
             _currentState.EnterState();
-
-            yield return new WaitForEndOfFrame();
-
-            foreach (ItemObject item in _startingItems)
-            {
-                GameAssets.Instance.SpawnItem(transform.position, item, 1);
-            }
         }
 
         private void Update()
