@@ -57,6 +57,8 @@ namespace IslandBoy
 
         public void UpdateLogic()
         {
+            if (_selectedSlot == null) return;
+
             if (_ta.OverInteractable())
             {
                 if(_ae != null)

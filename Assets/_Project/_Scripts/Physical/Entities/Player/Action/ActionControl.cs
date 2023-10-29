@@ -53,28 +53,31 @@ namespace IslandBoy
 
             _swingCollider = transform.GetChild(0).GetChild(0).GetComponent<SwingCollider>();
             _swingCollider.BaseDamage = _baseDamage.Value;
-        }
 
-        private void OnEnable()
-        {
             GameSignals.SELECTED_SLOT_UPDATED.AddListener(ProcessSelectedSlotUpdate);
             GameSignals.ITEM_ADDED.AddListener(UpdateHeldItem);
             GameSignals.DAY_END.AddListener(DisableActions);
             GameSignals.DAY_START.AddListener(EnableActions);
             GameSignals.PLAYER_DIED.AddListener(DisableActions);
+        }
 
+        private void OnEnable()
+        {
             _input.Enable();
         }
 
         private void OnDisable()
+        {
+            _input.Disable();
+        }
+
+        private void OnDestroy()
         {
             GameSignals.SELECTED_SLOT_UPDATED.RemoveListener(ProcessSelectedSlotUpdate);
             GameSignals.ITEM_ADDED.RemoveListener(UpdateHeldItem);
             GameSignals.DAY_END.RemoveListener(DisableActions);
             GameSignals.DAY_START.RemoveListener(EnableActions);
             GameSignals.PLAYER_DIED.RemoveListener(DisableActions);
-
-            _input.Disable();
         }
 
         private void Start()
@@ -84,6 +87,8 @@ namespace IslandBoy
 
         private void FixedUpdate()
         {
+            if (_selectedSlot == null) return;
+
             _counter += Time.deltaTime;
 
             if (_counter > CalcParameter(_baseCooldown))

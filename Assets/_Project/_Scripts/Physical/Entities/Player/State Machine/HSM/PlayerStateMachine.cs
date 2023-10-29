@@ -25,22 +25,18 @@ namespace IslandBoy
         private void Awake()
         {
             _pr.SpawnPoint = transform.position;
-            _mainCamera = Camera.main;
             _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
             _rightDirScale = _sr.transform.localScale;
             _leftDirScale = new(-_rightDirScale.x, _rightDirScale.y);
             _states = new PlayerStateFactory(this);
             _moveInput = GetComponent<PlayerMoveInput>();
-        }
-
-        private void OnEnable()
-        {
+            
             GameSignals.DAY_END.AddListener(OnEndDay);
             GameSignals.DAY_START.AddListener(OnStartDay);
             GameSignals.PLAYER_DIED.AddListener(PlayerDied);
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             GameSignals.DAY_END.RemoveListener(OnEndDay);
             GameSignals.DAY_START.RemoveListener(OnStartDay);
@@ -51,9 +47,10 @@ namespace IslandBoy
         {
             _currentState = _states.Grounded();
             _currentState.EnterState();
+            _mainCamera = Camera.main;
         }
 
-        private void Update()
+        private void LateUpdate()
         {
             _currentState.UpdateStates();
             _pr.Position = transform.position;

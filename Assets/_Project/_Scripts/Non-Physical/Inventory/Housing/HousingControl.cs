@@ -21,15 +21,17 @@ namespace IslandBoy
             GameSignals.DAY_END.RemoveListener(UpdateNpcs);
         }
 
-        private void Start()
+        private IEnumerator Start()
         {
-            foreach (NpcObject npc in npcsFound)
-            {
-                npc.MoveOut();
-            }
+            yield return new WaitForEndOfFrame();
 
-            ClearNpcHolder();
-            CheckBeds();
+            //foreach (NpcObject npc in npcsFound)
+            //{
+            //    npc.MoveOut();
+            //}
+
+            //ClearNpcHolder();
+            //CheckBeds();
             UpdateNpcSlots();
         }
 

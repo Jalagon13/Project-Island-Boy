@@ -10,6 +10,7 @@ namespace IslandBoy
         private void Awake()
         {
             LoadSceneAdditively("MainMenu");
+            LoadSceneAdditively("Camera");
         }
 
         private static void LoadSceneAdditively(string sceneName)
