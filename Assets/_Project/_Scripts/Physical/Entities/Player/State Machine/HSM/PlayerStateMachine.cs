@@ -24,7 +24,6 @@ namespace IslandBoy
 
         private void Awake()
         {
-            _pr.PlayerGO = gameObject;
             _pr.SpawnPoint = transform.position;
             _mainCamera = Camera.main;
             _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();

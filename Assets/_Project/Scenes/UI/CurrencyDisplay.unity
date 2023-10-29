@@ -135,8 +135,9 @@ GameObject:
   - component: {fileID: 1425511897}
   - component: {fileID: 1425511896}
   - component: {fileID: 1425511895}
+  - component: {fileID: 1425511899}
   m_Layer: 0
-  m_Name: GoldDisplay
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -225,6 +226,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1425511899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425511894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37e359f6156792149b36e0bbd205a9a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
+  _startingCurrency: 100
+  _percentKeptAfterDeath: 0.25
+  _coinText: {fileID: 0}
 --- !u!224 &597808828325541005
 RectTransform:
   m_ObjectHideFlags: 0
