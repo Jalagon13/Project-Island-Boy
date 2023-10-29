@@ -10,7 +10,6 @@ namespace IslandBoy
         [SerializeField] private TabControl _tabControl;
 
         private Inventory _inventory;
-        private PromptControl _promptControl;
         private MouseItemHolder _mouseItemHolder;
         private PlayerInput _input;
         private RectTransform _mainInventory;
@@ -22,7 +21,6 @@ namespace IslandBoy
         {
             _input = new PlayerInput();
             _inventory = GetComponent<Inventory>();
-            _promptControl = GetComponent<PromptControl>();
             _craftSlotsControl = GetComponent<CraftSlotsControl>();
             _mainInventory = transform.GetChild(0).GetComponent<RectTransform>();
             _mouseItemHolder = transform.GetChild(2).GetComponent<MouseItemHolder>();
@@ -64,15 +62,12 @@ namespace IslandBoy
             InteractableHandle(chestOpened);
 
             _tabControl.DisableAllTabs();
-            _promptControl.PromptHandle(null);
         }
 
         public void CraftStationInteract(Interactable craftStation, RecipeDatabaseObject rdb)
         {
             OpenInventory();
             _tabControl.OpenCraftTab();
-
-            _promptControl.PromptHandle(null);
 
             if (craftStation == _currentInteractableActive) return;
 

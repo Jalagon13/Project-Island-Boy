@@ -32,8 +32,16 @@ namespace IslandBoy
 
         public override void Interact()
         {
-            _pr.Inventory.PromptControl.PromptInteract(this);
+            DispatchPromptInteract();
             OpenUI();
+        }
+
+        private void DispatchPromptInteract()
+        {
+            Signal signal = GameSignals.PROMPT_INTERACT;
+            signal.ClearParameters();
+            signal.AddParameter("Prompt", this);
+            signal.Dispatch();
         }
 
         private void OnInventoryClose(ISignalParameters parameters)

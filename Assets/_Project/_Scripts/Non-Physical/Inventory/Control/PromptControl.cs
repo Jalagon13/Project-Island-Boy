@@ -8,6 +8,20 @@ namespace IslandBoy
     {
         private Prompt _currentPrompt;
 
+        private void Awake()
+        {
+            GameSignals.CHEST_INTERACT.AddListener(DisablePromptDisplay);
+            GameSignals.CRAFT_STATION_INTERACT.AddListener(DisablePromptDisplay);
+            GameSignals.PROMPT_INTERACT.AddListener(PromptInteract);
+        }
+
+        private void OnDestroy()
+        {
+            GameSignals.CHEST_INTERACT.RemoveListener(DisablePromptDisplay);
+            GameSignals.CRAFT_STATION_INTERACT.RemoveListener(DisablePromptDisplay);
+            GameSignals.PROMPT_INTERACT.RemoveListener(PromptInteract);
+        }
+
         private void Update()
         {
             if (_currentPrompt == null) return;
@@ -18,9 +32,16 @@ namespace IslandBoy
             }
         }
 
-        public void PromptInteract(Prompt adventurer)
+        private void DisablePromptDisplay(ISignalParameters parameters)
         {
-            PromptHandle(adventurer);
+            PromptHandle(null);
+        }
+
+        public void PromptInteract(ISignalParameters parameters)
+        {
+            Prompt prompt = (Prompt)parameters.GetParameter("Prompt");
+
+            PromptHandle(prompt);
         }
 
         public void PromptHandle(Prompt adventurer)

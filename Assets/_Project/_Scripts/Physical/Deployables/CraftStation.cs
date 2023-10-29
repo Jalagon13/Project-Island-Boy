@@ -39,6 +39,8 @@ namespace IslandBoy
         {
             if (!_canInteract) return;
             _pr.Inventory.InventoryControl.CraftStationInteract(this, _rdb);
+
+            GameSignals.CRAFT_STATION_INTERACT.Dispatch();
         }
     }
 }

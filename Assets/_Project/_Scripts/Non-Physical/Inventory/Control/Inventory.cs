@@ -19,7 +19,6 @@ namespace IslandBoy
         public Slot[] InventorySlots { get { return _allSlots; } }
         public MouseItemHolder MouseItemHolder { get { return _mouseItemHolder; } }
         public InventoryControl InventoryControl { get { return GetComponent<InventoryControl>(); } }
-        public PromptControl PromptControl { get { return GetComponent<PromptControl>(); } }
         public int MaxStack { get { return _maxStack; } }
 
         private void Awake()
