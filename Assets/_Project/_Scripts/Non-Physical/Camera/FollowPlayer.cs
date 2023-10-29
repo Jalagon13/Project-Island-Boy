@@ -10,7 +10,7 @@ namespace IslandBoy
 
         private void Start()
         {
-            transform.position = Vector3.zero;
+            _pr.Position = Vector3.zero;
         }
 
         private void LateUpdate()
