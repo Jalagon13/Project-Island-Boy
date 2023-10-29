@@ -10,8 +10,6 @@ namespace IslandBoy
     {
         [field:SerializeField] public PlayerReference PR { get; private set; }
         [field:SerializeField] public TilemapReferences TMR { get; private set; }
-        [field:SerializeField] public HealthBar HealthBar { get; private set; }
-        [field:SerializeField] public EnergyBar EnergyBar { get; private set; }
         [field:SerializeField] public Slider ThrowSlider { get; private set; }
         public TileAction TileAction { get; private set; }
         public InventorySlot SelectedSlot { get; private set; }
