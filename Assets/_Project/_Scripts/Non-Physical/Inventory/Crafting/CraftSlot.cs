@@ -22,14 +22,6 @@ namespace IslandBoy
         public bool CanCraft { get { return _canCraft; } }
         public Recipe Recipe { get { return _recipe; } }
 
-        private void OnEnable()
-        {
-            GameSignals.ITEM_CRAFTED.AddListener(CheckIfCanCraft);
-            GameSignals.ITEM_ADDED.AddListener(CheckIfCanCraft);
-            GameSignals.SLOT_CLICKED.AddListener(CheckIfCanCraft);
-            GameSignals.INVENTORY_OPEN.AddListener(CheckIfCanCraft);
-        }
-
         private void OnDisable()
         {
             _rscPanel.gameObject.SetActive(false);
@@ -55,6 +47,11 @@ namespace IslandBoy
 
         public void Initialize(Recipe recipe)
         {
+            GameSignals.ITEM_CRAFTED.AddListener(CheckIfCanCraft);
+            GameSignals.ITEM_ADDED.AddListener(CheckIfCanCraft);
+            GameSignals.SLOT_CLICKED.AddListener(CheckIfCanCraft);
+            GameSignals.INVENTORY_OPEN.AddListener(CheckIfCanCraft);
+
             SetGlobals(recipe);
             InitializeResourceSlots();
 
@@ -115,6 +112,7 @@ namespace IslandBoy
 
         private void SetCraftable()
         {
+            Debug.Log($"Output image null: {_outputImage == null}");
             _outputImage.color = Color.white;
             _canCraft = true;
         }

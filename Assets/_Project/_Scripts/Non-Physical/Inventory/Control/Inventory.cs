@@ -36,7 +36,7 @@ namespace IslandBoy
                 if (!Add(item, amount, itemParameters))
                 {
                     int leftOver = amount - i;
-                    DispatchItemAdded();
+                    //DispatchItemAdded();
                     //_onPickupItem?.Invoke(item, amount - leftOver);
                     return leftOver;
                 }
@@ -49,6 +49,7 @@ namespace IslandBoy
 
         private void DispatchItemAdded()
         {
+            Debug.Log("DispatchItemAdded invoked");
             Signal signal = GameSignals.ITEM_ADDED;
             signal.ClearParameters();
             signal.AddParameter("Inventory", this);
