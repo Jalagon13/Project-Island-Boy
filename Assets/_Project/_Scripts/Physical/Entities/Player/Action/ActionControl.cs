@@ -58,8 +58,10 @@ namespace IslandBoy
         private void OnEnable()
         {
             GameSignals.SELECTED_SLOT_UPDATED.AddListener(ProcessSelectedSlotUpdate);
+            GameSignals.ITEM_ADDED.AddListener(UpdateHeldItem);
             GameSignals.DAY_END.AddListener(DisableActions);
             GameSignals.DAY_START.AddListener(EnableActions);
+            GameSignals.PLAYER_DIED.AddListener(DisableActions);
 
             _input.Enable();
         }
@@ -67,8 +69,10 @@ namespace IslandBoy
         private void OnDisable()
         {
             GameSignals.SELECTED_SLOT_UPDATED.RemoveListener(ProcessSelectedSlotUpdate);
+            GameSignals.ITEM_ADDED.RemoveListener(UpdateHeldItem);
             GameSignals.DAY_END.RemoveListener(DisableActions);
             GameSignals.DAY_START.RemoveListener(EnableActions);
+            GameSignals.PLAYER_DIED.RemoveListener(DisableActions);
 
             _input.Disable();
         }
@@ -93,6 +97,11 @@ namespace IslandBoy
         {
             _selectedSlot = (InventorySlot)parameters.GetParameter("SelectedSlot");
             
+            UpdateSwing();
+        }
+
+        private void UpdateHeldItem(ISignalParameters parameters)
+        {
             UpdateSwing();
         }
 

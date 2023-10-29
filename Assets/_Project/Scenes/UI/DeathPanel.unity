@@ -135,8 +135,9 @@ GameObject:
   - component: {fileID: 541471351}
   - component: {fileID: 541471350}
   - component: {fileID: 541471349}
+  - component: {fileID: 541471353}
   m_Layer: 0
-  m_Name: DeathPanel
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -225,6 +226,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &541471353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541471348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f58f0dc2a53d747be90a7ee15cf90f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &8633483084390366115
 CanvasRenderer:
   m_ObjectHideFlags: 0

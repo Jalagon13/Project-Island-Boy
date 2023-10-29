@@ -38,12 +38,14 @@ namespace IslandBoy
         {
             GameSignals.DAY_END.AddListener(OnEndDay);
             GameSignals.DAY_START.AddListener(OnStartDay);
+            GameSignals.PLAYER_DIED.AddListener(PlayerDied);
         }
 
         private void OnDisable()
         {
             GameSignals.DAY_END.RemoveListener(OnEndDay);
             GameSignals.DAY_START.RemoveListener(OnStartDay);
+            GameSignals.PLAYER_DIED.RemoveListener(PlayerDied);
         }
 
         private void Start()
@@ -57,6 +59,11 @@ namespace IslandBoy
             _currentState.UpdateStates();
             _pr.Position = transform.position;
             _pr.MousePosition = (Vector2)_mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        }
+
+        private void PlayerDied(ISignalParameters parameters)
+        {
+            EnableMovement(false);
         }
 
         private void OnEndDay(ISignalParameters parameters)

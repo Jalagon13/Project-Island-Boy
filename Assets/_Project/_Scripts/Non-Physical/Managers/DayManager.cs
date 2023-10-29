@@ -114,10 +114,10 @@ namespace IslandBoy
             _marker.anchoredPosition = new Vector2(xValue, _markerStartPosition.y);
         }
 
-        public void StartDay()
+        public void StartDay() // connected to continue button
         {
             ResetDay();
-            DispatchStartDay();
+            DispatchEvents();
             PanelEnabled(false);
             UpdateMarker(_sunSprite);
         }
@@ -132,7 +132,7 @@ namespace IslandBoy
             _isDay = true;
         }
 
-        private void DispatchStartDay()
+        private void DispatchEvents()
         {
             // implement optional parameters before dispatch here
             GameSignals.DAY_START.Dispatch();
