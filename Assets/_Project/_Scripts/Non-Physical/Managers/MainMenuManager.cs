@@ -25,6 +25,8 @@ namespace IslandBoy
             yield return StartCoroutine(LoadSceneAdd("DeathPanel"));
             yield return StartCoroutine(LoadSceneAdd("CurrencyDisplay"));
 
+            Scene gameWorld = SceneManager.GetSceneByName("GameWorld");
+            SceneManager.SetActiveScene(gameWorld);
             SceneManager.UnloadSceneAsync("MainMenu");
 
         }
