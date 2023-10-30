@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace IslandBoy
 {
@@ -44,8 +46,6 @@ namespace IslandBoy
             _animator = GetComponent<Animator>();
             _animator.speed = 1 * _baseSwingSpeedMultiplier.Value;
             _moveInput = transform.root.GetComponent<PlayerMoveInput>();
-            _camera = Camera.main;
-
             _ta = transform.GetChild(0).GetComponent<TileAction>();
             _ta.BasePower = _basePower.Value;
             _ta.BaseToolType = _baseToolType;
@@ -80,9 +80,13 @@ namespace IslandBoy
             GameSignals.PLAYER_DIED.RemoveListener(DisableActions);
         }
 
-        private void Start()
+        private IEnumerator Start()
         {
             SwingEnd();
+
+            yield return new WaitForEndOfFrame();
+
+            _camera = Camera.main;
         }
 
         private void FixedUpdate()
@@ -130,6 +134,8 @@ namespace IslandBoy
 
         private void TryPerformSwing(InputAction.CallbackContext context)
         {
+            if(_selectedSlot == null) return;
+
             PerformSwing();
         }
 

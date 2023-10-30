@@ -6,19 +6,19 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Project/Scenes/Startup.unity
+    path: Assets/_Project/Scenes/Game Scenes/Startup.unity
     guid: 9949e4df74a8c2c4cb8f2ef96e78146d
   - enabled: 1
-    path: Assets/_Project/Scenes/MainMenu.unity
+    path: Assets/_Project/Scenes/Game Scenes/MainMenu.unity
     guid: 6ad4fa2ebdc376f46bf67d9e9eb118e3
   - enabled: 1
-    path: Assets/_Project/Scenes/GameWorld.unity
+    path: Assets/_Project/Scenes/Game Scenes/GameWorld.unity
     guid: 30f10bac41d060e48a7ef0c95aa2775e
   - enabled: 1
-    path: Assets/_Project/Scenes/Underground.unity
+    path: Assets/_Project/Scenes/Game Scenes/Underground.unity
     guid: 68c09988951ac6d4ba8df245145716ec
   - enabled: 1
-    path: Assets/_Project/Scenes/End.unity
+    path: Assets/_Project/Scenes/Game Scenes/End.unity
     guid: 95f64a339fb6943429827db0447a6ed0
   - enabled: 1
     path: Assets/_Project/Scenes/UI/CurrencyDisplay.unity
