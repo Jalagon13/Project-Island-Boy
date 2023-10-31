@@ -67,7 +67,7 @@ namespace IslandBoy
         public override void Interact()
         {
             if (!_canInteract) return;
-            HandleInventoryControl();
+            DispatchChestInteract();
             EnableChestSlots(true);
         }
 
@@ -79,11 +79,6 @@ namespace IslandBoy
         public void EnableChestSlots(bool val)
         {
             _slotCanvas.gameObject.SetActive(val);
-        }
-
-        private void HandleInventoryControl()
-        {
-            DispatchChestInteract();
         }
 
         private void DispatchChestInteract()

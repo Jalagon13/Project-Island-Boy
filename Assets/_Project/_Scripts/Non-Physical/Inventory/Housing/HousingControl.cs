@@ -14,25 +14,32 @@ namespace IslandBoy
         private void OnEnable()
         {
             GameSignals.DAY_END.AddListener(UpdateNpcs);
+            GameSignals.INVENTORY_OPEN.AddListener(ShowNpcHolder);
+            GameSignals.INVENTORY_CLOSE.AddListener(HideNpcHolder);
         }
 
         private void OnDisable()
         {
             GameSignals.DAY_END.RemoveListener(UpdateNpcs);
+            GameSignals.INVENTORY_OPEN.RemoveListener(ShowNpcHolder);
+            GameSignals.INVENTORY_CLOSE.RemoveListener(HideNpcHolder);
         }
 
         private IEnumerator Start()
         {
             yield return new WaitForEndOfFrame();
 
-            //foreach (NpcObject npc in npcsFound)
-            //{
-            //    npc.MoveOut();
-            //}
-
-            //ClearNpcHolder();
-            //CheckBeds();
             UpdateNpcSlots();
+        }
+
+        private void ShowNpcHolder(ISignalParameters parameters)
+        {
+            _npcSlotHolder.gameObject.SetActive(true);
+        }
+
+        private void HideNpcHolder(ISignalParameters parameters)
+        {
+            _npcSlotHolder.gameObject.SetActive(false);
         }
 
         private void ClearNpcHolder()

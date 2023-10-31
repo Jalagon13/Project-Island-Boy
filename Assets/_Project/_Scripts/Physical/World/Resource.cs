@@ -57,7 +57,6 @@ namespace IslandBoy
             AudioManager.Instance.PlayClip(_hitSound, false, true, 0.7f);
             PopupMessage.Create(transform.position, amount.ToString(), Color.yellow, new(0, 0.5f));
 
-
             RscHit();
 
             _currentHitPoints -= amount;
@@ -75,21 +74,6 @@ namespace IslandBoy
             StopAllCoroutines();
 
             Destroy(gameObject);
-        }
-
-        private IEnumerator Tremble()
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                _sr.transform.localPosition += new Vector3(0.05f, 0, 0);
-                yield return new WaitForSeconds(0.01f);
-                _sr.transform.localPosition -= new Vector3(0.05f, 0, 0);
-                yield return new WaitForSeconds(0.01f);
-                _sr.transform.localPosition -= new Vector3(0.05f, 0, 0);
-                yield return new WaitForSeconds(0.01f);
-                _sr.transform.localPosition += new Vector3(0.05f, 0, 0);
-                yield return new WaitForSeconds(0.01f);
-            }
         }
     }
 }
