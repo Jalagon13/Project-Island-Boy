@@ -106,15 +106,15 @@ namespace IslandBoy
         {
             _selectedSlot = (InventorySlot)parameters.GetParameter("SelectedSlot");
             
-            UpdateSwing();
+            UpdateSwingSprite();
         }
 
         private void UpdateHeldItem(ISignalParameters parameters)
         {
-            UpdateSwing();
+            UpdateSwingSprite();
         }
 
-        private void UpdateSwing()
+        private void UpdateSwingSprite()
         {
             _swingSr.sprite = _selectedSlot.ItemObject != null ? _selectedSlot.ItemObject.UiDisplay : null;
             _swingCollider.SelectedSlot = _selectedSlot;

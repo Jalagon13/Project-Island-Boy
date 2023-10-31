@@ -34,6 +34,7 @@ namespace IslandBoy
 
         private void Awake()
         {
+            _globalVolume = FindFirstObjectByType<Volume>();
             _timer = new(_dayDurationInSec);
             _timer.OnTimerEnd += OutOfTime;
         }
