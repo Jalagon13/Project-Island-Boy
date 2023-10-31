@@ -19,6 +19,7 @@ namespace IslandBoy
         private void Awake()
         {
             GameSignals.CONSUME_ITEM_SUCCESS.AddListener(DecreaseSelectedSlot);
+
             _input = new();
             _input.Hotbar.Scroll.performed += SelectSlotScroll;
             _input.Hotbar._1.started += SelectSlot;
