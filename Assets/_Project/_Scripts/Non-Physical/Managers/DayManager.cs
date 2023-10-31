@@ -32,31 +32,22 @@ namespace IslandBoy
         private bool _isDay, _hasDisplayedWarning;
         private List<string> _endDaySlides = new();
 
-        private void Awake()
+        public Volume GlobalVolume { get { return _globalVolume; } }
+        public EventHandler OnStartDay { get { return _onStartDay; } set { _onStartDay = value; } }
+        public EventHandler OnEndDay { get { return _onEndDay; } set { _onEndDay = value; } }
+        public Timer DayTimer { get { return _timer; } }
+
+        protected override void Awake()
         {
             base.Awake();
             _timer = new(_dayDurationInSec);
-            _timer.OnTimerEnd += OutOfTime;
+            _globalVolume = transform.GetChild(1).GetComponent<Volume>();
         }
 
         private void Start()
         {
             StartDay();
             _timer.Tick(_dayDurationInSec * _debugDayPercentage); // starts the day some percent way through
-        }
-
-        private void OnEnable()
-        {
-            GameSignals.DAY_END.AddListener(EndDay);
-            GameSignals.NPC_MOVED_IN.AddListener(NpcMovedIn);
-            GameSignals.NPC_MOVED_OUT.AddListener(NpcMovedOut);
-        }
-
-        private void OnDisable()
-        {
-            GameSignals.DAY_END.RemoveListener(EndDay);
-            GameSignals.NPC_MOVED_IN.RemoveListener(NpcMovedIn);
-            GameSignals.NPC_MOVED_OUT.RemoveListener(NpcMovedOut);
         }
 
         private void Update()
@@ -70,29 +61,9 @@ namespace IslandBoy
                 if(_phasePercent > _percentTillCanSleep && !_hasDisplayedWarning)
                 {
                     PopupMessage.Create(_pr.Position, "I need to sleep soon..", Color.cyan, new(0f, 0.75f), 1.5f);
-                    GameSignals.CAN_SLEEP.Dispatch();
                     _hasDisplayedWarning = true;
                 }
             }
-        }
-
-        private void OutOfTime()
-        {
-            GameSignals.DAY_OUT_OF_TIME.Dispatch();
-        }
-
-        private void NpcMovedIn(ISignalParameters parameters)
-        {
-            NpcObject npc = parameters.GetParameter("MovedInNpc") as NpcObject;
-
-            _endDaySlides.Add($"{npc.Name} has moved in!");
-        }
-
-        private void NpcMovedOut(ISignalParameters parameters)
-        {
-            NpcObject npc = parameters.GetParameter("MovedOutNpc") as NpcObject;
-
-            _endDaySlides.Add($"{npc.Name} has moved out!");
         }
 
         private void VolumeHandle()
@@ -116,10 +87,9 @@ namespace IslandBoy
             _marker.anchoredPosition = new Vector2(xValue, _markerStartPosition.y);
         }
 
-        public void StartDay() // connected to continue button
+        public void StartDay()
         {
             ResetDay();
-            DispatchEvents();
             PanelEnabled(false);
             UpdateMarker(_sunSprite);
         }
@@ -135,10 +105,9 @@ namespace IslandBoy
             _onStartDay?.Invoke(this, EventArgs.Empty);
         }
 
-        private void DispatchEvents()
+        public bool CanSleep()
         {
-            // implement optional parameters before dispatch here
-            GameSignals.DAY_START.Dispatch();
+            return _phasePercent > _percentTillCanSleep;
         }
 
         public void AddEndDaySlide(string text)

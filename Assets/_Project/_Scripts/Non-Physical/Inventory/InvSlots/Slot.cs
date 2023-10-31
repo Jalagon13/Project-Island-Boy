@@ -8,6 +8,8 @@ namespace IslandBoy
 {
     public abstract class Slot : MonoBehaviour, IPointerClickHandler
     {
+        public EventHandler OnSlotClicked;
+
         [SerializeField] protected PlayerReference _pr;
         [SerializeField] private GameObject _inventoryItemPrefab;
         [SerializeField] protected AudioClip _popSound;

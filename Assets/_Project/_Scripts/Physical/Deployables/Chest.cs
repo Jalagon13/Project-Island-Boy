@@ -19,12 +19,12 @@ namespace IslandBoy
 
         private void OnEnable()
         {
-            GameSignals.INVENTORY_CLOSE.AddListener(CloseChest);
+            _pr.Inventory.InventoryControl.OnInventoryClosed += CloseChest;
         }
 
         private void OnDisable()
         {
-            GameSignals.INVENTORY_CLOSE.RemoveListener(CloseChest);
+            _pr.Inventory.InventoryControl.OnInventoryClosed -= CloseChest;
         }
 
         public override IEnumerator Start()
@@ -46,7 +46,7 @@ namespace IslandBoy
                 if(slot.ItemObject != null)
                 {
                     Vector3 offset = new(0.5f, 0.5f);
-                    GameAssets.Instance.SpawnItem(this.transform.position += offset, slot.ItemObject, slot.InventoryItem.Count);
+                    WorldItemManager.Instance.SpawnItem(this.transform.position += offset, slot.ItemObject, slot.InventoryItem.Count);
                 }
             }
         }
@@ -71,7 +71,7 @@ namespace IslandBoy
             EnableChestSlots(true);
         }
 
-        private void CloseChest(ISignalParameters parameters)
+        private void CloseChest(object obj, EventArgs args)
         {
             EnableChestSlots(false);
         }
@@ -83,15 +83,7 @@ namespace IslandBoy
 
         private void HandleInventoryControl()
         {
-            DispatchChestInteract();
-        }
-
-        private void DispatchChestInteract()
-        {
-            Signal signal = GameSignals.CHEST_INTERACT;
-            signal.ClearParameters();
-            signal.AddParameter("ChestInteract", this);
-            signal.Dispatch();
+            _pr.Inventory.InventoryControl.ChestInteract(this);
         }
     }
 

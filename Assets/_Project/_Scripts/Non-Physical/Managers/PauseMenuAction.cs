@@ -1,83 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace IslandBoy
 {
-    //enums of the four current possible playstates
-    enum GAMESTATE
-    {
-        MENU,
-        PLAYING,
-        PAUSED,
-        GAMEOVER
-    }
-
     public class PauseMenuAction : MonoBehaviour
     {
         //Stores all features in a game obejct so it doesn't have to disable itself:
-        [SerializeField] private GameObject _pauseMenu;
-
-        private PlayerInput _playerInput;
-        private static GAMESTATE _state;
-
-        private void Awake()
-        {
-            _playerInput = new();
-            _playerInput.Player.PauseMenu.started += TogglePause;
-            _state = GAMESTATE.PLAYING;
-        }
+        [SerializeField]
+        private GameObject m_PauseMenuFeatures;
 
         private void OnEnable()
         {
-            _playerInput.Enable();
+            GameStateManager.TogglePauseMenu += TogglePauseMenu;
         }
 
         private void OnDisable()
         {
-            _playerInput.Disable();
+            GameStateManager.TogglePauseMenu -= TogglePauseMenu;
         }
 
         private void Start()
         {
-            _pauseMenu.SetActive(false);
+            m_PauseMenuFeatures.SetActive(false);
         }
 
-        public void TogglePause(InputAction.CallbackContext ctx)
+        //Makes sure GameObject exists first, then reactivates or deactivates the Pause Menu UI.
+        private void TogglePauseMenu()
         {
-            if (_state == GAMESTATE.PLAYING)
+            if (m_PauseMenuFeatures != null)
             {
-                _state = GAMESTATE.PAUSED;
-                _pauseMenu.SetActive(true);
-                Time.timeScale = 0;
-            }
-            else if (_state == GAMESTATE.PAUSED)
-            {
-                _state = GAMESTATE.PLAYING;
-                _pauseMenu.SetActive(false);
-                Time.timeScale = 1;
+                m_PauseMenuFeatures.SetActive(!m_PauseMenuFeatures.activeSelf);
             }
         }
 
-        public void OnClickTitle()
+        public void OnClickQuit()
         {
-            Debug.Log("Quit button clicked");
+            GameStateManager.TogglePause();
+            GameStateManager.ToTitle();
         }
 
         public void OnClickSettings()
         {
-            Debug.Log("Settings button clicked");
+            GameStateManager.Settings();
         }
 
         public void OnClickSave()
         {
-            Debug.Log("Save button clicked");
+            GameStateManager.SaveGame();
         }
 
         public void OnClickBack()
         {
-            TogglePause(new());
+            GameStateManager.TogglePause();
         }
     }
 }

@@ -10,7 +10,6 @@ namespace IslandBoy
 
         private List<Vector3Int> _floorTilePositions = new();
         private bool _canCheck;
-        private bool _canSleep;
         private NpcObject _npc;
 
         public NpcObject NPC { get { return _npc; } set { _npc = value; } }
@@ -20,33 +19,11 @@ namespace IslandBoy
             _canCheck = true;
         }
 
-        private void OnEnable()
-        {
-            GameSignals.CAN_SLEEP.AddListener(CanSleepNow);
-            GameSignals.DAY_START.AddListener(CanNotSleep);
-        }
-
-        private void OnDisable()
-        {
-            GameSignals.CAN_SLEEP.RemoveListener(CanSleepNow);
-            GameSignals.DAY_START.RemoveListener(CanNotSleep);
-        }
-
-        private void CanNotSleep(ISignalParameters parameters)
-        {
-            _canSleep = false;
-        }
-
-        private void CanSleepNow(ISignalParameters parameters)
-        {
-            _canSleep = true;
-        }
-
         public void TryToEndDay() // connected to bed button
         {
             if (!_canCheck) return;
 
-            if (!_canSleep)
+            if (!DayManager.Instance.CanSleep())
             {
                 PopupMessage.Create(transform.position, "Too early to sleep!", Color.yellow, new(0.5f, 0.5f), 1f);
                 return;
@@ -56,13 +33,6 @@ namespace IslandBoy
             {
                 DayManager.Instance.EndDay();
             }
-        }
-
-        private void DispatchEndDay()
-        {
-            // implement optional parameters before dispatch here
-            
-            GameSignals.DAY_END.Dispatch();
         }
 
         public bool InValidSpace() // check for floors and walls for house is valid. check furniture too. make floortilePos a global var.

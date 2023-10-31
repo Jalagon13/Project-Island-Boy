@@ -14,7 +14,7 @@ namespace IslandBoy
         {
             foreach (var loot in Loot())
             {
-                GameAssets.Instance.SpawnItem(spawnPos, loot.Key, loot.Value);
+                WorldItemManager.Instance.SpawnItem(spawnPos, loot.Key, loot.Value);
             }
         }
 

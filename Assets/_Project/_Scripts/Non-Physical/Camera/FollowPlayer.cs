@@ -8,10 +8,7 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerReference _pr;
 
-        private void Start()
-        {
-            _pr.Position = Vector3.zero;
-        }
+        private Vector3 _position;
 
         private void LateUpdate()
         {
@@ -20,7 +17,8 @@ namespace IslandBoy
 
         private void SetPosition()
         {
-            transform.position = new(_pr.Position.x, _pr.Position.y, -10);
+            _position = new(_pr.Position.x, _pr.Position.y, -10);
+            transform.position = _position;
         }
     }
 }

@@ -6,24 +6,13 @@ namespace IslandBoy
 {
     public class SwingCollider : MonoBehaviour
     {
+        [SerializeField] private PlayerReference _pr;
         [SerializeField] private ItemParameter _damageParameter;
         [SerializeField] private ItemParameter _durabilityParameter;
 
         private float _baseDamage;
-        private InventorySlot _selectedSlot;
 
         public float BaseDamage { set { _baseDamage = value; } }
-        public InventorySlot SelectedSlot { set { _selectedSlot = value; } }
-
-        private void Awake()
-        {
-            GameSignals.SELECTED_SLOT_UPDATED.AddListener(InjectSelectedSlot);
-        }
-
-        private void OnDisable()
-        {
-            GameSignals.SELECTED_SLOT_UPDATED.RemoveListener(InjectSelectedSlot);
-        }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -34,18 +23,11 @@ namespace IslandBoy
             }
         }
 
-        private void InjectSelectedSlot(ISignalParameters parameters)
-        {
-            _selectedSlot = (InventorySlot)parameters.GetParameter("SelectedSlot");
-        }
-
         private void ModifyDurability()
         {
-            
+            if (_pr.SelectedSlot.CurrentParameters.Count <= 0) return;
 
-            if (_selectedSlot.CurrentParameters.Count <= 0) return;
-
-            var itemParams = _selectedSlot.CurrentParameters;
+            var itemParams = _pr.SelectedSlot.CurrentParameters;
 
             if (itemParams.Contains(_durabilityParameter))
             {
@@ -57,15 +39,15 @@ namespace IslandBoy
                     Value = newValue
                 };
 
-                _selectedSlot.InventoryItem.UpdateDurabilityCounter();
+                _pr.SelectedSlot.InventoryItem.UpdateDurabilityCounter();
             }
         }
 
         private float CalcDamage()
         {
-            if (_selectedSlot.CurrentParameters.Count <= 0) return _baseDamage;
+            if (_pr.SelectedSlot.CurrentParameters.Count <= 0) return _baseDamage;
 
-            var itemParams = _selectedSlot.CurrentParameters;
+            var itemParams = _pr.SelectedSlot.CurrentParameters;
 
             if (itemParams.Contains(_damageParameter))
             {

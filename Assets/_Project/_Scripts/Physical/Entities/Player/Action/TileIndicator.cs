@@ -18,7 +18,6 @@ namespace IslandBoy
         private TileAction _ta;
         private SpriteRenderer _sr;
         private AdventurerEntity _ae = null;
-        private InventorySlot _selectedSlot;
 
         public Tilemap WallTilemap { get { return _wallTilemap; } }
         public Tilemap FloorTilemap { get { return _floorTilemap; } }
@@ -33,12 +32,12 @@ namespace IslandBoy
 
         private void OnEnable()
         {
-            GameSignals.SELECTED_SLOT_UPDATED.AddListener(OnSelectedSlotUpdated);
+            HotbarControl.OnSelectedSlotUpdated += UpdateLogic;
         }
 
         private void OnDisable()
         {
-            GameSignals.SELECTED_SLOT_UPDATED.RemoveListener(OnSelectedSlotUpdated);
+            HotbarControl.OnSelectedSlotUpdated -= UpdateLogic;
         }
 
         private void Update()
@@ -48,17 +47,8 @@ namespace IslandBoy
             UpdateLogic();
         }
 
-        private void OnSelectedSlotUpdated(ISignalParameters parameters)
-        {
-            _selectedSlot = (InventorySlot)parameters.GetParameter("SelectedSlot");
-
-            UpdateLogic();
-        }
-
         public void UpdateLogic()
         {
-            if (_selectedSlot == null) return;
-
             if (_ta.OverInteractable())
             {
                 if(_ae != null)
@@ -107,9 +97,9 @@ namespace IslandBoy
 
         private void HammerTile()
         {
-            if (_selectedSlot.ItemObject != null)
-                if (_selectedSlot.ItemObject.ToolType != ToolType.Hammer) return;
-            if (_selectedSlot.ItemObject == null) return;
+            if (_pr.SelectedSlot.ItemObject != null)
+                if (_pr.SelectedSlot.ItemObject.ToolType != ToolType.Hammer) return;
+            if (_pr.SelectedSlot.ItemObject == null) return;
 
             if(_floorTilemap.HasTile(Vector3Int.FloorToInt(transform.position)) || _wallTilemap.HasTile(Vector3Int.FloorToInt(transform.position)))
                 ChangeToOn();
@@ -150,9 +140,9 @@ namespace IslandBoy
 
         private void ShovelTile()
         {
-            if (_selectedSlot.ItemObject != null)
-                if (_selectedSlot.ItemObject.ToolType != ToolType.Shovel) return;
-            if (_selectedSlot.ItemObject == null) return;
+            if (_pr.SelectedSlot.ItemObject != null)
+                if (_pr.SelectedSlot.ItemObject.ToolType != ToolType.Shovel) return;
+            if (_pr.SelectedSlot.ItemObject == null) return;
             if (!_islandTilemap.HasTile(Vector3Int.FloorToInt(transform.position))) return;
 
             var colliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
@@ -193,8 +183,8 @@ namespace IslandBoy
 
         private void RscHarvest()
         {
-            if(_selectedSlot.ItemObject != null)
-                if (_selectedSlot.ItemObject.ToolType == ToolType.Shovel) return;
+            if(_pr.SelectedSlot.ItemObject != null)
+                if (_pr.SelectedSlot.ItemObject.ToolType == ToolType.Shovel) return;
 
             var colliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
 
@@ -211,7 +201,7 @@ namespace IslandBoy
             if (breakableObjects.Count <= 0) 
                 return;
 
-            var item = _selectedSlot.ItemObject;
+            var item = _pr.SelectedSlot.ItemObject;
 
             ToolType selSlotTType = item == null ? _ta.BaseToolType : item.ToolType;
 
@@ -241,9 +231,9 @@ namespace IslandBoy
         {
             _sr.transform.localScale = new Vector3(0.85f, 0.85f, 0.85f);
 
-            if (_selectedSlot.ItemObject is DeployObject ||
-                _selectedSlot.ItemObject is FloorObject ||
-                _selectedSlot.ItemObject is WallObject)
+            if (_pr.SelectedSlot.ItemObject is DeployObject ||
+                _pr.SelectedSlot.ItemObject is FloorObject ||
+                _pr.SelectedSlot.ItemObject is WallObject)
                 _sr.color = _indicatorTransparentColor;
             else
                 _sr.color = _indicatorEmptyColor;

@@ -38,7 +38,7 @@ namespace IslandBoy
             if (tilActionClear && !wallTmHasTile && groundTmHasTile)
             {
                 AudioManager.Instance.PlayClip(_deploySound, false, true);
-                control.SelectedSlot.InventoryItem.Count--;
+                control.PR.SelectedSlot.InventoryItem.Count--;
                 control.TileAction.PlaceDeployable(_prefabToDeploy);
             }
         }

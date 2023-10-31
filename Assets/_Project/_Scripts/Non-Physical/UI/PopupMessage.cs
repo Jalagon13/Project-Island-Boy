@@ -7,7 +7,6 @@ namespace IslandBoy
 {
     public class PopupMessage : MonoBehaviour
     {
-
         private static int _sortingOrder;
         private const float DISAPPEAR_TIMER_MAX = 0.5f;
 

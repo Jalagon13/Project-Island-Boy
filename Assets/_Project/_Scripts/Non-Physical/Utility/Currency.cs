@@ -15,17 +15,20 @@ namespace IslandBoy
 
         public void Add(int numToAdd)
         {
-            _count += numToAdd;
+            int val = Mathf.Abs(numToAdd);
 
-            if(_count < 0)
-                _count = 0;
+            _count += val;
 
             OnCurrencyChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        public void Set(int numToSet)
+        public void Subtract(int numToSub)
         {
-            _count = numToSet;
+            int val = Mathf.Abs(numToSub);
+
+            _count -= val;
+            if (_count < 0)
+                _count = 0;
 
             OnCurrencyChanged?.Invoke(this, EventArgs.Empty);
         }

@@ -8,9 +8,6 @@ namespace IslandBoy
     {
         public Transform pfDamagePopup;
 
-        [SerializeField] private GameObject _itemBasePrefab;
-        [SerializeField] private AudioClip _popSound;
-
         private static GameAssets _i;
 
         public static GameAssets Instance
@@ -23,23 +20,11 @@ namespace IslandBoy
             }
         }
 
-        public GameObject SpawnItem(Vector2 worldPos, ItemObject item, int stack, List<ItemParameter> parameterList = null, bool playAudio = true)
+        public ParticleSystem SpawnParticles(ParticleSystem particleSystem, Vector2 position)
         {
-            GameObject newItemGo = Instantiate(_itemBasePrefab, worldPos, Quaternion.identity);
-            WorldItem newItem = newItemGo.GetComponent<WorldItem>();
-
-            if (playAudio)
-                AudioManager.Instance.PlayClip(_popSound, false, true, 1);
-
-            if (!item.Stackable || stack <= 0)
-                stack = 1;
-
-            if (item.DefaultParameterList.Count > 0)
-                newItem.Initialize(item, stack, item.DefaultParameterList);
-            else
-                newItem.Initialize(item, stack, parameterList);
-
-            return newItemGo;
+            var particles = Instantiate(particleSystem, position, particleSystem.transform.rotation);
+            return particles;
         }
+
     }
 }

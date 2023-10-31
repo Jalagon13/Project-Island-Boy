@@ -125,8 +125,7 @@ namespace IslandBoy
                     }
                 }
             }
-
-            GameSignals.SLOT_CLICKED.Dispatch();
+            OnSlotClicked?.Invoke(this, EventArgs.Empty);
         }
 
         public void RegisterSlotEvent()

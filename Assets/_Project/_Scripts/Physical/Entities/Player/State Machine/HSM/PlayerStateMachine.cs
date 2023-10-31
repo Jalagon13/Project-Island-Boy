@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -24,45 +22,42 @@ namespace IslandBoy
 
         private void Awake()
         {
+            _pr.PlayerGO = gameObject;
             _pr.SpawnPoint = transform.position;
+            _mainCamera = Camera.main;
             _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
             _rightDirScale = _sr.transform.localScale;
             _leftDirScale = new(-_rightDirScale.x, _rightDirScale.y);
             _states = new PlayerStateFactory(this);
             _moveInput = GetComponent<PlayerMoveInput>();
-            
-            GameSignals.DAY_END.AddListener(OnEndDay);
-            GameSignals.DAY_START.AddListener(OnStartDay);
-            GameSignals.PLAYER_DIED.AddListener(PlayerDied);
         }
 
-        private void OnDestroy()
+        private void OnEnable()
         {
-            GameSignals.DAY_END.RemoveListener(OnEndDay);
-            GameSignals.DAY_START.RemoveListener(OnStartDay);
-            GameSignals.PLAYER_DIED.RemoveListener(PlayerDied);
+            DayManager.Instance.OnEndDay += OnEndDay;
+            DayManager.Instance.OnStartDay += OnStartDay;
+        }
+
+        private void OnDisable()
+        {
+            DayManager.Instance.OnEndDay -= OnEndDay;
+            DayManager.Instance.OnStartDay -= OnStartDay;
         }
 
         private void Start()
         {
             _currentState = _states.Grounded();
             _currentState.EnterState();
-            _mainCamera = Camera.main;
         }
 
-        private void LateUpdate()
+        private void Update()
         {
             _currentState.UpdateStates();
             _pr.Position = transform.position;
             _pr.MousePosition = (Vector2)_mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         }
 
-        private void PlayerDied(ISignalParameters parameters)
-        {
-            EnableMovement(false);
-        }
-
-        private void OnEndDay(ISignalParameters parameters)
+        private void OnEndDay(object obj, EventArgs e)
         {
             TeleportPlayerToSpawn();
             EnableMovement(false);

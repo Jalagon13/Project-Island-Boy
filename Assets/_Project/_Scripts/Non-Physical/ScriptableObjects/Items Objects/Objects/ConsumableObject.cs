@@ -25,22 +25,26 @@ namespace IslandBoy
         public override ArmorType ArmorType => _baseArmorType;
         public override GameObject AmmoPrefab => null;
         public override int ConsumeValue => _value;
-        public ConsumeType ConsumeType => _consumeType;
-        public AudioClip ConsumeSound => _consumeSound;
 
         public override void ExecuteAction(SelectedSlotControl control)
         {
             if (PointerHandler.IsOverLayer(5)) return;
 
-            DispatchTryConsumeItem();
-        }
+            switch (_consumeType) 
+            { 
+                case ConsumeType.Energy:
+                    if (control.EnergyBar.CurrentValue >= control.EnergyBar.MaxValue || control.EnergyBar.InCoolDown) 
+                        return;
+                    break;
+                case ConsumeType.Health:
+                    if(control.HealthBar.CurrentValue >= control.HealthBar.MaxValue || control.HealthBar.InCoolDown) 
+                        return;
+                    break;
+            }
 
-        private void DispatchTryConsumeItem()
-        {
-            Signal signal = GameSignals.CONSUME_ITEM_TRY;
-            signal.ClearParameters();
-            signal.AddParameter("ConsumeItem", this);
-            signal.Dispatch();
+            AudioManager.Instance.PlayClip(_consumeSound, false, false);
+            control.PR.SelectedSlot.InventoryItem.Count--;
+            control.RestoreStat(_consumeType, _value);
         }
 
         public override string GetDescription()

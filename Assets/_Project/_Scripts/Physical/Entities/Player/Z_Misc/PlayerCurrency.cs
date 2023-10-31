@@ -8,49 +8,46 @@ namespace IslandBoy
 {
     public class PlayerCurrency : MonoBehaviour
     {
+        [SerializeField] private PlayerReference _pr;
         [SerializeField] private int _startingCurrency;
         [Range(0,1)]
         [SerializeField] private float _percentKeptAfterDeath;
-
-        private static Currency _currency;
-        private TextMeshProUGUI _coinText;
+        [SerializeField] private TextMeshProUGUI _coinText;
+        private Currency _currency;
 
         private void Awake()
         {
-            GameSignals.PLAYER_DIED.AddListener(OnDeath);
-
-            _coinText = transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
             _currency = new();
-            _currency.OnCurrencyChanged += UpdateGoldDisplay;
+            _pr.Currency = _currency;
         }
 
-        private void OnDestroy()
+        private void OnEnable()
         {
-            GameSignals.PLAYER_DIED.RemoveListener(OnDeath);
+            _pr.Currency.OnCurrencyChanged += UpdateGoldDisplay;
+        }
 
-            _currency.OnCurrencyChanged -= UpdateGoldDisplay;
+        private void OnDisable()
+        {
+            _pr.Currency.OnCurrencyChanged -= UpdateGoldDisplay;
         }
 
         private void Start()
         {
-            _currency.Add(_startingCurrency);
-        }
-
-        public static void AddCurrency(int amount)
-        {
-            _currency.Add(amount);
+            _pr.Currency.Add(_startingCurrency);
         }
 
         private void UpdateGoldDisplay(object sender, EventArgs e)
         {
-            _coinText.text = _currency.Count.ToString();
+            Currency currency = (Currency)sender;
+
+            _coinText.text = currency.Count.ToString();
         }
 
-        public void OnDeath(ISignalParameters parameters)
+        public void OnDeath()
         {
-            int newCurrency = Mathf.RoundToInt(_currency.Count * _percentKeptAfterDeath);
+            float subtractAmt = _currency.Count * (1 - _percentKeptAfterDeath);
 
-            _currency.Set(newCurrency);
+            _pr.Currency.Subtract(Mathf.RoundToInt(subtractAmt));
         }
     }
 }

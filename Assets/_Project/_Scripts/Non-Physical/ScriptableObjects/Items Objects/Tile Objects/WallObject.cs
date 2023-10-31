@@ -21,7 +21,7 @@ namespace IslandBoy
             if (!control.TMR.WallTilemap.HasTile(pos) && control.TileAction.IsClear() && control.TMR.GroundTilemap.HasTile(pos))
             {
                 control.TMR.WallTilemap.SetTile(pos, _wallTile);
-                control.SelectedSlot.InventoryItem.Count--;
+                control.PR.SelectedSlot.InventoryItem.Count--;
 
                 AudioManager.Instance.PlayClip(_wallTile.PlaceSound, false, true);
 

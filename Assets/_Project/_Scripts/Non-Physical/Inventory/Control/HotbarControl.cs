@@ -7,6 +7,9 @@ namespace IslandBoy
 {
     public class HotbarControl : MonoBehaviour
     {
+        public static event Action OnSelectedSlotUpdated;
+
+        [SerializeField] private PlayerReference _pr;
         [SerializeField] private Color _highlightedColor;
         [SerializeField] private Color _notHighlightedColor;
         [SerializeField] private InventorySlot[] _hotbarSlots;
@@ -18,7 +21,6 @@ namespace IslandBoy
 
         private void Awake()
         {
-            GameSignals.CONSUME_ITEM_SUCCESS.AddListener(DecreaseSelectedSlot);
             _input = new();
             _input.Hotbar.Scroll.performed += SelectSlotScroll;
             _input.Hotbar._1.started += SelectSlot;
@@ -30,11 +32,6 @@ namespace IslandBoy
             _input.Hotbar._7.started += SelectSlot;
             _input.Hotbar._8.started += SelectSlot;
             _input.Hotbar._9.started += SelectSlot;
-        }
-
-        private void OnDestroy()
-        {
-            GameSignals.CONSUME_ITEM_SUCCESS.RemoveListener(DecreaseSelectedSlot);
         }
 
         private void OnEnable()
@@ -51,11 +48,6 @@ namespace IslandBoy
         {
             _slotIndex = 0;
             HighlightSelected();
-        }
-
-        private void DecreaseSelectedSlot(ISignalParameters parameters)
-        {
-            _selectedSlot.InventoryItem.Count--;
         }
 
         private void SelectSlotScroll(InputAction.CallbackContext context)
@@ -98,15 +90,9 @@ namespace IslandBoy
             var image = _selectedSlot.GetComponent<Image>();
             image.color = _highlightedColor;
 
-            DispatchSelectedSlotUpdated();
-        }
+            _pr.SelectedSlot = _selectedSlot;
 
-        private void DispatchSelectedSlotUpdated()
-        {
-            Signal signal = GameSignals.SELECTED_SLOT_UPDATED;
-            signal.ClearParameters();
-            signal.AddParameter("SelectedSlot", _selectedSlot);
-            signal.Dispatch();
+            OnSelectedSlotUpdated?.Invoke(); // attached to TileIndicator and SelectedSlotControl
         }
 
         private void UnHighlightPrevious()
