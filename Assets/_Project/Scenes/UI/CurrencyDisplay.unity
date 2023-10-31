@@ -238,10 +238,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e359f6156792149b36e0bbd205a9a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _startingCurrency: 100
   _percentKeptAfterDeath: 0.25
-  _coinText: {fileID: 0}
 --- !u!224 &597808828325541005
 RectTransform:
   m_ObjectHideFlags: 0
