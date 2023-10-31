@@ -10,8 +10,8 @@ namespace IslandBoy
     public class PlayerEntity : Entity
     {
         [SerializeField] private float _deathTimer;
-        [SerializeField] private UnityEvent _onDeath;
-        [SerializeField] private UnityEvent _onRespawn;
+        [SerializeField] private UnityEvent _localDeathHandle;
+        [SerializeField] private UnityEvent _localRespawnHandle;
 
         private void Start()
         {
@@ -20,12 +20,18 @@ namespace IslandBoy
 
         private void OnEnable()
         {
-            DayManager.Instance.DayTimer.OnTimerEnd += KillEntity;
+            GameSignals.DAY_OUT_OF_TIME.AddListener(KillPlayer);
+            
         }
 
         private void OnDisable()
         {
-            DayManager.Instance.DayTimer.OnTimerEnd -= KillEntity;
+            GameSignals.DAY_OUT_OF_TIME.RemoveListener(KillPlayer);
+        }
+
+        private void KillPlayer(ISignalParameters parameter)
+        {
+            KillEntity();
         }
 
         public override void Damage(int incomingDamage, GameObject sender = null)
@@ -70,7 +76,7 @@ namespace IslandBoy
 
                     PR.Inventory.RemoveItem(itemObj, itemCount);
 
-                    WorldItemManager.Instance.SpawnItem(transform.root.position, itemObj, itemCount);
+                    GameAssets.Instance.SpawnItem(transform.root.position, itemObj, itemCount);
                 }
             }
 
@@ -81,10 +87,15 @@ namespace IslandBoy
 
         private IEnumerator Death()
         {
-            _onDeath?.Invoke();
+            _localDeathHandle?.Invoke();
+
+            GameSignals.PLAYER_DIED.Dispatch();
 
             yield return new WaitForSeconds(_deathTimer);
-            _onRespawn?.Invoke();
+
+            _localRespawnHandle?.Invoke();
+
+            GameSignals.DAY_END.Dispatch();
 
             HealthSystem = new(_maxHealth);
         }

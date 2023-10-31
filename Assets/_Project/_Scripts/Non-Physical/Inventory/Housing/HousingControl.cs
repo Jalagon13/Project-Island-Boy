@@ -13,23 +13,25 @@ namespace IslandBoy
 
         private void OnEnable()
         {
-            DayManager.Instance.OnEndDay += UpdateNpcs;
+            GameSignals.DAY_END.AddListener(UpdateNpcs);
         }
 
         private void OnDisable()
         {
-            DayManager.Instance.OnEndDay -= UpdateNpcs;
+            GameSignals.DAY_END.RemoveListener(UpdateNpcs);
         }
 
-        private void Start()
+        private IEnumerator Start()
         {
-            foreach (NpcObject npc in npcsFound)
-            {
-                npc.MoveOut();
-            }
+            yield return new WaitForEndOfFrame();
 
-            ClearNpcHolder();
-            CheckBeds();
+            //foreach (NpcObject npc in npcsFound)
+            //{
+            //    npc.MoveOut();
+            //}
+
+            //ClearNpcHolder();
+            //CheckBeds();
             UpdateNpcSlots();
             DayManager.Instance.ClearEndDaySlides();
         }
@@ -57,7 +59,6 @@ namespace IslandBoy
                     bedsInValidHouse.Add(bed);
                 else if (bed.NPC != null)
                 {
-                    
                     bed.NPC.MoveOut();
                     bed.NPC = null;
                 }
@@ -97,6 +98,7 @@ namespace IslandBoy
 
         private void UpdateNpcs(object sender, EventArgs e)
         {
+            
             ClearNpcHolder();
             CheckBeds();
             UpdateNpcSlots();

@@ -6,8 +6,6 @@ namespace IslandBoy
     [CreateAssetMenu(fileName = "New Launch Object", menuName = "Create Item/New Launch Object")]
     public class LaunchObject : ItemObject
     {
-        public static event Action LaunchEvent;
-
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private GameObject _throwPrefab;
         [SerializeField] private AudioClip _throwSound;
@@ -47,7 +45,7 @@ namespace IslandBoy
             AfterLaunch(control);
 
             AudioManager.Instance.PlayClip(_throwSound, false, true);
-            LaunchEvent?.Invoke();
+            GameSignals.OBJECT_LAUNCHED.Dispatch();
         }
 
         private void AfterLaunch(SelectedSlotControl control)
@@ -59,7 +57,7 @@ namespace IslandBoy
             }
 
             if (Stackable)
-                control.PR.SelectedSlot.InventoryItem.Count--;
+                control.SelectedSlot.InventoryItem.Count--;
             else
                 control.TileAction.ModifyDurability();
         }
