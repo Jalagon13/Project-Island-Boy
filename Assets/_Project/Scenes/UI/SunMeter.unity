@@ -958,10 +958,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 859eb91911a43ab48abb86bf553465eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
+  _pr: {fileID: 0}
   _dayDurationInSec: 300
-  _percentTillCanSleep: 0.8
-  _debugDayPercentage: 0.15
+  _percentTillCanSleep: 0
+  _debugDayPercentage: 0
   _marker: {fileID: 443493517}
   _panel: {fileID: 8325212771761043721}
   _sunSprite: {fileID: -1176373306, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
