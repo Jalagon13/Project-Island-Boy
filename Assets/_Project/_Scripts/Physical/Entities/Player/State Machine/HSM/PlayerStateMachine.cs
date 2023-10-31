@@ -68,7 +68,7 @@ namespace IslandBoy
             EnableMovement(false);
         }
 
-        private void OnStartDay(object obj, EventArgs e)
+        private void OnStartDay(ISignalParameters parameters)
         {
             EnableMovement(true);
         }

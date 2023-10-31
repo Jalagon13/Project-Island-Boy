@@ -33,7 +33,6 @@ namespace IslandBoy
             //ClearNpcHolder();
             //CheckBeds();
             UpdateNpcSlots();
-            DayManager.Instance.ClearEndDaySlides();
         }
 
         private void ClearNpcHolder()
@@ -96,7 +95,7 @@ namespace IslandBoy
             }
         }
 
-        private void UpdateNpcs(object sender, EventArgs e)
+        private void UpdateNpcs(ISignalParameters parameters)
         {
             
             ClearNpcHolder();

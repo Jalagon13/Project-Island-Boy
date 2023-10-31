@@ -126,7 +126,7 @@ namespace IslandBoy
             _canPerform = false;
         }
 
-        private void EnableActions(object obj, EventArgs e)
+        private void EnableActions(ISignalParameters parameters)
         {
             _ta.enabled = true; 
             _canPerform = true;

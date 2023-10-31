@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace IslandBoy
 {
-    public class DayManager : Singleton<DayManager>
+    public class DayManager : MonoBehaviour
     {
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private float _dayDurationInSec;
@@ -34,7 +34,6 @@ namespace IslandBoy
 
         private void Awake()
         {
-            base.Awake();
             _timer = new(_dayDurationInSec);
             _timer.OnTimerEnd += OutOfTime;
         }
@@ -152,7 +151,7 @@ namespace IslandBoy
         }
 
         [ContextMenu("End Day")]
-        public void EndDay() // connected to bed
+        public void EndDay(ISignalParameters parameters) // connected to bed
         {
             _onEndDay?.Invoke(this, EventArgs.Empty);
             _timer.IsPaused = true;

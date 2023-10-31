@@ -54,7 +54,7 @@ namespace IslandBoy
 
             if (InValidSpace())
             {
-                DayManager.Instance.EndDay();
+                DispatchEndDay();
             }
         }
 
