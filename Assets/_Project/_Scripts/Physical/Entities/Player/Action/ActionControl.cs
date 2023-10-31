@@ -1,15 +1,16 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace IslandBoy
 {
     // Implement Swing Speed, Cooldown, and Power attributes for resource gathering
     public class ActionControl : MonoBehaviour
     {
-        public static event Action SwingPerformEvent;
-
         [SerializeField] private PlayerReference _pr;
+        [SerializeField] private SpriteRenderer _swingSr;
         [SerializeField] private AudioClip _wooshSound;
         [Header("Base Stats")]
         [SerializeField] private ToolType _baseToolType;
@@ -24,6 +25,7 @@ namespace IslandBoy
         private PlayerMoveInput _moveInput;
         private SwingCollider _swingCollider;
         private Camera _camera;
+        private InventorySlot _selectedSlot;
         private float _counter;
         private bool _isHeldDown;
         private bool _performingSwing;
@@ -44,8 +46,6 @@ namespace IslandBoy
             _animator = GetComponent<Animator>();
             _animator.speed = 1 * _baseSwingSpeedMultiplier.Value;
             _moveInput = transform.root.GetComponent<PlayerMoveInput>();
-            _camera = Camera.main;
-
             _ta = transform.GetChild(0).GetComponent<TileAction>();
             _ta.BasePower = _basePower.Value;
             _ta.BaseToolType = _baseToolType;
@@ -53,29 +53,46 @@ namespace IslandBoy
 
             _swingCollider = transform.GetChild(0).GetChild(0).GetComponent<SwingCollider>();
             _swingCollider.BaseDamage = _baseDamage.Value;
+
+            GameSignals.SELECTED_SLOT_UPDATED.AddListener(ProcessSelectedSlotUpdate);
+            GameSignals.ITEM_ADDED.AddListener(UpdateHeldItem);
+            GameSignals.DAY_END.AddListener(DisableActions);
+            GameSignals.DAY_START.AddListener(EnableActions);
+            GameSignals.PLAYER_DIED.AddListener(DisableActions);
         }
 
         private void OnEnable()
         {
-            DayManager.Instance.OnEndDay += DisableActions;
-            DayManager.Instance.OnStartDay += EnableActions;
             _input.Enable();
         }
 
         private void OnDisable()
         {
-            DayManager.Instance.OnEndDay -= DisableActions;
-            DayManager.Instance.OnStartDay -= EnableActions;
             _input.Disable();
         }
 
-        private void Start()
+        private void OnDestroy()
+        {
+            GameSignals.SELECTED_SLOT_UPDATED.RemoveListener(ProcessSelectedSlotUpdate);
+            GameSignals.ITEM_ADDED.RemoveListener(UpdateHeldItem);
+            GameSignals.DAY_END.RemoveListener(DisableActions);
+            GameSignals.DAY_START.RemoveListener(EnableActions);
+            GameSignals.PLAYER_DIED.RemoveListener(DisableActions);
+        }
+
+        private IEnumerator Start()
         {
             SwingEnd();
+
+            yield return new WaitForEndOfFrame();
+
+            _camera = Camera.main;
         }
 
         private void FixedUpdate()
         {
+            if (_selectedSlot == null) return;
+
             _counter += Time.deltaTime;
 
             if (_counter > CalcParameter(_baseCooldown))
@@ -85,7 +102,25 @@ namespace IslandBoy
                 PerformSwing();
         }
 
-        private void DisableActions(object obj, EventArgs e)
+        private void ProcessSelectedSlotUpdate(ISignalParameters parameters)
+        {
+            _selectedSlot = (InventorySlot)parameters.GetParameter("SelectedSlot");
+            
+            UpdateSwing();
+        }
+
+        private void UpdateHeldItem(ISignalParameters parameters)
+        {
+            UpdateSwing();
+        }
+
+        private void UpdateSwing()
+        {
+            _swingSr.sprite = _selectedSlot.ItemObject != null ? _selectedSlot.ItemObject.UiDisplay : null;
+            _swingCollider.SelectedSlot = _selectedSlot;
+        }
+
+        private void DisableActions(ISignalParameters parameters)
         {
             _ta.enabled = false;
             _canPerform = false;
@@ -99,6 +134,8 @@ namespace IslandBoy
 
         private void TryPerformSwing(InputAction.CallbackContext context)
         {
+            if(_selectedSlot == null) return;
+
             PerformSwing();
         }
 
@@ -114,14 +151,14 @@ namespace IslandBoy
             _performingSwing = true;
             _moveInput.Speed = 1f;
             _animator.speed = 1 * CalcParameter(_baseSwingSpeedMultiplier);
-            SwingPerformEvent?.Invoke(); // connected to EnergyBar class
 
+            GameSignals.SWING_PERFORMED.Dispatch();
             AudioManager.Instance.PlayClip(_wooshSound, false, true, 0.75f);
         }
 
         private float CalcParameter(ItemParameter baseParameter)
         {
-            var item = _pr.SelectedSlot.ItemObject;
+            var item = _selectedSlot.ItemObject;
 
             if (item == null)
                 return baseParameter.Value;
