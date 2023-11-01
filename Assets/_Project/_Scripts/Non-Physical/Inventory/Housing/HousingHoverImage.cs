@@ -22,7 +22,7 @@ namespace IslandBoy
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            TooltipManager.Instance.Show(_content, _header, new Vector2(-0.1f, 1.45f));
+            TooltipManager.Instance.Show(_content, _header, new Vector2(.25f, -.5f));
         }
 
         public void OnPointerExit(PointerEventData eventData)
