@@ -9,6 +9,7 @@ namespace IslandBoy
     {
         [SerializeField] private GameObject _npcSlotPrefab;
         [SerializeField] private RectTransform _npcSlotHolder;
+        [SerializeField] private RectTransform _npcText;
         [SerializeField] private List<NpcObject> npcsFound = new();
 
         private void OnEnable()
@@ -35,11 +36,13 @@ namespace IslandBoy
         private void ShowNpcHolder(ISignalParameters parameters)
         {
             _npcSlotHolder.gameObject.SetActive(true);
+            _npcText.gameObject.SetActive(true);
         }
 
         private void HideNpcHolder(ISignalParameters parameters)
         {
             _npcSlotHolder.gameObject.SetActive(false);
+            _npcText.gameObject.SetActive(false);
         }
 
         private void ClearNpcHolder()
