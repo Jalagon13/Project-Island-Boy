@@ -6878,7 +6878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.1882353, g: 0.51601154, b: 0.8117647, a: 1}
+  m_Color: {r: 0.8117647, g: 0.5347172, b: 0.1882353, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6909,6 +6909,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _npcSlotPrefab: {fileID: 6449567880495286189, guid: b7c00b9f77331824e8962692c6d6b5c7, type: 3}
   _npcSlotHolder: {fileID: 0}
+  _npcText: {fileID: 0}
   npcsFound:
   - {fileID: 11400000, guid: e994b2e582709e94596006615c377da7, type: 2}
   - {fileID: 11400000, guid: e54a0e216e95d284ba71faae2b23736f, type: 2}
@@ -7019,7 +7020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.1882353, g: 0.51601154, b: 0.8117647, a: 1}
+  m_Color: {r: 0.8117647, g: 0.5347172, b: 0.1882353, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7193,7 +7194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.1882353, g: 0.51601154, b: 0.8117647, a: 1}
+  m_Color: {r: 0.8117647, g: 0.5347172, b: 0.1882353, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
