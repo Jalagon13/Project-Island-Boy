@@ -6,11 +6,9 @@ namespace IslandBoy
     public enum ToolType
     {
         None,
-        Indifferent,
         Ax,
         Pickaxe,
         Sword,
-        Shovel,
         Hammer
     }
 
