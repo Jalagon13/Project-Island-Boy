@@ -67,19 +67,6 @@ namespace IslandBoy
 
         public override void KillEntity()
         {
-            foreach (Slot slot in PR.Inventory.InventorySlots)
-            {
-                if (slot.InventoryItem != null)
-                {
-                    var itemObj = slot.ItemObject;
-                    var itemCount = slot.InventoryItem.Count;
-
-                    PR.Inventory.RemoveItem(itemObj, itemCount);
-
-                    GameAssets.Instance.SpawnItem(transform.root.position, itemObj, itemCount);
-                }
-            }
-
             AudioManager.Instance.PlayClip(_deathSound, false, true);
 
             StartCoroutine(Death());
