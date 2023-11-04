@@ -6,13 +6,10 @@ namespace IslandBoy
 {
     public class InventoryControl : MonoBehaviour
     {
-        public EventHandler OnInventoryClosed;
-
         [SerializeField] private RecipeDatabaseObject _defaultRdb;
-        [SerializeField] private TabControl _tabControl;
+        [SerializeField] private RectTransform _craftSlots;
 
         private Inventory _inventory;
-        private PromptControl _promptControl;
         private MouseItemHolder _mouseItemHolder;
         private PlayerInput _input;
         private RectTransform _mainInventory;
@@ -24,7 +21,6 @@ namespace IslandBoy
         {
             _input = new PlayerInput();
             _inventory = GetComponent<Inventory>();
-            _promptControl = GetComponent<PromptControl>();
             _craftSlotsControl = GetComponent<CraftSlotsControl>();
             _mainInventory = transform.GetChild(0).GetComponent<RectTransform>();
             _mouseItemHolder = transform.GetChild(2).GetComponent<MouseItemHolder>();
@@ -33,11 +29,13 @@ namespace IslandBoy
         }
         private void OnEnable()
         {
+            GameSignals.CHEST_INTERACT.AddListener(ChestInteract);
             _input.Enable();
         }
 
         private void OnDisable()
         {
+            GameSignals.CHEST_INTERACT.RemoveListener(ChestInteract);
             _input.Disable();
         }
 
@@ -56,22 +54,19 @@ namespace IslandBoy
             }
         }
 
-        public void ChestInteract(Interactable chestOpened)
+        public void ChestInteract(ISignalParameters parameter)
         {
-            OpenInventory();
-            InteractableHandle(chestOpened);
+            Interactable chestOpened = (Interactable)parameter.GetParameter("ChestInteract");
 
-            _tabControl.DisableAllTabs();
-            _promptControl.PromptHandle(null);
+            OpenInventory();
+            _craftSlots.gameObject.SetActive(false);
+            InteractableHandle(chestOpened);
         }
 
         public void CraftStationInteract(Interactable craftStation, RecipeDatabaseObject rdb)
         {
             OpenInventory();
-            _tabControl.OpenCraftTab();
-
-            _promptControl.PromptHandle(null);
-
+            
             if (craftStation == _currentInteractableActive) return;
 
             if(_currentInteractableActive is CraftStation)
@@ -117,7 +112,7 @@ namespace IslandBoy
             _mainInventory.gameObject.SetActive(false);
             _inventoryOpen = false;
 
-            OnInventoryClosed?.Invoke(this, EventArgs.Empty);
+            GameSignals.INVENTORY_CLOSE.Dispatch();
 
             foreach (Slot slot in _inventory.InventorySlots)
             {
@@ -127,9 +122,11 @@ namespace IslandBoy
 
         public void OpenInventory()
         {
-            _tabControl.OpenCraftTab();
             _mainInventory.gameObject.SetActive(true);
             _inventoryOpen = true;
+            _craftSlots.gameObject.SetActive(true);
+
+            GameSignals.INVENTORY_OPEN.Dispatch();
 
             foreach (Slot slot in _inventory.InventorySlots)
             {

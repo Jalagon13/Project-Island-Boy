@@ -18,8 +18,6 @@ namespace IslandBoy
         public override GameObject AmmoPrefab => null;
         public override int ConsumeValue => 0;
 
-        public GameObject PrefabToDeploy { get { return _prefabToDeploy; } }
-
         public override void ExecuteAction(SelectedSlotControl control)
         {
             if (PointerHandler.IsOverLayer(5)) return;
@@ -37,10 +35,18 @@ namespace IslandBoy
 
             if (tilActionClear && !wallTmHasTile && groundTmHasTile)
             {
+                control.SelectedSlot.InventoryItem.Count--;
                 AudioManager.Instance.PlayClip(_deploySound, false, true);
-                control.PR.SelectedSlot.InventoryItem.Count--;
-                control.TileAction.PlaceDeployable(_prefabToDeploy);
+                ObjectPlacedDispatch();
             }
+        }
+
+        private void ObjectPlacedDispatch()
+        {
+            Signal signal = GameSignals.OBJECT_PLACED;
+            signal.ClearParameters();
+            signal.AddParameter("ObjectPlaced", _prefabToDeploy);
+            signal.Dispatch();
         }
 
         public override string GetDescription()

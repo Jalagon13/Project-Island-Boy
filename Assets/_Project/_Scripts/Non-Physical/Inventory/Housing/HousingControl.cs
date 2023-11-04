@@ -9,29 +9,40 @@ namespace IslandBoy
     {
         [SerializeField] private GameObject _npcSlotPrefab;
         [SerializeField] private RectTransform _npcSlotHolder;
+        [SerializeField] private RectTransform _npcText;
         [SerializeField] private List<NpcObject> npcsFound = new();
 
         private void OnEnable()
         {
-            DayManager.Instance.OnEndDay += UpdateNpcs;
+            GameSignals.DAY_END.AddListener(UpdateNpcs);
+            GameSignals.INVENTORY_OPEN.AddListener(ShowNpcHolder);
+            GameSignals.INVENTORY_CLOSE.AddListener(HideNpcHolder);
         }
 
         private void OnDisable()
         {
-            DayManager.Instance.OnEndDay -= UpdateNpcs;
+            GameSignals.DAY_END.RemoveListener(UpdateNpcs);
+            GameSignals.INVENTORY_OPEN.RemoveListener(ShowNpcHolder);
+            GameSignals.INVENTORY_CLOSE.RemoveListener(HideNpcHolder);
         }
 
-        private void Start()
+        private IEnumerator Start()
         {
-            foreach (NpcObject npc in npcsFound)
-            {
-                npc.MoveOut();
-            }
+            yield return new WaitForEndOfFrame();
 
-            ClearNpcHolder();
-            CheckBeds();
             UpdateNpcSlots();
-            DayManager.Instance.ClearEndDaySlides();
+        }
+
+        private void ShowNpcHolder(ISignalParameters parameters)
+        {
+            _npcSlotHolder.gameObject.SetActive(true);
+            _npcText.gameObject.SetActive(true);
+        }
+
+        private void HideNpcHolder(ISignalParameters parameters)
+        {
+            _npcSlotHolder.gameObject.SetActive(false);
+            _npcText.gameObject.SetActive(false);
         }
 
         private void ClearNpcHolder()
@@ -57,7 +68,6 @@ namespace IslandBoy
                     bedsInValidHouse.Add(bed);
                 else if (bed.NPC != null)
                 {
-                    
                     bed.NPC.MoveOut();
                     bed.NPC = null;
                 }
@@ -95,8 +105,9 @@ namespace IslandBoy
             }
         }
 
-        private void UpdateNpcs(object sender, EventArgs e)
+        private void UpdateNpcs(ISignalParameters parameters)
         {
+            
             ClearNpcHolder();
             CheckBeds();
             UpdateNpcSlots();

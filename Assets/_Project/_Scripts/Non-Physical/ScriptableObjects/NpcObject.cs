@@ -28,8 +28,6 @@ namespace IslandBoy
             if(_worldEntity != null)
                 Destroy(_worldEntity);
 
-            DayManager.Instance.AddEndDaySlide($"{Name} has moved in!");
-
             var pos = homeBed.gameObject.transform.position;
             _worldEntity = Instantiate(NPC, pos, Quaternion.identity);
             _bed = homeBed;
@@ -40,8 +38,6 @@ namespace IslandBoy
         {
             if (_worldEntity != null)
                 Destroy(_worldEntity);
-
-            DayManager.Instance.AddEndDaySlide($"{Name} has moved out!");
 
             _bed = null;
             _movedIn = false;

@@ -20,7 +20,7 @@ namespace IslandBoy
             if (!control.TMR.WallTilemap.HasTile(pos) && !control.TMR.FloorTilemap.HasTile(pos) && control.TMR.GroundTilemap.HasTile(pos))
             {
                 control.TMR.FloorTilemap.SetTile(pos, _floorTile);
-                control.PR.SelectedSlot.InventoryItem.Count--;
+                control.SelectedSlot.InventoryItem.Count--;
                 AudioManager.Instance.PlayClip(_floorTile.PlaceSound, false, true);
             }
         }
