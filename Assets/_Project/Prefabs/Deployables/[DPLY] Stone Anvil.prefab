@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 2594954625054858275, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1663711594, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
+      objectReference: {fileID: 1168968723, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
     - target: {fileID: 2594954625054858275, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _resourceName
-      value: Tool Station
+      value: Stone Anvil
       objectReference: {fileID: 0}
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.size
@@ -94,7 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2594954625819056484, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: m_Name
-      value: '[DPLY] Tool Station'
+      value: '[DPLY] Stone Anvil'
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9010295086465205499, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}

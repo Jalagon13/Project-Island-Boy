@@ -152,7 +152,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ws_furnace
+      name: ws_stone_anvil
       rect:
         serializedVersion: 2
         x: 48
@@ -244,7 +244,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -271,8 +271,8 @@ TextureImporter:
       ws_blueprint_table: -407047741
       ws_campfire: 586656638
       ws_chest: 414997368
-      ws_furnace: 1168968723
       ws_sleeping_bag: -90063712
+      ws_stone_anvil: 1168968723
       ws_tool_station: 1663711594
       ws_tutorial_sign: 1450040114
   mipmapLimitGroupName: 

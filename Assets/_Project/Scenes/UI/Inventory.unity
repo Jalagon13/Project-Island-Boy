@@ -4207,8 +4207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b4c7956ed50f284299cfa58fc31219c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _highlightedColor: {r: 0.8679245, g: 0.79648834, b: 0.19978638, a: 1}
-  _notHighlightedColor: {r: 1, g: 0.7176471, b: 0.3137255, a: 0.8666667}
+  _highlightedColor: {r: 0.8867924, g: 0.87965983, b: 0.26269132, a: 1}
+  _notHighlightedColor: {r: 0.8962264, g: 0.63672173, b: 0.2654859, a: 0.8666667}
   _hotbarSlots:
   - {fileID: 1398917238}
   - {fileID: 658019018}
@@ -4247,15 +4247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxStack: 99
-  _startingItems:
-  - OutputItem: {fileID: 11400000, guid: f9306cafa82c97447bc4f47c37ef4b10, type: 2}
-    OutputAmount: 1
-  - OutputItem: {fileID: 11400000, guid: 6dbf17cc40618ef4497ad3cc834f0ad2, type: 2}
-    OutputAmount: 1
-  - OutputItem: {fileID: 11400000, guid: 902774a644957654d84a660b19ecc643, type: 2}
-    OutputAmount: 1
-  - OutputItem: {fileID: 11400000, guid: fb9c53bc5a9014142b9e07f97db75202, type: 2}
-    OutputAmount: 1
+  _startingItems: []
   _allSlots:
   - {fileID: 1398917238}
   - {fileID: 658019018}
