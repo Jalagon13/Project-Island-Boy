@@ -8,51 +8,73 @@ namespace IslandBoy
     {
         [SerializeField] private TilemapReferences _tmr;
 
-        private List<Resource> _furnitureCheckList;
-        private AdventurerEntity _entity;
-        private bool _registered;
-        private bool _canCheck = false;
+        private List<Vector3Int> _floorTilePositions = new();
+        private bool _canCheck;
+        private bool _canSleep;
+        private NpcObject _npc;
 
-        public bool Registered { get { return _registered; } }
+        public NpcObject NPC { get { return _npc; } set { _npc = value; } }
 
-        private void OnEnable()
-        {
-            CheckHousing();
-        }
-
-        private void Start()
+        public void Start()
         {
             _canCheck = true;
         }
 
-        public void RegisterBed(List<Resource> furnitureCheckList, AdventurerEntity adventurerReference)
+        private void OnEnable()
         {
-            _furnitureCheckList = furnitureCheckList;
-            _entity = adventurerReference;
-            _registered = true;
+            GameSignals.CAN_SLEEP.AddListener(CanSleepNow);
+            GameSignals.DAY_START.AddListener(CanNotSleep);
         }
 
-        private void CheckHousing()
+        private void OnDisable()
         {
-            if (!_registered || !_canCheck) return;
-            // check if housing requiremenets are met for the entity in question
+            GameSignals.CAN_SLEEP.RemoveListener(CanSleepNow);
+            GameSignals.DAY_START.RemoveListener(CanNotSleep);
+        }
 
-            // if adventurer is missing, unregister bed.
-            if(_entity == null)
+        private void CanNotSleep(ISignalParameters parameters)
+        {
+            _canSleep = false;
+        }
+
+        private void CanSleepNow(ISignalParameters parameters)
+        {
+            _canSleep = true;
+        }
+
+        public void TryToEndDay() // connected to bed button
+        {
+            if (!_canCheck) return;
+
+            if (InValidSpace())
             {
-                UnRegisterBed();
-                return;
-            }
+                if (!_canSleep)
+                {
+                    PopupMessage.Create(transform.position, "Too early to sleep!", Color.yellow, new(0.5f, 0.5f), 1f);
+                    return;
+                }
 
-            // checks if this is an enclosed space with flooring everywhere
+                DispatchEndDay();
+            }
+        }
+
+        private void DispatchEndDay()
+        {
+            // implement optional parameters before dispatch here
+            
+            GameSignals.DAY_END.Dispatch();
+        }
+
+        public bool InValidSpace() // check for floors and walls for house is valid. check furniture too. make floortilePos a global var.
+        {
+            _floorTilePositions = new(); // list of positions of tile that have a floor and no wall or door on it.
             Stack<Vector3Int> tilesToCheck = new();
-            List<Vector3Int> floorTilePositions = new(); // list of positions of tile that have a floor and no wall or door on it.
             List<Vector3Int> wallTilePositions = new(); // list of wall tiles around the free space
             List<Vector3Int> doorPositions = new(); // list of all positions of doors if any door is found
-            List<Resource> foundFurniture = new();
             int maxHouseSpaceTiles = 50;
 
-            tilesToCheck.Push(Vector3Int.FloorToInt(transform.root.position));
+            var checkPos = Vector3Int.FloorToInt(transform.root.position);
+            tilesToCheck.Push(checkPos);
 
             while (tilesToCheck.Count > 0)
             {
@@ -62,8 +84,8 @@ namespace IslandBoy
                 if (!_tmr.FloorTilemap.HasTile(p) && !_tmr.WallTilemap.HasTile(p) && !HasDoor(p))
                 {
                     //_feedbackHolder.DisplayFeedback("Not valid housing. Make sure the area around you is enclosed.", Color.yellow);
-                    KillEntity();
-                    return;
+                    PopupMessage.Create(transform.position, "Must be in an enclosed space!", Color.yellow, new(0.5f, 0.5f), 1.5f);
+                    return false;
                 }
 
                 // if there is a door, add it do the door positions
@@ -80,37 +102,10 @@ namespace IslandBoy
                     continue;
                 }
 
-                // check for checklist RSC here, 
-                var centerPos = new Vector2(p.x + 0.5f, p.y + 0.5f);
-                var colliders1 = Physics2D.OverlapCircleAll(centerPos, 0.25f);
-                bool reqFound = false;
-
-                foreach (var col in colliders1)
-                {
-                    if (col.TryGetComponent(out Resource rsc))
-                    {
-                        if (foundFurniture.Contains(rsc))
-                            continue;
-
-                        foreach (Resource req in _furnitureCheckList)
-                        {
-                            if (rsc.ResourceName == req.ResourceName)
-                            {
-                                foundFurniture.Add(rsc);
-                                reqFound = true;
-                            }
-                        }
-                    }
-                }
-
-                if (reqFound)
-                    continue;
-
-
                 // add floor tile to floorTilePositions and push new tiles to check
-                if (!floorTilePositions.Contains(p))
+                if (!_floorTilePositions.Contains(p))
                 {
-                    floorTilePositions.Add(p);
+                    _floorTilePositions.Add(p);
 
                     tilesToCheck.Push(new Vector3Int(p.x - 1, p.y));
                     tilesToCheck.Push(new Vector3Int(p.x + 1, p.y));
@@ -120,40 +115,17 @@ namespace IslandBoy
             }
 
             // if floor tile positions are greater than maxHouseSpaceTiles, then housing is too big.
-            if (floorTilePositions.Count > maxHouseSpaceTiles)
+            if (_floorTilePositions.Count > maxHouseSpaceTiles)
             {
-                //_feedbackHolder.DisplayFeedback("Not valid housing. Enclosed space too large.", Color.yellow);
-                KillEntity();
-                return;
+                PopupMessage.Create(transform.position, "Space too large!", Color.yellow, new(0.5f, 0.5f), 1f);
+                return false;
             }
 
             // if there is no doors found then housing not valid
             if (doorPositions.Count <= 0)
             {
-                //_feedbackHolder.DisplayFeedback("Not valid housing. No doors found.", Color.yellow);
-                KillEntity();
-                return;
-            }
-
-            // if checklist is not compelete, then housing not valid
-            foreach (Resource req in _furnitureCheckList)
-            {
-                bool furnitureFound = false;
-
-                foreach (Resource rsc in foundFurniture)
-                {
-                    if (rsc.ResourceName == req.ResourceName)
-                    {
-                        furnitureFound = true;
-                    }
-                }
-
-                if (!furnitureFound)
-                {
-                    //_feedbackHolder.DisplayFeedback("Not valid housing. Furniture requirements not met.", Color.yellow);
-                    KillEntity();
-                    return;
-                }
+                PopupMessage.Create(transform.position, "No door found!", Color.yellow, new(0.5f, 0.5f), 1f);
+                return false;
             }
 
             // loop through all doors found
@@ -172,10 +144,10 @@ namespace IslandBoy
                 {
                     int counter = 0;
 
-                    if (floorTilePositions.Contains(en))
+                    if (_floorTilePositions.Contains(en))
                         counter++;
 
-                    if (floorTilePositions.Contains(wn))
+                    if (_floorTilePositions.Contains(wn))
                         counter++;
 
                     if (counter == 1)
@@ -189,10 +161,10 @@ namespace IslandBoy
                 {
                     int counter = 0;
 
-                    if (floorTilePositions.Contains(nn))
+                    if (_floorTilePositions.Contains(nn))
                         counter++;
 
-                    if (floorTilePositions.Contains(sn))
+                    if (_floorTilePositions.Contains(sn))
                         counter++;
 
                     if (counter == 1)
@@ -205,12 +177,11 @@ namespace IslandBoy
 
             if (!validDoorFound)
             {
-                //_feedbackHolder.DisplayFeedback("Not valid housing. There is no door that leads outside of this space.", Color.yellow);
-                KillEntity();
-                return;
+                PopupMessage.Create(transform.position, "No valid door!", Color.yellow, new(0.5f, 0.5f), 1f);
+                return false;
             }
 
-            Debug.Log($"{_entity.name}'s place is in tact!");
+            return true;
         }
 
         private bool HasDoor(Vector3Int pos)
@@ -225,19 +196,6 @@ namespace IslandBoy
             }
 
             return false;
-        }
-
-        private void KillEntity()
-        {
-            _entity.KillEntity();
-            UnRegisterBed();
-        }
-
-        private void UnRegisterBed()
-        {
-            _entity = null;
-            _furnitureCheckList.Clear();
-            _registered = false;
         }
     }
 }

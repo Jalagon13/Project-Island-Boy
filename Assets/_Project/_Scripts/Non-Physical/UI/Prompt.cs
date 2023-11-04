@@ -14,12 +14,12 @@ namespace IslandBoy
 
         private void OnEnable()
         {
-            _pr.Inventory.InventoryControl.OnInventoryClosed += CloseUI;
+            GameSignals.INVENTORY_CLOSE.AddListener(OnInventoryClose);
         }
 
         private void OnDisable()
         {
-            _pr.Inventory.InventoryControl.OnInventoryClosed -= CloseUI;
+            GameSignals.INVENTORY_CLOSE.RemoveListener(OnInventoryClose);
         }
 
         public override IEnumerator Start()
@@ -32,18 +32,32 @@ namespace IslandBoy
 
         public override void Interact()
         {
-            _pr.Inventory.PromptControl.PromptInteract(this);
             OpenUI();
         }
 
-        private void CloseUI(object obj = null, EventArgs args = null)
+        private void DispatchPromptInteract()
+        {
+            Signal signal = GameSignals.PROMPT_INTERACT;
+            signal.ClearParameters();
+            signal.AddParameter("Prompt", this);
+            signal.Dispatch();
+        }
+
+        private void OnInventoryClose(ISignalParameters parameters)
+        {
+            CloseUI();
+        }
+
+        public void CloseUI()
         {
             _prompCanvas.gameObject.SetActive(false);
             _onClosePrompt?.Invoke();
         }
 
-        private void OpenUI()
+        public void OpenUI()
         {
+            DispatchPromptInteract();
+
             _prompCanvas.gameObject.SetActive(true);
             _onOpenPrompt?.Invoke();
         }

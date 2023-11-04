@@ -12,12 +12,14 @@ namespace IslandBoy
         [SerializeField] protected PlayerReference _pr;
 
         private float _interactRange = 3f;
-        private Vector3 _origin;
         protected bool _canInteract;
+        private Vector3 _origin;
+        private SpriteRenderer _rightClickSr;
 
         public virtual void Awake()
         {
             _origin = transform.position + new Vector3(0.5f, 0.5f);
+            _rightClickSr = transform.GetChild(1).GetComponent<SpriteRenderer>();
         }
 
         public virtual IEnumerator Start()

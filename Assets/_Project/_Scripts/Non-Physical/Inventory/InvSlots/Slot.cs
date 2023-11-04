@@ -8,9 +8,8 @@ namespace IslandBoy
 {
     public abstract class Slot : MonoBehaviour, IPointerClickHandler
     {
-        public EventHandler OnSlotClicked;
-
         [SerializeField] protected PlayerReference _pr;
+        [SerializeField] private GameObject _inventoryItemPrefab;
         [SerializeField] protected AudioClip _popSound;
         [SerializeField] protected AudioClip _runeEquipSound;
 
@@ -138,6 +137,20 @@ namespace IslandBoy
         protected void PlaySound()
         {
             AudioManager.Instance.PlayClip(_popSound, false, true, 0.75f);
+        }
+
+        public bool SpawnInventoryItem(ItemObject item, List<ItemParameter> itemParameters = null, int count = 1)
+        {
+            if(transform.childCount == 0)
+            {
+                GameObject inventoryItemGo = Instantiate(_inventoryItemPrefab, transform);
+                InventoryItem invItem = inventoryItemGo.GetComponent<InventoryItem>();
+                invItem.Initialize(item, itemParameters, count);
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

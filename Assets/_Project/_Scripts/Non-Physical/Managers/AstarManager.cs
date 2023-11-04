@@ -7,7 +7,11 @@ namespace IslandBoy
 {
     public class AstarManager : Singleton<AstarManager>
     {
+        [SerializeField] private PlayerReference _pr;
+
+        private Vector2 _tempPos;
         private AstarPath _ap;
+        private float _distUntilGenerate = 7f;
 
         protected override void Awake()
         {
@@ -21,6 +25,8 @@ namespace IslandBoy
             gg.SetDimensions(width, height, nodeSize);
             gg.center = center;
             gg.Scan();
+
+            _tempPos = _pr.Position;
         }
 
         public void UpdateGrid(Vector2 position)

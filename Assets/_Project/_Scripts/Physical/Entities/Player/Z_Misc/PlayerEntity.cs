@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,13 +10,28 @@ namespace IslandBoy
     public class PlayerEntity : Entity
     {
         [SerializeField] private float _deathTimer;
-        [SerializeField] private UnityEvent _onDeath;
-        [SerializeField] private UnityEvent _onRespawn;
+        [SerializeField] private UnityEvent _localDeathHandle;
+        [SerializeField] private UnityEvent _localRespawnHandle;
 
         private void Start()
         {
             PR.Defense = 0;
-            PR.SetSpawnPosition(transform.position);
+        }
+
+        private void OnEnable()
+        {
+            GameSignals.DAY_OUT_OF_TIME.AddListener(KillPlayer);
+            
+        }
+
+        private void OnDisable()
+        {
+            GameSignals.DAY_OUT_OF_TIME.RemoveListener(KillPlayer);
+        }
+
+        private void KillPlayer(ISignalParameters parameter)
+        {
+            KillEntity();
         }
 
         public override void Damage(int incomingDamage, GameObject sender = null)
@@ -29,7 +45,7 @@ namespace IslandBoy
 
             HealthSystem.Damage(damageDelt);
 
-            PopupMessage.Create(transform.position, damageDelt.ToString(), Color.red, 0.5f);
+            PopupMessage.Create(transform.position, damageDelt.ToString(), Color.red, new(0f, 0.5f));
             AudioManager.Instance.PlayClip(_damageSound, false, true);
 
             if (sender != null && transform.TryGetComponent(out KnockbackFeedback knockback))
@@ -51,19 +67,6 @@ namespace IslandBoy
 
         public override void KillEntity()
         {
-            foreach (Slot slot in PR.Inventory.InventorySlots)
-            {
-                if (slot.InventoryItem != null)
-                {
-                    var itemObj = slot.ItemObject;
-                    var itemCount = slot.InventoryItem.Count;
-
-                    PR.Inventory.RemoveItem(itemObj, itemCount);
-
-                    WorldItemManager.Instance.SpawnItem(transform.root.position, itemObj, itemCount);
-                }
-            }
-
             AudioManager.Instance.PlayClip(_deathSound, false, true);
 
             StartCoroutine(Death());
@@ -71,16 +74,15 @@ namespace IslandBoy
 
         private IEnumerator Death()
         {
-            _onDeath?.Invoke();
+            _localDeathHandle?.Invoke();
+
+            GameSignals.PLAYER_DIED.Dispatch();
+
             yield return new WaitForSeconds(_deathTimer);
-            _onRespawn?.Invoke();
 
-            if(SceneManager.GetActiveScene().buildIndex != 0)
-            {
-                LevelManager.Instance.LoadSurface();
-            }
+            _localRespawnHandle?.Invoke();
 
-            transform.root.gameObject.transform.SetPositionAndRotation(PR.SpawnPosition, Quaternion.identity);
+            GameSignals.DAY_END.Dispatch();
 
             HealthSystem = new(_maxHealth);
         }

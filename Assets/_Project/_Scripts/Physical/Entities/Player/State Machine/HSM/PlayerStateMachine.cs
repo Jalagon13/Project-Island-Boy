@@ -1,5 +1,9 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace IslandBoy
 {
@@ -20,26 +24,69 @@ namespace IslandBoy
 
         private void Awake()
         {
-            _mainCamera = Camera.main;
+            _pr.SpawnPoint = transform.position;
             _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
             _rightDirScale = _sr.transform.localScale;
             _leftDirScale = new(-_rightDirScale.x, _rightDirScale.y);
             _states = new PlayerStateFactory(this);
             _moveInput = GetComponent<PlayerMoveInput>();
+            
+            GameSignals.DAY_END.AddListener(OnEndDay);
+            GameSignals.DAY_START.AddListener(OnStartDay);
+            GameSignals.PLAYER_DIED.AddListener(PlayerDied);
+        }
+
+        private void OnDestroy()
+        {
+            GameSignals.DAY_END.RemoveListener(OnEndDay);
+            GameSignals.DAY_START.RemoveListener(OnStartDay);
+            GameSignals.PLAYER_DIED.RemoveListener(PlayerDied);
         }
 
         private void Start()
         {
             _currentState = _states.Grounded();
             _currentState.EnterState();
-            //Cursor.SetCursor(_cursorSprite.texture, Vector2.zero, CursorMode.ForceSoftware);
+            _mainCamera = Camera.main;
         }
 
-        private void Update()
+        private void LateUpdate()
         {
             _currentState.UpdateStates();
             _pr.Position = transform.position;
             _pr.MousePosition = (Vector2)_mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        }
+
+        private void PlayerDied(ISignalParameters parameters)
+        {
+            EnableMovement(false);
+        }
+
+        private void OnEndDay(ISignalParameters parameters)
+        {
+            TeleportPlayerToSpawn();
+            EnableMovement(false);
+        }
+
+        private void OnStartDay(ISignalParameters parameters)
+        {
+            EnableMovement(true);
+        }
+
+        private void EnableMovement(bool _)
+        {
+            var input = GetComponent<PlayerMoveInput>();
+            input.enabled = _;
+        }
+
+        private void TeleportPlayerToSpawn()
+        {
+            if (SceneManager.GetActiveScene().buildIndex != 0)
+            {
+                LevelManager.Instance.LoadSurface();
+            }
+
+            transform.SetPositionAndRotation(_pr.SpawnPoint, Quaternion.identity);
         }
 
         public void SpriteFlipHandle()

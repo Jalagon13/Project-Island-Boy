@@ -7,9 +7,7 @@ namespace IslandBoy
     public class TileIndicator : MonoBehaviour
     {
         [SerializeField] private PlayerReference _pr;
-        [SerializeField] private Tilemap _wallTilemap;
-        [SerializeField] private Tilemap _floorTilemap;
-        [SerializeField] private Tilemap _islandTilemap;
+        [SerializeField] private TilemapReferences _tmr;
         [SerializeField] private Color _indicatorEmptyColor;
         [SerializeField] private Color _indicatorTransparentColor;
         [SerializeField] private Color _canHitColor;
@@ -18,10 +16,7 @@ namespace IslandBoy
         private TileAction _ta;
         private SpriteRenderer _sr;
         private AdventurerEntity _ae = null;
-
-        public Tilemap WallTilemap { get { return _wallTilemap; } }
-        public Tilemap FloorTilemap { get { return _floorTilemap; } }
-        public Tilemap IslandTilemap { get { return _islandTilemap; } }
+        private InventorySlot _selectedSlot;
 
         private void Awake()
         {
@@ -32,12 +27,12 @@ namespace IslandBoy
 
         private void OnEnable()
         {
-            HotbarControl.OnSelectedSlotUpdated += UpdateLogic;
+            GameSignals.SELECTED_SLOT_UPDATED.AddListener(OnSelectedSlotUpdated);
         }
 
         private void OnDisable()
         {
-            HotbarControl.OnSelectedSlotUpdated -= UpdateLogic;
+            GameSignals.SELECTED_SLOT_UPDATED.RemoveListener(OnSelectedSlotUpdated);
         }
 
         private void Update()
@@ -47,49 +42,30 @@ namespace IslandBoy
             UpdateLogic();
         }
 
+        private void OnSelectedSlotUpdated(ISignalParameters parameters)
+        {
+            _selectedSlot = (InventorySlot)parameters.GetParameter("SelectedSlot");
+
+            UpdateLogic();
+        }
+
         public void UpdateLogic()
         {
+            // if mouse item has an item, override _selectedSlot with Mouse slot.
+
+            // if mouse has no item, update selected slot again.
+            if (_selectedSlot == null) return;
+
+            ChangeToOff();
+
             if (_ta.OverInteractable())
             {
-                if(_ae != null)
-                {
-                    ChangeToOff();
-                    _ae.HideSelectIndicator();
-                }
-
-                bool foundAdventurer = false;
-                var colliders = Physics2D.OverlapCircleAll(transform.position, 0.4f);
-
-                foreach (var col in colliders)
-                {
-                    if(col.TryGetComponent(out AdventurerEntity ae))
-                    {
-                        ChangeToOff();
-                        _ae = ae;
-                        _ae.ShowSelectIndicator();
-                        foundAdventurer = true;
-                        return;
-                    }
-                }
-
-                if(!foundAdventurer)
-                {
-                    ChangeToOn();
-                }
+                ChangeToOn();
             }
             else
             {
-                if(_ae != null)
-                {
-                    _ae.HideSelectIndicator();
-                    _ae = null;
-                }
-
-                ChangeToOff();
                 RscHarvest();
-                ShovelTile();
                 HammerTile();
-                Indifferent();
             }
 
             transform.hasChanged = false;
@@ -97,94 +73,20 @@ namespace IslandBoy
 
         private void HammerTile()
         {
-            if (_pr.SelectedSlot.ItemObject != null)
-                if (_pr.SelectedSlot.ItemObject.ToolType != ToolType.Hammer) return;
-            if (_pr.SelectedSlot.ItemObject == null) return;
+            if (_selectedSlot.ItemObject == null) return;
+            if (_selectedSlot.ItemObject != null)
+                if (_selectedSlot.ItemObject.ToolType != ToolType.Hammer) return;
 
-            if(_floorTilemap.HasTile(Vector3Int.FloorToInt(transform.position)) || _wallTilemap.HasTile(Vector3Int.FloorToInt(transform.position)))
+            if(_tmr.FloorTilemap.HasTile(Vector3Int.FloorToInt(transform.position)) || _tmr.WallTilemap.HasTile(Vector3Int.FloorToInt(transform.position)))
                 ChangeToOn();
             else
                 ChangeToOff();
         }
 
-        private void Indifferent()
-        {
-            var colliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
-
-            List<IBreakable> indifferentObjects = new();
-
-            foreach (var collider in colliders)
-            {
-                if (collider.TryGetComponent(out IBreakable breakable))
-                {
-                    if (breakable.BreakType == ToolType.Indifferent)
-                        indifferentObjects.Add(breakable);
-                }
-            }
-
-            if (indifferentObjects.Count > 0)
-            {
-                foreach (var breakable in indifferentObjects)
-                {
-                    ChangeToOn();
-
-                    if (breakable.CurrentHitPoints < breakable.MaxHitPoints)
-                    {
-                        _stHpCanvas.ShowHpCanvas(breakable.MaxHitPoints, breakable.CurrentHitPoints);
-                    }
-
-                    break;
-                }
-            }
-        }
-
-        private void ShovelTile()
-        {
-            if (_pr.SelectedSlot.ItemObject != null)
-                if (_pr.SelectedSlot.ItemObject.ToolType != ToolType.Shovel) return;
-            if (_pr.SelectedSlot.ItemObject == null) return;
-            if (!_islandTilemap.HasTile(Vector3Int.FloorToInt(transform.position))) return;
-
-            var colliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
-
-            List<IBreakable> shovelObjects = new();
-
-            foreach (var collider in colliders)
-            {
-                if (collider.TryGetComponent(out IBreakable breakable))
-                {
-                    if(breakable.BreakType == ToolType.Shovel)
-                        shovelObjects.Add(breakable);
-                }
-            }
-
-            if(shovelObjects.Count > 0)
-            {
-                foreach (var breakable in shovelObjects)
-                {
-                    ChangeToOn();
-
-                    if (breakable.CurrentHitPoints < breakable.MaxHitPoints)
-                    {
-                        _stHpCanvas.ShowHpCanvas(breakable.MaxHitPoints, breakable.CurrentHitPoints);
-                    }
-
-                    break;
-                }
-            }
-            else
-            {
-                if (_ta.IsClear())
-                    ChangeToOn();
-                else
-                    ChangeToOff();
-            }
-        }
-
         private void RscHarvest()
         {
-            if(_pr.SelectedSlot.ItemObject != null)
-                if (_pr.SelectedSlot.ItemObject.ToolType == ToolType.Shovel) return;
+            if (_selectedSlot.ItemObject == null)
+                return;
 
             var colliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
 
@@ -201,13 +103,9 @@ namespace IslandBoy
             if (breakableObjects.Count <= 0) 
                 return;
 
-            var item = _pr.SelectedSlot.ItemObject;
-
-            ToolType selSlotTType = item == null ? _ta.BaseToolType : item.ToolType;
-
             foreach (var breakable in breakableObjects)
             {
-                if(breakable.BreakType == selSlotTType)
+                if(breakable.BreakType == _selectedSlot.ItemObject.ToolType)
                 {
                     ChangeToOn();
 
@@ -231,9 +129,9 @@ namespace IslandBoy
         {
             _sr.transform.localScale = new Vector3(0.85f, 0.85f, 0.85f);
 
-            if (_pr.SelectedSlot.ItemObject is DeployObject ||
-                _pr.SelectedSlot.ItemObject is FloorObject ||
-                _pr.SelectedSlot.ItemObject is WallObject)
+            if (_selectedSlot.ItemObject is DeployObject ||
+                _selectedSlot.ItemObject is FloorObject ||
+                _selectedSlot.ItemObject is WallObject)
                 _sr.color = _indicatorTransparentColor;
             else
                 _sr.color = _indicatorEmptyColor;

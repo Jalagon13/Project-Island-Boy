@@ -6,23 +6,21 @@ namespace IslandBoy
 {
     public class RscSlot : MonoBehaviour
     {
-        [SerializeField] private Sprite _experienceOrbSprite;
-
         private Image _rscImage;
         private TextMeshProUGUI _countText;
         private ItemObject _item;
         private RscSlotImageHover _imageHover;
 
-        public void Initialize(ItemAmount ia)
+        public void Initialize(ItemObject item, int amount)
         {
             _rscImage = transform.GetChild(1).GetComponent<Image>();
             _countText = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
             _imageHover = transform.GetChild(1).GetComponent<RscSlotImageHover>();
-            _imageHover.OutputItem = ia.Item;
+            _imageHover.OutputItem = item;
 
-            _item = ia.Item;
-            _rscImage.sprite = ia.Item.UiDisplay;
-            _countText.text = ia.Amount.ToString();
+            _item = item;
+            _rscImage.sprite = item.UiDisplay;
+            _countText.text = amount == 1 ? string.Empty : amount.ToString();
         }
     }
 }

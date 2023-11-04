@@ -21,7 +21,7 @@ namespace IslandBoy
         public abstract void ExecuteAction(SelectedSlotControl control);
         public abstract string GetDescription();
 
-        protected ToolType _baseToolType = ToolType.Ax;
+        protected ToolType _baseToolType = ToolType.None;
         protected AmmoType _baseAmmoType = AmmoType.None;
         protected ArmorType _baseArmorType = ArmorType.None;
 

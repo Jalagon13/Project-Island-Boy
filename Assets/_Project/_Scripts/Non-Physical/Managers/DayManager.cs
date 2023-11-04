@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -7,9 +8,14 @@ using UnityEngine.UI;
 
 namespace IslandBoy
 {
-    public class DayManager : Singleton<DayManager>
+    public class DayManager : MonoBehaviour
     {
+        [SerializeField] private PlayerReference _pr;
         [SerializeField] private float _dayDurationInSec;
+        [Range(0, 1f)]
+        [SerializeField] private float _percentTillCanSleep;
+        [Range(0, 1f)]
+        [SerializeField] private float _debugDayPercentage;
         [Header("Editor Stuff")]
         [SerializeField] private RectTransform _marker;
         [SerializeField] private RectTransform _panel;
@@ -17,33 +23,40 @@ namespace IslandBoy
         [SerializeField] private Vector2 _markerStartPosition;
         [SerializeField] private Vector2 _markerEndPosition;
 
-        // Need to implement a system where any system can observe the DayManager and do something depending on if the day ends/begins.
-        private event EventHandler _onDayStart;
-        private event EventHandler _onDayEnd;
+        private event EventHandler _onStartDay;
+        private event EventHandler _onEndDay;
         private Timer _timer;
         private Volume _globalVolume;
         private float _duration;
         private float _phasePercent;
-        private bool _isDay;
+        private bool _isDay, _hasDisplayedWarning;
+        private List<string> _endDaySlides = new();
 
-        public Volume GlobalVolume { get { return _globalVolume; } }
-
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
-
-            _globalVolume = transform.GetChild(1).GetComponent<Volume>();
+            _globalVolume = FindFirstObjectByType<Volume>();
+            _timer = new(_dayDurationInSec);
+            _timer.OnTimerEnd += OutOfTime;
         }
 
         private void Start()
         {
             StartDay();
-            _timer.Tick(_dayDurationInSec * 0.1f);
+            _timer.Tick(_dayDurationInSec * _debugDayPercentage); // starts the day some percent way through
+        }
+
+        private void OnEnable()
+        {
+            GameSignals.DAY_END.AddListener(EndDay);
+            GameSignals.NPC_MOVED_IN.AddListener(NpcMovedIn);
+            GameSignals.NPC_MOVED_OUT.AddListener(NpcMovedOut);
         }
 
         private void OnDisable()
         {
-            _timer.OnTimerEnd -= StartDay;
+            GameSignals.DAY_END.RemoveListener(EndDay);
+            GameSignals.NPC_MOVED_IN.RemoveListener(NpcMovedIn);
+            GameSignals.NPC_MOVED_OUT.RemoveListener(NpcMovedOut);
         }
 
         private void Update()
@@ -54,27 +67,32 @@ namespace IslandBoy
             {
                 MoveMarker();
                 VolumeHandle();
+                if(_phasePercent > _percentTillCanSleep && !_hasDisplayedWarning)
+                {
+                    PopupMessage.Create(_pr.Position, "I need to sleep soon..", Color.cyan, new(0f, 0.75f), 1.5f);
+                    GameSignals.CAN_SLEEP.Dispatch();
+                    _hasDisplayedWarning = true;
+                }
             }
         }
 
-        public void SubToDayStart(EventHandler function)
+        private void OutOfTime()
         {
-            _onDayStart += function;
+            GameSignals.DAY_OUT_OF_TIME.Dispatch();
         }
 
-        public void UnSubToDayStart(EventHandler function)
+        private void NpcMovedIn(ISignalParameters parameters)
         {
-            _onDayStart -= function;
+            NpcObject npc = parameters.GetParameter("MovedInNpc") as NpcObject;
+
+            _endDaySlides.Add($"{npc.Name} has moved in!");
         }
 
-        public void SubToDayEnd(EventHandler function)
+        private void NpcMovedOut(ISignalParameters parameters)
         {
-            _onDayEnd += function;
-        }
+            NpcObject npc = parameters.GetParameter("MovedOutNpc") as NpcObject;
 
-        public void UnSubToDayEnd(EventHandler function)
-        {
-            _onDayEnd -= function;
+            _endDaySlides.Add($"{npc.Name} has moved out!");
         }
 
         private void VolumeHandle()
@@ -98,12 +116,10 @@ namespace IslandBoy
             _marker.anchoredPosition = new Vector2(xValue, _markerStartPosition.y);
         }
 
-        public void StartDay()
+        public void StartDay() // connected to continue button
         {
-            // start day event invoked
-            _onDayStart?.Invoke(this, EventArgs.Empty);
-
             ResetDay();
+            DispatchEvents();
             PanelEnabled(false);
             UpdateMarker(_sunSprite);
         }
@@ -111,16 +127,35 @@ namespace IslandBoy
         private void ResetDay()
         {
             _marker.localPosition = _markerStartPosition;
-            _timer = new(_dayDurationInSec);
-            _timer.OnTimerEnd += EndDay;
+            _timer.RemainingSeconds = _dayDurationInSec;
             _duration = _dayDurationInSec;
+            _hasDisplayedWarning = false;
+            _timer.IsPaused = false;
             _isDay = true;
+            _onStartDay?.Invoke(this, EventArgs.Empty);
         }
 
-        public void EndDay()
+        private void DispatchEvents()
         {
-            // end day event invoked.
-            _onDayEnd?.Invoke(this, EventArgs.Empty);
+            // implement optional parameters before dispatch here
+            GameSignals.DAY_START.Dispatch();
+        }
+
+        public void AddEndDaySlide(string text)
+        {
+            _endDaySlides.Add(text);
+        }
+
+        public void ClearEndDaySlides()
+        {
+            _endDaySlides.Clear();
+        }
+
+        [ContextMenu("End Day")]
+        public void EndDay(ISignalParameters parameters) // connected to bed
+        {
+            _onEndDay?.Invoke(this, EventArgs.Empty);
+            _timer.IsPaused = true;
 
             PanelEnabled(true);
             StartCoroutine(TextSequence());
@@ -141,8 +176,16 @@ namespace IslandBoy
 
             yield return new WaitForSeconds(2f);
 
+            foreach (string slide in _endDaySlides)
+            {
+                text.text = slide;
+                yield return new WaitForSeconds(2f);
+            }
+
             text.text = "Your stats have been replenished!";
             button.gameObject.SetActive(true);
+
+            _endDaySlides.Clear();
         }
 
         private void PanelEnabled(bool _)

@@ -35,15 +35,23 @@ namespace IslandBoy
 
             if (tilActionClear && !wallTmHasTile && groundTmHasTile)
             {
+                control.SelectedSlot.InventoryItem.Count--;
                 AudioManager.Instance.PlayClip(_deploySound, false, true);
-                control.PR.SelectedSlot.InventoryItem.Count--;
-                control.TileAction.PlaceDeployable(_prefabToDeploy);
+                ObjectPlacedDispatch();
             }
+        }
+
+        private void ObjectPlacedDispatch()
+        {
+            Signal signal = GameSignals.OBJECT_PLACED;
+            signal.ClearParameters();
+            signal.AddParameter("ObjectPlaced", _prefabToDeploy);
+            signal.Dispatch();
         }
 
         public override string GetDescription()
         {
-            return $"{Description}<br>• Can be placed";
+            return $"{Description}<br>• Right Click to place down.";
         }
     }
 }

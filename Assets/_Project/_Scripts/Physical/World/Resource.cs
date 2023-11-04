@@ -44,19 +44,10 @@ namespace IslandBoy
 
         public bool Hit(float amount, ToolType toolType = ToolType.None)
         {
-            if(_harvestType != ToolType.Indifferent)
-            {
-                if (toolType == ToolType.None)
-                    goto noneToolType;
-                else if (toolType != _harvestType) 
-                    return false;
-            }
-
-            noneToolType:
+            if (toolType == ToolType.None || toolType != _harvestType) return false;
 
             AudioManager.Instance.PlayClip(_hitSound, false, true, 0.7f);
-            PopupMessage.Create(transform.position, amount.ToString(), Color.yellow, 0.5f);
-
+            PopupMessage.Create(transform.position, amount.ToString(), Color.yellow, new(0, 0.5f));
 
             RscHit();
 
@@ -75,21 +66,6 @@ namespace IslandBoy
             StopAllCoroutines();
 
             Destroy(gameObject);
-        }
-
-        private IEnumerator Tremble()
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                _sr.transform.localPosition += new Vector3(0.05f, 0, 0);
-                yield return new WaitForSeconds(0.01f);
-                _sr.transform.localPosition -= new Vector3(0.05f, 0, 0);
-                yield return new WaitForSeconds(0.01f);
-                _sr.transform.localPosition -= new Vector3(0.05f, 0, 0);
-                yield return new WaitForSeconds(0.01f);
-                _sr.transform.localPosition += new Vector3(0.05f, 0, 0);
-                yield return new WaitForSeconds(0.01f);
-            }
         }
     }
 }

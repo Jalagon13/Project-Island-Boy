@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 1f5e75782a6e8434cba4bce854fb47eb, type: 3}
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _harvestType
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _resourceName
@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 38c252debefbe3a44bdfc96152ae1b2f, type: 2}
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Chance
-      value: 42.2
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2594954625819056483, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -96,7 +96,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[DPLY] Blueprint Table'
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9010295086465205499, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -123,4 +124,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _rdb: {fileID: 11400000, guid: 30c89e642660ca94f83b503bbf3dd8ee, type: 2}
-  _adb: {fileID: 0}
