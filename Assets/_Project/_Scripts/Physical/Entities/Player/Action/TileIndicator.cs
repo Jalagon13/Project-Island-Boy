@@ -53,43 +53,14 @@ namespace IslandBoy
         {
             if (_selectedSlot == null) return;
 
+            ChangeToOff();
+
             if (_ta.OverInteractable())
             {
-                if(_ae != null)
-                {
-                    ChangeToOff();
-                    _ae.HideSelectIndicator();
-                }
-
-                bool foundAdventurer = false;
-                var colliders = Physics2D.OverlapCircleAll(transform.position, 0.4f);
-
-                foreach (var col in colliders)
-                {
-                    if(col.TryGetComponent(out AdventurerEntity ae))
-                    {
-                        ChangeToOff();
-                        _ae = ae;
-                        _ae.ShowSelectIndicator();
-                        foundAdventurer = true;
-                        return;
-                    }
-                }
-
-                if(!foundAdventurer)
-                {
-                    ChangeToOn();
-                }
+                ChangeToOn();
             }
             else
             {
-                if(_ae != null)
-                {
-                    _ae.HideSelectIndicator();
-                    _ae = null;
-                }
-
-                ChangeToOff();
                 RscHarvest();
                 HammerTile();
             }

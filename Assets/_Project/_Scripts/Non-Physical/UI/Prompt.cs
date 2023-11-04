@@ -32,7 +32,6 @@ namespace IslandBoy
 
         public override void Interact()
         {
-            DispatchPromptInteract();
             OpenUI();
         }
 
@@ -49,14 +48,16 @@ namespace IslandBoy
             CloseUI();
         }
 
-        private void CloseUI()
+        public void CloseUI()
         {
             _prompCanvas.gameObject.SetActive(false);
             _onClosePrompt?.Invoke();
         }
 
-        private void OpenUI()
+        public void OpenUI()
         {
+            DispatchPromptInteract();
+
             _prompCanvas.gameObject.SetActive(true);
             _onOpenPrompt?.Invoke();
         }

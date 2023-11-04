@@ -235,6 +235,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: ws_tutorial_sign
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50a64f0f1a53fdf419a9fa02f0a1e448
+      internalID: 1450040114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -253,6 +274,7 @@ TextureImporter:
       ws_furnace: 1168968723
       ws_sleeping_bag: -90063712
       ws_tool_station: 1663711594
+      ws_tutorial_sign: 1450040114
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
