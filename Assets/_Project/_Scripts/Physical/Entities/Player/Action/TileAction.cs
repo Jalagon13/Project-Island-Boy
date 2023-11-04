@@ -99,6 +99,8 @@ namespace IslandBoy
 
         private void HammerTileLogic()
         {
+            if (_selectedSlot.ItemObject == null) return;
+            if (_selectedSlot.ItemObject.ToolType == ToolType.None) return;
             if (_selectedSlot.ItemObject != null)
                 if (_selectedSlot.ItemObject.ToolType != ToolType.Hammer) return;
 
