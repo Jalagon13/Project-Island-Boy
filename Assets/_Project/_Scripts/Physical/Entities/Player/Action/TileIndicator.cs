@@ -51,6 +51,9 @@ namespace IslandBoy
 
         public void UpdateLogic()
         {
+            // if mouse item has an item, override _selectedSlot with Mouse slot.
+
+            // if mouse has no item, update selected slot again.
             if (_selectedSlot == null) return;
 
             ChangeToOff();
