@@ -44,15 +44,7 @@ namespace IslandBoy
 
         public bool Hit(float amount, ToolType toolType = ToolType.None)
         {
-            if(_harvestType != ToolType.Indifferent)
-            {
-                if (toolType == ToolType.None)
-                    goto noneToolType;
-                else if (toolType != _harvestType) 
-                    return false;
-            }
-
-            noneToolType:
+            if (toolType == ToolType.None || toolType != _harvestType) return false;
 
             AudioManager.Instance.PlayClip(_hitSound, false, true, 0.7f);
             PopupMessage.Create(transform.position, amount.ToString(), Color.yellow, new(0, 0.5f));

@@ -4207,8 +4207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b4c7956ed50f284299cfa58fc31219c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _highlightedColor: {r: 0.8679245, g: 0.79648834, b: 0.19978638, a: 1}
-  _notHighlightedColor: {r: 0.1882353, g: 0.5176471, b: 0.8117647, a: 1}
+  _highlightedColor: {r: 0.8867924, g: 0.87965983, b: 0.26269132, a: 1}
+  _notHighlightedColor: {r: 0.8962264, g: 0.63672173, b: 0.2654859, a: 0.8666667}
   _hotbarSlots:
   - {fileID: 1398917238}
   - {fileID: 658019018}
@@ -4247,15 +4247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxStack: 99
-  _startingItems:
-  - OutputItem: {fileID: 11400000, guid: f9306cafa82c97447bc4f47c37ef4b10, type: 2}
-    OutputAmount: 1
-  - OutputItem: {fileID: 11400000, guid: 6dbf17cc40618ef4497ad3cc834f0ad2, type: 2}
-    OutputAmount: 1
-  - OutputItem: {fileID: 11400000, guid: 902774a644957654d84a660b19ecc643, type: 2}
-    OutputAmount: 1
-  - OutputItem: {fileID: 11400000, guid: fb9c53bc5a9014142b9e07f97db75202, type: 2}
-    OutputAmount: 1
+  _startingItems: []
   _allSlots:
   - {fileID: 1398917238}
   - {fileID: 658019018}
@@ -4333,7 +4325,6 @@ GameObject:
   - component: {fileID: 5602138070249294674}
   - component: {fileID: 5602138070249294673}
   - component: {fileID: 5602138070249294672}
-  - component: {fileID: 7119441044080841868}
   m_Layer: 0
   m_Name: Inventory
   m_TagString: Untagged
@@ -6895,24 +6886,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7119441044080841868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5602138070249294678}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed3f78389d9b92f43b1067b640f1adfe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _npcSlotPrefab: {fileID: 6449567880495286189, guid: b7c00b9f77331824e8962692c6d6b5c7, type: 3}
-  _npcSlotHolder: {fileID: 0}
-  _npcText: {fileID: 0}
-  npcsFound:
-  - {fileID: 11400000, guid: e994b2e582709e94596006615c377da7, type: 2}
-  - {fileID: 11400000, guid: e54a0e216e95d284ba71faae2b23736f, type: 2}
 --- !u!224 &8594108804901111863
 RectTransform:
   m_ObjectHideFlags: 0

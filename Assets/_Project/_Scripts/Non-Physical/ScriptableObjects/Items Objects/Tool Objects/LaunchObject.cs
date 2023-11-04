@@ -58,8 +58,6 @@ namespace IslandBoy
 
             if (Stackable)
                 control.SelectedSlot.InventoryItem.Count--;
-            else
-                control.TileAction.ModifyDurability();
         }
 
         private void LaunchProjectile(SelectedSlotControl control, float force)

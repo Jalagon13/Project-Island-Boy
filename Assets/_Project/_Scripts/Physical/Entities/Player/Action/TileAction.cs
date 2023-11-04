@@ -7,6 +7,7 @@ namespace IslandBoy
     public class TileAction : MonoBehaviour
     {
         [SerializeField] private PlayerReference _pr;
+        [SerializeField] private TilemapReferences _tmr;
         [SerializeField] private ItemParameter _powerParameter;
         [SerializeField] private ItemParameter _durabilityParameter;
 
@@ -14,12 +15,6 @@ namespace IslandBoy
         private TileIndicator _ti;
         private PlayerInput _input;
         private InventorySlot _selectedSlot;
-        private ToolType _baseToolType;
-        private float _basePower;
-        private bool _brokeRscThisFrame; // used to stop any logic after damage has been applied to breakable
-
-        public float BasePower { set { _basePower = value; } }
-        public ToolType BaseToolType { get { return _baseToolType; } set { _baseToolType = value; } }
 
         private void Awake()
         {
@@ -80,11 +75,6 @@ namespace IslandBoy
                 {
                     interactable.Interact();
                 }
-
-                //if(col.TryGetComponent(out Interactable interact))
-                //{
-                //    interact.Interact();
-                //}
             }
         }
 
@@ -103,44 +93,25 @@ namespace IslandBoy
 
         public void HitTile()
         {
-            _brokeRscThisFrame = false;
-
             HammerTileLogic();
-            DamageBreakable();
+            ApplyDamageToBreakable(transform.position);
         }
 
         private void HammerTileLogic()
         {
             if (_selectedSlot.ItemObject != null)
                 if (_selectedSlot.ItemObject.ToolType != ToolType.Hammer) return;
+
+            if (_tmr.WallTilemap.HasTile(Vector3Int.FloorToInt(transform.position)))
+                DestroyTile(_tmr.WallTilemap);
+            else if (_tmr.FloorTilemap.HasTile(Vector3Int.FloorToInt(transform.position)))
+                DestroyTile(_tmr.FloorTilemap);
+        }
+
+        public void ApplyDamageToBreakable(Vector3 pos)
+        {
             if (_selectedSlot.ItemObject == null) return;
-            //if (!IsClear()) return;
-
-            if (_ti.WallTilemap.HasTile(Vector3Int.FloorToInt(transform.position)))
-            {
-                DestroyTile(_ti.WallTilemap);
-                ModifyDurability();
-            }
-            else if (_ti.FloorTilemap.HasTile(Vector3Int.FloorToInt(transform.position)))
-            {
-                DestroyTile(_ti.FloorTilemap);
-                ModifyDurability();
-            }
-        }
-
-        private void DamageBreakable()
-        {
-            if (ApplyDamageToBreakable(transform.position))
-            {
-                ModifyDurability();
-            }
-        }
-
-
-        public bool ApplyDamageToBreakable(Vector3 pos)
-        {
-            if (_selectedSlot.ItemObject != null)
-                if (_selectedSlot.ItemObject.ToolType == ToolType.Sword) return false;
+            if(_selectedSlot.ItemObject.ToolType == ToolType.None) return;
 
             var colliders = Physics2D.OverlapCircleAll(pos, 0.2f);
 
@@ -154,7 +125,6 @@ namespace IslandBoy
                     {
                         if (breakable.CurrentHitPoints <= 0)
                         {
-                            _brokeRscThisFrame = true;
                             _stHpCanvas.HideHpCanvas();
                             _ti.ChangeToOff();
 
@@ -164,13 +134,9 @@ namespace IslandBoy
                         {
                             _stHpCanvas.ShowHpCanvas(breakable.MaxHitPoints, breakable.CurrentHitPoints);
                         }
-
-                        return true;
                     }
                 }
             }
-
-            return false;
         }
 
         private void DestroyTile(Tilemap tm)
@@ -196,30 +162,30 @@ namespace IslandBoy
             
         }
 
-        public void ModifyDurability()
-        {
-            //if (_pr.SelectedSlot.ItemObject is not ToolObject) return;
-            if (_selectedSlot.CurrentParameters.Count <= 0) return;
+        //public void ModifyDurability()
+        //{
+        //    //if (_pr.SelectedSlot.ItemObject is not ToolObject) return;
+        //    if (_selectedSlot.CurrentParameters.Count <= 0) return;
 
-            var itemParams = _selectedSlot.CurrentParameters;
+        //    var itemParams = _selectedSlot.CurrentParameters;
 
-            if (itemParams.Contains(_durabilityParameter))
-            {
-                int index = itemParams.IndexOf(_durabilityParameter);
-                float newValue = itemParams[index].Value - 1;
-                itemParams[index] = new ItemParameter
-                {
-                    Parameter = _durabilityParameter.Parameter,
-                    Value = newValue
-                };
+        //    if (itemParams.Contains(_durabilityParameter))
+        //    {
+        //        int index = itemParams.IndexOf(_durabilityParameter);
+        //        float newValue = itemParams[index].Value - 1;
+        //        itemParams[index] = new ItemParameter
+        //        {
+        //            Parameter = _durabilityParameter.Parameter,
+        //            Value = newValue
+        //        };
 
-                _selectedSlot.InventoryItem.UpdateDurabilityCounter();
-            }
-        }
+        //        _selectedSlot.InventoryItem.UpdateDurabilityCounter();
+        //    }
+        //}
 
         private float CalcPower()
         {
-            if (_selectedSlot.CurrentParameters.Count <= 0) return _basePower;
+            if (_selectedSlot.CurrentParameters.Count <= 0) return -1;
 
             var itemParams = _selectedSlot.CurrentParameters;
 
@@ -229,13 +195,13 @@ namespace IslandBoy
                 return itemParams[index].Value;
             }
             
-            return _basePower;
+            return -1;
         }
 
         private ToolType CalcToolType()
         {
             var item = _selectedSlot.ItemObject;
-            return item == null ? _baseToolType : item.ToolType;
+            return item == null ? ToolType.None : item.ToolType;
         }
 
         private Vector2 CenterOfTilePos()
