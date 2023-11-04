@@ -37,9 +37,9 @@ namespace IslandBoy
         private void Awake()
         {
             _input = new();
-            _input.Player.SecondaryAction.started += SelectedSlotAction;
-            _input.Player.SecondaryAction.performed += IsHeldDown;
-            _input.Player.SecondaryAction.canceled += IsHeldDown;
+            _input.Player.PrimaryAction.started += SelectedSlotAction;
+            _input.Player.PrimaryAction.performed += IsHeldDown;
+            _input.Player.PrimaryAction.canceled += IsHeldDown;
 
             TileAction = FindObjectOfType<TileAction>();
         }
