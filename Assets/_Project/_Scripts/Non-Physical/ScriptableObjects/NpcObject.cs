@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace IslandBoy
 {
+
     [CreateAssetMenu(fileName = "[NPC] ", menuName = "New Npc")]
     public class NpcObject : ScriptableObject
     {
@@ -12,6 +13,38 @@ namespace IslandBoy
         public string Description;
         public Sprite Icon;
         public GameObject NPC;
-        public List<DeployObject> FurnitureCheckList;
+
+        private bool _movedIn;
+        private bool _discovered;
+        private GameObject _worldEntity;
+        private Bed _bed;
+
+        public bool MovedIn { get { return _movedIn; } }
+        public bool Discovered { get { return _discovered; } }
+        public Bed Bed { get { return _bed; } }
+
+        public void MoveIn(Bed homeBed)
+        {
+            if(_worldEntity != null)
+                Destroy(_worldEntity);
+
+            DayManager.Instance.AddEndDaySlide($"{Name} has moved in!");
+
+            var pos = homeBed.gameObject.transform.position;
+            _worldEntity = Instantiate(NPC, pos, Quaternion.identity);
+            _bed = homeBed;
+            _movedIn = true;
+        }
+
+        public void MoveOut()
+        {
+            if (_worldEntity != null)
+                Destroy(_worldEntity);
+
+            DayManager.Instance.AddEndDaySlide($"{Name} has moved out!");
+
+            _bed = null;
+            _movedIn = false;
+        }
     }
 }

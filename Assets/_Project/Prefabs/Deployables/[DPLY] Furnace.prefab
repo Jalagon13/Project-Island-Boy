@@ -96,7 +96,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[DPLY] Furnace'
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9010295086465205499, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -123,4 +124,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _rdb: {fileID: 11400000, guid: 82b866830c4d277448950dc4b293e681, type: 2}
-  _adb: {fileID: 0}

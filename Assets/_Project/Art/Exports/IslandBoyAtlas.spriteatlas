@@ -63,6 +63,7 @@ SpriteAtlas:
     - 163e8e7065e05434e96c5969ddf71b39: -1149747449
     - 163e8e7065e05434e96c5969ddf71b39: -301881112
     - 163e8e7065e05434e96c5969ddf71b39: -711384130
+    - 163e8e7065e05434e96c5969ddf71b39: 1460111371
     - 163e8e7065e05434e96c5969ddf71b39: -1565230189
     - 163e8e7065e05434e96c5969ddf71b39: 507817295
     - 163e8e7065e05434e96c5969ddf71b39: 1369651022
@@ -664,6 +665,7 @@ SpriteAtlas:
   - {fileID: -1149747449, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   - {fileID: -301881112, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   - {fileID: -711384130, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
+  - {fileID: 1460111371, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   - {fileID: -1565230189, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   - {fileID: 507817295, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   - {fileID: 1369651022, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
@@ -1264,6 +1266,7 @@ SpriteAtlas:
   - ui_inventory_toggle
   - ui_mana_icon
   - ui_chest_slot
+  - npc_wizard_icon
   - ui_sun_mark
   - ui_house
   - ui_head_slot

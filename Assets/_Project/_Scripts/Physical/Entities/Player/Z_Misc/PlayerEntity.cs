@@ -82,6 +82,7 @@ namespace IslandBoy
         private IEnumerator Death()
         {
             _onDeath?.Invoke();
+
             yield return new WaitForSeconds(_deathTimer);
             _onRespawn?.Invoke();
 
