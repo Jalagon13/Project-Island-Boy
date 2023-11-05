@@ -30,5 +30,9 @@ namespace IslandBoy
         public static readonly Signal OBJECT_PLACED = new("ObjectPlaced");
         public static readonly Signal PLAYER_DIED = new("PlayerDied");
         public static readonly Signal PROMPT_INTERACT = new("PromptInteract");
+
+        // Pause Signals
+        public static readonly Signal GAME_PAUSED = new("GamePaused");
+        public static readonly Signal GAME_UNPAUSED = new("GameUnpaused");
     }
 }

@@ -27,6 +27,7 @@ namespace IslandBoy
             _playerInput = new();
             _playerInput.Player.PauseMenu.started += TogglePause;
             _state = GAMESTATE.PLAYING;
+
         }
 
         private void OnEnable()
@@ -50,12 +51,16 @@ namespace IslandBoy
             {
                 _state = GAMESTATE.PAUSED;
                 _pauseMenu.SetActive(true);
+
+                GameSignals.GAME_PAUSED.Dispatch();
                 Time.timeScale = 0;
             }
             else if (_state == GAMESTATE.PAUSED)
             {
                 _state = GAMESTATE.PLAYING;
                 _pauseMenu.SetActive(false);
+
+                GameSignals.GAME_UNPAUSED.Dispatch();
                 Time.timeScale = 1;
             }
         }

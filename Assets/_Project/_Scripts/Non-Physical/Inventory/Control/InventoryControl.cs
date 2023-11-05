@@ -24,18 +24,27 @@ namespace IslandBoy
             _craftSlotsControl = GetComponent<CraftSlotsControl>();
             _mainInventory = transform.GetChild(0).GetComponent<RectTransform>();
             _mouseItemHolder = transform.GetChild(2).GetComponent<MouseItemHolder>();
-
             _input.Player.ToggleInventory.started += ToggleInventory;
+
+            GameSignals.CHEST_INTERACT.AddListener(ChestInteract);
+            GameSignals.GAME_PAUSED.AddListener(PauseHandle);
+            GameSignals.GAME_UNPAUSED.AddListener(UnpauseHandle);
         }
+
+        private void OnDestroy()
+        {
+            GameSignals.CHEST_INTERACT.RemoveListener(ChestInteract);
+            GameSignals.GAME_PAUSED.RemoveListener(PauseHandle);
+            GameSignals.GAME_UNPAUSED.RemoveListener(UnpauseHandle);
+        }
+
         private void OnEnable()
         {
-            GameSignals.CHEST_INTERACT.AddListener(ChestInteract);
             _input.Enable();
         }
 
         private void OnDisable()
         {
-            GameSignals.CHEST_INTERACT.RemoveListener(ChestInteract);
             _input.Disable();
         }
 
@@ -52,6 +61,17 @@ namespace IslandBoy
             {
                 InteractableHandle(null);
             }
+        }
+
+        private void PauseHandle(ISignalParameters parameter)
+        {
+            CloseInventory();
+            _input.Disable();
+        }
+
+        private void UnpauseHandle(ISignalParameters parameters)
+        {
+            _input.Enable();
         }
 
         public void ChestInteract(ISignalParameters parameter)

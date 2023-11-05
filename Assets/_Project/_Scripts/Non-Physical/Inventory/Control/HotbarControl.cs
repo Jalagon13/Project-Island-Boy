@@ -18,7 +18,6 @@ namespace IslandBoy
 
         private void Awake()
         {
-            GameSignals.CONSUME_ITEM_SUCCESS.AddListener(DecreaseSelectedSlot);
 
             _input = new();
             _input.Hotbar.Scroll.performed += SelectSlotScroll;
@@ -31,11 +30,17 @@ namespace IslandBoy
             _input.Hotbar._7.started += SelectSlot;
             _input.Hotbar._8.started += SelectSlot;
             _input.Hotbar._9.started += SelectSlot;
+
+            GameSignals.CONSUME_ITEM_SUCCESS.AddListener(DecreaseSelectedSlot);
+            GameSignals.GAME_PAUSED.AddListener(PauseHandle);
+            GameSignals.GAME_UNPAUSED.AddListener(UnpauseHandle);
         }
 
         private void OnDestroy()
         {
             GameSignals.CONSUME_ITEM_SUCCESS.RemoveListener(DecreaseSelectedSlot);
+            GameSignals.GAME_PAUSED.RemoveListener(PauseHandle);
+            GameSignals.GAME_UNPAUSED.RemoveListener(UnpauseHandle);
         }
 
         private void OnEnable()
@@ -52,6 +57,16 @@ namespace IslandBoy
         {
             _slotIndex = 0;
             HighlightSelected();
+        }
+
+        private void PauseHandle(ISignalParameters parameters)
+        {
+            _input.Disable();
+        }
+
+        private void UnpauseHandle(ISignalParameters parameters)
+        {
+            _input.Enable();
         }
 
         private void DecreaseSelectedSlot(ISignalParameters parameters)

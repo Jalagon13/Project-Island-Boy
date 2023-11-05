@@ -56,6 +56,8 @@ namespace IslandBoy
             GameSignals.DAY_END.AddListener(DisableActions);
             GameSignals.DAY_START.AddListener(EnableActions);
             GameSignals.PLAYER_DIED.AddListener(DisableActions);
+            GameSignals.GAME_PAUSED.AddListener(DisableActions);
+            GameSignals.GAME_UNPAUSED.AddListener(EnableActions);
         }
 
         private void OnEnable()
@@ -75,6 +77,8 @@ namespace IslandBoy
             GameSignals.DAY_END.RemoveListener(DisableActions);
             GameSignals.DAY_START.RemoveListener(EnableActions);
             GameSignals.PLAYER_DIED.RemoveListener(DisableActions);
+            GameSignals.GAME_PAUSED.RemoveListener(DisableActions);
+            GameSignals.GAME_UNPAUSED.RemoveListener(EnableActions);
         }
 
         private IEnumerator Start()
