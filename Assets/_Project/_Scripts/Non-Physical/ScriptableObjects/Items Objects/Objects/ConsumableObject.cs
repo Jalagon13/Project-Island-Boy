@@ -50,7 +50,7 @@ namespace IslandBoy
 
         public override string GetDescription()
         {
-            return $"• Can be eaten<br>+ {_value} {_consumeType}<br>{Description}";
+            return $"• Right Click to consume<br>+ {_value} {_consumeType}<br>{Description}";
         }
     }
 }
