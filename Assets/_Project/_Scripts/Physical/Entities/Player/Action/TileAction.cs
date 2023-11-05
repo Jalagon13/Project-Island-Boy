@@ -97,7 +97,6 @@ namespace IslandBoy
         {
             if (_placingThisFrame) return;
 
-            Debug.Log("Hitting Tile");
             HammerTileLogic();
             ApplyDamageToBreakable();
         }
@@ -185,7 +184,6 @@ namespace IslandBoy
 
         public void PlaceDeployable(ISignalParameters parameters)
         {
-            Debug.Log("Placing deploy");
             GameObject deployable = (GameObject)parameters.GetParameter("ObjectPlaced");
             var position = transform.position -= new Vector3(0.5f, 0.5f);
             ExtensionMethods.SpawnObject(deployable, position, Quaternion.identity);

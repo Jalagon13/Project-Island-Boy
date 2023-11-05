@@ -28,6 +28,7 @@ namespace IslandBoy
             GameSignals.ITEM_ADDED.AddListener(CheckIfCanCraft);
             GameSignals.SLOT_CLICKED.AddListener(CheckIfCanCraft);
             GameSignals.INVENTORY_OPEN.AddListener(CheckIfCanCraft);
+            GameSignals.CRAFT_STATION_INTERACT.AddListener(CheckIfCanCraft);
         }
 
         private void OnDisable()
@@ -41,6 +42,7 @@ namespace IslandBoy
             GameSignals.ITEM_ADDED.RemoveListener(CheckIfCanCraft);
             GameSignals.SLOT_CLICKED.RemoveListener(CheckIfCanCraft);
             GameSignals.INVENTORY_OPEN.RemoveListener(CheckIfCanCraft);
+            GameSignals.CRAFT_STATION_INTERACT.RemoveListener(CheckIfCanCraft);
         }
 
         public void OnPointerEnter(PointerEventData eventData)
@@ -55,8 +57,6 @@ namespace IslandBoy
 
         public void Initialize(Recipe recipe)
         {
-
-
             SetGlobals(recipe);
             InitializeResourceSlots();
 
