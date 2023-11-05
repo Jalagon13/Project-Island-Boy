@@ -37,9 +37,12 @@ namespace IslandBoy
         private void Awake()
         {
             _input = new();
-            _input.Player.PrimaryAction.started += SelectedSlotAction;
+
+            _input.Player.PrimaryAction.started += SelectedSlotPrimaryAction;
             _input.Player.PrimaryAction.performed += IsHeldDown;
             _input.Player.PrimaryAction.canceled += IsHeldDown;
+
+            _input.Player.SecondaryAction.started += SelectedSlotSecondaryAction;
 
             TileAction = FindObjectOfType<TileAction>();
         }
@@ -77,7 +80,7 @@ namespace IslandBoy
                 _counter = _baseCoolDown;
 
             if (_isHeldDown && !_isCharging)
-                TryExecuteSlotAction();
+                TryExecuteSlotPrimaryAction();
 
             if (_isCharging)
             {
@@ -135,16 +138,30 @@ namespace IslandBoy
             _currentThrowForce = _minThrowForce;
         }
 
-        private void SelectedSlotAction(InputAction.CallbackContext context)
+        private void SelectedSlotPrimaryAction(InputAction.CallbackContext context)
         {
-            TryExecuteSlotAction();
+            TryExecuteSlotPrimaryAction();
         }
 
-        private void TryExecuteSlotAction()
+        private void SelectedSlotSecondaryAction(InputAction.CallbackContext context)
+        {
+            TryExecuteSecondaryAction();
+        }
+
+        private void TryExecuteSlotPrimaryAction()
         {
             if (SelectedSlot.ItemObject != null && _counter >= _baseCoolDown)
             {
-                SelectedSlot.ItemObject.ExecuteAction(this);
+                SelectedSlot.ItemObject.ExecutePrimaryAction(this);
+                _counter = 0;
+            }
+        }
+
+        private void TryExecuteSecondaryAction()
+        {
+            if (SelectedSlot.ItemObject != null && _counter >= _baseCoolDown)
+            {
+                SelectedSlot.ItemObject.ExecuteSecondaryAction(this);
                 _counter = 0;
             }
         }

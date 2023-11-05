@@ -20,7 +20,7 @@ namespace IslandBoy
 
         private ItemObject _ammoObject;
 
-        public override void ExecuteAction(SelectedSlotControl control)
+        public override void ExecutePrimaryAction(SelectedSlotControl control)
         {
             if (PointerHandler.IsOverLayer(5) || control.TileAction.OverInteractable()) return;
 
@@ -37,6 +37,11 @@ namespace IslandBoy
 
             control.IsCharging = true;
             control.OnLaunch = Launch;
+        }
+
+        public override void ExecuteSecondaryAction(SelectedSlotControl control)
+        {
+
         }
 
         private void Launch(SelectedSlotControl control, float force)

@@ -7,8 +7,7 @@ namespace IslandBoy
     public class InventoryControl : MonoBehaviour
     {
         [SerializeField] private RecipeDatabaseObject _defaultRdb;
-        [SerializeField] private RectTransform _craftSlots;
-        [SerializeField] private RectTransform _craftText;
+        [SerializeField] private RectTransform _craftHolder;
 
         private Inventory _inventory;
         private MouseItemHolder _mouseItemHolder;
@@ -80,7 +79,7 @@ namespace IslandBoy
             Interactable chestOpened = (Interactable)parameter.GetParameter("ChestInteract");
 
             OpenInventory();
-            _craftSlots.gameObject.SetActive(false);
+            _craftHolder.gameObject.SetActive(false);
             InteractableHandle(chestOpened);
         }
 
@@ -145,7 +144,7 @@ namespace IslandBoy
         {
             _mainInventory.gameObject.SetActive(true);
             _inventoryOpen = true;
-            _craftSlots.gameObject.SetActive(true);
+            _craftHolder.gameObject.SetActive(true);
 
             GameSignals.INVENTORY_OPEN.Dispatch();
 

@@ -28,10 +28,15 @@ namespace IslandBoy
         public ConsumeType ConsumeType => _consumeType;
         public AudioClip ConsumeSound => _consumeSound;
 
-        public override void ExecuteAction(SelectedSlotControl control)
+        public override void ExecutePrimaryAction(SelectedSlotControl control)
+        {
+
+        }
+
+        public override void ExecuteSecondaryAction(SelectedSlotControl control)
         {
             if (PointerHandler.IsOverLayer(5)) return;
-
+            
             DispatchTryConsumeItem();
         }
 

@@ -18,7 +18,7 @@ namespace IslandBoy
         public override GameObject AmmoPrefab => null;
         public override int ConsumeValue => 0;
 
-        public override void ExecuteAction(SelectedSlotControl control)
+        public override void ExecutePrimaryAction(SelectedSlotControl control)
         {
             if (PointerHandler.IsOverLayer(5)) return;
 
@@ -39,6 +39,11 @@ namespace IslandBoy
                 AudioManager.Instance.PlayClip(_deploySound, false, true);
                 ObjectPlacedDispatch();
             }
+        }
+
+        public override void ExecuteSecondaryAction(SelectedSlotControl control)
+        {
+
         }
 
         private void ObjectPlacedDispatch()

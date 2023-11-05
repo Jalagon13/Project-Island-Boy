@@ -23,9 +23,14 @@ namespace IslandBoy
         public override GameObject AmmoPrefab => null;
         public override int ConsumeValue => 0;
 
-        public override void ExecuteAction(SelectedSlotControl control)
+        public override void ExecutePrimaryAction(SelectedSlotControl control)
         {
             
+        }
+
+        public override void ExecuteSecondaryAction(SelectedSlotControl control)
+        {
+
         }
 
         public override string GetDescription()

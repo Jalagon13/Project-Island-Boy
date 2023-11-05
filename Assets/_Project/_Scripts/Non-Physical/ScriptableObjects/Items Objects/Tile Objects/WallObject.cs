@@ -14,7 +14,7 @@ namespace IslandBoy
         public override GameObject AmmoPrefab => null;
         public override int ConsumeValue => 0;
 
-        public override void ExecuteAction(SelectedSlotControl control)
+        public override void ExecutePrimaryAction(SelectedSlotControl control)
         {
             var pos = Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position);
 
@@ -27,6 +27,11 @@ namespace IslandBoy
 
                 _wallTile.UpdatePathfinding(new(pos.x + 0.5f, pos.y + 0.5f));
             }
+        }
+
+        public override void ExecuteSecondaryAction(SelectedSlotControl control)
+        {
+
         }
 
         public override string GetDescription()

@@ -13,7 +13,7 @@ namespace IslandBoy
         public override GameObject AmmoPrefab => null;
         public override int ConsumeValue => 0;
 
-        public override void ExecuteAction(SelectedSlotControl control)
+        public override void ExecutePrimaryAction(SelectedSlotControl control)
         {
             var pos = Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position);
 
@@ -23,6 +23,11 @@ namespace IslandBoy
                 control.SelectedSlot.InventoryItem.Count--;
                 AudioManager.Instance.PlayClip(_floorTile.PlaceSound, false, true);
             }
+        }
+
+        public override void ExecuteSecondaryAction(SelectedSlotControl control)
+        {
+
         }
 
         public override string GetDescription()
