@@ -76,13 +76,14 @@ namespace IslandBoy
         {
             _currentValue += value;
 
+            // need to create screen popup for this
+            PopupMessage.Create(transform.root.position, $"+{value} {_consumeType}", Color.green, new(0, 0.5f), 1f);
+
             if (_currentValue > _maxValue)
                 _currentValue = _maxValue;
 
             if(value > 0)
                 StartCoroutine(Cooldown());
-
-            PopupMessage.Create(transform.root.position, $"+{value} {_consumeType}", Color.green, new(0, 0.5f), 1f);
 
             UpdateUI();
         }

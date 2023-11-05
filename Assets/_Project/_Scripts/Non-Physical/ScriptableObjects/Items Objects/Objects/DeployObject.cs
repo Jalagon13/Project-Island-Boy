@@ -56,7 +56,7 @@ namespace IslandBoy
 
         public override string GetDescription()
         {
-            return $"{Description}<br>• Right Click to place down.";
+            return $"{Description}<br>• Left Click to place";
         }
     }
 }

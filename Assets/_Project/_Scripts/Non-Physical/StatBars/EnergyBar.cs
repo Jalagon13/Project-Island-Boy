@@ -14,12 +14,19 @@ namespace IslandBoy
             base.Awake();
             GameSignals.SWING_PERFORMED.AddListener(DrainEnergy);
             GameSignals.OBJECT_LAUNCHED.AddListener(DrainEnergy);
+            GameSignals.DAY_START.AddListener(RestoreStat);
         }
 
         private void OnDestroy()
         {
             GameSignals.SWING_PERFORMED.RemoveListener(DrainEnergy);
             GameSignals.OBJECT_LAUNCHED.RemoveListener(DrainEnergy);
+            GameSignals.DAY_START.RemoveListener(RestoreStat);
+        }
+
+        private void RestoreStat(ISignalParameters parameters)
+        {
+            AddTo(999);
         }
 
         private void DrainEnergy(ISignalParameters parameters)

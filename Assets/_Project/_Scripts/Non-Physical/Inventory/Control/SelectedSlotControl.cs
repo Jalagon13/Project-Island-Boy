@@ -13,7 +13,8 @@ namespace IslandBoy
         [field:SerializeField] public Slider ThrowSlider { get; private set; }
         public TileAction TileAction { get; private set; }
         public InventorySlot SelectedSlot { get; private set; }
-        [field:SerializeField] public ItemParameter ChargeTimeParameter { get; private set; }
+
+        public ItemParameter ChargeTimeParameter;
 
         private Action<SelectedSlotControl, float> _onLaunch;
         private PlayerInput _input;
