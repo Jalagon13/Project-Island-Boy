@@ -8,6 +8,7 @@ namespace IslandBoy
     {
         [SerializeField] private RecipeDatabaseObject _defaultRdb;
         [SerializeField] private RectTransform _craftSlots;
+        [SerializeField] private RectTransform _craftText;
 
         private Inventory _inventory;
         private MouseItemHolder _mouseItemHolder;
