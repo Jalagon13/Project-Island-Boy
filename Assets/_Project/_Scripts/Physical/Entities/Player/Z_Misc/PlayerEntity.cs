@@ -38,21 +38,20 @@ namespace IslandBoy
         {
             if (!CanDamage()) return;
 
-            int damageDelt = CalcDamage(incomingDamage);
+            int damageDealt = CalcDamage(incomingDamage);
 
             _iFrameTimer.RemainingSeconds = _iFrameDuration;
-            _onDamage?.Invoke(-damageDelt);
+            _onDamage?.Invoke(-damageDealt);
 
-            HealthSystem.Damage(damageDelt);
+            HealthSystem.Damage(damageDealt);
 
-            PopupMessage.Create(transform.position, damageDelt.ToString(), Color.red, new(0f, 0.5f));
+            PopupMessage.Create(transform.position, damageDealt.ToString(), Color.red, new(0f, 0.5f));
             AudioManager.Instance.PlayClip(_damageSound, false, true);
-
-            if (sender != null && transform.TryGetComponent(out KnockbackFeedback knockback))
-                knockback.PlayFeedback(sender);
 
             if (HealthSystem.IsDead())
                 KillEntity();
+            else if (sender != null && transform.TryGetComponent(out KnockbackFeedback knockback))
+                knockback.PlayFeedback(sender);
         }
 
         private int CalcDamage(int damage)
