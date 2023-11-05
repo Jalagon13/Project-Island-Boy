@@ -8,6 +8,7 @@ namespace IslandBoy
     [CreateAssetMenu(fileName = "New Deployable", menuName = "Create Item/New Deployable")]
     public class DeployObject : ItemObject
     {
+        [SerializeField] private TilemapReferences _tmr;
         [SerializeField] private GameObject _prefabToDeploy;
         [SerializeField] private RuleTile _exclusiveDeployTile;
         [SerializeField] private AudioClip _deploySound;
@@ -29,8 +30,8 @@ namespace IslandBoy
                 if (control.TMR.GroundTilemap.GetTile(taPos) != _exclusiveDeployTile) return;
             }
 
-            bool wallTmHasTile = control.TMR.WallTilemap.HasTile(Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position));
-            bool groundTmHasTile = control.TMR.GroundTilemap.HasTile(Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position));
+            bool wallTmHasTile = _tmr.WallTilemap.HasTile(Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position));
+            bool groundTmHasTile = _tmr.GroundTilemap.HasTile(Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position));
             bool tilActionClear = control.TileAction.IsClear();
 
             if (tilActionClear && !wallTmHasTile && groundTmHasTile)

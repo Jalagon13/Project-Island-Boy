@@ -22,19 +22,18 @@ namespace IslandBoy
             _input.Player.SecondaryAction.started += Interact;
             _stHpCanvas = GetComponent<TileHpCanvas>();
             _ti = GetComponent<TileIndicator>();
-        }
 
-        private void OnEnable()
-        {
             GameSignals.SELECTED_SLOT_UPDATED.AddListener(InjectSelectedSlot);
             GameSignals.OBJECT_PLACED.AddListener(PlaceDeployable);
+
             _input.Enable();
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             GameSignals.SELECTED_SLOT_UPDATED.RemoveListener(InjectSelectedSlot);
             GameSignals.OBJECT_PLACED.RemoveListener(PlaceDeployable);
+
             _input.Disable();
         }
 
