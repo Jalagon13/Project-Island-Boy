@@ -85,9 +85,36 @@ namespace IslandBoy
 
         private void RscHarvest()
         {
-            if (_selectedSlot.ItemObject == null)
-                return;
+            foreach (var breakable in GetBreakableObjects())
+            {
+                if (breakable.BreakWithAnyTool)
+                {
+                    DisplayBreakableStatus(breakable);
+                }
+                else if(_selectedSlot.ItemObject != null)
+                {
+                    if (breakable.BreakType == _selectedSlot.ItemObject.ToolType)
+                    {
+                        DisplayBreakableStatus(breakable);
 
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void DisplayBreakableStatus(IBreakable breakable)
+        {
+            ChangeToOn();
+
+            if (breakable.CurrentHitPoints < breakable.MaxHitPoints)
+            {
+                _stHpCanvas.ShowHpCanvas(breakable.MaxHitPoints, breakable.CurrentHitPoints);
+            }
+        }
+
+        private List<IBreakable> GetBreakableObjects()
+        {
             var colliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
 
             List<IBreakable> breakableObjects = new();
@@ -100,23 +127,7 @@ namespace IslandBoy
                 }
             }
 
-            if (breakableObjects.Count <= 0) 
-                return;
-
-            foreach (var breakable in breakableObjects)
-            {
-                if(breakable.BreakType == _selectedSlot.ItemObject.ToolType)
-                {
-                    ChangeToOn();
-
-                    if (breakable.CurrentHitPoints < breakable.MaxHitPoints)
-                    {
-                        _stHpCanvas.ShowHpCanvas(breakable.MaxHitPoints, breakable.CurrentHitPoints);
-                    }
-
-                    break;
-                }
-            }
+            return breakableObjects;
         }
 
         public void ChangeToOn()

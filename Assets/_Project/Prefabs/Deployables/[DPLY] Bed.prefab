@@ -601,6 +601,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
+      propertyPath: _breakWithAnyTool
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Chance
       value: 100
       objectReference: {fileID: 0}
