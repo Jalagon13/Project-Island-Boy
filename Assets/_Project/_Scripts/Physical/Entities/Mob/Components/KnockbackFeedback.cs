@@ -11,11 +11,11 @@ namespace IslandBoy
         [SerializeField] private float _strength = 16f, _delay = 0.15f;
         [SerializeField] private UnityEvent _onBegin, _onDone;
 
-        public void PlayFeedback(GameObject sender)
+        public void PlayFeedback(Vector3 position)
         {
             StopAllCoroutines();
             _onBegin?.Invoke();
-            Vector2 direction = (transform.position - sender.transform.position).normalized;
+            Vector2 direction = (transform.position - position).normalized;
             _rb.AddForce(direction * _strength, ForceMode2D.Impulse);
             StartCoroutine(Reset());
         }

@@ -51,12 +51,14 @@ namespace IslandBoy
                 Destroy(gameObject);
         }
 
-        public void Setup(ItemObject launchObject, ItemObject ammoObject, float multiplier)
+        public void Setup(ItemObject launchObject, ItemObject ammoObject, float multiplier, Vector2 launchForce)
         {
             int launchPower = Mathf.RoundToInt(ExtractPower(launchObject) * multiplier);
             int ammoPower = Mathf.RoundToInt(ExtractPower(ammoObject) * multiplier);
 
             _damage = launchPower + ammoPower;
+
+            _rb.AddForce(launchForce, ForceMode2D.Impulse);
         }
 
         private int ExtractPower(ItemObject item)

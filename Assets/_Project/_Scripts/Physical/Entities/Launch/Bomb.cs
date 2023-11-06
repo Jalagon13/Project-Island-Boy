@@ -62,7 +62,7 @@ namespace IslandBoy
                 KnockbackFeedback knockback = collider.GetComponent<KnockbackFeedback>();
 
                 if (knockback)
-                    knockback.PlayFeedback(gameObject);
+                    knockback.PlayFeedback(gameObject.transform.position);
             }
         }
     }

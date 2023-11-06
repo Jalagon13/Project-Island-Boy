@@ -7,7 +7,7 @@ namespace IslandBoy
     public class InventoryControl : MonoBehaviour
     {
         [SerializeField] private RecipeDatabaseObject _defaultRdb;
-        [SerializeField] private RectTransform _craftSlots;
+        [SerializeField] private RectTransform _craftHolder;
 
         private Inventory _inventory;
         private MouseItemHolder _mouseItemHolder;
@@ -23,19 +23,36 @@ namespace IslandBoy
             _inventory = GetComponent<Inventory>();
             _craftSlotsControl = GetComponent<CraftSlotsControl>();
             _mainInventory = transform.GetChild(0).GetComponent<RectTransform>();
-            _mouseItemHolder = transform.GetChild(2).GetComponent<MouseItemHolder>();
-
+            _mouseItemHolder = transform.GetChild(3).GetComponent<MouseItemHolder>();
             _input.Player.ToggleInventory.started += ToggleInventory;
+
+            GameSignals.CHEST_INTERACT.AddListener(ChestInteract);
+            GameSignals.GAME_PAUSED.AddListener(PauseHandle);
+            GameSignals.GAME_UNPAUSED.AddListener(UnpauseHandle);
+            GameSignals.PLAYER_DIED.AddListener(PauseHandle);
+            GameSignals.DAY_END.AddListener(PauseHandle);
+            GameSignals.DAY_OUT_OF_TIME.AddListener(PauseHandle);
+            GameSignals.DAY_START.AddListener(UnpauseHandle);
         }
+
+        private void OnDestroy()
+        {
+            GameSignals.CHEST_INTERACT.RemoveListener(ChestInteract);
+            GameSignals.GAME_PAUSED.RemoveListener(PauseHandle);
+            GameSignals.GAME_UNPAUSED.RemoveListener(UnpauseHandle);
+            GameSignals.PLAYER_DIED.RemoveListener(PauseHandle);
+            GameSignals.DAY_END.RemoveListener(PauseHandle);
+            GameSignals.DAY_OUT_OF_TIME.RemoveListener(PauseHandle);
+            GameSignals.DAY_START.RemoveListener(UnpauseHandle);
+        }
+
         private void OnEnable()
         {
-            GameSignals.CHEST_INTERACT.AddListener(ChestInteract);
             _input.Enable();
         }
 
         private void OnDisable()
         {
-            GameSignals.CHEST_INTERACT.RemoveListener(ChestInteract);
             _input.Disable();
         }
 
@@ -54,12 +71,23 @@ namespace IslandBoy
             }
         }
 
+        private void PauseHandle(ISignalParameters parameter)
+        {
+            CloseInventory();
+            _input.Disable();
+        }
+
+        private void UnpauseHandle(ISignalParameters parameters)
+        {
+            _input.Enable();
+        }
+
         public void ChestInteract(ISignalParameters parameter)
         {
             Interactable chestOpened = (Interactable)parameter.GetParameter("ChestInteract");
 
             OpenInventory();
-            _craftSlots.gameObject.SetActive(false);
+            _craftHolder.gameObject.SetActive(false);
             InteractableHandle(chestOpened);
         }
 
@@ -124,7 +152,7 @@ namespace IslandBoy
         {
             _mainInventory.gameObject.SetActive(true);
             _inventoryOpen = true;
-            _craftSlots.gameObject.SetActive(true);
+            _craftHolder.gameObject.SetActive(true);
 
             GameSignals.INVENTORY_OPEN.Dispatch();
 

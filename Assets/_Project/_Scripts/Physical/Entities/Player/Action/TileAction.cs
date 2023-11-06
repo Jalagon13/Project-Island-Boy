@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
@@ -14,7 +16,8 @@ namespace IslandBoy
         private TileHpCanvas _stHpCanvas;
         private TileIndicator _ti;
         private PlayerInput _input;
-        private InventorySlot _selectedSlot;
+        private Slot _focusSlotRef;
+        private bool _placingThisFrame;
 
         private void Awake()
         {
@@ -22,19 +25,16 @@ namespace IslandBoy
             _input.Player.SecondaryAction.started += Interact;
             _stHpCanvas = GetComponent<TileHpCanvas>();
             _ti = GetComponent<TileIndicator>();
-        }
 
-        private void OnEnable()
-        {
-            GameSignals.SELECTED_SLOT_UPDATED.AddListener(InjectSelectedSlot);
-            GameSignals.OBJECT_PLACED.AddListener(PlaceDeployable);
+            GameSignals.FOCUS_SLOT_UPDATED.AddListener(FocusSlotUpdated);
+
             _input.Enable();
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
-            GameSignals.SELECTED_SLOT_UPDATED.RemoveListener(InjectSelectedSlot);
-            GameSignals.OBJECT_PLACED.RemoveListener(PlaceDeployable);
+            GameSignals.FOCUS_SLOT_UPDATED.RemoveListener(FocusSlotUpdated);
+
             _input.Disable();
         }
 
@@ -43,9 +43,12 @@ namespace IslandBoy
             transform.SetPositionAndRotation(CenterOfTilePos(), Quaternion.identity);
         }
 
-        private void InjectSelectedSlot(ISignalParameters parameters)
+        private void FocusSlotUpdated(ISignalParameters parameters)
         {
-            _selectedSlot = (InventorySlot)parameters.GetParameter("SelectedSlot");
+            if (parameters.HasParameter("FocusSlot"))
+            {
+                _focusSlotRef = (Slot)parameters.GetParameter("FocusSlot");
+            }
         }
 
         public bool OverInteractable()
@@ -93,16 +96,18 @@ namespace IslandBoy
 
         public void HitTile()
         {
+            if (_placingThisFrame) return;
+
             HammerTileLogic();
-            ApplyDamageToBreakable(transform.position);
+            ApplyDamageToBreakable();
         }
 
         private void HammerTileLogic()
         {
-            if (_selectedSlot.ItemObject == null) return;
-            if (_selectedSlot.ItemObject.ToolType == ToolType.None) return;
-            if (_selectedSlot.ItemObject != null)
-                if (_selectedSlot.ItemObject.ToolType != ToolType.Hammer) return;
+            if (_focusSlotRef.ItemObject == null) return;
+            if (_focusSlotRef.ItemObject.ToolType == ToolType.None) return;
+            if (_focusSlotRef.ItemObject != null)
+                if (_focusSlotRef.ItemObject.ToolType != ToolType.Hammer) return;
 
             if (_tmr.WallTilemap.HasTile(Vector3Int.FloorToInt(transform.position)))
                 DestroyTile(_tmr.WallTilemap);
@@ -110,35 +115,58 @@ namespace IslandBoy
                 DestroyTile(_tmr.FloorTilemap);
         }
 
-        public void ApplyDamageToBreakable(Vector3 pos)
+        public void ApplyDamageToBreakable()
         {
-            if (_selectedSlot.ItemObject == null) return;
-            if(_selectedSlot.ItemObject.ToolType == ToolType.None) return;
-
-            var colliders = Physics2D.OverlapCircleAll(pos, 0.2f);
-
-            foreach (var collider in colliders)
+            foreach (var breakable in GetBreakableObjects())
             {
-                IBreakable breakable = collider.GetComponent<IBreakable>();
-
-                if (breakable != null)
+                if (breakable.BreakWithAnyTool)
                 {
-                    if (breakable.Hit(CalcPower(), CalcToolType()))
+                    TryHitBreakable(breakable);
+                    break;
+                }
+                else if (_focusSlotRef.ItemObject != null)
+                {
+                    if (breakable.BreakType == _focusSlotRef.ItemObject.ToolType)
                     {
-                        if (breakable.CurrentHitPoints <= 0)
-                        {
-                            _stHpCanvas.HideHpCanvas();
-                            _ti.ChangeToOff();
-
-                            _ti.UpdateLogic();
-                        }
-                        else
-                        {
-                            _stHpCanvas.ShowHpCanvas(breakable.MaxHitPoints, breakable.CurrentHitPoints);
-                        }
+                        TryHitBreakable(breakable);
                     }
                 }
             }
+        }
+
+        private void TryHitBreakable(IBreakable breakable)
+        {
+            if (breakable.Hit(CalcPower(), CalcToolType()))
+            {
+                if (breakable.CurrentHitPoints <= 0)
+                {
+                    _stHpCanvas.HideHpCanvas();
+                    _ti.ChangeToOff();
+
+                    _ti.UpdateLogic();
+                }
+                else
+                {
+                    _stHpCanvas.ShowHpCanvas(breakable.MaxHitPoints, breakable.CurrentHitPoints);
+                }
+            }
+        }
+
+        private List<IBreakable> GetBreakableObjects()
+        {
+            var colliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
+
+            List<IBreakable> breakableObjects = new();
+
+            foreach (var collider in colliders)
+            {
+                if (collider.TryGetComponent(out IBreakable breakable))
+                {
+                    breakableObjects.Add(breakable);
+                }
+            }
+
+            return breakableObjects;
         }
 
         private void DestroyTile(Tilemap tm)
@@ -155,13 +183,19 @@ namespace IslandBoy
             tile.UpdatePathfinding(new(pos.x + 0.5f, pos.y + 0.5f));
         }
 
-        public void PlaceDeployable(ISignalParameters parameters)
+        public void PlaceDeployable(GameObject deployable)
         {
-            var deployable = (GameObject)parameters.GetParameter("ObjectPlaced");
-
             var position = transform.position -= new Vector3(0.5f, 0.5f);
             ExtensionMethods.SpawnObject(deployable, position, Quaternion.identity);
-            
+            _placingThisFrame = true;
+            StartCoroutine(Delay());
+        }
+
+        private IEnumerator Delay()
+        {
+            yield return new WaitForSeconds(0.2f);
+
+            _placingThisFrame = false;
         }
 
         //public void ModifyDurability()
@@ -187,9 +221,9 @@ namespace IslandBoy
 
         private float CalcPower()
         {
-            if (_selectedSlot.CurrentParameters.Count <= 0) return -1;
+            if (_focusSlotRef.CurrentParameters.Count <= 0) return 8.4f;
 
-            var itemParams = _selectedSlot.CurrentParameters;
+            var itemParams = _focusSlotRef.CurrentParameters;
 
             if (itemParams.Contains(_powerParameter))
             {
@@ -197,12 +231,12 @@ namespace IslandBoy
                 return itemParams[index].Value;
             }
             
-            return -1;
+            return 8.4f;
         }
 
         private ToolType CalcToolType()
         {
-            var item = _selectedSlot.ItemObject;
+            var item = _focusSlotRef.ItemObject;
             return item == null ? ToolType.None : item.ToolType;
         }
 

@@ -49,7 +49,7 @@ namespace IslandBoy
             
 
             if (sender != null && transform.TryGetComponent(out KnockbackFeedback knockback))
-                knockback.PlayFeedback(sender);
+                knockback.PlayFeedback(sender.transform.position);
 
             if (HealthSystem.IsDead())
                 KillEntity();

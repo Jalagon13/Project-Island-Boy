@@ -18,7 +18,8 @@ namespace IslandBoy
         public abstract ArmorType ArmorType { get; }
         public abstract GameObject AmmoPrefab { get; }
         public abstract int ConsumeValue { get; }
-        public abstract void ExecuteAction(SelectedSlotControl control);
+        public abstract void ExecutePrimaryAction(SelectedSlotControl control);
+        public abstract void ExecuteSecondaryAction(SelectedSlotControl control);
         public abstract string GetDescription();
 
         protected ToolType _baseToolType = ToolType.None;

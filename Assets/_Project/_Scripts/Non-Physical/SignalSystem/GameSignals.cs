@@ -23,12 +23,20 @@ namespace IslandBoy
         public static readonly Signal ITEM_CRAFTED = new("ItemCrafted");
         public static readonly Signal CHEST_INTERACT = new("ChestInteract");
         public static readonly Signal CRAFT_STATION_INTERACT = new("CraftStationInteract");
-        public static readonly Signal CONSUME_ITEM_TRY = new("ConsumeItemTry");
-        public static readonly Signal CONSUME_ITEM_SUCCESS = new("ConsumeItemSuccess");
         public static readonly Signal SWING_PERFORMED = new("SwingPerformed");
-        public static readonly Signal OBJECT_LAUNCHED = new("ObjectLaunched");
-        public static readonly Signal OBJECT_PLACED = new("ObjectPlaced");
-        public static readonly Signal PLAYER_DIED = new("PlayerDied");
         public static readonly Signal PROMPT_INTERACT = new("PromptInteract");
+        public static readonly Signal PLAYER_DIED = new("PlayerDied");
+        public static readonly Signal PLAYER_HP_CHANGED = new("PlayerHpChanged");
+        public static readonly Signal PLAYER_NRG_CHANGED = new("PlayerNrgChanged");
+        public static readonly Signal PLAYER_MP_CHANGED = new("PlayerMpChanged");
+        public static readonly Signal PLAYER_DAMAGED = new("PlayerDamaged");
+        public static readonly Signal ITEM_CHARGING = new("ItemCharging");
+        public static readonly Signal MOUSE_SLOT_HAS_ITEM = new("MouseSlotHasItem");
+        public static readonly Signal MOUSE_SLOT_GIVES_ITEM = new("MouseSlotGivesItem");
+        public static readonly Signal FOCUS_SLOT_UPDATED = new("FocusSlotUpdated");
+
+        // Pause Signals
+        public static readonly Signal GAME_PAUSED = new("GamePaused");
+        public static readonly Signal GAME_UNPAUSED = new("GameUnpaused");
     }
 }
