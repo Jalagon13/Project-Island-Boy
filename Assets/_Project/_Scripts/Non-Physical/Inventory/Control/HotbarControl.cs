@@ -34,6 +34,7 @@ namespace IslandBoy
             GameSignals.GAME_PAUSED.AddListener(PauseHandle);
             GameSignals.GAME_UNPAUSED.AddListener(UnpauseHandle);
             GameSignals.PLAYER_DIED.AddListener(PauseHandle);
+            GameSignals.DAY_START.AddListener(UnpauseHandle);
         }
 
         private void OnDestroy()
@@ -41,6 +42,7 @@ namespace IslandBoy
             GameSignals.GAME_PAUSED.RemoveListener(PauseHandle);
             GameSignals.GAME_UNPAUSED.RemoveListener(UnpauseHandle);
             GameSignals.PLAYER_DIED.RemoveListener(PauseHandle); 
+            GameSignals.DAY_START.RemoveListener(UnpauseHandle);
         }
 
         private void OnEnable()
