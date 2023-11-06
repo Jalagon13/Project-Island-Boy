@@ -127,7 +127,7 @@ namespace IslandBoy
             PlaySound();
         }
 
-        protected bool HasItem()
+        public bool HasItem()
         {
             InventoryItem inventoryItem = GetComponentInChildren<InventoryItem>();
 

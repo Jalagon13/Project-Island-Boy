@@ -11,13 +11,16 @@ namespace IslandBoy
 
         private Timer _delayTimer; // used for tiny delay between primary/seconday item execution to prevent them from being executed every frame
         private PlayerInput _input;
-        private InventorySlot _selectedSlot;
+        private Slot _focusSlot;
+        private Slot _hotbarSlot;
+        private Slot _mouseSlot;
         private Player _player;
         private TileAction _ta;
         private float _delayCooldown = 0.2f;
         private bool _isHeldDown;
+        private bool _mouseSlotHasitem;
 
-        public InventorySlot SelectedSlot { get { return _selectedSlot; } }
+        public Slot FocusSlot { get { return _focusSlot; } }
         public Player Player { get { return _player; } }
         public TilemapReferences TMR { get { return _tmr; } }
         public TileAction TileAction { get { return _ta; } }
@@ -36,14 +39,18 @@ namespace IslandBoy
 
             _delayTimer = new(_delayCooldown);
 
-            GameSignals.SELECTED_SLOT_UPDATED.AddListener(UpdateSelectedSlot);
+            GameSignals.SELECTED_SLOT_UPDATED.AddListener(UpdateFocusSlotToHotbarSlot);
+            GameSignals.MOUSE_SLOT_HAS_ITEM.AddListener(UpdateFocusSlotToMouseSlot);
+            GameSignals.MOUSE_SLOT_GIVES_ITEM.AddListener(UpdateLocalMouseSlot);
         }
 
         private void OnDestroy()
         {
             _input.Disable();
 
-            GameSignals.SELECTED_SLOT_UPDATED.RemoveListener(UpdateSelectedSlot);
+            GameSignals.SELECTED_SLOT_UPDATED.RemoveListener(UpdateFocusSlotToHotbarSlot);
+            GameSignals.MOUSE_SLOT_HAS_ITEM.RemoveListener(UpdateFocusSlotToMouseSlot);
+            GameSignals.MOUSE_SLOT_GIVES_ITEM.RemoveListener(UpdateLocalMouseSlot);
         }
 
         private void Update()
@@ -61,25 +68,58 @@ namespace IslandBoy
             _isHeldDown = context.performed;
         }
 
-        private void UpdateSelectedSlot(ISignalParameters parameters)
+        private void UpdateFocusSlotToHotbarSlot(ISignalParameters parameters)
         {
-            _selectedSlot = (InventorySlot)parameters.GetParameter("SelectedSlot");
+            if (parameters.HasParameter("SelectedSlot"))
+            {
+                _hotbarSlot = (InventorySlot)parameters.GetParameter("SelectedSlot");
+
+                SetFocusSlot();
+            }
+        }
+
+        private void UpdateFocusSlotToMouseSlot(ISignalParameters parameters)
+        {
+            if (parameters.HasParameter("MouseSlot"))
+            {
+                _mouseSlot = (Slot)parameters.GetParameter("MouseSlot");
+                _mouseSlotHasitem = true;
+
+                SetFocusSlot();
+            }
+        }
+
+        private void UpdateLocalMouseSlot(ISignalParameters parameters)
+        {
+            _mouseSlotHasitem = false;
+
+            SetFocusSlot();
+        }
+
+        private void SetFocusSlot()
+        {
+            _focusSlot = _mouseSlotHasitem ? _mouseSlot : _hotbarSlot;
+
+            Signal signal = GameSignals.FOCUS_SLOT_UPDATED;
+            signal.ClearParameters();
+            signal.AddParameter("FocusSlot", _focusSlot);
+            signal.Dispatch();
         }
 
         private void ExecutePrimaryAction(InputAction.CallbackContext context)
         {
-            if(_delayTimer.RemainingSeconds <= 0 && _selectedSlot.ItemObject != null)
+            if(_delayTimer.RemainingSeconds <= 0 && _focusSlot.ItemObject != null)
             {
-                _selectedSlot.ItemObject.ExecutePrimaryAction(this);
+                _focusSlot.ItemObject.ExecutePrimaryAction(this);
                 _delayTimer.RemainingSeconds = _delayCooldown;
             }
         }
 
         private void ExecuteSecondaryAction(InputAction.CallbackContext context)
         {
-            if (_delayTimer.RemainingSeconds <= 0 && _selectedSlot.ItemObject != null)
+            if (_delayTimer.RemainingSeconds <= 0 && _focusSlot.ItemObject != null)
             {
-                _selectedSlot.ItemObject.ExecuteSecondaryAction(this);
+                _focusSlot.ItemObject.ExecuteSecondaryAction(this);
                 _delayTimer.RemainingSeconds = _delayCooldown;
             }
         }

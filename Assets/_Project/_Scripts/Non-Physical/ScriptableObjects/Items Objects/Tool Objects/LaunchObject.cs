@@ -70,7 +70,7 @@ namespace IslandBoy
             }
 
             if (Stackable)
-                _ssc.SelectedSlot.InventoryItem.Count--;
+                _ssc.FocusSlot.InventoryItem.Count--;
         }
 
         private void LaunchProjectile(float launchForcePercentage, float baseLaunchForce)

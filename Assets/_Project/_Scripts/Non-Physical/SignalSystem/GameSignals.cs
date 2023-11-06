@@ -33,6 +33,7 @@ namespace IslandBoy
         public static readonly Signal ITEM_CHARGING = new("ItemCharging");
         public static readonly Signal MOUSE_SLOT_HAS_ITEM = new("MouseSlotHasItem");
         public static readonly Signal MOUSE_SLOT_GIVES_ITEM = new("MouseSlotGivesItem");
+        public static readonly Signal FOCUS_SLOT_UPDATED = new("FocusSlotUpdated");
 
         // Pause Signals
         public static readonly Signal GAME_PAUSED = new("GamePaused");

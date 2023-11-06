@@ -16,7 +16,7 @@ namespace IslandBoy
         private TileHpCanvas _stHpCanvas;
         private TileIndicator _ti;
         private PlayerInput _input;
-        private InventorySlot _selectedSlot;
+        private Slot _focusSlotRef;
         private bool _placingThisFrame;
 
         private void Awake()
@@ -26,14 +26,14 @@ namespace IslandBoy
             _stHpCanvas = GetComponent<TileHpCanvas>();
             _ti = GetComponent<TileIndicator>();
 
-            GameSignals.SELECTED_SLOT_UPDATED.AddListener(InjectSelectedSlot);
+            GameSignals.FOCUS_SLOT_UPDATED.AddListener(FocusSlotUpdated);
 
             _input.Enable();
         }
 
         private void OnDestroy()
         {
-            GameSignals.SELECTED_SLOT_UPDATED.RemoveListener(InjectSelectedSlot);
+            GameSignals.FOCUS_SLOT_UPDATED.RemoveListener(FocusSlotUpdated);
 
             _input.Disable();
         }
@@ -43,9 +43,12 @@ namespace IslandBoy
             transform.SetPositionAndRotation(CenterOfTilePos(), Quaternion.identity);
         }
 
-        private void InjectSelectedSlot(ISignalParameters parameters)
+        private void FocusSlotUpdated(ISignalParameters parameters)
         {
-            _selectedSlot = (InventorySlot)parameters.GetParameter("SelectedSlot");
+            if (parameters.HasParameter("FocusSlot"))
+            {
+                _focusSlotRef = (Slot)parameters.GetParameter("FocusSlot");
+            }
         }
 
         public bool OverInteractable()
@@ -101,10 +104,10 @@ namespace IslandBoy
 
         private void HammerTileLogic()
         {
-            if (_selectedSlot.ItemObject == null) return;
-            if (_selectedSlot.ItemObject.ToolType == ToolType.None) return;
-            if (_selectedSlot.ItemObject != null)
-                if (_selectedSlot.ItemObject.ToolType != ToolType.Hammer) return;
+            if (_focusSlotRef.ItemObject == null) return;
+            if (_focusSlotRef.ItemObject.ToolType == ToolType.None) return;
+            if (_focusSlotRef.ItemObject != null)
+                if (_focusSlotRef.ItemObject.ToolType != ToolType.Hammer) return;
 
             if (_tmr.WallTilemap.HasTile(Vector3Int.FloorToInt(transform.position)))
                 DestroyTile(_tmr.WallTilemap);
@@ -121,9 +124,9 @@ namespace IslandBoy
                     TryHitBreakable(breakable);
                     break;
                 }
-                else if (_selectedSlot.ItemObject != null)
+                else if (_focusSlotRef.ItemObject != null)
                 {
-                    if (breakable.BreakType == _selectedSlot.ItemObject.ToolType)
+                    if (breakable.BreakType == _focusSlotRef.ItemObject.ToolType)
                     {
                         TryHitBreakable(breakable);
                     }
@@ -218,9 +221,9 @@ namespace IslandBoy
 
         private float CalcPower()
         {
-            if (_selectedSlot.CurrentParameters.Count <= 0) return 8.4f;
+            if (_focusSlotRef.CurrentParameters.Count <= 0) return 8.4f;
 
-            var itemParams = _selectedSlot.CurrentParameters;
+            var itemParams = _focusSlotRef.CurrentParameters;
 
             if (itemParams.Contains(_powerParameter))
             {
@@ -233,7 +236,7 @@ namespace IslandBoy
 
         private ToolType CalcToolType()
         {
-            var item = _selectedSlot.ItemObject;
+            var item = _focusSlotRef.ItemObject;
             return item == null ? ToolType.None : item.ToolType;
         }
 

@@ -10,19 +10,19 @@ namespace IslandBoy
         [SerializeField] private ItemParameter _durabilityParameter;
 
         private float _baseDamage;
-        private InventorySlot _selectedSlot;
+        private Slot _focusSlot;
 
         public float BaseDamage { set { _baseDamage = value; } }
-        public InventorySlot SelectedSlot { set { _selectedSlot = value; } }
+        public Slot FocusSlot { set { _focusSlot = value; } }
 
         private void Awake()
         {
-            GameSignals.SELECTED_SLOT_UPDATED.AddListener(InjectSelectedSlot);
+            GameSignals.FOCUS_SLOT_UPDATED.AddListener(InjectFocusSlot);
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
-            GameSignals.SELECTED_SLOT_UPDATED.RemoveListener(InjectSelectedSlot);
+            GameSignals.FOCUS_SLOT_UPDATED.RemoveListener(InjectFocusSlot);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -34,18 +34,19 @@ namespace IslandBoy
             }
         }
 
-        private void InjectSelectedSlot(ISignalParameters parameters)
+        private void InjectFocusSlot(ISignalParameters parameters)
         {
-            _selectedSlot = (InventorySlot)parameters.GetParameter("SelectedSlot");
+            if (parameters.HasParameter("FocusSlot"))
+            {
+                _focusSlot = (Slot)parameters.GetParameter("FocusSlot");
+            }
         }
 
         private void ModifyDurability()
         {
-            
+            if (_focusSlot.CurrentParameters.Count <= 0) return;
 
-            if (_selectedSlot.CurrentParameters.Count <= 0) return;
-
-            var itemParams = _selectedSlot.CurrentParameters;
+            var itemParams = _focusSlot.CurrentParameters;
 
             if (itemParams.Contains(_durabilityParameter))
             {
@@ -57,15 +58,15 @@ namespace IslandBoy
                     Value = newValue
                 };
 
-                _selectedSlot.InventoryItem.UpdateDurabilityCounter();
+                _focusSlot.InventoryItem.UpdateDurabilityCounter();
             }
         }
 
         private float CalcDamage()
         {
-            if (_selectedSlot.CurrentParameters.Count <= 0) return _baseDamage;
+            if (_focusSlot.CurrentParameters.Count <= 0) return _baseDamage;
 
-            var itemParams = _selectedSlot.CurrentParameters;
+            var itemParams = _focusSlot.CurrentParameters;
 
             if (itemParams.Contains(_damageParameter))
             {

@@ -16,7 +16,7 @@ namespace IslandBoy
         private TileAction _ta;
         private SpriteRenderer _sr;
         private AdventurerEntity _ae = null;
-        private InventorySlot _selectedSlot;
+        private Slot _focusSlotRef;
 
         private void Awake()
         {
@@ -27,12 +27,12 @@ namespace IslandBoy
 
         private void OnEnable()
         {
-            GameSignals.SELECTED_SLOT_UPDATED.AddListener(OnSelectedSlotUpdated);
+            GameSignals.FOCUS_SLOT_UPDATED.AddListener(FocusSlotUpdated);
         }
 
         private void OnDisable()
         {
-            GameSignals.SELECTED_SLOT_UPDATED.RemoveListener(OnSelectedSlotUpdated);
+            GameSignals.FOCUS_SLOT_UPDATED.RemoveListener(FocusSlotUpdated);
         }
 
         private void Update()
@@ -42,11 +42,14 @@ namespace IslandBoy
             UpdateLogic();
         }
 
-        private void OnSelectedSlotUpdated(ISignalParameters parameters)
+        private void FocusSlotUpdated(ISignalParameters parameters)
         {
-            _selectedSlot = (InventorySlot)parameters.GetParameter("SelectedSlot");
+            if (parameters.HasParameter("FocusSlot"))
+            {
+                _focusSlotRef = (Slot)parameters.GetParameter("FocusSlot");
 
-            UpdateLogic();
+                UpdateLogic();
+            }
         }
 
         public void UpdateLogic()
@@ -54,7 +57,7 @@ namespace IslandBoy
             // if mouse item has an item, override _selectedSlot with Mouse slot.
 
             // if mouse has no item, update selected slot again.
-            if (_selectedSlot == null) return;
+            if (_focusSlotRef == null) return;
 
             ChangeToOff();
 
@@ -73,9 +76,9 @@ namespace IslandBoy
 
         private void HammerTile()
         {
-            if (_selectedSlot.ItemObject == null) return;
-            if (_selectedSlot.ItemObject != null)
-                if (_selectedSlot.ItemObject.ToolType != ToolType.Hammer) return;
+            if (_focusSlotRef.ItemObject == null) return;
+            if (_focusSlotRef.ItemObject != null)
+                if (_focusSlotRef.ItemObject.ToolType != ToolType.Hammer) return;
 
             if(_tmr.FloorTilemap.HasTile(Vector3Int.FloorToInt(transform.position)) || _tmr.WallTilemap.HasTile(Vector3Int.FloorToInt(transform.position)))
                 ChangeToOn();
@@ -91,9 +94,9 @@ namespace IslandBoy
                 {
                     DisplayBreakableStatus(breakable);
                 }
-                else if(_selectedSlot.ItemObject != null)
+                else if(_focusSlotRef.ItemObject != null)
                 {
-                    if (breakable.BreakType == _selectedSlot.ItemObject.ToolType)
+                    if (breakable.BreakType == _focusSlotRef.ItemObject.ToolType)
                     {
                         DisplayBreakableStatus(breakable);
 
@@ -140,9 +143,9 @@ namespace IslandBoy
         {
             _sr.transform.localScale = new Vector3(0.85f, 0.85f, 0.85f);
 
-            if (_selectedSlot.ItemObject is DeployObject ||
-                _selectedSlot.ItemObject is FloorObject ||
-                _selectedSlot.ItemObject is WallObject)
+            if (_focusSlotRef.ItemObject is DeployObject ||
+                _focusSlotRef.ItemObject is FloorObject ||
+                _focusSlotRef.ItemObject is WallObject)
                 _sr.color = _indicatorTransparentColor;
             else
                 _sr.color = _indicatorEmptyColor;

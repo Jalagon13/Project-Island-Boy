@@ -28,7 +28,7 @@ namespace IslandBoy
 
             if (tilActionClear && !wallTmHasTile && groundTmHasTile)
             {
-                control.SelectedSlot.InventoryItem.Count--;
+                control.FocusSlot.InventoryItem.Count--;
                 control.TileAction.PlaceDeployable(_prefabToDeploy);
 
                 AudioManager.Instance.PlayClip(_deploySound, false, true);

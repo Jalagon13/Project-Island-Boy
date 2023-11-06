@@ -24,7 +24,7 @@ namespace IslandBoy
         private PlayerMoveInput _moveInput;
         private SwingCollider _swingCollider;
         private Camera _camera;
-        private InventorySlot _selectedSlot;
+        private Slot _focusSlotRef;
         private float _counter;
         private bool _isHeldDown;
         private bool _performingSwing;
@@ -51,26 +51,26 @@ namespace IslandBoy
             _swingCollider = transform.GetChild(0).GetChild(0).GetComponent<SwingCollider>();
             _swingCollider.BaseDamage = _baseDamage.Value;
 
-            GameSignals.SELECTED_SLOT_UPDATED.AddListener(ProcessSelectedSlotUpdate);
-            GameSignals.ITEM_ADDED.AddListener(UpdateHeldItem);
+            GameSignals.FOCUS_SLOT_UPDATED.AddListener(FocusSlotUpdated);
             GameSignals.DAY_END.AddListener(DisableActions);
             GameSignals.DAY_START.AddListener(EnableActions);
             GameSignals.PLAYER_DIED.AddListener(DisableActions);
             GameSignals.GAME_PAUSED.AddListener(DisableActions);
             GameSignals.GAME_UNPAUSED.AddListener(EnableActions);
+            GameSignals.MOUSE_SLOT_GIVES_ITEM.AddListener(DontSwingThisFrame);
         }
 
         private void OnDestroy()
         {
             _input.Disable();
 
-            GameSignals.SELECTED_SLOT_UPDATED.RemoveListener(ProcessSelectedSlotUpdate);
-            GameSignals.ITEM_ADDED.RemoveListener(UpdateHeldItem);
+            GameSignals.FOCUS_SLOT_UPDATED.RemoveListener(FocusSlotUpdated);
             GameSignals.DAY_END.RemoveListener(DisableActions);
             GameSignals.DAY_START.RemoveListener(EnableActions);
             GameSignals.PLAYER_DIED.RemoveListener(DisableActions);
             GameSignals.GAME_PAUSED.RemoveListener(DisableActions);
             GameSignals.GAME_UNPAUSED.RemoveListener(EnableActions);
+            GameSignals.MOUSE_SLOT_GIVES_ITEM.RemoveListener(DontSwingThisFrame);
         }
 
         private IEnumerator Start()
@@ -84,7 +84,7 @@ namespace IslandBoy
 
         private void Update()
         {
-            if (_selectedSlot == null) return;
+            if (_focusSlotRef == null) return;
 
             _counter += Time.deltaTime;
 
@@ -95,22 +95,27 @@ namespace IslandBoy
                 Swing();
         }
 
-        private void ProcessSelectedSlotUpdate(ISignalParameters parameters)
+        private void DontSwingThisFrame(ISignalParameters parameters)
         {
-            _selectedSlot = (InventorySlot)parameters.GetParameter("SelectedSlot");
-            
-            UpdateSwingSprite();
+            StartCoroutine(FrameDelay());
         }
 
-        private void UpdateHeldItem(ISignalParameters parameters)
+        private IEnumerator FrameDelay()
         {
-            UpdateSwingSprite();
+            _canPerform = false;
+            yield return new WaitForSeconds(0.2f);
+            _canPerform = true;
         }
 
-        private void UpdateSwingSprite()
+        private void FocusSlotUpdated(ISignalParameters parameters)
         {
-            _swingSr.sprite = _selectedSlot.ItemObject != null ? _selectedSlot.ItemObject.UiDisplay : null;
-            _swingCollider.SelectedSlot = _selectedSlot;
+            if (parameters.HasParameter("FocusSlot"))
+            {
+                _focusSlotRef = (Slot)parameters.GetParameter("FocusSlot");
+
+                _swingSr.sprite = _focusSlotRef.ItemObject != null ? _focusSlotRef.ItemObject.UiDisplay : null;
+                _swingCollider.FocusSlot = _focusSlotRef;
+            }
         }
 
         private void DisableActions(ISignalParameters parameters)
@@ -128,8 +133,8 @@ namespace IslandBoy
         private void Swing()
         {
             if (_counter < CalcParameter(_baseCooldown) || PointerHandler.IsOverLayer(5) || _performingSwing || !_canPerform) return;
-            if (_selectedSlot.ItemObject == null) return;
-            if(_selectedSlot.ItemObject.ToolType == ToolType.None) return;
+            if (_focusSlotRef.ItemObject == null) return;
+            if (_focusSlotRef.ItemObject.ToolType == ToolType.None) return;
             AnimStateManager.ChangeAnimationState(_animator, GetAnimationHash());
         }
 
@@ -145,7 +150,7 @@ namespace IslandBoy
 
         private float CalcParameter(ItemParameter baseParameter)
         {
-            var item = _selectedSlot.ItemObject;
+            var item = _focusSlotRef.ItemObject;
 
             if (item == null)
                 return baseParameter.Value;

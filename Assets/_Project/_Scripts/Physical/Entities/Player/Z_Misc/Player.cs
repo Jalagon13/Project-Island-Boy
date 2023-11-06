@@ -29,6 +29,7 @@ namespace IslandBoy
 
         private KnockbackFeedback _knockback;
         private Collider2D _playerCollider;
+        private Slot _focusSlot;
         private Timer _iFrameTimer;
         private Timer _hpCdTimer;
         private Timer _nrgCdTimer;
@@ -46,6 +47,7 @@ namespace IslandBoy
             GameSignals.SWING_PERFORMED.AddListener(OnSwing);
             GameSignals.DAY_OUT_OF_TIME.AddListener(OnOutOfTime);
             GameSignals.DAY_START.AddListener(ResetStats);
+            GameSignals.FOCUS_SLOT_UPDATED.AddListener(FocusSlotUpdated);
         }
 
         private void OnDestroy()
@@ -53,6 +55,7 @@ namespace IslandBoy
             GameSignals.SWING_PERFORMED.RemoveListener(OnSwing);
             GameSignals.DAY_OUT_OF_TIME.RemoveListener(OnOutOfTime);
             GameSignals.DAY_START.RemoveListener(ResetStats);
+            GameSignals.FOCUS_SLOT_UPDATED.RemoveListener(FocusSlotUpdated);
         }
 
         private void Start()
@@ -76,6 +79,14 @@ namespace IslandBoy
             _hpCdTimer.Tick(Time.deltaTime);
             _nrgCdTimer.Tick(Time.deltaTime);
             _mpCdTimer.Tick(Time.deltaTime);
+        }
+
+        private void FocusSlotUpdated(ISignalParameters parameters)
+        {
+            if (parameters.HasParameter("FocusSlot"))
+            {
+                _focusSlot = (Slot)parameters.GetParameter("FocusSlot");
+            }
         }
 
         private void OnSwing(ISignalParameters parameters)
@@ -114,6 +125,8 @@ namespace IslandBoy
             signal.AddParameter("MaxHp", _maxHp);
             signal.AddParameter("HpTimer", _hpCdTimer);
             signal.Dispatch();
+
+            _focusSlot.InventoryItem.Count--;
         }
         public void AddToHp(int amount)
         {
@@ -172,6 +185,8 @@ namespace IslandBoy
             if (_nrgCdTimer != null)
                 signal.AddParameter("NrgTimer", _nrgCdTimer);
             signal.Dispatch();
+
+            _focusSlot.InventoryItem.Count--;
         }
         public void AddToNrg(int amount)
         {
@@ -231,6 +246,8 @@ namespace IslandBoy
             if (_mpCdTimer != null)
                 signal.AddParameter("MpTimer", _mpCdTimer);
             signal.Dispatch();
+
+            _focusSlot.InventoryItem.Count--;
         }
         public void AddToMp(int amount)
         {

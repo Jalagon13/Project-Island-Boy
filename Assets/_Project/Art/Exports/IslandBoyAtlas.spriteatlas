@@ -287,6 +287,7 @@ SpriteAtlas:
     - 75594b36fd8cd0d409de8dacfcaf419b: 1558334950
     - 75594b36fd8cd0d409de8dacfcaf419b: 1392384841
     - 75594b36fd8cd0d409de8dacfcaf419b: 1648958029
+    - 75594b36fd8cd0d409de8dacfcaf419b: -916310749
     - 75594b36fd8cd0d409de8dacfcaf419b: -1112382854
     - f59011461ecd73f4bafc48709d902230: -1302916514
     - a89cf0f683df5c24c9a61c2d4a51d4eb: 1005839574
@@ -892,6 +893,7 @@ SpriteAtlas:
   - {fileID: 1558334950, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1392384841, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1648958029, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  - {fileID: -916310749, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1112382854, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1302916514, guid: f59011461ecd73f4bafc48709d902230, type: 3}
   - {fileID: 1005839574, guid: a89cf0f683df5c24c9a61c2d4a51d4eb, type: 3}
@@ -1496,6 +1498,7 @@ SpriteAtlas:
   - item_green_rune
   - item_stone_pickaxe
   - item_iron_ore
+  - item_first_aid_kit
   - item_door
   - rsc_tree
   - mon_ghost
