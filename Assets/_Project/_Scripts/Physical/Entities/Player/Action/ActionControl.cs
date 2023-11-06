@@ -38,7 +38,6 @@ namespace IslandBoy
         private void Awake()
         {
             _input = new();
-            _input.Player.PrimaryAction.started += TryPerformSwing;
             _input.Player.PrimaryAction.performed += SetIsHeldDown;
             _input.Player.PrimaryAction.canceled += SetIsHeldDown;
             _input.Enable();
@@ -48,7 +47,6 @@ namespace IslandBoy
             _moveInput = transform.root.GetComponent<PlayerMoveInput>();
             _ta = transform.GetChild(0).GetComponent<TileAction>();
             _ta.transform.parent = null;
-
 
             _swingCollider = transform.GetChild(0).GetChild(0).GetComponent<SwingCollider>();
             _swingCollider.BaseDamage = _baseDamage.Value;
@@ -84,7 +82,7 @@ namespace IslandBoy
             _camera = Camera.main;
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             if (_selectedSlot == null) return;
 
@@ -94,7 +92,7 @@ namespace IslandBoy
                 _counter = CalcParameter(_baseCooldown);
 
             if (_isHeldDown)
-                PerformSwing();
+                Swing();
         }
 
         private void ProcessSelectedSlotUpdate(ISignalParameters parameters)
@@ -127,17 +125,11 @@ namespace IslandBoy
             _canPerform = true;
         }
 
-        private void TryPerformSwing(InputAction.CallbackContext context)
-        {
-            if(_selectedSlot == null) return;
-
-            PerformSwing();
-        }
-
-        private void PerformSwing()
+        private void Swing()
         {
             if (_counter < CalcParameter(_baseCooldown) || PointerHandler.IsOverLayer(5) || _performingSwing || !_canPerform) return;
-
+            if (_selectedSlot.ItemObject == null) return;
+            if(_selectedSlot.ItemObject.ToolType == ToolType.None) return;
             AnimStateManager.ChangeAnimationState(_animator, GetAnimationHash());
         }
 

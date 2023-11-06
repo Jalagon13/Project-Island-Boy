@@ -23,7 +23,7 @@ namespace IslandBoy
             _inventory = GetComponent<Inventory>();
             _craftSlotsControl = GetComponent<CraftSlotsControl>();
             _mainInventory = transform.GetChild(0).GetComponent<RectTransform>();
-            _mouseItemHolder = transform.GetChild(2).GetComponent<MouseItemHolder>();
+            _mouseItemHolder = transform.GetChild(3).GetComponent<MouseItemHolder>();
             _input.Player.ToggleInventory.started += ToggleInventory;
 
             GameSignals.CHEST_INTERACT.AddListener(ChestInteract);

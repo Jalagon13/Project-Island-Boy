@@ -41,7 +41,9 @@ namespace IslandBoy
 
         private void Start()
         {
-            StartDay();
+            ResetDay();
+            PanelEnabled(false);
+            UpdateMarker(_sunSprite);
             _timer.Tick(_dayDurationInSec * _debugDayPercentage); // starts the day some percent way through
         }
 

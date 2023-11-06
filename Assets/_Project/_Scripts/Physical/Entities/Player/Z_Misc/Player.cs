@@ -23,7 +23,7 @@ namespace IslandBoy
         [SerializeField] private float _healNrgCooldown;
         [SerializeField] private float _healMpCooldown;
         [Header("Parameters")]
-        [SerializeField] private float _iFrameDuration = 0.17f;
+        [SerializeField] private float _iFrameDuration;
         [SerializeField] private float _deathTimer;
         [SerializeField] private AudioClip _damageSound;
 
@@ -42,9 +42,6 @@ namespace IslandBoy
             _knockback = GetComponent<KnockbackFeedback>();
             _playerCollider = GetComponent<Collider2D>();
             _iFrameTimer = new Timer(_iFrameDuration);
-            _hpCdTimer = new Timer(_healHpCooldown);
-            _nrgCdTimer = new Timer(_healNrgCooldown);
-            _mpCdTimer = new Timer(_healMpCooldown);
 
             GameSignals.SWING_PERFORMED.AddListener(OnSwing);
             GameSignals.DAY_OUT_OF_TIME.AddListener(OnOutOfTime);
@@ -60,7 +57,17 @@ namespace IslandBoy
 
         private void Start()
         {
-            ResetStats();
+            _currentHp = _maxHp;
+            _currentNrg = _maxNrg;
+            _currentMp = _maxMp;
+
+            DispatchHpChange();
+            DispatchNrgChange();
+            DispatchMpChange();
+
+            _hpCdTimer = new Timer(_healHpCooldown);
+            _nrgCdTimer = new Timer(_healNrgCooldown);
+            _mpCdTimer = new Timer(_healMpCooldown);
         }
 
         private void Update()
@@ -100,7 +107,13 @@ namespace IslandBoy
             _hpCdTimer.RemainingSeconds = _healHpCooldown;
 
             PopupMessage.Create(transform.position, $"+{amount} Health", Color.green, new(0.5f, 0.5f), 0.5f);
-            DispatchHpChange();
+
+            Signal signal = GameSignals.PLAYER_HP_CHANGED;
+            signal.ClearParameters();
+            signal.AddParameter("CurrentHp", _currentHp);
+            signal.AddParameter("MaxHp", _maxHp);
+            signal.AddParameter("HpTimer", _hpCdTimer);
+            signal.Dispatch();
         }
         public void AddToHp(int amount)
         {
@@ -114,7 +127,11 @@ namespace IslandBoy
                 StartCoroutine(PlayerDead());
             }
 
-            DispatchHpChange();
+            Signal signal = GameSignals.PLAYER_HP_CHANGED;
+            signal.ClearParameters();
+            signal.AddParameter("CurrentHp", _currentHp);
+            signal.AddParameter("MaxHp", _maxHp);
+            signal.Dispatch();
         }
         private void DispatchHpChange()
         {
@@ -122,7 +139,8 @@ namespace IslandBoy
             signal.ClearParameters();
             signal.AddParameter("CurrentHp", _currentHp);
             signal.AddParameter("MaxHp", _maxHp);
-            signal.AddParameter("HpTimer", _hpCdTimer);
+            if (_hpCdTimer != null)
+                signal.AddParameter("HpTimer", _hpCdTimer);
             signal.Dispatch();
         }
         #endregion
@@ -146,7 +164,14 @@ namespace IslandBoy
             _nrgCdTimer.RemainingSeconds = _healNrgCooldown;
 
             PopupMessage.Create(transform.position, $"+{amount} Energy", Color.yellow, new(0.5f, 0.5f), 0.5f);
-            DispatchNrgChange();
+
+            Signal signal = GameSignals.PLAYER_NRG_CHANGED;
+            signal.ClearParameters();
+            signal.AddParameter("CurrentNrg", _currentNrg);
+            signal.AddParameter("MaxNrg", _maxNrg);
+            if (_nrgCdTimer != null)
+                signal.AddParameter("NrgTimer", _nrgCdTimer);
+            signal.Dispatch();
         }
         public void AddToNrg(int amount)
         {
@@ -161,7 +186,11 @@ namespace IslandBoy
                 StartCoroutine(PlayerDead());
             }
 
-            DispatchNrgChange();
+            Signal signal = GameSignals.PLAYER_NRG_CHANGED;
+            signal.ClearParameters();
+            signal.AddParameter("CurrentNrg", _currentNrg);
+            signal.AddParameter("MaxNrg", _maxNrg);
+            signal.Dispatch();
         }
         private void DispatchNrgChange()
         {
@@ -169,7 +198,8 @@ namespace IslandBoy
             signal.ClearParameters();
             signal.AddParameter("CurrentNrg", _currentNrg);
             signal.AddParameter("MaxNrg", _maxNrg);
-            signal.AddParameter("NrgTimer", _nrgCdTimer);
+            if (_nrgCdTimer != null)
+                signal.AddParameter("NrgTimer", _nrgCdTimer);
             signal.Dispatch();
         }
         #endregion
@@ -193,7 +223,14 @@ namespace IslandBoy
             _mpCdTimer.RemainingSeconds = _healMpCooldown;
 
             PopupMessage.Create(transform.position, $"+{amount} Mana", Color.blue, new(0.5f, 0.5f), 0.5f);
-            DispatchMpChange();
+
+            Signal signal = GameSignals.PLAYER_MP_CHANGED;
+            signal.ClearParameters();
+            signal.AddParameter("CurrentMp", _currentMp);
+            signal.AddParameter("MaxMp", _maxMp);
+            if (_mpCdTimer != null)
+                signal.AddParameter("MpTimer", _mpCdTimer);
+            signal.Dispatch();
         }
         public void AddToMp(int amount)
         {
@@ -205,7 +242,11 @@ namespace IslandBoy
             if (_currentMp <= 0)
                 _currentMp = 0;
 
-            DispatchMpChange();
+            Signal signal = GameSignals.PLAYER_MP_CHANGED;
+            signal.ClearParameters();
+            signal.AddParameter("CurrentMp", _currentMp);
+            signal.AddParameter("MaxMp", _maxMp);
+            signal.Dispatch();
         }
         private void DispatchMpChange()
         {
@@ -213,7 +254,8 @@ namespace IslandBoy
             signal.ClearParameters();
             signal.AddParameter("CurrentMp", _currentMp);
             signal.AddParameter("MaxMp", _maxMp);
-            signal.AddParameter("MpTimer", _mpCdTimer);
+            if (_mpCdTimer != null)
+                signal.AddParameter("MpTimer", _mpCdTimer);
             signal.Dispatch();
         }
         #endregion
