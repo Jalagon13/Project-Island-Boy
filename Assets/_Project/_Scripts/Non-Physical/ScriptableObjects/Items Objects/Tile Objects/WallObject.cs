@@ -14,14 +14,16 @@ namespace IslandBoy
         public override GameObject AmmoPrefab => null;
         public override int ConsumeValue => 0;
 
-        public override void ExecuteAction(SelectedSlotControl control)
+        public override void ExecutePrimaryAction(SelectedSlotControl control)
         {
+            if (PointerHandler.IsOverLayer(5)) return;
+
             var pos = Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position);
 
             if (!control.TMR.WallTilemap.HasTile(pos) && control.TileAction.IsClear() && control.TMR.GroundTilemap.HasTile(pos))
             {
+                control.FocusSlot.InventoryItem.Count--;
                 control.TMR.WallTilemap.SetTile(pos, _wallTile);
-                control.SelectedSlot.InventoryItem.Count--;
 
                 AudioManager.Instance.PlayClip(_wallTile.PlaceSound, false, true);
 
@@ -29,9 +31,14 @@ namespace IslandBoy
             }
         }
 
+        public override void ExecuteSecondaryAction(SelectedSlotControl control)
+        {
+
+        }
+
         public override string GetDescription()
         {
-            return Description;
+            return $"{Description}<br>• Left Click to place";
         }
     }
 }
