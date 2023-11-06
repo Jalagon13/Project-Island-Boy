@@ -114,7 +114,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 48
+        y: 64
         width: 16
         height: 16
       alignment: 0
@@ -135,7 +135,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
-        y: 48
+        y: 64
         width: 16
         height: 16
       alignment: 0
@@ -156,7 +156,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 36
-        y: 58
+        y: 74
         width: 8
         height: 5
       alignment: 0
@@ -177,7 +177,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 39
+        y: 55
         width: 50
         height: 8
       alignment: 0
@@ -198,7 +198,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 11
-        y: 34
+        y: 50
         width: 38
         height: 4
       alignment: 0
@@ -218,10 +218,10 @@ TextureImporter:
       name: ui_hp_icon
       rect:
         serializedVersion: 2
-        x: 45
-        y: 58
-        width: 6
-        height: 6
+        x: 0
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -239,10 +239,10 @@ TextureImporter:
       name: ui_mana_icon
       rect:
         serializedVersion: 2
-        x: 52
-        y: 58
-        width: 6
-        height: 6
+        x: 32
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -260,10 +260,10 @@ TextureImporter:
       name: uc_nrg_icon
       rect:
         serializedVersion: 2
-        x: 60
-        y: 58
-        width: 4
-        height: 6
+        x: 16
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -282,7 +282,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 18
+        y: 34
         width: 12
         height: 12
       alignment: 0
@@ -303,7 +303,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 17
-        y: 16
+        y: 32
         width: 15
         height: 15
       alignment: 0
@@ -324,7 +324,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 16
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -345,7 +345,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -366,7 +366,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
-        y: 0
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -386,8 +386,8 @@ TextureImporter:
       name: ui_legs_slot
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
+        x: 33
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -408,7 +408,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 48
-        y: 0
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -428,8 +428,8 @@ TextureImporter:
       name: ui_moon_marker
       rect:
         serializedVersion: 2
-        x: 49
-        y: 16
+        x: 50
+        y: 32
         width: 15
         height: 15
       alignment: 0
@@ -446,32 +446,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ui_wizard_logo
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aca723773dfef604682b79886569bc9b
-      internalID: 1707470153
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: ui_house
       rect:
         serializedVersion: 2
         x: 53
-        y: 32
+        y: 48
         width: 11
         height: 10
       alignment: 0
@@ -492,7 +471,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 67
-        y: 18
+        y: 34
         width: 11
         height: 12
       alignment: 0
@@ -513,7 +492,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 65
-        y: 32
+        y: 48
         width: 15
         height: 21
       alignment: 0
@@ -534,11 +513,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 86
-        y: 33
+        y: 49
         width: 4
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -555,11 +534,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 83
-        y: 17
+        y: 33
         width: 11
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

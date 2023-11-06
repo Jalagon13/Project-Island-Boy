@@ -2504,6 +2504,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
+  _inventoryItemPrefab: {fileID: 0}
+  _popSound: {fileID: 0}
+  _runeEquipSound: {fileID: 0}
 --- !u!224 &5602138069271407922
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4226,8 +4229,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b4c7956ed50f284299cfa58fc31219c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _highlightedColor: {r: 0.8867924, g: 0.87965983, b: 0.26269132, a: 1}
-  _notHighlightedColor: {r: 0.8962264, g: 0.63672173, b: 0.2654859, a: 0.8666667}
+  _highlightedColor: {r: 0.9622642, g: 0.9521585, b: 0.15886435, a: 1}
+  _notHighlightedColor: {r: 1, g: 0.654902, b: 0.3254902, a: 0.8666667}
   _hotbarSlots:
   - {fileID: 1398917238}
   - {fileID: 658019018}

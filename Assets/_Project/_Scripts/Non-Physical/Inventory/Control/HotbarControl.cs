@@ -56,7 +56,7 @@ namespace IslandBoy
         private void Start()
         {
             _slotIndex = 0;
-            HighlightSelected();
+            SelectSlotScroll(new());
         }
 
         private void PauseHandle(ISignalParameters parameters)
@@ -67,11 +67,6 @@ namespace IslandBoy
         private void UnpauseHandle(ISignalParameters parameters)
         {
             _input.Enable();
-        }
-
-        private void DecreaseSelectedSlot(ISignalParameters parameters)
-        {
-            _selectedSlot.InventoryItem.Count--;
         }
 
         private void SelectSlotScroll(InputAction.CallbackContext context)
