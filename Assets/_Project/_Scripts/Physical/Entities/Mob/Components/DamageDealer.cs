@@ -10,12 +10,12 @@ namespace IslandBoy
 
         private void OnTriggerStay2D(Collider2D collision)
         {
-            if (collision.TryGetComponent(out PlayerEntity playerEntity))
+            if (collision.TryGetComponent(out Player player))
             {
                 int damageAmount = Mathf.RoundToInt(_damageAmount);
-                GameObject sender = transform.root.gameObject;
+                Vector2 damagerPosition = transform.root.gameObject.transform.position;
 
-                playerEntity.Damage(damageAmount, sender);
+                player.Damage(damageAmount, damagerPosition);
             }
         }
     }

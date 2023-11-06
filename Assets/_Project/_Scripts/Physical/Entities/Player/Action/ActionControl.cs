@@ -41,12 +41,14 @@ namespace IslandBoy
             _input.Player.PrimaryAction.started += TryPerformSwing;
             _input.Player.PrimaryAction.performed += SetIsHeldDown;
             _input.Player.PrimaryAction.canceled += SetIsHeldDown;
+            _input.Enable();
 
             _animator = GetComponent<Animator>();
             _animator.speed = 1 * _baseSwingSpeedMultiplier.Value;
             _moveInput = transform.root.GetComponent<PlayerMoveInput>();
             _ta = transform.GetChild(0).GetComponent<TileAction>();
             _ta.transform.parent = null;
+
 
             _swingCollider = transform.GetChild(0).GetChild(0).GetComponent<SwingCollider>();
             _swingCollider.BaseDamage = _baseDamage.Value;
@@ -60,18 +62,10 @@ namespace IslandBoy
             GameSignals.GAME_UNPAUSED.AddListener(EnableActions);
         }
 
-        private void OnEnable()
-        {
-            _input.Enable();
-        }
-
-        private void OnDisable()
-        {
-            _input.Disable();
-        }
-
         private void OnDestroy()
         {
+            _input.Disable();
+
             GameSignals.SELECTED_SLOT_UPDATED.RemoveListener(ProcessSelectedSlotUpdate);
             GameSignals.ITEM_ADDED.RemoveListener(UpdateHeldItem);
             GameSignals.DAY_END.RemoveListener(DisableActions);

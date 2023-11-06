@@ -5,18 +5,10 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public enum ConsumeType
-    {
-        None,
-        Health,
-        Energy,
-        Mana
-    }
-
     [CreateAssetMenu(fileName = "New Consumable", menuName = "Create Item/New Consumable")]
     public class ConsumableObject : ItemObject
     {
-        [SerializeField] private ConsumeType _consumeType;
+        [SerializeField] private PlayerStatType _consumeType;
         [SerializeField] private AudioClip _consumeSound;
         [SerializeField] private int _value;
 
@@ -25,7 +17,7 @@ namespace IslandBoy
         public override ArmorType ArmorType => _baseArmorType;
         public override GameObject AmmoPrefab => null;
         public override int ConsumeValue => _value;
-        public ConsumeType ConsumeType => _consumeType;
+        public PlayerStatType ConsumeType => _consumeType;
         public AudioClip ConsumeSound => _consumeSound;
 
         public override void ExecutePrimaryAction(SelectedSlotControl control)
@@ -36,21 +28,26 @@ namespace IslandBoy
         public override void ExecuteSecondaryAction(SelectedSlotControl control)
         {
             if (PointerHandler.IsOverLayer(5)) return;
-            
-            DispatchTryConsumeItem();
-        }
 
-        private void DispatchTryConsumeItem()
-        {
-            Signal signal = GameSignals.CONSUME_ITEM_TRY;
-            signal.ClearParameters();
-            signal.AddParameter("ConsumeItem", this);
-            signal.Dispatch();
+            switch (_consumeType)
+            {
+                case PlayerStatType.Health:
+                    control.Player.HealHp(_value);
+                    break;
+
+                case PlayerStatType.Energy:
+                    control.Player.HealNrg(_value);
+                    break;
+
+                case PlayerStatType.Mana:
+                    control.Player.HealMp(_value);
+                    break;
+            }
         }
 
         public override string GetDescription()
         {
-            return $"• Right Click to consume<br>+ {_value} {_consumeType}<br>{Description}";
+            return $"+{_value} {_consumeType}<br>Right Click to consume<br>{Description}";
         }
     }
 }

@@ -16,12 +16,14 @@ namespace IslandBoy
 
         public override void ExecutePrimaryAction(SelectedSlotControl control)
         {
+            if (PointerHandler.IsOverLayer(5)) return;
+
             var pos = Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position);
 
             if (!control.TMR.WallTilemap.HasTile(pos) && control.TileAction.IsClear() && control.TMR.GroundTilemap.HasTile(pos))
             {
-                control.TMR.WallTilemap.SetTile(pos, _wallTile);
                 control.SelectedSlot.InventoryItem.Count--;
+                control.TMR.WallTilemap.SetTile(pos, _wallTile);
 
                 AudioManager.Instance.PlayClip(_wallTile.PlaceSound, false, true);
 

@@ -27,7 +27,6 @@ namespace IslandBoy
             _ti = GetComponent<TileIndicator>();
 
             GameSignals.SELECTED_SLOT_UPDATED.AddListener(InjectSelectedSlot);
-            GameSignals.OBJECT_PLACED.AddListener(PlaceDeployable);
 
             _input.Enable();
         }
@@ -35,7 +34,6 @@ namespace IslandBoy
         private void OnDestroy()
         {
             GameSignals.SELECTED_SLOT_UPDATED.RemoveListener(InjectSelectedSlot);
-            GameSignals.OBJECT_PLACED.RemoveListener(PlaceDeployable);
 
             _input.Disable();
         }
@@ -182,9 +180,8 @@ namespace IslandBoy
             tile.UpdatePathfinding(new(pos.x + 0.5f, pos.y + 0.5f));
         }
 
-        public void PlaceDeployable(ISignalParameters parameters)
+        public void PlaceDeployable(GameObject deployable)
         {
-            GameObject deployable = (GameObject)parameters.GetParameter("ObjectPlaced");
             var position = transform.position -= new Vector3(0.5f, 0.5f);
             ExtensionMethods.SpawnObject(deployable, position, Quaternion.identity);
             _placingThisFrame = true;

@@ -31,16 +31,16 @@ namespace IslandBoy
             _input.Hotbar._8.started += SelectSlot;
             _input.Hotbar._9.started += SelectSlot;
 
-            GameSignals.CONSUME_ITEM_SUCCESS.AddListener(DecreaseSelectedSlot);
             GameSignals.GAME_PAUSED.AddListener(PauseHandle);
             GameSignals.GAME_UNPAUSED.AddListener(UnpauseHandle);
+            GameSignals.PLAYER_DIED.AddListener(PauseHandle);
         }
 
         private void OnDestroy()
         {
-            GameSignals.CONSUME_ITEM_SUCCESS.RemoveListener(DecreaseSelectedSlot);
             GameSignals.GAME_PAUSED.RemoveListener(PauseHandle);
             GameSignals.GAME_UNPAUSED.RemoveListener(UnpauseHandle);
+            GameSignals.PLAYER_DIED.RemoveListener(PauseHandle); 
         }
 
         private void OnEnable()
