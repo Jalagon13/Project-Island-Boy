@@ -6,6 +6,9 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerReference _pr;
 
+        private bool _gotItemThisFrame;
+        private bool _gaveItemThisFrame;
+
         public ItemObject ItemObject
         {
             get
@@ -44,6 +47,30 @@ namespace IslandBoy
         private void Update()
         {
             UpdatePosition();
+            DispatchHandle();
+        }
+
+        // note refactor this later 
+        private void DispatchHandle()
+        {
+            if (HasItem())
+            {
+                if (_gotItemThisFrame) return;
+
+                GameSignals.MOUSE_SLOT_HAS_ITEM.Dispatch();
+
+                _gotItemThisFrame = true;
+                _gaveItemThisFrame = false;
+            }
+            else
+            {
+                if (_gaveItemThisFrame) return;
+
+                GameSignals.MOUSE_SLOT_GIVES_ITEM.Dispatch();
+
+                _gaveItemThisFrame = true;
+                _gotItemThisFrame = false;
+            }
         }
 
         private void UpdatePosition()
@@ -57,6 +84,7 @@ namespace IslandBoy
                 Destroy(transform.GetChild(0).gameObject);
         }
 
+        // item on mouse
         public void CreateMouseItem(GameObject itemGo, ItemObject itemObject, int count = 1)
         {
             if (!HasItem())
@@ -107,6 +135,7 @@ namespace IslandBoy
             return transform.childCount > 0;
         }
 
+        // gives item away
         public void GiveItemToSlot(Transform slot)
         {
             if (HasItem())
