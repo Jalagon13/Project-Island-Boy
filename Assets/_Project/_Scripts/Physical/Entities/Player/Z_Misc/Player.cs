@@ -29,6 +29,7 @@ namespace IslandBoy
 
         private KnockbackFeedback _knockback;
         private Collider2D _playerCollider;
+        private Vector2 _spawnPoint;
         private Slot _focusSlot;
         private Timer _iFrameTimer;
         private Timer _hpCdTimer;
@@ -43,11 +44,14 @@ namespace IslandBoy
             _knockback = GetComponent<KnockbackFeedback>();
             _playerCollider = GetComponent<Collider2D>();
             _iFrameTimer = new Timer(_iFrameDuration);
+            _spawnPoint = transform.position;
 
             GameSignals.SWING_PERFORMED.AddListener(OnSwing);
             GameSignals.DAY_OUT_OF_TIME.AddListener(OnOutOfTime);
             GameSignals.DAY_START.AddListener(ResetStats);
+            GameSignals.DAY_START.AddListener(PlacePlayerAtSpawnPoint);
             GameSignals.FOCUS_SLOT_UPDATED.AddListener(FocusSlotUpdated);
+            GameSignals.BED_TIME_EXECUTED.AddListener(ChangeSpawnPoint);
         }
 
         private void OnDestroy()
@@ -55,7 +59,9 @@ namespace IslandBoy
             GameSignals.SWING_PERFORMED.RemoveListener(OnSwing);
             GameSignals.DAY_OUT_OF_TIME.RemoveListener(OnOutOfTime);
             GameSignals.DAY_START.RemoveListener(ResetStats);
+            GameSignals.DAY_START.RemoveListener(PlacePlayerAtSpawnPoint);
             GameSignals.FOCUS_SLOT_UPDATED.RemoveListener(FocusSlotUpdated);
+            GameSignals.BED_TIME_EXECUTED.RemoveListener(ChangeSpawnPoint);
         }
 
         private void Start()
@@ -79,6 +85,16 @@ namespace IslandBoy
             _hpCdTimer.Tick(Time.deltaTime);
             _nrgCdTimer.Tick(Time.deltaTime);
             _mpCdTimer.Tick(Time.deltaTime);
+        }
+
+        private void PlacePlayerAtSpawnPoint(ISignalParameters parameters)
+        {
+            transform.SetPositionAndRotation(_spawnPoint, Quaternion.identity);
+        }
+
+        private void ChangeSpawnPoint(ISignalParameters parameters)
+        {
+            _spawnPoint = transform.position;
         }
 
         private void FocusSlotUpdated(ISignalParameters parameters)
