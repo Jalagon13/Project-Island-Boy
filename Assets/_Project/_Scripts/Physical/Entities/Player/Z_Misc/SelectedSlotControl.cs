@@ -39,7 +39,7 @@ namespace IslandBoy
 
             _delayTimer = new(_delayCooldown);
 
-            GameSignals.SELECTED_SLOT_UPDATED.AddListener(UpdateFocusSlotToHotbarSlot);
+            GameSignals.HOTBAR_SLOT_UPDATED.AddListener(UpdateFocusSlotToHotbarSlot);
             GameSignals.MOUSE_SLOT_HAS_ITEM.AddListener(UpdateFocusSlotToMouseSlot);
             GameSignals.MOUSE_SLOT_GIVES_ITEM.AddListener(UpdateLocalMouseSlot);
         }
@@ -48,7 +48,7 @@ namespace IslandBoy
         {
             _input.Disable();
 
-            GameSignals.SELECTED_SLOT_UPDATED.RemoveListener(UpdateFocusSlotToHotbarSlot);
+            GameSignals.HOTBAR_SLOT_UPDATED.RemoveListener(UpdateFocusSlotToHotbarSlot);
             GameSignals.MOUSE_SLOT_HAS_ITEM.RemoveListener(UpdateFocusSlotToMouseSlot);
             GameSignals.MOUSE_SLOT_GIVES_ITEM.RemoveListener(UpdateLocalMouseSlot);
         }

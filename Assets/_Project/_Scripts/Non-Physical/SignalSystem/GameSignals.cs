@@ -17,7 +17,7 @@ namespace IslandBoy
         // Player Signals
         public static readonly Signal INVENTORY_OPEN = new("InventoryOpen");
         public static readonly Signal INVENTORY_CLOSE = new("InventoryClose");
-        public static readonly Signal SELECTED_SLOT_UPDATED = new("SelectedSlotUpdated");
+        public static readonly Signal HOTBAR_SLOT_UPDATED = new("HotbarSlotUpdated");
         public static readonly Signal SLOT_CLICKED = new("SlotClicked");
         public static readonly Signal ITEM_ADDED = new("ItemAdded");
         public static readonly Signal ITEM_CRAFTED = new("ItemCrafted");
@@ -34,6 +34,7 @@ namespace IslandBoy
         public static readonly Signal MOUSE_SLOT_HAS_ITEM = new("MouseSlotHasItem");
         public static readonly Signal MOUSE_SLOT_GIVES_ITEM = new("MouseSlotGivesItem");
         public static readonly Signal FOCUS_SLOT_UPDATED = new("FocusSlotUpdated");
+        public static readonly Signal BED_TIME_EXECUTED = new("BedTimeExecuted");
 
         // Pause Signals
         public static readonly Signal GAME_PAUSED = new("GamePaused");

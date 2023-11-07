@@ -41,9 +41,9 @@ namespace IslandBoy
 
             TileAction = FindObjectOfType<TileAction>();
 
-            GameSignals.SELECTED_SLOT_UPDATED.AddListener(InjectSelectedSlot);
-            GameSignals.SELECTED_SLOT_UPDATED.AddListener(UpdateChargeTime);
-            GameSignals.SELECTED_SLOT_UPDATED.AddListener(ResetLaunch);
+            GameSignals.HOTBAR_SLOT_UPDATED.AddListener(InjectSelectedSlot);
+            GameSignals.HOTBAR_SLOT_UPDATED.AddListener(UpdateChargeTime);
+            GameSignals.HOTBAR_SLOT_UPDATED.AddListener(ResetLaunch);
             GameSignals.ITEM_CHARGING.AddListener(StartOfCharge);
         }
 
@@ -51,9 +51,9 @@ namespace IslandBoy
         {
             _input.Disable();
 
-            GameSignals.SELECTED_SLOT_UPDATED.RemoveListener(InjectSelectedSlot);
-            GameSignals.SELECTED_SLOT_UPDATED.RemoveListener(UpdateChargeTime);
-            GameSignals.SELECTED_SLOT_UPDATED.RemoveListener(ResetLaunch);
+            GameSignals.HOTBAR_SLOT_UPDATED.RemoveListener(InjectSelectedSlot);
+            GameSignals.HOTBAR_SLOT_UPDATED.RemoveListener(UpdateChargeTime);
+            GameSignals.HOTBAR_SLOT_UPDATED.RemoveListener(ResetLaunch);
             GameSignals.ITEM_CHARGING.RemoveListener(StartOfCharge);
         }
 
