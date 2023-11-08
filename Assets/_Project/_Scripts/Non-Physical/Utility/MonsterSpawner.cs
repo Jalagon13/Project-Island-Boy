@@ -13,7 +13,7 @@ namespace IslandBoy
         [SerializeField] private int _maxMonsterCount;
         [SerializeField] private Entity _monsterPrefab;
 
-        private int _monsterCounter;
+        //private int _monsterCounter;
 
         private void Start()
         {
@@ -24,7 +24,7 @@ namespace IslandBoy
         {
             yield return new WaitForSeconds(Random.Range(40f, 80f));
 
-            if (CanSpawn())
+            if (/*CanSpawn()*/ true)
             {
                 yield return SpawnMonsters();
             }
@@ -32,17 +32,17 @@ namespace IslandBoy
             StartCoroutine(SpawnMonsterTimer());
         }
 
-        private bool CanSpawn()
-        {
-            float spawnRatio = (float)_monsterCounter / (float)_maxMonsterCount;
-            var n = Random.Range(0f, 1f);
-            return n > spawnRatio;
-        }
+        //private bool CanSpawn()
+        //{
+        //    float spawnRatio = (float)_monsterCounter / (float)_maxMonsterCount;
+        //    var n = Random.Range(0f, 1f);
+        //    return n > spawnRatio;
+        //}
 
         private IEnumerator SpawnMonsters()
         {
             int min = 1;
-            int max = _maxMonsterCount - _monsterCounter;
+            int max = /*_maxMonsterCount - _monsterCounter;*/ _maxMonsterCount;
             int numbMonstersToSpawn = Random.Range(min, max + 1);
 
             for (int i = 0; i < numbMonstersToSpawn; i++)
@@ -69,13 +69,13 @@ namespace IslandBoy
         {
             Entity entity = Instantiate(monster, pos, Quaternion.identity);
 
-            entity.gameObject.AddComponent<UndergroundAsset>();
-            entity.GetComponent<UndergroundAsset>().RegisterAsset(() =>
-            {
-                _monsterCounter--;
-            });
+            //entity.gameObject.AddComponent<UndergroundAsset>();
+            //entity.GetComponent<UndergroundAsset>().RegisterAsset(() =>
+            //{
+            //    _monsterCounter--;
+            //});
 
-            _monsterCounter++;
+            //_monsterCounter++;
         }
 
         private Vector2 CalcSpawnPos()

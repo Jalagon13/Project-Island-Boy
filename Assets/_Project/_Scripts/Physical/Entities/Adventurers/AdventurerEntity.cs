@@ -89,11 +89,5 @@ namespace IslandBoy
         {
             AnimStateManager.ChangeAnimationState(animator, HashMove);
         }
-
-        public void EnterUnderground() // connected to prompt
-        {
-            PR.Inventory.InventoryControl.CloseInventory();
-            LevelManager.Instance.LoadUnderground();
-        }
     }
 }

@@ -39,7 +39,7 @@ namespace IslandBoy
             _opened = true;
             _sr.sprite = _openSprite;
 
-            AstarManager.Instance.UpdateGrid(transform.position);
+            Astar.UpdateGridGraph(transform.position);
             AudioManager.Instance.PlayClip(_doorOpenSound, false, true);
         }
 
@@ -49,7 +49,7 @@ namespace IslandBoy
             _opened = false;
             _sr.sprite = _closeSprite;
 
-            AstarManager.Instance.UpdateGrid(transform.position);
+            Astar.UpdateGridGraph(transform.position);
             AudioManager.Instance.PlayClip(_doorCloseSound, false, true);
         }
     }

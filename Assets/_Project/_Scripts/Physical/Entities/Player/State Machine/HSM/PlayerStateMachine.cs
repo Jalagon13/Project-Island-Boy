@@ -81,11 +81,6 @@ namespace IslandBoy
 
         private void TeleportPlayerToSpawn()
         {
-            if (SceneManager.GetActiveScene().buildIndex != 0)
-            {
-                LevelManager.Instance.LoadSurface();
-            }
-
             transform.SetPositionAndRotation(_pr.SpawnPoint, Quaternion.identity);
         }
 

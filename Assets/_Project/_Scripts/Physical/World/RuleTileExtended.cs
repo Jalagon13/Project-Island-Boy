@@ -13,7 +13,7 @@ namespace IslandBoy
 
         public void UpdatePathfinding(Vector2 pos)
         {
-            AstarManager.Instance.UpdateGrid(pos);
+            Astar.UpdateGridGraph(pos);
         }
     }
 }

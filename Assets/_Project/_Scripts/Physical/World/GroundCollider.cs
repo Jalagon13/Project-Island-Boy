@@ -28,7 +28,7 @@ namespace IslandBoy
 
         private void UpdatePathfinding()
         {
-            AstarManager.Instance.UpdateGrid(transform.parent.position);
+            Astar.UpdateGridGraph(transform.parent.position);
         }
     }
 }

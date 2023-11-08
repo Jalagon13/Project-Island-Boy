@@ -13,6 +13,7 @@ namespace IslandBoy
         public static readonly Signal NPC_MOVED_IN = new("NpcMovedIn");
         public static readonly Signal NPC_MOVED_OUT = new("NpcMovedOut");
         public static readonly Signal CAN_SLEEP = new("CanSleep");
+        public static readonly Signal BED_TIME_EXECUTED = new("BedTimeExecuted");
 
         // Player Signals
         public static readonly Signal INVENTORY_OPEN = new("InventoryOpen");
@@ -34,10 +35,12 @@ namespace IslandBoy
         public static readonly Signal MOUSE_SLOT_HAS_ITEM = new("MouseSlotHasItem");
         public static readonly Signal MOUSE_SLOT_GIVES_ITEM = new("MouseSlotGivesItem");
         public static readonly Signal FOCUS_SLOT_UPDATED = new("FocusSlotUpdated");
-        public static readonly Signal BED_TIME_EXECUTED = new("BedTimeExecuted");
 
         // Pause Signals
         public static readonly Signal GAME_PAUSED = new("GamePaused");
         public static readonly Signal GAME_UNPAUSED = new("GameUnpaused");
+
+        // Astar Signals
+        //public static readonly Signal GRID_GRAPH_OVERRIDDEN = new("GridGraphOverriden");
     }
 }
