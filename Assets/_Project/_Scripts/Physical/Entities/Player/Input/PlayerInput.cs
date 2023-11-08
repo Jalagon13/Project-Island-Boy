@@ -71,6 +71,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SpeedDebug"",
+                    ""type"": ""Button"",
+                    ""id"": ""39ab6aa7-c061-4c7e-a8d2-281bee644bdf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -170,6 +179,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PauseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6d26c0ed-0f56-4f7d-b608-147451a52221"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpeedDebug"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -393,6 +413,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_SecondaryAction = m_Player.FindAction("SecondaryAction", throwIfNotFound: true);
         m_Player_ToggleInventory = m_Player.FindAction("ToggleInventory", throwIfNotFound: true);
         m_Player_PauseMenu = m_Player.FindAction("PauseMenu", throwIfNotFound: true);
+        m_Player_SpeedDebug = m_Player.FindAction("SpeedDebug", throwIfNotFound: true);
         // Hotbar
         m_Hotbar = asset.FindActionMap("Hotbar", throwIfNotFound: true);
         m_Hotbar__1 = m_Hotbar.FindAction("1", throwIfNotFound: true);
@@ -471,6 +492,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SecondaryAction;
     private readonly InputAction m_Player_ToggleInventory;
     private readonly InputAction m_Player_PauseMenu;
+    private readonly InputAction m_Player_SpeedDebug;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -480,6 +502,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @SecondaryAction => m_Wrapper.m_Player_SecondaryAction;
         public InputAction @ToggleInventory => m_Wrapper.m_Player_ToggleInventory;
         public InputAction @PauseMenu => m_Wrapper.m_Player_PauseMenu;
+        public InputAction @SpeedDebug => m_Wrapper.m_Player_SpeedDebug;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -504,6 +527,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @PauseMenu.started += instance.OnPauseMenu;
             @PauseMenu.performed += instance.OnPauseMenu;
             @PauseMenu.canceled += instance.OnPauseMenu;
+            @SpeedDebug.started += instance.OnSpeedDebug;
+            @SpeedDebug.performed += instance.OnSpeedDebug;
+            @SpeedDebug.canceled += instance.OnSpeedDebug;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -523,6 +549,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @PauseMenu.started -= instance.OnPauseMenu;
             @PauseMenu.performed -= instance.OnPauseMenu;
             @PauseMenu.canceled -= instance.OnPauseMenu;
+            @SpeedDebug.started -= instance.OnSpeedDebug;
+            @SpeedDebug.performed -= instance.OnSpeedDebug;
+            @SpeedDebug.canceled -= instance.OnSpeedDebug;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -665,6 +694,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnSecondaryAction(InputAction.CallbackContext context);
         void OnToggleInventory(InputAction.CallbackContext context);
         void OnPauseMenu(InputAction.CallbackContext context);
+        void OnSpeedDebug(InputAction.CallbackContext context);
     }
     public interface IHotbarActions
     {

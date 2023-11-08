@@ -13,7 +13,6 @@ namespace IslandBoy
         [SerializeField] private SpriteRenderer _swingSr;
         [SerializeField] private AudioClip _wooshSound;
         [Header("Base Stats")]
-        [SerializeField] private ToolType _baseToolType;
         [SerializeField] private ItemParameter _baseDamage;
         [SerializeField] private ItemParameter _basePower;
         [SerializeField] private ItemParameter _baseCooldown;
@@ -25,7 +24,7 @@ namespace IslandBoy
         private PlayerMoveInput _moveInput;
         private SwingCollider _swingCollider;
         private Camera _camera;
-        private InventorySlot _selectedSlot;
+        private Slot _focusSlotRef;
         private float _counter;
         private bool _isHeldDown;
         private bool _performingSwing;
@@ -39,45 +38,39 @@ namespace IslandBoy
         private void Awake()
         {
             _input = new();
-            _input.Player.PrimaryAction.started += TryPerformSwing;
             _input.Player.PrimaryAction.performed += SetIsHeldDown;
             _input.Player.PrimaryAction.canceled += SetIsHeldDown;
+            _input.Enable();
 
             _animator = GetComponent<Animator>();
             _animator.speed = 1 * _baseSwingSpeedMultiplier.Value;
             _moveInput = transform.root.GetComponent<PlayerMoveInput>();
             _ta = transform.GetChild(0).GetComponent<TileAction>();
-            _ta.BasePower = _basePower.Value;
-            _ta.BaseToolType = _baseToolType;
             _ta.transform.parent = null;
 
             _swingCollider = transform.GetChild(0).GetChild(0).GetComponent<SwingCollider>();
             _swingCollider.BaseDamage = _baseDamage.Value;
 
-            GameSignals.SELECTED_SLOT_UPDATED.AddListener(ProcessSelectedSlotUpdate);
-            GameSignals.ITEM_ADDED.AddListener(UpdateHeldItem);
+            GameSignals.FOCUS_SLOT_UPDATED.AddListener(FocusSlotUpdated);
             GameSignals.DAY_END.AddListener(DisableActions);
             GameSignals.DAY_START.AddListener(EnableActions);
             GameSignals.PLAYER_DIED.AddListener(DisableActions);
-        }
-
-        private void OnEnable()
-        {
-            _input.Enable();
-        }
-
-        private void OnDisable()
-        {
-            _input.Disable();
+            GameSignals.GAME_PAUSED.AddListener(DisableActions);
+            GameSignals.GAME_UNPAUSED.AddListener(EnableActions);
+            GameSignals.MOUSE_SLOT_GIVES_ITEM.AddListener(DontSwingThisFrame);
         }
 
         private void OnDestroy()
         {
-            GameSignals.SELECTED_SLOT_UPDATED.RemoveListener(ProcessSelectedSlotUpdate);
-            GameSignals.ITEM_ADDED.RemoveListener(UpdateHeldItem);
+            _input.Disable();
+
+            GameSignals.FOCUS_SLOT_UPDATED.RemoveListener(FocusSlotUpdated);
             GameSignals.DAY_END.RemoveListener(DisableActions);
             GameSignals.DAY_START.RemoveListener(EnableActions);
             GameSignals.PLAYER_DIED.RemoveListener(DisableActions);
+            GameSignals.GAME_PAUSED.RemoveListener(DisableActions);
+            GameSignals.GAME_UNPAUSED.RemoveListener(EnableActions);
+            GameSignals.MOUSE_SLOT_GIVES_ITEM.RemoveListener(DontSwingThisFrame);
         }
 
         private IEnumerator Start()
@@ -89,9 +82,9 @@ namespace IslandBoy
             _camera = Camera.main;
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
-            if (_selectedSlot == null) return;
+            if (_focusSlotRef == null) return;
 
             _counter += Time.deltaTime;
 
@@ -99,25 +92,30 @@ namespace IslandBoy
                 _counter = CalcParameter(_baseCooldown);
 
             if (_isHeldDown)
-                PerformSwing();
+                Swing();
         }
 
-        private void ProcessSelectedSlotUpdate(ISignalParameters parameters)
+        private void DontSwingThisFrame(ISignalParameters parameters)
         {
-            _selectedSlot = (InventorySlot)parameters.GetParameter("SelectedSlot");
-            
-            UpdateSwingSprite();
+            StartCoroutine(FrameDelay());
         }
 
-        private void UpdateHeldItem(ISignalParameters parameters)
+        private IEnumerator FrameDelay()
         {
-            UpdateSwingSprite();
+            _canPerform = false;
+            yield return new WaitForSeconds(0.2f);
+            _canPerform = true;
         }
 
-        private void UpdateSwingSprite()
+        private void FocusSlotUpdated(ISignalParameters parameters)
         {
-            _swingSr.sprite = _selectedSlot.ItemObject != null ? _selectedSlot.ItemObject.UiDisplay : null;
-            _swingCollider.SelectedSlot = _selectedSlot;
+            if (parameters.HasParameter("FocusSlot"))
+            {
+                _focusSlotRef = (Slot)parameters.GetParameter("FocusSlot");
+
+                _swingSr.sprite = _focusSlotRef.ItemObject != null ? _focusSlotRef.ItemObject.UiDisplay : null;
+                _swingCollider.FocusSlot = _focusSlotRef;
+            }
         }
 
         private void DisableActions(ISignalParameters parameters)
@@ -132,17 +130,11 @@ namespace IslandBoy
             _canPerform = true;
         }
 
-        private void TryPerformSwing(InputAction.CallbackContext context)
-        {
-            if(_selectedSlot == null) return;
-
-            PerformSwing();
-        }
-
-        private void PerformSwing()
+        private void Swing()
         {
             if (_counter < CalcParameter(_baseCooldown) || PointerHandler.IsOverLayer(5) || _performingSwing || !_canPerform) return;
-
+            if (_focusSlotRef.ItemObject == null) return;
+            if (_focusSlotRef.ItemObject.ToolType == ToolType.None) return;
             AnimStateManager.ChangeAnimationState(_animator, GetAnimationHash());
         }
 
@@ -158,7 +150,7 @@ namespace IslandBoy
 
         private float CalcParameter(ItemParameter baseParameter)
         {
-            var item = _selectedSlot.ItemObject;
+            var item = _focusSlotRef.ItemObject;
 
             if (item == null)
                 return baseParameter.Value;

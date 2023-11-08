@@ -37,22 +37,21 @@ namespace IslandBoy
             _globalVolume = FindFirstObjectByType<Volume>();
             _timer = new(_dayDurationInSec);
             _timer.OnTimerEnd += OutOfTime;
-        }
 
-        private void Start()
-        {
-            StartDay();
-            _timer.Tick(_dayDurationInSec * _debugDayPercentage); // starts the day some percent way through
-        }
-
-        private void OnEnable()
-        {
             GameSignals.DAY_END.AddListener(EndDay);
             GameSignals.NPC_MOVED_IN.AddListener(NpcMovedIn);
             GameSignals.NPC_MOVED_OUT.AddListener(NpcMovedOut);
         }
 
-        private void OnDisable()
+        private void Start()
+        {
+            ResetDay();
+            PanelEnabled(false);
+            UpdateMarker(_sunSprite);
+            _timer.Tick(_dayDurationInSec * _debugDayPercentage); // starts the day some percent way through
+        }
+
+        private void OnDestroy()
         {
             GameSignals.DAY_END.RemoveListener(EndDay);
             GameSignals.NPC_MOVED_IN.RemoveListener(NpcMovedIn);
@@ -119,9 +118,10 @@ namespace IslandBoy
         public void StartDay() // connected to continue button
         {
             ResetDay();
-            DispatchEvents();
             PanelEnabled(false);
             UpdateMarker(_sunSprite);
+
+            GameSignals.DAY_START.Dispatch();
         }
 
         private void ResetDay()
@@ -133,12 +133,6 @@ namespace IslandBoy
             _timer.IsPaused = false;
             _isDay = true;
             _onStartDay?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void DispatchEvents()
-        {
-            // implement optional parameters before dispatch here
-            GameSignals.DAY_START.Dispatch();
         }
 
         public void AddEndDaySlide(string text)

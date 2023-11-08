@@ -16,7 +16,6 @@ namespace IslandBoy
         public Seeker Seeker;
         public IAstarAI AI;
 
-        private SpriteRenderer _selectedIndicator;
         private Animator _animator;
         private Bed _bed;
         private bool _canRegister = false;
@@ -27,12 +26,10 @@ namespace IslandBoy
             AI = GetComponent<IAstarAI>();
             Seeker = GetComponent<Seeker>();
             _animator = transform.GetChild(0).GetComponent<Animator>();
-            _selectedIndicator = transform.GetChild(1).GetComponent<SpriteRenderer>();
         }
 
         private void OnEnable()
         {
-            HideSelectIndicator();
             ChangeToIdleState(_animator);
             CheckForBed();
         }
@@ -75,16 +72,6 @@ namespace IslandBoy
         public void RegisterBed(Bed bed)
         {
             _bed = bed;
-        }
-
-        public void ShowSelectIndicator()
-        {
-            _selectedIndicator.enabled = true;
-        }
-
-        public void HideSelectIndicator()
-        {
-            _selectedIndicator.enabled = false;
         }
 
         public void Seek(Vector2 pos)

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace IslandBoy
@@ -19,12 +20,19 @@ namespace IslandBoy
         public override int ConsumeValue => 0;
 
         private ItemObject _ammoObject;
+        private SelectedSlotControl _ssc;
 
-        public override void ExecuteAction(SelectedSlotControl control)
+        public override void ExecutePrimaryAction(SelectedSlotControl control)
+        {
+
+        }
+
+        public override void ExecuteSecondaryAction(SelectedSlotControl control)
         {
             if (PointerHandler.IsOverLayer(5) || control.TileAction.OverInteractable()) return;
 
             _ammoObject = null;
+            _ssc = control;
 
             if (_ammoType != AmmoType.None)
             {
@@ -35,20 +43,25 @@ namespace IslandBoy
                 _ammoObject = ammoObject;
             }
 
-            control.IsCharging = true;
-            control.OnLaunch = Launch;
+            DispatchItemCharging();
         }
 
-        private void Launch(SelectedSlotControl control, float force)
+        private void DispatchItemCharging()
         {
-            LaunchProjectile(control, force);
-            AfterLaunch(control);
-
-            AudioManager.Instance.PlayClip(_throwSound, false, true);
-            GameSignals.OBJECT_LAUNCHED.Dispatch();
+            Action<float, float> behavior = LaunchReleaseBehavior;
+            Signal signal = GameSignals.ITEM_CHARGING;
+            signal.ClearParameters();
+            signal.AddParameter("ReleaseBehavior", behavior);
+            signal.Dispatch();
         }
 
-        private void AfterLaunch(SelectedSlotControl control)
+        public void LaunchReleaseBehavior(float chargePercentage, float baseLaunchForce)
+        {
+            LaunchProjectile(chargePercentage, baseLaunchForce);
+            AfterLaunch();
+        }
+
+        private void AfterLaunch()
         {
             if (_ammoObject != null)
             {
@@ -57,28 +70,25 @@ namespace IslandBoy
             }
 
             if (Stackable)
-                control.SelectedSlot.InventoryItem.Count--;
-            else
-                control.TileAction.ModifyDurability();
+                _ssc.FocusSlot.InventoryItem.Count--;
         }
 
-        private void LaunchProjectile(SelectedSlotControl control, float force)
+        private void LaunchProjectile(float launchForcePercentage, float baseLaunchForce)
         {
-            Vector2 launchPosition = (Vector3)control.PR.Position + new Vector3(0, 0.4f);
+            Vector2 launchPosition = _pr.Position + new Vector2(0, 0.4f);
 
             GameObject launchPrefab = _ammoObject == null ? _throwPrefab : _ammoObject.AmmoPrefab;
             GameObject launchObject = Instantiate(launchPrefab, launchPosition, Quaternion.identity);
             Rigidbody2D rb = launchObject.GetComponent<Rigidbody2D>();
+            AudioManager.Instance.PlayClip(_throwSound, false, true);
 
-            Vector2 direction = ((Vector3)control.PR.MousePosition - rb.transform.position).normalized;
-            Vector2 launchForce = (direction * (force + _launchForce));
+            Vector2 direction = ((Vector3)_pr.MousePosition - rb.transform.position).normalized;
+            Vector2 launchForce = (direction * (baseLaunchForce + _launchForce));
 
             if (launchObject.TryGetComponent(out Ammo arrow))
             {
-                arrow.Setup(this, _ammoObject, control.ThrowForcePercentage);
+                arrow.Setup(this, _ammoObject, launchForcePercentage, launchForce);
             }
-
-            rb.AddForce(launchForce, ForceMode2D.Impulse);
         }
 
         public override string GetDescription()

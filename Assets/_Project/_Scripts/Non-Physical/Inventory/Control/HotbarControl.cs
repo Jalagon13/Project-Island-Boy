@@ -18,7 +18,6 @@ namespace IslandBoy
 
         private void Awake()
         {
-            GameSignals.CONSUME_ITEM_SUCCESS.AddListener(DecreaseSelectedSlot);
 
             _input = new();
             _input.Hotbar.Scroll.performed += SelectSlotScroll;
@@ -31,11 +30,19 @@ namespace IslandBoy
             _input.Hotbar._7.started += SelectSlot;
             _input.Hotbar._8.started += SelectSlot;
             _input.Hotbar._9.started += SelectSlot;
+
+            GameSignals.GAME_PAUSED.AddListener(PauseHandle);
+            GameSignals.GAME_UNPAUSED.AddListener(UnpauseHandle);
+            GameSignals.PLAYER_DIED.AddListener(PauseHandle);
+            GameSignals.DAY_START.AddListener(UnpauseHandle);
         }
 
         private void OnDestroy()
         {
-            GameSignals.CONSUME_ITEM_SUCCESS.RemoveListener(DecreaseSelectedSlot);
+            GameSignals.GAME_PAUSED.RemoveListener(PauseHandle);
+            GameSignals.GAME_UNPAUSED.RemoveListener(UnpauseHandle);
+            GameSignals.PLAYER_DIED.RemoveListener(PauseHandle); 
+            GameSignals.DAY_START.RemoveListener(UnpauseHandle);
         }
 
         private void OnEnable()
@@ -51,12 +58,17 @@ namespace IslandBoy
         private void Start()
         {
             _slotIndex = 0;
-            HighlightSelected();
+            SelectSlotScroll(new());
         }
 
-        private void DecreaseSelectedSlot(ISignalParameters parameters)
+        private void PauseHandle(ISignalParameters parameters)
         {
-            _selectedSlot.InventoryItem.Count--;
+            _input.Disable();
+        }
+
+        private void UnpauseHandle(ISignalParameters parameters)
+        {
+            _input.Enable();
         }
 
         private void SelectSlotScroll(InputAction.CallbackContext context)
@@ -104,7 +116,7 @@ namespace IslandBoy
 
         private void DispatchSelectedSlotUpdated()
         {
-            Signal signal = GameSignals.SELECTED_SLOT_UPDATED;
+            Signal signal = GameSignals.HOTBAR_SLOT_UPDATED;
             signal.ClearParameters();
             signal.AddParameter("SelectedSlot", _selectedSlot);
             signal.Dispatch();

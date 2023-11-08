@@ -369,7 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d8c5ed8a3d5d5241abf99eb3e941f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageAmount: 12
+  _damageAmount: 6
 --- !u!1 &8560427171654549071
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,7 +485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PR: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _maxHealth: 25
+  _maxHealth: 21
   _iFrameDuration: 0.17
   _moveSpeed: 1
   _damageSound: {fileID: 8300000, guid: edaa0a4bdb86bde4ba2297c08ff3a710, type: 3}
@@ -494,7 +494,7 @@ MonoBehaviour:
     <Table>k__BackingField:
     - Item: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
       Min: 1
-      Max: 3
+      Max: 2
       Chance: 100
   _onDamage:
     m_PersistentCalls:

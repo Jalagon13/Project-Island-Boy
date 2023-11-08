@@ -46,22 +46,21 @@ namespace IslandBoy
         {
             if (!_canCheck) return;
 
-            if (!_canSleep)
-            {
-                PopupMessage.Create(transform.position, "Too early to sleep!", Color.yellow, new(0.5f, 0.5f), 1f);
-                return;
-            }
-
             if (InValidSpace())
             {
-                DispatchEndDay();
+                if (!_canSleep)
+                {
+                    PopupMessage.Create(transform.position, "Too early to sleep!", Color.yellow, new(0.5f, 0.5f), 1f);
+                    return;
+                }
+
+                DispatchEvents();
             }
         }
 
-        private void DispatchEndDay()
+        private void DispatchEvents()
         {
-            // implement optional parameters before dispatch here
-            
+            GameSignals.BED_TIME_EXECUTED.Dispatch();
             GameSignals.DAY_END.Dispatch();
         }
 
@@ -84,7 +83,7 @@ namespace IslandBoy
                 if (!_tmr.FloorTilemap.HasTile(p) && !_tmr.WallTilemap.HasTile(p) && !HasDoor(p))
                 {
                     //_feedbackHolder.DisplayFeedback("Not valid housing. Make sure the area around you is enclosed.", Color.yellow);
-                    PopupMessage.Create(transform.position, "Area not enclosed!", Color.yellow, new(0.5f, 0.5f), 1f);
+                    PopupMessage.Create(transform.position, "Area not enclosed with floor and wall", Color.yellow, new(0.5f, 0.5f), 3f);
                     return false;
                 }
 
@@ -177,7 +176,7 @@ namespace IslandBoy
 
             if (!validDoorFound)
             {
-                PopupMessage.Create(transform.position, "No valid door!", Color.yellow, new(0.5f, 0.5f), 1f);
+                PopupMessage.Create(transform.position, "Door must lead to outside!", Color.yellow, new(0.5f, 0.5f), 1f);
                 return false;
             }
 

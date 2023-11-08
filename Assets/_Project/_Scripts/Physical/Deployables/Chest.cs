@@ -9,7 +9,9 @@ namespace IslandBoy
     public class Chest : Interactable
     {
         [SerializeField] private List<ChestInvSlot> _presetItems = new(); // need to build functionality to populate chests with preset items.
+
         private Canvas _slotCanvas;
+        private bool _appQuitting;
 
         public override void Awake()
         {
@@ -36,8 +38,15 @@ namespace IslandBoy
             return base.Start();
         }
 
+        private void OnApplicationQuit()
+        {
+            _appQuitting = true;
+        }
+
         private void OnDestroy()
         {
+            if (_appQuitting) return;
+
             EnableChestSlots(false);
 
             foreach (Transform transform in _slotCanvas.transform.GetChild(0))
