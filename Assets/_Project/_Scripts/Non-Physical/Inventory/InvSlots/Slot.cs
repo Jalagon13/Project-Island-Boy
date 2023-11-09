@@ -120,6 +120,18 @@ namespace IslandBoy
             }
         }
 
+        protected void MoveItemIntoChest() // BROOKE ----------------
+        {
+            if (HasItem() && _mouseItemHolder.HasItem())
+            {
+                var item = transform.GetChild(0);
+                item.SetParent(_mouseItemHolder.transform, false);
+
+                SpawnInventoryItem(ItemObject);
+                PlaySound();
+            }
+        } // BROOKE -------------------------------------------------
+
         protected void GiveThisItemToMouseHolder()
         {
             var item = transform.GetChild(0);
