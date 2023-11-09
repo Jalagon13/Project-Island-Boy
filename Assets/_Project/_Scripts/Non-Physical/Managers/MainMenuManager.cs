@@ -11,7 +11,6 @@ namespace IslandBoy
         public void LoadGameWorld()
         {
             StartCoroutine(LoadScenes());
-            
         }
 
         private IEnumerator LoadScenes()
