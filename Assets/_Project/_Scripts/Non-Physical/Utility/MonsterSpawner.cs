@@ -11,7 +11,7 @@ namespace IslandBoy
     {
         [SerializeField] private TilemapReferences _tmr;
         [SerializeField] private int _maxMonsterCount;
-        [SerializeField] private Entity _monsterPrefab;
+        //[SerializeField] private Entity _monsterPrefab;
 
         //private int _monsterCounter;
 
@@ -56,27 +56,27 @@ namespace IslandBoy
                     continue;
                 }
 
-                Spawn(MonsterToSpawn(), spawn);
+                //Spawn(MonsterToSpawn(), spawn);
             }
         }
 
-        private Entity MonsterToSpawn()
-        {
-            return _monsterPrefab;
-        }
+        //private Entity MonsterToSpawn()
+        //{
+        //    return _monsterPrefab;
+        //}
 
-        private void Spawn(Entity monster, Vector2 pos)
-        {
-            Entity entity = Instantiate(monster, pos, Quaternion.identity);
+        //private void Spawn(Entity monster, Vector2 pos)
+        //{
+        //    Entity entity = Instantiate(monster, pos, Quaternion.identity);
 
-            //entity.gameObject.AddComponent<UndergroundAsset>();
-            //entity.GetComponent<UndergroundAsset>().RegisterAsset(() =>
-            //{
-            //    _monsterCounter--;
-            //});
+        //    //entity.gameObject.AddComponent<UndergroundAsset>();
+        //    //entity.GetComponent<UndergroundAsset>().RegisterAsset(() =>
+        //    //{
+        //    //    _monsterCounter--;
+        //    //});
 
-            //_monsterCounter++;
-        }
+        //    //_monsterCounter++;
+        //}
 
         private Vector2 CalcSpawnPos()
         {

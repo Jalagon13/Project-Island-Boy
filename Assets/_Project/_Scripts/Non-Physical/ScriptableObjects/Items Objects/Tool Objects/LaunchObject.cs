@@ -29,7 +29,7 @@ namespace IslandBoy
 
         public override void ExecuteSecondaryAction(SelectedSlotControl control)
         {
-            if (PointerHandler.IsOverLayer(5) || control.TileAction.OverInteractable()) return;
+            if (PointerHandler.IsOverLayer(5) || control.CursorControl.OverInteractable()) return;
 
             _ammoObject = null;
             _ssc = control;

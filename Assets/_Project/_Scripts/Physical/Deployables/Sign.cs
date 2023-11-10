@@ -16,7 +16,7 @@ namespace IslandBoy
         private void Awake()
         {
             _signText.text = _text;
-            _tutorialObject = transform.GetChild(1).gameObject;
+            _tutorialObject = transform.GetChild(3).gameObject;
         }
 
         private IEnumerator Start()

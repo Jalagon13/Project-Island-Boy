@@ -15,7 +15,7 @@ namespace IslandBoy
         private SpriteRenderer _sr;
         private bool _opened;
 
-        public override void Awake()
+        protected override void Awake()
         {
             base.Awake();
             _doorCollider = transform.GetChild(1).GetComponent<Collider2D>();
@@ -25,8 +25,9 @@ namespace IslandBoy
 
         public override void Interact()
         {
-            if (!_canInteract) return;
+            _instructions.gameObject.SetActive(false);
 
+            if (!_canInteract) return;
             if (_opened)
                 Close();
             else
@@ -51,6 +52,12 @@ namespace IslandBoy
 
             Astar.UpdateGridGraph(transform.position);
             AudioManager.Instance.PlayClip(_doorCloseSound, false, true);
+        }
+
+        public override void ShowDisplay()
+        {
+            _yellowCorners.gameObject.SetActive(true);
+            _instructions.gameObject.SetActive(true);
         }
     }
 }

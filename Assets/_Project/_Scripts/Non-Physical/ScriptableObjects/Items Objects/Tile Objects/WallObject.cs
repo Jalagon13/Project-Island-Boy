@@ -18,9 +18,9 @@ namespace IslandBoy
         {
             if (PointerHandler.IsOverLayer(5)) return;
 
-            var pos = Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position);
+            var pos = Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position);
 
-            if (!control.TMR.WallTilemap.HasTile(pos) && control.TileAction.IsClear() && control.TMR.GroundTilemap.HasTile(pos))
+            if (!control.TMR.WallTilemap.HasTile(pos) && control.CursorControl.IsClear() && control.TMR.GroundTilemap.HasTile(pos))
             {
                 control.FocusSlot.InventoryItem.Count--;
                 control.TMR.WallTilemap.SetTile(pos, _wallTile);

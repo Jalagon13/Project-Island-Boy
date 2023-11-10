@@ -6,12 +6,12 @@ namespace IslandBoy
 {
     public class RusherIdle : StateMachineBehaviour
     {
-        private TestEntity _ctx;
+        private SlimeStateManager _ctx;
 
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             //Debug.Log("Entering Idle State");
-            _ctx = animator.transform.root.GetComponent<TestEntity>();
+            _ctx = animator.transform.root.GetComponent<SlimeStateManager>();
             _ctx.AI.isStopped = true;
             _ctx.OnMove += Idle;
             _ctx.StartCoroutine(IdleDuration(animator));

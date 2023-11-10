@@ -1,69 +1,121 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace IslandBoy
 {
     [SelectionBase]
-    public class Resource : MonoBehaviour, IBreakable
+    public class Resource : Clickable
     {
-        [SerializeField] private string _resourceName;
-        [SerializeField] private float _maxHitPoints;
-        [SerializeField] private ToolType _harvestType;
         [SerializeField] private AudioClip _hitSound;
         [SerializeField] private AudioClip _breakSound;
         [SerializeField] private LootTable _lootTable;
 
-        private readonly static int _rscIdleHash = Animator.StringToHash("[Anm] RscIdle");
-        private readonly static int _rscHitHash = Animator.StringToHash("[Anm] RscHit");
-        private SpriteRenderer _sr;
-        private Vector2 _dropPosition;
-        private float _currentHitPoints;
+        protected int _idleHash = Animator.StringToHash("[Anm] RscIdle");
+        protected int _onClickHash = Animator.StringToHash("[Anm] RscHit");
+        protected SpriteRenderer _sr;
+        protected Vector2 _dropPosition;
+        protected Animator _animator;
+        protected GameObject _progressBar;
+        protected GameObject _amountDisplay;
+        protected GameObject _instructions;
+        protected GameObject _yellowCorners;
 
-        public ToolType BreakType { get { return _harvestType; } set { _harvestType = value; } }
-        public float MaxHitPoints { get { return _maxHitPoints; } set { _maxHitPoints = value; } }
-        public float CurrentHitPoints { get { return _currentHitPoints; } set { _currentHitPoints = value; } }
-        public string ResourceName { get { return _resourceName; } }
+        public string ResourceName { get { return null; } }
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
+            _animator = GetComponent<Animator>();
             _dropPosition = transform.position + new Vector3(0.5f, 0.5f, 0);
             _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
-            _currentHitPoints = _maxHitPoints;
+            _progressBar = transform.GetChild(2).GetChild(0).gameObject;
+            _amountDisplay = transform.GetChild(2).GetChild(1).gameObject;
+            _instructions = transform.GetChild(2).GetChild(2).gameObject;
+            _yellowCorners = transform.GetChild(2).GetChild(3).gameObject;
+        }
+
+        private void Start()
+        {
+            EnableDisplay(false);
         }
 
         public void RscIdle()
         {
-            AnimStateManager.ChangeAnimationState(GetComponent<Animator>(), _rscIdleHash);
+            if (_animator == null) return;
+
+            AnimStateManager.ChangeAnimationState(_animator, _idleHash);
         }
 
         public void RscHit()
         {
-            GetComponent<Animator>().enabled = false;
-            GetComponent<Animator>().enabled = true;
-            AnimStateManager.ChangeAnimationState(GetComponent<Animator>(), _rscHitHash);
+            if (_animator == null) return;
+
+            _animator.enabled = false;
+            _animator.enabled = true;
+            AnimStateManager.ChangeAnimationState(_animator, _onClickHash);
         }
 
-        public void Hit(ToolType incomingToolType)
+        public override void OnClick(ToolType incomingToolType)
         {
-            RscHit();
+            base.OnClick(incomingToolType);
 
-            _currentHitPoints -= incomingToolType == _harvestType ? 2 : 1;
-
-            if (_currentHitPoints <= 0)
-                Break();
-
-            GameSignals.RSC_HIT.Dispatch();
             AudioManager.Instance.PlayClip(_hitSound, false, true, 0.7f);
+
+            EnableDisplay(true);
+            UpdateAmountDisplay();
+            UpdateFillImage();
+            DisableInstructions();
+            RscHit();
         }
 
-        public void Break()
+        protected override void OnBreak()
         {
             AudioManager.Instance.PlayClip(_breakSound, false, true, 0.75f);
             _lootTable.SpawnLoot(_dropPosition);
-            StopAllCoroutines();
 
+            StopAllCoroutines();
             Destroy(gameObject);
+        }
+
+        public override void ShowDisplay()
+        {
+            EnableDisplay(true);
+            UpdateFillImage();
+            UpdateAmountDisplay();
+        }
+
+        protected void UpdateFillImage()
+        {
+            var fillImage = _progressBar.transform.GetChild(1).GetComponent<Image>();
+            fillImage.fillAmount = Mathf.Clamp01(Mathf.InverseLerp(0, _maxHitPoints, _currentHitPoints));
+        }
+
+        protected void UpdateAmountDisplay()
+        {
+            var amountText = _amountDisplay.GetComponent<TextMeshProUGUI>();
+            amountText.text = _currentHitPoints.ToString();
+        }
+
+        protected void DisableInstructions()
+        {
+            _instructions.SetActive(false);
+        }
+
+        public override void HideDisplay()
+        {
+            EnableDisplay(false);
+        }
+
+        protected void EnableDisplay(bool _)
+        {
+            _progressBar.SetActive(_);
+            _amountDisplay.SetActive(_);
+            _instructions.SetActive(_);
+            _yellowCorners.SetActive(_);
         }
     }
 }

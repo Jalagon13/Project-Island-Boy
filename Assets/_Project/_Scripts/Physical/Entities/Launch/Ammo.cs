@@ -36,15 +36,15 @@ namespace IslandBoy
             GameObject colGo = collision.gameObject;
             if (colGo.layer == 7) return;
 
-            if (colGo.TryGetComponent(out IHealth<int> health))
-            {
-                health.Damage(_damage, gameObject);
-                Destroy(gameObject);
-            }
+            //if (colGo.TryGetComponent(out IHealth<int> health))
+            //{
+            //    health.Damage(_damage, gameObject);
+            //    Destroy(gameObject);
+            //}
 
             if(colGo.TryGetComponent(out Resource rsc))
             {
-                rsc.Hit(0);
+                rsc.OnClick(0);
             }
 
             if (colGo.layer == 3 && collision.isTrigger == false)

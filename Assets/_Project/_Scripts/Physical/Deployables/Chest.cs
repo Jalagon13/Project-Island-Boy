@@ -13,10 +13,10 @@ namespace IslandBoy
         private Canvas _slotCanvas;
         private bool _appQuitting;
 
-        public override void Awake()
+        protected override void Awake()
         {
             base.Awake();
-            _slotCanvas = transform.GetChild(2).GetComponent<Canvas>();
+            _slotCanvas = transform.GetChild(3).GetComponent<Canvas>();
         }
 
         private void OnEnable()
@@ -76,6 +76,8 @@ namespace IslandBoy
         public override void Interact()
         {
             if (!_canInteract) return;
+
+            _instructions.gameObject.SetActive(false);
             DispatchChestInteract();
             EnableChestSlots(true);
         }
@@ -96,6 +98,12 @@ namespace IslandBoy
             signal.ClearParameters();
             signal.AddParameter("ChestInteract", this);
             signal.Dispatch();
+        }
+
+        public override void ShowDisplay()
+        {
+            _yellowCorners.gameObject.SetActive(true);
+            _instructions.gameObject.SetActive(true);
         }
     }
 

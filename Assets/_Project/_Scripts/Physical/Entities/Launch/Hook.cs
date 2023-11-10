@@ -96,10 +96,10 @@ namespace IslandBoy
 
         private void LootDirectly()
         {
-            foreach (var item in _fish.LootTable.Loot())
-            {
-                _pr.Inventory.AddItem(item.Key, item.Value);
-            }
+            //foreach (var item in _fish.LootTable.Loot())
+            //{
+            //    _pr.Inventory.AddItem(item.Key, item.Value);
+            //}
         }
     }
 }

@@ -6,19 +6,19 @@ namespace IslandBoy
 {
     public class RusherChase : StateMachineBehaviour
     {
-        private TestEntity _ctx;
+        private SlimeStateManager _ctx;
         private Vector2 _chasePos;
         private float _chaseSpeed = 2.75f;
 
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             //Debug.Log("Entering Chase State");
-            _ctx = animator.transform.root.GetComponent<TestEntity>();
+            _ctx = animator.transform.root.GetComponent<SlimeStateManager>();
             _ctx.AI.maxSpeed = _chaseSpeed;
             _chasePos = _ctx.PR.Position;
             _ctx.OnMove += Chase;
 
-            //AudioManager.Instance.PlayClip(_ctx.AgroClip, false, true);
+            AudioManager.Instance.PlayClip(_ctx._agroSound, false, true);
         }
 
         override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

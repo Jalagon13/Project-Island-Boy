@@ -47,7 +47,7 @@ namespace IslandBoy
             _iFrameTimer = new Timer(_iFrameDuration);
             _spawnPoint = transform.position;
 
-            GameSignals.RSC_HIT.AddListener(OnSwing);
+            GameSignals.CLICKABLE_CLICKED.AddListener(OnSwing);
             GameSignals.DAY_OUT_OF_TIME.AddListener(OnOutOfTime);
             GameSignals.DAY_START.AddListener(ResetStats);
             GameSignals.DAY_START.AddListener(PlacePlayerAtSpawnPoint);
@@ -57,7 +57,7 @@ namespace IslandBoy
 
         private void OnDestroy()
         {
-            GameSignals.RSC_HIT.RemoveListener(OnSwing);
+            GameSignals.CLICKABLE_CLICKED.RemoveListener(OnSwing);
             GameSignals.DAY_OUT_OF_TIME.RemoveListener(OnOutOfTime);
             GameSignals.DAY_START.RemoveListener(ResetStats);
             GameSignals.DAY_START.RemoveListener(PlacePlayerAtSpawnPoint);

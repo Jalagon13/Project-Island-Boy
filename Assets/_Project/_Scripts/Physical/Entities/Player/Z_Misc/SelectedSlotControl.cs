@@ -15,7 +15,7 @@ namespace IslandBoy
         private Slot _hotbarSlot;
         private Slot _mouseSlot;
         private Player _player;
-        private TileAction _ta;
+        private CursorControl _cursorControl;
         private float _delayCooldown = 0.2f;
         private bool _isHeldDown;
         private bool _mouseSlotHasitem;
@@ -23,12 +23,12 @@ namespace IslandBoy
         public Slot FocusSlot { get { return _focusSlot; } }
         public Player Player { get { return _player; } }
         public TilemapReferences TMR { get { return _tmr; } }
-        public TileAction TileAction { get { return _ta; } }
+        public CursorControl CursorControl { get { return _cursorControl; } }
 
         private void Awake()
         {
             _player = GetComponent<Player>();
-            _ta = transform.GetChild(2).GetChild(0).GetComponent<TileAction>();
+            _cursorControl = transform.GetChild(2).GetComponent<CursorControl>();
 
             _input = new();
             _input.Player.PrimaryAction.started += ExecutePrimaryAction;

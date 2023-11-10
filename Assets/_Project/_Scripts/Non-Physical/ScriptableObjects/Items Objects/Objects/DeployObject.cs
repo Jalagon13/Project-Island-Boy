@@ -22,14 +22,14 @@ namespace IslandBoy
         {
             if (PointerHandler.IsOverLayer(5)) return;
 
-            bool wallTmHasTile = _tmr.WallTilemap.HasTile(Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position));
-            bool groundTmHasTile = _tmr.GroundTilemap.HasTile(Vector3Int.FloorToInt(control.TileAction.gameObject.transform.position));
-            bool tilActionClear = control.TileAction.IsClear();
+            bool wallTmHasTile = _tmr.WallTilemap.HasTile(Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position));
+            bool groundTmHasTile = _tmr.GroundTilemap.HasTile(Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position));
+            bool tilActionClear = control.CursorControl.IsClear();
 
             if (tilActionClear && !wallTmHasTile && groundTmHasTile)
             {
                 control.FocusSlot.InventoryItem.Count--;
-                control.TileAction.PlaceDeployable(_prefabToDeploy);
+                control.CursorControl.PlaceDeployable(_prefabToDeploy);
 
                 AudioManager.Instance.PlayClip(_deploySound, false, true);
             }
