@@ -44,7 +44,7 @@ namespace IslandBoy
                 if (!rsc)
                     continue;
 
-                rsc.Hit(_breakableDamage);
+                rsc.Hit(ToolType.None);
             }
         }
 

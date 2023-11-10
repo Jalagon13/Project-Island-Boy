@@ -9,7 +9,6 @@ namespace IslandBoy
     {
         [SerializeField] private string _resourceName;
         [SerializeField] private float _maxHitPoints;
-        [SerializeField] private bool _breakWithAnyTool = false;
         [SerializeField] private ToolType _harvestType;
         [SerializeField] private AudioClip _hitSound;
         [SerializeField] private AudioClip _breakSound;
@@ -22,7 +21,6 @@ namespace IslandBoy
         private float _currentHitPoints;
 
         public ToolType BreakType { get { return _harvestType; } set { _harvestType = value; } }
-        public bool BreakWithAnyTool { get { return _breakWithAnyTool; } set { _breakWithAnyTool = value; } }
         public float MaxHitPoints { get { return _maxHitPoints; } set { _maxHitPoints = value; } }
         public float CurrentHitPoints { get { return _currentHitPoints; } set { _currentHitPoints = value; } }
         public string ResourceName { get { return _resourceName; } }
@@ -44,22 +42,16 @@ namespace IslandBoy
             AnimStateManager.ChangeAnimationState(GetComponent<Animator>(), _rscHitHash);
         }
 
-        public bool Hit(float amount, ToolType toolType = ToolType.None)
+        public void Hit(ToolType incomingToolType)
         {
-            if (!_breakWithAnyTool)
-                if (toolType == ToolType.None || toolType != _harvestType) return false;
-
-            AudioManager.Instance.PlayClip(_hitSound, false, true, 0.7f);
-            PopupMessage.Create(transform.position, amount.ToString(), Color.yellow, new(0, 0.5f));
-
             RscHit();
 
-            _currentHitPoints -= amount;
+            _currentHitPoints -= incomingToolType == _harvestType ? 2 : 1;
 
             if (_currentHitPoints <= 0)
                 Break();
 
-            return true;
+            AudioManager.Instance.PlayClip(_hitSound, false, true, 0.7f);
         }
 
         public void Break()

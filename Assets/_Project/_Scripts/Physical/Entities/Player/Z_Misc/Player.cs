@@ -15,6 +15,7 @@ namespace IslandBoy
     public class Player : MonoBehaviour
     {
         [Header("Player Stats")]
+        [SerializeField] private PlayerReference _pr;
         [SerializeField] private int _maxHp;
         [SerializeField] private int _maxNrg;
         [SerializeField] private int _maxMp;
@@ -85,6 +86,8 @@ namespace IslandBoy
             _hpCdTimer.Tick(Time.deltaTime);
             _nrgCdTimer.Tick(Time.deltaTime);
             _mpCdTimer.Tick(Time.deltaTime);
+
+            _pr.Position = transform.position;
         }
 
         private void PlacePlayerAtSpawnPoint(ISignalParameters parameters)

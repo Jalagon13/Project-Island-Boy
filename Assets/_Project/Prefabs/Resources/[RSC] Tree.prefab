@@ -42,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _maxHitPoints
-      value: 100
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _resourceName
@@ -54,15 +54,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Max
-      value: 16
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Min
-      value: 12
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[1].Max
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[1].Min
@@ -82,7 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[1].Chance
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2594954625819056483, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: m_LocalPosition.x

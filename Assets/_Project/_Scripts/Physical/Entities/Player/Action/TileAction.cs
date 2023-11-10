@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
@@ -10,25 +11,26 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private TilemapReferences _tmr;
-        [SerializeField] private ItemParameter _powerParameter;
-        [SerializeField] private ItemParameter _durabilityParameter;
+        [SerializeField] private float _maxDist;
 
-        private TileHpCanvas _stHpCanvas;
-        private TileIndicator _ti;
         private PlayerInput _input;
+        private SpriteRenderer _sr;
         private Slot _focusSlotRef;
         private bool _placingThisFrame;
+        private Vector2 _previousCenterPos;
+        private Vector2 _currentCenterPos;
+
+        public Vector2 CurrentCenterPos { get { return _currentCenterPos; } }
 
         private void Awake()
         {
             _input = new();
             _input.Player.SecondaryAction.started += Interact;
-            _stHpCanvas = GetComponent<TileHpCanvas>();
-            _ti = GetComponent<TileIndicator>();
+            _input.Enable();
+
+            _sr = GetComponent<SpriteRenderer>();
 
             GameSignals.FOCUS_SLOT_UPDATED.AddListener(FocusSlotUpdated);
-
-            _input.Enable();
         }
 
         private void OnDestroy()
@@ -40,7 +42,58 @@ namespace IslandBoy
 
         private void Update()
         {
-            transform.SetPositionAndRotation(CenterOfTilePos(), Quaternion.identity);
+            transform.SetPositionAndRotation(CalcPosition(), Quaternion.identity);
+
+            CheckWhenEnterNewTile();
+        }
+
+        private void CheckWhenEnterNewTile()
+        {
+            _currentCenterPos = CalcCenterTile();
+
+            if(_currentCenterPos != _previousCenterPos)
+            {
+                OnEnterNewTile();
+                
+                _previousCenterPos = _currentCenterPos;
+            }
+        }
+
+        private void OnEnterNewTile()
+        {
+            _sr.enabled = GetBreakableObjects().Count <= 0;
+
+            Signal signal = GameSignals.TILE_ACTION_ENTERED_NEW_TILE;
+            signal.ClearParameters();
+            signal.AddParameter("Breakables", GetBreakableObjects());
+            signal.AddParameter("CurrentCenterPos", _currentCenterPos);
+            signal.AddParameter("OverInteractable", OverInteractable());
+            signal.Dispatch();
+        }
+
+        public List<IBreakable> GetBreakableObjects()
+        {
+            var colliders = Physics2D.OverlapCircleAll(_currentCenterPos, 0.2f);
+
+            List<IBreakable> breakableObjects = new();
+
+            foreach (var collider in colliders)
+            {
+                if (collider.TryGetComponent(out IBreakable breakable))
+                {
+                    breakableObjects.Add(breakable);
+                }
+            }
+
+            return breakableObjects;
+        }
+
+        private Vector2 CalcCenterTile()
+        {
+            int tileX = Mathf.FloorToInt(transform.position.x);
+            int tileY = Mathf.FloorToInt(transform.position.y);
+
+            return new Vector2(tileX + 0.5f, tileY + 0.5f);
         }
 
         private void FocusSlotUpdated(ISignalParameters parameters)
@@ -53,7 +106,7 @@ namespace IslandBoy
 
         public bool OverInteractable()
         {
-            var colliders = Physics2D.OverlapBoxAll(CenterOfTilePos(), new Vector2(0.5f, 0.5f), 0);
+            var colliders = Physics2D.OverlapCircleAll(_currentCenterPos, 0.2f);
 
             foreach (Collider2D col in colliders)
             {
@@ -68,7 +121,7 @@ namespace IslandBoy
 
         private void Interact(InputAction.CallbackContext context)
         {
-            var colliders = Physics2D.OverlapBoxAll(CenterOfTilePos(), new Vector2(0.5f, 0.5f), 0);
+            var colliders = Physics2D.OverlapCircleAll(_currentCenterPos, 0.2f);
 
             foreach (Collider2D col in colliders)
             {
@@ -83,7 +136,7 @@ namespace IslandBoy
 
         public bool IsClear()
         {
-            var colliders = Physics2D.OverlapBoxAll(CenterOfTilePos(), new Vector2(0.5f, 0.5f), 0);
+            var colliders = Physics2D.OverlapBoxAll(CalcPosition(), new Vector2(0.5f, 0.5f), 0);
 
             foreach(Collider2D col in colliders)
             {
@@ -119,54 +172,8 @@ namespace IslandBoy
         {
             foreach (var breakable in GetBreakableObjects())
             {
-                if (breakable.BreakWithAnyTool)
-                {
-                    TryHitBreakable(breakable);
-                    break;
-                }
-                else if (_focusSlotRef.ItemObject != null)
-                {
-                    if (breakable.BreakType == _focusSlotRef.ItemObject.ToolType)
-                    {
-                        TryHitBreakable(breakable);
-                    }
-                }
+                breakable.Hit(CalcToolType());
             }
-        }
-
-        private void TryHitBreakable(IBreakable breakable)
-        {
-            if (breakable.Hit(CalcPower(), CalcToolType()))
-            {
-                if (breakable.CurrentHitPoints <= 0)
-                {
-                    _stHpCanvas.HideHpCanvas();
-                    _ti.ChangeToOff();
-
-                    _ti.UpdateLogic();
-                }
-                else
-                {
-                    _stHpCanvas.ShowHpCanvas(breakable.MaxHitPoints, breakable.CurrentHitPoints);
-                }
-            }
-        }
-
-        private List<IBreakable> GetBreakableObjects()
-        {
-            var colliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
-
-            List<IBreakable> breakableObjects = new();
-
-            foreach (var collider in colliders)
-            {
-                if (collider.TryGetComponent(out IBreakable breakable))
-                {
-                    breakableObjects.Add(breakable);
-                }
-            }
-
-            return breakableObjects;
         }
 
         private void DestroyTile(Tilemap tm)
@@ -198,54 +205,21 @@ namespace IslandBoy
             _placingThisFrame = false;
         }
 
-        //public void ModifyDurability()
-        //{
-        //    //if (_pr.SelectedSlot.ItemObject is not ToolObject) return;
-        //    if (_selectedSlot.CurrentParameters.Count <= 0) return;
-
-        //    var itemParams = _selectedSlot.CurrentParameters;
-
-        //    if (itemParams.Contains(_durabilityParameter))
-        //    {
-        //        int index = itemParams.IndexOf(_durabilityParameter);
-        //        float newValue = itemParams[index].Value - 1;
-        //        itemParams[index] = new ItemParameter
-        //        {
-        //            Parameter = _durabilityParameter.Parameter,
-        //            Value = newValue
-        //        };
-
-        //        _selectedSlot.InventoryItem.UpdateDurabilityCounter();
-        //    }
-        //}
-
-        private float CalcPower()
-        {
-            if (_focusSlotRef.CurrentParameters.Count <= 0) return 8.4f;
-
-            var itemParams = _focusSlotRef.CurrentParameters;
-
-            if (itemParams.Contains(_powerParameter))
-            {
-                int index = itemParams.IndexOf(_powerParameter);
-                return itemParams[index].Value;
-            }
-            
-            return 8.4f;
-        }
-
         private ToolType CalcToolType()
         {
             var item = _focusSlotRef.ItemObject;
             return item == null ? ToolType.None : item.ToolType;
         }
 
-        private Vector2 CenterOfTilePos()
+        private Vector2 CalcPosition()
         {
-            var playerPosTileCenter = GetCenterOfTilePos(_pr.Position/* + new Vector2(0f, 0.4f)*/);
-            var dir = (_pr.MousePosition - playerPosTileCenter).normalized;
+            Vector2 taPosition;
+            Vector2 playerPos = transform.root.transform.localPosition;
+            Vector2 direction = (_pr.MousePosition - playerPos).normalized;
 
-            return GetCenterOfTilePos(playerPosTileCenter + dir);
+            taPosition = Vector2.Distance(playerPos, _pr.MousePosition) > _maxDist ? playerPos + (direction * _maxDist) : _pr.MousePosition;
+
+            return taPosition;
         }
 
         private Vector2 GetCenterOfTilePos(Vector3 pos)
