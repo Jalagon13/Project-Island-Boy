@@ -15,6 +15,7 @@ namespace IslandBoy
 
         private PlayerInput _input;
         private SpriteRenderer _sr;
+        private Sprite _defaultPointerSprite;
         private Slot _focusSlotRef;
         private bool _placingThisFrame;
         private Vector2 _previousCenterPos;
@@ -29,6 +30,7 @@ namespace IslandBoy
             _input.Enable();
 
             _sr = GetComponent<SpriteRenderer>();
+            _defaultPointerSprite = _sr.sprite;
 
             GameSignals.FOCUS_SLOT_UPDATED.AddListener(FocusSlotUpdated);
         }
@@ -101,6 +103,15 @@ namespace IslandBoy
             if (parameters.HasParameter("FocusSlot"))
             {
                 _focusSlotRef = (Slot)parameters.GetParameter("FocusSlot");
+
+                if (_focusSlotRef.ItemObject != null)
+                {
+                    _sr.sprite = _focusSlotRef.ItemObject.ToolType != ToolType.None ? _focusSlotRef.ItemObject.UiDisplay : _defaultPointerSprite;
+                }
+                else
+                {
+                    _sr.sprite = _defaultPointerSprite;
+                }
             }
         }
 
@@ -220,14 +231,6 @@ namespace IslandBoy
             taPosition = Vector2.Distance(playerPos, _pr.MousePosition) > _maxDist ? playerPos + (direction * _maxDist) : _pr.MousePosition;
 
             return taPosition;
-        }
-
-        private Vector2 GetCenterOfTilePos(Vector3 pos)
-        {
-            var xPos = Mathf.FloorToInt(pos.x) + 0.5f;
-            var yPos = Mathf.FloorToInt(pos.y) + 0.5f;
-
-            return new Vector2(xPos, yPos);
         }
     }
 }

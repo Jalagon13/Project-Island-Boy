@@ -277,8 +277,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 8560427171654549063}
-        m_TargetAssemblyTypeName: IslandBoy.RusherEntity, Assembly-CSharp
+      - m_Target: {fileID: 7944775765500762370}
+        m_TargetAssemblyTypeName: IslandBoy.TestEntity, Assembly-CSharp
         m_MethodName: ChangeToIdleState
         m_Mode: 2
         m_Arguments:
@@ -381,7 +381,8 @@ GameObject:
   - component: {fileID: 8560427171654549068}
   - component: {fileID: 7170898793815985635}
   - component: {fileID: 8560427171654549056}
-  - component: {fileID: 8560427171654549063}
+  - component: {fileID: 7864136439362382896}
+  - component: {fileID: 7944775765500762370}
   - component: {fileID: 8560427171654549062}
   - component: {fileID: 8560427171654549058}
   - component: {fileID: 8560427171654549069}
@@ -443,7 +444,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.4}
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
   m_Direction: 0
 --- !u!50 &8560427171654549056
 Rigidbody2D:
@@ -472,7 +473,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8560427171654549063
+--- !u!114 &7864136439362382896
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -481,14 +482,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8560427171654549071}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68bf4ea4f5c28014ab531977f7ce41f0, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d3fce4d50948854cb72f53642a80b42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PR: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _maxHealth: 21
-  _iFrameDuration: 0.17
-  _moveSpeed: 1
-  _damageSound: {fileID: 8300000, guid: edaa0a4bdb86bde4ba2297c08ff3a710, type: 3}
+  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
+  _maxHitPoints: 16
+  _harvestType: 3
+  _hitSound: {fileID: 8300000, guid: edaa0a4bdb86bde4ba2297c08ff3a710, type: 3}
   _deathSound: {fileID: 8300000, guid: 6c82de58455bb504892985f5947bb1db, type: 3}
   _lootTable:
     <Table>k__BackingField:
@@ -496,12 +496,21 @@ MonoBehaviour:
       Min: 1
       Max: 2
       Chance: 100
-  _onDamage:
-    m_PersistentCalls:
-      m_Calls: []
-  AgroClip: {fileID: 8300000, guid: 7d81ba19726f98a4c8dfbe502334c213, type: 3}
-  _agroDistance: 10
+--- !u!114 &7944775765500762370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8560427171654549071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b286198e21a882e42b52014774cd3e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PR: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   Seeker: {fileID: 0}
+  _agroDistance: 10
 --- !u!114 &8560427171654549062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,8 +524,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 8560427171654549056}
-  _strength: 30
-  _delay: 0.15
+  _strength: 3
+  _delay: 0.05
   _onBegin:
     m_PersistentCalls:
       m_Calls:

@@ -39,6 +39,8 @@ namespace IslandBoy
 
         public void RscHit()
         {
+            GetComponent<Animator>().enabled = false;
+            GetComponent<Animator>().enabled = true;
             AnimStateManager.ChangeAnimationState(GetComponent<Animator>(), _rscHitHash);
         }
 
@@ -51,6 +53,7 @@ namespace IslandBoy
             if (_currentHitPoints <= 0)
                 Break();
 
+            GameSignals.RSC_HIT.Dispatch();
             AudioManager.Instance.PlayClip(_hitSound, false, true, 0.7f);
         }
 

@@ -21,13 +21,13 @@ namespace IslandBoy
             _fillImage = _holder.GetChild(1).GetComponent<Image>();
 
             GameSignals.TILE_ACTION_ENTERED_NEW_TILE.AddListener(UpdateCanvas);
-            GameSignals.SWING_PERFORMED.AddListener(ClickPerformed);
+            GameSignals.RSC_HIT.AddListener(ClickPerformed);
         }
 
         private void OnDestroy()
         {
             GameSignals.TILE_ACTION_ENTERED_NEW_TILE.RemoveListener(UpdateCanvas);
-            GameSignals.SWING_PERFORMED.RemoveListener(ClickPerformed);
+            GameSignals.RSC_HIT.RemoveListener(ClickPerformed);
         }
 
         private void Start()
@@ -74,19 +74,20 @@ namespace IslandBoy
                     return;
                 }
 
-                EnableHolder(breakable.MaxHitPoints, breakable.CurrentHitPoints, fromClick ? false : _overInteractable);
+                EnableHolder(breakable.MaxHitPoints, breakable.CurrentHitPoints, fromClick, _overInteractable);
                 _lifeText.text = breakable.CurrentHitPoints.ToString();
             }
         }
 
-        private void EnableHolder(float maxHp, float currentHp, bool onlyShowOutline)
+        private void EnableHolder(float maxHp, float currentHp, bool fromClick, bool onlyShowOutline)
         {
             _holder.gameObject.SetActive(true);
 
             _holder.transform.GetChild(0).gameObject.SetActive(!onlyShowOutline);
             _holder.transform.GetChild(1).gameObject.SetActive(!onlyShowOutline);
             _holder.transform.GetChild(2).gameObject.SetActive(!onlyShowOutline);
-            _holder.transform.GetChild(3).gameObject.SetActive(true);
+            _holder.transform.GetChild(3).gameObject.SetActive(onlyShowOutline ? false : !fromClick);
+            _holder.transform.GetChild(4).gameObject.SetActive(true);
 
             _fillImage.fillAmount = Mathf.Clamp01(Mathf.InverseLerp(0, maxHp, currentHp));
         }

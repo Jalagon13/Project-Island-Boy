@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 namespace IslandBoy
 {
-    // Implement Swing Speed, Cooldown, and Power attributes for resource gathering
     public class ActionControl : MonoBehaviour
     {
         [SerializeField] private PlayerReference _pr;
@@ -55,7 +54,6 @@ namespace IslandBoy
             if (!_canPerform) return;
 
             _ta.HitTile();
-            GameSignals.SWING_PERFORMED.Dispatch();
         }
 
         private void DontSwingThisFrame(ISignalParameters parameters)
@@ -75,9 +73,6 @@ namespace IslandBoy
             if (parameters.HasParameter("FocusSlot"))
             {
                 _focusSlotRef = (Slot)parameters.GetParameter("FocusSlot");
-
-                //_swingSr.sprite = _focusSlotRef.ItemObject != null ? _focusSlotRef.ItemObject.UiDisplay : null;
-                //_swingCollider.FocusSlot = _focusSlotRef;
             }
         }
 

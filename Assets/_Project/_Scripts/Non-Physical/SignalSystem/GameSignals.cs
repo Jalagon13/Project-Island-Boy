@@ -24,7 +24,7 @@ namespace IslandBoy
         public static readonly Signal ITEM_CRAFTED = new("ItemCrafted");
         public static readonly Signal CHEST_INTERACT = new("ChestInteract");
         public static readonly Signal CRAFT_STATION_INTERACT = new("CraftStationInteract");
-        public static readonly Signal SWING_PERFORMED = new("SwingPerformed");
+        public static readonly Signal RSC_HIT = new("SwingPerformed");
         public static readonly Signal PROMPT_INTERACT = new("PromptInteract");
         public static readonly Signal PLAYER_DIED = new("PlayerDied");
         public static readonly Signal PLAYER_HP_CHANGED = new("PlayerHpChanged");
