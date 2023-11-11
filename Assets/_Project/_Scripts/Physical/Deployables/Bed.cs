@@ -54,14 +54,13 @@ namespace IslandBoy
                     return;
                 }
 
-                DispatchEndDay();
+                DispatchEvents();
             }
         }
 
-        private void DispatchEndDay()
+        private void DispatchEvents()
         {
-            // implement optional parameters before dispatch here
-            
+            GameSignals.BED_TIME_EXECUTED.Dispatch();
             GameSignals.DAY_END.Dispatch();
         }
 

@@ -12,9 +12,21 @@ namespace IslandBoy
         {
             base.Awake();
             _tooltip = transform.GetChild(0).GetComponent<Tooltip>();
+
+            GameSignals.INVENTORY_CLOSE.AddListener(CloseToolTip);
+        }
+
+        private void OnDestroy()
+        {
+            GameSignals.INVENTORY_CLOSE.RemoveListener(CloseToolTip);
         }
 
         private void Start()
+        {
+            Hide();
+        }
+
+        private void CloseToolTip(ISignalParameters parameters)
         {
             Hide();
         }

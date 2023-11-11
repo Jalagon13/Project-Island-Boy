@@ -116,7 +116,7 @@ namespace IslandBoy
 
         private void DispatchSelectedSlotUpdated()
         {
-            Signal signal = GameSignals.SELECTED_SLOT_UPDATED;
+            Signal signal = GameSignals.HOTBAR_SLOT_UPDATED;
             signal.ClearParameters();
             signal.AddParameter("SelectedSlot", _selectedSlot);
             signal.Dispatch();
