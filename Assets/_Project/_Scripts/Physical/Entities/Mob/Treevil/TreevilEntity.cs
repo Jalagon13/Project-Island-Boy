@@ -14,7 +14,6 @@ namespace IslandBoy
         [SerializeField] private float _agroDistance;
 
         public readonly int HashIdle = Animator.StringToHash("[Anm] TreevilIdle");
-        public readonly int HashMove = Animator.StringToHash("[Anm] TreevilMove");
         public readonly int HashChase = Animator.StringToHash("[Anm] TreevilChase");
         public Action OnMove;
         public Seeker Seeker;
@@ -24,7 +23,7 @@ namespace IslandBoy
         {
             base.Awake();
             AI = GetComponent<IAstarAI>();
-            Seeker = GetComponent<Seeker>();
+            //Seeker = GetComponent<Seeker>();
         }
 
         private void OnDisable()
@@ -47,11 +46,6 @@ namespace IslandBoy
         public void ChangeToIdleState(Animator animator)
         {
             AnimStateManager.ChangeAnimationState(animator, HashIdle);
-        }
-
-        public void ChangeToMoveState(Animator animator)
-        {
-            AnimStateManager.ChangeAnimationState(animator, HashMove);
         }
 
         public void ChangeToChaseState(Animator animator)
