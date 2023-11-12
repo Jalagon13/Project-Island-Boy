@@ -38,7 +38,19 @@ namespace IslandBoy
 
         public override string GetDescription()
         {
-            return $"{Description}<br>• Right Click to place";
+            float clickDistance = 0;
+
+            foreach (var item in DefaultParameterList)
+            {
+                switch (item.Parameter.ParameterName)
+                {
+                    case "ClickDistance":
+                        clickDistance = item.Value;
+                        break;
+                }
+            }
+
+            return $"• Right Click to place<br>• {clickDistance} build distance";
         }
     }
 }

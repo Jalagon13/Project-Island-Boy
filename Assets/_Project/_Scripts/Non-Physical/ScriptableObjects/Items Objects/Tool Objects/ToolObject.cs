@@ -35,8 +35,7 @@ namespace IslandBoy
 
         public override string GetDescription()
         {
-            string powerDesc = string.Empty;
-
+            float clickDistance = 0;
             float powerValue = 0;
 
             foreach (var item in DefaultParameterList)
@@ -45,7 +44,9 @@ namespace IslandBoy
                 {
                     case "Power":
                         powerValue = item.Value;
-                        powerDesc = $"• {item.Value} Damage<br>";
+                        break;
+                    case "ClickDistance":
+                        clickDistance = item.Value;
                         break;
                 }
             }
@@ -55,16 +56,16 @@ namespace IslandBoy
             switch (Type)
             {
                 case ToolType.Axe:
-                    desc = $"• {powerValue} hit damage to trees{Description}";
+                    desc = $"• {powerValue} hits to trees<br>• {clickDistance} click distance";
                     break;
                 case ToolType.Pickaxe:
-                    desc = $"• {powerValue} hit damage to rocks{Description}";
+                    desc = $"• {powerValue} hits to rocks<br>• {clickDistance} click distance";
                     break;
                 case ToolType.Sword:
-                    desc = $"• {powerValue} hit damage to creatures{Description}";
+                    desc = $"• {powerValue} hits to creatures<br>• {clickDistance} click distance";
                     break;
                 case ToolType.Hammer:
-                    desc = $"• {powerValue} hit damage to floors and walls{Description}";
+                    desc = $"• {powerValue} hits to floors and walls<br>• {clickDistance} click distance";
                     break;
             }
 

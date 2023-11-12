@@ -12,8 +12,9 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private TilemapReferences _tmr;
-        [SerializeField] private float _baseClickDistance;
+        [SerializeField] private float _startingClickDistance;
         [SerializeField] private ItemParameter _powerParameter;
+        [SerializeField] private ItemParameter _clickDistanceParameter;
 
         private PlayerInput _input;
         private SpriteRenderer _sr;
@@ -22,9 +23,8 @@ namespace IslandBoy
         private Clickable _currentClickableThisFrame;
         private Vector2 _previousCenterPos;
         private Vector2 _currentCenterPos;
-        private bool _placingThisFrame;
         private bool _canHit = true;
-        private bool _shownDisplayThisFrame;
+        private float _currentClickDistance;
 
         public Vector2 CurrentCenterPos { get { return _currentCenterPos; } }
 
@@ -37,6 +37,7 @@ namespace IslandBoy
 
             _sr = GetComponent<SpriteRenderer>();
             _defaultPointerSprite = _sr.sprite;
+            _currentClickDistance = _startingClickDistance;
 
             GameSignals.FOCUS_SLOT_UPDATED.AddListener(FocusSlotUpdated);
             GameSignals.DAY_END.AddListener(DisableAbilityToHit);
@@ -115,14 +116,16 @@ namespace IslandBoy
             {
                 _focusSlotRef = (Slot)parameters.GetParameter("FocusSlot");
 
-                if (_focusSlotRef.ItemObject != null)
-                {
-                    _sr.sprite = _focusSlotRef.ItemObject.ToolType != ToolType.None ? _focusSlotRef.ItemObject.UiDisplay : _defaultPointerSprite;
-                }
-                else
-                {
-                    _sr.sprite = _defaultPointerSprite;
-                }
+                //if (_focusSlotRef.ItemObject != null)
+                //{
+                //    _sr.sprite = _focusSlotRef.ItemObject.ToolType != ToolType.None ? _focusSlotRef.ItemObject.UiDisplay : _defaultPointerSprite;
+                //}
+                //else
+                //{
+                //    _sr.sprite = _defaultPointerSprite;
+                //}
+
+                _currentClickDistance = CalcClickDistance();
             }
         }
 
@@ -151,6 +154,21 @@ namespace IslandBoy
             return 0;
         }
 
+        private float CalcClickDistance()
+        {
+            if (_focusSlotRef.ItemObject == null) return _startingClickDistance;
+
+            if (_focusSlotRef.ItemObject.DefaultParameterList.Contains(_clickDistanceParameter))
+            {
+                var index = _focusSlotRef.ItemObject.DefaultParameterList.IndexOf(_clickDistanceParameter);
+                var clickDistanceParameter = _focusSlotRef.ItemObject.DefaultParameterList[index];
+
+                return clickDistanceParameter.Value;
+            }
+
+            return _startingClickDistance;
+        }
+
         private void UpdateCurrentClickable()
         {
             Clickable lastestClickable = ClickableFound();
@@ -160,7 +178,6 @@ namespace IslandBoy
                 if (_currentClickableThisFrame == lastestClickable) return;
 
                 _currentClickableThisFrame = lastestClickable;
-                _shownDisplayThisFrame = false;
             }
             else
             {
@@ -274,14 +291,6 @@ namespace IslandBoy
         {
             var position = _currentCenterPos -= new Vector2(0.5f, 0.5f);
             Instantiate(deployable, position, Quaternion.identity);
-            StartCoroutine(Delay());
-        }
-
-        private IEnumerator Delay()
-        {
-            _placingThisFrame = true;
-            yield return new WaitForSeconds(0.2f);
-            _placingThisFrame = false;
         }
 
         private Vector2 CalcPosition()
@@ -290,7 +299,7 @@ namespace IslandBoy
             Vector2 playerPos = transform.root.transform.localPosition;
             Vector2 direction = (_pr.MousePosition - playerPos).normalized;
 
-            taPosition = Vector2.Distance(playerPos, _pr.MousePosition) > _baseClickDistance ? (playerPos += new Vector2(0, 0.25f)) + (direction * _baseClickDistance) : _pr.MousePosition;
+            taPosition = Vector2.Distance(playerPos, _pr.MousePosition) > _currentClickDistance ? (playerPos += new Vector2(0, 0.25f)) + (direction * _currentClickDistance) : _pr.MousePosition;
 
             return taPosition;
         }

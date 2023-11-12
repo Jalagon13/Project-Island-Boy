@@ -275,6 +275,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2418890234375932272, guid: e0a357d159958fb4a8ab5171e9d76da4, type: 3}
+      propertyPath: _breakType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3851023828838753283, guid: e0a357d159958fb4a8ab5171e9d76da4, type: 3}
       propertyPath: m_text
       value: Would you like to go to sleep?
