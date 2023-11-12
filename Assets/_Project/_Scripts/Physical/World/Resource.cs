@@ -39,6 +39,18 @@ namespace IslandBoy
             _yellowCorners = transform.GetChild(2).GetChild(3).gameObject;
         }
 
+        private void OnEnable()
+        {
+            if (!_regenerateOnDayStart) return;
+
+            _currentHitPoints = _maxHitPoints;
+
+            EnableProgressBar(false);
+            EnableAmountDisplay(false);
+            EnableYellowCorners(false);
+            EnableInstructions(false);
+        }
+
         private void Start()
         {
             EnableProgressBar(false);
@@ -89,7 +101,13 @@ namespace IslandBoy
 
             // if regenerate resource = true, don't destroy, disable this game object, and enable it with full hp on start of day.
             // if there is a tile in the day do not regenerate it, break it instead, do not drop loot if so.
-            Destroy(gameObject);
+            if (_regenerateOnDayStart)
+            {
+                ResourceGenerator.AddToDisabledResources(this);
+                gameObject.SetActive(false);
+            }
+            else
+                Destroy(gameObject);
         }
 
         public override void ShowDisplay()
