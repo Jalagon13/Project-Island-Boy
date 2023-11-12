@@ -22,6 +22,8 @@ MonoBehaviour:
       Amount: 5
     - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
       Amount: 5
+    - Item: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
+      Amount: 2
   - OutputItem: {fileID: 11400000, guid: 3d7d134b86844b3469ace4f0146672e1, type: 2}
     OutputAmount: 1
     ResourceList:
@@ -31,6 +33,8 @@ MonoBehaviour:
       Amount: 5
     - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
       Amount: 5
+    - Item: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
+      Amount: 2
   - OutputItem: {fileID: 11400000, guid: 51952a437b0ccf749a876feaec374c3a, type: 2}
     OutputAmount: 1
     ResourceList:
@@ -40,15 +44,19 @@ MonoBehaviour:
       Amount: 5
     - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
       Amount: 5
+    - Item: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
+      Amount: 2
   - OutputItem: {fileID: 11400000, guid: eae71e2a67e33e44b937f21b5d3b79fe, type: 2}
     OutputAmount: 1
     ResourceList:
+    - Item: {fileID: 11400000, guid: fb9c53bc5a9014142b9e07f97db75202, type: 2}
+      Amount: 1
     - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
       Amount: 5
     - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
       Amount: 5
-    - Item: {fileID: 11400000, guid: fb9c53bc5a9014142b9e07f97db75202, type: 2}
-      Amount: 1
+    - Item: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
+      Amount: 2
   - OutputItem: {fileID: 11400000, guid: 38c252debefbe3a44bdfc96152ae1b2f, type: 2}
     OutputAmount: 1
     ResourceList:

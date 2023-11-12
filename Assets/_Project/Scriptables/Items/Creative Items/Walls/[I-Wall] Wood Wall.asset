@@ -16,6 +16,7 @@ MonoBehaviour:
   <UiDisplay>k__BackingField: {fileID: 734688836, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   <Stackable>k__BackingField: 1
   <Description>k__BackingField: 
-  <DefaultParameterList>k__BackingField: []
+  <DefaultParameterList>k__BackingField:
+  - Parameter: {fileID: 11400000, guid: c25902e3274ad0a4a97f3515779aecea, type: 2}
+    Value: 3
   _wallTile: {fileID: 11400000, guid: 594218790d7eba74886e2e78ca650cc6, type: 2}
-  _placeSound: {fileID: 8300000, guid: acc9a292f9a4e9448953f37d61d47e54, type: 3}

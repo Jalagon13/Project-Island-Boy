@@ -13,8 +13,6 @@ namespace IslandBoy
         [SerializeField] private int _maxMonsterCount;
         [SerializeField] private Entity _monsterPrefab;
 
-        //private int _monsterCounter;
-
         private void Start()
         {
             StartCoroutine(SpawnMonsterTimer());
@@ -22,7 +20,7 @@ namespace IslandBoy
 
         private IEnumerator SpawnMonsterTimer()
         {
-            yield return new WaitForSeconds(Random.Range(20f, 30f));
+            yield return new WaitForSeconds(Random.Range(15f, 25f));
 
             if (true)
             {
