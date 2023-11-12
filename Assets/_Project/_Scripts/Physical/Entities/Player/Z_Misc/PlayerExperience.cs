@@ -8,12 +8,14 @@ namespace IslandBoy
 {
     public class PlayerExperience : MonoBehaviour
     {
-        [SerializeField] private int _startingCurrency;
+        [SerializeField] private int _startingXp;
         [Range(0,1)]
         [SerializeField] private float _percentKeptAfterDeath;
 
         private static Experience _experience;
         private TextMeshProUGUI _experienceText;
+
+        public static Experience Experience { get { return _experience; } }
 
         private void Awake()
         {
@@ -33,7 +35,7 @@ namespace IslandBoy
 
         private void Start()
         {
-            _experience.Add(_startingCurrency);
+            _experience.Add(_startingXp);
         }
 
         public static void AddExerpience(int amount)

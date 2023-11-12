@@ -17,6 +17,18 @@ namespace IslandBoy
             _knockback = GetComponent<KnockbackFeedback>();
             _idleHash = Animator.StringToHash("[ANIM] Idle");
             _onClickHash = Animator.StringToHash("[ANIM] Hit");
+
+            GameSignals.DAY_END.AddListener(DestroyThisEntity);
+        }
+
+        private void OnDestroy()
+        {
+            GameSignals.DAY_END.RemoveListener(DestroyThisEntity);
+        }
+
+        private void DestroyThisEntity(ISignalParameters parameters)
+        {
+            Destroy(gameObject);
         }
 
         public override void OnClick(ToolType incomingToolType, int amount)

@@ -13,7 +13,29 @@ namespace IslandBoy
         [SerializeField] private int _maxMonsterCount;
         [SerializeField] private Entity _monsterPrefab;
 
+        private void Awake()
+        {
+            GameSignals.DAY_START.AddListener(UnPauseMonsterSpawning);
+            GameSignals.DAY_END.AddListener(PauseMonsterSpawning);
+        }
+
+        private void OnDestroy()
+        {
+            GameSignals.DAY_START.RemoveListener(UnPauseMonsterSpawning);
+            GameSignals.DAY_END.RemoveListener(PauseMonsterSpawning);
+        }
+
         private void Start()
+        {
+            StartCoroutine(SpawnMonsterTimer());
+        }
+
+        private void PauseMonsterSpawning(ISignalParameters parameters)
+        {
+            StopAllCoroutines();
+        }
+
+        private void UnPauseMonsterSpawning(ISignalParameters parameters)
         {
             StartCoroutine(SpawnMonsterTimer());
         }

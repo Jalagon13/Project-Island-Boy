@@ -17,7 +17,9 @@ MonoBehaviour:
   <Stackable>k__BackingField: 1
   <Description>k__BackingField: Use to sleep to avoid passing out at the end of the
     day!
-  <DefaultParameterList>k__BackingField: []
+  <DefaultParameterList>k__BackingField:
+  - Parameter: {fileID: 11400000, guid: c25902e3274ad0a4a97f3515779aecea, type: 2}
+    Value: 3
   _tmr: {fileID: 11400000, guid: ec06355a14da7574295ea6e79aaebb6f, type: 2}
   _prefabToDeploy: {fileID: 5252512350941680805, guid: 4e5f5142d11fb864ca3625b399fc7a51, type: 3}
   _deploySound: {fileID: 8300000, guid: acc9a292f9a4e9448953f37d61d47e54, type: 3}

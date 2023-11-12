@@ -68,7 +68,7 @@ namespace IslandBoy
                 VolumeHandle();
                 if(_phasePercent > _percentTillCanSleep && !_hasDisplayedWarning)
                 {
-                    PopupMessage.Create(_pr.Position, "I need to sleep soon..", Color.cyan, new(0f, 0.75f), 1.5f);
+                    //PopupMessage.Create(_pr.Position, "I need to sleep soon..", Color.cyan, new(0f, 0.75f), 1.5f);
                     GameSignals.CAN_SLEEP.Dispatch();
                     _hasDisplayedWarning = true;
                 }
