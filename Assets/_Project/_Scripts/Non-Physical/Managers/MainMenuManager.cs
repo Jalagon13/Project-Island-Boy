@@ -16,14 +16,17 @@ namespace IslandBoy
         private IEnumerator LoadScenes()
         {
             yield return StartCoroutine(LoadSceneAdd("GameWorld"));
+            yield return StartCoroutine(LoadSceneAdd("LevelControl"));
+            yield return StartCoroutine(LoadSceneAdd("Player"));
             yield return StartCoroutine(LoadSceneAdd("Inventory"));
             yield return StartCoroutine(LoadSceneAdd("PauseMenu"));
             yield return StartCoroutine(LoadSceneAdd("StatsDisplay"));
             yield return StartCoroutine(LoadSceneAdd("PromptDisplay"));
             yield return StartCoroutine(LoadSceneAdd("SunMeter"));
             yield return StartCoroutine(LoadSceneAdd("DeathPanel"));
-            yield return StartCoroutine(LoadSceneAdd("CurrencyDisplay"));
+            yield return StartCoroutine(LoadSceneAdd("ExperienceDisplay"));
             yield return StartCoroutine(LoadSceneAdd("LaunchControl"));
+            yield return StartCoroutine(LoadSceneAdd("LevelControl"));
 
             Scene gameWorld = SceneManager.GetSceneByName("GameWorld");
             SceneManager.SetActiveScene(gameWorld);

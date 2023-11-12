@@ -32,8 +32,8 @@ namespace IslandBoy
 
             _input = new();
             _input.Player.PrimaryAction.started += ExecutePrimaryAction;
-            _input.Player.PrimaryAction.performed += IsHeldDown;
-            _input.Player.PrimaryAction.canceled += IsHeldDown;
+            _input.Player.SecondaryAction.performed += IsHeldDown;
+            _input.Player.SecondaryAction.canceled += IsHeldDown;
             _input.Player.SecondaryAction.started += ExecuteSecondaryAction;
             _input.Enable();
 
@@ -59,7 +59,7 @@ namespace IslandBoy
 
             if (_isHeldDown)
             {
-                ExecutePrimaryAction(new());
+                ExecuteSecondaryAction(new());
             }
         }
 

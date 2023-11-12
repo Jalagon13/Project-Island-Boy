@@ -61,10 +61,31 @@ namespace IslandBoy
         {
             transform.SetPositionAndRotation(CalcPosition(), Quaternion.identity);
 
+            CheckWhenEnterNewTile();
             UpdateCurrentClickable();
-            DisplayClickable();
             DisplayCursor();
-            //CheckWhenEnterNewTile();
+        }
+
+        private void CheckWhenEnterNewTile()
+        {
+            _currentCenterPos = CalcCenterTile();
+
+            if (_currentCenterPos != _previousCenterPos)
+            {
+                OnEnterNewTile();
+
+                _previousCenterPos = _currentCenterPos;
+            }
+        }
+
+        private void OnEnterNewTile()
+        {
+            _currentClickableThisFrame = null;
+
+            Signal signal = GameSignals.CURSOR_ENTERED_NEW_TILE;
+            signal.ClearParameters();
+            signal.AddParameter("CenterPosition", _currentCenterPos);
+            signal.Dispatch();
         }
 
         private void DisplayCursor()
@@ -104,20 +125,11 @@ namespace IslandBoy
             }
         }
 
-        private void DisplayClickable()
-        {
-            if (_currentClickableThisFrame != null)
-            {
-                if (_shownDisplayThisFrame) return;
-
-                _currentClickableThisFrame.ShowDisplay();
-                _shownDisplayThisFrame = true;
-            }
-        }
-
         private void Hit(InputAction.CallbackContext context)
         {
-            if(_currentClickableThisFrame != null && _canHit)
+            if (HammerHitSomething() || PointerHandler.IsOverLayer(5)) return;
+
+            if (_currentClickableThisFrame != null && _canHit)
             {
                 _currentClickableThisFrame.OnClick(_focusSlotRef == null ? ToolType.None : _focusSlotRef.ToolType);
             }
@@ -136,20 +148,9 @@ namespace IslandBoy
             }
             else
             {
-                if(_currentClickableThisFrame == null) return;
-                _currentClickableThisFrame.HideDisplay();
+                if (_currentClickableThisFrame == null) return;
                 _currentClickableThisFrame = null;
             }
-        }
-
-        private void DisableAbilityToHit(ISignalParameters parameters)
-        {
-            _canHit = false;
-        }
-
-        private void EnableAbilityToHit(ISignalParameters parameters)
-        {
-            _canHit = true;
         }
 
         private Clickable ClickableFound()
@@ -163,54 +164,22 @@ namespace IslandBoy
                 {
                     if (c.TryGetComponent(out Clickable clickable))
                     {
-                        //clickable.HideDisplay();
                         clickablesFound.Add(clickable);
                     }
                 }
             }
 
-            return clickablesFound.Count > 0 ? clickablesFound.Last() : null ;
+            return clickablesFound.Count > 0 ? clickablesFound.Last() : null;
         }
 
-        private void CheckWhenEnterNewTile()
+        private void DisableAbilityToHit(ISignalParameters parameters)
         {
-            _currentCenterPos = CalcCenterTile();
-
-            if(_currentCenterPos != _previousCenterPos)
-            {
-                OnEnterNewTile();
-                
-                _previousCenterPos = _currentCenterPos;
-            }
+            _canHit = false;
         }
 
-        private void OnEnterNewTile()
+        private void EnableAbilityToHit(ISignalParameters parameters)
         {
-            _sr.enabled = GetBreakableObjects().Count <= 0;
-
-            Signal signal = GameSignals.TILE_ACTION_ENTERED_NEW_TILE;
-            signal.ClearParameters();
-            signal.AddParameter("Breakables", GetBreakableObjects());
-            signal.AddParameter("CurrentCenterPos", _currentCenterPos);
-            signal.AddParameter("OverInteractable", OverInteractable());
-            signal.Dispatch();
-        }
-
-        public List<Clickable> GetBreakableObjects()
-        {
-            var colliders = Physics2D.OverlapCircleAll(_currentCenterPos, 0.2f);
-
-            List<Clickable> breakableObjects = new();
-
-            foreach (var collider in colliders)
-            {
-                if (collider.TryGetComponent(out Clickable breakable))
-                {
-                    breakableObjects.Add(breakable);
-                }
-            }
-
-            return breakableObjects;
+            _canHit = true;
         }
 
         private Vector2 CalcCenterTile()
@@ -220,8 +189,6 @@ namespace IslandBoy
 
             return new Vector2(tileX + 0.5f, tileY + 0.5f);
         }
-
-
 
         public bool OverInteractable()
         {
@@ -238,8 +205,6 @@ namespace IslandBoy
             return false;
         }
 
-
-
         public bool IsClear()
         {
             var colliders = Physics2D.OverlapBoxAll(CalcPosition(), new Vector2(0.5f, 0.5f), 0);
@@ -253,33 +218,25 @@ namespace IslandBoy
             return true;
         }
 
-        public void HitTile()
+        private bool HammerHitSomething()
         {
-            if (_placingThisFrame) return;
-
-            HammerTileLogic();
-            ApplyDamageToBreakable();
-        }
-
-        private void HammerTileLogic()
-        {
-            if (_focusSlotRef.ItemObject == null) return;
-            if (_focusSlotRef.ItemObject.ToolType == ToolType.None) return;
+            if (_focusSlotRef.ItemObject == null) return false;
+            if (_focusSlotRef.ItemObject.ToolType == ToolType.None) return false;
             if (_focusSlotRef.ItemObject != null)
-                if (_focusSlotRef.ItemObject.ToolType != ToolType.Hammer) return;
+                if (_focusSlotRef.ItemObject.ToolType != ToolType.Hammer) return false;
 
-            if (_tmr.WallTilemap.HasTile(Vector3Int.FloorToInt(transform.position)))
-                DestroyTile(_tmr.WallTilemap);
-            else if (_tmr.FloorTilemap.HasTile(Vector3Int.FloorToInt(transform.position)))
-                DestroyTile(_tmr.FloorTilemap);
-        }
-
-        public void ApplyDamageToBreakable()
-        {
-            foreach (var clickable in GetBreakableObjects())
+            if (_tmr.WallTilemap.HasTile(Vector3Int.FloorToInt(_currentCenterPos)))
             {
-                clickable.OnClick(CalcToolType());
+                DestroyTile(_tmr.WallTilemap);
+                return true;
             }
+            else if (_tmr.FloorTilemap.HasTile(Vector3Int.FloorToInt(_currentCenterPos)))
+            {
+                DestroyTile(_tmr.FloorTilemap);
+                return true;
+            }
+
+            return false;
         }
 
         private void DestroyTile(Tilemap tm)
@@ -291,6 +248,7 @@ namespace IslandBoy
             RuleTileExtended tile = tm.GetTile<RuleTileExtended>(pos);
             GameAssets.Instance.SpawnItem(transform.position, tile.Item, 1);
             AudioManager.Instance.PlayClip(tile.BreakSound, false, true);
+            GameSignals.CLICKABLE_CLICKED.Dispatch();
 
             tm.SetTile(pos, null);
             tile.UpdatePathfinding(new(pos.x + 0.5f, pos.y + 0.5f));
@@ -299,22 +257,15 @@ namespace IslandBoy
         public void PlaceDeployable(GameObject deployable)
         {
             var position = _currentCenterPos -= new Vector2(0.5f, 0.5f);
-            ExtensionMethods.SpawnObject(deployable, position, Quaternion.identity);
-            _placingThisFrame = true;
+            Instantiate(deployable, position, Quaternion.identity);
             StartCoroutine(Delay());
         }
 
         private IEnumerator Delay()
         {
+            _placingThisFrame = true;
             yield return new WaitForSeconds(0.2f);
-
             _placingThisFrame = false;
-        }
-
-        private ToolType CalcToolType()
-        {
-            var item = _focusSlotRef.ItemObject;
-            return item == null ? ToolType.None : item.ToolType;
         }
 
         private Vector2 CalcPosition()
@@ -323,7 +274,7 @@ namespace IslandBoy
             Vector2 playerPos = transform.root.transform.localPosition;
             Vector2 direction = (_pr.MousePosition - playerPos).normalized;
 
-            taPosition = Vector2.Distance(playerPos, _pr.MousePosition) > _maxDist ? playerPos + (direction * _maxDist) : _pr.MousePosition;
+            taPosition = Vector2.Distance(playerPos, _pr.MousePosition) > _maxDist ? (playerPos += new Vector2(0, 0.25f)) + (direction * _maxDist) : _pr.MousePosition;
 
             return taPosition;
         }

@@ -11,6 +11,7 @@ namespace IslandBoy
     {
         [SerializeField] private AudioClip _hitSound;
         [SerializeField] private AudioClip _breakSound;
+        [SerializeField] private bool _regenerateOnDayStart;
         [SerializeField] private LootTable _lootTable;
 
         protected int _idleHash = Animator.StringToHash("[Anm] RscIdle");
@@ -40,7 +41,10 @@ namespace IslandBoy
 
         private void Start()
         {
-            EnableDisplay(false);
+            EnableProgressBar(false);
+            EnableAmountDisplay(false);
+            EnableYellowCorners(false);
+            EnableInstructions(false);
         }
 
         public void RscIdle()
@@ -65,27 +69,33 @@ namespace IslandBoy
 
             AudioManager.Instance.PlayClip(_hitSound, false, true, 0.7f);
 
-            EnableDisplay(true);
             UpdateAmountDisplay();
             UpdateFillImage();
-            DisableInstructions();
+            EnableProgressBar(true);
+            EnableAmountDisplay(true);
+            EnableYellowCorners(false);
+            EnableInstructions(true);
             RscHit();
         }
 
         protected override void OnBreak()
         {
+            base.OnBreak();
+
             AudioManager.Instance.PlayClip(_breakSound, false, true, 0.75f);
             _lootTable.SpawnLoot(_dropPosition);
 
             StopAllCoroutines();
+
+            // if regenerate resource = true, don't destroy, disable this game object, and enable it with full hp on start of day.
+            // if there is a tile in the day do not regenerate it, break it instead, do not drop loot if so.
             Destroy(gameObject);
         }
 
         public override void ShowDisplay()
         {
-            EnableDisplay(true);
-            UpdateFillImage();
-            UpdateAmountDisplay();
+            EnableInstructions(true);
+            EnableYellowCorners(true);
         }
 
         protected void UpdateFillImage()
@@ -100,21 +110,31 @@ namespace IslandBoy
             amountText.text = _currentHitPoints.ToString();
         }
 
-        protected void DisableInstructions()
-        {
-            _instructions.SetActive(false);
-        }
-
         public override void HideDisplay()
         {
-            EnableDisplay(false);
+            EnableProgressBar(false);
+            EnableAmountDisplay(false);
+            EnableInstructions(false);
+            EnableYellowCorners(false);
         }
 
-        protected void EnableDisplay(bool _)
+        protected void EnableProgressBar(bool _)
         {
             _progressBar.SetActive(_);
+        }
+
+        protected void EnableAmountDisplay(bool _)
+        {
             _amountDisplay.SetActive(_);
+        }
+
+        protected void EnableInstructions(bool _)
+        {
             _instructions.SetActive(_);
+        }
+
+        protected void EnableYellowCorners(bool _)
+        {
             _yellowCorners.SetActive(_);
         }
     }

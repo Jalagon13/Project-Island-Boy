@@ -20,6 +20,18 @@ namespace IslandBoy
             _currentHitPoints = _maxHitPoints;
         }
 
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (!collision.CompareTag("CursorControl")) return;
+            ShowDisplay();
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (!collision.CompareTag("CursorControl")) return;
+            HideDisplay();
+        }
+
         public virtual void OnClick(ToolType incomingToolType)
         {
             _currentHitPoints -= incomingToolType == _breakType ? _breakType == ToolType.None ? 1 : 2 : 1;
@@ -30,7 +42,12 @@ namespace IslandBoy
                 OnBreak();
         }
 
-        protected abstract void OnBreak();
+        protected virtual void OnBreak()
+        {
+            PlayerExperience.AddExerpience(_maxHitPoints);
+            PopupMessage.Create(transform.position, $"+ {_maxHitPoints} XP", Color.white, Vector2.up, 1f);
+        }
+
         public abstract void ShowDisplay();
         public abstract void HideDisplay();
     }

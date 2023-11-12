@@ -36,26 +36,27 @@ namespace IslandBoy
         public override string GetDescription()
         {
             //string powerDesc = string.Empty;
-            string damageDesc = string.Empty;
-            string attackSpeed = string.Empty;
+            //string damageDesc = string.Empty;
+            //string attackSpeed = string.Empty;
 
-            foreach (var item in DefaultParameterList)
-            {
-                switch (item.Parameter.ParameterName)
-                {
-                    //case "Power":
-                    //    powerDesc = $"• {item.Value} {ToolType} Power<br>";
-                    //    break;
-                    case "Damage":
-                        damageDesc = $"• {item.Value} Damage<br>";
-                        break;
-                    case "AttackSpeed":
-                        attackSpeed = $"• {item.Value}s Attack Speed<br>";
-                        break;
-                }
-            }
+            //foreach (var item in DefaultParameterList)
+            //{
+            //    switch (item.Parameter.ParameterName)
+            //    {
+            //        //case "Power":
+            //        //    powerDesc = $"• {item.Value} {ToolType} Power<br>";
+            //        //    break;
+            //        case "Damage":
+            //            damageDesc = $"• {item.Value} Damage<br>";
+            //            break;
+            //        case "AttackSpeed":
+            //            attackSpeed = $"• {item.Value}s Attack Speed<br>";
+            //            break;
+            //    }
+            //}
 
-            return $"{damageDesc}{attackSpeed}{Description}";
+            //return $"{damageDesc}{attackSpeed}{Description}";
+            return Description;
         }
     }
 }

@@ -16,6 +16,11 @@ namespace IslandBoy
 
         public override void ExecutePrimaryAction(SelectedSlotControl control)
         {
+
+        }
+
+        public override void ExecuteSecondaryAction(SelectedSlotControl control)
+        {
             if (PointerHandler.IsOverLayer(5)) return;
 
             var pos = Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position);
@@ -31,14 +36,9 @@ namespace IslandBoy
             }
         }
 
-        public override void ExecuteSecondaryAction(SelectedSlotControl control)
-        {
-
-        }
-
         public override string GetDescription()
         {
-            return $"{Description}<br>• Left Click to place";
+            return $"{Description}<br>• Right Click to place";
         }
     }
 }

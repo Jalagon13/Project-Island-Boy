@@ -35,13 +35,13 @@ namespace IslandBoy
         public static readonly Signal MOUSE_SLOT_HAS_ITEM = new("MouseSlotHasItem");
         public static readonly Signal MOUSE_SLOT_GIVES_ITEM = new("MouseSlotGivesItem");
         public static readonly Signal FOCUS_SLOT_UPDATED = new("FocusSlotUpdated");
-        public static readonly Signal TILE_ACTION_ENTERED_NEW_TILE = new("TileActionEnteredNewTile");
+        public static readonly Signal CURSOR_ENTERED_NEW_TILE = new("CursorEnteredNewTile");
 
         // Pause Signals
         public static readonly Signal GAME_PAUSED = new("GamePaused");
         public static readonly Signal GAME_UNPAUSED = new("GameUnpaused");
 
-        // Astar Signals
-        //public static readonly Signal GRID_GRAPH_OVERRIDDEN = new("GridGraphOverriden");
+        // World Signals
+        public static readonly Signal RESOURCE_DESTROYED = new("ResourceDestroyed");
     }
 }
