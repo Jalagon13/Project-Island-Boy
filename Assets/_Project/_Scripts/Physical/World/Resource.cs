@@ -75,9 +75,9 @@ namespace IslandBoy
             AnimStateManager.ChangeAnimationState(_animator, _onClickHash);
         }
 
-        public override void OnClick(ToolType incomingToolType)
+        public override void OnClick(ToolType incomingToolType, int amount)
         {
-            base.OnClick(incomingToolType);
+            base.OnClick(incomingToolType, amount);
 
             AudioManager.Instance.PlayClip(_hitSound, false, true, 0.7f);
 

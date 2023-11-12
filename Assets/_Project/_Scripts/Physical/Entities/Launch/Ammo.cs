@@ -44,7 +44,7 @@ namespace IslandBoy
 
             if(colGo.TryGetComponent(out Resource rsc))
             {
-                rsc.OnClick(0);
+                rsc.OnClick(ToolType.None, 0);
             }
 
             if (colGo.layer == 3 && collision.isTrigger == false)

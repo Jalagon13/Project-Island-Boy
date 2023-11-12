@@ -19,11 +19,22 @@ namespace IslandBoy
             _onClickHash = Animator.StringToHash("[ANIM] Hit");
         }
 
-        public override void OnClick(ToolType incomingToolType)
+        public override void OnClick(ToolType incomingToolType, int amount)
         {
-            base.OnClick(incomingToolType);
+            base.OnClick(incomingToolType, amount);
             
             _knockback.PlayFeedback(_pr.Position);
+        }
+
+        public override void ShowDisplay()
+        {
+            UpdateAmountDisplay();
+            UpdateFillImage();
+
+            EnableInstructions(true);
+            EnableYellowCorners(true);
+            EnableAmountDisplay(true);
+            EnableProgressBar(true);
         }
 
         protected override void OnBreak()

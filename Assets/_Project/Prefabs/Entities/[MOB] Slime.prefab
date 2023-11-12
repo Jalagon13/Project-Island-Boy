@@ -397,7 +397,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &50220640540027580
 Transform:
   m_ObjectHideFlags: 0
@@ -557,7 +557,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3924048501989790544
 RectTransform:
   m_ObjectHideFlags: 0
@@ -975,7 +975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6681811946759147234
 Transform:
   m_ObjectHideFlags: 0
@@ -1123,10 +1123,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3fce4d50948854cb72f53642a80b42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHitPoints: 8
+  _maxHitPoints: 10
   _breakType: 3
   _hitSound: {fileID: 8300000, guid: 0b8b4bcc469225049a5cb8e790111dc5, type: 3}
   _breakSound: {fileID: 8300000, guid: 6c82de58455bb504892985f5947bb1db, type: 3}
+  _regenerateOnDayStart: 0
   _lootTable:
     <Table>k__BackingField:
     - Item: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
@@ -1149,7 +1150,7 @@ MonoBehaviour:
   PR: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _agroSound: {fileID: 8300000, guid: 7d81ba19726f98a4c8dfbe502334c213, type: 3}
   Seeker: {fileID: 0}
-  _agroDistance: 10
+  _agroDistance: 20
 --- !u!114 &5992861903168681665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1409,7 +1410,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7803485137481827136
 RectTransform:
   m_ObjectHideFlags: 0

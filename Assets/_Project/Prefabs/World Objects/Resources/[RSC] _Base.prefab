@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.51500005, y: -0.13100016}
+  m_AnchoredPosition: {x: 0.4, y: -0.122}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7550469521374612014
@@ -662,8 +662,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHitPoints: 1
   _breakType: 0
+  _wrongToolSound: {fileID: 8300000, guid: 693f775d985d5c542a5f4361e1922d53, type: 3}
   _hitSound: {fileID: 8300000, guid: acc9a292f9a4e9448953f37d61d47e54, type: 3}
   _breakSound: {fileID: 8300000, guid: acc9a292f9a4e9448953f37d61d47e54, type: 3}
+  _regenerateOnDayStart: 0
   _lootTable:
     <Table>k__BackingField:
     - Item: {fileID: 11400000, guid: e5ab57a91a28c384882e588fbf1e3392, type: 2}
@@ -739,7 +741,7 @@ GameObject:
   - component: {fileID: 6227367875457614411}
   - component: {fileID: 8798263882012607561}
   m_Layer: 0
-  m_Name: Icon
+  m_Name: MouseIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -754,7 +756,7 @@ Transform:
   m_GameObject: {fileID: 3827817519353232331}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.24, y: -0.18, z: 0}
+  m_LocalPosition: {x: -0.409, y: -0.145, z: 0}
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_ConstrainProportionsScale: 1
   m_Children: []

@@ -13,6 +13,7 @@ namespace IslandBoy
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private TilemapReferences _tmr;
         [SerializeField] private float _maxDist;
+        [SerializeField] private ItemParameter _powerParameter;
 
         private PlayerInput _input;
         private SpriteRenderer _sr;
@@ -131,8 +132,23 @@ namespace IslandBoy
 
             if (_currentClickableThisFrame != null && _canHit)
             {
-                _currentClickableThisFrame.OnClick(_focusSlotRef == null ? ToolType.None : _focusSlotRef.ToolType);
+                _currentClickableThisFrame.OnClick(_focusSlotRef == null ? ToolType.None : _focusSlotRef.ToolType, CalcPower());
             }
+        }
+
+        private int CalcPower()
+        {
+            if (_focusSlotRef.ItemObject == null) return 0;
+
+            if (_focusSlotRef.ItemObject.DefaultParameterList.Contains(_powerParameter))
+            {
+                var index = _focusSlotRef.ItemObject.DefaultParameterList.IndexOf(_powerParameter);
+                var powerParameter = _focusSlotRef.ItemObject.DefaultParameterList[index];
+
+                return (int)powerParameter.Value;
+            }
+
+            return 0;
         }
 
         private void UpdateCurrentClickable()

@@ -6,7 +6,7 @@ namespace IslandBoy
     public enum ToolType
     {
         None,
-        Ax,
+        Axe,
         Pickaxe,
         Sword,
         Hammer
@@ -35,28 +35,40 @@ namespace IslandBoy
 
         public override string GetDescription()
         {
-            //string powerDesc = string.Empty;
-            //string damageDesc = string.Empty;
-            //string attackSpeed = string.Empty;
+            string powerDesc = string.Empty;
 
-            //foreach (var item in DefaultParameterList)
-            //{
-            //    switch (item.Parameter.ParameterName)
-            //    {
-            //        //case "Power":
-            //        //    powerDesc = $"• {item.Value} {ToolType} Power<br>";
-            //        //    break;
-            //        case "Damage":
-            //            damageDesc = $"• {item.Value} Damage<br>";
-            //            break;
-            //        case "AttackSpeed":
-            //            attackSpeed = $"• {item.Value}s Attack Speed<br>";
-            //            break;
-            //    }
-            //}
+            float powerValue = 0;
 
-            //return $"{damageDesc}{attackSpeed}{Description}";
-            return Description;
+            foreach (var item in DefaultParameterList)
+            {
+                switch (item.Parameter.ParameterName)
+                {
+                    case "Power":
+                        powerValue = item.Value;
+                        powerDesc = $"• {item.Value} Damage<br>";
+                        break;
+                }
+            }
+
+            string desc = string.Empty;
+
+            switch (Type)
+            {
+                case ToolType.Axe:
+                    desc = $"• {powerValue} hit damage to trees{Description}";
+                    break;
+                case ToolType.Pickaxe:
+                    desc = $"• {powerValue} hit damage to rocks{Description}";
+                    break;
+                case ToolType.Sword:
+                    desc = $"• {powerValue} hit damage to creatures{Description}";
+                    break;
+                case ToolType.Hammer:
+                    desc = $"• {powerValue} hit damage to floors and walls{Description}";
+                    break;
+            }
+
+            return desc;
         }
     }
 }
