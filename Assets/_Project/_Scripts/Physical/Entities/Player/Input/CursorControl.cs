@@ -12,19 +12,19 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private TilemapReferences _tmr;
-        [SerializeField] private float _maxDist;
+        [SerializeField] private float _baseClickDistance;
         [SerializeField] private ItemParameter _powerParameter;
 
         private PlayerInput _input;
         private SpriteRenderer _sr;
         private Sprite _defaultPointerSprite;
         private Slot _focusSlotRef;
+        private Clickable _currentClickableThisFrame;
+        private Vector2 _previousCenterPos;
+        private Vector2 _currentCenterPos;
         private bool _placingThisFrame;
         private bool _canHit = true;
         private bool _shownDisplayThisFrame;
-        private Vector2 _previousCenterPos;
-        private Vector2 _currentCenterPos;
-        private Clickable _currentClickableThisFrame;
 
         public Vector2 CurrentCenterPos { get { return _currentCenterPos; } }
 
@@ -290,7 +290,7 @@ namespace IslandBoy
             Vector2 playerPos = transform.root.transform.localPosition;
             Vector2 direction = (_pr.MousePosition - playerPos).normalized;
 
-            taPosition = Vector2.Distance(playerPos, _pr.MousePosition) > _maxDist ? (playerPos += new Vector2(0, 0.25f)) + (direction * _maxDist) : _pr.MousePosition;
+            taPosition = Vector2.Distance(playerPos, _pr.MousePosition) > _baseClickDistance ? (playerPos += new Vector2(0, 0.25f)) + (direction * _baseClickDistance) : _pr.MousePosition;
 
             return taPosition;
         }
