@@ -12,7 +12,6 @@ namespace IslandBoy
         [SerializeField] private AudioClip _doorCloseSound;
 
         private Collider2D _doorCollider;
-        private SpriteRenderer _sr;
         private bool _opened;
 
         protected override void Awake()

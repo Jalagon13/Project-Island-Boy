@@ -9,19 +9,26 @@ namespace IslandBoy
     public class SpellObject : ItemObject
     {
         [SerializeField] private int _manaCostPerCast;
-        [SerializeField] private GameObject _spell;
+        [SerializeField] private Spell _spellPrefab;
+        [SerializeField] private AudioClip _castSound;
 
         public override ToolType ToolType => _baseToolType;
-
         public override ArmorType ArmorType => _baseArmorType;
-
-        public override GameObject AmmoPrefab => null;
-
         public override int ConsumeValue => 0;
 
         public override void ExecutePrimaryAction(SelectedSlotControl control)
         {
-            
+            if (control.CursorControl.CurrentClickable == null) return;
+
+            if (control.CursorControl.CurrentClickable is Entity)
+            {
+                Entity targetEntity = (Entity)control.CursorControl.CurrentClickable;
+
+                Spell spell = Instantiate(_spellPrefab);
+                spell.Setup(targetEntity, this);
+
+                //AudioManager.Instance.PlayClip(_castSound, false, true);
+            }
         }
 
         public override void ExecuteSecondaryAction(SelectedSlotControl control)
@@ -31,28 +38,28 @@ namespace IslandBoy
             // inject the release behavior into the charge system
 
             // execute the charge on release
-            DispatchItemCharging();
+            //DispatchItemCharging();
         }
 
-        private void DispatchItemCharging()
-        {
-            Action<float> behavior = SpellReleaseBehavior;
-            Signal signal = GameSignals.ITEM_CHARGING;
-            signal.ClearParameters();
-            signal.AddParameter("ReleaseBehavior", behavior);
-            signal.Dispatch();
-        }
+        //private void DispatchItemCharging()
+        //{
+        //    Action<float> behavior = SpellReleaseBehavior;
+        //    Signal signal = GameSignals.ITEM_CHARGING;
+        //    signal.ClearParameters();
+        //    signal.AddParameter("ReleaseBehavior", behavior);
+        //    signal.Dispatch();
+        //}
 
-        // note to self: remember to think about like where to put direction calculation at. If it's in the charge control or in spell object.
+        //// note to self: remember to think about like where to put direction calculation at. If it's in the charge control or in spell object.
 
-        public void SpellReleaseBehavior(float chargePercentage)
-        {
-            // instantiate the Spell Gameobject here.
+        //public void SpellReleaseBehavior(float chargePercentage)
+        //{
+        //    // instantiate the Spell Gameobject here.
 
-            // set up the spell with the charge percentage
+        //    // set up the spell with the charge percentage
 
-            // and then in each spell, just take the chargePercentage and do what ever it needs on spell instantiate. 
-        }
+        //    // and then in each spell, just take the chargePercentage and do what ever it needs on spell instantiate. 
+        //}
 
         public override string GetDescription()
         {

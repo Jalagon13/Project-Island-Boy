@@ -18,7 +18,7 @@ namespace IslandBoy
             _chasePos = _ctx.PR.Position;
             _ctx.OnMove += Chase;
 
-            AudioManager.Instance.PlayClip(_ctx._agroSound, false, true);
+            AudioManager.Instance.PlayClip(_ctx._agroSound, false, true, 0.25f);
         }
 
         override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

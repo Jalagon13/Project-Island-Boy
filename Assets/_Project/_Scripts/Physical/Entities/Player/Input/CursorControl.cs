@@ -129,7 +129,7 @@ namespace IslandBoy
 
         private void Hit(InputAction.CallbackContext context)
         {
-            if (HammerHitSomething() || PointerHandler.IsOverLayer(5) || _focusSlotRef.ItemObject is LaunchObject) return;
+            if (HammerHitSomething() || PointerHandler.IsOverLayer(5) || _focusSlotRef.ItemObject is LaunchObject || _focusSlotRef.ItemObject is SpellObject) return;
 
             if (_currentClickable != null && _canHit)
             {
