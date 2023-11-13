@@ -14,7 +14,6 @@ namespace IslandBoy
         [field: SerializeField] public List<ItemParameter> DefaultParameterList { get; set; }
 
         public abstract ToolType ToolType { get; }
-        public abstract AmmoType AmmoType { get; }
         public abstract ArmorType ArmorType { get; }
         public abstract GameObject AmmoPrefab { get; }
         public abstract int ConsumeValue { get; }
@@ -23,7 +22,6 @@ namespace IslandBoy
         public abstract string GetDescription();
 
         protected ToolType _baseToolType = ToolType.None;
-        protected AmmoType _baseAmmoType = AmmoType.None;
         protected ArmorType _baseArmorType = ArmorType.None;
 
     }

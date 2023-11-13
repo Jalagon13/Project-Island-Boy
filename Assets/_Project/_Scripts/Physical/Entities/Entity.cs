@@ -31,11 +31,16 @@ namespace IslandBoy
             Destroy(gameObject);
         }
 
-        public override void OnClick(ToolType incomingToolType, int amount)
+        public override bool OnClick(ToolType incomingToolType, int amount)
         {
-            base.OnClick(incomingToolType, amount);
-            
-            _knockback.PlayFeedback(_pr.Position);
+            if(base.OnClick(incomingToolType, amount))
+            {
+                _knockback.PlayFeedback(_pr.Position);
+                EnableYellowCorners(true);
+                return true;
+            }
+
+            return false;
         }
 
         public override void ShowDisplay()

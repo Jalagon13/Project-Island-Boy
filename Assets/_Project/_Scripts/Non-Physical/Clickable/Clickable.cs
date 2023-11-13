@@ -40,7 +40,7 @@ namespace IslandBoy
             HideDisplay();
         }
 
-        public virtual void OnClick(ToolType incomingToolType, int amount)
+        public virtual bool OnClick(ToolType incomingToolType, int amount)
         {
             if(incomingToolType != _breakType || incomingToolType == ToolType.None)
             {
@@ -50,17 +50,17 @@ namespace IslandBoy
                     _timer.RemainingSeconds = 3;
                 }
 
-                return;
+                return false;
             }
 
             _currentHitPoints -= amount;
-
-            //_currentHitPoints -= incomingToolType == _breakType ? _breakType == ToolType.None ? 1 : 2 : 1;
 
             GameSignals.CLICKABLE_CLICKED.Dispatch();
 
             if (_currentHitPoints <= 0)
                 OnBreak();
+
+            return true;
         }
 
         protected virtual void OnBreak()

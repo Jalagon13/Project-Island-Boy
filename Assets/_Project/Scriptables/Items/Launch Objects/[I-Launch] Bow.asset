@@ -15,14 +15,13 @@ MonoBehaviour:
   <Name>k__BackingField: Bow
   <UiDisplay>k__BackingField: {fileID: 1529562530, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   <Stackable>k__BackingField: 0
-  <Description>k__BackingField: 
+  <Description>k__BackingField: "\u2022 Fire rate: Average"
   <DefaultParameterList>k__BackingField:
-  - Parameter: {fileID: 11400000, guid: 8ce2b1259fb6a35469e952361487c905, type: 2}
-    Value: 1.5
   - Parameter: {fileID: 11400000, guid: c4b64d6fc16075a4ca7fd3181eeb7f65, type: 2}
-    Value: 20
+    Value: 4
+  - Parameter: {fileID: 11400000, guid: c25902e3274ad0a4a97f3515779aecea, type: 2}
+    Value: 6
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _throwPrefab: {fileID: 0}
-  _throwSound: {fileID: 8300000, guid: 693f775d985d5c542a5f4361e1922d53, type: 3}
-  _launchForce: 5
-  _ammoType: 1
+  _launchPrefab: {fileID: -5539637311781077729, guid: f10bcf5ae9c63f74e8eea0514827ae94, type: 3}
+  _ammo: {fileID: 11400000, guid: ad8d77d5b0f8ba8439e6e8bad6571b59, type: 2}
+  _launchSound: {fileID: 8300000, guid: 53f2aefca7701814e9d8ddede8c7f70d, type: 3}

@@ -18,15 +18,14 @@ namespace IslandBoy
 
         private PlayerInput _input;
         private SpriteRenderer _sr;
-        private Sprite _defaultPointerSprite;
         private Slot _focusSlotRef;
-        private Clickable _currentClickableThisFrame;
+        private Clickable _currentClickable;
         private Vector2 _previousCenterPos;
         private Vector2 _currentCenterPos;
         private bool _canHit = true;
         private float _currentClickDistance;
 
-        public Vector2 CurrentCenterPos { get { return _currentCenterPos; } }
+        public Clickable CurrentClickable { get { return _currentClickable; } }
 
         private void Awake()
         {
@@ -36,7 +35,6 @@ namespace IslandBoy
             _input.Enable();
 
             _sr = GetComponent<SpriteRenderer>();
-            _defaultPointerSprite = _sr.sprite;
             _currentClickDistance = _startingClickDistance;
 
             GameSignals.FOCUS_SLOT_UPDATED.AddListener(FocusSlotUpdated);
@@ -82,7 +80,7 @@ namespace IslandBoy
 
         private void OnEnterNewTile()
         {
-            _currentClickableThisFrame = null;
+            _currentClickable = null;
 
             Signal signal = GameSignals.CURSOR_ENTERED_NEW_TILE;
             signal.ClearParameters();
@@ -92,7 +90,7 @@ namespace IslandBoy
 
         private void DisplayCursor()
         {
-            _sr.enabled = _currentClickableThisFrame == null;
+            _sr.enabled = _currentClickable == null;
         }
 
         private void Interact(InputAction.CallbackContext context)
@@ -131,11 +129,11 @@ namespace IslandBoy
 
         private void Hit(InputAction.CallbackContext context)
         {
-            if (HammerHitSomething() || PointerHandler.IsOverLayer(5)) return;
+            if (HammerHitSomething() || PointerHandler.IsOverLayer(5) || _focusSlotRef.ItemObject is LaunchObject) return;
 
-            if (_currentClickableThisFrame != null && _canHit)
+            if (_currentClickable != null && _canHit)
             {
-                _currentClickableThisFrame.OnClick(_focusSlotRef == null ? ToolType.None : _focusSlotRef.ToolType, CalcPower());
+                _currentClickable.OnClick(_focusSlotRef == null ? ToolType.None : _focusSlotRef.ToolType, CalcPower());
             }
         }
 
@@ -175,14 +173,14 @@ namespace IslandBoy
 
             if (lastestClickable != null)
             {
-                if (_currentClickableThisFrame == lastestClickable) return;
+                if (_currentClickable == lastestClickable) return;
 
-                _currentClickableThisFrame = lastestClickable;
+                _currentClickable = lastestClickable;
             }
             else
             {
-                if (_currentClickableThisFrame == null) return;
-                _currentClickableThisFrame = null;
+                if (_currentClickable == null) return;
+                _currentClickable = null;
             }
         }
 

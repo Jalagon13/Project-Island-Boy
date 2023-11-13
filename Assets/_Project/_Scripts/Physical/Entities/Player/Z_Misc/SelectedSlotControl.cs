@@ -16,7 +16,7 @@ namespace IslandBoy
         private Slot _mouseSlot;
         private Player _player;
         private CursorControl _cursorControl;
-        private float _delayCooldown = 0.2f;
+        private float _delayCooldown = 0.25f;
         private bool _isHeldDown;
         private bool _mouseSlotHasitem;
 

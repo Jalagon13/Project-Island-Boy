@@ -32,12 +32,15 @@ namespace IslandBoy
             _canInteract = true;
         }
 
-        public override void OnClick(ToolType incomingToolType, int amount)
+        public override bool OnClick(ToolType incomingToolType, int amount)
         {
             if (_destructable)
             {
-                base.OnClick(incomingToolType, amount);
+                if (base.OnClick(incomingToolType, amount))
+                    return true;
             }
+
+            return false;
         }
 
         public abstract void Interact();
