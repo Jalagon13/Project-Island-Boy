@@ -279,9 +279,29 @@ PrefabInstance:
       propertyPath: _breakType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2418890234375932272, guid: e0a357d159958fb4a8ab5171e9d76da4, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2418890234375932272, guid: e0a357d159958fb4a8ab5171e9d76da4, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Max
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2418890234375932272, guid: e0a357d159958fb4a8ab5171e9d76da4, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Min
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2418890234375932272, guid: e0a357d159958fb4a8ab5171e9d76da4, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Item
+      value: 
+      objectReference: {fileID: 11400000, guid: e5ab57a91a28c384882e588fbf1e3392, type: 2}
+    - target: {fileID: 2418890234375932272, guid: e0a357d159958fb4a8ab5171e9d76da4, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Chance
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3851023828838753283, guid: e0a357d159958fb4a8ab5171e9d76da4, type: 3}
       propertyPath: m_text
-      value: Would you like to go to sleep?
+      value: Going to bed will bless your world with resources!
       objectReference: {fileID: 0}
     - target: {fileID: 6297496906277947704, guid: e0a357d159958fb4a8ab5171e9d76da4, type: 3}
       propertyPath: m_Name
@@ -289,11 +309,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7608744067912942635, guid: e0a357d159958fb4a8ab5171e9d76da4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 7608744067912942635, guid: e0a357d159958fb4a8ab5171e9d76da4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7608744067912942635, guid: e0a357d159958fb4a8ab5171e9d76da4, type: 3}
       propertyPath: m_LocalPosition.z

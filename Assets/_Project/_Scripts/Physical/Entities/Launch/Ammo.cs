@@ -12,6 +12,8 @@ namespace IslandBoy
         private Rigidbody2D _rb;
         private Entity _targetEntity;
         private SpriteRenderer _sr;
+        private Clickable _clickableFound = null;
+        private Vector2 _targetPosition;
         private int _damage;
 
         private void Awake()
@@ -29,10 +31,14 @@ namespace IslandBoy
 
         private void FixedUpdate()
         {
-            if (_targetEntity != null)
-                transform.position = Vector2.MoveTowards(transform.position, _targetEntity.transform.position, _speed);
-            else
-                Destroy(gameObject);
+            _targetPosition = _targetEntity != null ? _targetEntity.transform.position : _targetPosition;
+            transform.position = Vector2.MoveTowards(transform.position, _targetPosition, _speed);
+
+            if (_targetEntity == null)
+            {
+                if (Vector2.Distance(transform.position, _targetPosition) < 0.1f)
+                    Destroy(gameObject);
+            }
         }
 
         private void LateUpdate()
@@ -49,7 +55,10 @@ namespace IslandBoy
 
             if(colliderGo.TryGetComponent(out Clickable clickable))
             {
-                clickable.OnClick(ToolType.Sword, _damage);
+                if (_clickableFound != null) return;
+                _clickableFound = clickable;
+
+                _clickableFound.OnClick(ToolType.Sword, _damage);
                 Destroy(gameObject);
             }
         }

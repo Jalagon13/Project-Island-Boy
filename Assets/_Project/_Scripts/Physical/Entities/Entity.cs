@@ -33,9 +33,11 @@ namespace IslandBoy
 
         public override bool OnClick(ToolType incomingToolType, int amount)
         {
-            if(base.OnClick(incomingToolType, amount))
+            _knockback.PlayFeedback(_pr.Position);
+
+            if (base.OnClick(incomingToolType, amount))
             {
-                _knockback.PlayFeedback(_pr.Position);
+                PopupMessage.Create(transform.position, amount.ToString(), Color.yellow, Vector2.up * 0.5f, 0.4f);
                 EnableYellowCorners(true);
                 return true;
             }

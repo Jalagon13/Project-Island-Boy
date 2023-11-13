@@ -9,14 +9,16 @@ namespace IslandBoy
     {
         [SerializeField] private TilemapReferences _tmr;
 
-        private Timer _delayTimer; // used for tiny delay between primary/seconday item execution to prevent them from being executed every frame
+        private Timer _primaryDelayCooldownTimer;
+        private Timer _secondaryDelayCooldownTimer;
         private PlayerInput _input;
         private Slot _focusSlot;
         private Slot _hotbarSlot;
         private Slot _mouseSlot;
         private Player _player;
         private CursorControl _cursorControl;
-        private float _delayCooldown = 0.25f;
+        private float _primaryActionDelayCoolDown = 0.25f;
+        private float _secondayActionDelayCoolDown = 0.15f;
         private bool _isHeldDown;
         private bool _mouseSlotHasitem;
 
@@ -37,7 +39,8 @@ namespace IslandBoy
             _input.Player.SecondaryAction.started += ExecuteSecondaryAction;
             _input.Enable();
 
-            _delayTimer = new(_delayCooldown);
+            _primaryDelayCooldownTimer = new(_primaryActionDelayCoolDown);
+            _secondaryDelayCooldownTimer = new(_secondayActionDelayCoolDown);
 
             GameSignals.HOTBAR_SLOT_UPDATED.AddListener(UpdateFocusSlotToHotbarSlot);
             GameSignals.MOUSE_SLOT_HAS_ITEM.AddListener(UpdateFocusSlotToMouseSlot);
@@ -55,7 +58,8 @@ namespace IslandBoy
 
         private void Update()
         {
-            _delayTimer.Tick(Time.deltaTime);
+            _primaryDelayCooldownTimer.Tick(Time.deltaTime);
+            _secondaryDelayCooldownTimer.Tick(Time.deltaTime);
 
             if (_isHeldDown)
             {
@@ -108,19 +112,19 @@ namespace IslandBoy
 
         private void ExecutePrimaryAction(InputAction.CallbackContext context)
         {
-            if(_delayTimer.RemainingSeconds <= 0 && _focusSlot.ItemObject != null)
+            if(_primaryDelayCooldownTimer.RemainingSeconds <= 0 && _focusSlot.ItemObject != null)
             {
                 _focusSlot.ItemObject.ExecutePrimaryAction(this);
-                _delayTimer.RemainingSeconds = _delayCooldown;
+                _primaryDelayCooldownTimer.RemainingSeconds = _primaryActionDelayCoolDown;
             }
         }
 
         private void ExecuteSecondaryAction(InputAction.CallbackContext context)
         {
-            if (_delayTimer.RemainingSeconds <= 0 && _focusSlot.ItemObject != null)
+            if (_secondaryDelayCooldownTimer.RemainingSeconds <= 0 && _focusSlot.ItemObject != null)
             {
                 _focusSlot.ItemObject.ExecuteSecondaryAction(this);
-                _delayTimer.RemainingSeconds = _delayCooldown;
+                _secondaryDelayCooldownTimer.RemainingSeconds = _secondayActionDelayCoolDown;
             }
         }
     }
