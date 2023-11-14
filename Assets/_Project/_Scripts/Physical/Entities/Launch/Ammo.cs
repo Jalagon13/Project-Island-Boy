@@ -6,6 +6,8 @@ namespace IslandBoy
 {
     public class Ammo : MonoBehaviour
     {
+        //[SerializeField] SpellObject _spellObject;
+        //[SerializeField] Spell _spell;
         [SerializeField] private float _speed;
         [SerializeField] private ItemParameter _powerParameter;
 
@@ -57,6 +59,12 @@ namespace IslandBoy
             {
                 if (_clickableFound != null) return;
                 _clickableFound = clickable;
+
+                //if(_clickableFound is Entity)
+                //{
+                //    Spell spell = Instantiate(_spell);
+                //    spell.Setup((Entity)_clickableFound, _spellObject);
+                //}
 
                 _clickableFound.OnClick(ToolType.Sword, _damage);
                 Destroy(gameObject);

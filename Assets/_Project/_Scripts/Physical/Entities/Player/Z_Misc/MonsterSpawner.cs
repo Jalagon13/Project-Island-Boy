@@ -27,7 +27,12 @@ namespace IslandBoy
 
         private void Start()
         {
-            StartCoroutine(SpawnMonsterTimer());
+            //StartCoroutine(SpawnMonsterTimer());
+        }
+
+        public void MonsterSpawnDebugButton()
+        {
+            StartCoroutine(SpawnMonsters());
         }
 
         private void PauseMonsterSpawning(ISignalParameters parameters)
@@ -42,7 +47,7 @@ namespace IslandBoy
 
         private IEnumerator SpawnMonsterTimer()
         {
-            yield return new WaitForSeconds(Random.Range(15f, 25f));
+            yield return new WaitForSeconds(Random.Range(30f, 40f));
 
             if (true)
             {

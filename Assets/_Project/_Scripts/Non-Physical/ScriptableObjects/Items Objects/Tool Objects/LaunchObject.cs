@@ -61,7 +61,7 @@ namespace IslandBoy
                 }
             }
 
-            return $"{Description}<br>• {power + 1} hits to creatures<br>• {clickDistance} click distance";
+            return $"{Description}<br>• {power} hits to creatures<br>• {clickDistance} click distance";
         }
     }
 }

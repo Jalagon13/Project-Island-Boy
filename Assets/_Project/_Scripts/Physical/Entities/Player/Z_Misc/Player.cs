@@ -24,6 +24,7 @@ namespace IslandBoy
         [SerializeField] private float _healNrgCooldown;
         [SerializeField] private float _healMpCooldown;
         [Header("Parameters")]
+        [SerializeField] private float _manaGenRate;
         [SerializeField] private float _iFrameDuration;
         [SerializeField] private float _deathTimer;
         [SerializeField] private AudioClip _damageSound;
@@ -32,13 +33,8 @@ namespace IslandBoy
         private Collider2D _playerCollider;
         private Vector2 _spawnPoint;
         private Slot _focusSlot;
-        private Timer _iFrameTimer;
-        private Timer _hpCdTimer;
-        private Timer _nrgCdTimer;
-        private Timer _mpCdTimer;
-        private int _currentHp;
-        private int _currentNrg;
-        private int _currentMp;
+        private Timer _iFrameTimer, _hpCdTimer, _nrgCdTimer, _mpCdTimer;
+        private int _currentHp, _currentNrg, _currentMp;
 
         private void Awake()
         {
@@ -78,6 +74,8 @@ namespace IslandBoy
             _hpCdTimer = new Timer(_healHpCooldown);
             _nrgCdTimer = new Timer(_healNrgCooldown);
             _mpCdTimer = new Timer(_healMpCooldown);
+
+            StartCoroutine(RegenOneMana());
         }
 
         private void Update()
@@ -86,8 +84,19 @@ namespace IslandBoy
             _hpCdTimer.Tick(Time.deltaTime);
             _nrgCdTimer.Tick(Time.deltaTime);
             _mpCdTimer.Tick(Time.deltaTime);
-
             _pr.Position = transform.position;
+        }
+
+        private IEnumerator RegenOneMana()
+        {
+            yield return new WaitForSeconds(_manaGenRate);
+
+            if(_currentMp < _maxMp)
+            {
+                AddToMp(1);
+            }
+
+            StartCoroutine(RegenOneMana());
         }
 
         private void PlacePlayerAtSpawnPoint(ISignalParameters parameters)
@@ -268,6 +277,12 @@ namespace IslandBoy
 
             _focusSlot.InventoryItem.Count--;
         }
+
+        public bool HasEnoughManaToCast(int spellCost)
+        {
+            return _currentMp >= spellCost;
+        }
+
         public void AddToMp(int amount)
         {
             _currentMp += amount;

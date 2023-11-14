@@ -10,12 +10,13 @@ namespace IslandBoy
         [SerializeField] private ItemParameter _powerParameter;
 
         private Entity _targetEntity;
+        private Vector2 _targetPosition;
         private int _damage;
 
         private void Update()
         {
-            if (_targetEntity != null)
-                transform.position = _targetEntity.transform.position;
+            _targetPosition = _targetEntity != null ? _targetEntity.transform.position : _targetPosition;
+            transform.position = _targetPosition;
         }
 
         public void Setup(Entity target, SpellObject spellObject)
@@ -28,17 +29,22 @@ namespace IslandBoy
         {
             AudioManager.Instance.PlayClip(_landSound, false, true, 1f, 1f);
 
-            _targetEntity.OnClick(ToolType.Sword, _damage);
+            if(_targetEntity != null)
+                _targetEntity.OnClick(ToolType.Sword, _damage);
+
             var entities = Physics2D.OverlapCircleAll(transform.position, 1f);
 
             foreach (Collider2D entity in entities)
             {
                 if (entity.TryGetComponent(out Entity e))
                 {
+                    if (e == null) continue;
                     if(e == _targetEntity) continue;
                     e.OnClick(ToolType.Sword, (int)(_damage * 0.5f));
                 }
             }
+
+            _targetEntity = null;
         }
 
         public void BoulderFadeAway()
