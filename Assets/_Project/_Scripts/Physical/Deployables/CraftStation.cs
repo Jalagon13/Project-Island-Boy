@@ -42,6 +42,13 @@ namespace IslandBoy
             _pr.Inventory.InventoryControl.CraftStationInteract(this, _rdb);
 
             GameSignals.CRAFT_STATION_INTERACT.Dispatch();
+            _instructions.gameObject.SetActive(false);
+        }
+
+        public override void ShowDisplay()
+        {
+            _yellowCorners.gameObject.SetActive(true);
+            _instructions.gameObject.SetActive(true);
         }
     }
 }

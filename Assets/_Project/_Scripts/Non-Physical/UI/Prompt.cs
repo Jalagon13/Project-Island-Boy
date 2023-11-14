@@ -34,6 +34,7 @@ namespace IslandBoy
         {
             if (PointerHandler.IsOverLayer(5)) return;
 
+            _instructions.gameObject.SetActive(false);
             OpenUI();
         }
 
@@ -62,6 +63,12 @@ namespace IslandBoy
 
             _prompCanvas.gameObject.SetActive(true);
             _onOpenPrompt?.Invoke();
+        }
+
+        public override void ShowDisplay()
+        {
+            _yellowCorners.gameObject.SetActive(true);
+            _instructions.gameObject.SetActive(true);
         }
     }
 }

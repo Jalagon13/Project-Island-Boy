@@ -53,7 +53,6 @@ namespace IslandBoy
         private void LateUpdate()
         {
             _currentState.UpdateStates();
-            _pr.Position = transform.position;
             _pr.MousePosition = (Vector2)_mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         }
 
@@ -81,11 +80,6 @@ namespace IslandBoy
 
         private void TeleportPlayerToSpawn()
         {
-            if (SceneManager.GetActiveScene().buildIndex != 0)
-            {
-                LevelManager.Instance.LoadSurface();
-            }
-
             transform.SetPositionAndRotation(_pr.SpawnPoint, Quaternion.identity);
         }
 

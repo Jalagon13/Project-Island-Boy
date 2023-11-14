@@ -15,6 +15,7 @@ namespace IslandBoy
     public class Player : MonoBehaviour
     {
         [Header("Player Stats")]
+        [SerializeField] private PlayerReference _pr;
         [SerializeField] private int _maxHp;
         [SerializeField] private int _maxNrg;
         [SerializeField] private int _maxMp;
@@ -23,6 +24,7 @@ namespace IslandBoy
         [SerializeField] private float _healNrgCooldown;
         [SerializeField] private float _healMpCooldown;
         [Header("Parameters")]
+        [SerializeField] private float _manaGenRate;
         [SerializeField] private float _iFrameDuration;
         [SerializeField] private float _deathTimer;
         [SerializeField] private AudioClip _damageSound;
@@ -31,13 +33,8 @@ namespace IslandBoy
         private Collider2D _playerCollider;
         private Vector2 _spawnPoint;
         private Slot _focusSlot;
-        private Timer _iFrameTimer;
-        private Timer _hpCdTimer;
-        private Timer _nrgCdTimer;
-        private Timer _mpCdTimer;
-        private int _currentHp;
-        private int _currentNrg;
-        private int _currentMp;
+        private Timer _iFrameTimer, _hpCdTimer, _nrgCdTimer, _mpCdTimer;
+        private int _currentHp, _currentNrg, _currentMp;
 
         private void Awake()
         {
@@ -46,7 +43,7 @@ namespace IslandBoy
             _iFrameTimer = new Timer(_iFrameDuration);
             _spawnPoint = transform.position;
 
-            GameSignals.SWING_PERFORMED.AddListener(OnSwing);
+            GameSignals.CLICKABLE_CLICKED.AddListener(OnSwing);
             GameSignals.DAY_OUT_OF_TIME.AddListener(OnOutOfTime);
             GameSignals.DAY_START.AddListener(ResetStats);
             GameSignals.DAY_START.AddListener(PlacePlayerAtSpawnPoint);
@@ -56,7 +53,7 @@ namespace IslandBoy
 
         private void OnDestroy()
         {
-            GameSignals.SWING_PERFORMED.RemoveListener(OnSwing);
+            GameSignals.CLICKABLE_CLICKED.RemoveListener(OnSwing);
             GameSignals.DAY_OUT_OF_TIME.RemoveListener(OnOutOfTime);
             GameSignals.DAY_START.RemoveListener(ResetStats);
             GameSignals.DAY_START.RemoveListener(PlacePlayerAtSpawnPoint);
@@ -77,6 +74,8 @@ namespace IslandBoy
             _hpCdTimer = new Timer(_healHpCooldown);
             _nrgCdTimer = new Timer(_healNrgCooldown);
             _mpCdTimer = new Timer(_healMpCooldown);
+
+            StartCoroutine(RegenOneMana());
         }
 
         private void Update()
@@ -85,6 +84,19 @@ namespace IslandBoy
             _hpCdTimer.Tick(Time.deltaTime);
             _nrgCdTimer.Tick(Time.deltaTime);
             _mpCdTimer.Tick(Time.deltaTime);
+            _pr.Position = transform.position;
+        }
+
+        private IEnumerator RegenOneMana()
+        {
+            yield return new WaitForSeconds(_manaGenRate);
+
+            if(_currentMp < _maxMp)
+            {
+                AddToMp(1);
+            }
+
+            StartCoroutine(RegenOneMana());
         }
 
         private void PlacePlayerAtSpawnPoint(ISignalParameters parameters)
@@ -265,6 +277,12 @@ namespace IslandBoy
 
             _focusSlot.InventoryItem.Count--;
         }
+
+        public bool HasEnoughManaToCast(int spellCost)
+        {
+            return _currentMp >= spellCost;
+        }
+
         public void AddToMp(int amount)
         {
             _currentMp += amount;

@@ -10,7 +10,7 @@ namespace IslandBoy
     {
         [field:SerializeField] public PlayerReference PR { get; private set; }
         [field:SerializeField] public Slider ThrowSlider { get; private set; }
-        public TileAction TileAction { get; private set; }
+        public CursorControl TileAction { get; private set; }
         public InventorySlot SelectedSlot { get; private set; }
 
         public ItemParameter ChargeTimeParameter;
@@ -39,7 +39,7 @@ namespace IslandBoy
             _input.Player.SecondaryAction.canceled += IsHeldDown;
             _input.Enable();
 
-            TileAction = FindObjectOfType<TileAction>();
+            TileAction = FindObjectOfType<CursorControl>();
 
             GameSignals.HOTBAR_SLOT_UPDATED.AddListener(InjectSelectedSlot);
             GameSignals.HOTBAR_SLOT_UPDATED.AddListener(UpdateChargeTime);

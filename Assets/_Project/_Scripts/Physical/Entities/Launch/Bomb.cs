@@ -44,7 +44,7 @@ namespace IslandBoy
                 if (!rsc)
                     continue;
 
-                rsc.Hit(_breakableDamage);
+                rsc.OnClick(ToolType.None, 1);
             }
         }
 
@@ -54,10 +54,10 @@ namespace IslandBoy
 
             foreach (Collider2D collider in colliders)
             {
-                IHealth<int> health = collider.GetComponent<IHealth<int>>();
+                //IHealth<int> health = collider.GetComponent<IHealth<int>>();
 
-                if (health != null)
-                    health.Damage(_enemyDamage);
+                //if (health != null)
+                //    health.Damage(_enemyDamage);
 
                 KnockbackFeedback knockback = collider.GetComponent<KnockbackFeedback>();
 
