@@ -5,10 +5,11 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public abstract class Interactable : MonoBehaviour
+    public abstract class Interactable : Resource
     {
         public Action OnPlayerExitRange;
-
+         
+        [SerializeField] protected bool _destructable = true;
         [SerializeField] protected PlayerReference _pr;
 
         private float _interactRange = 3f;
@@ -16,8 +17,10 @@ namespace IslandBoy
         private Vector3 _origin;
         private SpriteRenderer _rightClickSr;
 
-        public virtual void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             _origin = transform.position + new Vector3(0.5f, 0.5f);
             _rightClickSr = transform.GetChild(1).GetComponent<SpriteRenderer>();
         }
@@ -27,6 +30,17 @@ namespace IslandBoy
 
             yield return new WaitForSeconds(0.15f);
             _canInteract = true;
+        }
+
+        public override bool OnClick(ToolType incomingToolType, int amount)
+        {
+            if (_destructable)
+            {
+                if (base.OnClick(incomingToolType, amount))
+                    return true;
+            }
+
+            return false;
         }
 
         public abstract void Interact();

@@ -6,7 +6,7 @@ namespace IslandBoy
     public enum ToolType
     {
         None,
-        Ax,
+        Axe,
         Pickaxe,
         Sword,
         Hammer
@@ -18,9 +18,7 @@ namespace IslandBoy
         [field: SerializeField] public ToolType Type { get; set; }
 
         public override ToolType ToolType => Type;
-        public override AmmoType AmmoType => _baseAmmoType;
         public override ArmorType ArmorType => _baseArmorType;
-        public override GameObject AmmoPrefab => null;
         public override int ConsumeValue => 0;
 
         public override void ExecutePrimaryAction(SelectedSlotControl control)
@@ -35,27 +33,41 @@ namespace IslandBoy
 
         public override string GetDescription()
         {
-            //string powerDesc = string.Empty;
-            string damageDesc = string.Empty;
-            string attackSpeed = string.Empty;
+            float clickDistance = 0;
+            float powerValue = 0;
 
             foreach (var item in DefaultParameterList)
             {
                 switch (item.Parameter.ParameterName)
                 {
-                    //case "Power":
-                    //    powerDesc = $"• {item.Value} {ToolType} Power<br>";
-                    //    break;
-                    case "Damage":
-                        damageDesc = $"• {item.Value} Damage<br>";
+                    case "Power":
+                        powerValue = item.Value;
                         break;
-                    case "AttackSpeed":
-                        attackSpeed = $"• {item.Value}s Attack Speed<br>";
+                    case "ClickDistance":
+                        clickDistance = item.Value;
                         break;
                 }
             }
 
-            return $"{damageDesc}{attackSpeed}{Description}";
+            string desc = string.Empty;
+
+            switch (Type)
+            {
+                case ToolType.Axe:
+                    desc = $"• {powerValue} hits to trees<br>• {clickDistance} click distance";
+                    break;
+                case ToolType.Pickaxe:
+                    desc = $"• {powerValue} hits to rocks<br>• {clickDistance} click distance";
+                    break;
+                case ToolType.Sword:
+                    desc = $"• {powerValue} hits to creatures<br>• {clickDistance} click distance";
+                    break;
+                case ToolType.Hammer:
+                    desc = $"• {powerValue} hits to floors and walls<br>• {clickDistance} click distance";
+                    break;
+            }
+
+            return desc;
         }
     }
 }

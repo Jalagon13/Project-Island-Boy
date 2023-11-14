@@ -13,9 +13,17 @@ namespace IslandBoy
             _ap = GetComponent<AstarPath>();
         }
 
+        private IEnumerator Start()
+        {
+            yield return new WaitForSeconds(3f);
+
+            _ap.Scan();
+        }
+
         private void OnEnable()
         {
-            Astar.SetUpActiveAstarPath(_ap);
+            _ap.scanOnStartup = true;
+            //Astar.SetUpActiveAstarPath(_ap);
         }
     }
 }

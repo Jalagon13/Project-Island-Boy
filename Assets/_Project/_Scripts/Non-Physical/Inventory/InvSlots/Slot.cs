@@ -19,6 +19,15 @@ namespace IslandBoy
 
         public MouseItemHolder MouseItemHolder { get { return _mouseItemHolder; } }
         public bool InventoryOpen { set { _inventoryOpen = value; } }
+
+        public ToolType ToolType
+        {
+            get
+            {
+                return HasItem() ? GetComponentInChildren<InventoryItem>().Item.ToolType : ToolType.None;
+            }
+        }
+
         public ItemObject ItemObject
         {
             get

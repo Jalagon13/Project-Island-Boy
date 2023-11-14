@@ -24,7 +24,7 @@ namespace IslandBoy
         public static readonly Signal ITEM_CRAFTED = new("ItemCrafted");
         public static readonly Signal CHEST_INTERACT = new("ChestInteract");
         public static readonly Signal CRAFT_STATION_INTERACT = new("CraftStationInteract");
-        public static readonly Signal SWING_PERFORMED = new("SwingPerformed");
+        public static readonly Signal CLICKABLE_CLICKED = new("SwingPerformed");
         public static readonly Signal PROMPT_INTERACT = new("PromptInteract");
         public static readonly Signal PLAYER_DIED = new("PlayerDied");
         public static readonly Signal PLAYER_HP_CHANGED = new("PlayerHpChanged");
@@ -35,12 +35,13 @@ namespace IslandBoy
         public static readonly Signal MOUSE_SLOT_HAS_ITEM = new("MouseSlotHasItem");
         public static readonly Signal MOUSE_SLOT_GIVES_ITEM = new("MouseSlotGivesItem");
         public static readonly Signal FOCUS_SLOT_UPDATED = new("FocusSlotUpdated");
+        public static readonly Signal CURSOR_ENTERED_NEW_TILE = new("CursorEnteredNewTile");
 
         // Pause Signals
         public static readonly Signal GAME_PAUSED = new("GamePaused");
         public static readonly Signal GAME_UNPAUSED = new("GameUnpaused");
 
-        // Astar Signals
-        //public static readonly Signal GRID_GRAPH_OVERRIDDEN = new("GridGraphOverriden");
+        // World Signals
+        public static readonly Signal RESOURCE_DESTROYED = new("ResourceDestroyed");
     }
 }

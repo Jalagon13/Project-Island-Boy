@@ -46,6 +46,9 @@ namespace IslandBoy
         {
             if (!_canCheck) return;
 
+            DispatchEvents();
+            return;
+
             if (InValidSpace())
             {
                 if (!_canSleep)

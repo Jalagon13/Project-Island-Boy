@@ -8,92 +8,60 @@ namespace IslandBoy
     public class LaunchObject : ItemObject
     {
         [SerializeField] private PlayerReference _pr;
-        [SerializeField] private GameObject _throwPrefab;
-        [SerializeField] private AudioClip _throwSound;
-        [SerializeField] private float _launchForce = 5f; // Optional force added or subtracted
-        [SerializeField] private AmmoType _ammoType;
+        [SerializeField] private Ammo _launchPrefab;
+        [SerializeField] private ItemObject _ammo;
+        [SerializeField] private AudioClip _launchSound;
 
         public override ToolType ToolType => _baseToolType;
-        public override AmmoType AmmoType => _baseAmmoType;
         public override ArmorType ArmorType => _baseArmorType;
-        public override GameObject AmmoPrefab => null;
         public override int ConsumeValue => 0;
-
-        private ItemObject _ammoObject;
-        private SelectedSlotControl _ssc;
 
         public override void ExecutePrimaryAction(SelectedSlotControl control)
         {
+            if (control.CursorControl.CurrentClickable == null) return;
 
+            if(!_pr.Inventory.Contains(_ammo, 1))
+            {
+                PopupMessage.Create(control.Player.transform.position, $"Need {_ammo.Name} to shoot!", Color.yellow, Vector2.up, 1f);
+                return;
+            }
+
+            if (control.CursorControl.CurrentClickable is Entity)
+            {
+                _pr.Inventory.RemoveItem(_ammo, 1);
+
+                Entity targetEntity = (Entity)control.CursorControl.CurrentClickable;
+                Ammo ammo = Instantiate(_launchPrefab, control.Player.transform.position + new Vector3(0, 0.65f), Quaternion.identity);
+                ammo.Setup(this, _ammo, targetEntity);
+
+                AudioManager.Instance.PlayClip(_launchSound, false, true);
+            }
         }
 
         public override void ExecuteSecondaryAction(SelectedSlotControl control)
         {
-            if (PointerHandler.IsOverLayer(5) || control.TileAction.OverInteractable()) return;
 
-            _ammoObject = null;
-            _ssc = control;
-
-            if (_ammoType != AmmoType.None)
-            {
-                ItemObject ammoObject = _pr.Inventory.GetAmmoItem(_ammoType);
-
-                if (ammoObject == null) return;
-
-                _ammoObject = ammoObject;
-            }
-
-            DispatchItemCharging();
-        }
-
-        private void DispatchItemCharging()
-        {
-            Action<float, float> behavior = LaunchReleaseBehavior;
-            Signal signal = GameSignals.ITEM_CHARGING;
-            signal.ClearParameters();
-            signal.AddParameter("ReleaseBehavior", behavior);
-            signal.Dispatch();
-        }
-
-        public void LaunchReleaseBehavior(float chargePercentage, float baseLaunchForce)
-        {
-            LaunchProjectile(chargePercentage, baseLaunchForce);
-            AfterLaunch();
-        }
-
-        private void AfterLaunch()
-        {
-            if (_ammoObject != null)
-            {
-                _pr.Inventory.RemoveItem(_ammoObject, 1);
-                _ammoObject = null;
-            }
-
-            if (Stackable)
-                _ssc.FocusSlot.InventoryItem.Count--;
-        }
-
-        private void LaunchProjectile(float launchForcePercentage, float baseLaunchForce)
-        {
-            Vector2 launchPosition = _pr.Position + new Vector2(0, 0.4f);
-
-            GameObject launchPrefab = _ammoObject == null ? _throwPrefab : _ammoObject.AmmoPrefab;
-            GameObject launchObject = Instantiate(launchPrefab, launchPosition, Quaternion.identity);
-            Rigidbody2D rb = launchObject.GetComponent<Rigidbody2D>();
-            AudioManager.Instance.PlayClip(_throwSound, false, true);
-
-            Vector2 direction = ((Vector3)_pr.MousePosition - rb.transform.position).normalized;
-            Vector2 launchForce = (direction * (baseLaunchForce + _launchForce));
-
-            if (launchObject.TryGetComponent(out Ammo arrow))
-            {
-                arrow.Setup(this, _ammoObject, launchForcePercentage, launchForce);
-            }
         }
 
         public override string GetDescription()
         {
-            return $"• Can be launched<br>{Description}";
+            float clickDistance = 0;
+            float power = 0;
+
+            foreach (var item in DefaultParameterList)
+            {
+                switch (item.Parameter.ParameterName)
+                {
+                    case "ClickDistance":
+                        clickDistance = item.Value;
+                        break;
+                    case "Power":
+                        power = item.Value;
+                        break;
+                }
+            }
+
+            return $"{Description}<br>• {power} hits to creatures<br>• {clickDistance} click distance";
         }
     }
 }
