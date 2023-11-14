@@ -298,6 +298,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: ws_spike
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 21
+      alignment: 9
+      pivot: {x: 0.5, y: 0.38}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0b37989911b04a48a5f952b7e12643b
+      internalID: -269424206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -318,6 +339,7 @@ TextureImporter:
       ws_cave_level_ascend: 1449772273
       ws_cave_level_descend: -363508920
       ws_locked_hatch: -1019726668
+      ws_spike: -269424206
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
