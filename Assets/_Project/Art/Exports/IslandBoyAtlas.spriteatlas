@@ -483,6 +483,7 @@ SpriteAtlas:
     - f26f48daf8f5428489afd48be52c6594: -1313561144
     - f26f48daf8f5428489afd48be52c6594: -1019726668
     - f26f48daf8f5428489afd48be52c6594: 815461575
+    - f26f48daf8f5428489afd48be52c6594: -269424206
     - e4e3352ba13a2cb428cbccac681e9823: -3617001063237578114
     - e4e3352ba13a2cb428cbccac681e9823: -1026265276513079413
     - e4e3352ba13a2cb428cbccac681e9823: -3095390572666726621
@@ -1092,6 +1093,7 @@ SpriteAtlas:
   - {fileID: -1313561144, guid: f26f48daf8f5428489afd48be52c6594, type: 3}
   - {fileID: -1019726668, guid: f26f48daf8f5428489afd48be52c6594, type: 3}
   - {fileID: 815461575, guid: f26f48daf8f5428489afd48be52c6594, type: 3}
+  - {fileID: -269424206, guid: f26f48daf8f5428489afd48be52c6594, type: 3}
   - {fileID: -3617001063237578114, guid: e4e3352ba13a2cb428cbccac681e9823, type: 3}
   - {fileID: -1026265276513079413, guid: e4e3352ba13a2cb428cbccac681e9823, type: 3}
   - {fileID: -3095390572666726621, guid: e4e3352ba13a2cb428cbccac681e9823, type: 3}
@@ -1700,6 +1702,7 @@ SpriteAtlas:
   - rsc_iron_ore
   - ws_locked_hatch
   - rsc_coal_ore
+  - ws_spike
   - WS7_19
   - WS7_14
   - WS7_15
