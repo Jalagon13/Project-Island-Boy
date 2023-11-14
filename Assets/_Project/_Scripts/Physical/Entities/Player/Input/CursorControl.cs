@@ -57,7 +57,7 @@ namespace IslandBoy
             _input.Disable();
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             transform.SetPositionAndRotation(CalcPosition(), Quaternion.identity);
 

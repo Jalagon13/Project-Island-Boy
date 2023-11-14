@@ -10,13 +10,17 @@ namespace IslandBoy
         [TextArea]
         [SerializeField] private string _text;
         [SerializeField] private TextMeshProUGUI _signText;
-
+        [SerializeField] private bool _disableTextOverride;
+        
         private GameObject _tutorialObject;
 
         private void Awake()
         {
-            _signText.text = _text;
             _tutorialObject = transform.GetChild(3).gameObject;
+
+            if (_disableTextOverride) return;
+
+            _signText.text = _text;
         }
 
         private IEnumerator Start()

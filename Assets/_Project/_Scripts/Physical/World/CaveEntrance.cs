@@ -14,7 +14,7 @@ namespace IslandBoy
 
         private void Awake()
         {
-            _entranceText.text = $"I need {_unlockFee} XP to access this Mine Shaft";
+            _entranceText.text = $"For {_unlockFee} XP I can make the spikes disappear into thin air!";
         }
 
         public void TryUnlockCave()
