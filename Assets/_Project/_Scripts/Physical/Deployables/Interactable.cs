@@ -9,7 +9,6 @@ namespace IslandBoy
     {
         public Action OnPlayerExitRange;
          
-        [SerializeField] protected bool _destructable = true;
         [SerializeField] protected PlayerReference _pr;
 
         private float _interactRange = 3f;
@@ -34,11 +33,8 @@ namespace IslandBoy
 
         public override bool OnClick(ToolType incomingToolType, int amount)
         {
-            if (_destructable)
-            {
-                if (base.OnClick(incomingToolType, amount))
-                    return true;
-            }
+            if (base.OnClick(incomingToolType, amount))
+                return true;
 
             return false;
         }

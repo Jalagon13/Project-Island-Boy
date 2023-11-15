@@ -60,7 +60,7 @@ namespace IslandBoy
                 }
             }
 
-            return $"{Description}<br>• {power} hits to creatures<br>• {clickDistance} click distance";
+            return $"• {_manaCostPerCast} mana per click<br>• {power} hits to creatures<br>• {clickDistance} click distance<br>{Description}";
         }
     }
 }

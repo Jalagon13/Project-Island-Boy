@@ -27,7 +27,7 @@ namespace IslandBoy
 
         private void Start()
         {
-            //StartCoroutine(SpawnMonsterTimer());
+            StartCoroutine(SpawnMonsterTimer());
         }
 
         public void MonsterSpawnDebugButton()

@@ -15,21 +15,21 @@ namespace IslandBoy
 
         public NpcObject NPC { get { return _npc; } set { _npc = value; } }
 
-        public void Start()
-        {
-            _canCheck = true;
-        }
-
-        private void OnEnable()
+        private void Awake()
         {
             GameSignals.CAN_SLEEP.AddListener(CanSleepNow);
             GameSignals.DAY_START.AddListener(CanNotSleep);
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             GameSignals.CAN_SLEEP.RemoveListener(CanSleepNow);
             GameSignals.DAY_START.RemoveListener(CanNotSleep);
+        }
+
+        public void Start()
+        {
+            _canCheck = true;
         }
 
         private void CanNotSleep(ISignalParameters parameters)
@@ -47,18 +47,18 @@ namespace IslandBoy
             if (!_canCheck) return;
 
             DispatchEvents();
-            return;
+            //return;
 
-            if (InValidSpace())
-            {
-                if (!_canSleep)
-                {
-                    PopupMessage.Create(transform.position, "Too early to sleep!", Color.yellow, new(0.5f, 0.5f), 1f);
-                    return;
-                }
+            //if (InValidSpace())
+            //{
+            //    if (!_canSleep)
+            //    {
+            //        PopupMessage.Create(transform.position, "Too early to sleep!", Color.yellow, new(0.5f, 0.5f), 1f);
+            //        return;
+            //    }
 
-                DispatchEvents();
-            }
+            //    DispatchEvents();
+            //}
         }
 
         private void DispatchEvents()
