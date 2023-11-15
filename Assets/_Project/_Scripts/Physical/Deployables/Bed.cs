@@ -15,31 +15,9 @@ namespace IslandBoy
 
         public NpcObject NPC { get { return _npc; } set { _npc = value; } }
 
-        private void Awake()
-        {
-            GameSignals.CAN_SLEEP.AddListener(CanSleepNow);
-            GameSignals.DAY_START.AddListener(CanNotSleep);
-        }
-
-        private void OnDestroy()
-        {
-            GameSignals.CAN_SLEEP.RemoveListener(CanSleepNow);
-            GameSignals.DAY_START.RemoveListener(CanNotSleep);
-        }
-
         public void Start()
         {
             _canCheck = true;
-        }
-
-        private void CanNotSleep(ISignalParameters parameters)
-        {
-            _canSleep = false;
-        }
-
-        private void CanSleepNow(ISignalParameters parameters)
-        {
-            _canSleep = true;
         }
 
         public void TryToEndDay() // connected to bed button

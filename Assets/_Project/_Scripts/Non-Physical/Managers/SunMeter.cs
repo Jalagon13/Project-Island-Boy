@@ -23,8 +23,6 @@ namespace IslandBoy
         [SerializeField] private Vector2 _markerStartPosition;
         [SerializeField] private Vector2 _markerEndPosition;
 
-        private event EventHandler _onStartDay;
-        private event EventHandler _onEndDay;
         private Timer _timer;
         private Volume _globalVolume;
         private float _duration;
@@ -55,7 +53,6 @@ namespace IslandBoy
             ResetDay();
             PanelEnabled(false);
             UpdateMarker(_sunSprite);
-            //_timer.Tick(_dayDurationInSec * _debugDayPercentage); // starts the day some percent way through
         }
 
         private void Update()
@@ -68,8 +65,7 @@ namespace IslandBoy
                 VolumeHandle();
                 if (_phasePercent > _percentTillSleepWarning && !_hasDisplayedWarning)
                 {
-                    //PopupMessage.Create(_pr.Position, "I need to sleep soon..", Color.cyan, new(0f, 0.75f), 1.5f);
-                    GameSignals.CAN_SLEEP.Dispatch();
+                    PopupMessage.Create(_pr.Position, "I need to sleep soon..", Color.cyan, new(0f, 0.75f), 1.5f);
                     _hasDisplayedWarning = true;
                 }
             }
@@ -134,7 +130,6 @@ namespace IslandBoy
             _timer.IsPaused = false;
             _timer.Tick(_dayDurationInSec * _debugDayPercentage);
             _isDay = true;
-            _onStartDay?.Invoke(this, EventArgs.Empty);
         }
 
         public void AddEndDaySlide(string text)
@@ -150,7 +145,6 @@ namespace IslandBoy
         [ContextMenu("End Day")]
         public void EndDay(ISignalParameters parameters) // connected to bed
         {
-            _onEndDay?.Invoke(this, EventArgs.Empty);
             _timer.IsPaused = true;
 
             PanelEnabled(true);

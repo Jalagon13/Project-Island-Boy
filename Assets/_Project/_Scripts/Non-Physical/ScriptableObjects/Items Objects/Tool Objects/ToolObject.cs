@@ -54,16 +54,16 @@ namespace IslandBoy
             switch (Type)
             {
                 case ToolType.Axe:
-                    desc = $"• {powerValue} hits to trees<br>• {clickDistance} click distance";
+                    desc = $"• {powerValue} hits to trees<br>• {clickDistance} click distance<br>• can be upgraded";
                     break;
                 case ToolType.Pickaxe:
-                    desc = $"• {powerValue} hits to rocks<br>• {clickDistance} click distance";
+                    desc = $"• {powerValue} hits to rocks<br>• {clickDistance} click distance<br>• can be upgraded";
                     break;
                 case ToolType.Sword:
-                    desc = $"• {powerValue} hits to creatures<br>• {clickDistance} click distance";
+                    desc = $"• {powerValue} hits to creatures<br>• {clickDistance} click distance<br>• can be upgraded";
                     break;
                 case ToolType.Hammer:
-                    desc = $"• {powerValue} hits to floors and walls<br>• {clickDistance} click distance";
+                    desc = $"• {powerValue} hits to floors and walls<br>• {clickDistance} click distance<br>• can be upgraded";
                     break;
             }
 
