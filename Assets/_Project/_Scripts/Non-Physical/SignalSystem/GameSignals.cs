@@ -40,6 +40,6 @@ namespace IslandBoy
         public static readonly Signal GAME_UNPAUSED = new("GameUnpaused");
 
         // World Signals
-        public static readonly Signal RESOURCE_DESTROYED = new("ResourceDestroyed");
+        public static readonly Signal ENTITY_SLAIN = new("EntitySlain");
     }
 }

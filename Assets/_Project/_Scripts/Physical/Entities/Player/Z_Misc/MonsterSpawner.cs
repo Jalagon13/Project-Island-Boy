@@ -12,6 +12,8 @@ namespace IslandBoy
         [SerializeField] private TilemapReferences _tmr;
         [SerializeField] private int _maxMonsterCount;
         [SerializeField] private Entity _monsterPrefab;
+        [SerializeField] private float _minSpawnTimerSec;
+        [SerializeField] private float _maxSpawnTimerSec;
 
         private void Awake()
         {
@@ -47,7 +49,7 @@ namespace IslandBoy
 
         private IEnumerator SpawnMonsterTimer()
         {
-            yield return new WaitForSeconds(Random.Range(30f, 40f));
+            yield return new WaitForSeconds(Random.Range(_minSpawnTimerSec, _maxSpawnTimerSec));
 
             if (true)
             {

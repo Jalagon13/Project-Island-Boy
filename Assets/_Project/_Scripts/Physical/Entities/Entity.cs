@@ -59,6 +59,7 @@ namespace IslandBoy
         protected override void OnBreak()
         {
             _dropPosition = transform.position;
+            GameSignals.ENTITY_SLAIN.Dispatch();
             base.OnBreak();
         }
     }
