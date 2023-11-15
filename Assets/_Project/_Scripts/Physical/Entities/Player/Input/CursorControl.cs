@@ -31,6 +31,7 @@ namespace IslandBoy
 
         // temp buff stuff will rework/refactor later
         [SerializeField] private TextMeshProUGUI _buffText;
+        [SerializeField] private float _buffDuration;
         private Timer _buffTimer;
         private int _buffAmount;
 
@@ -96,7 +97,7 @@ namespace IslandBoy
         private void AddPlusTwoHitBuff(ISignalParameters parameters)
         {
             _buffAmount = 2;
-            _buffTimer.RemainingSeconds += 6;
+            _buffTimer.RemainingSeconds += _buffDuration;
             _buffTimer.OnTimerEnd += RemovePlusTwoHitBuff;
         }
 
