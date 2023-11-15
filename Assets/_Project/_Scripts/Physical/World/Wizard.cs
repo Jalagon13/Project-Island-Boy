@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace IslandBoy
 {
@@ -9,43 +10,34 @@ namespace IslandBoy
     {
         [SerializeField] private int _unlockFee;
         [SerializeField] private TextMeshProUGUI _entranceText;
+        [SerializeField] private UnityEvent _onUnlock;
 
         private bool _unlocked;
 
         private void Awake()
         {
-            _entranceText.text = $"{_unlockFee} XP to make the spikes disappear.";
+            _entranceText.text = $"Desert Biome Entrance<br>{_unlockFee} XP to make the spikes disappear.";
         }
 
-        public void TryUnlockCave()
+        public void TryUnlockDesert()
         {
             if(_unlocked)
             {
-                PopupMessage.Create(transform.position, $"I already unlocked this cave entrance", Color.yellow, Vector2.up, 1f);
+                PopupMessage.Create(transform.position, $"I already unlocked this biome for you", Color.yellow, Vector2.up, 1f);
                 return;
             }
 
             if(PlayerExperience.Experience.Count >= _unlockFee)
             {
-                _unlocked = true;
-                PopupMessage.Create(transform.position, $"Cave Entrance Unlocked!", Color.green, Vector2.up, 1f);
+                PopupMessage.Create(transform.position, $"Desert Biome unlocked! Have fun!", Color.green, Vector2.up, 1f);
                 PlayerExperience.AddExerpience(-_unlockFee);
-            }
-            else
-            {
-                PopupMessage.Create(transform.position, $"I need more XP", Color.yellow, Vector2.up, 1f);
-            }
-        }
 
-        public void EnterCave()
-        {
-            if (_unlocked)
-            {
-                PopupMessage.Create(transform.position, $"Cave still under construction...", Color.green, Vector2.up, 1f);
+                _unlocked = true;
+                _onUnlock?.Invoke();
             }
             else
             {
-                PopupMessage.Create(transform.position, $"I need to unlock this cave first", Color.red, Vector2.up, 1f);
+                PopupMessage.Create(transform.position, $"You need more XP", Color.yellow, Vector2.up, 1f);
             }
         }
     }

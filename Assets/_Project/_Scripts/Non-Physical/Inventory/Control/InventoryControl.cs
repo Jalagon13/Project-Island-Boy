@@ -31,7 +31,6 @@ namespace IslandBoy
             GameSignals.GAME_UNPAUSED.AddListener(UnpauseHandle);
             GameSignals.PLAYER_DIED.AddListener(PauseHandle);
             GameSignals.DAY_END.AddListener(PauseHandle);
-            GameSignals.DAY_OUT_OF_TIME.AddListener(PauseHandle);
             GameSignals.DAY_START.AddListener(UnpauseHandle);
         }
 
@@ -42,7 +41,6 @@ namespace IslandBoy
             GameSignals.GAME_UNPAUSED.RemoveListener(UnpauseHandle);
             GameSignals.PLAYER_DIED.RemoveListener(PauseHandle);
             GameSignals.DAY_END.RemoveListener(PauseHandle);
-            GameSignals.DAY_OUT_OF_TIME.RemoveListener(PauseHandle);
             GameSignals.DAY_START.RemoveListener(UnpauseHandle);
         }
 

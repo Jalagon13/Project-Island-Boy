@@ -72,3 +72,47 @@ MonoBehaviour:
       Amount: 20
     - Item: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
       Amount: 10
+  - OutputItem: {fileID: 11400000, guid: 056fcbe8666d1f642b38c8e26a42e086, type: 2}
+    OutputAmount: 1
+    ResourceList:
+    - Item: {fileID: 11400000, guid: 40c27ede2e5843b49a9eb7a9b2535f11, type: 2}
+      Amount: 1
+    - Item: {fileID: 11400000, guid: cf43aab6c50b00e4b8bf914676cf9ba3, type: 2}
+      Amount: 10
+    - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
+      Amount: 20
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Amount: 20
+  - OutputItem: {fileID: 11400000, guid: 8b19aff93e142314792ccbef82fb283d, type: 2}
+    OutputAmount: 1
+    ResourceList:
+    - Item: {fileID: 11400000, guid: 3d7d134b86844b3469ace4f0146672e1, type: 2}
+      Amount: 1
+    - Item: {fileID: 11400000, guid: cf43aab6c50b00e4b8bf914676cf9ba3, type: 2}
+      Amount: 10
+    - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
+      Amount: 20
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Amount: 20
+  - OutputItem: {fileID: 11400000, guid: bfec4633b11814c4f9fc66b35f070b72, type: 2}
+    OutputAmount: 1
+    ResourceList:
+    - Item: {fileID: 11400000, guid: 51952a437b0ccf749a876feaec374c3a, type: 2}
+      Amount: 1
+    - Item: {fileID: 11400000, guid: cf43aab6c50b00e4b8bf914676cf9ba3, type: 2}
+      Amount: 10
+    - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
+      Amount: 20
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Amount: 20
+  - OutputItem: {fileID: 11400000, guid: 791757902bd84944684043385f16ea99, type: 2}
+    OutputAmount: 1
+    ResourceList:
+    - Item: {fileID: 11400000, guid: eae71e2a67e33e44b937f21b5d3b79fe, type: 2}
+      Amount: 1
+    - Item: {fileID: 11400000, guid: 8b19aff93e142314792ccbef82fb283d, type: 2}
+      Amount: 10
+    - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
+      Amount: 20
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Amount: 20
