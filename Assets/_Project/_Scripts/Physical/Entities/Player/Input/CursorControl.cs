@@ -13,6 +13,7 @@ namespace IslandBoy
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private TilemapReferences _tmr;
         [SerializeField] private float _startingClickDistance;
+        [SerializeField] private float _clickCd = 0.1f;
         [SerializeField] private ItemParameter _powerParameter;
         [SerializeField] private ItemParameter _clickDistanceParameter;
 
@@ -20,9 +21,11 @@ namespace IslandBoy
         private SpriteRenderer _sr;
         private Slot _focusSlotRef;
         private Clickable _currentClickable;
+        private Timer _clickTimer;
         private Vector2 _previousCenterPos;
         private Vector2 _currentCenterPos;
         private bool _canHit = true;
+        private bool _heldDown;
         private float _currentClickDistance;
 
         public Clickable CurrentClickable { get { return _currentClickable; } }
@@ -31,8 +34,12 @@ namespace IslandBoy
         {
             _input = new();
             _input.Player.PrimaryAction.started += Hit;
+            _input.Player.PrimaryAction.performed += Hold;
+            _input.Player.PrimaryAction.canceled += Hold;
             _input.Player.SecondaryAction.started += Interact;
             _input.Enable();
+
+            _clickTimer = new(_clickCd);
 
             _sr = GetComponent<SpriteRenderer>();
             _currentClickDistance = _startingClickDistance;
@@ -61,9 +68,32 @@ namespace IslandBoy
         {
             transform.SetPositionAndRotation(CalcPosition(), Quaternion.identity);
 
+            _clickTimer.Tick(Time.deltaTime);
+
+            if (_heldDown)
+                Hit(new());
+
             CheckWhenEnterNewTile();
             UpdateCurrentClickable();
             DisplayCursor();
+        }
+
+        private void Hold(InputAction.CallbackContext context)
+        {
+            _heldDown = context.performed;
+        }
+
+        private void Hit(InputAction.CallbackContext context)
+        {
+            if (HammerHitSomething() || PointerHandler.IsOverLayer(5) || 
+                _focusSlotRef.ItemObject is LaunchObject || _focusSlotRef.ItemObject is SpellObject || 
+                _clickTimer.RemainingSeconds > 0) return;
+
+            if (_currentClickable != null && _canHit)
+            {
+                _currentClickable.OnClick(_focusSlotRef == null ? ToolType.None : _focusSlotRef.ToolType, CalcPower());
+                _clickTimer.RemainingSeconds = _clickCd;
+            }
         }
 
         private void CheckWhenEnterNewTile()
@@ -124,16 +154,6 @@ namespace IslandBoy
                 //}
 
                 _currentClickDistance = CalcClickDistance();
-            }
-        }
-
-        private void Hit(InputAction.CallbackContext context)
-        {
-            if (HammerHitSomething() || PointerHandler.IsOverLayer(5) || _focusSlotRef.ItemObject is LaunchObject || _focusSlotRef.ItemObject is SpellObject) return;
-
-            if (_currentClickable != null && _canHit)
-            {
-                _currentClickable.OnClick(_focusSlotRef == null ? ToolType.None : _focusSlotRef.ToolType, CalcPower());
             }
         }
 
