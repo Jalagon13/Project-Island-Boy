@@ -17,6 +17,8 @@ namespace IslandBoy
 
         private void OnDestroy()
         {
+            _disabledResources = new();
+
             GameSignals.DAY_START.RemoveListener(RegenerateResources);
         }
 

@@ -13,7 +13,7 @@ namespace IslandBoy
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private float _dayDurationInSec;
         [Range(0, 1f)]
-        [SerializeField] private float _percentTillCanSleep;
+        [SerializeField] private float _percentTillSleepWarning;
         [Range(0, 1f)]
         [SerializeField] private float _debugDayPercentage;
         [Header("Editor Stuff")]
@@ -43,19 +43,19 @@ namespace IslandBoy
             GameSignals.NPC_MOVED_OUT.AddListener(NpcMovedOut);
         }
 
-        private void Start()
-        {
-            ResetDay();
-            PanelEnabled(false);
-            UpdateMarker(_sunSprite);
-            _timer.Tick(_dayDurationInSec * _debugDayPercentage); // starts the day some percent way through
-        }
-
         private void OnDestroy()
         {
             GameSignals.DAY_END.RemoveListener(EndDay);
             GameSignals.NPC_MOVED_IN.RemoveListener(NpcMovedIn);
             GameSignals.NPC_MOVED_OUT.RemoveListener(NpcMovedOut);
+        }
+
+        private void Start()
+        {
+            ResetDay();
+            PanelEnabled(false);
+            UpdateMarker(_sunSprite);
+            //_timer.Tick(_dayDurationInSec * _debugDayPercentage); // starts the day some percent way through
         }
 
         private void Update()
@@ -66,7 +66,7 @@ namespace IslandBoy
             {
                 MoveMarker();
                 VolumeHandle();
-                if(_phasePercent > _percentTillCanSleep && !_hasDisplayedWarning)
+                if (_phasePercent > _percentTillSleepWarning && !_hasDisplayedWarning)
                 {
                     //PopupMessage.Create(_pr.Position, "I need to sleep soon..", Color.cyan, new(0f, 0.75f), 1.5f);
                     GameSignals.CAN_SLEEP.Dispatch();
@@ -77,7 +77,8 @@ namespace IslandBoy
 
         private void OutOfTime()
         {
-            GameSignals.DAY_OUT_OF_TIME.Dispatch();
+            GameSignals.DAY_END.Dispatch();
+            //GameSignals.DAY_OUT_OF_TIME.Dispatch();
         }
 
         private void NpcMovedIn(ISignalParameters parameters)
@@ -131,6 +132,7 @@ namespace IslandBoy
             _duration = _dayDurationInSec;
             _hasDisplayedWarning = false;
             _timer.IsPaused = false;
+            _timer.Tick(_dayDurationInSec * _debugDayPercentage);
             _isDay = true;
             _onStartDay?.Invoke(this, EventArgs.Empty);
         }
@@ -176,7 +178,7 @@ namespace IslandBoy
                 yield return new WaitForSeconds(2f);
             }
 
-            text.text = "Your stats have been replenished!";
+            text.text = "Resources have been replenished!";
             button.gameObject.SetActive(true);
 
             _endDaySlides.Clear();

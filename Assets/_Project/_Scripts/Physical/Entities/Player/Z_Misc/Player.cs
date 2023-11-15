@@ -45,7 +45,6 @@ namespace IslandBoy
 
             GameSignals.CLICKABLE_CLICKED.AddListener(OnSwing);
             GameSignals.DAY_OUT_OF_TIME.AddListener(OnOutOfTime);
-            GameSignals.DAY_START.AddListener(ResetStats);
             GameSignals.DAY_START.AddListener(PlacePlayerAtSpawnPoint);
             GameSignals.FOCUS_SLOT_UPDATED.AddListener(FocusSlotUpdated);
             GameSignals.BED_TIME_EXECUTED.AddListener(ChangeSpawnPoint);
@@ -55,7 +54,6 @@ namespace IslandBoy
         {
             GameSignals.CLICKABLE_CLICKED.RemoveListener(OnSwing);
             GameSignals.DAY_OUT_OF_TIME.RemoveListener(OnOutOfTime);
-            GameSignals.DAY_START.RemoveListener(ResetStats);
             GameSignals.DAY_START.RemoveListener(PlacePlayerAtSpawnPoint);
             GameSignals.FOCUS_SLOT_UPDATED.RemoveListener(FocusSlotUpdated);
             GameSignals.BED_TIME_EXECUTED.RemoveListener(ChangeSpawnPoint);
@@ -354,19 +352,6 @@ namespace IslandBoy
         public bool CanDamage()
         {
             return _iFrameTimer.RemainingSeconds <= 0;
-        }
-
-        private void ResetStats(ISignalParameters parameters = null)
-        {
-            _currentHp = _maxHp;
-            _currentNrg = _maxNrg;
-            _currentMp = _maxMp;
-
-            PopupMessage.Create(transform.position, "Stats restored!", Color.green, new(0.5f, 0.5f), 1f);
-
-            DispatchHpChange();
-            DispatchNrgChange();
-            DispatchMpChange();
         }
 
         private IEnumerator PlayerDead()
