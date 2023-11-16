@@ -39,5 +39,9 @@ namespace IslandBoy
         // Pause Signals
         public static readonly Signal GAME_PAUSED = new("GamePaused");
         public static readonly Signal GAME_UNPAUSED = new("GameUnpaused");
+
+        // Shift-click Signals
+        public static readonly Signal ADD_ITEMS_TO_CHEST = new("AddItemsToChest"); // BROOKE
+        public static readonly Signal ADD_ITEM_TO_INVENTORY_FROM_CHEST = new("AddItemToInventoryFromChest"); // BROOKE
     }
 }

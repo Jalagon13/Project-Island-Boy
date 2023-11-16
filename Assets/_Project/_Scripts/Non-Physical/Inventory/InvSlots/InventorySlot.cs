@@ -10,10 +10,11 @@ namespace IslandBoy
         public override void OnPointerClick(PointerEventData eventData)
         {
             //if (!_inventoryOpen) return;
-            if (eventData.button == PointerEventData.InputButton.Left && Input.GetKey(KeyCode.LeftShift)) // BROOKE --------------
+            if (eventData.button == PointerEventData.InputButton.Left && Input.GetKey(KeyCode.LeftShift) && _chestOpen) // BROOKE --------------
             {
-                Debug.Log("shift key was pressed");
-                MoveItemIntoChest();
+                Debug.Log("shift key was pressed"); // TEST
+                if (_isChestSlot) MoveItemIntoInventory();
+                else MoveItemIntoChest();
             }
             else if (eventData.button == PointerEventData.InputButton.Left) // BROOKE ---------------------------
             {

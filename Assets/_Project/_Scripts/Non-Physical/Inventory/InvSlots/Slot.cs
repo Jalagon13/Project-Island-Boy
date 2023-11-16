@@ -12,13 +12,16 @@ namespace IslandBoy
         [SerializeField] private GameObject _inventoryItemPrefab;
         [SerializeField] protected AudioClip _popSound;
         [SerializeField] protected AudioClip _runeEquipSound;
+        [SerializeField] protected bool _isChestSlot; // BROOKE
 
         protected MouseItemHolder _mouseItemHolder;
         protected int _maxStack;
         protected bool _inventoryOpen;
+        protected bool _chestOpen; // BROOKE
 
         public MouseItemHolder MouseItemHolder { get { return _mouseItemHolder; } }
         public bool InventoryOpen { set { _inventoryOpen = value; } }
+        public bool ChestOpen { set { _chestOpen = value; } } // BROOKE
         public ItemObject ItemObject
         {
             get
@@ -54,6 +57,8 @@ namespace IslandBoy
         {
             _mouseItemHolder = _pr.Inventory.MouseItemHolder;
             _maxStack = _pr.Inventory.MaxStack;
+
+            if (_isChestSlot) _chestOpen = true; // BROOKE
         }
 
         public abstract void OnPointerClick(PointerEventData eventData);
@@ -120,17 +125,48 @@ namespace IslandBoy
             }
         }
 
-        protected void MoveItemIntoChest() // BROOKE ----------------
+        protected void MoveItemIntoChest() // BROOKE ---------------------------------------------------------
         {
-            if (HasItem() && _mouseItemHolder.HasItem())
+            if (HasItem())
             {
                 var item = transform.GetChild(0);
-                item.SetParent(_mouseItemHolder.transform, false);
 
-                SpawnInventoryItem(ItemObject);
+                ChestInvSlot chestItem = new ChestInvSlot();
+                chestItem.OutputItem = item.GetComponent<InventoryItem>().Item;
+                chestItem.OutputAmount = item.GetComponent<InventoryItem>().Count;
+
+                Signal signal = GameSignals.ADD_ITEMS_TO_CHEST;
+                signal.ClearParameters();
+                signal.AddParameter("itemsToAdd", new List<ChestInvSlot> { chestItem });
+                signal.AddParameter("itemObj", item.gameObject);
+                signal.Dispatch();
+
                 PlaySound();
             }
-        } // BROOKE -------------------------------------------------
+        }
+
+        protected void MoveItemIntoInventory()
+        {
+            Debug.Log("CHEST SLOT");
+
+            if (HasItem())
+            {
+                var item = transform.GetChild(0);
+
+                ChestInvSlot chestItem = new ChestInvSlot();
+                chestItem.OutputItem = item.GetComponent<InventoryItem>().Item;
+                chestItem.OutputAmount = item.GetComponent<InventoryItem>().Count;
+
+                Signal signal = GameSignals.ADD_ITEM_TO_INVENTORY_FROM_CHEST;
+                signal.ClearParameters();
+                signal.AddParameter("itemToAdd", chestItem);
+                signal.AddParameter("itemObj", item.gameObject);
+                signal.Dispatch();
+
+                PlaySound();
+            }
+        }
+        // BROOKE ---------------------------------------------------------
 
         protected void GiveThisItemToMouseHolder()
         {
@@ -164,5 +200,15 @@ namespace IslandBoy
 
             return false;
         }
+
+        public int GetMaxStack() // BROOKE -------------
+        {
+            return _maxStack;
+        }
+
+        public void SetCount(int num)
+        {
+            transform.GetChild(0).GetComponent<InventoryItem>().Count = num;
+        } // BROOKE ------------------------------------
     }
 }
