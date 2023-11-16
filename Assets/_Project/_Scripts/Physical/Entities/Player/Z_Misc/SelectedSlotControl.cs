@@ -17,7 +17,7 @@ namespace IslandBoy
         private Slot _mouseSlot;
         private Player _player;
         private CursorControl _cursorControl;
-        private float _primaryActionDelayCoolDown = 0.25f;
+        private float _primaryActionDelayCoolDown = 0.34f;
         private float _secondayActionDelayCoolDown = 0.15f;
         private bool _isHeldDown;
         private bool _mouseSlotHasitem;
@@ -34,6 +34,8 @@ namespace IslandBoy
 
             _input = new();
             _input.Player.PrimaryAction.started += ExecutePrimaryAction;
+            _input.Player.PrimaryAction.performed += IsHeldDown;
+            _input.Player.PrimaryAction.canceled += IsHeldDown;
             _input.Player.SecondaryAction.performed += IsHeldDown;
             _input.Player.SecondaryAction.canceled += IsHeldDown;
             _input.Player.SecondaryAction.started += ExecuteSecondaryAction;
@@ -64,6 +66,7 @@ namespace IslandBoy
             if (_isHeldDown)
             {
                 ExecuteSecondaryAction(new());
+                ExecutePrimaryAction(new());
             }
         }
 

@@ -12,6 +12,7 @@ namespace IslandBoy
         [SerializeField] private AudioClip _hitSound;
         [SerializeField] private AudioClip _breakSound;
         [SerializeField] private bool _regenerateOnDayStart;
+        [SerializeField] protected bool _destructable = true;
         [SerializeField] private LootTable _lootTable;
 
         protected int _idleHash = Animator.StringToHash("[Anm] RscIdle");
@@ -77,6 +78,8 @@ namespace IslandBoy
 
         public override bool OnClick(ToolType incomingToolType, int amount)
         {
+            if (!_destructable) return false;
+
             AudioManager.Instance.PlayClip(_hitSound, false, true, 0.7f);
             RscHit();
 
@@ -143,17 +146,17 @@ namespace IslandBoy
 
         protected void EnableProgressBar(bool _)
         {
-            _progressBar.SetActive(_);
+            _progressBar.SetActive(_destructable ? _ : false);
         }
 
         protected void EnableAmountDisplay(bool _)
         {
-            _amountDisplay.SetActive(_);
+            _amountDisplay.SetActive(_destructable ? _ : false);
         }
 
-        protected void EnableInstructions(bool _)
+        protected virtual void EnableInstructions(bool _)
         {
-            _instructions.SetActive(_);
+            _instructions.SetActive(_destructable ? _ : false);
         }
 
         protected void EnableYellowCorners(bool _)

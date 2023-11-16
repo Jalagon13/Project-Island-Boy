@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sure!
+  m_text: Sleep
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
   m_sharedMaterial: {fileID: 4835514525599508895, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
@@ -280,6 +280,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2418890234375932272, guid: e0a357d159958fb4a8ab5171e9d76da4, type: 3}
+      propertyPath: _destructable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2418890234375932272, guid: e0a357d159958fb4a8ab5171e9d76da4, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -301,11 +305,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3851023828838753283, guid: e0a357d159958fb4a8ab5171e9d76da4, type: 3}
       propertyPath: m_text
-      value: Going to bed will bless your world with resources!
+      value: Going to bed will replenish your world with resources!
       objectReference: {fileID: 0}
     - target: {fileID: 6297496906277947704, guid: e0a357d159958fb4a8ab5171e9d76da4, type: 3}
       propertyPath: m_Name
       value: '[PROMPT] Bed'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6888389869828764020, guid: e0a357d159958fb4a8ab5171e9d76da4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7608744067912942635, guid: e0a357d159958fb4a8ab5171e9d76da4, type: 3}
       propertyPath: m_LocalPosition.x

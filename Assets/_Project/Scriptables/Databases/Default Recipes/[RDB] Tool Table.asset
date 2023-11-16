@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5a4d27bd11ce434797b9615a1cafea9, type: 3}
+  m_Name: '[RDB] Tool Table'
+  m_EditorClassIdentifier: 
+  Database:
+  - OutputItem: {fileID: 11400000, guid: 40c27ede2e5843b49a9eb7a9b2535f11, type: 2}
+    OutputAmount: 1
+    ResourceList:
+    - Item: {fileID: 11400000, guid: 6dbf17cc40618ef4497ad3cc834f0ad2, type: 2}
+      Amount: 1
+    - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
+      Amount: 10
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Amount: 10
+  - OutputItem: {fileID: 11400000, guid: 3d7d134b86844b3469ace4f0146672e1, type: 2}
+    OutputAmount: 1
+    ResourceList:
+    - Item: {fileID: 11400000, guid: 902774a644957654d84a660b19ecc643, type: 2}
+      Amount: 1
+    - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
+      Amount: 10
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Amount: 10
+  - OutputItem: {fileID: 11400000, guid: 51952a437b0ccf749a876feaec374c3a, type: 2}
+    OutputAmount: 1
+    ResourceList:
+    - Item: {fileID: 11400000, guid: f9306cafa82c97447bc4f47c37ef4b10, type: 2}
+      Amount: 1
+    - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
+      Amount: 10
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Amount: 10
+  - OutputItem: {fileID: 11400000, guid: eae71e2a67e33e44b937f21b5d3b79fe, type: 2}
+    OutputAmount: 1
+    ResourceList:
+    - Item: {fileID: 11400000, guid: fb9c53bc5a9014142b9e07f97db75202, type: 2}
+      Amount: 1
+    - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
+      Amount: 10
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Amount: 10
+  - OutputItem: {fileID: 11400000, guid: bcb1af588d1b492479eab026c6521dcb, type: 2}
+    OutputAmount: 1
+    ResourceList:
+    - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
+      Amount: 14
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Amount: 14
+  - OutputItem: {fileID: 11400000, guid: ad8d77d5b0f8ba8439e6e8bad6571b59, type: 2}
+    OutputAmount: 5
+    ResourceList:
+    - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
+      Amount: 1
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Amount: 1
+  - OutputItem: {fileID: 11400000, guid: 78fa1c5045bd8774eaae01363dd9948a, type: 2}
+    OutputAmount: 1
+    ResourceList:
+    - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
+      Amount: 20
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Amount: 20
+    - Item: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
+      Amount: 10
+  - OutputItem: {fileID: 11400000, guid: 056fcbe8666d1f642b38c8e26a42e086, type: 2}
+    OutputAmount: 1
+    ResourceList:
+    - Item: {fileID: 11400000, guid: 40c27ede2e5843b49a9eb7a9b2535f11, type: 2}
+      Amount: 1
+    - Item: {fileID: 11400000, guid: cf43aab6c50b00e4b8bf914676cf9ba3, type: 2}
+      Amount: 10
+    - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
+      Amount: 20
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Amount: 20
+  - OutputItem: {fileID: 11400000, guid: 8b19aff93e142314792ccbef82fb283d, type: 2}
+    OutputAmount: 1
+    ResourceList:
+    - Item: {fileID: 11400000, guid: 3d7d134b86844b3469ace4f0146672e1, type: 2}
+      Amount: 1
+    - Item: {fileID: 11400000, guid: cf43aab6c50b00e4b8bf914676cf9ba3, type: 2}
+      Amount: 10
+    - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
+      Amount: 20
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Amount: 20
+  - OutputItem: {fileID: 11400000, guid: bfec4633b11814c4f9fc66b35f070b72, type: 2}
+    OutputAmount: 1
+    ResourceList:
+    - Item: {fileID: 11400000, guid: 51952a437b0ccf749a876feaec374c3a, type: 2}
+      Amount: 1
+    - Item: {fileID: 11400000, guid: cf43aab6c50b00e4b8bf914676cf9ba3, type: 2}
+      Amount: 10
+    - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
+      Amount: 20
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Amount: 20
+  - OutputItem: {fileID: 11400000, guid: 791757902bd84944684043385f16ea99, type: 2}
+    OutputAmount: 1
+    ResourceList:
+    - Item: {fileID: 11400000, guid: eae71e2a67e33e44b937f21b5d3b79fe, type: 2}
+      Amount: 1
+    - Item: {fileID: 11400000, guid: cf43aab6c50b00e4b8bf914676cf9ba3, type: 2}
+      Amount: 10
+    - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
+      Amount: 20
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Amount: 20

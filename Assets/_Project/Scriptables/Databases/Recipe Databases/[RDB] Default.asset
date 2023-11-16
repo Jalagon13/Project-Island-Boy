@@ -13,61 +13,31 @@ MonoBehaviour:
   m_Name: '[RDB] Default'
   m_EditorClassIdentifier: 
   Database:
-  - OutputItem: {fileID: 11400000, guid: 40c27ede2e5843b49a9eb7a9b2535f11, type: 2}
+  - OutputItem: {fileID: 11400000, guid: 094c99f31de27a34bb5bfa75e568b3b6, type: 2}
     OutputAmount: 1
     ResourceList:
-    - Item: {fileID: 11400000, guid: 6dbf17cc40618ef4497ad3cc834f0ad2, type: 2}
-      Amount: 1
-    - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
-      Amount: 5
     - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
-      Amount: 5
-    - Item: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
-      Amount: 2
-  - OutputItem: {fileID: 11400000, guid: 3d7d134b86844b3469ace4f0146672e1, type: 2}
-    OutputAmount: 1
-    ResourceList:
-    - Item: {fileID: 11400000, guid: 902774a644957654d84a660b19ecc643, type: 2}
-      Amount: 1
+      Amount: 12
     - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
-      Amount: 5
-    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
-      Amount: 5
-    - Item: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
-      Amount: 2
-  - OutputItem: {fileID: 11400000, guid: 51952a437b0ccf749a876feaec374c3a, type: 2}
-    OutputAmount: 1
-    ResourceList:
-    - Item: {fileID: 11400000, guid: f9306cafa82c97447bc4f47c37ef4b10, type: 2}
-      Amount: 1
-    - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
-      Amount: 5
-    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
-      Amount: 5
-    - Item: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
-      Amount: 2
-  - OutputItem: {fileID: 11400000, guid: eae71e2a67e33e44b937f21b5d3b79fe, type: 2}
-    OutputAmount: 1
-    ResourceList:
-    - Item: {fileID: 11400000, guid: fb9c53bc5a9014142b9e07f97db75202, type: 2}
-      Amount: 1
-    - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
-      Amount: 5
-    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
-      Amount: 5
-    - Item: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
-      Amount: 2
+      Amount: 12
   - OutputItem: {fileID: 11400000, guid: 38c252debefbe3a44bdfc96152ae1b2f, type: 2}
     OutputAmount: 1
     ResourceList:
     - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
-      Amount: 6
+      Amount: 12
     - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
-      Amount: 6
-  - OutputItem: {fileID: 11400000, guid: ad8d77d5b0f8ba8439e6e8bad6571b59, type: 2}
-    OutputAmount: 4
+      Amount: 12
+  - OutputItem: {fileID: 11400000, guid: 2aa49c2486a9af147b68795c5f29e7de, type: 2}
+    OutputAmount: 1
     ResourceList:
     - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
-      Amount: 1
+      Amount: 12
     - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
-      Amount: 1
+      Amount: 12
+  - OutputItem: {fileID: 11400000, guid: 21d089cfc9506f74593ca24ca2e7a602, type: 2}
+    OutputAmount: 1
+    ResourceList:
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Amount: 12
+    - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
+      Amount: 12
