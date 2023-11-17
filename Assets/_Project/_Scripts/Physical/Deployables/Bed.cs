@@ -24,19 +24,10 @@ namespace IslandBoy
         {
             if (!_canCheck) return;
 
-            DispatchEvents();
-            //return;
-
-            //if (InValidSpace())
-            //{
-            //    if (!_canSleep)
-            //    {
-            //        PopupMessage.Create(transform.position, "Too early to sleep!", Color.yellow, new(0.5f, 0.5f), 1f);
-            //        return;
-            //    }
-
-            //    DispatchEvents();
-            //}
+            if (InValidSpace())
+            {
+                DispatchEvents();
+            }
         }
 
         private void DispatchEvents()

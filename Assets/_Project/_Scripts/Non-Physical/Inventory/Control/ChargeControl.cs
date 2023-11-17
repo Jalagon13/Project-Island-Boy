@@ -11,11 +11,11 @@ namespace IslandBoy
         [field:SerializeField] public PlayerReference PR { get; private set; }
         [field:SerializeField] public Slider ThrowSlider { get; private set; }
         public CursorControl TileAction { get; private set; }
-        public InventorySlot SelectedSlot { get; private set; }
+        public Slot FocusSlot { get; private set; }
 
         public ItemParameter ChargeTimeParameter;
 
-        private Action<float, float> _onRelease;
+        private Action<float> _onRelease;
         private PlayerInput _input;
         private bool _isHeldDown, _isCharging;
         private float _minLaunchForce = 5f, _maxLaunchForce = 25f, _maxChargeTime = 1.5f, _baseChargeTime = 1.5f;
@@ -41,9 +41,9 @@ namespace IslandBoy
 
             TileAction = FindObjectOfType<CursorControl>();
 
-            GameSignals.HOTBAR_SLOT_UPDATED.AddListener(InjectSelectedSlot);
-            GameSignals.HOTBAR_SLOT_UPDATED.AddListener(UpdateChargeTime);
-            GameSignals.HOTBAR_SLOT_UPDATED.AddListener(ResetLaunch);
+            GameSignals.FOCUS_SLOT_UPDATED.AddListener(UpdateFocusSlot);
+            GameSignals.FOCUS_SLOT_UPDATED.AddListener(UpdateChargeTime);
+            GameSignals.FOCUS_SLOT_UPDATED.AddListener(ResetLaunch);
             GameSignals.ITEM_CHARGING.AddListener(StartOfCharge);
         }
 
@@ -51,9 +51,9 @@ namespace IslandBoy
         {
             _input.Disable();
 
-            GameSignals.HOTBAR_SLOT_UPDATED.RemoveListener(InjectSelectedSlot);
-            GameSignals.HOTBAR_SLOT_UPDATED.RemoveListener(UpdateChargeTime);
-            GameSignals.HOTBAR_SLOT_UPDATED.RemoveListener(ResetLaunch);
+            GameSignals.FOCUS_SLOT_UPDATED.RemoveListener(UpdateFocusSlot);
+            GameSignals.FOCUS_SLOT_UPDATED.RemoveListener(UpdateChargeTime);
+            GameSignals.FOCUS_SLOT_UPDATED.RemoveListener(ResetLaunch);
             GameSignals.ITEM_CHARGING.RemoveListener(StartOfCharge);
         }
 
@@ -66,7 +66,7 @@ namespace IslandBoy
 
         private void Update()
         {
-            if (_isCharging)
+            if (_isCharging && _isHeldDown)
             {
                 _currentLaunchForce += _chargeSpeed * Time.deltaTime;
                 var maxMinDiff = _maxLaunchForce - _minLaunchForce;
@@ -75,7 +75,13 @@ namespace IslandBoy
                 ThrowSlider.value = (maxMinDiff - maxCurrDiff) / maxMinDiff;
 
                 if (_currentLaunchForce >= _maxLaunchForce)
-                    _currentLaunchForce = _maxLaunchForce;
+                {
+                    Release();
+                }
+            }
+            else
+            {
+                ResetLaunch();
             }
         }
 
@@ -83,20 +89,23 @@ namespace IslandBoy
         {
             if (parameters.HasParameter("ReleaseBehavior"))
             {
-                _onRelease = (Action<float, float>)parameters.GetParameter("ReleaseBehavior");
+                _onRelease = (Action<float>)parameters.GetParameter("ReleaseBehavior");
                 _isCharging = true;
             }
         }
 
-        private void InjectSelectedSlot(ISignalParameters parameters)
+        private void UpdateFocusSlot(ISignalParameters parameters)
         {
-            SelectedSlot = (InventorySlot)parameters.GetParameter("SelectedSlot");
+            if (parameters.HasParameter("FocusSlot"))
+            {
+                FocusSlot = (Slot)parameters.GetParameter("FocusSlot");
+            }
         }
 
         private void UpdateChargeTime(ISignalParameters parameters)
         {
-            if (SelectedSlot.CurrentParameters.Count <= 0) return;
-            var itemParams = SelectedSlot.CurrentParameters;
+            if (FocusSlot.CurrentParameters.Count <= 0) return;
+            var itemParams = FocusSlot.CurrentParameters;
 
             if (itemParams.Contains(ChargeTimeParameter))
             {
@@ -113,18 +122,18 @@ namespace IslandBoy
         private void IsHeldDown(InputAction.CallbackContext context)
         {
             _isHeldDown = context.performed;
-
-            if (!_isHeldDown && _isCharging)
-            {
-                _onRelease?.Invoke(LaunchForcePercentage, _currentLaunchForce);
-
-                _isCharging = false;
-                ThrowSlider.gameObject.SetActive(false);
-                _currentLaunchForce = _minLaunchForce;
-            }
         }
 
-        private void ResetLaunch(ISignalParameters parameters)
+        private void Release()
+        {
+            _onRelease?.Invoke(LaunchForcePercentage);
+
+            _isCharging = false;
+            ThrowSlider.gameObject.SetActive(false);
+            _currentLaunchForce = _minLaunchForce;
+        }
+
+        private void ResetLaunch(ISignalParameters parameters = null)
         {
             _isCharging = false;
             ThrowSlider.gameObject.SetActive(false);

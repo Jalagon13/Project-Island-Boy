@@ -1105,7 +1105,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1113,6 +1113,27 @@ TextureImporter:
       bones: []
       spriteID: 014d51f14c3fbe04f8031b85f7446c6c
       internalID: -1416747536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_apple
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e15cf063a1cadd944a705247232b2c35
+      internalID: -1201098598
       vertices: []
       indices: 
       edges: []
@@ -1128,6 +1149,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      item_apple: -1201098598
       item_arrow: -110451255
       item_bed: -1855741160
       item_bow: 1529562530
