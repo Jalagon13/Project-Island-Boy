@@ -22,11 +22,13 @@ namespace IslandBoy
         private void OnEnable()
         {
             GameSignals.INVENTORY_CLOSE.AddListener(CloseChest);
+            GameSignals.ADD_ITEMS_TO_CHEST.AddListener(AddItemsToChest); // BROOKE
         }
 
         private void OnDisable()
         {
             GameSignals.INVENTORY_CLOSE.RemoveListener(CloseChest);
+            GameSignals.ADD_ITEMS_TO_CHEST.RemoveListener(AddItemsToChest); // BROOKE
         }
 
         public override IEnumerator Start()
@@ -60,18 +62,80 @@ namespace IslandBoy
             }
         }
 
-        private void FillWithPresetItems()
+        private void FillWithPresetItems() // BROOKE --------------------------------------------------
         {
-            var slotTransform = _slotCanvas.transform.GetChild(0);
-            int counter = 0;
-
-            _presetItems.ForEach((chestInvSlot) => 
-            {
-                var chestSlot = slotTransform.GetChild(counter).GetComponent<Slot>();
-                chestSlot.SpawnInventoryItem(chestInvSlot.OutputItem, chestInvSlot.OutputItem.DefaultParameterList, chestInvSlot.OutputAmount);
-                counter++;
-            });
+            AddItemsToChest(_presetItems);
         }
+
+        private void AddItemsToChest(ISignalParameters parameters)
+        {
+            Debug.Log("signal for additemstochest");
+            // if item was added successfully, delete item from inventory
+            if (AddItemsToChest(parameters.GetParameter("itemsToAdd") as List<ChestInvSlot>))
+            {
+                Destroy(parameters.GetParameter("itemObj") as GameObject);
+            }
+            // TODO: don't play sound or play error sound if wasn't able to add item
+        }
+
+        private bool AddItemsToChest(List<ChestInvSlot> itemsToAdd)
+        {
+            // return true if all items were added successfully
+            // false otherwise
+            // only matters for when adding items in game via shift-click, does not matter otherwise
+            foreach (ChestInvSlot item in itemsToAdd)
+            {
+                if (AddItem(item) != 0)
+                    return false;
+            }
+            return true;
+        }
+
+        private int AddItem(ChestInvSlot itemToAdd)
+        {
+            // If stackable, check if any slot has the same item
+            if (itemToAdd.OutputItem.Stackable == true)
+            {
+                foreach (Transform transform in _slotCanvas.transform.GetChild(0))
+                {
+                    Slot chestSlot = transform.GetComponent<Slot>();
+
+                    if (chestSlot.ItemObject != null && chestSlot.ItemObject == itemToAdd.OutputItem)
+                    {
+                        if (chestSlot.InventoryItem.Count < chestSlot.GetMaxStack())
+                        {
+                            var count = chestSlot.InventoryItem.Count + itemToAdd.OutputAmount;
+
+                            if (count <= chestSlot.GetMaxStack())
+                            {
+                                chestSlot.SetCount(count);
+                                return 0;
+                            }
+                            else
+                            {
+                                chestSlot.SetCount(chestSlot.GetMaxStack());
+                                itemToAdd.OutputAmount = count - chestSlot.GetMaxStack();
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Find an empty slot
+            foreach (Transform transform in _slotCanvas.transform.GetChild(0))
+            {
+                Slot chestSlot = transform.GetComponent<Slot>();
+
+                if (chestSlot.ItemObject == null)
+                {
+                    chestSlot.SpawnInventoryItem(itemToAdd.OutputItem, itemToAdd.OutputItem.DefaultParameterList, itemToAdd.OutputAmount);
+                    return 0;
+                }
+            }
+
+            return itemToAdd.OutputAmount;
+        }
+        // BROOKE --------------------------------------------------
 
         public override void Interact()
         {
