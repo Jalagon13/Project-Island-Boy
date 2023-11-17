@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -55,10 +56,12 @@ namespace IslandBoy
             _input.Disable();   
         }
 
-        private void Start()
+        private IEnumerator Start()
         {
+            yield return new WaitForEndOfFrame();
+
             _slotIndex = 0;
-            SelectSlotScroll(new());
+            HighlightSelected();
         }
 
         private void PauseHandle(ISignalParameters parameters)

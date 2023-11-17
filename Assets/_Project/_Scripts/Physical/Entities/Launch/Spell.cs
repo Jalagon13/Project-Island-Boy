@@ -30,7 +30,7 @@ namespace IslandBoy
             AudioManager.Instance.PlayClip(_landSound, false, true, 1f, 1f);
 
             if(_targetEntity != null)
-                _targetEntity.OnClick(ToolType.Sword, _damage);
+                _targetEntity.OnHit(ToolType.Sword, _damage);
 
             var entities = Physics2D.OverlapCircleAll(transform.position, 1f);
 
@@ -40,7 +40,7 @@ namespace IslandBoy
                 {
                     if (e == null) continue;
                     if(e == _targetEntity) continue;
-                    e.OnClick(ToolType.Sword, (int)(_damage * 0.5f));
+                    e.OnHit(ToolType.Sword, (int)(_damage * 0.5f));
                 }
             }
 

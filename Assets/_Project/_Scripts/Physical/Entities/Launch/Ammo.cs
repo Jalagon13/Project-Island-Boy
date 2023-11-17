@@ -66,7 +66,7 @@ namespace IslandBoy
                 //    spell.Setup((Entity)_clickableFound, _spellObject);
                 //}
 
-                _clickableFound.OnClick(ToolType.Sword, _damage);
+                _clickableFound.OnHit(ToolType.Sword, _damage);
                 Destroy(gameObject);
             }
         }

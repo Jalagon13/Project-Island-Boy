@@ -76,14 +76,14 @@ namespace IslandBoy
             AnimStateManager.ChangeAnimationState(_animator, _onClickHash);
         }
 
-        public override bool OnClick(ToolType incomingToolType, int amount)
+        public override bool OnHit(ToolType incomingToolType, int amount)
         {
             if (!_destructable) return false;
 
-            AudioManager.Instance.PlayClip(_hitSound, false, true, 0.7f);
+            AudioManager.Instance.PlayClip(_hitSound, false, true, 0.5f);
             RscHit();
 
-            if (base.OnClick(incomingToolType, amount))
+            if (base.OnHit(incomingToolType, amount))
             {
                 UpdateAmountDisplay();
                 UpdateFillImage();
