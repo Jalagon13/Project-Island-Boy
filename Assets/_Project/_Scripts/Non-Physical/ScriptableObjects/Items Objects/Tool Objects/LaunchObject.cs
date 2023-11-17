@@ -18,24 +18,21 @@ namespace IslandBoy
 
         public override void ExecutePrimaryAction(SelectedSlotControl control)
         {
-            if (control.CursorControl.CurrentClickable == null) return;
-
             if(!_pr.Inventory.Contains(_ammo, 1))
             {
                 PopupMessage.Create(control.Player.transform.position, $"Need {_ammo.Name} to shoot!", Color.yellow, Vector2.up, 1f);
                 return;
             }
 
-            if (control.CursorControl.CurrentClickable is Entity)
-            {
-                _pr.Inventory.RemoveItem(_ammo, 1);
+            _pr.Inventory.RemoveItem(_ammo, 1);
 
-                Entity targetEntity = (Entity)control.CursorControl.CurrentClickable;
-                Ammo ammo = Instantiate(_launchPrefab, control.Player.transform.position + new Vector3(0, 0.65f), Quaternion.identity);
-                ammo.Setup(this, _ammo, targetEntity);
+            Vector3 playerPosition = control.Player.transform.position;
 
-                AudioManager.Instance.PlayClip(_launchSound, false, true);
-            }
+            Ammo ammo = Instantiate(_launchPrefab, playerPosition + new Vector3(0, 0.65f), Quaternion.identity);
+            Vector3 direction = (control.CursorControl.transform.position - ammo.transform.position).normalized;
+            ammo.Setup(this, _ammo, direction);
+
+            AudioManager.Instance.PlayClip(_launchSound, false, true);
         }
 
         public override void ExecuteSecondaryAction(SelectedSlotControl control)

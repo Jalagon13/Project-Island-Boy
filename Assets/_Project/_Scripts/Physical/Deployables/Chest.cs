@@ -17,18 +17,29 @@ namespace IslandBoy
         {
             base.Awake();
             _slotCanvas = transform.GetChild(3).GetComponent<Canvas>();
-        }
 
-        private void OnEnable()
-        {
             GameSignals.INVENTORY_CLOSE.AddListener(CloseChest);
             GameSignals.ADD_ITEMS_TO_CHEST.AddListener(AddItemsToChest); // BROOKE
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             GameSignals.INVENTORY_CLOSE.RemoveListener(CloseChest);
             GameSignals.ADD_ITEMS_TO_CHEST.RemoveListener(AddItemsToChest); // BROOKE
+
+            if (_appQuitting) return;
+
+            EnableChestSlots(false);
+
+            foreach (Transform transform in _slotCanvas.transform.GetChild(0))
+            {
+                Slot slot = transform.GetComponent<Slot>();
+                if (slot.ItemObject != null)
+                {
+                    Vector3 offset = new(0.5f, 0.5f);
+                    GameAssets.Instance.SpawnItem(this.transform.position += offset, slot.ItemObject, slot.InventoryItem.Count);
+                }
+            }
         }
 
         public override IEnumerator Start()
@@ -43,23 +54,6 @@ namespace IslandBoy
         private void OnApplicationQuit()
         {
             _appQuitting = true;
-        }
-
-        private void OnDestroy()
-        {
-            if (_appQuitting) return;
-
-            EnableChestSlots(false);
-
-            foreach (Transform transform in _slotCanvas.transform.GetChild(0))
-            {
-                Slot slot = transform.GetComponent<Slot>();
-                if(slot.ItemObject != null)
-                {
-                    Vector3 offset = new(0.5f, 0.5f);
-                    GameAssets.Instance.SpawnItem(this.transform.position += offset, slot.ItemObject, slot.InventoryItem.Count);
-                }
-            }
         }
 
         private void FillWithPresetItems() // BROOKE --------------------------------------------------

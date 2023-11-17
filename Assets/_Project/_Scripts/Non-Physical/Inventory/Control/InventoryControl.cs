@@ -25,6 +25,7 @@ namespace IslandBoy
             _mainInventory = transform.GetChild(0).GetComponent<RectTransform>();
             _mouseItemHolder = transform.GetChild(3).GetComponent<MouseItemHolder>();
             _input.Player.ToggleInventory.started += ToggleInventory;
+            _input.Enable();
 
             GameSignals.CHEST_INTERACT.AddListener(ChestInteract);
             GameSignals.GAME_PAUSED.AddListener(PauseHandle);
@@ -32,27 +33,19 @@ namespace IslandBoy
             GameSignals.PLAYER_DIED.AddListener(PauseHandle);
             GameSignals.DAY_END.AddListener(PauseHandle);
             GameSignals.DAY_START.AddListener(UnpauseHandle);
+            GameSignals.ADD_ITEM_TO_INVENTORY_FROM_CHEST.AddListener(AddItemToInventoryFromChest); // BROOKE
         }
 
         private void OnDestroy()
         {
+            _input.Disable();
+
             GameSignals.CHEST_INTERACT.RemoveListener(ChestInteract);
             GameSignals.GAME_PAUSED.RemoveListener(PauseHandle);
             GameSignals.GAME_UNPAUSED.RemoveListener(UnpauseHandle);
             GameSignals.PLAYER_DIED.RemoveListener(PauseHandle);
             GameSignals.DAY_END.RemoveListener(PauseHandle);
             GameSignals.DAY_START.RemoveListener(UnpauseHandle);
-        }
-
-        private void OnEnable()
-        {
-            _input.Enable();
-            GameSignals.ADD_ITEM_TO_INVENTORY_FROM_CHEST.AddListener(AddItemToInventoryFromChest); // BROOKE
-        }
-
-        private void OnDisable()
-        {
-            _input.Disable();
             GameSignals.ADD_ITEM_TO_INVENTORY_FROM_CHEST.RemoveListener(AddItemToInventoryFromChest); // BROOKE
         }
 
