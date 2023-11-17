@@ -40,7 +40,7 @@ namespace IslandBoy
             HideDisplay();
         }
 
-        public virtual bool OnClick(ToolType incomingToolType, int amount)
+        public virtual bool OnHit(ToolType incomingToolType, int amount)
         {
             if(incomingToolType != _breakType || incomingToolType == ToolType.None)
             {

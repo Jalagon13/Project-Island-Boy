@@ -31,9 +31,9 @@ namespace IslandBoy
             _canInteract = true;
         }
 
-        public override bool OnClick(ToolType incomingToolType, int amount)
+        public override bool OnHit(ToolType incomingToolType, int amount)
         {
-            if (base.OnClick(incomingToolType, amount))
+            if (base.OnHit(incomingToolType, amount))
                 return true;
 
             return false;

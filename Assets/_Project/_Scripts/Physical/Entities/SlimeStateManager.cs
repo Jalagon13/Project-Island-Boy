@@ -24,7 +24,6 @@ namespace IslandBoy
 
         private void Awake()
         {
-
             AI = GetComponent<IAstarAI>();
             Seeker = GetComponent<Seeker>();
         }

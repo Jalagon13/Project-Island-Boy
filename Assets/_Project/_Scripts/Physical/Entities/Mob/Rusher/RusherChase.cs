@@ -8,7 +8,7 @@ namespace IslandBoy
     {
         private SlimeStateManager _ctx;
         private Vector2 _chasePos;
-        private float _chaseSpeed = 2.75f;
+        private float _chaseSpeed = 3.25f;
 
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {

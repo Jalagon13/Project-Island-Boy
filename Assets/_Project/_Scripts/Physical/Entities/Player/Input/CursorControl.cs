@@ -48,6 +48,7 @@ namespace IslandBoy
 
             _clickTimer = new(_clickCd);
             _buffTimer = new(0);
+            _buffText.enabled = false;
 
             _sr = GetComponent<SpriteRenderer>();
             _currentClickDistance = _startingClickDistance;
@@ -81,10 +82,10 @@ namespace IslandBoy
             _clickTimer.Tick(Time.deltaTime);
 
 
-            _buffTimer.Tick(Time.deltaTime);
-            _buffText.enabled = _buffTimer.RemainingSeconds > 0;
-            if (_buffTimer.RemainingSeconds > 0)
-                _buffText.text = $"+2 Hit Buff: {Math.Round(_buffTimer.RemainingSeconds, 1)} sec";
+            //_buffTimer.Tick(Time.deltaTime);
+            //_buffText.enabled = _buffTimer.RemainingSeconds > 0;
+            //if (_buffTimer.RemainingSeconds > 0)
+            //    _buffText.text = $"+2 Hit Buff: {Math.Round(_buffTimer.RemainingSeconds, 1)} sec";
 
             if (_heldDown)
                 Hit(new());
@@ -96,7 +97,7 @@ namespace IslandBoy
 
         private void AddPlusTwoHitBuff(ISignalParameters parameters)
         {
-            _buffAmount = 2;
+            _buffAmount = 0;
             _buffTimer.RemainingSeconds += _buffDuration;
             _buffTimer.OnTimerEnd += RemovePlusTwoHitBuff;
         }
@@ -114,16 +115,16 @@ namespace IslandBoy
 
         private void Hit(InputAction.CallbackContext context)
         {
-            if (HammerHitSomething() || PointerHandler.IsOverLayer(5) || 
-                _focusSlotRef.ItemObject is LaunchObject || _focusSlotRef.ItemObject is SpellObject || 
-                _clickTimer.RemainingSeconds > 0) return;
+            if (HammerHitSomething() || PointerHandler.IsOverLayer(5) ||
+                _focusSlotRef.ItemObject is not ToolObject || _clickTimer.RemainingSeconds > 0) return;
 
-            if (_currentClickable != null && _canHit)
+
+            if (_currentClickable != null && _canHit && _currentClickable is not Entity)
             {
                 ToolType toolType = _focusSlotRef == null ? ToolType.None : _focusSlotRef.ToolType;
                 int totalHit = CalcToolHitAmount() + CalcBuffModifiers();
 
-                _currentClickable.OnClick(toolType, totalHit);
+                _currentClickable.OnHit(toolType, totalHit);
                 _clickTimer.RemainingSeconds = _clickCd;
             }
         }
@@ -169,7 +170,7 @@ namespace IslandBoy
                 }
             }
         }
-
+        
         private void FocusSlotUpdated(ISignalParameters parameters)
         {
             if (parameters.HasParameter("FocusSlot"))
@@ -247,7 +248,7 @@ namespace IslandBoy
                 }
             }
 
-            return clickablesFound.Count > 0 ? clickablesFound.Last() : null;
+            return clickablesFound.Count > 0 ? clickablesFound.Last() is Entity ? null : clickablesFound.Last() : null;
         }
 
         private void DisableAbilityToHit(ISignalParameters parameters)
