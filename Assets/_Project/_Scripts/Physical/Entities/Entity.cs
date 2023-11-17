@@ -41,6 +41,7 @@ namespace IslandBoy
                 EnableYellowCorners(false);
                 EnableAmountDisplay(false);
                 EnableInstructions(false);
+                EnableProgressBar(true);
                 return true;
             }
 
@@ -56,6 +57,14 @@ namespace IslandBoy
             EnableYellowCorners(true);
             EnableAmountDisplay(true);
             EnableProgressBar(true);
+        }
+
+        public override void HideDisplay()
+        {
+            EnableProgressBar(true);
+            EnableAmountDisplay(false);
+            EnableInstructions(false);
+            EnableYellowCorners(false);
         }
 
         protected override void OnBreak()
