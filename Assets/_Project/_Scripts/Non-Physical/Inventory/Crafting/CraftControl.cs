@@ -9,11 +9,11 @@ namespace IslandBoy
         [SerializeField] private AudioClip _popSound;
         [SerializeField] private GameObject _inventoryItemPrefab;
 
-        private MouseItemHolder _mouseItemHolder;
+        private MouseSlot _mouseItemHolder;
         private Inventory _playerInventory;
         private CraftSlot _cs;
 
-        public MouseItemHolder MouseItemHolder { set { _mouseItemHolder = value; } }
+        public MouseSlot MouseItemHolder { set { _mouseItemHolder = value; } }
 
         private void Awake()
         {

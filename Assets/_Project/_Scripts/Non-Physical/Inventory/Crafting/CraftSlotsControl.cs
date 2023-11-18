@@ -8,11 +8,11 @@ namespace IslandBoy
         [SerializeField] private GameObject _craftSlotPrefab;
         [SerializeField] private RectTransform _craftSlotsRect;
 
-        private MouseItemHolder _mouseItemHolder;
+        private MouseSlot _mouseItemHolder;
 
         private void Awake()
         {
-            _mouseItemHolder = transform.GetChild(3).GetComponent<MouseItemHolder>();
+            _mouseItemHolder = transform.GetChild(3).GetComponent<MouseSlot>();
         }
 
         public void RefreshCraftingMenu(CraftingDatabaseObject cdb)

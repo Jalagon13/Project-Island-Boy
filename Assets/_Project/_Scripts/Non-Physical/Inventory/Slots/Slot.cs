@@ -13,12 +13,12 @@ namespace IslandBoy
         [SerializeField] protected AudioClip _popSound;
         [SerializeField] protected bool _isChestSlot; // BROOKE
 
-        protected MouseItemHolder _mouseItemHolder;
+        protected MouseSlot _mouseItemHolder;
         protected int _maxStack;
         protected bool _inventoryOpen;
         protected bool _chestOpen; // BROOKE
 
-        public MouseItemHolder MouseItemHolder { get { return _mouseItemHolder; } }
+        public MouseSlot MouseItemHolder { get { return _mouseItemHolder; } }
         public bool InventoryOpen { set { _inventoryOpen = value; } }
 
         public ToolType ToolType
@@ -61,12 +61,10 @@ namespace IslandBoy
             }
         }
 
-        protected void Awake()
+        private void OnEnable()
         {
             _mouseItemHolder = _pr.Inventory.MouseItemHolder;
-            Debug.Log($"Mouse Item holder null from Slot base class? {_mouseItemHolder == null}");
             _maxStack = _pr.Inventory.MaxStack;
-
             if (_isChestSlot) _chestOpen = true; // BROOKE
         }
 

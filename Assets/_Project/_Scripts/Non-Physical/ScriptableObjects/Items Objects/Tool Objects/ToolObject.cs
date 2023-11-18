@@ -16,10 +16,14 @@ namespace IslandBoy
     public class ToolObject : ItemObject
     {
         [field: SerializeField] public ToolType Type { get; set; }
+        [SerializeField] private CraftingRecipeObject _upgradeRecipe;
+        [SerializeField] private int _xpForUpgrade;
 
         public override ToolType ToolType => Type;
         public override ArmorType ArmorType => _baseArmorType;
         public override int ConsumeValue => 0;
+        public CraftingRecipeObject UpgradeRecipe => _upgradeRecipe;
+        public int XpForUpgrade => _xpForUpgrade;
 
         public override void ExecutePrimaryAction(SelectedSlotControl control)
         {

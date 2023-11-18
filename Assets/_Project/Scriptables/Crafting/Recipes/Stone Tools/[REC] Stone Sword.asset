@@ -14,10 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OutputItem: {fileID: 11400000, guid: 51952a437b0ccf749a876feaec374c3a, type: 2}
   OutputAmount: 1
-  NextRecipe: {fileID: 0}
   ResourceList:
-  - Item: {fileID: 11400000, guid: f9306cafa82c97447bc4f47c37ef4b10, type: 2}
-    Amount: 1
   - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
     Amount: 10
   - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}

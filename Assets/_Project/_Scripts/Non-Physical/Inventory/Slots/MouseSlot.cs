@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 namespace IslandBoy
 {
-    public class MouseItemHolder : Slot
+    public class MouseSlot : Slot
     {
         private bool _gotItemThisFrame;
         private bool _gaveItemThisFrame;

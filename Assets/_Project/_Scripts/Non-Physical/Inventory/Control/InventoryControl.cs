@@ -10,7 +10,7 @@ namespace IslandBoy
         [SerializeField] private RectTransform _craftHolder;
 
         private Inventory _inventory;
-        private MouseItemHolder _mouseItemHolder;
+        private MouseSlot _mouseItemHolder;
         private PlayerInput _input;
         private RectTransform _mainInventory;
         private CraftSlotsControl _craftSlotsControl;
@@ -23,7 +23,7 @@ namespace IslandBoy
             _inventory = GetComponent<Inventory>();
             _craftSlotsControl = GetComponent<CraftSlotsControl>();
             _mainInventory = transform.GetChild(0).GetComponent<RectTransform>();
-            _mouseItemHolder = transform.GetChild(3).GetComponent<MouseItemHolder>();
+            _mouseItemHolder = transform.GetChild(3).GetComponent<MouseSlot>();
             _input.Player.ToggleInventory.started += ToggleInventory;
             _input.Enable();
 
