@@ -15,24 +15,24 @@ namespace IslandBoy
             _mouseItemHolder = transform.GetChild(3).GetComponent<MouseItemHolder>();
         }
 
-        public void RefreshCraftingMenu(RecipeDatabaseObject rdb)
+        public void RefreshCraftingMenu(CraftingDatabaseObject cdb)
         {
             ResetCraftSlots();
-            SetupRDB(rdb);
+            SetUpCDB(cdb);
         }
 
-        private void SetupRDB(RecipeDatabaseObject rdb)
+        private void SetUpCDB(CraftingDatabaseObject cdb)
         {
-            if (rdb == null) return;
+            if (cdb == null) return;
 
-            for (int i = 0; i < rdb.Database.Length; i++)
+            for (int i = 0; i < cdb.Database.Length; i++)
             {
                 GameObject cs = Instantiate(_craftSlotPrefab, _craftSlotsRect.transform);
 
                 CraftSlot craftSlot = cs.GetComponent<CraftSlot>();
-                craftSlot.Initialize(rdb.Database[i]);
+                craftSlot.Initialize(cdb.Database[i]);
 
-                CraftSlotCraftControl craftSlotCraftControl = cs.GetComponent<CraftSlotCraftControl>();
+                CraftControl craftSlotCraftControl = cs.GetComponent<CraftControl>();
                 craftSlotCraftControl.MouseItemHolder = _mouseItemHolder;
             }
         }

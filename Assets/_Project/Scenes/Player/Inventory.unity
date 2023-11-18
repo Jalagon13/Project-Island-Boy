@@ -4255,7 +4255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b12db26af5b554d875ebfbe37eb407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultRdb: {fileID: 11400000, guid: fcf2c4799313803409b1c09f21fc9c77, type: 2}
+  _defaultCDB: {fileID: 11400000, guid: a9ccd67c3dd765140819e004f43dc459, type: 2}
   _craftHolder: {fileID: 344292602}
 --- !u!114 &5602138070249294676
 MonoBehaviour:
@@ -4286,6 +4286,10 @@ MonoBehaviour:
     OutputAmount: 999
   - OutputItem: {fileID: 11400000, guid: bae05631bee9b75479ea8f1d94e134e9, type: 2}
     OutputAmount: 50
+  - OutputItem: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+    OutputAmount: 900
+  - OutputItem: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
+    OutputAmount: 900
   _allSlots:
   - {fileID: 1398917238}
   - {fileID: 658019018}

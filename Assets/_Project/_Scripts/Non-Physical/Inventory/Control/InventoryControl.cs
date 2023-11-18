@@ -6,7 +6,7 @@ namespace IslandBoy
 {
     public class InventoryControl : MonoBehaviour
     {
-        [SerializeField] private RecipeDatabaseObject _defaultRdb;
+        [SerializeField] private CraftingDatabaseObject _defaultCDB;
         [SerializeField] private RectTransform _craftHolder;
 
         private Inventory _inventory;
@@ -84,7 +84,7 @@ namespace IslandBoy
             InteractableHandle(chestOpened);
         }
 
-        public void CraftStationInteract(Interactable craftStation, RecipeDatabaseObject rdb)
+        public void CraftStationInteract(Interactable craftStation, CraftingDatabaseObject rdb)
         {
             OpenInventory();
 
@@ -120,7 +120,7 @@ namespace IslandBoy
 
         public void RefreshCraftSlotsToDefault()
         {
-            _craftSlotsControl.RefreshCraftingMenu(_defaultRdb);
+            _craftSlotsControl.RefreshCraftingMenu(_defaultCDB);
         }
 
         public void CloseInventory()
