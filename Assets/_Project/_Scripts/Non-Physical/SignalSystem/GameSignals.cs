@@ -9,10 +9,9 @@ namespace IslandBoy
         // DayManager Signals
         public static readonly Signal DAY_START = new("DayStart");
         public static readonly Signal DAY_END = new("DayEnd");
-        public static readonly Signal DAY_OUT_OF_TIME = new("DayOutOfTime");
         public static readonly Signal NPC_MOVED_IN = new("NpcMovedIn");
         public static readonly Signal NPC_MOVED_OUT = new("NpcMovedOut");
-        public static readonly Signal CAN_SLEEP = new("CanSleep");
+        public static readonly Signal BED_TIME_EXECUTED = new("BedTimeExecuted");
 
         // Player Signals
         public static readonly Signal INVENTORY_OPEN = new("InventoryOpen");
@@ -23,7 +22,7 @@ namespace IslandBoy
         public static readonly Signal ITEM_CRAFTED = new("ItemCrafted");
         public static readonly Signal CHEST_INTERACT = new("ChestInteract");
         public static readonly Signal CRAFT_STATION_INTERACT = new("CraftStationInteract");
-        public static readonly Signal SWING_PERFORMED = new("SwingPerformed");
+        public static readonly Signal CLICKABLE_CLICKED = new("SwingPerformed");
         public static readonly Signal PROMPT_INTERACT = new("PromptInteract");
         public static readonly Signal PLAYER_DIED = new("PlayerDied");
         public static readonly Signal PLAYER_HP_CHANGED = new("PlayerHpChanged");
@@ -34,10 +33,17 @@ namespace IslandBoy
         public static readonly Signal MOUSE_SLOT_HAS_ITEM = new("MouseSlotHasItem");
         public static readonly Signal MOUSE_SLOT_GIVES_ITEM = new("MouseSlotGivesItem");
         public static readonly Signal FOCUS_SLOT_UPDATED = new("FocusSlotUpdated");
-        public static readonly Signal BED_TIME_EXECUTED = new("BedTimeExecuted");
+        public static readonly Signal CURSOR_ENTERED_NEW_TILE = new("CursorEnteredNewTile");
 
         // Pause Signals
         public static readonly Signal GAME_PAUSED = new("GamePaused");
         public static readonly Signal GAME_UNPAUSED = new("GameUnpaused");
+
+        // World Signals
+        public static readonly Signal ENTITY_SLAIN = new("EntitySlain");
+
+        // Shift-click Signals
+        public static readonly Signal ADD_ITEMS_TO_CHEST = new("AddItemsToChest"); // BROOKE
+        public static readonly Signal ADD_ITEM_TO_INVENTORY_FROM_CHEST = new("AddItemToInventoryFromChest"); // BROOKE
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 namespace IslandBoy
 {
-    public class AdventurerEntity : Entity
+    public class AdventurerEntity :MonoBehaviour
     {
         public string AdventurerName;
         public readonly int HashIdle = Animator.StringToHash("[Anm] AdventurerIdle");
@@ -20,9 +20,8 @@ namespace IslandBoy
         private Bed _bed;
         private bool _canRegister = false;
 
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
             AI = GetComponent<IAstarAI>();
             Seeker = GetComponent<Seeker>();
             _animator = transform.GetChild(0).GetComponent<Animator>();
@@ -39,9 +38,8 @@ namespace IslandBoy
             _canRegister = true;
         }
 
-        protected override void Update()
+        private void Update()
         {
-            base.Update();
             OnMove?.Invoke();
         }
 
@@ -65,8 +63,8 @@ namespace IslandBoy
         {
             if (!_canRegister) return;
 
-            if (_bed == null)
-                KillEntity();
+            //if (_bed == null)
+            //    KillEntity();
         }
 
         public void RegisterBed(Bed bed)
@@ -88,12 +86,6 @@ namespace IslandBoy
         public void ChangeToMoveState(Animator animator)
         {
             AnimStateManager.ChangeAnimationState(animator, HashMove);
-        }
-
-        public void EnterUnderground() // connected to prompt
-        {
-            PR.Inventory.InventoryControl.CloseInventory();
-            LevelManager.Instance.LoadUnderground();
         }
     }
 }

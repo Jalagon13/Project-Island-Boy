@@ -9,35 +9,40 @@ namespace IslandBoy
     {
         [SerializeField] private TilemapReferences _tmr;
 
-        private Timer _delayTimer; // used for tiny delay between primary/seconday item execution to prevent them from being executed every frame
+        private Timer _primaryDelayCooldownTimer;
+        private Timer _secondaryDelayCooldownTimer;
         private PlayerInput _input;
         private Slot _focusSlot;
         private Slot _hotbarSlot;
         private Slot _mouseSlot;
         private Player _player;
-        private TileAction _ta;
-        private float _delayCooldown = 0.2f;
+        private CursorControl _cursorControl;
+        private float _primaryActionDelayCoolDown = 0.34f;
+        private float _secondayActionDelayCoolDown = 0.15f;
         private bool _isHeldDown;
         private bool _mouseSlotHasitem;
 
         public Slot FocusSlot { get { return _focusSlot; } }
         public Player Player { get { return _player; } }
         public TilemapReferences TMR { get { return _tmr; } }
-        public TileAction TileAction { get { return _ta; } }
+        public CursorControl CursorControl { get { return _cursorControl; } }
 
         private void Awake()
         {
             _player = GetComponent<Player>();
-            _ta = transform.GetChild(2).GetChild(0).GetComponent<TileAction>();
+            _cursorControl = transform.GetChild(2).GetComponent<CursorControl>();
 
             _input = new();
             _input.Player.PrimaryAction.started += ExecutePrimaryAction;
             _input.Player.PrimaryAction.performed += IsHeldDown;
             _input.Player.PrimaryAction.canceled += IsHeldDown;
+            _input.Player.SecondaryAction.performed += IsHeldDown;
+            _input.Player.SecondaryAction.canceled += IsHeldDown;
             _input.Player.SecondaryAction.started += ExecuteSecondaryAction;
             _input.Enable();
 
-            _delayTimer = new(_delayCooldown);
+            _primaryDelayCooldownTimer = new(_primaryActionDelayCoolDown);
+            _secondaryDelayCooldownTimer = new(_secondayActionDelayCoolDown);
 
             GameSignals.HOTBAR_SLOT_UPDATED.AddListener(UpdateFocusSlotToHotbarSlot);
             GameSignals.MOUSE_SLOT_HAS_ITEM.AddListener(UpdateFocusSlotToMouseSlot);
@@ -55,10 +60,12 @@ namespace IslandBoy
 
         private void Update()
         {
-            _delayTimer.Tick(Time.deltaTime);
+            _primaryDelayCooldownTimer.Tick(Time.deltaTime);
+            _secondaryDelayCooldownTimer.Tick(Time.deltaTime);
 
             if (_isHeldDown)
             {
+                ExecuteSecondaryAction(new());
                 ExecutePrimaryAction(new());
             }
         }
@@ -108,19 +115,19 @@ namespace IslandBoy
 
         private void ExecutePrimaryAction(InputAction.CallbackContext context)
         {
-            if(_delayTimer.RemainingSeconds <= 0 && _focusSlot.ItemObject != null)
+            if(_primaryDelayCooldownTimer.RemainingSeconds <= 0 && _focusSlot.ItemObject != null)
             {
                 _focusSlot.ItemObject.ExecutePrimaryAction(this);
-                _delayTimer.RemainingSeconds = _delayCooldown;
+                _primaryDelayCooldownTimer.RemainingSeconds = _primaryActionDelayCoolDown;
             }
         }
 
         private void ExecuteSecondaryAction(InputAction.CallbackContext context)
         {
-            if (_delayTimer.RemainingSeconds <= 0 && _focusSlot.ItemObject != null)
+            if (_secondaryDelayCooldownTimer.RemainingSeconds <= 0 && _focusSlot.ItemObject != null)
             {
                 _focusSlot.ItemObject.ExecuteSecondaryAction(this);
-                _delayTimer.RemainingSeconds = _delayCooldown;
+                _secondaryDelayCooldownTimer.RemainingSeconds = _secondayActionDelayCoolDown;
             }
         }
     }

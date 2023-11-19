@@ -572,7 +572,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: item_wood_hammer
+      name: item_stone_hammer
       rect:
         serializedVersion: 2
         x: 80
@@ -937,7 +937,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -945,6 +945,258 @@ TextureImporter:
       bones: []
       spriteID: 43aa883ad424f564a952ebc0028bf276
       internalID: -916310749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_wood_axe
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b0798b85474b67499eb91164b04b002
+      internalID: 1515656529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_wood_sword
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76832fe62c56d5847928c4b12c4febfe
+      internalID: 86916168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_wood_pickaxe
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbef851fa85ae684aa16ce83bb1c9b2c
+      internalID: 504264504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_wood_hammer
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86e6c794e1bb2984a9c7e251df95a672
+      internalID: 1844556041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_iron_pickaxe
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f1b1be36ab04404180a5280fb0c25a1
+      internalID: -30285140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_iron_sword
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32ded98ab763927449f83282556b0314
+      internalID: 1805357805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_iron_axe
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00bac5ab15dbfab4abdd11820f2a5f78
+      internalID: 659459211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_iron_hammer
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 014d51f14c3fbe04f8031b85f7446c6c
+      internalID: -1416747536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_apple
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e15cf063a1cadd944a705247232b2c35
+      internalID: -1201098598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_magic_potion
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 517980b9481519f4d99ad777cebc4c65
+      internalID: -1000768912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_stone_wall
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a6f3fda23fdf114994864727f49b8f0
+      internalID: -1501110074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_stone_floor
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d117e8c852c117499e5bb29be7a580b
+      internalID: 1007983580
       vertices: []
       indices: 
       edges: []
@@ -960,6 +1212,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      item_apple: -1201098598
       item_arrow: -110451255
       item_bed: -1855741160
       item_bow: 1529562530
@@ -977,8 +1230,13 @@ TextureImporter:
       item_grass: 456514419
       item_green_rune: 1558334950
       item_hook: -1546665967
+      item_iron_axe: 659459211
+      item_iron_hammer: -1416747536
       item_iron_ingot: -189099797
       item_iron_ore: 1648958029
+      item_iron_pickaxe: -30285140
+      item_iron_sword: 1805357805
+      item_magic_potion: -1000768912
       item_miner_scroll: 2118457468
       item_portal_to_home: 1494493913
       item_red_rune: 1210640472
@@ -986,18 +1244,24 @@ TextureImporter:
       item_sapling: 811161192
       item_stone: -512641925
       item_stone_axe: 563146846
+      item_stone_floor: 1007983580
+      item_stone_hammer: 1204406958
       item_stone_pickaxe: 1392384841
       item_stone_shovel: -887866084
       item_stone_sword: 851283991
+      item_stone_wall: -1501110074
       item_tool_station: -581595869
       item_torch: -1995232107
       item_undead_soul: 1935163884
       item_wood: -602149933
+      item_wood_axe: 1515656529
       item_wood_chestplate: -848097959
       item_wood_floor: 1850925332
       item_wood_greaves: -972602597
-      item_wood_hammer: 1204406958
+      item_wood_hammer: 1844556041
       item_wood_helmet: 1611562402
+      item_wood_pickaxe: 504264504
+      item_wood_sword: 86916168
       item_wood_wall: 734688836
       item_xp: -955445017
   mipmapLimitGroupName: 

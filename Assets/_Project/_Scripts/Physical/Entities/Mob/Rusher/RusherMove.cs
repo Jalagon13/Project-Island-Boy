@@ -7,13 +7,13 @@ namespace IslandBoy
 {
     public class RusherMove : StateMachineBehaviour
     {
-        private RusherEntity _ctx;
+        private SlimeStateManager _ctx;
         private Vector2 _wanderPos;
 
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             //Debug.Log("Entering Move State");
-            _ctx = animator.transform.root.GetComponent<RusherEntity>();
+            _ctx = animator.transform.root.GetComponent<SlimeStateManager>();
             _ctx.OnMove += Move;
             _wanderPos = CalcWanderPos();
         }

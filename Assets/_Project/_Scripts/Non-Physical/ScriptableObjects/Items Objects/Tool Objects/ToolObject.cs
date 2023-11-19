@@ -6,7 +6,7 @@ namespace IslandBoy
     public enum ToolType
     {
         None,
-        Ax,
+        Axe,
         Pickaxe,
         Sword,
         Hammer
@@ -15,13 +15,16 @@ namespace IslandBoy
     [CreateAssetMenu(fileName = "New Tool", menuName = "Create Item/New Tool")]
     public class ToolObject : ItemObject
     {
-        [field: SerializeField] public ToolType Type { get; set; }
+        [Space(10)]
+        [SerializeField] private ToolType _type;
+        [Header("Upgrade Parameters")]
+        [SerializeField] private CraftingRecipeObject _upgradeRecipe;
+        [SerializeField] private int _xpForUpgrade;
 
-        public override ToolType ToolType => Type;
-        public override AmmoType AmmoType => _baseAmmoType;
+        public override ToolType ToolType => _type;
         public override ArmorType ArmorType => _baseArmorType;
-        public override GameObject AmmoPrefab => null;
-        public override int ConsumeValue => 0;
+        public CraftingRecipeObject UpgradeRecipe => _upgradeRecipe;
+        public int XpForUpgrade => _xpForUpgrade;
 
         public override void ExecutePrimaryAction(SelectedSlotControl control)
         {
@@ -35,27 +38,48 @@ namespace IslandBoy
 
         public override string GetDescription()
         {
-            //string powerDesc = string.Empty;
-            string damageDesc = string.Empty;
-            string attackSpeed = string.Empty;
+            float clickDistance = 0;
+            float hitValue = 0;
+            float damage = 0;
 
             foreach (var item in DefaultParameterList)
             {
                 switch (item.Parameter.ParameterName)
                 {
-                    //case "Power":
-                    //    powerDesc = $"• {item.Value} {ToolType} Power<br>";
-                    //    break;
-                    case "Damage":
-                        damageDesc = $"• {item.Value} Damage<br>";
+                    case "Hit":
+                        hitValue = item.Value;
                         break;
-                    case "AttackSpeed":
-                        attackSpeed = $"• {item.Value}s Attack Speed<br>";
+                    case "ClickDistance":
+                        clickDistance = item.Value;
+                        break;
+                    case "Damage":
+                        damage = item.Value;
                         break;
                 }
             }
 
-            return $"{damageDesc}{attackSpeed}{Description}";
+            string toolTypeDesc = string.Empty;
+
+            switch (_type)
+            {
+                case ToolType.Axe:
+                    toolTypeDesc = $"• {hitValue} hits to trees<br>";
+                    break;
+                case ToolType.Pickaxe:
+                    toolTypeDesc = $"• {hitValue} hits to rocks<br>";
+                    break;
+                case ToolType.Sword:
+                    toolTypeDesc = $"• {hitValue} hits to creatures<br>";
+                    break;
+                case ToolType.Hammer:
+                    toolTypeDesc = $"• {hitValue} hits to floors and walls<br>";
+                    break;
+            }
+
+            string upgradeText = _upgradeRecipe != null ? $"<br>• upgrades into {_upgradeRecipe.OutputItem.Name}" : string.Empty;
+            string damageText = $"{damage} damage<br>";
+
+            return $"{toolTypeDesc}• {damageText}• {clickDistance} click distance{upgradeText}";
         }
     }
 }

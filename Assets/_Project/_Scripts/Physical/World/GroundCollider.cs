@@ -14,6 +14,11 @@ namespace IslandBoy
             UpdatePathfinding();
         }
 
+        private void OnDisable()
+        {
+            UpdatePathfinding();
+        }
+
         private void OnDestroy()
         {
             if (_applicationQuitting) return;
@@ -28,7 +33,8 @@ namespace IslandBoy
 
         private void UpdatePathfinding()
         {
-            AstarManager.Instance.UpdateGrid(transform.parent.position);
+            Bounds updateBounds = new(transform.parent.position, new(2, 2, 1));
+            AstarPath.active.UpdateGraphs(updateBounds, 0.1f);
         }
     }
 }

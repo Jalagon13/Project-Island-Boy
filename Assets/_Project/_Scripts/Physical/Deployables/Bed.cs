@@ -20,40 +20,12 @@ namespace IslandBoy
             _canCheck = true;
         }
 
-        private void OnEnable()
-        {
-            GameSignals.CAN_SLEEP.AddListener(CanSleepNow);
-            GameSignals.DAY_START.AddListener(CanNotSleep);
-        }
-
-        private void OnDisable()
-        {
-            GameSignals.CAN_SLEEP.RemoveListener(CanSleepNow);
-            GameSignals.DAY_START.RemoveListener(CanNotSleep);
-        }
-
-        private void CanNotSleep(ISignalParameters parameters)
-        {
-            _canSleep = false;
-        }
-
-        private void CanSleepNow(ISignalParameters parameters)
-        {
-            _canSleep = true;
-        }
-
         public void TryToEndDay() // connected to bed button
         {
             if (!_canCheck) return;
 
             if (InValidSpace())
             {
-                if (!_canSleep)
-                {
-                    PopupMessage.Create(transform.position, "Too early to sleep!", Color.yellow, new(0.5f, 0.5f), 1f);
-                    return;
-                }
-
                 DispatchEvents();
             }
         }

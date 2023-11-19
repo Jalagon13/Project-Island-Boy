@@ -959,8 +959,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _dayDurationInSec: 72000
-  _percentTillCanSleep: 0.8
+  _dayDurationInSec: 720
+  _percentTillSleepWarning: 0.8
   _debugDayPercentage: 0.1
   _marker: {fileID: 443493517}
   _panel: {fileID: 8325212771761043721}

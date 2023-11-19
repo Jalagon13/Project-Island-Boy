@@ -9,56 +9,57 @@ namespace IslandBoy
     public class SpellObject : ItemObject
     {
         [SerializeField] private int _manaCostPerCast;
-        [SerializeField] private GameObject _spell;
+        [SerializeField] private Spell _spellPrefab;
+        [SerializeField] private AudioClip _castSound;
 
         public override ToolType ToolType => _baseToolType;
-
-        public override AmmoType AmmoType => _baseAmmoType;
-
         public override ArmorType ArmorType => _baseArmorType;
-
-        public override GameObject AmmoPrefab => null;
-
-        public override int ConsumeValue => 0;
 
         public override void ExecutePrimaryAction(SelectedSlotControl control)
         {
-            
+            if (control.CursorControl.CurrentClickable == null) return;
+            if (!control.Player.HasEnoughManaToCast(_manaCostPerCast))
+            {
+                PopupMessage.Create(control.Player.transform.position, $"You have no mana!", Color.yellow, Vector2.up, 1f);
+                return;
+            }
+
+            if (control.CursorControl.CurrentClickable is Entity)
+            {
+                Entity targetEntity = (Entity)control.CursorControl.CurrentClickable;
+
+                Spell spell = Instantiate(_spellPrefab);
+                spell.Setup(targetEntity, this);
+
+                control.Player.AddToMp(-_manaCostPerCast);
+                //AudioManager.Instance.PlayClip(_castSound, false, true);
+            }
         }
 
         public override void ExecuteSecondaryAction(SelectedSlotControl control)
         {
-            // check if there is enough mana to cast spell
 
-            // inject the release behavior into the charge system
-
-            // execute the charge on release
-            DispatchItemCharging();
-        }
-
-        private void DispatchItemCharging()
-        {
-            Action<float> behavior = SpellReleaseBehavior;
-            Signal signal = GameSignals.ITEM_CHARGING;
-            signal.ClearParameters();
-            signal.AddParameter("ReleaseBehavior", behavior);
-            signal.Dispatch();
-        }
-
-        // note to self: remember to think about like where to put direction calculation at. If it's in the charge control or in spell object.
-
-        public void SpellReleaseBehavior(float chargePercentage)
-        {
-            // instantiate the Spell Gameobject here.
-
-            // set up the spell with the charge percentage
-
-            // and then in each spell, just take the chargePercentage and do what ever it needs on spell instantiate. 
         }
 
         public override string GetDescription()
         {
-            return string.Empty;
+            float clickDistance = 0;
+            float power = 0;
+
+            foreach (var item in DefaultParameterList)
+            {
+                switch (item.Parameter.ParameterName)
+                {
+                    case "ClickDistance":
+                        clickDistance = item.Value;
+                        break;
+                    case "Power":
+                        power = item.Value;
+                        break;
+                }
+            }
+
+            return $"• {_manaCostPerCast} mana per click<br>• {power} hits to creatures<br>• {clickDistance} click distance<br>{Description}";
         }
     }
 }

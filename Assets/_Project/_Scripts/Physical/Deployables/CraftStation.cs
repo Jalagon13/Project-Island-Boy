@@ -7,7 +7,7 @@ namespace IslandBoy
 {
     public class CraftStation : Interactable
     {
-        [SerializeField] private RecipeDatabaseObject _rdb;
+        [SerializeField] private CraftingDatabaseObject _cdb;
 
         private bool _appQuitting;
 
@@ -39,9 +39,16 @@ namespace IslandBoy
         public override void Interact()
         {
             if (!_canInteract) return;
-            _pr.Inventory.InventoryControl.CraftStationInteract(this, _rdb);
+            _pr.Inventory.InventoryControl.CraftStationInteract(this, _cdb);
 
             GameSignals.CRAFT_STATION_INTERACT.Dispatch();
+            EnableInstructions(false);
+        }
+
+        public override void ShowDisplay()
+        {
+            EnableYellowCorners(true);
+            EnableInstructions(true);
         }
     }
 }

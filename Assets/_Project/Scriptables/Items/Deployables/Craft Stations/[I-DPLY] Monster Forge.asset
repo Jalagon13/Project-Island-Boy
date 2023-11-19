@@ -16,7 +16,9 @@ MonoBehaviour:
   <UiDisplay>k__BackingField: {fileID: 593532975, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
   <Stackable>k__BackingField: 1
   <Description>k__BackingField: "\u2022 Boss Summon Recipes"
-  <DefaultParameterList>k__BackingField: []
+  <DefaultParameterList>k__BackingField:
+  - Parameter: {fileID: 11400000, guid: c25902e3274ad0a4a97f3515779aecea, type: 2}
+    Value: 3
   _tmr: {fileID: 11400000, guid: ec06355a14da7574295ea6e79aaebb6f, type: 2}
-  _prefabToDeploy: {fileID: 1864343632687969642, guid: 8db4c4330c3668a40b2551b4a560d3b5, type: 3}
+  _prefabToDeploy: {fileID: 7188430306745863646, guid: 601d45f27fba76d45a8c9c679db6f562, type: 3}
   _deploySound: {fileID: 8300000, guid: 81630c27f46088149ba396244d1b8a68, type: 3}

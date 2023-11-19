@@ -15,17 +15,17 @@ namespace IslandBoy
         [SerializeField] private List<ChestInvSlot> _startingItems = new();
         [SerializeField] private List<Slot> _allSlots = new();
 
-        private MouseItemHolder _mouseItemHolder;
+        private MouseSlot _mouseItemHolder;
 
         public List<Slot> InventorySlots { get { return _allSlots; } }
-        public MouseItemHolder MouseItemHolder { get { return _mouseItemHolder; } }
+        public MouseSlot MouseItemHolder { get { return _mouseItemHolder; } }
         public InventoryControl InventoryControl { get { return GetComponent<InventoryControl>(); } }
         public int MaxStack { get { return _maxStack; } }
 
         private void Awake()
         {
             _pr.Inventory = this;
-            _mouseItemHolder = transform.GetChild(3).GetComponent<MouseItemHolder>();
+            _mouseItemHolder = transform.GetChild(3).GetComponent<MouseSlot>();
         }
 
         private IEnumerator Start()
@@ -148,25 +148,6 @@ namespace IslandBoy
             }
 
             return false;
-        }
-
-        public ItemObject GetAmmoItem(AmmoType ammoType)
-        {
-            for (int i = 0; i < _allSlots.Count; i++)
-            {
-                Slot slot = _allSlots[i];
-
-                if (slot.ItemObject == null) continue;
-
-                if (slot.ItemObject.AmmoType == ammoType)
-                {
-                    GameObject ammoPrefab = slot.ItemObject.AmmoPrefab;
-                    if (ammoPrefab != null)
-                        return slot.ItemObject;
-                }
-            }
-
-            return null;
         }
     }
 }

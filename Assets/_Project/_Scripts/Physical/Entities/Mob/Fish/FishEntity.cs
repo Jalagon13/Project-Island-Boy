@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 namespace IslandBoy
 {
-    public class FishEntity : Entity
+    public class FishEntity : MonoBehaviour
     {
         private Rigidbody2D _rb;
         private Vector2 _dir;

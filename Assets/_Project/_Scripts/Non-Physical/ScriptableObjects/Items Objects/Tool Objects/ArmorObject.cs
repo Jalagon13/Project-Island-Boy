@@ -18,10 +18,7 @@ namespace IslandBoy
         [SerializeField] private ArmorType _armorType;
 
         public override ToolType ToolType => _baseToolType;
-        public override AmmoType AmmoType => _baseAmmoType;
         public override ArmorType ArmorType => _armorType;
-        public override GameObject AmmoPrefab => null;
-        public override int ConsumeValue => 0;
 
         public override void ExecutePrimaryAction(SelectedSlotControl control)
         {

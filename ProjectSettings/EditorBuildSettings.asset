@@ -15,17 +15,20 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes/Game Scenes/GameWorld.unity
     guid: 30f10bac41d060e48a7ef0c95aa2775e
   - enabled: 1
-    path: Assets/_Project/Scenes/Game Scenes/Underground.unity
+    path: Assets/_Project/Scenes/Game Scenes/Cave1.unity
     guid: 68c09988951ac6d4ba8df245145716ec
   - enabled: 1
     path: Assets/_Project/Scenes/Game Scenes/End.unity
     guid: 95f64a339fb6943429827db0447a6ed0
   - enabled: 1
-    path: Assets/_Project/Scenes/Player/CurrencyDisplay.unity
+    path: Assets/_Project/Scenes/Player/ExperienceDisplay.unity
     guid: b958bb0177e05c649aaebef0ce105646
   - enabled: 1
     path: Assets/_Project/Scenes/Player/LaunchControl.unity
     guid: 7bcf1383c8ab4154dbda8e92b389c5ac
+  - enabled: 1
+    path: Assets/_Project/Scenes/Player/Player.unity
+    guid: 3c94fa20b904586428ffec53e1bc6a5a
   - enabled: 1
     path: Assets/_Project/Scenes/Player/DeathPanel.unity
     guid: e362f6d510745384d908de3cb84987e0
@@ -38,6 +41,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Player/StatsDisplay.unity
     guid: 505672c1245402e49998002822dec716
+  - enabled: 1
+    path: Assets/_Project/Scenes/Player/LevelControl.unity
+    guid: 7a867c785b51415499a66a06ef8c77bf
   - enabled: 1
     path: Assets/_Project/Scenes/Player/PromptDisplay.unity
     guid: 094df44807a597e42aab0bff764b10c7

@@ -6,13 +6,19 @@ namespace IslandBoy
 {
     public class Ammo : MonoBehaviour
     {
+        [SerializeField] private float _speed;
+        [SerializeField] private float _travelDistance;
         [SerializeField] private ItemParameter _powerParameter;
 
         private Rigidbody2D _rb;
+        private SpriteRenderer _sr;
+        private Clickable _clickableFound = null;
+        private Vector2 _targetPosition;
         private int _damage;
 
         private void Awake()
         {
+            _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
             _rb = GetComponent<Rigidbody2D>();
         }
 
@@ -23,42 +29,48 @@ namespace IslandBoy
             transform.rotation = Quaternion.Euler(Vector3.forward * angle);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
-            if(_rb.velocity.magnitude < 4f)
-            {
+            transform.position = Vector2.MoveTowards(transform.position, _targetPosition, _speed);
+
+            if (Vector2.Distance(transform.position, _targetPosition) < 0.05f)
                 Destroy(gameObject);
-            }
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            GameObject colGo = collision.gameObject;
-            if (colGo.layer == 7) return;
+            GameObject colliderGo = collision.gameObject;
 
-            if (colGo.TryGetComponent(out IHealth<int> health))
+            if (colliderGo.layer == 7) return;
+
+            if(colliderGo.TryGetComponent(out Clickable clickable))
             {
-                health.Damage(_damage, gameObject);
+                if (_clickableFound != null) return;
+
+                _clickableFound = clickable;
+                _clickableFound.OnHit(ToolType.Sword, _damage);
+
                 Destroy(gameObject);
             }
-
-            if(colGo.TryGetComponent(out Resource rsc))
-            {
-                rsc.Hit(0);
-            }
-
-            if (colGo.layer == 3 && collision.isTrigger == false)
-                Destroy(gameObject);
         }
 
-        public void Setup(ItemObject launchObject, ItemObject ammoObject, float multiplier, Vector2 launchForce)
+        public void Setup(ItemObject launchObject, ItemObject ammoObject, Vector3 direction)
         {
-            int launchPower = Mathf.RoundToInt(ExtractPower(launchObject) * multiplier);
-            int ammoPower = Mathf.RoundToInt(ExtractPower(ammoObject) * multiplier);
+            int launchPower = Mathf.RoundToInt(ExtractPower(launchObject));
+            int ammoPower = Mathf.RoundToInt(ExtractPower(ammoObject));
 
             _damage = launchPower + ammoPower;
+            _targetPosition = transform.position + (direction * _travelDistance);
+            Debug.Log(_targetPosition);
+            RotateSpriteTowards(_targetPosition);
+        }
 
-            _rb.AddForce(launchForce, ForceMode2D.Impulse);
+        private void RotateSpriteTowards(Vector2 target)
+        {
+            Vector2 direction = (target - (Vector2)_sr.transform.position).normalized;
+            var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            var offset = -45;
+            _sr.transform.rotation = Quaternion.Euler(Vector3.forward * (angle + offset));
         }
 
         private int ExtractPower(ItemObject item)
