@@ -15,7 +15,7 @@ namespace IslandBoy
 
         private IEnumerator Start()
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForEndOfFrame();
 
             _ap.Scan();
         }
@@ -23,7 +23,6 @@ namespace IslandBoy
         private void OnEnable()
         {
             _ap.scanOnStartup = true;
-            //Astar.SetUpActiveAstarPath(_ap);
         }
     }
 }

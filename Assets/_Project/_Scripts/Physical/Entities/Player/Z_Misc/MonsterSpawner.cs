@@ -10,8 +10,8 @@ namespace IslandBoy
     public class MonsterSpawner : MonoBehaviour
     {
         [SerializeField] private TilemapReferences _tmr;
-        [SerializeField] private int _maxMonsterCount;
         [SerializeField] private Entity _monsterPrefab;
+        [SerializeField] private int _maxMonsterCount;
         [SerializeField] private float _minSpawnTimerSec;
         [SerializeField] private float _maxSpawnTimerSec;
 
