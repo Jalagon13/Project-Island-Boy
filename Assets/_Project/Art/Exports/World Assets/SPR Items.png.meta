@@ -1126,7 +1126,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1134,6 +1134,27 @@ TextureImporter:
       bones: []
       spriteID: e15cf063a1cadd944a705247232b2c35
       internalID: -1201098598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_magic_potion
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 517980b9481519f4d99ad777cebc4c65
+      internalID: -1000768912
       vertices: []
       indices: 
       edges: []
@@ -1173,6 +1194,7 @@ TextureImporter:
       item_iron_ore: 1648958029
       item_iron_pickaxe: -30285140
       item_iron_sword: 1805357805
+      item_magic_potion: -1000768912
       item_miner_scroll: 2118457468
       item_portal_to_home: 1494493913
       item_red_rune: 1210640472

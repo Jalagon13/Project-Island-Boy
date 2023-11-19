@@ -2415,7 +2415,6 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 0}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
-  _runeEquipSound: {fileID: 0}
   _isChestSlot: 0
   _slotArmorType: 1
   _defenseParameter:
@@ -2507,7 +2506,6 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 0}
   _popSound: {fileID: 0}
-  _runeEquipSound: {fileID: 0}
   _isChestSlot: 0
 --- !u!224 &5602138069271407922
 RectTransform:
@@ -4282,14 +4280,6 @@ MonoBehaviour:
     OutputAmount: 1
   - OutputItem: {fileID: 11400000, guid: bcb1af588d1b492479eab026c6521dcb, type: 2}
     OutputAmount: 1
-  - OutputItem: {fileID: 11400000, guid: ad8d77d5b0f8ba8439e6e8bad6571b59, type: 2}
-    OutputAmount: 999
-  - OutputItem: {fileID: 11400000, guid: bae05631bee9b75479ea8f1d94e134e9, type: 2}
-    OutputAmount: 50
-  - OutputItem: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
-    OutputAmount: 900
-  - OutputItem: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
-    OutputAmount: 900
   _allSlots:
   - {fileID: 1398917238}
   - {fileID: 658019018}
@@ -6989,7 +6979,6 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 0}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
-  _runeEquipSound: {fileID: 0}
   _isChestSlot: 0
   _slotArmorType: 2
   _defenseParameter:
@@ -7103,7 +7092,6 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 0}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
-  _runeEquipSound: {fileID: 0}
   _isChestSlot: 0
   _slotArmorType: 3
   _defenseParameter:

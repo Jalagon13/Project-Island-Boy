@@ -19,9 +19,18 @@ namespace IslandBoy
 
         private void Start()
         {
-            _upgradeButton.gameObject.SetActive(false);
-            _upgradeText.enabled = false;
-            _needText.enabled = false;
+            EnableUpgradeUI(false);
+        }
+
+        private void OnDisable()
+        {
+            if (HasItem())
+            {
+                _pr.Inventory.AddItem(ItemObject, InventoryItem.Count, ItemObject.DefaultParameterList);
+
+                ClearSlot();
+                EnableUpgradeUI(false);
+            }
         }
 
         public override void OnPointerClick(PointerEventData eventData)
@@ -81,31 +90,24 @@ namespace IslandBoy
                 _upgradeText.text = $"Upgrade:<br>{tool.UpgradeRecipe.OutputItem.Name}";
                 _needText.text = $"Need:{needList}";
 
-                _upgradeButton.gameObject.SetActive(true);
-                _upgradeText.enabled = true;
-                _needText.enabled = true;
+                EnableUpgradeUI(true);
             }
         }
 
         private void ToolRemoved()
         {
-            Debug.Log("Tool Removed");
-
             _upgradeRecipe = null;
             _xpNeedAmount = 0;
 
-            _upgradeButton.gameObject.SetActive(false);
-            _upgradeText.enabled = false;
-            _needText.enabled = false;
+            EnableUpgradeUI(false);
         }
 
         public void TryToUpgradeTool()
         {
-            Debug.Log("Trying to upgrade tool");
 
             if (_mouseItemHolder.HasItem())
             {
-                PopupMessage.Create(_pr.Position, "Mouse slot full!", Color.yellow, Vector2.up, 1f);
+                PopupMessage.Create(_pr.Position, "My mouse slot is full", Color.yellow, Vector2.up, 1f);
                 return;
             }
 
@@ -120,7 +122,7 @@ namespace IslandBoy
 
             if (PlayerExperience.Experience.Count < _xpNeedAmount)
             {
-                PopupMessage.Create(_pr.Position, "Need more XP!", Color.yellow, Vector2.up, 1f);
+                PopupMessage.Create(_pr.Position, "I need more XP to craft this", Color.yellow, Vector2.up, 1f);
                 return;
             }
 
@@ -130,7 +132,7 @@ namespace IslandBoy
             if (canCraft)
                 UpgradeTool();
             else
-                PopupMessage.Create(_pr.Position, "Resources not met!", Color.yellow, Vector2.up, 1f);
+                PopupMessage.Create(_pr.Position, "I'm missing some resources", Color.yellow, Vector2.up, 1f);
         }
 
 
@@ -150,6 +152,13 @@ namespace IslandBoy
                 Destroy(InventoryItem.gameObject);
                 ToolRemoved();
             }
+        }
+
+        private void EnableUpgradeUI(bool _)
+        {
+            _upgradeButton.gameObject.SetActive(_);
+            _upgradeText.enabled = _;
+            _needText.enabled = _;
         }
     }
 }

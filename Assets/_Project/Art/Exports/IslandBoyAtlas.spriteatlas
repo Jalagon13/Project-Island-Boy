@@ -250,6 +250,7 @@ SpriteAtlas:
     - 7b4664f5da5f4bc4fb4c01aad9fc646d: 18002930929476221
     - 7b4664f5da5f4bc4fb4c01aad9fc646d: 3592268942824130315
     - 7b4664f5da5f4bc4fb4c01aad9fc646d: 996720472450852175
+    - 75594b36fd8cd0d409de8dacfcaf419b: -1000768912
     - 75594b36fd8cd0d409de8dacfcaf419b: -848097959
     - 75594b36fd8cd0d409de8dacfcaf419b: -1651487029
     - 75594b36fd8cd0d409de8dacfcaf419b: -972602597
@@ -869,6 +870,7 @@ SpriteAtlas:
   - {fileID: 18002930929476221, guid: 7b4664f5da5f4bc4fb4c01aad9fc646d, type: 3}
   - {fileID: 3592268942824130315, guid: 7b4664f5da5f4bc4fb4c01aad9fc646d, type: 3}
   - {fileID: 996720472450852175, guid: 7b4664f5da5f4bc4fb4c01aad9fc646d, type: 3}
+  - {fileID: -1000768912, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -848097959, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1651487029, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -972602597, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
@@ -1487,6 +1489,7 @@ SpriteAtlas:
   - WS11_8
   - WS11_9
   - WS11_2
+  - item_magic_potion
   - item_wood_chestplate
   - item_coal
   - item_wood_greaves

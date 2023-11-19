@@ -14,7 +14,6 @@ namespace IslandBoy
 
         public override ToolType ToolType => _baseToolType;
         public override ArmorType ArmorType => _baseArmorType;
-        public override int ConsumeValue => 0;
 
         public override void ExecutePrimaryAction(SelectedSlotControl control)
         {
@@ -43,7 +42,7 @@ namespace IslandBoy
         public override string GetDescription()
         {
             float clickDistance = 0;
-            float power = 0;
+            float damage = 0;
 
             foreach (var item in DefaultParameterList)
             {
@@ -52,13 +51,13 @@ namespace IslandBoy
                     case "ClickDistance":
                         clickDistance = item.Value;
                         break;
-                    case "Power":
-                        power = item.Value;
+                    case "Damage":
+                        damage = item.Value;
                         break;
                 }
             }
 
-            return $"{Description}<br>• {power} hits to creatures<br>• {clickDistance} click distance";
+            return $"{Description}<br>• {damage} damage<br>• {clickDistance} click distance";
         }
     }
 }

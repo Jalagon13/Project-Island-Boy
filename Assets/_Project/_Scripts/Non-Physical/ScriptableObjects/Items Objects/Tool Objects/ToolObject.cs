@@ -15,13 +15,14 @@ namespace IslandBoy
     [CreateAssetMenu(fileName = "New Tool", menuName = "Create Item/New Tool")]
     public class ToolObject : ItemObject
     {
-        [field: SerializeField] public ToolType Type { get; set; }
+        [Space(10)]
+        [SerializeField] private ToolType _type;
+        [Header("Upgrade Parameters")]
         [SerializeField] private CraftingRecipeObject _upgradeRecipe;
         [SerializeField] private int _xpForUpgrade;
 
-        public override ToolType ToolType => Type;
+        public override ToolType ToolType => _type;
         public override ArmorType ArmorType => _baseArmorType;
-        public override int ConsumeValue => 0;
         public CraftingRecipeObject UpgradeRecipe => _upgradeRecipe;
         public int XpForUpgrade => _xpForUpgrade;
 
@@ -39,6 +40,7 @@ namespace IslandBoy
         {
             float clickDistance = 0;
             float hitValue = 0;
+            float damage = 0;
 
             foreach (var item in DefaultParameterList)
             {
@@ -50,28 +52,34 @@ namespace IslandBoy
                     case "ClickDistance":
                         clickDistance = item.Value;
                         break;
+                    case "Damage":
+                        damage = item.Value;
+                        break;
                 }
             }
 
-            string desc = string.Empty;
+            string toolTypeDesc = string.Empty;
 
-            switch (Type)
+            switch (_type)
             {
                 case ToolType.Axe:
-                    desc = $"• {hitValue} hits to trees<br>• {clickDistance} click distance<br>• upgrades into {_upgradeRecipe.OutputItem.Name}";
+                    toolTypeDesc = $"• {hitValue} hits to trees<br>";
                     break;
                 case ToolType.Pickaxe:
-                    desc = $"• {hitValue} hits to rocks<br>• {clickDistance} click distance<br>• upgrades into {_upgradeRecipe.OutputItem.Name}";
+                    toolTypeDesc = $"• {hitValue} hits to rocks<br>";
                     break;
                 case ToolType.Sword:
-                    desc = $"• {hitValue} hits to creatures<br>• {clickDistance} click distance<br>• upgrades into {_upgradeRecipe.OutputItem.Name}";
+                    toolTypeDesc = $"• {hitValue} hits to creatures<br>";
                     break;
                 case ToolType.Hammer:
-                    desc = $"• {hitValue} hits to floors and walls<br>• {clickDistance} click distance<br>• upgrades into {_upgradeRecipe.OutputItem.Name}";
+                    toolTypeDesc = $"• {hitValue} hits to floors and walls<br>";
                     break;
             }
 
-            return desc;
+            string upgradeText = _upgradeRecipe != null ? $"<br>• upgrades into {_upgradeRecipe.OutputItem.Name}" : string.Empty;
+            string damageText = $"{damage} damage<br>";
+
+            return $"{toolTypeDesc}• {damageText}• {clickDistance} click distance{upgradeText}";
         }
     }
 }

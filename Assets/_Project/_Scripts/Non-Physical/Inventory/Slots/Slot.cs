@@ -210,6 +210,14 @@ namespace IslandBoy
             return false;
         }
 
+        public void ClearSlot()
+        {
+            foreach (Transform item in transform)
+            {
+                Destroy(item.gameObject);
+            }
+        }
+
         public int GetMaxStack() // BROOKE -------------
         {
             return _maxStack;
