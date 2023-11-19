@@ -64,12 +64,25 @@ namespace IslandBoy
             DispatchMpChange();
 
             StartCoroutine(RegenOneMana());
+            StartCoroutine(HungerWarningMessage());
         }
 
         private void Update()
         {
             _iFrameTimer.Tick(Time.deltaTime);
             _pr.Position = transform.position;
+        }
+
+        private IEnumerator HungerWarningMessage()
+        {
+            yield return new WaitForSeconds(10);
+
+            if(_currentNrg < (_maxNrg / 4))
+            {
+                PopupMessage.Create(transform.position, $"I'm running low on energy", Color.yellow, Vector2.up, 1f);
+            }
+
+            StartCoroutine(HungerWarningMessage());
         }
 
         private IEnumerator RegenOneMana()

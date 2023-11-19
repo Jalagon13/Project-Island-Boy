@@ -77,6 +77,11 @@ namespace IslandBoy
 
         private void UpdateSwingSprite()
         {
+            if (_focusSlotRef.ItemObject == null)
+            {
+                _swingSr.sprite = null;
+                return;
+            }
             _swingSr.sprite = _focusSlotRef.ItemObject == null ? null : _focusSlotRef.ItemObject is ToolObject ? _focusSlotRef.ItemObject.UiDisplay : null;
         }
 
@@ -95,6 +100,12 @@ namespace IslandBoy
             AnimStateManager.ChangeAnimationState(_animator, _hashIdle);
 
             _swingTimer.RemainingSeconds = _swingCd;
+            StartCoroutine(Delay());
+        }
+
+        private IEnumerator Delay()
+        {
+            yield return new WaitForEndOfFrame();
             _inMidSwing = false;
         }
 

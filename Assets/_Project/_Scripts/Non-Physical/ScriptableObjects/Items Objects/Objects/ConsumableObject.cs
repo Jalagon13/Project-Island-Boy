@@ -36,6 +36,7 @@ namespace IslandBoy
 
                 case PlayerStatType.Energy:
                     if (!control.Player.CanHealNrg()) return;
+                    
                     break;
 
                 case PlayerStatType.Mana:
@@ -68,6 +69,7 @@ namespace IslandBoy
 
                 case PlayerStatType.Energy:
                     _selectedSlotControl.Player.HealNrg(_value);
+                    GameSignals.ENERGY_RESTORED.Dispatch();
                     break;
 
                 case PlayerStatType.Mana:
