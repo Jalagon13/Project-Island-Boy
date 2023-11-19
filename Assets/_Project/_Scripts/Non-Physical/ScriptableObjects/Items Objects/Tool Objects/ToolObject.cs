@@ -38,14 +38,14 @@ namespace IslandBoy
         public override string GetDescription()
         {
             float clickDistance = 0;
-            float powerValue = 0;
+            float hitValue = 0;
 
             foreach (var item in DefaultParameterList)
             {
                 switch (item.Parameter.ParameterName)
                 {
-                    case "Power":
-                        powerValue = item.Value;
+                    case "Hit":
+                        hitValue = item.Value;
                         break;
                     case "ClickDistance":
                         clickDistance = item.Value;
@@ -58,16 +58,16 @@ namespace IslandBoy
             switch (Type)
             {
                 case ToolType.Axe:
-                    desc = $"• {powerValue} hits to trees<br>• {clickDistance} click distance<br>• can be upgraded by the Miner";
+                    desc = $"• {hitValue} hits to trees<br>• {clickDistance} click distance<br>• upgrades into {_upgradeRecipe.OutputItem.Name}";
                     break;
                 case ToolType.Pickaxe:
-                    desc = $"• {powerValue} hits to rocks<br>• {clickDistance} click distance<br>• can be upgraded by the Miner";
+                    desc = $"• {hitValue} hits to rocks<br>• {clickDistance} click distance<br>• upgrades into {_upgradeRecipe.OutputItem.Name}";
                     break;
                 case ToolType.Sword:
-                    desc = $"• {powerValue} hits to creatures<br>• {clickDistance} click distance<br>• can be upgraded by the Miner";
+                    desc = $"• {hitValue} hits to creatures<br>• {clickDistance} click distance<br>• upgrades into {_upgradeRecipe.OutputItem.Name}";
                     break;
                 case ToolType.Hammer:
-                    desc = $"• {powerValue} hits to floors and walls<br>• {clickDistance} click distance<br>• can be upgraded by the Miner";
+                    desc = $"• {hitValue} hits to floors and walls<br>• {clickDistance} click distance<br>• upgrades into {_upgradeRecipe.OutputItem.Name}";
                     break;
             }
 
