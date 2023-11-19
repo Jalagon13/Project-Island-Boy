@@ -251,7 +251,7 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
-  _runeEquipSound: {fileID: 8300000, guid: ea9714a39923f5a4f81a73da4335e26f, type: 3}
+  _isChestSlot: 0
 --- !u!114 &85725556568519825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,7 +517,7 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
-  _runeEquipSound: {fileID: 8300000, guid: ea9714a39923f5a4f81a73da4335e26f, type: 3}
+  _isChestSlot: 0
 --- !u!114 &4674858168627958294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -653,7 +653,7 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
-  _runeEquipSound: {fileID: 8300000, guid: ea9714a39923f5a4f81a73da4335e26f, type: 3}
+  _isChestSlot: 0
 --- !u!114 &255227489496317294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -873,7 +873,7 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
-  _runeEquipSound: {fileID: 8300000, guid: ea9714a39923f5a4f81a73da4335e26f, type: 3}
+  _isChestSlot: 0
 --- !u!114 &3847934301770115591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1009,7 +1009,7 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
-  _runeEquipSound: {fileID: 8300000, guid: ea9714a39923f5a4f81a73da4335e26f, type: 3}
+  _isChestSlot: 0
 --- !u!114 &1530983331506290345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1145,7 +1145,7 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
-  _runeEquipSound: {fileID: 8300000, guid: ea9714a39923f5a4f81a73da4335e26f, type: 3}
+  _isChestSlot: 0
 --- !u!114 &7560775388494295134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1226,7 +1226,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.5, y: 0.5}
@@ -1455,7 +1455,7 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
-  _runeEquipSound: {fileID: 8300000, guid: ea9714a39923f5a4f81a73da4335e26f, type: 3}
+  _isChestSlot: 0
 --- !u!114 &8860542404330133780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1591,7 +1591,7 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
-  _runeEquipSound: {fileID: 8300000, guid: ea9714a39923f5a4f81a73da4335e26f, type: 3}
+  _isChestSlot: 0
 --- !u!114 &2532230965569654751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1961,7 +1961,7 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
-  _runeEquipSound: {fileID: 8300000, guid: ea9714a39923f5a4f81a73da4335e26f, type: 3}
+  _isChestSlot: 0
 --- !u!114 &7906352977651807786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2097,7 +2097,7 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
-  _runeEquipSound: {fileID: 8300000, guid: ea9714a39923f5a4f81a73da4335e26f, type: 3}
+  _isChestSlot: 0
 --- !u!114 &8436781827351972957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2317,7 +2317,7 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
-  _runeEquipSound: {fileID: 8300000, guid: ea9714a39923f5a4f81a73da4335e26f, type: 3}
+  _isChestSlot: 0
 --- !u!114 &3578203592674112878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2453,7 +2453,7 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
-  _runeEquipSound: {fileID: 8300000, guid: ea9714a39923f5a4f81a73da4335e26f, type: 3}
+  _isChestSlot: 0
 --- !u!114 &1042995784349118367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2775,7 +2775,7 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
-  _runeEquipSound: {fileID: 8300000, guid: ea9714a39923f5a4f81a73da4335e26f, type: 3}
+  _isChestSlot: 0
 --- !u!114 &2300777078136108580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2911,7 +2911,7 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
-  _runeEquipSound: {fileID: 8300000, guid: ea9714a39923f5a4f81a73da4335e26f, type: 3}
+  _isChestSlot: 0
 --- !u!114 &6552987886731280307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3047,7 +3047,7 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
-  _runeEquipSound: {fileID: 8300000, guid: ea9714a39923f5a4f81a73da4335e26f, type: 3}
+  _isChestSlot: 0
 --- !u!114 &4215536857078016884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3366,7 +3366,7 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
-  _runeEquipSound: {fileID: 8300000, guid: ea9714a39923f5a4f81a73da4335e26f, type: 3}
+  _isChestSlot: 0
 --- !u!114 &6108997766875140388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3502,7 +3502,7 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
-  _runeEquipSound: {fileID: 8300000, guid: ea9714a39923f5a4f81a73da4335e26f, type: 3}
+  _isChestSlot: 0
 --- !u!114 &7180448854776479291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3638,7 +3638,7 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
-  _runeEquipSound: {fileID: 8300000, guid: ea9714a39923f5a4f81a73da4335e26f, type: 3}
+  _isChestSlot: 0
 --- !u!114 &3614534794823303372
 MonoBehaviour:
   m_ObjectHideFlags: 0

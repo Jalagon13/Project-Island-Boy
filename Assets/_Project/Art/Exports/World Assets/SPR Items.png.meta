@@ -1147,7 +1147,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1155,6 +1155,48 @@ TextureImporter:
       bones: []
       spriteID: 517980b9481519f4d99ad777cebc4c65
       internalID: -1000768912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_stone_wall
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a6f3fda23fdf114994864727f49b8f0
+      internalID: -1501110074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_stone_floor
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d117e8c852c117499e5bb29be7a580b
+      internalID: 1007983580
       vertices: []
       indices: 
       edges: []
@@ -1202,10 +1244,12 @@ TextureImporter:
       item_sapling: 811161192
       item_stone: -512641925
       item_stone_axe: 563146846
+      item_stone_floor: 1007983580
       item_stone_hammer: 1204406958
       item_stone_pickaxe: 1392384841
       item_stone_shovel: -887866084
       item_stone_sword: 851283991
+      item_stone_wall: -1501110074
       item_tool_station: -581595869
       item_torch: -1995232107
       item_undead_soul: 1935163884
