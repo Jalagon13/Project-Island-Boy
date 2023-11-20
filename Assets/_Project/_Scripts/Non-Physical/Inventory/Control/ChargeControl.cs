@@ -104,6 +104,7 @@ namespace IslandBoy
 
         private void UpdateChargeTime(ISignalParameters parameters)
         {
+            if (FocusSlot == null) return;
             if (FocusSlot.CurrentParameters.Count <= 0) return;
             var itemParams = FocusSlot.CurrentParameters;
 

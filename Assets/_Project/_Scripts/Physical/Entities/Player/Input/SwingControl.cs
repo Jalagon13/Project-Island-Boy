@@ -77,7 +77,8 @@ namespace IslandBoy
 
         private void UpdateSwingSprite()
         {
-            if (_focusSlotRef.ItemObject == null)
+
+            if (_focusSlotRef == null)
             {
                 _swingSr.sprite = null;
                 return;

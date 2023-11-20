@@ -201,7 +201,7 @@ namespace IslandBoy
 
         private float CalcClickDistance()
         {
-            if (_focusSlotRef.ItemObject == null) return _startingClickDistance;
+            if (_focusSlotRef == null) return _startingClickDistance;
 
             if (_focusSlotRef.ItemObject.DefaultParameterList.Contains(_clickDistanceParameter))
             {

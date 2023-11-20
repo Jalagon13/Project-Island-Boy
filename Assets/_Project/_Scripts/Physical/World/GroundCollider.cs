@@ -16,6 +16,8 @@ namespace IslandBoy
 
         private void OnDisable()
         {
+            if (_applicationQuitting) return;
+
             UpdatePathfinding();
         }
 

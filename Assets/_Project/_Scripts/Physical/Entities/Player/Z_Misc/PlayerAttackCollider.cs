@@ -71,6 +71,7 @@ namespace IslandBoy
             if (parameters.HasParameter("FocusSlot"))
             {
                 _focusSlotRef = (Slot)parameters.GetParameter("FocusSlot");
+                if (_focusSlotRef == null) return;
 
                 if (!_focusSlotRef.HasItem()) return;
 
