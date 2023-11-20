@@ -17,6 +17,10 @@ PrefabInstance:
       value: '[CS] Alchemy Table'
       objectReference: {fileID: 0}
     - target: {fileID: 6065488926534113593, guid: 3196ff03b1026cd419eecf2c404f0cfb, type: 3}
+      propertyPath: _cdb
+      value: 
+      objectReference: {fileID: 11400000, guid: c1b7eaa1ad738b24ea9734d4e0d17cfc, type: 2}
+    - target: {fileID: 6065488926534113593, guid: 3196ff03b1026cd419eecf2c404f0cfb, type: 3}
       propertyPath: _rdb
       value: 
       objectReference: {fileID: 11400000, guid: 2995d9ea11bc4a4459f830968f363e39, type: 2}

@@ -59,7 +59,7 @@ namespace IslandBoy
             GameSignals.PLAYER_DIED.AddListener(DisableAbilityToHit);
             GameSignals.GAME_PAUSED.AddListener(DisableAbilityToHit);
             GameSignals.GAME_UNPAUSED.AddListener(EnableAbilityToHit);
-            GameSignals.ENTITY_SLAIN.AddListener(AddPlusTwoHitBuff);
+            GameSignals.ENERGY_RESTORED.AddListener(AddPlusTwoHitBuff);
         }
 
         private void OnDestroy()
@@ -70,7 +70,7 @@ namespace IslandBoy
             GameSignals.PLAYER_DIED.RemoveListener(DisableAbilityToHit);
             GameSignals.GAME_PAUSED.RemoveListener(DisableAbilityToHit);
             GameSignals.GAME_UNPAUSED.RemoveListener(EnableAbilityToHit);
-            GameSignals.ENTITY_SLAIN.RemoveListener(AddPlusTwoHitBuff);
+            GameSignals.ENERGY_RESTORED.RemoveListener(AddPlusTwoHitBuff);
 
             _input.Disable();
         }
@@ -81,11 +81,10 @@ namespace IslandBoy
 
             _clickTimer.Tick(Time.deltaTime);
 
-
-            //_buffTimer.Tick(Time.deltaTime);
-            //_buffText.enabled = _buffTimer.RemainingSeconds > 0;
-            //if (_buffTimer.RemainingSeconds > 0)
-            //    _buffText.text = $"+2 Hit Buff: {Math.Round(_buffTimer.RemainingSeconds, 1)} sec";
+            _buffTimer.Tick(Time.deltaTime);
+            _buffText.enabled = _buffTimer.RemainingSeconds > 0;
+            if (_buffTimer.RemainingSeconds > 0)
+                _buffText.text = $"+2 Hit Buff: {Math.Round(_buffTimer.RemainingSeconds, 1)} sec";
 
             if (_heldDown)
                 Hit(new());
@@ -97,7 +96,7 @@ namespace IslandBoy
 
         private void AddPlusTwoHitBuff(ISignalParameters parameters)
         {
-            _buffAmount = 0;
+            _buffAmount = 2;
             _buffTimer.RemainingSeconds += _buffDuration;
             _buffTimer.OnTimerEnd += RemovePlusTwoHitBuff;
         }
@@ -202,7 +201,7 @@ namespace IslandBoy
 
         private float CalcClickDistance()
         {
-            if (_focusSlotRef.ItemObject == null) return _startingClickDistance;
+            if (_focusSlotRef == null) return _startingClickDistance;
 
             if (_focusSlotRef.ItemObject.DefaultParameterList.Contains(_clickDistanceParameter))
             {
@@ -288,6 +287,7 @@ namespace IslandBoy
             if (_focusSlotRef.ItemObject.ToolType == ToolType.None) return false;
             if (_focusSlotRef.ItemObject != null)
                 if (_focusSlotRef.ItemObject.ToolType != ToolType.Hammer) return false;
+            if (PointerHandler.IsOverLayer(5)) return false;
 
             if (_tmr.WallTilemap.HasTile(Vector3Int.FloorToInt(_currentCenterPos)))
             {

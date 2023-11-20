@@ -13,7 +13,8 @@ namespace IslandBoy
 
         public void UpdatePathfinding(Vector2 pos)
         {
-            Astar.UpdateGridGraph(pos);
+            Bounds updateBounds = new(pos, new(2, 2, 1));
+            AstarPath.active.UpdateGraphs(updateBounds, 0.1f);
         }
     }
 }

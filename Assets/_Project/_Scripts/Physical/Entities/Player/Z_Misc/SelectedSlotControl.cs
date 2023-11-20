@@ -19,7 +19,8 @@ namespace IslandBoy
         private CursorControl _cursorControl;
         private float _primaryActionDelayCoolDown = 0.34f;
         private float _secondayActionDelayCoolDown = 0.15f;
-        private bool _isHeldDown;
+        private bool _primaryHeldDown;
+        private bool _secondaryHeldDown;
         private bool _mouseSlotHasitem;
 
         public Slot FocusSlot { get { return _focusSlot; } }
@@ -34,11 +35,11 @@ namespace IslandBoy
 
             _input = new();
             _input.Player.PrimaryAction.started += ExecutePrimaryAction;
-            _input.Player.PrimaryAction.performed += IsHeldDown;
-            _input.Player.PrimaryAction.canceled += IsHeldDown;
-            _input.Player.SecondaryAction.performed += IsHeldDown;
-            _input.Player.SecondaryAction.canceled += IsHeldDown;
+            _input.Player.PrimaryAction.performed += PrimaryHeldDown;
+            _input.Player.PrimaryAction.canceled += PrimaryHeldDown;
             _input.Player.SecondaryAction.started += ExecuteSecondaryAction;
+            _input.Player.SecondaryAction.performed += SecondaryHeldDown;
+            _input.Player.SecondaryAction.canceled += SecondaryHeldDown;
             _input.Enable();
 
             _primaryDelayCooldownTimer = new(_primaryActionDelayCoolDown);
@@ -63,16 +64,21 @@ namespace IslandBoy
             _primaryDelayCooldownTimer.Tick(Time.deltaTime);
             _secondaryDelayCooldownTimer.Tick(Time.deltaTime);
 
-            if (_isHeldDown)
-            {
-                ExecuteSecondaryAction(new());
+            if (_primaryHeldDown)
                 ExecutePrimaryAction(new());
-            }
+
+            if (_secondaryHeldDown)
+                ExecuteSecondaryAction(new());
         }
 
-        private void IsHeldDown(InputAction.CallbackContext context)
+        private void PrimaryHeldDown(InputAction.CallbackContext context)
         {
-            _isHeldDown = context.performed;
+            _primaryHeldDown = context.performed;
+        }
+
+        private void SecondaryHeldDown(InputAction.CallbackContext context)
+        {
+            _secondaryHeldDown = context.performed;
         }
 
         private void UpdateFocusSlotToHotbarSlot(ISignalParameters parameters)
@@ -115,7 +121,7 @@ namespace IslandBoy
 
         private void ExecutePrimaryAction(InputAction.CallbackContext context)
         {
-            if(_primaryDelayCooldownTimer.RemainingSeconds <= 0 && _focusSlot.ItemObject != null)
+            if(_primaryDelayCooldownTimer.RemainingSeconds <= 0 && _focusSlot.ItemObject != null && !_secondaryHeldDown)
             {
                 _focusSlot.ItemObject.ExecutePrimaryAction(this);
                 _primaryDelayCooldownTimer.RemainingSeconds = _primaryActionDelayCoolDown;
@@ -124,7 +130,7 @@ namespace IslandBoy
 
         private void ExecuteSecondaryAction(InputAction.CallbackContext context)
         {
-            if (_secondaryDelayCooldownTimer.RemainingSeconds <= 0 && _focusSlot.ItemObject != null)
+            if (_secondaryDelayCooldownTimer.RemainingSeconds <= 0 && _focusSlot.ItemObject != null && !_primaryHeldDown)
             {
                 _focusSlot.ItemObject.ExecuteSecondaryAction(this);
                 _secondaryDelayCooldownTimer.RemainingSeconds = _secondayActionDelayCoolDown;

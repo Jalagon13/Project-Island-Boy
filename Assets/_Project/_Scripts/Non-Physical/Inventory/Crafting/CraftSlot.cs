@@ -14,13 +14,13 @@ namespace IslandBoy
         private RectTransform _rscSlots;
         private CraftSlotImageHover _hoverImage;
         private Image _outputImage;
-        private Recipe _recipe;
+        private CraftingRecipeObject _recipe;
         private TextMeshProUGUI _amountText;
         private Inventory _playerInventory;
         private bool _canCraft;
 
         public bool CanCraft { get { return _canCraft; } }
-        public Recipe Recipe { get { return _recipe; } }
+        public CraftingRecipeObject Recipe { get { return _recipe; } }
 
         private void Awake()
         {
@@ -55,7 +55,7 @@ namespace IslandBoy
             _rscPanel.gameObject.SetActive(false);
         }
 
-        public void Initialize(Recipe recipe)
+        public void Initialize(CraftingRecipeObject recipe)
         {
             SetGlobals(recipe);
             InitializeResourceSlots();
@@ -63,7 +63,7 @@ namespace IslandBoy
             _rscPanel.gameObject.SetActive(false);
         }
 
-        private void SetGlobals(Recipe recipe)
+        private void SetGlobals(CraftingRecipeObject recipe)
         {
             _outputImage = transform.GetChild(0).GetComponent<Image>();
             _hoverImage = transform.GetChild(0).GetComponent<CraftSlotImageHover>();
@@ -81,9 +81,9 @@ namespace IslandBoy
         {
             if (_rscSlots.transform.childCount > 0)
             {
-                foreach (Transform child in _rscSlots.transform)
+                foreach (Transform rscSlot in _rscSlots.transform)
                 {
-                    Destroy(child);
+                    Destroy(rscSlot.gameObject);
                 }
             }
 

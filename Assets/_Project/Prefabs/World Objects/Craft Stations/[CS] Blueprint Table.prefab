@@ -17,6 +17,10 @@ PrefabInstance:
       value: '[CS] Blueprint Table'
       objectReference: {fileID: 0}
     - target: {fileID: 6065488926534113593, guid: 3196ff03b1026cd419eecf2c404f0cfb, type: 3}
+      propertyPath: _cdb
+      value: 
+      objectReference: {fileID: 11400000, guid: 45b76fd3ebe499645ae0a3af558138f9, type: 2}
+    - target: {fileID: 6065488926534113593, guid: 3196ff03b1026cd419eecf2c404f0cfb, type: 3}
       propertyPath: _rdb
       value: 
       objectReference: {fileID: 11400000, guid: 30c89e642660ca94f83b503bbf3dd8ee, type: 2}

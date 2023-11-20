@@ -19,10 +19,6 @@ namespace IslandBoy
         [SerializeField] private int _maxHp;
         [SerializeField] private int _maxNrg;
         [SerializeField] private int _maxMp;
-        [Header("Player Consume Cooldowns")]
-        [SerializeField] private float _healHpCooldown;
-        [SerializeField] private float _healNrgCooldown;
-        [SerializeField] private float _healMpCooldown;
         [Header("Parameters")]
         [SerializeField] private float _manaGenRate;
         [SerializeField] private float _iFrameDuration;
@@ -33,7 +29,7 @@ namespace IslandBoy
         private Collider2D _playerCollider;
         private Vector2 _spawnPoint;
         private Slot _focusSlot;
-        private Timer _iFrameTimer, _hpCdTimer, _nrgCdTimer, _mpCdTimer;
+        private Timer _iFrameTimer;
         private int _currentHp, _currentNrg, _currentMp;
 
         private void Awake()
@@ -67,20 +63,26 @@ namespace IslandBoy
             DispatchNrgChange();
             DispatchMpChange();
 
-            _hpCdTimer = new Timer(_healHpCooldown);
-            _nrgCdTimer = new Timer(_healNrgCooldown);
-            _mpCdTimer = new Timer(_healMpCooldown);
-
             StartCoroutine(RegenOneMana());
+            StartCoroutine(HungerWarningMessage());
         }
 
         private void Update()
         {
             _iFrameTimer.Tick(Time.deltaTime);
-            _hpCdTimer.Tick(Time.deltaTime);
-            _nrgCdTimer.Tick(Time.deltaTime);
-            _mpCdTimer.Tick(Time.deltaTime);
             _pr.Position = transform.position;
+        }
+
+        private IEnumerator HungerWarningMessage()
+        {
+            yield return new WaitForSeconds(10);
+
+            if(_currentNrg < (_maxNrg / 4))
+            {
+                PopupMessage.Create(transform.position, $"I'm running low on energy", Color.yellow, Vector2.up, 1f);
+            }
+
+            StartCoroutine(HungerWarningMessage());
         }
 
         private IEnumerator RegenOneMana()
@@ -119,22 +121,17 @@ namespace IslandBoy
         }
 
         #region HP Functions
-        private bool CanHealHp()
+        public bool CanHealHp()
         {
-            bool inCooldown = _hpCdTimer.RemainingSeconds > 0;
             bool fullHp = _currentHp >= _maxHp;
 
-            return !inCooldown && !fullHp;
+            return !fullHp;
         }
         public void HealHp(int amount)
         {
-            if (!CanHealHp()) return;
-
             _currentHp += amount;
             if (_currentHp > _maxHp)
                 _currentHp = _maxHp;
-
-            _hpCdTimer.RemainingSeconds = _healHpCooldown;
 
             PopupMessage.Create(transform.position, $"+{amount} Health", Color.green, new(0.5f, 0.5f), 0.5f);
 
@@ -142,7 +139,6 @@ namespace IslandBoy
             signal.ClearParameters();
             signal.AddParameter("CurrentHp", _currentHp);
             signal.AddParameter("MaxHp", _maxHp);
-            signal.AddParameter("HpTimer", _hpCdTimer);
             signal.Dispatch();
 
             _focusSlot.InventoryItem.Count--;
@@ -171,29 +167,22 @@ namespace IslandBoy
             signal.ClearParameters();
             signal.AddParameter("CurrentHp", _currentHp);
             signal.AddParameter("MaxHp", _maxHp);
-            if (_hpCdTimer != null)
-                signal.AddParameter("HpTimer", _hpCdTimer);
             signal.Dispatch();
         }
         #endregion
 
         #region NRG Functions
-        private bool CanHealNrg()
+        public bool CanHealNrg()
         {
-            bool inCooldown = _nrgCdTimer.RemainingSeconds > 0;
-            bool fullHp = _currentNrg >= _maxNrg;
+            bool fullNrg = _currentNrg >= _maxNrg;
 
-            return !inCooldown && !fullHp;
+            return !fullNrg;
         }
         public void HealNrg(int amount)
         {
-            if (!CanHealNrg()) return;
-
             _currentNrg += amount;
             if (_currentNrg > _maxNrg)
                 _currentNrg = _maxNrg;
-
-            _nrgCdTimer.RemainingSeconds = _healNrgCooldown;
 
             PopupMessage.Create(transform.position, $"+{amount} Energy", Color.yellow, new(0.5f, 0.5f), 0.5f);
 
@@ -201,8 +190,6 @@ namespace IslandBoy
             signal.ClearParameters();
             signal.AddParameter("CurrentNrg", _currentNrg);
             signal.AddParameter("MaxNrg", _maxNrg);
-            if (_nrgCdTimer != null)
-                signal.AddParameter("NrgTimer", _nrgCdTimer);
             signal.Dispatch();
 
             _focusSlot.InventoryItem.Count--;
@@ -226,35 +213,29 @@ namespace IslandBoy
             signal.AddParameter("MaxNrg", _maxNrg);
             signal.Dispatch();
         }
+
         private void DispatchNrgChange()
         {
             Signal signal = GameSignals.PLAYER_NRG_CHANGED;
             signal.ClearParameters();
             signal.AddParameter("CurrentNrg", _currentNrg);
             signal.AddParameter("MaxNrg", _maxNrg);
-            if (_nrgCdTimer != null)
-                signal.AddParameter("NrgTimer", _nrgCdTimer);
             signal.Dispatch();
         }
         #endregion
 
         #region MP Functions
-        private bool CanHealMp()
+        public bool CanHealMp()
         {
-            bool inCooldown = _mpCdTimer.RemainingSeconds > 0;
-            bool fullHp = _currentMp >= _maxMp;
+            bool fullMp = _currentMp >= _maxMp;
 
-            return !inCooldown && !fullHp;
+            return !fullMp;
         }
         public void HealMp(int amount)
         {
-            if (!CanHealMp()) return;
-
             _currentMp += amount;
             if (_currentMp > _maxMp)
                 _currentMp = _maxMp;
-
-            _mpCdTimer.RemainingSeconds = _healMpCooldown;
 
             PopupMessage.Create(transform.position, $"+{amount} Mana", Color.blue, new(0.5f, 0.5f), 0.5f);
 
@@ -262,8 +243,6 @@ namespace IslandBoy
             signal.ClearParameters();
             signal.AddParameter("CurrentMp", _currentMp);
             signal.AddParameter("MaxMp", _maxMp);
-            if (_mpCdTimer != null)
-                signal.AddParameter("MpTimer", _mpCdTimer);
             signal.Dispatch();
 
             _focusSlot.InventoryItem.Count--;
@@ -296,8 +275,6 @@ namespace IslandBoy
             signal.ClearParameters();
             signal.AddParameter("CurrentMp", _currentMp);
             signal.AddParameter("MaxMp", _maxMp);
-            if (_mpCdTimer != null)
-                signal.AddParameter("MpTimer", _mpCdTimer);
             signal.Dispatch();
         }
         #endregion

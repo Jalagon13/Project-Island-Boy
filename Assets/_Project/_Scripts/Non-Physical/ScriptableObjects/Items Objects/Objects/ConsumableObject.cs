@@ -12,9 +12,10 @@ namespace IslandBoy
         [SerializeField] private AudioClip _consumeSound;
         [SerializeField] private int _value;
 
+        private SelectedSlotControl _selectedSlotControl;
+
         public override ToolType ToolType => _baseToolType;
         public override ArmorType ArmorType => _baseArmorType;
-        public override int ConsumeValue => _value;
         public PlayerStatType ConsumeType => _consumeType;
         public AudioClip ConsumeSound => _consumeSound;
 
@@ -30,22 +31,58 @@ namespace IslandBoy
             switch (_consumeType)
             {
                 case PlayerStatType.Health:
-                    control.Player.HealHp(_value);
+                    if (!control.Player.CanHealHp()) return;
                     break;
 
                 case PlayerStatType.Energy:
-                    control.Player.HealNrg(_value);
+                    if (!control.Player.CanHealNrg()) return;
+                    
                     break;
 
                 case PlayerStatType.Mana:
-                    control.Player.HealMp(_value);
+                    if (!control.Player.CanHealMp()) return;
                     break;
             }
+
+            _selectedSlotControl = control;
+            DispatchItemCharging();
+        }
+
+        private void DispatchItemCharging()
+        {
+            Action<float> chargeReleaseBehavior = ConsumeItem;
+            Signal signal = GameSignals.ITEM_CHARGING;
+            signal.ClearParameters();
+            signal.AddParameter("ReleaseBehavior", chargeReleaseBehavior);
+            signal.Dispatch();
+        }
+
+        private void ConsumeItem(float chargePercentage)
+        {
+            if (chargePercentage < 1) return;
+
+            switch (_consumeType)
+            {
+                case PlayerStatType.Health:
+                    _selectedSlotControl.Player.HealHp(_value);
+                    break;
+
+                case PlayerStatType.Energy:
+                    _selectedSlotControl.Player.HealNrg(_value);
+                    GameSignals.ENERGY_RESTORED.Dispatch();
+                    break;
+
+                case PlayerStatType.Mana:
+                    _selectedSlotControl.Player.HealMp(_value);
+                    break;
+            }
+
+            AudioManager.Instance.PlayClip(_consumeSound, false, true);
         }
 
         public override string GetDescription()
         {
-            return $"+{_value} {_consumeType}<br>Right Click to consume<br>{Description}";
+            return $"+{_value} {_consumeType}<br>Hold Right Click to consume<br>{Description}";
         }
     }
 }

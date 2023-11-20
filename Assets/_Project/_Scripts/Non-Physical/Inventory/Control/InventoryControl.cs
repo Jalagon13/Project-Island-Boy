@@ -6,11 +6,11 @@ namespace IslandBoy
 {
     public class InventoryControl : MonoBehaviour
     {
-        [SerializeField] private RecipeDatabaseObject _defaultRdb;
+        [SerializeField] private CraftingDatabaseObject _defaultCDB;
         [SerializeField] private RectTransform _craftHolder;
 
         private Inventory _inventory;
-        private MouseItemHolder _mouseItemHolder;
+        private MouseSlot _mouseItemHolder;
         private PlayerInput _input;
         private RectTransform _mainInventory;
         private CraftSlotsControl _craftSlotsControl;
@@ -23,8 +23,9 @@ namespace IslandBoy
             _inventory = GetComponent<Inventory>();
             _craftSlotsControl = GetComponent<CraftSlotsControl>();
             _mainInventory = transform.GetChild(0).GetComponent<RectTransform>();
-            _mouseItemHolder = transform.GetChild(3).GetComponent<MouseItemHolder>();
+            _mouseItemHolder = transform.GetChild(3).GetComponent<MouseSlot>();
             _input.Player.ToggleInventory.started += ToggleInventory;
+            _input.Enable();
 
             GameSignals.CHEST_INTERACT.AddListener(ChestInteract);
             GameSignals.GAME_PAUSED.AddListener(PauseHandle);
@@ -32,26 +33,20 @@ namespace IslandBoy
             GameSignals.PLAYER_DIED.AddListener(PauseHandle);
             GameSignals.DAY_END.AddListener(PauseHandle);
             GameSignals.DAY_START.AddListener(UnpauseHandle);
+            GameSignals.ADD_ITEM_TO_INVENTORY_FROM_CHEST.AddListener(AddItemToInventoryFromChest); // BROOKE
         }
 
         private void OnDestroy()
         {
+            _input.Disable();
+
             GameSignals.CHEST_INTERACT.RemoveListener(ChestInteract);
             GameSignals.GAME_PAUSED.RemoveListener(PauseHandle);
             GameSignals.GAME_UNPAUSED.RemoveListener(UnpauseHandle);
             GameSignals.PLAYER_DIED.RemoveListener(PauseHandle);
             GameSignals.DAY_END.RemoveListener(PauseHandle);
             GameSignals.DAY_START.RemoveListener(UnpauseHandle);
-        }
-
-        private void OnEnable()
-        {
-            _input.Enable();
-        }
-
-        private void OnDisable()
-        {
-            _input.Disable();
+            GameSignals.ADD_ITEM_TO_INVENTORY_FROM_CHEST.RemoveListener(AddItemToInventoryFromChest); // BROOKE
         }
 
         private void Start()
@@ -84,18 +79,18 @@ namespace IslandBoy
         {
             Interactable chestOpened = (Interactable)parameter.GetParameter("ChestInteract");
 
-            OpenInventory();
+            OpenInventory(true); // BROOKE
             _craftHolder.gameObject.SetActive(false);
             InteractableHandle(chestOpened);
         }
 
-        public void CraftStationInteract(Interactable craftStation, RecipeDatabaseObject rdb)
+        public void CraftStationInteract(Interactable craftStation, CraftingDatabaseObject rdb)
         {
             OpenInventory();
-            
+
             if (craftStation == _currentInteractableActive) return;
 
-            if(_currentInteractableActive is CraftStation)
+            if (_currentInteractableActive is CraftStation)
             {
                 _currentInteractableActive = craftStation;
                 _craftSlotsControl.RefreshCraftingMenu(rdb);
@@ -125,7 +120,7 @@ namespace IslandBoy
 
         public void RefreshCraftSlotsToDefault()
         {
-            _craftSlotsControl.RefreshCraftingMenu(_defaultRdb);
+            _craftSlotsControl.RefreshCraftingMenu(_defaultCDB);
         }
 
         public void CloseInventory()
@@ -143,10 +138,11 @@ namespace IslandBoy
             foreach (Slot slot in _inventory.InventorySlots)
             {
                 slot.InventoryOpen = false;
+                slot.ChestOpen = false; // BROOKE
             }
         }
 
-        public void OpenInventory()
+        public void OpenInventory(bool openChest = false)
         {
             _mainInventory.gameObject.SetActive(true);
             _inventoryOpen = true;
@@ -157,7 +153,30 @@ namespace IslandBoy
             foreach (Slot slot in _inventory.InventorySlots)
             {
                 slot.InventoryOpen = true;
+                if (openChest) slot.ChestOpen = true; // BROOKE
             }
         }
+
+        public void AddItemToInventoryFromChest(ISignalParameters parameters) // BROOKE --------------------------------------------------
+        {
+            Debug.Log("signal for additemtoinventory");
+            // if item was added successfully, delete item from chest
+            if (AddItemToInventoryFromChest(parameters.GetParameter("itemToAdd") as ChestInvSlot))
+            {
+                Destroy(parameters.GetParameter("itemObj") as GameObject);
+                // TODO: creating errors?? related to destroying item when inventory full
+            }
+            // TODO: don't play sound or play error sound if wasn't able to add item
+        }
+
+        public bool AddItemToInventoryFromChest(ChestInvSlot itemToAdd)
+        {
+            int leftOver = _inventory.AddItem(itemToAdd.OutputItem, itemToAdd.OutputAmount);
+
+            // TODO: tries to add to armor inventory when inventory is full
+            if (leftOver > 0)
+                return false;
+            else return true;
+        } // BROOKE --------------------------------------------------
     }
 }

@@ -40,6 +40,10 @@ namespace IslandBoy
         public static readonly Signal GAME_UNPAUSED = new("GameUnpaused");
 
         // World Signals
-        public static readonly Signal ENTITY_SLAIN = new("EntitySlain");
+        public static readonly Signal ENERGY_RESTORED = new("EntitySlain");
+
+        // Shift-click Signals
+        public static readonly Signal ADD_ITEMS_TO_CHEST = new("AddItemsToChest"); // BROOKE
+        public static readonly Signal ADD_ITEM_TO_INVENTORY_FROM_CHEST = new("AddItemToInventoryFromChest"); // BROOKE
     }
 }

@@ -19,7 +19,6 @@ namespace IslandBoy
 
         public override ToolType ToolType => _baseToolType;
         public override ArmorType ArmorType => _armorType;
-        public override int ConsumeValue => 0;
 
         public override void ExecutePrimaryAction(SelectedSlotControl control)
         {

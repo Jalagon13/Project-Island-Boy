@@ -250,10 +250,12 @@ SpriteAtlas:
     - 7b4664f5da5f4bc4fb4c01aad9fc646d: 18002930929476221
     - 7b4664f5da5f4bc4fb4c01aad9fc646d: 3592268942824130315
     - 7b4664f5da5f4bc4fb4c01aad9fc646d: 996720472450852175
+    - 75594b36fd8cd0d409de8dacfcaf419b: -1000768912
     - 75594b36fd8cd0d409de8dacfcaf419b: -848097959
     - 75594b36fd8cd0d409de8dacfcaf419b: -1651487029
     - 75594b36fd8cd0d409de8dacfcaf419b: -972602597
     - 75594b36fd8cd0d409de8dacfcaf419b: 1935163884
+    - 75594b36fd8cd0d409de8dacfcaf419b: -1501110074
     - 75594b36fd8cd0d409de8dacfcaf419b: 1850925332
     - 75594b36fd8cd0d409de8dacfcaf419b: -189099797
     - 75594b36fd8cd0d409de8dacfcaf419b: -1995232107
@@ -261,6 +263,7 @@ SpriteAtlas:
     - 75594b36fd8cd0d409de8dacfcaf419b: -1914655730
     - 75594b36fd8cd0d409de8dacfcaf419b: -2128986211
     - 75594b36fd8cd0d409de8dacfcaf419b: -538633122
+    - 75594b36fd8cd0d409de8dacfcaf419b: -1201098598
     - 75594b36fd8cd0d409de8dacfcaf419b: -1416747536
     - 75594b36fd8cd0d409de8dacfcaf419b: -887866084
     - 75594b36fd8cd0d409de8dacfcaf419b: 1494493913
@@ -296,6 +299,7 @@ SpriteAtlas:
     - 75594b36fd8cd0d409de8dacfcaf419b: 504264504
     - 75594b36fd8cd0d409de8dacfcaf419b: 1515656529
     - 75594b36fd8cd0d409de8dacfcaf419b: 659459211
+    - 75594b36fd8cd0d409de8dacfcaf419b: 1007983580
     - 75594b36fd8cd0d409de8dacfcaf419b: -916310749
     - 75594b36fd8cd0d409de8dacfcaf419b: -1112382854
     - f59011461ecd73f4bafc48709d902230: -1302916514
@@ -868,10 +872,12 @@ SpriteAtlas:
   - {fileID: 18002930929476221, guid: 7b4664f5da5f4bc4fb4c01aad9fc646d, type: 3}
   - {fileID: 3592268942824130315, guid: 7b4664f5da5f4bc4fb4c01aad9fc646d, type: 3}
   - {fileID: 996720472450852175, guid: 7b4664f5da5f4bc4fb4c01aad9fc646d, type: 3}
+  - {fileID: -1000768912, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -848097959, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1651487029, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -972602597, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1935163884, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  - {fileID: -1501110074, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1850925332, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -189099797, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1995232107, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
@@ -879,6 +885,7 @@ SpriteAtlas:
   - {fileID: -1914655730, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -2128986211, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -538633122, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  - {fileID: -1201098598, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1416747536, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -887866084, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1494493913, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
@@ -914,6 +921,7 @@ SpriteAtlas:
   - {fileID: 504264504, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1515656529, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 659459211, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  - {fileID: 1007983580, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -916310749, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1112382854, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1302916514, guid: f59011461ecd73f4bafc48709d902230, type: 3}
@@ -1485,10 +1493,12 @@ SpriteAtlas:
   - WS11_8
   - WS11_9
   - WS11_2
+  - item_magic_potion
   - item_wood_chestplate
   - item_coal
   - item_wood_greaves
   - item_undead_soul
+  - item_stone_wall
   - item_wood_floor
   - item_iron_ingot
   - item_torch
@@ -1496,6 +1506,7 @@ SpriteAtlas:
   - item_furance
   - item_cooked_fish
   - item_diamond
+  - item_apple
   - item_iron_hammer
   - item_stone_shovel
   - item_portal_to_home
@@ -1531,6 +1542,7 @@ SpriteAtlas:
   - item_wood_pickaxe
   - item_wood_axe
   - item_iron_axe
+  - item_stone_floor
   - item_first_aid_kit
   - item_door
   - rsc_tree

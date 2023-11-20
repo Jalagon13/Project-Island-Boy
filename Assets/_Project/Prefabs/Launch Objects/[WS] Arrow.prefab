@@ -255,9 +255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e22787559e92c82468ed2b42ae316e83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spellObject: {fileID: 11400000, guid: 78fa1c5045bd8774eaae01363dd9948a, type: 2}
-  _spell: {fileID: 3259274435755826204, guid: 6d74940dc03f74f40a5e68d7dfc4174f, type: 3}
   _speed: 0.275
+  _travelDistance: 8
   _powerParameter:
     Parameter: {fileID: 11400000, guid: c4b64d6fc16075a4ca7fd3181eeb7f65, type: 2}
     Value: 0

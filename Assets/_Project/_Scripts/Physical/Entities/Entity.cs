@@ -41,6 +41,7 @@ namespace IslandBoy
                 EnableYellowCorners(false);
                 EnableAmountDisplay(false);
                 EnableInstructions(false);
+                EnableProgressBar(true);
                 return true;
             }
 
@@ -58,10 +59,18 @@ namespace IslandBoy
             EnableProgressBar(true);
         }
 
+        public override void HideDisplay()
+        {
+            EnableProgressBar(true);
+            EnableAmountDisplay(false);
+            EnableInstructions(false);
+            EnableYellowCorners(false);
+        }
+
         protected override void OnBreak()
         {
             _dropPosition = transform.position;
-            GameSignals.ENTITY_SLAIN.Dispatch();
+            
             base.OnBreak();
         }
     }
