@@ -201,7 +201,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 3736007384578019363}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: IslandBoy.TestEntity, Assembly-CSharp
         m_MethodName: ChangeToIdleState
         m_Mode: 2
@@ -1103,11 +1103,8 @@ GameObject:
   - component: {fileID: 4144664716987894339}
   - component: {fileID: 3006192160976330081}
   - component: {fileID: 6224312026178961618}
-  - component: {fileID: 3736007384578019363}
-  - component: {fileID: 5992861903168681665}
-  - component: {fileID: 5353874446116522579}
-  - component: {fileID: 5773218019102184143}
   - component: {fileID: 8888723654129748411}
+  - component: {fileID: 2214081521386534771}
   m_Layer: 0
   m_Name: '[MOB] Treevil'
   m_TagString: Untagged
@@ -1209,173 +1206,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHitPoints: 25
-  _breakType: 3
-  _hitSound: {fileID: 8300000, guid: 0b8b4bcc469225049a5cb8e790111dc5, type: 3}
-  _breakSound: {fileID: 8300000, guid: 6c82de58455bb504892985f5947bb1db, type: 3}
+  _breakType: 1
+  _hitSound: {fileID: 8300000, guid: ab0451a7a02c38c4fad983d16598b836, type: 3}
+  _breakSound: {fileID: 8300000, guid: 1f5e75782a6e8434cba4bce854fb47eb, type: 3}
   _regenerateOnDayStart: 0
   _destructable: 1
   _lootTable:
     <Table>k__BackingField:
+    - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      Min: 4
+      Max: 20
+      Chance: 100
     - Item: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
-      Min: 1
-      Max: 4
+      Min: 2
+      Max: 10
       Chance: 100
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
---- !u!114 &3736007384578019363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5799062759696218101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b286198e21a882e42b52014774cd3e88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PR: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _agroSound: {fileID: 8300000, guid: 7d81ba19726f98a4c8dfbe502334c213, type: 3}
-  Seeker: {fileID: 0}
-  _agroDistance: 20
---- !u!114 &5992861903168681665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5799062759696218101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6bc1a7ef54a3bf44a24c08540f77967, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rb: {fileID: 3006192160976330081}
-  _strength: 25
-  _delay: 0.25
-  _onBegin:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5773218019102184143}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3917560269185705522}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  _onDone:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5773218019102184143}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 3917560269185705522}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5353874446116522579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5799062759696218101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  drawGizmos: 1
-  detailedGizmos: 0
-  startEndModifier:
-    addPoints: 0
-    exactStartPoint: 3
-    exactEndPoint: 3
-    useRaycasting: 0
-    mask:
-      serializedVersion: 2
-      m_Bits: 4294967295
-    useGraphRaycasting: 0
-  traversableTags: -1
-  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  graphMask:
-    value: -1
---- !u!114 &5773218019102184143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5799062759696218101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 5
-  radius: 1
-  height: 1
-  canMove: 1
-  maxSpeed: 1
-  gravity: {x: NaN, y: NaN, z: NaN}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  centerOffsetCompatibility: NaN
-  repathRateCompatibility: NaN
-  canSearchCompability: 0
-  orientation: 1
-  enableRotation: 0
-  autoRepath:
-    mode: 0
-    interval: 0.5
-    sensitivity: 10
-    maximumInterval: 2
-    visualizeSensitivity: 0
-  targetCompatibility: {fileID: 0}
-  maxAcceleration: -2.5
-  rotationSpeed: 360
-  slowdownDistance: 0
-  pickNextWaypointDist: 0.25
-  endReachedDistance: 0.5
-  alwaysDrawGizmos: 1
-  slowWhenNotFacingTarget: 1
-  whenCloseToDestination: 0
-  constrainInsideGraph: 0
 --- !u!95 &8888723654129748411
 Animator:
   serializedVersion: 5
@@ -1397,6 +1243,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2214081521386534771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5799062759696218101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d146a45687efc574792f707cf17fbcca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PR: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
+  _agroSound: {fileID: 8300000, guid: 4a2e0c655ba2bda4e9d7e519bf84c9ca, type: 3}
+  Seeker: {fileID: 0}
+  _agroDistance: 20
 --- !u!1 &7129378274048281638
 GameObject:
   m_ObjectHideFlags: 0
