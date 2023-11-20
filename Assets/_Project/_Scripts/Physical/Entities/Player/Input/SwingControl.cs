@@ -17,7 +17,7 @@ namespace IslandBoy
         private Camera _camera;
         private Slot _focusSlotRef;
         private bool _holdDown;
-        private bool _inMidSwing;
+        private bool _performingSwing;
 
         private readonly int _hashRightHit = Animator.StringToHash("[ANM] RightSwing");
         private readonly int _hashUpHit = Animator.StringToHash("[ANM] UpSwing");
@@ -88,26 +88,23 @@ namespace IslandBoy
 
         private void PerformAnimation()
         {
-            if (_swingTimer.RemainingSeconds > 0 || _inMidSwing || !_focusSlotRef.HasItem() || 
+            if (_swingTimer.RemainingSeconds > 0 || _performingSwing || !_focusSlotRef.HasItem() || 
                 _focusSlotRef.ItemObject is not ToolObject || PointerHandler.IsOverLayer(5)) return;
 
             PerformCorrectAnimation();
+        }
+
+        public void OnSwingStart()
+        {
+            _performingSwing = true;
             AudioManager.Instance.PlayClip(_wooshClip, false, true);
-            _inMidSwing = true;
         }
 
-        public void ChangeToIdle()
+        public void OnSwingEnd()
         {
-            AnimStateManager.ChangeAnimationState(_animator, _hashIdle);
-
+            _performingSwing = false;
             _swingTimer.RemainingSeconds = _swingCd;
-            StartCoroutine(Delay());
-        }
-
-        private IEnumerator Delay()
-        {
-            yield return new WaitForEndOfFrame();
-            _inMidSwing = false;
+            AnimStateManager.ChangeAnimationState(_animator, _hashIdle);
         }
 
         private void PerformCorrectAnimation()
@@ -139,6 +136,8 @@ namespace IslandBoy
             {
                 AnimStateManager.ChangeAnimationState(_animator, _hashDownHit);
             }
+
+            
         }
     }
 }
