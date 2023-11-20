@@ -1201,6 +1201,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: item_boulder_spell
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a886948180aa33a4d93af5c5cf54c832
+      internalID: -1882208785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1215,6 +1236,7 @@ TextureImporter:
       item_apple: -1201098598
       item_arrow: -110451255
       item_bed: -1855741160
+      item_boulder_spell: -1882208785
       item_bow: 1529562530
       item_campfire: 1223464883
       item_chest: 1962245853
