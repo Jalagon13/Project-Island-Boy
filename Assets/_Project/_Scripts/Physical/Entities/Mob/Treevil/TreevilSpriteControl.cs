@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace IslandBoy
 {
-    public class RusherSpriteControl : MonoBehaviour
+    public class TreevilSpriteControl : MonoBehaviour
     {
         [SerializeField] private AudioClip _landingSound;
         [Header("Animation Events")]

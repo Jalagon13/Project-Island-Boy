@@ -5,15 +5,15 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public class RusherMove : StateMachineBehaviour
+    public class TreevilMove : StateMachineBehaviour
     {
-        private SlimeStateManager _ctx;
+        private TreevilStateManager _ctx;
         private Vector2 _wanderPos;
 
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             //Debug.Log("Entering Move State");
-            _ctx = animator.transform.root.GetComponent<SlimeStateManager>();
+            _ctx = animator.transform.root.GetComponent<TreevilStateManager>();
             _ctx.OnMove += Move;
             _wanderPos = CalcWanderPos();
         }
@@ -27,7 +27,7 @@ namespace IslandBoy
 
             if (_ctx.PlayerClose() && _ctx.CanGetToPlayer())
             {
-                _ctx.ChangeToChaseState(animator);
+                _ctx.ChangeToAttackState(animator);
             }
         }
 

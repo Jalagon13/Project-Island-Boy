@@ -6,12 +6,12 @@ namespace IslandBoy
 {
     public class TreevilIdle : StateMachineBehaviour
     {
-        private SlimeStateManager _ctx;
+        private TreevilStateManager _ctx;
 
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             //Debug.Log("Entering Idle State");
-            _ctx = animator.transform.root.GetComponent<SlimeStateManager>();
+            _ctx = animator.transform.root.GetComponent<TreevilStateManager>();
             _ctx.AI.isStopped = true;
             _ctx.OnMove += Idle;
             _ctx.StartCoroutine(IdleDuration(animator));
@@ -22,7 +22,6 @@ namespace IslandBoy
             if (_ctx.PlayerClose() && _ctx.CanGetToPlayer())
             {
                 _ctx.AI.isStopped = false;
-                _ctx.ChangeToChaseState(animator);
             }
         }
 

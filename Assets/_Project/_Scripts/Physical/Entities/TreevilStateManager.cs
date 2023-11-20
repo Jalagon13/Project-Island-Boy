@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public class SlimeStateManager : MonoBehaviour
+    public class TreevilStateManager : MonoBehaviour
     {
         public PlayerReference PR;
         public AudioClip _agroSound;
@@ -15,9 +15,9 @@ namespace IslandBoy
         public Seeker Seeker;
         public IAstarAI AI;
 
-        public readonly int HashIdle = Animator.StringToHash("[Anm] RusherIdle");
-        public readonly int HashMove = Animator.StringToHash("[Anm] RusherMove");
-        public readonly int HashChase = Animator.StringToHash("[Anm] RusherChase");
+        public readonly int HashIdle = Animator.StringToHash("[Anm] TreevilIdle");
+        public readonly int HashMove = Animator.StringToHash("[Anm] TreevilMove");
+        public readonly int HashAttack = Animator.StringToHash("[Anm] TreevilAttack");
 
 
         [SerializeField] private float _agroDistance;
@@ -42,9 +42,9 @@ namespace IslandBoy
             AnimStateManager.ChangeAnimationState(animator, HashMove);
         }
 
-        public void ChangeToChaseState(Animator animator)
+        public void ChangeToAttackState(Animator animator)
         {
-            AnimStateManager.ChangeAnimationState(animator, HashChase);
+            AnimStateManager.ChangeAnimationState(animator, HashAttack);
         }
 
         public void Seek(Vector2 pos)
