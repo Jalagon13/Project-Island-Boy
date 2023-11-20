@@ -9,7 +9,6 @@ namespace IslandBoy
 {
     public class UpgradeSlot : Slot
     {
-        [SerializeField] private GameObject _inventoryItemPrefab;
         [SerializeField] private TextMeshProUGUI _upgradeText;
         [SerializeField] private TextMeshProUGUI _needText;
         [SerializeField] private Button _upgradeButton;

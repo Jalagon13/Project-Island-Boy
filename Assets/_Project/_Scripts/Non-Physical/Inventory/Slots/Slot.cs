@@ -9,7 +9,7 @@ namespace IslandBoy
     public abstract class Slot : MonoBehaviour, IPointerClickHandler
     {
         [SerializeField] protected PlayerReference _pr;
-        [SerializeField] private GameObject _inventoryItemPrefab;
+        [SerializeField] protected GameObject _inventoryItemPrefab;
         [SerializeField] protected AudioClip _popSound;
         [SerializeField] protected bool _isChestSlot; // BROOKE
 
