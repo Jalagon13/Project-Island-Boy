@@ -12,16 +12,16 @@ namespace IslandBoy
         {
             //Debug.Log("Entering Idle State");
             _ctx = animator.transform.root.GetComponent<TreevilStateManager>();
-            _ctx.AI.isStopped = true;
+            //_ctx.AI.isStopped = true;
             _ctx.OnMove += Idle;
             _ctx.StartCoroutine(IdleDuration(animator));
         }
 
         override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            if (_ctx.PlayerClose() && _ctx.CanGetToPlayer())
+            if (_ctx.PlayerClose())// && _ctx.CanGetToPlayer())
             {
-                _ctx.AI.isStopped = false;
+                //_ctx.AI.isStopped = false;
             }
         }
 
@@ -38,7 +38,7 @@ namespace IslandBoy
         private IEnumerator IdleDuration(Animator animator)
         {
             yield return new WaitForSeconds(Random.Range(2f, 4f));
-            _ctx.AI.isStopped = false;
+            //_ctx.AI.isStopped = false;
             _ctx.ChangeToMoveState(animator);
         }
 

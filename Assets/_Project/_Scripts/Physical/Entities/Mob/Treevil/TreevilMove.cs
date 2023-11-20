@@ -20,12 +20,12 @@ namespace IslandBoy
 
         override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            if (_ctx.AI.reachedDestination)
+            /*if (_ctx.AI.reachedDestination)
             {
                 _ctx.ChangeToIdleState(animator);
-            }
+            }*/
 
-            if (_ctx.PlayerClose() && _ctx.CanGetToPlayer())
+            if (_ctx.PlayerClose())// && _ctx.CanGetToPlayer())
             {
                 _ctx.ChangeToAttackState(animator);
             }
@@ -38,7 +38,7 @@ namespace IslandBoy
 
         private void Move()
         {
-            _ctx.Seek(_wanderPos);
+            //_ctx.Seek(_wanderPos);
         }
 
         private Vector2 CalcWanderPos()

@@ -11,21 +11,19 @@ namespace IslandBoy
         public PlayerReference PR;
         public AudioClip _agroSound;
         public Action OnMove;
-        [HideInInspector]
-        public Seeker Seeker;
-        public IAstarAI AI;
+        //[HideInInspector]
+        //public IAstarAI AI;
 
         public readonly int HashIdle = Animator.StringToHash("[Anm] TreevilIdle");
         public readonly int HashMove = Animator.StringToHash("[Anm] TreevilMove");
-        public readonly int HashAttack = Animator.StringToHash("[Anm] TreevilAttack");
+        //public readonly int HashAttack = Animator.StringToHash("[Anm] TreevilAttack");
 
 
         [SerializeField] private float _agroDistance;
 
         private void Awake()
         {
-            AI = GetComponent<IAstarAI>();
-            Seeker = GetComponent<Seeker>();
+            //AI = GetComponent<IAstarAI>();
         }
         private void Update()
         {
@@ -44,18 +42,18 @@ namespace IslandBoy
 
         public void ChangeToAttackState(Animator animator)
         {
-            AnimStateManager.ChangeAnimationState(animator, HashAttack);
-        }
-
-        public void Seek(Vector2 pos)
-        {
-            AI.destination = pos;
-            AI.SearchPath();
+            //AnimStateManager.ChangeAnimationState(animator, HashAttack);
         }
 
         public bool PlayerClose()
         {
             return Vector3.Distance(gameObject.transform.position, PR.Position) < _agroDistance;
+        }
+
+        /*public void Seek(Vector2 pos)
+        {
+            AI.destination = pos;
+            AI.SearchPath();
         }
 
         public bool CanGetToPlayer()
@@ -64,6 +62,6 @@ namespace IslandBoy
 
             // WIP
             return true;
-        }
+        }*/
     }
 }
