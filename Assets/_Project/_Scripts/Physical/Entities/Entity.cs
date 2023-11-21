@@ -6,6 +6,7 @@ namespace IslandBoy
 {
     public class Entity : Resource
     {
+        [Header("Base Entity Parameters")]
         [SerializeField] private PlayerReference _pr;
 
         private KnockbackFeedback _knockback;

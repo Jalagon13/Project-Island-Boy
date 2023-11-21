@@ -8,6 +8,7 @@ namespace IslandBoy
 {
     public class Prompt : Interactable
     {
+        [Header("Base Prompt Parameters")]
         [SerializeField] private Canvas _prompCanvas;
         [SerializeField] private UnityEvent _onOpenPrompt;
         [SerializeField] private UnityEvent _onClosePrompt;

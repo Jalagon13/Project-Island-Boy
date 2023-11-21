@@ -6,6 +6,7 @@ namespace IslandBoy
 {
     public class Door : Interactable
     {
+        [Header("Base Door Parameters")]
         [SerializeField] private Sprite _openSprite;
         [SerializeField] private Sprite _closeSprite;
         [SerializeField] private AudioClip _doorOpenSound;

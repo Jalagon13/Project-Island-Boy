@@ -1131,8 +1131,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHitPoints: 3
   _breakType: 0
+  _dontGiveXp: 1
   _hitSound: {fileID: 8300000, guid: acc9a292f9a4e9448953f37d61d47e54, type: 3}
   _breakSound: {fileID: 8300000, guid: acc9a292f9a4e9448953f37d61d47e54, type: 3}
+  _regenerateOnDayStart: 0
+  _destructable: 1
   _lootTable:
     <Table>k__BackingField:
     - Item: {fileID: 11400000, guid: fd017aa0c3651ff4ebe27044cacd3b70, type: 2}

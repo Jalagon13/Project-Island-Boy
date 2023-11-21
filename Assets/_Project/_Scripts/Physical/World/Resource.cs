@@ -9,6 +9,7 @@ namespace IslandBoy
     [SelectionBase]
     public class Resource : Clickable
     {
+        [Header("Base Resource Parameters")]
         [SerializeField] private AudioClip _hitSound;
         [SerializeField] private AudioClip _breakSound;
         [SerializeField] private bool _regenerateOnDayStart;

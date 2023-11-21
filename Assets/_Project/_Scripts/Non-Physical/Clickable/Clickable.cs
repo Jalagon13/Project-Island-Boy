@@ -6,8 +6,10 @@ namespace IslandBoy
 {
     public abstract class Clickable : MonoBehaviour
     {
+        [Header("Base Clickable Parameters")]
         [SerializeField] protected int _maxHitPoints;
         [SerializeField] protected ToolType _breakType;
+        [SerializeField] private bool _dontGiveXp = false;
 
         protected int _currentHitPoints;
         private Timer _timer;
@@ -65,6 +67,8 @@ namespace IslandBoy
 
         protected virtual void OnBreak()
         {
+            if (_dontGiveXp) return;
+
             PlayerExperience.AddExerpience(_maxHitPoints);
             PopupMessage.Create(transform.position, $"+ {_maxHitPoints} XP", Color.white, Vector2.up, 1f);
         }

@@ -280,6 +280,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2418890234375932272, guid: e0a357d159958fb4a8ab5171e9d76da4, type: 3}
+      propertyPath: _dontGiveXp
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2418890234375932272, guid: e0a357d159958fb4a8ab5171e9d76da4, type: 3}
       propertyPath: _destructable
       value: 1
       objectReference: {fileID: 0}

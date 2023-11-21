@@ -214,6 +214,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2418890234375932272, guid: e0a357d159958fb4a8ab5171e9d76da4, type: 3}
+      propertyPath: _dontGiveXp
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2418890234375932272, guid: e0a357d159958fb4a8ab5171e9d76da4, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -343,6 +347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _text: 
   _signText: {fileID: 9053720199869978747}
+  _disableTextOverride: 0
 --- !u!4 &2396868432570562643 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7608744067912942635, guid: e0a357d159958fb4a8ab5171e9d76da4, type: 3}

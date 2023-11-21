@@ -693,7 +693,6 @@ MonoBehaviour:
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
   _isChestSlot: 0
-  _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _upgradeText: {fileID: 7959330596411781071}
   _needText: {fileID: 3905925315458145078}
   _upgradeButton: {fileID: 1648670276764379035}
@@ -1397,6 +1396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHitPoints: 10
   _breakType: 1
+  _dontGiveXp: 1
   _hitSound: {fileID: 8300000, guid: ab0451a7a02c38c4fad983d16598b836, type: 3}
   _breakSound: {fileID: 8300000, guid: 1f5e75782a6e8434cba4bce854fb47eb, type: 3}
   _regenerateOnDayStart: 0

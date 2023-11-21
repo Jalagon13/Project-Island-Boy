@@ -8,7 +8,7 @@ namespace IslandBoy
     public abstract class Interactable : Resource
     {
         public Action OnPlayerExitRange;
-         
+        [Header("Base Interactable Parameters")]
         [SerializeField] protected PlayerReference _pr;
 
         private float _interactRange = 3f;
