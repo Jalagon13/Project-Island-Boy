@@ -1133,8 +1133,12 @@ MonoBehaviour:
     <Table>k__BackingField:
     - Item: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
       Min: 1
-      Max: 4
+      Max: 2
       Chance: 100
+    - Item: {fileID: 11400000, guid: ad8d77d5b0f8ba8439e6e8bad6571b59, type: 2}
+      Min: 2
+      Max: 4
+      Chance: 50
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
 --- !u!114 &3736007384578019363
 MonoBehaviour:
