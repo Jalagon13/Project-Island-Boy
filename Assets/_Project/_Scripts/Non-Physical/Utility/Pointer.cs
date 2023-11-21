@@ -7,10 +7,10 @@ using UnityEngine.InputSystem;
 
 namespace IslandBoy
 {
-    public static class PointerHandler
+    public static class Pointer
     {
         // gets data on raycast of all gameobject's layers and returns true if finds a gameobject of layerNum
-        public static bool IsOverLayer(int layerNum)
+        public static bool IsOverUI ()
         {
             PointerEventData eventDataCurrentPosition = new(EventSystem.current)
             {
@@ -22,7 +22,7 @@ namespace IslandBoy
 
             foreach (RaycastResult raycastResult in results)
             {
-                if (raycastResult.gameObject.layer == layerNum)
+                if (raycastResult.gameObject.layer == 5)
                     return true;
             }
 

@@ -15,15 +15,13 @@ namespace IslandBoy
         public override ToolType ToolType => _baseToolType;
         public override ArmorType ArmorType => _baseArmorType;
 
-        public override void ExecutePrimaryAction(SelectedSlotControl control)
+        public override void ExecutePrimaryAction(FocusSlotControl control)
         {
 
         }
 
-        public override void ExecuteSecondaryAction(SelectedSlotControl control)
+        public override void ExecuteSecondaryAction(FocusSlotControl control)
         {
-            if (PointerHandler.IsOverLayer(5)) return;
-
             bool wallTmHasTile = _tmr.WallTilemap.HasTile(Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position));
             bool groundTmHasTile = _tmr.GroundTilemap.HasTile(Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position));
             bool tilActionClear = control.CursorControl.IsClear();

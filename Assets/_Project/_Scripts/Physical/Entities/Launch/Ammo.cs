@@ -8,7 +8,7 @@ namespace IslandBoy
     {
         [SerializeField] private float _speed;
         [SerializeField] private float _travelDistance;
-        [SerializeField] private ItemParameter _powerParameter;
+        [SerializeField] private ItemParameter _damageParameter;
 
         private Rigidbody2D _rb;
         private SpriteRenderer _sr;
@@ -56,8 +56,8 @@ namespace IslandBoy
 
         public void Setup(ItemObject launchObject, ItemObject ammoObject, Vector3 direction)
         {
-            int launchPower = Mathf.RoundToInt(ExtractPower(launchObject));
-            int ammoPower = Mathf.RoundToInt(ExtractPower(ammoObject));
+            int launchPower = Mathf.RoundToInt(ExtractDamage(launchObject));
+            int ammoPower = Mathf.RoundToInt(ExtractDamage(ammoObject));
 
             _damage = launchPower + ammoPower;
             _targetPosition = transform.position + (direction * _travelDistance);
@@ -73,13 +73,13 @@ namespace IslandBoy
             _sr.transform.rotation = Quaternion.Euler(Vector3.forward * (angle + offset));
         }
 
-        private int ExtractPower(ItemObject item)
+        private int ExtractDamage(ItemObject item)
         {
             var itemParams = item.DefaultParameterList;
 
-            if (itemParams.Contains(_powerParameter))
+            if (itemParams.Contains(_damageParameter))
             {
-                int index = itemParams.IndexOf(_powerParameter);
+                int index = itemParams.IndexOf(_damageParameter);
                 return (int)itemParams[index].Value;
             }
             Debug.LogError($"{item.Name} does not have power param so can not extract power int");

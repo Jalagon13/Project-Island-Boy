@@ -12,22 +12,20 @@ namespace IslandBoy
         [SerializeField] private AudioClip _consumeSound;
         [SerializeField] private int _value;
 
-        private SelectedSlotControl _selectedSlotControl;
+        private FocusSlotControl _selectedSlotControl;
 
         public override ToolType ToolType => _baseToolType;
         public override ArmorType ArmorType => _baseArmorType;
         public PlayerStatType ConsumeType => _consumeType;
         public AudioClip ConsumeSound => _consumeSound;
 
-        public override void ExecutePrimaryAction(SelectedSlotControl control)
+        public override void ExecutePrimaryAction(FocusSlotControl control)
         {
 
         }
 
-        public override void ExecuteSecondaryAction(SelectedSlotControl control)
+        public override void ExecuteSecondaryAction(FocusSlotControl control)
         {
-            if (PointerHandler.IsOverLayer(5)) return;
-
             switch (_consumeType)
             {
                 case PlayerStatType.Health:

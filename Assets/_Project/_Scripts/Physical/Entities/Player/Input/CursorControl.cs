@@ -114,7 +114,7 @@ namespace IslandBoy
 
         private void Hit(InputAction.CallbackContext context)
         {
-            if (HammerHitSomething() || PointerHandler.IsOverLayer(5) ||
+            if (HammerHitSomething() || Pointer.IsOverUI() ||
                 _focusSlotRef.ItemObject is not ToolObject || _clickTimer.RemainingSeconds > 0) return;
 
 
@@ -288,7 +288,7 @@ namespace IslandBoy
             if (_focusSlotRef.ItemObject.ToolType == ToolType.None) return false;
             if (_focusSlotRef.ItemObject != null)
                 if (_focusSlotRef.ItemObject.ToolType != ToolType.Hammer) return false;
-            if (PointerHandler.IsOverLayer(5)) return false;
+            if (Pointer.IsOverUI()) return false;
 
             if (_tmr.WallTilemap.HasTile(Vector3Int.FloorToInt(_currentCenterPos)))
             {

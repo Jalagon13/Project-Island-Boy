@@ -855,7 +855,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1313964884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2147,8 +2147,8 @@ MonoBehaviour:
   _tmr: {fileID: 11400000, guid: ec06355a14da7574295ea6e79aaebb6f, type: 2}
   _monsterPrefab: {fileID: 6224312026178961618, guid: 64500d3032b4c6a4e90b42d01a16430c, type: 3}
   _maxMonsterCount: 4
-  _minSpawnTimerSec: 10
-  _maxSpawnTimerSec: 20
+  _minSpawnTimerSec: 20
+  _maxSpawnTimerSec: 30
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace IslandBoy
 {
@@ -47,7 +48,7 @@ namespace IslandBoy
         public void EndGame()
         {
             // Transition to end scene.
-            Debug.Log("Game ended!");
+            SceneManager.LoadScene("End");
         }
     }
 }

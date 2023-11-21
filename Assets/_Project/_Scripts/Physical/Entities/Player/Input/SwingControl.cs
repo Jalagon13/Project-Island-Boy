@@ -53,7 +53,7 @@ namespace IslandBoy
             _camera = Camera.main;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             _swingTimer.Tick(Time.deltaTime);
 
@@ -89,7 +89,7 @@ namespace IslandBoy
         private void PerformAnimation()
         {
             if (_swingTimer.RemainingSeconds > 0 || _performingSwing || !_focusSlotRef.HasItem() || 
-                _focusSlotRef.ItemObject is not ToolObject || PointerHandler.IsOverLayer(5)) return;
+                _focusSlotRef.ItemObject is not ToolObject || Pointer.IsOverUI()) return;
 
             PerformCorrectAnimation();
         }

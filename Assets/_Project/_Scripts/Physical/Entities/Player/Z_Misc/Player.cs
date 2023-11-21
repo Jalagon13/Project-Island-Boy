@@ -77,7 +77,7 @@ namespace IslandBoy
         {
             yield return new WaitForSeconds(10);
 
-            if(_currentNrg < (_maxNrg / 4))
+            if(_currentNrg < (_maxNrg / 2))
             {
                 PopupMessage.Create(transform.position, $"I'm running low on energy", Color.yellow, Vector2.up, 1f);
             }

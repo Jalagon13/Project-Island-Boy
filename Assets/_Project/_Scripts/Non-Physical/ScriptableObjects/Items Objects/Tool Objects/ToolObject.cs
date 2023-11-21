@@ -26,12 +26,12 @@ namespace IslandBoy
         public CraftingRecipeObject UpgradeRecipe => _upgradeRecipe;
         public int XpForUpgrade => _xpForUpgrade;
 
-        public override void ExecutePrimaryAction(SelectedSlotControl control)
+        public override void ExecutePrimaryAction(FocusSlotControl control)
         {
             
         }
 
-        public override void ExecuteSecondaryAction(SelectedSlotControl control)
+        public override void ExecuteSecondaryAction(FocusSlotControl control)
         {
 
         }

@@ -15,7 +15,7 @@ namespace IslandBoy
         public override ToolType ToolType => _baseToolType;
         public override ArmorType ArmorType => _baseArmorType;
 
-        public override void ExecutePrimaryAction(SelectedSlotControl control)
+        public override void ExecutePrimaryAction(FocusSlotControl control)
         {
             if(!_pr.Inventory.Contains(_ammo, 1))
             {
@@ -34,7 +34,7 @@ namespace IslandBoy
             AudioManager.Instance.PlayClip(_launchSound, false, true);
         }
 
-        public override void ExecuteSecondaryAction(SelectedSlotControl control)
+        public override void ExecuteSecondaryAction(FocusSlotControl control)
         {
 
         }

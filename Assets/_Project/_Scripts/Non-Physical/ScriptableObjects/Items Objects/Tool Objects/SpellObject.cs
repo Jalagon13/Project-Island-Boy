@@ -16,10 +16,8 @@ namespace IslandBoy
         public override ToolType ToolType => _baseToolType;
         public override ArmorType ArmorType => _baseArmorType;
 
-        public override void ExecutePrimaryAction(SelectedSlotControl control)
+        public override void ExecutePrimaryAction(FocusSlotControl control)
         {
-            if (PointerHandler.IsOverLayer(5)) return;
-
             if (!control.Player.HasEnoughManaToCast(_manaCostPerCast))
             {
                 PopupMessage.Create(control.Player.transform.position, $"You have no mana!", Color.yellow, Vector2.up, 1f);
@@ -33,7 +31,7 @@ namespace IslandBoy
             //AudioManager.Instance.PlayClip(_castSound, false, true);
         }
 
-        public override void ExecuteSecondaryAction(SelectedSlotControl control)
+        public override void ExecuteSecondaryAction(FocusSlotControl control)
         {
 
         }

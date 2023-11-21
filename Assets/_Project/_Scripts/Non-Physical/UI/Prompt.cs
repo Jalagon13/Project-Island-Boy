@@ -32,7 +32,7 @@ namespace IslandBoy
 
         public override void Interact()
         {
-            if (PointerHandler.IsOverLayer(5)) return;
+            if (Pointer.IsOverUI()) return;
 
             EnableInstructions(false);
             OpenUI();

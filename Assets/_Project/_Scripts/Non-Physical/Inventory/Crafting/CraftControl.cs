@@ -6,6 +6,7 @@ namespace IslandBoy
 {
     public class CraftControl : MonoBehaviour
     {
+        [SerializeField] private PlayerReference _pr;
         [SerializeField] private AudioClip _popSound;
         [SerializeField] private GameObject _inventoryItemPrefab;
 
@@ -23,7 +24,12 @@ namespace IslandBoy
 
         public void TryToCraft() // connected to slot button
         {
-            if (!_cs.CanCraft) return;
+            if (!_cs.CanCraft)
+            {
+                PopupMessage.Create(_pr.Position, $"I'm missing resources to craft this.", Color.yellow, Vector2.up, 1f);
+                return;
+            }
+
             if (!_mouseItemHolder.TryToCraftItem(_inventoryItemPrefab, _cs.Recipe.OutputItem, _cs.Recipe.OutputAmount)) return;
 
             foreach (ItemAmount ia in _cs.Recipe.ResourceList)
