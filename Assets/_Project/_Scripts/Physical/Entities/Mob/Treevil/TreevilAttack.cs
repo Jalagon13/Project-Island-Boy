@@ -8,7 +8,7 @@ namespace IslandBoy
     {
         private TreevilStateManager _ctx;
         private Vector2 _chasePos;
-        private float _chaseSpeed = 3.25f;
+        //private float _chaseSpeed = 3.25f;
 
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {

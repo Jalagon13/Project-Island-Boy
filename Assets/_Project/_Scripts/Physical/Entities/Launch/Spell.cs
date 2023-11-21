@@ -25,7 +25,7 @@ namespace IslandBoy
             _damage = ExtractPower(spellObject);
         }
 
-        public void BoulderLand()
+        public void SpellHit()
         {
             AudioManager.Instance.PlayClip(_landSound, false, true, 1f, 1f);
 
@@ -47,7 +47,7 @@ namespace IslandBoy
             _targetEntity = null;
         }
 
-        public void BoulderFadeAway()
+        public void SpellFadeAway()
         {
             Destroy(gameObject);
         }
