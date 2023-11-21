@@ -12,7 +12,7 @@ namespace IslandBoy
 
         private void Awake()
         {
-            _mouseItemHolder = transform.GetChild(3).GetComponent<MouseSlot>();
+            _mouseItemHolder = transform.GetChild(3).GetChild(0).GetComponent<MouseSlot>();
         }
 
         public void RefreshCraftingMenu(CraftingDatabaseObject cdb)

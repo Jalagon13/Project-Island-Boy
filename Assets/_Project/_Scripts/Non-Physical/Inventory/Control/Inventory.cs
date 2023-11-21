@@ -25,7 +25,7 @@ namespace IslandBoy
         private void Awake()
         {
             _pr.Inventory = this;
-            _mouseItemHolder = transform.GetChild(3).GetComponent<MouseSlot>();
+            _mouseItemHolder = transform.GetChild(3).GetChild(0).GetComponent<MouseSlot>();
         }
 
         private IEnumerator Start()
