@@ -107,6 +107,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7121383944477576726}
+  - {fileID: 8131680359467950178}
   m_Father: {fileID: 8805461347593309612}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &927801835214218565
@@ -119,7 +120,7 @@ Animator:
   m_GameObject: {fileID: 254371358341620210}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ba8c7cdc59a777647854e24a1b6acb61, type: 2}
+  m_Controller: {fileID: 9100000, guid: 280c2501efc6d69428cf9e8e328a8daf, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -195,6 +196,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2214081521386534771}
+        m_TargetAssemblyTypeName: IslandBoy.TreevilStateManager, Assembly-CSharp
+        m_MethodName: ChangeToIdleState
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 927801835214218565}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Animator, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1005,8 +1018,9 @@ GameObject:
   - component: {fileID: 4144664716987894339}
   - component: {fileID: 3006192160976330081}
   - component: {fileID: 6224312026178961618}
-  - component: {fileID: 8888723654129748411}
   - component: {fileID: 2214081521386534771}
+  - component: {fileID: 4962389563074030918}
+  - component: {fileID: 8888723654129748411}
   m_Layer: 0
   m_Name: '[MOB] Treevil'
   m_TagString: Untagged
@@ -1107,8 +1121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3fce4d50948854cb72f53642a80b42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHitPoints: 25
-  _breakType: 1
+  _maxHitPoints: 50
+  _breakType: 3
   _hitSound: {fileID: 8300000, guid: ab0451a7a02c38c4fad983d16598b836, type: 3}
   _breakSound: {fileID: 8300000, guid: 1f5e75782a6e8434cba4bce854fb47eb, type: 3}
   _regenerateOnDayStart: 0
@@ -1123,7 +1137,71 @@ MonoBehaviour:
       Min: 2
       Max: 10
       Chance: 100
+    - Item: {fileID: 11400000, guid: fd017aa0c3651ff4ebe27044cacd3b70, type: 2}
+      Min: 1
+      Max: 2
+      Chance: 25
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
+--- !u!114 &2214081521386534771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5799062759696218101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d146a45687efc574792f707cf17fbcca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PR: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
+  _agroSound: {fileID: 8300000, guid: 4a2e0c655ba2bda4e9d7e519bf84c9ca, type: 3}
+  _agroDistance: 20
+--- !u!114 &4962389563074030918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5799062759696218101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6bc1a7ef54a3bf44a24c08540f77967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rb: {fileID: 3006192160976330081}
+  _strength: 0
+  _delay: 0.25
+  _onBegin:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3917560269185705522}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  _onDone:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3917560269185705522}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &8888723654129748411
 Animator:
   serializedVersion: 5
@@ -1145,21 +1223,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2214081521386534771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5799062759696218101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d146a45687efc574792f707cf17fbcca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PR: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _agroSound: {fileID: 8300000, guid: 4a2e0c655ba2bda4e9d7e519bf84c9ca, type: 3}
-  _agroDistance: 20
 --- !u!1 &7129378274048281638
 GameObject:
   m_ObjectHideFlags: 0
