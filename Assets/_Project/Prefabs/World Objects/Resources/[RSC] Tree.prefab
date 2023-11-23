@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Max
@@ -77,6 +77,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[2].Max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[2].Min
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Item
       value: 
       objectReference: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
@@ -85,12 +93,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: bae05631bee9b75479ea8f1d94e134e9, type: 2}
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[2].Item
+      value: 
+      objectReference: {fileID: 11400000, guid: fd017aa0c3651ff4ebe27044cacd3b70, type: 2}
+    - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Chance
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[1].Chance
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2594954625819056481, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[2].Chance
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 2594954625819056483, guid: 0ba225aa3fac94044bb12d3cda2e5a0d, type: 3}
       propertyPath: m_LocalPosition.x

@@ -17,6 +17,10 @@ PrefabInstance:
       value: '[CS] Monster Forge'
       objectReference: {fileID: 0}
     - target: {fileID: 6065488926534113593, guid: 3196ff03b1026cd419eecf2c404f0cfb, type: 3}
+      propertyPath: _cdb
+      value: 
+      objectReference: {fileID: 11400000, guid: b1fd65f6268c3ed488e3dd7ebb127bd5, type: 2}
+    - target: {fileID: 6065488926534113593, guid: 3196ff03b1026cd419eecf2c404f0cfb, type: 3}
       propertyPath: _rdb
       value: 
       objectReference: {fileID: 11400000, guid: 82b866830c4d277448950dc4b293e681, type: 2}
@@ -58,11 +62,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8822823894218188633, guid: 3196ff03b1026cd419eecf2c404f0cfb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -28
       objectReference: {fileID: 0}
     - target: {fileID: 8822823894218188633, guid: 3196ff03b1026cd419eecf2c404f0cfb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 8822823894218188633, guid: 3196ff03b1026cd419eecf2c404f0cfb, type: 3}
       propertyPath: m_LocalPosition.z

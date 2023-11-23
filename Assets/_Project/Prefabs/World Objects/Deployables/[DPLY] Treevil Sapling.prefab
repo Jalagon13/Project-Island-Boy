@@ -412,7 +412,7 @@ SpriteRenderer:
   m_SortingLayerID: -250621267
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 811161192, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a05847ec42768054d8f05e3efb8ea205, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1034,7 +1034,7 @@ GameObject:
   - component: {fileID: 8289580602852420439}
   - component: {fileID: 6346239460624880013}
   m_Layer: 0
-  m_Name: '[DPLY] Sapling'
+  m_Name: '[DPLY] Treevil Sapling'
   m_TagString: RSC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1054,8 +1054,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1098599658297436738}
-  - {fileID: 7782647624666291009}
   - {fileID: 3454403508067721580}
+  - {fileID: 7782647624666291009}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &356098784207726677
@@ -1115,8 +1115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de990266d1d2c8040a326daec059e615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _growthTimerSec: 200
-  _treePrefab: {fileID: 8508618238821746237, guid: c725e33a958fc41458576288ef8025d3, type: 3}
+  _growthTimerSec: 10
+  _treePrefab: {fileID: 5799062759696218101, guid: f68cfc1801f587e46a2948d51c86eb17, type: 3}
 --- !u!114 &8289580602852420439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1137,7 +1137,7 @@ MonoBehaviour:
   _destructable: 1
   _lootTable:
     <Table>k__BackingField:
-    - Item: {fileID: 11400000, guid: fd017aa0c3651ff4ebe27044cacd3b70, type: 2}
+    - Item: {fileID: 11400000, guid: 9301fdaf2b9cfbf4aaad57fdd0b7c9a0, type: 2}
       Min: 1
       Max: 1
       Chance: 100
