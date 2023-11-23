@@ -1082,8 +1082,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.4}
-  m_Size: {x: 2, y: 1}
+  m_Offset: {x: -0.05747044, y: 0.7128924}
+  m_Size: {x: 2.6257904, y: 2.6257904}
   m_Direction: 0
 --- !u!50 &3006192160976330081
 Rigidbody2D:
@@ -1124,8 +1124,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3fce4d50948854cb72f53642a80b42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHitPoints: 50
+  _maxHitPoints: 200
   _breakType: 3
+  _dontGiveXp: 0
   _hitSound: {fileID: 8300000, guid: ab0451a7a02c38c4fad983d16598b836, type: 3}
   _breakSound: {fileID: 8300000, guid: 1f5e75782a6e8434cba4bce854fb47eb, type: 3}
   _regenerateOnDayStart: 0
@@ -1138,12 +1139,16 @@ MonoBehaviour:
       Chance: 100
     - Item: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
       Min: 2
+      Max: 5
+      Chance: 100
+    - Item: {fileID: 11400000, guid: bae05631bee9b75479ea8f1d94e134e9, type: 2}
+      Min: 5
       Max: 10
       Chance: 100
-    - Item: {fileID: 11400000, guid: fd017aa0c3651ff4ebe27044cacd3b70, type: 2}
-      Min: 1
-      Max: 2
-      Chance: 25
+    - Item: {fileID: 11400000, guid: d597b342234b58844a3a4f145cad0c2c, type: 2}
+      Min: 5
+      Max: 10
+      Chance: 100
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
 --- !u!114 &2214081521386534771
 MonoBehaviour:
@@ -1157,6 +1162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d146a45687efc574792f707cf17fbcca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawnSound: {fileID: 8300000, guid: 35782589ebfe9ea48aede6aa92f48ebb, type: 3}
   PR: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _agroSound: {fileID: 8300000, guid: 4a2e0c655ba2bda4e9d7e519bf84c9ca, type: 3}
   _agroDistance: 20

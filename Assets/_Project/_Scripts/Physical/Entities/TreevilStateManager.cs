@@ -8,6 +8,8 @@ namespace IslandBoy
 {
     public class TreevilStateManager : MonoBehaviour
     {
+
+        [SerializeField] private AudioClip _spawnSound;
         public PlayerReference PR;
         public AudioClip _agroSound;
         public Action OnMove;
@@ -23,6 +25,7 @@ namespace IslandBoy
 
         private void Awake()
         {
+            AudioManager.Instance.PlayClip(_spawnSound, false, false);
             //AI = GetComponent<IAstarAI>();
         }
         private void Update()

@@ -19,9 +19,18 @@ namespace IslandBoy
         private float timerCooldown;
         private float timer;
         private int attackNum;
+        private bool _canShoot;
+
+        private IEnumerator Start()
+        {
+            yield return new WaitForSeconds(1f);
+            _canShoot = true;
+        }
 
         void FixedUpdate()
         {
+            if (!_canShoot) return;
+
             float distance = Vector2.Distance(transform.position, PR.Position);
 
             if (distance < _maxPlayerDistance)

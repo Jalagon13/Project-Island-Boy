@@ -1115,7 +1115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de990266d1d2c8040a326daec059e615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _growthTimerSec: 10
+  _growthTimerSec: 1
   _treePrefab: {fileID: 5799062759696218101, guid: f68cfc1801f587e46a2948d51c86eb17, type: 3}
 --- !u!114 &8289580602852420439
 MonoBehaviour:
@@ -1131,6 +1131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHitPoints: 3
   _breakType: 1
+  _dontGiveXp: 0
   _hitSound: {fileID: 8300000, guid: acc9a292f9a4e9448953f37d61d47e54, type: 3}
   _breakSound: {fileID: 8300000, guid: acc9a292f9a4e9448953f37d61d47e54, type: 3}
   _regenerateOnDayStart: 0

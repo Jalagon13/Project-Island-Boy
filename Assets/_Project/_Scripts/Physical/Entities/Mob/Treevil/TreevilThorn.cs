@@ -50,7 +50,7 @@ namespace IslandBoy
 
             if (!collision.gameObject.CompareTag("MOB"))
             {
-                if (colliderGo.TryGetComponent(out Clickable clickable))
+                if (colliderGo.TryGetComponent<Clickable>(out var clickable))
                 {
                     if (_clickableFound != null) return;
 
