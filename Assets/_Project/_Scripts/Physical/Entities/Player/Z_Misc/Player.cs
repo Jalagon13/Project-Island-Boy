@@ -75,11 +75,11 @@ namespace IslandBoy
 
         private IEnumerator HungerWarningMessage()
         {
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(15);
 
             if(_currentNrg < (_maxNrg / 4))
             {
-                PopupMessage.Create(transform.position, $"I'm running low on energy", Color.yellow, Vector2.up, 1f);
+                PopupMessage.Create(transform.position, $"I need to eat soon..", Color.yellow, Vector2.up, 1f);
             }
 
             StartCoroutine(HungerWarningMessage());
