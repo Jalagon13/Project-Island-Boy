@@ -42,11 +42,11 @@ namespace IslandBoy
             HideDisplay();
         }
 
-        public virtual bool OnHit(ToolType incomingToolType, int amount)
+        public virtual bool OnHit(ToolType incomingToolType, int amount, bool displayHit = true)
         {
             if(incomingToolType != _breakType || incomingToolType == ToolType.None)
             {
-                if(_timer.RemainingSeconds == 0)
+                if(displayHit && _timer.RemainingSeconds == 0)
                 {
                     PopupMessage.Create(transform.position, $"I need a {_breakType} to hit this", Color.red, Vector2.one, 1f);
                     _timer.RemainingSeconds = 3;

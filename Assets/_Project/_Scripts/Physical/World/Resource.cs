@@ -77,22 +77,24 @@ namespace IslandBoy
             AnimStateManager.ChangeAnimationState(_animator, _onClickHash);
         }
 
-        public override bool OnHit(ToolType incomingToolType, int amount)
+        public override bool OnHit(ToolType incomingToolType, int amount, bool displayHit = true)
         {
             if (!_destructable) return false;
 
             AudioManager.Instance.PlayClip(_hitSound, false, true, 0.5f);
             RscHit();
 
-            if (base.OnHit(incomingToolType, amount))
+            if (base.OnHit(incomingToolType, amount, displayHit))
             {
-                UpdateAmountDisplay();
-                UpdateFillImage();
-                EnableProgressBar(true);
-                EnableAmountDisplay(true);
-                EnableYellowCorners(false);
-                EnableInstructions(true);
-                
+                if (displayHit)
+                {
+                    UpdateAmountDisplay();
+                    UpdateFillImage();
+                    EnableProgressBar(true);
+                    EnableAmountDisplay(true);
+                    EnableYellowCorners(false);
+                    EnableInstructions(true);
+                }                
                 return true;
             }
 
