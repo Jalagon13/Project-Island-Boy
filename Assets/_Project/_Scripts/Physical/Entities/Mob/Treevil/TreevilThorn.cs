@@ -30,7 +30,7 @@ namespace IslandBoy
         {
             timer += Time.deltaTime;
 
-            if(timer > 10)
+            if(timer > 5)
             {
                 Destroy(gameObject);
             }
@@ -55,7 +55,7 @@ namespace IslandBoy
                     if (_clickableFound != null) return;
 
                     _clickableFound = clickable;
-                    _clickableFound.OnHit(ToolType.Sword, _damageAmount);
+                    _clickableFound.OnHit(ToolType.Sword, _damageAmount, false);
 
                     Destroy(gameObject);
                 }

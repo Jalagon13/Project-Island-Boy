@@ -1021,7 +1021,6 @@ GameObject:
   - component: {fileID: 2214081521386534771}
   - component: {fileID: 4962389563074030918}
   - component: {fileID: 8888723654129748411}
-  - component: {fileID: 8186526222951811473}
   m_Layer: 0
   m_Name: '[MOB] Treevil'
   m_TagString: MOB
@@ -1159,7 +1158,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PR: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _agroSound: {fileID: 8300000, guid: 4a2e0c655ba2bda4e9d7e519bf84c9ca, type: 3}
+  thorn: {fileID: 6869286514326003167, guid: 124c4d56e117ee24987fd4e97db8a0f4, type: 3}
+  thornPosL: {fileID: 1617722995946209602}
+  thornPosR: {fileID: 3799450301094004550}
   _agroDistance: 20
+  _attackCooldown: 4
+  _attackFrequency: 2
+  _numAttacks: 3
 --- !u!114 &4962389563074030918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1226,26 +1231,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8186526222951811473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5799062759696218101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dec6585c4297cce43af3e57d9372fdb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxPlayerDistance: 15
-  _attackCooldown: 4
-  _attackFrequency: 1
-  _numAttacks: 3
-  thorn: {fileID: 6869286514326003167, guid: 124c4d56e117ee24987fd4e97db8a0f4, type: 3}
-  thornPosL: {fileID: 1617722995946209602}
-  thornPosR: {fileID: 3799450301094004550}
-  PR: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
 --- !u!1 &6067868453112683991
 GameObject:
   m_ObjectHideFlags: 0
