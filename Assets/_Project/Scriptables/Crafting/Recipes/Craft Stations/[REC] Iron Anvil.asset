@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a38df6f5fd8e134faa55cb288909a5a, type: 3}
+  m_Name: '[REC] Iron Anvil'
+  m_EditorClassIdentifier: 
+  OutputItem: {fileID: 11400000, guid: 094c99f31de27a34bb5bfa75e568b3b6, type: 2}
+  OutputAmount: 1
+  ResourceList:
+  - Item: {fileID: 11400000, guid: cf43aab6c50b00e4b8bf914676cf9ba3, type: 2}
+    Amount: 10

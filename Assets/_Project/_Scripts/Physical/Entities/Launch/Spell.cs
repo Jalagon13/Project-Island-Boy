@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +19,7 @@ namespace IslandBoy
 
         public void SpellHit()
         {
-            AudioManager.Instance.PlayClip(_landSound, false, true, 1f, 1f);
+            MMSoundManagerSoundPlayEvent.Trigger(_landSound, MMSoundManager.MMSoundManagerTracks.Sfx, transform.position);
 
             var entities = Physics2D.OverlapCircleAll(transform.position, 1f);
 

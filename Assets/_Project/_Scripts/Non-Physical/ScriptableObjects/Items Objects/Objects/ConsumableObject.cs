@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -75,7 +76,7 @@ namespace IslandBoy
                     break;
             }
 
-            AudioManager.Instance.PlayClip(_consumeSound, false, true);
+            MMSoundManagerSoundPlayEvent.Trigger(_consumeSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
         }
 
         public override string GetDescription()

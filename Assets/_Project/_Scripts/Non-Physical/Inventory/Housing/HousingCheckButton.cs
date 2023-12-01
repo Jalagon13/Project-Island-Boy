@@ -47,8 +47,6 @@ namespace IslandBoy
 
         public void CheckHousing() // attached to button
         {
-            AudioManager.Instance.PlayClip(_sonarSound, false, false);
-
             if (_adventurerReference != null)
             {
                 _feedbackHolder.DisplayFeedback($"{_adventurerPrefab.name} is already occupying a room", Color.green);
@@ -254,7 +252,6 @@ namespace IslandBoy
             _adventurerReference.RegisterBed(foundBeds[0]);
             //foundBeds[0].RegisterBed(_furnitureCheckList, _adventurerReference);
 
-            AudioManager.Instance.PlayClip(_moveInSound, false, false);
         }
 
         public void DisableButton()

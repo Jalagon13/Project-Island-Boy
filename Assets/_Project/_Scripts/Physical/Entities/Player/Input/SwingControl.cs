@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -97,7 +98,7 @@ namespace IslandBoy
         public void OnSwingStart()
         {
             _performingSwing = true;
-            AudioManager.Instance.PlayClip(_wooshClip, false, true);
+            MMSoundManagerSoundPlayEvent.Trigger(_wooshClip, MMSoundManager.MMSoundManagerTracks.Sfx, transform.position);
         }
 
         public void OnSwingEnd()

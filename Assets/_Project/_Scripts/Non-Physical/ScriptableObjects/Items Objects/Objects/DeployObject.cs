@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,7 +32,7 @@ namespace IslandBoy
                 control.FocusSlot.InventoryItem.Count--;
                 control.CursorControl.PlaceDeployable(_prefabToDeploy);
 
-                AudioManager.Instance.PlayClip(_deploySound, false, true);
+                MMSoundManagerSoundPlayEvent.Trigger(_deploySound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
             }
         }
 

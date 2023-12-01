@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -37,7 +38,7 @@ namespace IslandBoy
                 _playerInventory.RemoveItem(ia.Item, ia.Amount);
             }
 
-            AudioManager.Instance.PlayClip(_popSound, false, true);
+            MMSoundManagerSoundPlayEvent.Trigger(_popSound, MMSoundManager.MMSoundManagerTracks.UI, transform.position);
             GameSignals.ITEM_CRAFTED.Dispatch();
         }
     }

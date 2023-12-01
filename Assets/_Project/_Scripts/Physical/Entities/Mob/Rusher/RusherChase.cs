@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +19,7 @@ namespace IslandBoy
             _chasePos = _ctx.PR.Position;
             _ctx.OnMove += Chase;
 
-            AudioManager.Instance.PlayClip(_ctx._agroSound, false, true, 0.25f);
+            MMSoundManagerSoundPlayEvent.Trigger(_ctx._agroSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
         }
 
         override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

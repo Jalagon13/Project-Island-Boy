@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -42,7 +43,7 @@ namespace IslandBoy
 
             Bounds updateBounds = new(transform.position, new(2, 2, 1));
             AstarPath.active.UpdateGraphs(updateBounds, 0.1f);
-            AudioManager.Instance.PlayClip(_doorOpenSound, false, true);
+            MMSoundManagerSoundPlayEvent.Trigger(_doorOpenSound, MMSoundManager.MMSoundManagerTracks.Sfx, transform.position);
         }
 
         public void Close()
@@ -53,7 +54,7 @@ namespace IslandBoy
 
             Bounds updateBounds = new(transform.position, new(2, 2, 1));
             AstarPath.active.UpdateGraphs(updateBounds, 0.1f);
-            AudioManager.Instance.PlayClip(_doorCloseSound, false, true);
+            MMSoundManagerSoundPlayEvent.Trigger(_doorCloseSound, MMSoundManager.MMSoundManagerTracks.Sfx, transform.position);
         }
 
         public override void ShowDisplay()

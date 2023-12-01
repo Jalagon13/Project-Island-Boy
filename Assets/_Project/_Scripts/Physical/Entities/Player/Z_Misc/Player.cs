@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -290,7 +291,7 @@ namespace IslandBoy
             DispatchPlayerDamaged(amount, damagerPosition);
 
             PopupMessage.Create(transform.position, $"{amount}", Color.red, new(0.5f, 0.5f), 1f);
-            AudioManager.Instance.PlayClip(_damageSound, false, true);
+            MMSoundManagerSoundPlayEvent.Trigger(_damageSound, MMSoundManager.MMSoundManagerTracks.Sfx, transform.position);
 
             if (_currentHp <= 0)
                 StartCoroutine(PlayerDead());

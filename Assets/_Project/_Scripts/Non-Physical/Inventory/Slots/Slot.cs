@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -193,7 +194,7 @@ namespace IslandBoy
 
         protected void PlaySound()
         {
-            AudioManager.Instance.PlayClip(_popSound, false, true, 0.75f);
+            MMSoundManagerSoundPlayEvent.Trigger(_popSound, MMSoundManager.MMSoundManagerTracks.UI, transform.position);
         }
 
         public bool SpawnInventoryItem(ItemObject item, List<ItemParameter> itemParameters = null, int count = 1)

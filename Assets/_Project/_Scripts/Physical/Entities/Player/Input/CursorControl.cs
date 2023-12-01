@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -312,7 +313,7 @@ namespace IslandBoy
 
             RuleTileExtended tile = tm.GetTile<RuleTileExtended>(pos);
             GameAssets.Instance.SpawnItem(transform.position, tile.Item, 1);
-            AudioManager.Instance.PlayClip(tile.BreakSound, false, true);
+            MMSoundManagerSoundPlayEvent.Trigger(tile.BreakSound, MMSoundManager.MMSoundManagerTracks.Sfx, transform.position);
             GameSignals.CLICKABLE_CLICKED.Dispatch();
 
             tm.SetTile(pos, null);

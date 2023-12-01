@@ -58,7 +58,7 @@ namespace IslandBoy
             {
                 if (_listenerList.Count == 0)
                 {
-                    Debug.LogWarning("There are no listeners to the signal: " + _name);
+                    //Debug.LogWarning("There are no listeners to the signal: " + _name);
                 }
 
                 for (int i = 0; i < _listenerList.Count; ++i)

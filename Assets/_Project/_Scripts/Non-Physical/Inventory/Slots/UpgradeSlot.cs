@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -144,8 +145,8 @@ namespace IslandBoy
                     _pr.Inventory.RemoveItem(ia.Item, ia.Amount);
                 }
 
+                MMSoundManagerSoundPlayEvent.Trigger(_popSound, MMSoundManager.MMSoundManagerTracks.UI, transform.position);
                 PlayerExperience.AddExerpience(-_xpNeedAmount);
-                AudioManager.Instance.PlayClip(_popSound, false, true);
                 GameSignals.ITEM_CRAFTED.Dispatch();
 
                 Destroy(InventoryItem.gameObject);

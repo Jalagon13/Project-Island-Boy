@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public class Entity : Resource
+    public class Entity : Clickable
     {
         [Header("Base Entity Parameters")]
         [SerializeField] private PlayerReference _pr;
@@ -16,8 +16,6 @@ namespace IslandBoy
             base.Awake();
 
             _knockback = GetComponent<KnockbackFeedback>();
-            _idleHash = Animator.StringToHash("[ANIM] Idle");
-            _onClickHash = Animator.StringToHash("[ANIM] Hit");
 
             GameSignals.DAY_END.AddListener(DestroyThisEntity);
         }

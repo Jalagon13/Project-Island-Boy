@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,7 +28,7 @@ namespace IslandBoy
 
             _sizzlingSource.Stop();
 
-            AudioManager.Instance.PlayClip(_explosionSound, false, true, 0.55f);
+            MMSoundManagerSoundPlayEvent.Trigger(_explosionSound, MMSoundManager.MMSoundManagerTracks.Sfx, transform.position);
 
             Destroy(_explosionParticles.gameObject, _explosionParticles.main.duration);
             Destroy(gameObject);

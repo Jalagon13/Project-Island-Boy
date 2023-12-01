@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,7 +32,7 @@ namespace IslandBoy
             Vector3 direction = (control.CursorControl.transform.position - ammo.transform.position).normalized;
             ammo.Setup(this, _ammo, direction);
 
-            AudioManager.Instance.PlayClip(_launchSound, false, true);
+            MMSoundManagerSoundPlayEvent.Trigger(_launchSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
         }
 
         public override void ExecuteSecondaryAction(FocusSlotControl control)

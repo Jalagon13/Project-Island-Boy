@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace IslandBoy
             //Debug.Log("Entering Chase State");
             _ctx = animator.transform.root.GetComponent<TreevilStateManager>();
 
-            AudioManager.Instance.PlayClip(_ctx._agroSound, false, true, 0.25f);
+            MMSoundManagerSoundPlayEvent.Trigger(_ctx._agroSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
         }
 
         override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

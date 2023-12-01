@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using UnityEngine;
 
 namespace IslandBoy
@@ -24,7 +25,7 @@ namespace IslandBoy
                 control.FocusSlot.InventoryItem.Count--;
                 control.TMR.FloorTilemap.SetTile(pos, _floorTile);
 
-                AudioManager.Instance.PlayClip(_floorTile.PlaceSound, false, true);
+                MMSoundManagerSoundPlayEvent.Trigger(_floorTile.PlaceSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
             }
         }
 

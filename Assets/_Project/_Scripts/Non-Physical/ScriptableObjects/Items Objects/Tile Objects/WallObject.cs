@@ -1,6 +1,8 @@
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 namespace IslandBoy
 {
     [CreateAssetMenu(fileName = "New Wall", menuName = "Create Item/New Wall")]
@@ -25,8 +27,7 @@ namespace IslandBoy
                 control.FocusSlot.InventoryItem.Count--;
                 control.TMR.WallTilemap.SetTile(pos, _wallTile);
 
-                AudioManager.Instance.PlayClip(_wallTile.PlaceSound, false, true);
-
+                MMSoundManagerSoundPlayEvent.Trigger(_wallTile.PlaceSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
                 _wallTile.UpdatePathfinding(new(pos.x + 0.5f, pos.y + 0.5f));
             }
         }
