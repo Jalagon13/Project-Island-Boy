@@ -215,7 +215,7 @@ MonoBehaviour:
         ModifyColor: 1
         ColorOverTime:
           serializedVersion: 2
-          key0: {r: 1, g: 1, b: 1, a: 0.39607844}
+          key0: {r: 1, g: 1, b: 1, a: 0.27450982}
           key1: {r: 1, g: 1, b: 1, a: 1}
           key2: {r: 0, g: 0, b: 0, a: 1}
           key3: {r: 0, g: 0, b: 0, a: 1}
@@ -232,7 +232,7 @@ MonoBehaviour:
           ctime6: 0
           ctime7: 0
           atime0: 0
-          atime1: 28720
+          atime1: 32382
           atime2: 33539
           atime3: 65535
           atime4: 0
@@ -1385,9 +1385,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0a94aa6ee5ffee44863f56506874d1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dontGiveXp: 0
   _maxHitPoints: 15
   _breakType: 2
-  _dontGiveXp: 0
   _clickFeedback: {fileID: 7165791526722579916}
   _destroyFeedback: {fileID: 4871828697884116381}
   _lootTable:

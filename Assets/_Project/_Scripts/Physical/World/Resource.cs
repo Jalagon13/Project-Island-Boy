@@ -51,8 +51,6 @@ namespace IslandBoy
         {
             if (!_destructable) return false;
 
-            _clickFeedback?.PlayFeedbacks();
-
             if (base.OnHit(incomingToolType, amount, displayHit))
             {
                 if (displayHit)

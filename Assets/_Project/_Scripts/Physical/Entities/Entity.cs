@@ -39,6 +39,8 @@ namespace IslandBoy
                 if (displayHit)
                 {
                     PopupMessage.Create(transform.position, amount.ToString(), Color.yellow, Vector2.up * 0.5f, 0.4f);
+                    UpdateAmountDisplay();
+                    UpdateFillImage();
                     EnableYellowCorners(false);
                     EnableAmountDisplay(false);
                     EnableInstructions(false);
@@ -54,7 +56,6 @@ namespace IslandBoy
         {
             UpdateAmountDisplay();
             UpdateFillImage();
-
             EnableInstructions(true);
             EnableYellowCorners(true);
             EnableAmountDisplay(true);
@@ -72,8 +73,8 @@ namespace IslandBoy
         protected override void OnBreak()
         {
             _dropPosition = transform.position;
-            
             base.OnBreak();
+            Destroy(gameObject);
         }
     }
 }

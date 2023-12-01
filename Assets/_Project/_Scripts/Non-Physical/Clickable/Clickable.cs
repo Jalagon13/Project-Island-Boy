@@ -59,7 +59,9 @@ namespace IslandBoy
 
         public virtual bool OnHit(ToolType incomingToolType, int amount, bool displayHit = true)
         {
-            if(incomingToolType != _breakType || incomingToolType == ToolType.None)
+            _clickFeedback?.PlayFeedbacks();
+
+            if (incomingToolType != _breakType || incomingToolType == ToolType.None)
             {
                 if(displayHit && _timer.RemainingSeconds == 0)
                 {
