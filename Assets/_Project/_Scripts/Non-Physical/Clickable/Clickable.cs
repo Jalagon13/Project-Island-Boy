@@ -10,9 +10,9 @@ namespace IslandBoy
     public abstract class Clickable : MonoBehaviour
     {
         [Header("Base Clickable Parameters")]
+        [SerializeField] private bool _dontGiveXp = false;
         [SerializeField] protected int _maxHitPoints;
         [SerializeField] protected ToolType _breakType;
-        [SerializeField] private bool _dontGiveXp = false;
         [SerializeField] protected MMF_Player _clickFeedback;
         [SerializeField] protected MMF_Player _destroyFeedback;
         [SerializeField] protected LootTable _lootTable;
