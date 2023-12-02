@@ -79,15 +79,6 @@ namespace IslandBoy
             return false;
         }
 
-        protected override void OnBreak()
-        {
-            base.OnBreak();
-
-            StopAllCoroutines();
-
-            Destroy(gameObject);
-        }
-
         public override void ShowDisplay()
         {
             EnableInstructions(true);

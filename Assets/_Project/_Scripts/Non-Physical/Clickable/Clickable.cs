@@ -36,6 +36,7 @@ namespace IslandBoy
             _instructions = transform.GetChild(2).GetChild(2).gameObject;
             _yellowCorners = transform.GetChild(2).GetChild(3).gameObject;
             _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
+            _dropPosition = transform.position + (Vector3.one * 0.5f);
         }
 
         private void Update()
@@ -99,6 +100,8 @@ namespace IslandBoy
             }
 
             _lootTable.SpawnLoot(_dropPosition);
+            StopAllCoroutines();
+            Destroy(gameObject);
         }
 
         public abstract void ShowDisplay();

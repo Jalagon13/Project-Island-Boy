@@ -31,10 +31,41 @@ namespace IslandBoy
             _canInteract = true;
         }
 
+        protected override void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.TryGetComponent<CursorControl>(out var cc))
+            {
+                if (cc.FocusSlot.ItemObject is WallObject || cc.FocusSlot.ItemObject is FloorObject || cc.FocusSlot.ItemObject is DeployObject)
+                    return;
+
+                ShowDisplay();
+            }
+        }
+
+        protected override void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.TryGetComponent<CursorControl>(out var cc))
+            {
+                HideDisplay();
+            }
+        }
+
         public override bool OnHit(ToolType incomingToolType, int amount, bool displayHit = true)
         {
             if (base.OnHit(incomingToolType, amount, displayHit))
+            {
+                if (displayHit)
+                {
+                    UpdateAmountDisplay();
+                    UpdateFillImage();
+                    EnableProgressBar(true);
+                    EnableAmountDisplay(true);
+                    EnableYellowCorners(false);
+                    EnableInstructions(false);
+                }
+
                 return true;
+            }
 
             return false;
         }

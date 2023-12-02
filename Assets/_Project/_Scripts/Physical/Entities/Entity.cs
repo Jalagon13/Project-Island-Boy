@@ -74,7 +74,6 @@ namespace IslandBoy
         {
             _dropPosition = transform.position;
             base.OnBreak();
-            Destroy(gameObject);
         }
     }
 }

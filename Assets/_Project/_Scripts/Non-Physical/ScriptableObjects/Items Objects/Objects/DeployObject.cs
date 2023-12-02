@@ -18,11 +18,6 @@ namespace IslandBoy
 
         public override void ExecutePrimaryAction(FocusSlotControl control)
         {
-
-        }
-
-        public override void ExecuteSecondaryAction(FocusSlotControl control)
-        {
             bool wallTmHasTile = _tmr.WallTilemap.HasTile(Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position));
             bool groundTmHasTile = _tmr.GroundTilemap.HasTile(Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position));
             bool tilActionClear = control.CursorControl.IsClear();
@@ -34,6 +29,11 @@ namespace IslandBoy
 
                 MMSoundManagerSoundPlayEvent.Trigger(_deploySound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
             }
+        }
+
+        public override void ExecuteSecondaryAction(FocusSlotControl control)
+        {
+
         }
 
         public override string GetDescription()
@@ -50,7 +50,7 @@ namespace IslandBoy
                 }
             }
 
-            return $"{Description}<br>• Right Click to place<br>• {clickDistance} build distance";
+            return $"{Description}<br>• Left Click to place<br>• {clickDistance} build distance";
         }
     }
 }
