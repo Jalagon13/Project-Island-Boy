@@ -39,7 +39,7 @@ namespace IslandBoy
             _dropPosition = transform.position + (Vector3.one * 0.5f);
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             _timer.Tick(Time.deltaTime);
         }

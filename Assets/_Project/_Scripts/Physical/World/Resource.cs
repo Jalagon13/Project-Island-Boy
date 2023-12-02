@@ -16,10 +16,14 @@ namespace IslandBoy
 
         public string ResourceName { get { return null; } }
 
+        private Timer _restoreHpTimer;
+
         protected override void Awake()
         {
             base.Awake();
 
+            _restoreHpTimer = new(5);
+            _restoreHpTimer.OnTimerEnd += () => { _currentHitPoints = _maxHitPoints; };
             _dropPosition = transform.position + new Vector3(0.5f, 0.5f, 0);
         }
 
@@ -39,6 +43,13 @@ namespace IslandBoy
             EnableAmountDisplay(false);
             EnableYellowCorners(false);
             EnableInstructions(false);
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+
+            _restoreHpTimer.Tick(Time.deltaTime);
         }
 
         protected override void OnTriggerEnter2D(Collider2D collision)
@@ -72,7 +83,10 @@ namespace IslandBoy
                     EnableAmountDisplay(true);
                     EnableYellowCorners(false);
                     EnableInstructions(false);
-                }                
+                }
+
+                _restoreHpTimer.RemainingSeconds = 5;
+
                 return true;
             }
 

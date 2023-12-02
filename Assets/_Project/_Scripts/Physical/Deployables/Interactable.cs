@@ -15,11 +15,14 @@ namespace IslandBoy
         protected bool _canInteract;
         private Vector3 _origin;
         private SpriteRenderer _rightClickSr;
+        private Timer _restoreHpTimer;
 
         protected override void Awake()
         {
             base.Awake();
 
+            _restoreHpTimer = new(5);
+            _restoreHpTimer.OnTimerEnd += () => { _currentHitPoints = _maxHitPoints; };
             _origin = transform.position + new Vector3(0.5f, 0.5f);
             _rightClickSr = transform.GetChild(1).GetComponent<SpriteRenderer>();
         }
@@ -29,6 +32,13 @@ namespace IslandBoy
 
             yield return new WaitForSeconds(0.15f);
             _canInteract = true;
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+
+            _restoreHpTimer.Tick(Time.deltaTime);
         }
 
         protected override void OnTriggerEnter2D(Collider2D collision)
@@ -63,6 +73,8 @@ namespace IslandBoy
                     EnableYellowCorners(false);
                     EnableInstructions(false);
                 }
+
+                _restoreHpTimer.RemainingSeconds = 5;
 
                 return true;
             }
