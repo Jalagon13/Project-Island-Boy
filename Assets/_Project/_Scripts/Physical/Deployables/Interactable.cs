@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public abstract class Interactable : Resource
+    public abstract class Interactable : Clickable
     {
         public Action OnPlayerExitRange;
         [Header("Base Interactable Parameters")]

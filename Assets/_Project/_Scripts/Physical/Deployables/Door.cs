@@ -42,8 +42,8 @@ namespace IslandBoy
             _sr.sprite = _openSprite;
 
             Bounds updateBounds = new(transform.position, new(2, 2, 1));
-            AstarPath.active.UpdateGraphs(updateBounds, 0.1f);
             MMSoundManagerSoundPlayEvent.Trigger(_doorOpenSound, MMSoundManager.MMSoundManagerTracks.Sfx, transform.position);
+            AstarPath.active.UpdateGraphs(updateBounds, 0.1f);
         }
 
         public void Close()
@@ -53,8 +53,8 @@ namespace IslandBoy
             _sr.sprite = _closeSprite;
 
             Bounds updateBounds = new(transform.position, new(2, 2, 1));
-            AstarPath.active.UpdateGraphs(updateBounds, 0.1f);
             MMSoundManagerSoundPlayEvent.Trigger(_doorCloseSound, MMSoundManager.MMSoundManagerTracks.Sfx, transform.position);
+            AstarPath.active.UpdateGraphs(updateBounds, 0.1f);
         }
 
         public override void ShowDisplay()

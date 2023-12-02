@@ -50,5 +50,13 @@ namespace IslandBoy
             EnableYellowCorners(true);
             EnableInstructions(true);
         }
+
+        public override void HideDisplay()
+        {
+            EnableProgressBar(false);
+            EnableAmountDisplay(false);
+            EnableInstructions(false);
+            EnableYellowCorners(false);
+        }
     }
 }

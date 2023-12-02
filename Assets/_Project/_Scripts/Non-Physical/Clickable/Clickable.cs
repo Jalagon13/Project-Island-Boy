@@ -23,11 +23,8 @@ namespace IslandBoy
         protected GameObject _amountDisplay;
         protected GameObject _instructions;
         protected GameObject _yellowCorners;
+        protected SpriteRenderer _sr;
         protected Vector2 _dropPosition;
-
-        public int MaxHitPoints { get { return _maxHitPoints; } set { _maxHitPoints = value; } }
-        public int CurrentHitPoints { get { return _currentHitPoints; } set { _currentHitPoints = value; } }
-        public ToolType BreakType { get { return _breakType; } set { _breakType = value; } }
 
         protected virtual void Awake()
         {
@@ -38,6 +35,7 @@ namespace IslandBoy
             _amountDisplay = transform.GetChild(2).GetChild(1).gameObject;
             _instructions = transform.GetChild(2).GetChild(2).gameObject;
             _yellowCorners = transform.GetChild(2).GetChild(3).gameObject;
+            _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
         }
 
         private void Update()
@@ -45,16 +43,20 @@ namespace IslandBoy
             _timer.Tick(Time.deltaTime);
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
-            if (!collision.CompareTag("CursorControl")) return;
-            ShowDisplay();
+            if (collision.TryGetComponent<CursorControl>(out var cc))
+            {
+                ShowDisplay();
+            }
         }
 
-        private void OnTriggerExit2D(Collider2D collision)
+        protected virtual void OnTriggerExit2D(Collider2D collision)
         {
-            if (!collision.CompareTag("CursorControl")) return;
-            HideDisplay();
+            if (collision.TryGetComponent<CursorControl>(out var cc))
+            {
+                HideDisplay();
+            }
         }
 
         public virtual bool OnHit(ToolType incomingToolType, int amount, bool displayHit = true)
@@ -100,7 +102,13 @@ namespace IslandBoy
         }
 
         public abstract void ShowDisplay();
-        public abstract void HideDisplay();
+        public virtual void HideDisplay()
+        {
+            EnableProgressBar(false);
+            EnableAmountDisplay(false);
+            EnableInstructions(false);
+            EnableYellowCorners(false);
+        }
 
         protected virtual void EnableProgressBar(bool _)
         {

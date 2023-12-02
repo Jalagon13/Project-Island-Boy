@@ -14,10 +14,6 @@ namespace IslandBoy
         [Header("Base Resource Parameters")]
         [SerializeField] protected bool _destructable = true;
 
-        
-        protected SpriteRenderer _sr;
-
-
         public string ResourceName { get { return null; } }
 
         protected override void Awake()
@@ -25,8 +21,6 @@ namespace IslandBoy
             base.Awake();
 
             _dropPosition = transform.position + new Vector3(0.5f, 0.5f, 0);
-            _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
-
         }
 
         private void OnEnable()
@@ -45,6 +39,23 @@ namespace IslandBoy
             EnableAmountDisplay(false);
             EnableYellowCorners(false);
             EnableInstructions(false);
+        }
+
+        protected override void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.TryGetComponent<CursorControl>(out var cc))
+            {
+                if (cc.FocusSlot.ToolType == _breakType)
+                    ShowDisplay();
+            }
+        }
+
+        protected override void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.TryGetComponent<CursorControl>(out var cc))
+            {
+                HideDisplay();
+            }
         }
 
         public override bool OnHit(ToolType incomingToolType, int amount, bool displayHit = true)

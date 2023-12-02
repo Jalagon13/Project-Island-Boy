@@ -36,7 +36,7 @@ namespace IslandBoy
         private Timer _buffTimer;
         private int _buffAmount;
 
-        public Clickable CurrentClickable { get { return _currentClickable; } }
+        public Slot FocusSlot { get { return _focusSlotRef; } }
 
         private void Awake()
         {
