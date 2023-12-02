@@ -61,6 +61,7 @@ namespace IslandBoy
             GameSignals.GAME_PAUSED.AddListener(DisableAbilityToHit);
             GameSignals.GAME_UNPAUSED.AddListener(EnableAbilityToHit);
             GameSignals.ENERGY_RESTORED.AddListener(AddPlusTwoHitBuff);
+            GameSignals.ITEM_DEPLOYED.AddListener(RefreshCd);
         }
 
         private void OnDestroy()
@@ -72,6 +73,7 @@ namespace IslandBoy
             GameSignals.GAME_PAUSED.RemoveListener(DisableAbilityToHit);
             GameSignals.GAME_UNPAUSED.RemoveListener(EnableAbilityToHit);
             GameSignals.ENERGY_RESTORED.RemoveListener(AddPlusTwoHitBuff);
+            GameSignals.ITEM_DEPLOYED.RemoveListener(RefreshCd);
 
             _input.Disable();
         }
@@ -93,6 +95,11 @@ namespace IslandBoy
             CheckWhenEnterNewTile();
             UpdateCurrentClickable();
             DisplayCursor();
+        }
+
+        private void RefreshCd(ISignalParameters parameters)
+        {
+            _clickTimer.RemainingSeconds = _clickCd;
         }
 
         private void AddPlusTwoHitBuff(ISignalParameters parameters)

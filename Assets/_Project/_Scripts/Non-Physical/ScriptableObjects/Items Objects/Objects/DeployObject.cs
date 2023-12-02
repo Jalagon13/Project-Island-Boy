@@ -26,7 +26,7 @@ namespace IslandBoy
             {
                 control.FocusSlot.InventoryItem.Count--;
                 control.CursorControl.PlaceDeployable(_prefabToDeploy);
-
+                GameSignals.ITEM_DEPLOYED.Dispatch();
                 MMSoundManagerSoundPlayEvent.Trigger(_deploySound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
             }
         }

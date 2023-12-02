@@ -39,6 +39,7 @@ namespace IslandBoy
             _swingTimer = new(_swingCd);
 
             GameSignals.FOCUS_SLOT_UPDATED.AddListener(OnUpdateFocusSlot);
+            GameSignals.ITEM_DEPLOYED.AddListener(RefreshCd);
         }
 
         private void OnDestroy()
@@ -46,6 +47,7 @@ namespace IslandBoy
             _input.Disable();
 
             GameSignals.FOCUS_SLOT_UPDATED.RemoveListener(OnUpdateFocusSlot);
+            GameSignals.ITEM_DEPLOYED.RemoveListener(RefreshCd);
         }
 
         private IEnumerator Start()
@@ -60,6 +62,11 @@ namespace IslandBoy
 
             if (_holdDown)
                 PerformAnimation();
+        }
+
+        private void RefreshCd(ISignalParameters parameters)
+        {
+            _swingTimer.RemainingSeconds = _swingCd;
         }
 
         private void OnUpdateFocusSlot(ISignalParameters parameters)

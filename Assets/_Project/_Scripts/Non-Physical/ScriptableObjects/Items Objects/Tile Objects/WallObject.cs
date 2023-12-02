@@ -22,6 +22,8 @@ namespace IslandBoy
                 control.FocusSlot.InventoryItem.Count--;
                 control.TMR.WallTilemap.SetTile(pos, _wallTile);
 
+                GameSignals.ITEM_DEPLOYED.Dispatch();
+
                 MMSoundManagerSoundPlayEvent.Trigger(_wallTile.PlaceSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
                 _wallTile.UpdatePathfinding(new(pos.x + 0.5f, pos.y + 0.5f));
             }

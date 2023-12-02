@@ -19,7 +19,7 @@ namespace IslandBoy
             {
                 control.FocusSlot.InventoryItem.Count--;
                 control.TMR.FloorTilemap.SetTile(pos, _floorTile);
-
+                GameSignals.ITEM_DEPLOYED.Dispatch();
                 MMSoundManagerSoundPlayEvent.Trigger(_floorTile.PlaceSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
             }
         }
