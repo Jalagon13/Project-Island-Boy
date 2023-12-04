@@ -6,7 +6,8 @@ namespace IslandBoy
 {
     public class Bed : MonoBehaviour
     {
-        [SerializeField] private TilemapReferences _tmr;
+        [SerializeField] private TilemapReference _wallTm;
+        [SerializeField] private TilemapReference _floorTm;
 
         private List<Vector3Int> _floorTilePositions = new();
         private bool _canCheck;
@@ -52,7 +53,7 @@ namespace IslandBoy
                 var p = tilesToCheck.Pop();
 
                 // if there is a tile without floor or wall then it is not an enclosed area
-                if (!_tmr.FloorTilemap.HasTile(p) && !_tmr.WallTilemap.HasTile(p) && !HasDoor(p))
+                if (!_floorTm.Tilemap.HasTile(p) && !_wallTm.Tilemap.HasTile(p) && !HasDoor(p))
                 {
                     //_feedbackHolder.DisplayFeedback("Not valid housing. Make sure the area around you is enclosed.", Color.yellow);
                     PopupMessage.Create(transform.position, "Area not enclosed with floor and wall", Color.yellow, new(0.5f, 0.5f), 3f);
@@ -67,7 +68,7 @@ namespace IslandBoy
                 }
 
                 // if tile has a wall, continue
-                if (_tmr.WallTilemap.HasTile(p))
+                if (_wallTm.Tilemap.HasTile(p))
                 {
                     wallTilePositions.Add(p);
                     continue;
@@ -111,7 +112,7 @@ namespace IslandBoy
                 Vector3Int en = new(p.x + 1, p.y);
                 Vector3Int wn = new(p.x - 1, p.y);
 
-                if (_tmr.WallTilemap.HasTile(nn) && _tmr.WallTilemap.HasTile(sn))
+                if (_wallTm.Tilemap.HasTile(nn) && _wallTm.Tilemap.HasTile(sn))
                 {
                     int counter = 0;
 
@@ -128,7 +129,7 @@ namespace IslandBoy
                     }
                 }
 
-                if (_tmr.WallTilemap.HasTile(en) && _tmr.WallTilemap.HasTile(wn))
+                if (_wallTm.Tilemap.HasTile(en) && _wallTm.Tilemap.HasTile(wn))
                 {
                     int counter = 0;
 

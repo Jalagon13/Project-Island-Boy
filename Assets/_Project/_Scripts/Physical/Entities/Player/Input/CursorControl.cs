@@ -13,7 +13,8 @@ namespace IslandBoy
     public class CursorControl : MonoBehaviour
     {
         [SerializeField] private PlayerReference _pr;
-        [SerializeField] private TilemapReferences _tmr;
+        [SerializeField] private TilemapReference _floorTm;
+        [SerializeField] private TilemapReference _wallTm;
         [SerializeField] private float _startingClickDistance;
         [SerializeField] private float _clickCd = 0.1f;
         [SerializeField] private ItemParameter _powerParameter;
@@ -298,14 +299,14 @@ namespace IslandBoy
                 if (_focusSlotRef.ItemObject.ToolType != ToolType.Hammer) return false;
             if (Pointer.IsOverUI()) return false;
 
-            if (_tmr.WallTilemap.HasTile(Vector3Int.FloorToInt(_currentCenterPos)))
+            if (_wallTm.Tilemap.HasTile(Vector3Int.FloorToInt(_currentCenterPos)))
             {
-                DestroyTile(_tmr.WallTilemap);
+                DestroyTile(_wallTm.Tilemap);
                 return true;
             }
-            else if (_tmr.FloorTilemap.HasTile(Vector3Int.FloorToInt(_currentCenterPos)))
+            else if (_floorTm.Tilemap.HasTile(Vector3Int.FloorToInt(_currentCenterPos)))
             {
-                DestroyTile(_tmr.FloorTilemap);
+                DestroyTile(_floorTm.Tilemap);
                 return true;
             }
 

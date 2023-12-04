@@ -9,7 +9,6 @@ namespace IslandBoy
     [CreateAssetMenu(fileName = "New Deployable", menuName = "Create Item/New Deployable")]
     public class DeployObject : ItemObject
     {
-        [SerializeField] private TilemapReferences _tmr;
         [SerializeField] private GameObject _prefabToDeploy;
         [SerializeField] private AudioClip _deploySound;
 
@@ -18,8 +17,8 @@ namespace IslandBoy
 
         public override void ExecutePrimaryAction(FocusSlotControl control)
         {
-            bool wallTmHasTile = _tmr.WallTilemap.HasTile(Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position));
-            bool groundTmHasTile = _tmr.GroundTilemap.HasTile(Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position));
+            bool wallTmHasTile = control.WallTm.Tilemap.HasTile(Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position));
+            bool groundTmHasTile = control.GroundTm.Tilemap.HasTile(Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position));
             bool tilActionClear = control.CursorControl.IsClear();
 
             if (tilActionClear && !wallTmHasTile && groundTmHasTile)

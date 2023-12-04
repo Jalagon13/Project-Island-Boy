@@ -10,9 +10,11 @@ namespace IslandBoy
 {
     public class UpgradeSlot : Slot
     {
+        [Header("Upgrade Slot")]
         [SerializeField] private TextMeshProUGUI _upgradeText;
         [SerializeField] private TextMeshProUGUI _needText;
         [SerializeField] private Button _upgradeButton;
+        [SerializeField] private AudioClip _upgradeSound;
 
         private CraftingRecipeObject _upgradeRecipe;
         private int _xpNeedAmount;
@@ -145,7 +147,7 @@ namespace IslandBoy
                     _pr.Inventory.RemoveItem(ia.Item, ia.Amount);
                 }
 
-                MMSoundManagerSoundPlayEvent.Trigger(_popSound, MMSoundManager.MMSoundManagerTracks.UI, transform.position);
+                MMSoundManagerSoundPlayEvent.Trigger(_upgradeSound, MMSoundManager.MMSoundManagerTracks.UI, transform.position);
                 PlayerExperience.AddExerpience(-_xpNeedAmount);
                 GameSignals.ITEM_CRAFTED.Dispatch();
 

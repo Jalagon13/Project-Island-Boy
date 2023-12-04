@@ -7,7 +7,9 @@ namespace IslandBoy
 {
     public class FocusSlotControl : MonoBehaviour
     {
-        [SerializeField] private TilemapReferences _tmr;
+        [SerializeField] private TilemapReference _wallTm;
+        [SerializeField] private TilemapReference _floorTm;
+        [SerializeField] private TilemapReference _groundTm;
 
         private Timer _primaryDelayCooldownTimer;
         private Timer _secondaryDelayCooldownTimer;
@@ -25,7 +27,9 @@ namespace IslandBoy
 
         public Slot FocusSlot { get { return _focusSlot; } }
         public Player Player { get { return _player; } }
-        public TilemapReferences TMR { get { return _tmr; } }
+        public TilemapReference WallTm { get { return _wallTm; } }
+        public TilemapReference FloorTm { get { return _floorTm; } }
+        public TilemapReference GroundTm { get { return _groundTm; } }
         public CursorControl CursorControl { get { return _cursorControl; } }
 
         private void Awake()

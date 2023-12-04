@@ -9,39 +9,48 @@ namespace IslandBoy
 {
     public class IslandShrine : MonoBehaviour
     {
+        [SerializeField] private PlayerReference _pr;
+        [SerializeField] private CraftingRecipeObject _expansionRecipe;
         [SerializeField] private int _unlockFee;
-        [TextArea()]
-        [SerializeField] private string _description;
-        [SerializeField] private TextMeshProUGUI _entranceText;
-        [SerializeField] private UnityEvent _onUnlock;
-
-        private bool _unlocked;
+        [SerializeField] private string _transitionScene;
+        [SerializeField] private TextMeshProUGUI _expansionText;
 
         private void Awake()
         {
-            _entranceText.text = $"I need {_unlockFee} XP to unlock<br>{_description}";
+            string needList = string.Empty;
+
+            foreach (ItemAmount itemAmount in _expansionRecipe.ResourceList)
+            {
+                needList += $"<br>* {itemAmount.Item.Name} ({itemAmount.Amount})";
+            }
+
+            needList += $"<br>* {_unlockFee} XP";
+
+            _expansionText.text = $"Expand Island Reqs:{needList}";
         }
 
-        public void TryUnlockDesert()
+        public void TryExpand()
         {
-            if(_unlocked)
+            foreach (ItemAmount ia in _expansionRecipe.ResourceList)
             {
-                PopupMessage.Create(transform.position, $"I already unlocked this.", Color.yellow, Vector2.up, 1f);
+                bool canCraft = _pr.Inventory.Contains(ia.Item, ia.Amount);
+
+                if (!canCraft)
+                {
+                    PopupMessage.Create(transform.position, $"I am missing some items", Color.yellow, Vector2.up * 2, 1f);
+                    return;
+                }
+            }
+
+            if (PlayerExperience.Experience.Count < _unlockFee)
+            {
+                PopupMessage.Create(transform.position, $"I need more XP", Color.yellow, Vector2.up * 2, 1f);
                 return;
             }
 
-            if(PlayerExperience.Experience.Count >= _unlockFee)
-            {
-                PopupMessage.Create(transform.position, $"{_description} unlocked!", Color.green, Vector2.up, 1f);
-                PlayerExperience.AddExerpience(-_unlockFee);
+            PopupMessage.Create(transform.position, $"Expanding Island!", Color.green, Vector2.up * 2, 1f);
 
-                _unlocked = true;
-                _onUnlock?.Invoke();
-            }
-            else
-            {
-                PopupMessage.Create(transform.position, $"You need more XP", Color.yellow, Vector2.up, 1f);
-            }
+
         }
 
         // super temporary

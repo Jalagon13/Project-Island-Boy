@@ -336,6 +336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 365781311}
   - component: {fileID: 365781310}
+  - component: {fileID: 365781312}
   m_Layer: 0
   m_Name: MMSoundManager
   m_TagString: Untagged
@@ -374,6 +375,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &365781312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365781309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e68ed59f1d60fc4aad4a15e3ffc9d8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ambientSound: {fileID: 8300000, guid: 340d28e0e1e47194883710ff4a73c294, type: 3}
+  _bgMusic: {fileID: 8300000, guid: 0e88e17b0eda8c94d9fe4d20ca46fe42, type: 3}
 --- !u!1 &389596063
 GameObject:
   m_ObjectHideFlags: 0
@@ -1115,7 +1130,7 @@ Transform:
   m_GameObject: {fileID: 1445392568}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 0.5, z: 0}
+  m_LocalPosition: {x: -0.5, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1496,7 +1511,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _tmr: {fileID: 11400000, guid: ec06355a14da7574295ea6e79aaebb6f, type: 2}
+  _floorTm: {fileID: 11400000, guid: b781d136d63e9ae4597a0e6a2aba4acd, type: 2}
+  _wallTm: {fileID: 11400000, guid: f6a16e81c33dd85419a8102faaa86be0, type: 2}
   _startingClickDistance: 1.35
   _clickCd: 0.235
   _powerParameter:
@@ -1564,7 +1580,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a04ebba4f25ef49b704d63d0cb6aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tmr: {fileID: 11400000, guid: ec06355a14da7574295ea6e79aaebb6f, type: 2}
+  _wallTm: {fileID: 11400000, guid: f6a16e81c33dd85419a8102faaa86be0, type: 2}
+  _floorTm: {fileID: 11400000, guid: b781d136d63e9ae4597a0e6a2aba4acd, type: 2}
+  _groundTm: {fileID: 11400000, guid: fa010110aca24f846b41a4a35146fe4c, type: 2}
 --- !u!114 &3852835110750040072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1835,7 +1853,7 @@ Transform:
   m_GameObject: {fileID: 4210445617747853061}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
+  m_LocalPosition: {x: -0.5, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2192,7 +2210,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43127cb7c1c73c943bce34009463f6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tmr: {fileID: 11400000, guid: ec06355a14da7574295ea6e79aaebb6f, type: 2}
+  _wallTm: {fileID: 11400000, guid: f6a16e81c33dd85419a8102faaa86be0, type: 2}
+  _floorTm: {fileID: 11400000, guid: b781d136d63e9ae4597a0e6a2aba4acd, type: 2}
   _monsterPrefab: {fileID: 6224312026178961618, guid: 64500d3032b4c6a4e90b42d01a16430c, type: 3}
   _maxMonsterCount: 4
   _minSpawnTimerSec: 20

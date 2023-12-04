@@ -17,10 +17,10 @@ namespace IslandBoy
         {
             var pos = Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position);
 
-            if (!control.TMR.WallTilemap.HasTile(pos) && control.CursorControl.IsClear() && control.TMR.GroundTilemap.HasTile(pos))
+            if (!control.WallTm.Tilemap.HasTile(pos) && control.CursorControl.IsClear())
             {
                 control.FocusSlot.InventoryItem.Count--;
-                control.TMR.WallTilemap.SetTile(pos, _wallTile);
+                control.WallTm.Tilemap.SetTile(pos, _wallTile);
 
                 GameSignals.ITEM_DEPLOYED.Dispatch();
 

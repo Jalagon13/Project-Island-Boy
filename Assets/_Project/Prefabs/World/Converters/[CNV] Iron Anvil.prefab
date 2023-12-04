@@ -1170,7 +1170,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Place a tool here to upgrade
+  m_text: 'Iron Anvil:
+
+    Place a tool here to upgrade'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
   m_sharedMaterial: {fileID: 4835514525599508895, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
@@ -1197,8 +1199,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1371,20 +1373,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 650ea134123f86d40b8fd0e6ebc1f173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dontGiveXp: 0
   _maxHitPoints: 6
   _breakType: 2
-  _dontGiveXp: 0
   _clickFeedback: {fileID: 2867197687979788526}
   _destroyFeedback: {fileID: 514644100431552703}
-  _hitSound: {fileID: 8300000, guid: 9a262ed27dacc294c9df37f2265e9949, type: 3}
-  _breakSound: {fileID: 8300000, guid: e2b6630a648447b47a66f7f8325c7440, type: 3}
   _lootTable:
     <Table>k__BackingField:
     - Item: {fileID: 11400000, guid: 094c99f31de27a34bb5bfa75e568b3b6, type: 2}
       Min: 1
       Max: 1
       Chance: 100
-  _destructable: 1
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _prompCanvas: {fileID: 7040909711411863758}
   _onOpenPrompt:

@@ -15,10 +15,10 @@ namespace IslandBoy
         {
             var pos = Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position);
 
-            if (!control.TMR.WallTilemap.HasTile(pos) && !control.TMR.FloorTilemap.HasTile(pos) && control.TMR.GroundTilemap.HasTile(pos))
+            if (!control.WallTm.Tilemap.HasTile(pos) && !control.FloorTm.Tilemap.HasTile(pos))
             {
                 control.FocusSlot.InventoryItem.Count--;
-                control.TMR.FloorTilemap.SetTile(pos, _floorTile);
+                control.FloorTm.Tilemap.SetTile(pos, _floorTile);
                 GameSignals.ITEM_DEPLOYED.Dispatch();
                 MMSoundManagerSoundPlayEvent.Trigger(_floorTile.PlaceSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
             }

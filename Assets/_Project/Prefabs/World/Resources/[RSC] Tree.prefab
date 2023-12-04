@@ -49,6 +49,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[2].Max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[2].Min
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Item
       value: 
       objectReference: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
@@ -57,8 +65,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: bae05631bee9b75479ea8f1d94e134e9, type: 2}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[2].Item
+      value: 
+      objectReference: {fileID: 11400000, guid: c4ce71b364a5e1c41a019d22b7151953, type: 2}
+    - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[1].Chance
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[2].Chance
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2338195570747279988, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_LocalPosition.y

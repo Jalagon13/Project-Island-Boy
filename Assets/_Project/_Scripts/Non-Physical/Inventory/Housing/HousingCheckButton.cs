@@ -9,7 +9,7 @@ namespace IslandBoy
     public class HousingCheckButton : MonoBehaviour
     {
         [SerializeField] private PlayerReference _pr;
-        [SerializeField] private TilemapReferences _tmr;
+        [SerializeField] private TilemapReference _tmr;
         [SerializeField] private AdventurerEntity _adventurerPrefab;
         [SerializeField] private FeedbackHolder _feedbackHolder;
         [SerializeField] private AudioClip _sonarSound;
@@ -69,11 +69,11 @@ namespace IslandBoy
                 var p = tilesToCheck.Pop();
 
                 // if there is a tile without floor or wall then it is not an enclosed area
-                if (!_tmr.FloorTilemap.HasTile(p) && !_tmr.WallTilemap.HasTile(p) && !HasDoor(p))
-                {
-                    _feedbackHolder.DisplayFeedback("Not valid housing. Make sure the area around you is enclosed.", Color.yellow);
-                    return;
-                }
+                //if (!_tmr.FloorTilemap.HasTile(p) && !_tmr.WallTilemap.HasTile(p) && !HasDoor(p))
+                //{
+                //    _feedbackHolder.DisplayFeedback("Not valid housing. Make sure the area around you is enclosed.", Color.yellow);
+                //    return;
+                //}
 
                 // if there is a door, add it do the door positions
                 if (HasDoor(p))
@@ -83,11 +83,11 @@ namespace IslandBoy
                 }
 
                 // if tile has a wall, continue
-                if (_tmr.WallTilemap.HasTile(p))
-                {
-                    wallTilePositions.Add(p);
-                    continue;
-                }
+                //if (_tmr.WallTilemap.HasTile(p))
+                //{
+                //    wallTilePositions.Add(p);
+                //    continue;
+                //}
 
                 // check for checklist RSC here, 
                 var centerPos = new Vector2(p.x + 0.5f, p.y + 0.5f);
@@ -202,39 +202,39 @@ namespace IslandBoy
                 Vector3Int en = new(p.x + 1, p.y);
                 Vector3Int wn = new(p.x - 1, p.y);
 
-                if (_tmr.WallTilemap.HasTile(nn) && _tmr.WallTilemap.HasTile(sn))
-                {
-                    int counter = 0;
+                //if (_tmr.WallTilemap.HasTile(nn) && _tmr.WallTilemap.HasTile(sn))
+                //{
+                //    int counter = 0;
 
-                    if (floorTilePositions.Contains(en))
-                        counter++;
+                //    if (floorTilePositions.Contains(en))
+                //        counter++;
 
-                    if (floorTilePositions.Contains(wn))
-                        counter++;
+                //    if (floorTilePositions.Contains(wn))
+                //        counter++;
 
-                    if(counter == 1)
-                    {
-                        validDoorFound = true;
-                        break;
-                    }
-                }
+                //    if(counter == 1)
+                //    {
+                //        validDoorFound = true;
+                //        break;
+                //    }
+                //}
 
-                if (_tmr.WallTilemap.HasTile(en) && _tmr.WallTilemap.HasTile(wn))
-                {
-                    int counter = 0;
+                //if (_tmr.WallTilemap.HasTile(en) && _tmr.WallTilemap.HasTile(wn))
+                //{
+                //    int counter = 0;
 
-                    if (floorTilePositions.Contains(nn))
-                        counter++;
+                //    if (floorTilePositions.Contains(nn))
+                //        counter++;
 
-                    if (floorTilePositions.Contains(sn))
-                        counter++;
+                //    if (floorTilePositions.Contains(sn))
+                //        counter++;
 
-                    if (counter == 1)
-                    {
-                        validDoorFound = true;
-                        break;
-                    }
-                }
+                //    if (counter == 1)
+                //    {
+                //        validDoorFound = true;
+                //        break;
+                //    }
+                //}
             }
 
             if (!validDoorFound)
