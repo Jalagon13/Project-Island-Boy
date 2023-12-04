@@ -136,7 +136,7 @@ MonoBehaviour:
     - rid: 1619343171848765451
       type: {class: MMF_SpriteRenderer, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
-        Active: 1
+        Active: 0
         UniqueID: -1260090549
         Label: SpriteRenderer
         ChannelMode: 0
@@ -215,7 +215,7 @@ MonoBehaviour:
         ModifyColor: 1
         ColorOverTime:
           serializedVersion: 2
-          key0: {r: 1, g: 1, b: 1, a: 0.27450982}
+          key0: {r: 1, g: 1, b: 1, a: 0.6039216}
           key1: {r: 1, g: 1, b: 1, a: 1}
           key2: {r: 0, g: 0, b: 0, a: 1}
           key3: {r: 0, g: 0, b: 0, a: 1}
@@ -232,7 +232,7 @@ MonoBehaviour:
           ctime6: 0
           ctime7: 0
           atime0: 0
-          atime1: 32382
+          atime1: 14649
           atime2: 33539
           atime3: 65535
           atime4: 0
@@ -840,8 +840,8 @@ MonoBehaviour:
         m_Calls: []
   DebugActive: 0
   FeedbacksList:
-  - rid: 1619343171848765462
   - rid: 1619343171848765445
+  - rid: 1619343171848765462
   - rid: 1619343171848765446
   - rid: 1619343171848765449
   KeepPlayModeChanges: 0
@@ -936,10 +936,10 @@ MonoBehaviour:
             inWeight: 0
             outWeight: 0
           - serializedVersion: 3
-            time: 0.17823657
-            value: 0.68481445
-            inSlope: 2.9713082
-            outSlope: 2.9713082
+            time: 0.17491278
+            value: 0.69213974
+            inSlope: 2.9880564
+            outSlope: 2.9880564
             tangentMode: 0
             weightedMode: 0
             inWeight: 0.33333334
@@ -954,8 +954,17 @@ MonoBehaviour:
             inWeight: 0
             outWeight: 0
           - serializedVersion: 3
-            time: 0.98095703
-            value: 0.9133911
+            time: 0.8554147
+            value: 0.627124
+            inSlope: -2.9954493
+            outSlope: -2.9954493
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 1
+            value: 0
             inSlope: 0
             outSlope: 0
             tangentMode: 0
@@ -965,8 +974,8 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        RemapOrthographicSizeZero: 9.9
-        RemapOrthographicSizeOne: 10
+        RemapOrthographicSizeZero: 11.5
+        RemapOrthographicSizeOne: 11
     - rid: 1619343171848765446
       type: {class: MMF_Particles, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:

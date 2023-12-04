@@ -106,6 +106,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -299,13 +312,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ws_spike
+      name: ws_shrine
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 16
-        height: 24
+        height: 41
       alignment: 9
       pivot: {x: 0.5, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -339,7 +352,7 @@ TextureImporter:
       ws_cave_level_ascend: 1449772273
       ws_cave_level_descend: -363508920
       ws_locked_hatch: -1019726668
-      ws_spike: -269424206
+      ws_shrine: -269424206
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

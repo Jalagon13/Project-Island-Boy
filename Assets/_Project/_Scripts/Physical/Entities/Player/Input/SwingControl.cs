@@ -105,7 +105,7 @@ namespace IslandBoy
         public void OnSwingStart()
         {
             _performingSwing = true;
-            MMSoundManagerSoundPlayEvent.Trigger(_wooshClip, MMSoundManager.MMSoundManagerTracks.Sfx, transform.position, pitch: Random.Range(0.85f, 1.15f), volume: 0.75f);
+            //MMSoundManagerSoundPlayEvent.Trigger(_wooshClip, MMSoundManager.MMSoundManagerTracks.Sfx, transform.position, pitch: Random.Range(0.85f, 1.15f), volume: 0.75f);
         }
 
         public void OnSwingEnd()
