@@ -49,9 +49,9 @@ namespace IslandBoy
                     case "Hit":
                         hitValue = item.Value;
                         break;
-                    case "ClickDistance":
-                        clickDistance = item.Value;
-                        break;
+                    //case "ClickDistance":
+                    //    clickDistance = item.Value;
+                    //    break;
                     case "Damage":
                         damage = item.Value;
                         break;
@@ -76,10 +76,10 @@ namespace IslandBoy
                     break;
             }
 
-            string upgradeText = _upgradeRecipe != null ? $"<br>• upgrades into {_upgradeRecipe.OutputItem.Name}" : string.Empty;
+            string upgradeText = _upgradeRecipe != null ? $"• Upgradable at Iron Anvil<br>• Next upgrade: {_upgradeRecipe.OutputItem.Name}" : string.Empty;
             string damageText = $"{damage} damage<br>";
 
-            return $"{toolTypeDesc}• {damageText}• {clickDistance} click distance{upgradeText}";
+            return $"{toolTypeDesc}• {damageText}{upgradeText}";
         }
     }
 }
