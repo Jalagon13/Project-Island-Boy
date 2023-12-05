@@ -17,7 +17,7 @@ namespace IslandBoy
         [SerializeField] private TilemapReference _wallTm;
         [SerializeField] private float _startingClickDistance;
         [SerializeField] private float _clickCd = 0.1f;
-        [SerializeField] private ItemParameter _powerParameter;
+        [SerializeField] private ItemParameter _hitParameter;
         [SerializeField] private ItemParameter _clickDistanceParameter;
 
         private PlayerInput _input;
@@ -192,9 +192,9 @@ namespace IslandBoy
         {
             if (_focusSlotRef.ItemObject == null) return 0;
 
-            if (_focusSlotRef.ItemObject.DefaultParameterList.Contains(_powerParameter))
+            if (_focusSlotRef.ItemObject.DefaultParameterList.Contains(_hitParameter))
             {
-                var index = _focusSlotRef.ItemObject.DefaultParameterList.IndexOf(_powerParameter);
+                var index = _focusSlotRef.ItemObject.DefaultParameterList.IndexOf(_hitParameter);
                 var powerParameter = _focusSlotRef.ItemObject.DefaultParameterList[index];
 
                 return (int)powerParameter.Value;
@@ -298,6 +298,7 @@ namespace IslandBoy
             if (_focusSlotRef.ItemObject != null)
                 if (_focusSlotRef.ItemObject.ToolType != ToolType.Hammer) return false;
             if (Pointer.IsOverUI()) return false;
+            if (CalcToolHitAmount() <= 0) return false;
 
             if (_wallTm.Tilemap.HasTile(Vector3Int.FloorToInt(_currentCenterPos)))
             {

@@ -1244,7 +1244,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1252,6 +1252,27 @@ TextureImporter:
       bones: []
       spriteID: e200bb596422ba54098d826d3a982237
       internalID: -1499702813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_broken_hammer
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56707bc61ec726446aaa3b5dd6ddc228
+      internalID: -1305312829
       vertices: []
       indices: 
       edges: []
@@ -1272,6 +1293,7 @@ TextureImporter:
       item_bed: -1855741160
       item_boulder_spell: -1882208785
       item_bow: 1529562530
+      item_broken_hammer: -1305312829
       item_broken_pickaxe: -1499702813
       item_campfire: 1223464883
       item_chest: 1962245853
