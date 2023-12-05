@@ -297,6 +297,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!1 &1205897856631513706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8212437254625876517}
+  m_Layer: 0
+  m_Name: RootPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8212437254625876517
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205897856631513706}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.4, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8805461347593309612}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2914246315516112608
 GameObject:
   m_ObjectHideFlags: 0
@@ -6471,6 +6502,7 @@ Transform:
   - {fileID: 7662448249366904185}
   - {fileID: 1617722995946209602}
   - {fileID: 3799450301094004550}
+  - {fileID: 8212437254625876517}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &4144664716987894339
@@ -6548,7 +6580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dontGiveXp: 0
-  _maxHitPoints: 200
+  _maxHitPoints: 300
   _breakType: 3
   _clickFeedback: {fileID: 4857741665004852582}
   _destroyFeedback: {fileID: 6431521983977084862}
@@ -6588,10 +6620,13 @@ MonoBehaviour:
   thorn: {fileID: 6869286514326003167, guid: 124c4d56e117ee24987fd4e97db8a0f4, type: 3}
   thornPosL: {fileID: 1617722995946209602}
   thornPosR: {fileID: 3799450301094004550}
+  root: {fileID: 6869286514326003167, guid: f6bac9a82fcc229469f7c79c1bb89411, type: 3}
+  rootPos: {fileID: 8212437254625876517}
   _agroDistance: 20
-  _attackCooldown: 4
-  _attackFrequency: 2
-  _numAttacks: 3
+  _attackThornCooldown: 1
+  _attackThornFrequency: 2
+  _numThornAttacks: 3
+  _attackRootCooldown: 5
 --- !u!114 &4962389563074030918
 MonoBehaviour:
   m_ObjectHideFlags: 0

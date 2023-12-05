@@ -14,20 +14,28 @@ namespace IslandBoy
 
         public GameObject thorn;
         public Transform thornPosL, thornPosR;
+        public GameObject root;
+        public Transform rootPos;
 
         public readonly int HashIdle = Animator.StringToHash("[Anm] TreevilIdle");
         public readonly int HashMove = Animator.StringToHash("[Anm] TreevilMove");
         public readonly int HashAttack = Animator.StringToHash("[Anm] TreevilAttack");
 
-        private float timerCooldown;
-        private float timer;
-        private int attackNum;
+        private float thornTimerCooldown;
+        private float thornTimer;
+        private int thornAttackNum;
+        private float rootTimer;
 
 
         [SerializeField] private float _agroDistance;
-        [SerializeField] private float _attackCooldown; // in seconds, boss waits this amount of time before next series of attacks
-        [SerializeField] private float _attackFrequency; // in seconds, how frequent attacks occur in a series of attacks
-        [SerializeField] private int _numAttacks; // num of attacks per series of attacks
+        [SerializeField] private float _attackThornCooldown; // in seconds, boss waits this amount of time before next series of thorn attacks
+        [SerializeField] private float _attackThornFrequency; // in seconds, how frequent attacks occur in a series of thorn attacks
+        [SerializeField] private int _numThornAttacks; // num of thorn attacks per series of attacks
+
+        [SerializeField] private float _attackRootCooldown; // in seconds, boss waits this amount of time before next root attack
+
+        private string currentAttackType = "thorn";
+        private List<string> attackTypes = new List<string> {"thorn", "root"};
 
         private void Update()
         {
@@ -57,34 +65,62 @@ namespace IslandBoy
         public void FixedUpdate()
         {
             if (PlayerClose())
-                ShootThorns();
+            {
+                if (currentAttackType == "thorn")
+                    ShootThorns();
+                else if (currentAttackType == "root")
+                    RootAttack();
+            }
         }
 
         private void ShootThorns()
         {
-            if (attackNum >= _numAttacks)
+            if (thornAttackNum >= _numThornAttacks)
             {
-                timerCooldown += Time.deltaTime;
+                thornTimerCooldown += Time.deltaTime;
 
-                if (timerCooldown > _attackCooldown)
+                // After the Thorn Attack cooldown time has passed, the boss randomly switches its attack type
+                if (thornTimerCooldown > _attackThornCooldown)
                 {
-                    attackNum = 0;
-                    timerCooldown = 0;
+                    thornAttackNum = 0;
+                    thornTimerCooldown = 0;
+                    currentAttackType = PickAttackType();
                 }
             }
             else
             {
-                timer += Time.deltaTime;
+                thornTimer += Time.deltaTime;
 
-                if (timer > _attackFrequency)
+                if (thornTimer > _attackThornFrequency)
                 {
-                    timer = 0;
-                    attackNum++;
+                    thornTimer = 0;
+                    thornAttackNum++;
                     // shoot thorns
                     Instantiate(thorn, thornPosL.position, Quaternion.identity);
                     Instantiate(thorn, thornPosR.position, Quaternion.identity);
                 }
             }
+        }
+
+        private void RootAttack()
+        {
+            if (rootTimer == 0)
+                Instantiate(root, rootPos.position, Quaternion.identity);
+
+            rootTimer += Time.deltaTime;
+
+            // After the Root Attack cooldown time has passed, the boss randomly switches its attack type
+            if (rootTimer > _attackRootCooldown)
+            {
+                rootTimer = 0;
+                currentAttackType = PickAttackType();
+            }
+        }
+
+        private string PickAttackType()
+        {
+            int randomIndex = UnityEngine.Random.Range(0, attackTypes.Count);
+            return attackTypes[randomIndex];
         }
     }
 }

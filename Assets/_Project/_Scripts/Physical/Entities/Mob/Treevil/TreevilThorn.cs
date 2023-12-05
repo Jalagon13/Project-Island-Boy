@@ -48,7 +48,9 @@ namespace IslandBoy
 
             GameObject colliderGo = collision.gameObject;
 
-            if (!collision.gameObject.CompareTag("MOB"))
+            // This commented out code prevents thorns from hitting objects
+            // Might want to do something with it later but for now it's commented out
+            /*if (!collision.gameObject.CompareTag("MOB"))
             {
                 if (colliderGo.TryGetComponent<Clickable>(out var clickable))
                 {
@@ -59,7 +61,7 @@ namespace IslandBoy
 
                     Destroy(gameObject);
                 }
-            }
+            }*/
         }
     }
 }
