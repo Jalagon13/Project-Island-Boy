@@ -1,5 +1,9 @@
+using MoreMountains.Feedbacks;
+using MoreMountains.Tools;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace IslandBoy
@@ -12,6 +16,11 @@ namespace IslandBoy
         [SerializeField] private GameObject _tcSlotPrefab;
         [SerializeField] private RectTransform _slotHolder;
         [SerializeField] private RectTransform _progressInfo;
+        [SerializeField] private TextMeshProUGUI _craftText;
+        [Header("Game feel Parameters")]
+        [SerializeField] private MMF_Player _craftingStartFeedback;
+        [SerializeField] private MMF_Player _craftingOnGoingFeedback;
+        [SerializeField] private MMF_Player _craftingDoneFeedback;
 
         private Canvas _tcCanvas;
         private bool _appQuitting;
@@ -37,8 +46,15 @@ namespace IslandBoy
 
             if (_appQuitting) return;
 
-            _craftingTimer.OnTimerEnd -= CraftItem;
-            EnableUI(false);
+            for (int i = 0; i < _inProgressCount; i++)
+            {
+                foreach (ItemAmount ia in _inProgressRecipe.ResourceList)
+                {
+                    GameAssets.Instance.SpawnItem(transform.position + new Vector3(0.5f, 0.5f, 0f), ia.Item, ia.Amount);
+                }
+            }
+
+            ResetProcess();
         }
 
         private void OnApplicationQuit()
@@ -48,8 +64,8 @@ namespace IslandBoy
 
         public override IEnumerator Start()
         {
-            OnPlayerExitRange += () => EnableUI(false);
-            EnableUI(false);
+            OnPlayerExitRange += () => DisableUI();
+            DisableUI();
 
             return base.Start();
         }
@@ -59,45 +75,74 @@ namespace IslandBoy
             base.Update();
 
             _craftingTimer.Tick(Time.deltaTime);
+
+            if(_craftingInProgress)
+                _craftText.text = $"Crafting: {_inProgressRecipe.OutputItem.Name} [{_inProgressCount}]<br>{Math.Round(_craftingTimer.RemainingSeconds, 1)} sec";
         }
 
         public override void Interact()
         {
-            if (!_canInteract) return;
+            if (!_canInteract || _tcCanvas.gameObject.activeInHierarchy) return;
 
-            EnableUI(true);
+            EnableUI();
             ResetCraftSlots();
             SetUpRecipes();
-            DispatchTcSignal();
             EnableInstructions(false);
+            DispatchTcSignal();
         }
 
-        public void TryToStartCraftingProcess(CraftingRecipeObject recipe)
+        public void TryToStartCraftingProcess(CraftingRecipeObject incomingRecipe)
         {
-            Debug.Log($"Timed Conversion started for: {recipe.OutputItem}");
+            Debug.Log($"Timed Conversion started for: {incomingRecipe.OutputItem.Name}");
 
-            // if conversion in progress
-            //  if current output is the same as this recipe output,
-            //      add another stack
-            //      and take away items from player
-            //  if current output is different as this recipe output,
-            //      give back player's items,
-            //      override recipe with new recipe
-            //      take items from player for new recipe
-            // if conversion is NOT in progress
-            //  take items from player for new recipe
-            //  set current recipe to new recipe
-
-            StartCrafting(recipe);
+            if (_craftingInProgress)
+            {
+                if (incomingRecipe.OutputItem.Name == _inProgressRecipe.OutputItem.Name)
+                {
+                    AddOneToCraftQueue();
+                }
+                else
+                {
+                    EmptyCraftQueue();
+                    OverrideCraftingInProgress(incomingRecipe);
+                    AddOneToCraftQueue();
+                }
+            }
+            else
+            {
+                OverrideCraftingInProgress(incomingRecipe);
+                AddOneToCraftQueue();
+            }
         }
 
-        private void StartCrafting(CraftingRecipeObject recipe)
+        private void OverrideCraftingInProgress(CraftingRecipeObject incomingRecipe)
         {
-            _inProgressRecipe = recipe;
+            _inProgressRecipe = incomingRecipe;
+            _craftingOnGoingFeedback?.PlayFeedbacks();
+            _craftingTimer.RemainingSeconds = _craftTimerSec;
+            _craftingTimer.OnTimerEnd -= CraftItem;
+            _craftingTimer.OnTimerEnd += CraftItem;
+        }
+
+        public void EmptyCraftQueue()
+        {
+            for (int i = 0; i < _inProgressCount; i++)
+            {
+                foreach (ItemAmount ia in _inProgressRecipe.ResourceList)
+                {
+                    _pr.Inventory.AddItem(ia.Item, ia.Amount);
+                }
+            }
+
+            ResetProcess();
+        }
+
+        private void AddOneToCraftQueue()
+        {
+            _craftingStartFeedback?.PlayFeedbacks();
             _inProgressCount++;
             _craftingInProgress = true;
-            _craftingTimer.RemainingSeconds = _craftTimerSec;
-            _craftingTimer.OnTimerEnd += CraftItem;
+            _progressInfo.gameObject.SetActive(true);
 
             foreach (ItemAmount ia in _inProgressRecipe.ResourceList)
             {
@@ -107,9 +152,35 @@ namespace IslandBoy
 
         private void CraftItem()
         {
-            Debug.Log("Spawn Item here!");
+            Vector3 offset = transform.position + new Vector3(0.5f, 0f, 0f);
+            PopupMessage.Create(offset, $"+{_inProgressRecipe.OutputAmount} {_inProgressRecipe.OutputItem.Name}", Color.green, default, 1f);
+            GameAssets.Instance.SpawnItem(offset, _inProgressRecipe.OutputItem, _inProgressRecipe.OutputAmount);
+            _craftingDoneFeedback?.PlayFeedbacks();
+
             _inProgressCount--;
-            _craftingInProgress = _inProgressCount > 0;
+
+            if (_inProgressCount > 0)
+            {
+                _craftingTimer.RemainingSeconds = _craftTimerSec;
+                _craftingInProgress = true;
+            }
+            else
+            {
+                ResetProcess();
+            }
+        }
+
+        private void ResetProcess()
+        {
+            _inProgressCount = 0;
+            _inProgressRecipe = null;
+            _craftingInProgress = false;
+            _craftingTimer.OnTimerEnd -= CraftItem;
+            _craftingStartFeedback?.StopFeedbacks();
+            _craftingOnGoingFeedback?.StopFeedbacks();
+            _craftingDoneFeedback?.StopFeedbacks();
+            _progressInfo.gameObject.SetActive(false);
+            transform.GetChild(0).localScale = Vector3.one;
         }
 
         private void SetUpRecipes()
@@ -119,7 +190,6 @@ namespace IslandBoy
             for (int i = 0; i < _cdb.Database.Length; i++)
             {
                 GameObject cs = Instantiate(_tcSlotPrefab, _slotHolder.transform);
-
                 CraftSlot craftSlot = cs.GetComponent<CraftSlot>();
                 craftSlot.Initialize(_cdb.Database[i]);
             }
@@ -146,12 +216,18 @@ namespace IslandBoy
 
         private void CloseUI(ISignalParameters parameters)
         {
-            EnableUI(false);
+            DisableUI();
         }
 
-        public void EnableUI(bool val)
+        public void EnableUI()
         {
-            _tcCanvas.gameObject.SetActive(val);
+            _tcCanvas.gameObject.SetActive(true);
+            _progressInfo.gameObject.SetActive(_craftingInProgress);
+        }
+
+        public void DisableUI()
+        {
+            _tcCanvas.gameObject.SetActive(false);
         }
 
         public override void ShowDisplay()

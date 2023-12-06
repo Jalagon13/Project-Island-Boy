@@ -135,7 +135,7 @@ namespace IslandBoy
         {
             if (!_canInteract) return;
 
-            _instructions.gameObject.SetActive(false);
+            EnableInstructions(false);
             DispatchChestInteract();
             EnableChestSlots(true);
         }
