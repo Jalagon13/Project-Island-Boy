@@ -12,7 +12,7 @@ namespace IslandBoy
         [SerializeField] protected PlayerReference _pr;
         [SerializeField] protected GameObject _inventoryItemPrefab;
         [SerializeField] protected AudioClip _popSound;
-        [SerializeField] protected bool _isChestSlot; // BROOKE
+        protected bool _isChestSlot; // BROOKE
 
         protected MouseSlot _mouseItemHolder;
         protected int _maxStack;
@@ -227,6 +227,12 @@ namespace IslandBoy
         public void SetCount(int num)
         {
             transform.GetChild(0).GetComponent<InventoryItem>().Count = num;
-        } // BROOKE ------------------------------------
+        } 
+        
+        public void SetChestSlot() // used by chests to mark their slots as chest slots
+        {
+            _isChestSlot = true;
+        }
+        // BROOKE ------------------------------------
     }
 }
