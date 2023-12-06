@@ -165,6 +165,9 @@ SpriteAtlas:
     - 1847dbe27d432ae4cb04c7343c7a2476: -6620820232539811603
     - 1847dbe27d432ae4cb04c7343c7a2476: -3224643081689725074
     - 9ac8f353dc71bd54c96c44fbb6737fcd: 21300000
+    - 84188563c40383642a900a2417e9b488: 1692513690
+    - 84188563c40383642a900a2417e9b488: 63348611
+    - 84188563c40383642a900a2417e9b488: -589386608
     - a8ee0b54010a00942b1d90cd4c8f59ca: 2076171840444846165
     - a8ee0b54010a00942b1d90cd4c8f59ca: -9106617006756775740
     - a8ee0b54010a00942b1d90cd4c8f59ca: -4499265758946509467
@@ -504,7 +507,6 @@ SpriteAtlas:
     - 3d0ff78a03265684f887aa7159f47389: 1382216607
     - 3d0ff78a03265684f887aa7159f47389: 755993833
     - 3d0ff78a03265684f887aa7159f47389: -964846675
-    - 0bc581cae6a75eb409fcbc8052d04706: 21300000
     - f26f48daf8f5428489afd48be52c6594: -363508920
     - f26f48daf8f5428489afd48be52c6594: 1293468864
     - f26f48daf8f5428489afd48be52c6594: -801796302
@@ -536,7 +538,6 @@ SpriteAtlas:
     - e4e3352ba13a2cb428cbccac681e9823: 7938940182830268182
     - e4e3352ba13a2cb428cbccac681e9823: -8157337137502883851
     - e4e3352ba13a2cb428cbccac681e9823: -1685163804936895404
-    - a05847ec42768054d8f05e3efb8ea205: 21300000
     - c2224cecd72da2f4484f0a90ba275a2c: -2025918478
     - c2224cecd72da2f4484f0a90ba275a2c: 874653563
     - c2224cecd72da2f4484f0a90ba275a2c: -1318957766
@@ -807,6 +808,9 @@ SpriteAtlas:
   - {fileID: -6620820232539811603, guid: 1847dbe27d432ae4cb04c7343c7a2476, type: 3}
   - {fileID: -3224643081689725074, guid: 1847dbe27d432ae4cb04c7343c7a2476, type: 3}
   - {fileID: 21300000, guid: 9ac8f353dc71bd54c96c44fbb6737fcd, type: 3}
+  - {fileID: 1692513690, guid: 84188563c40383642a900a2417e9b488, type: 3}
+  - {fileID: 63348611, guid: 84188563c40383642a900a2417e9b488, type: 3}
+  - {fileID: -589386608, guid: 84188563c40383642a900a2417e9b488, type: 3}
   - {fileID: 2076171840444846165, guid: a8ee0b54010a00942b1d90cd4c8f59ca, type: 3}
   - {fileID: -9106617006756775740, guid: a8ee0b54010a00942b1d90cd4c8f59ca, type: 3}
   - {fileID: -4499265758946509467, guid: a8ee0b54010a00942b1d90cd4c8f59ca, type: 3}
@@ -1146,7 +1150,6 @@ SpriteAtlas:
   - {fileID: 1382216607, guid: 3d0ff78a03265684f887aa7159f47389, type: 3}
   - {fileID: 755993833, guid: 3d0ff78a03265684f887aa7159f47389, type: 3}
   - {fileID: -964846675, guid: 3d0ff78a03265684f887aa7159f47389, type: 3}
-  - {fileID: 21300000, guid: 0bc581cae6a75eb409fcbc8052d04706, type: 3}
   - {fileID: -363508920, guid: f26f48daf8f5428489afd48be52c6594, type: 3}
   - {fileID: 1293468864, guid: f26f48daf8f5428489afd48be52c6594, type: 3}
   - {fileID: -801796302, guid: f26f48daf8f5428489afd48be52c6594, type: 3}
@@ -1178,7 +1181,6 @@ SpriteAtlas:
   - {fileID: 7938940182830268182, guid: e4e3352ba13a2cb428cbccac681e9823, type: 3}
   - {fileID: -8157337137502883851, guid: e4e3352ba13a2cb428cbccac681e9823, type: 3}
   - {fileID: -1685163804936895404, guid: e4e3352ba13a2cb428cbccac681e9823, type: 3}
-  - {fileID: 21300000, guid: a05847ec42768054d8f05e3efb8ea205, type: 3}
   - {fileID: -2025918478, guid: c2224cecd72da2f4484f0a90ba275a2c, type: 3}
   - {fileID: 874653563, guid: c2224cecd72da2f4484f0a90ba275a2c, type: 3}
   - {fileID: -1318957766, guid: c2224cecd72da2f4484f0a90ba275a2c, type: 3}
@@ -1448,6 +1450,9 @@ SpriteAtlas:
   - WS4_19
   - WS4_18
   - WS15
+  - Treevil_Sapling
+  - Treevil_Bark
+  - Treevil_Thorn
   - WS14_9
   - WS14_8
   - WS14_7
@@ -1787,7 +1792,6 @@ SpriteAtlas:
   - SPR Wood Wall Tiles_42
   - SPR Wood Wall Tiles_11
   - SPR Wood Wall Tiles_60
-  - Treevil Thorn
   - ws_cave_level_descend
   - rsc_stone
   - rsc_portal_core
@@ -1819,7 +1823,6 @@ SpriteAtlas:
   - WS7_8
   - WS7_20
   - WS7_18
-  - Treevil Sapling
   - SPR Stone Wall_57
   - SPR Stone Wall_56
   - SPR Stone Wall_55
