@@ -869,6 +869,7 @@ MonoBehaviour:
   _upgradeText: {fileID: 6232861603703912912}
   _needText: {fileID: 901945763533452657}
   _upgradeButton: {fileID: 3280935622671433869}
+  _upgradeSound: {fileID: 0}
 --- !u!1 &8855296390998507247
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,7 +1252,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3101685698662622380, guid: 705e2f0c60ddef248a9f090a86bc27dc, type: 3}
       propertyPath: m_Name
-      value: '[CNV] Iron Anvil'
+      value: '[CS] Iron Anvil'
       objectReference: {fileID: 0}
     - target: {fileID: 3637300847245684632, guid: 705e2f0c60ddef248a9f090a86bc27dc, type: 3}
       propertyPath: m_Sprite

@@ -32,7 +32,7 @@ namespace IslandBoy
                 CraftSlot craftSlot = cs.GetComponent<CraftSlot>();
                 craftSlot.Initialize(cdb.Database[i]);
 
-                CraftControl craftSlotCraftControl = cs.GetComponent<CraftControl>();
+                CsSlotCraft craftSlotCraftControl = cs.GetComponent<CsSlotCraft>();
                 craftSlotCraftControl.MouseItemHolder = _mouseItemHolder;
             }
         }

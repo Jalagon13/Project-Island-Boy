@@ -28,6 +28,7 @@ namespace IslandBoy
             _input.Enable();
 
             GameSignals.CHEST_INTERACT.AddListener(ChestInteract);
+            GameSignals.TIMED_CONVERTER_INTERACT.AddListener(TimedConverterInteract);
             GameSignals.GAME_PAUSED.AddListener(PauseHandle);
             GameSignals.GAME_UNPAUSED.AddListener(UnpauseHandle);
             GameSignals.PLAYER_DIED.AddListener(PauseHandle);
@@ -41,6 +42,7 @@ namespace IslandBoy
             _input.Disable();
 
             GameSignals.CHEST_INTERACT.RemoveListener(ChestInteract);
+            GameSignals.TIMED_CONVERTER_INTERACT.RemoveListener(TimedConverterInteract);
             GameSignals.GAME_PAUSED.RemoveListener(PauseHandle);
             GameSignals.GAME_UNPAUSED.RemoveListener(UnpauseHandle);
             GameSignals.PLAYER_DIED.RemoveListener(PauseHandle);
@@ -82,6 +84,15 @@ namespace IslandBoy
             OpenInventory(true); // BROOKE
             _craftHolder.gameObject.SetActive(false);
             InteractableHandle(chestOpened);
+        }
+
+        public void TimedConverterInteract(ISignalParameters parameters)
+        {
+            Interactable timedConverter = (Interactable)parameters.GetParameter("TimedConverter");
+
+            OpenInventory(true); // BROOKE
+            _craftHolder.gameObject.SetActive(false);
+            InteractableHandle(timedConverter);
         }
 
         public void CraftStationInteract(Interactable craftStation, CraftingDatabaseObject rdb)

@@ -310,9 +310,9 @@ GameObject:
   - component: {fileID: 2432644234524686432}
   - component: {fileID: 8264587770041999043}
   - component: {fileID: 3556255958571879958}
-  - component: {fileID: 7824127527109668474}
+  - component: {fileID: 3841614082292504385}
   m_Layer: 5
-  m_Name: '[UI] CraftSlot'
+  m_Name: '[UI] TCSlot'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -422,8 +422,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7824127527109668474}
-        m_TargetAssemblyTypeName: IslandBoy.CraftSlotCraftControl, Assembly-CSharp
+      - m_Target: {fileID: 3841614082292504385}
+        m_TargetAssemblyTypeName: IslandBoy.TCControl, Assembly-CSharp
         m_MethodName: TryToCraft
         m_Mode: 1
         m_Arguments:
@@ -448,7 +448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _rscSlotPrefab: {fileID: 3401008477222750777, guid: fb05475d13b3d20499b8c38723ea99f1, type: 3}
---- !u!114 &7824127527109668474
+--- !u!114 &3841614082292504385
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -457,7 +457,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6449567880495286189}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b76e36a4cf7d244684eaca08399aa5c, type: 3}
+  m_Script: {fileID: 11500000, guid: a73f2ac6ab0363a488dadcd88b02db84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}

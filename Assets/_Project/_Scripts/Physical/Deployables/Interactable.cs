@@ -45,6 +45,8 @@ namespace IslandBoy
         {
             if (collision.TryGetComponent<CursorControl>(out var cc))
             {
+                if (cc.FocusSlot == null) return;
+
                 if (cc.FocusSlot.ItemObject is WallObject || cc.FocusSlot.ItemObject is FloorObject || cc.FocusSlot.ItemObject is DeployObject)
                     return;
 

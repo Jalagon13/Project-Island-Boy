@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public class CraftControl : MonoBehaviour
+    public class CsSlotCraft : MonoBehaviour
     {
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private AudioClip _popSound;

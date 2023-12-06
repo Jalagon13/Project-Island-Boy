@@ -8,6 +8,7 @@ namespace IslandBoy
 {
     public class CraftSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
+        [SerializeField] private PlayerReference _pr;
         [SerializeField] private GameObject _rscSlotPrefab;
 
         private RectTransform _rscPanel;
@@ -16,7 +17,7 @@ namespace IslandBoy
         private Image _outputImage;
         private CraftingRecipeObject _recipe;
         private TextMeshProUGUI _amountText;
-        private Inventory _playerInventory;
+        //private Inventory _playerInventory;
         private bool _canCraft;
 
         public bool CanCraft { get { return _canCraft; } }
@@ -70,7 +71,7 @@ namespace IslandBoy
             _rscPanel = transform.GetChild(1).GetComponent<RectTransform>();
             _rscSlots = transform.GetChild(1).GetChild(0).GetComponent<RectTransform>();
             _amountText = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-            _playerInventory = transform.root.GetChild(0).GetComponent<Inventory>();
+            //_playerInventory = transform.root.GetChild(0).GetComponent<Inventory>();
             _recipe = recipe;
             _outputImage.sprite = recipe.OutputItem.UiDisplay;
             _hoverImage.SetItemDescription(recipe.OutputItem);
@@ -101,7 +102,7 @@ namespace IslandBoy
 
             foreach (ItemAmount ia in _recipe.ResourceList)
             {
-                canCraft = _playerInventory.Contains(ia.Item, ia.Amount);
+                canCraft = _pr.Inventory.Contains(ia.Item, ia.Amount);
 
                 if (!canCraft) break;
             }

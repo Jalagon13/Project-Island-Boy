@@ -439,6 +439,7 @@ SpriteAtlas:
     - 954f438adddea594dac0fb494f0869ae: 1663711594
     - 954f438adddea594dac0fb494f0869ae: 414997368
     - 954f438adddea594dac0fb494f0869ae: 1450040114
+    - 954f438adddea594dac0fb494f0869ae: -1535823503
     - 954f438adddea594dac0fb494f0869ae: -1413661134
     - 954f438adddea594dac0fb494f0869ae: 1168968723
     - 954f438adddea594dac0fb494f0869ae: 593532975
@@ -1083,6 +1084,7 @@ SpriteAtlas:
   - {fileID: 1663711594, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
   - {fileID: 414997368, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
   - {fileID: 1450040114, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
+  - {fileID: -1535823503, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
   - {fileID: -1413661134, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
   - {fileID: 1168968723, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
   - {fileID: 593532975, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
@@ -1726,6 +1728,7 @@ SpriteAtlas:
   - ws_tool_station
   - ws_chest
   - ws_tutorial_sign
+  - ws_furnace
   - ws_alchemy_station
   - ws_stone_anvil
   - ws_monster_forge
