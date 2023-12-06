@@ -6618,14 +6618,17 @@ MonoBehaviour:
   PR: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _agroSound: {fileID: 8300000, guid: 4a2e0c655ba2bda4e9d7e519bf84c9ca, type: 3}
   thorn: {fileID: 6869286514326003167, guid: 124c4d56e117ee24987fd4e97db8a0f4, type: 3}
+  branch: {fileID: 6869286514326003167, guid: f6bac9a82fcc229469f7c79c1bb89411, type: 3}
+  root: {fileID: 6869286514326003167, guid: d26cfb7fe3db5344b925eff5b4118477, type: 3}
   thornPosL: {fileID: 1617722995946209602}
   thornPosR: {fileID: 3799450301094004550}
-  root: {fileID: 6869286514326003167, guid: f6bac9a82fcc229469f7c79c1bb89411, type: 3}
   rootPos: {fileID: 8212437254625876517}
   _agroDistance: 20
   _attackThornCooldown: 1
   _attackThornFrequency: 2
-  _numThornAttacks: 3
+  _numQuickAttacksMin: 3
+  _numQuickAttacksMax: 6
+  _attackBranchCooldown: 2
   _attackRootCooldown: 5
 --- !u!114 &4962389563074030918
 MonoBehaviour:
