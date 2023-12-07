@@ -28,18 +28,8 @@ namespace IslandBoy
                 return;
             }
 
-            
+            GameSignals.ITEM_CRAFTED.Dispatch();
             _tc.TryToStartCraftingProcess(_cs.Recipe);
-
-            //if (!_mouseItemHolder.TryToCraftItem(_inventoryItemPrefab, _cs.Recipe.OutputItem, _cs.Recipe.OutputAmount)) return;
-
-            //foreach (ItemAmount ia in _cs.Recipe.ResourceList)
-            //{
-            //    _playerInventory.RemoveItem(ia.Item, ia.Amount);
-            //}
-
-            //MMSoundManagerSoundPlayEvent.Trigger(_popSound, MMSoundManager.MMSoundManagerTracks.UI, transform.position);
-            //GameSignals.ITEM_CRAFTED.Dispatch();
         }
     }
 }
