@@ -138,7 +138,7 @@ namespace IslandBoy
 
         private void RootAttack()
         {
-            if (quickAttackNum >= numQuickAttacks)
+            if (quickAttackNum >= numQuickAttacks * 2)
             {
                 quickAttackCooldownTimer += Time.deltaTime;
 
@@ -161,7 +161,7 @@ namespace IslandBoy
                 {
                     attackTimer = 0;
                     quickAttackNum++;
-                    Instantiate(root, PR.Position, Quaternion.identity);
+                    Instantiate(root, PR.Position + new Vector2(UnityEngine.Random.Range(-2, 2), UnityEngine.Random.Range(-2, 2)), Quaternion.identity);
                 }
             }
         }
