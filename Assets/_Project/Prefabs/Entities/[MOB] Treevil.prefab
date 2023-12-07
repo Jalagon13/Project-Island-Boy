@@ -6629,7 +6629,7 @@ MonoBehaviour:
   _numQuickAttacksMin: 3
   _numQuickAttacksMax: 6
   _attackBranchCooldown: 2
-  _attackRootCooldown: 5
+  _attackRootCooldown: 0.25
 --- !u!114 &4962389563074030918
 MonoBehaviour:
   m_ObjectHideFlags: 0
