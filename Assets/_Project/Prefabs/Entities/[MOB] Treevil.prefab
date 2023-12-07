@@ -322,7 +322,7 @@ Transform:
   m_GameObject: {fileID: 1205897856631513706}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.4, y: 0.5, z: 0}
+  m_LocalPosition: {x: 5.4, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6580,7 +6580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dontGiveXp: 0
-  _maxHitPoints: 300
+  _maxHitPoints: 500
   _breakType: 3
   _clickFeedback: {fileID: 4857741665004852582}
   _destroyFeedback: {fileID: 6431521983977084862}

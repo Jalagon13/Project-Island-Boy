@@ -82,6 +82,9 @@ namespace IslandBoy
                     case 2:
                         BranchAttack();
                         break;
+                    case 3:
+                        BranchAttack();
+                        break;
                     default:
                         ShootThorns();
                         break;
@@ -168,7 +171,7 @@ namespace IslandBoy
 
         private void PickAttackType()
         {
-            attackType = UnityEngine.Random.Range(0, 3);
+            attackType = UnityEngine.Random.Range(0, 4);
         }
     }
 }
