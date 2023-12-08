@@ -13,21 +13,37 @@ namespace IslandBoy
         public Action OnMove;
 
         public GameObject thorn;
+        public GameObject branch;
+        public GameObject root;
+
         public Transform thornPosL, thornPosR;
+        public Transform rootPos;
 
         public readonly int HashIdle = Animator.StringToHash("[Anm] TreevilIdle");
         public readonly int HashMove = Animator.StringToHash("[Anm] TreevilMove");
         public readonly int HashAttack = Animator.StringToHash("[Anm] TreevilAttack");
 
-        private float timerCooldown;
-        private float timer;
-        private int attackNum;
+        private float quickAttackCooldownTimer;
+        private float attackTimer;
+        private int quickAttackNum;
 
 
         [SerializeField] private float _agroDistance;
-        [SerializeField] private float _attackCooldown; // in seconds, boss waits this amount of time before next series of attacks
-        [SerializeField] private float _attackFrequency; // in seconds, how frequent attacks occur in a series of attacks
-        [SerializeField] private int _numAttacks; // num of attacks per series of attacks
+        [SerializeField] private float _attackThornCooldown; // in seconds, boss waits this amount of time before next series of thorn attacks
+        [SerializeField] private float _attackThornFrequency; // in seconds, how frequent attacks occur in a series of thorn attacks
+        [SerializeField] private int _numQuickAttacksMin; // MIN num of quick attacks per series of attacks
+        [SerializeField] private int _numQuickAttacksMax; // MAX num
+
+        [SerializeField] private float _attackBranchCooldown; // in seconds, boss waits this amount of time before next branch attack
+        [SerializeField] private float _attackRootCooldown; // in seconds, boss waits this amount of time before next root attack
+
+        private int numQuickAttacks;
+        private int attackType = 0;
+
+        private void Start()
+        {
+            numQuickAttacks = UnityEngine.Random.Range(_numQuickAttacksMin, _numQuickAttacksMax);
+        }
 
         private void Update()
         {
@@ -57,34 +73,105 @@ namespace IslandBoy
         public void FixedUpdate()
         {
             if (PlayerClose())
-                ShootThorns();
+            {
+                switch (attackType)
+                {
+                    case 1:
+                        RootAttack();
+                        break;
+                    case 2:
+                        BranchAttack();
+                        break;
+                    case 3:
+                        BranchAttack();
+                        break;
+                    default:
+                        ShootThorns();
+                        break;
+
+                }
+            }
         }
 
         private void ShootThorns()
         {
-            if (attackNum >= _numAttacks)
+            if (quickAttackNum >= numQuickAttacks)
             {
-                timerCooldown += Time.deltaTime;
+                quickAttackCooldownTimer += Time.deltaTime;
 
-                if (timerCooldown > _attackCooldown)
+                // After the Thorn Attack cooldown time has passed, the boss randomly switches its attack type
+                if (quickAttackCooldownTimer > _attackThornCooldown)
                 {
-                    attackNum = 0;
-                    timerCooldown = 0;
+                    attackTimer = 0;
+                    quickAttackNum = 0;
+                    quickAttackCooldownTimer = 0;
+                    numQuickAttacks = UnityEngine.Random.Range(_numQuickAttacksMin, _numQuickAttacksMax);
+                    PickAttackType();
                 }
             }
             else
             {
-                timer += Time.deltaTime;
+                attackTimer += Time.deltaTime;
 
-                if (timer > _attackFrequency)
+                if (attackTimer > _attackThornFrequency)
                 {
-                    timer = 0;
-                    attackNum++;
+                    attackTimer = 0;
+                    quickAttackNum++;
                     // shoot thorns
                     Instantiate(thorn, thornPosL.position, Quaternion.identity);
                     Instantiate(thorn, thornPosR.position, Quaternion.identity);
                 }
             }
+        }
+
+        private void BranchAttack()
+        {
+            if (attackTimer == 0)
+                Instantiate(branch, rootPos.position, Quaternion.identity);
+
+            attackTimer += Time.deltaTime;
+
+            // After the Branch Attack cooldown time has passed, the boss randomly switches its attack type
+            if (attackTimer > _attackBranchCooldown)
+            {
+                attackTimer = 0;
+                PickAttackType();
+            }
+        }
+
+        private void RootAttack()
+        {
+            if (quickAttackNum >= numQuickAttacks * 2)
+            {
+                quickAttackCooldownTimer += Time.deltaTime;
+
+                // After the Root Attack cooldown time has passed, the boss randomly switches its attack type
+                if (quickAttackCooldownTimer > _attackRootCooldown)
+                {
+                    attackTimer = 0;
+                    quickAttackNum = 0;
+                    quickAttackCooldownTimer = 0;
+                    numQuickAttacks = UnityEngine.Random.Range(_numQuickAttacksMin, _numQuickAttacksMax);
+                    PickAttackType();
+                }
+            }
+            else
+            {
+                attackTimer += Time.deltaTime;
+
+                // After the Root Attack cooldown time has passed, the boss randomly switches its attack type
+                if (attackTimer > _attackRootCooldown)
+                {
+                    attackTimer = 0;
+                    quickAttackNum++;
+                    Instantiate(root, PR.Position + new Vector2(UnityEngine.Random.Range(-2, 2), UnityEngine.Random.Range(-2, 2)), Quaternion.identity);
+                }
+            }
+        }
+
+        private void PickAttackType()
+        {
+            attackType = UnityEngine.Random.Range(0, 4);
         }
     }
 }

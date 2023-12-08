@@ -67,6 +67,7 @@ namespace IslandBoy
         public void OnClickTitle()
         {
             Debug.Log("Quit button clicked");
+            Application.Quit();
         }
 
         public void OnClickSettings()
