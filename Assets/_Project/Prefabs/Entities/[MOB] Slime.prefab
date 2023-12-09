@@ -11417,7 +11417,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3933416534945395177}
   - {fileID: 8046919246972995356}
@@ -11460,7 +11460,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.4}
-  m_Size: {x: 2, y: 1}
+  m_Size: {x: 1, y: 1}
   m_Direction: 0
 --- !u!50 &3006192160976330081
 Rigidbody2D:
@@ -11501,14 +11501,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3fce4d50948854cb72f53642a80b42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dontGiveXp: 0
-  _maxHitPoints: 25
+  _maxHitPoints: 14
   _breakType: 3
   _clickFeedback: {fileID: 1867381480340656044}
   _destroyFeedback: {fileID: 4566307676181140785}
   _lootTable:
     <Table>k__BackingField: []
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
+  _dontGiveXp: 0
 --- !u!114 &3736007384578019363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11524,7 +11524,7 @@ MonoBehaviour:
   PR: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _agroSound: {fileID: 8300000, guid: 7d81ba19726f98a4c8dfbe502334c213, type: 3}
   Seeker: {fileID: 0}
-  _agroDistance: 20
+  _agroDistance: 4
 --- !u!114 &5992861903168681665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11538,8 +11538,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 3006192160976330081}
-  _strength: 25
-  _delay: 0.25
+  _strength: 20
+  _delay: 0.2
   _onBegin:
     m_PersistentCalls:
       m_Calls:

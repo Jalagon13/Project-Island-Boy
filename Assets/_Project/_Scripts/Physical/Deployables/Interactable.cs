@@ -43,15 +43,15 @@ namespace IslandBoy
 
         protected override void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.TryGetComponent<CursorControl>(out var cc))
-            {
-                if (cc.FocusSlot == null) return;
+            //if (collision.TryGetComponent<CursorControl>(out var cc))
+            //{
+            //    if (cc.FocusSlot == null) return;
 
-                if (cc.FocusSlot.ItemObject is WallObject || cc.FocusSlot.ItemObject is FloorObject || cc.FocusSlot.ItemObject is DeployObject)
-                    return;
+            //    if (cc.FocusSlot.ItemObject is WallObject || cc.FocusSlot.ItemObject is FloorObject || cc.FocusSlot.ItemObject is DeployObject)
+            //        return;
 
-                ShowDisplay();
-            }
+            //    ShowDisplay();
+            //}
         }
 
         protected override void OnTriggerExit2D(Collider2D collision)

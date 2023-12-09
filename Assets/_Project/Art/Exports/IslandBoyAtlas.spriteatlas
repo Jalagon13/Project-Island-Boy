@@ -286,6 +286,7 @@ SpriteAtlas:
     - 75594b36fd8cd0d409de8dacfcaf419b: 449123009
     - 75594b36fd8cd0d409de8dacfcaf419b: -1855741160
     - 75594b36fd8cd0d409de8dacfcaf419b: 811161192
+    - 75594b36fd8cd0d409de8dacfcaf419b: 393603439
     - 75594b36fd8cd0d409de8dacfcaf419b: 2118457468
     - 75594b36fd8cd0d409de8dacfcaf419b: 456514419
     - 75594b36fd8cd0d409de8dacfcaf419b: -602149933
@@ -293,6 +294,7 @@ SpriteAtlas:
     - 75594b36fd8cd0d409de8dacfcaf419b: 1210640472
     - 75594b36fd8cd0d409de8dacfcaf419b: -581595869
     - 75594b36fd8cd0d409de8dacfcaf419b: 1879242436
+    - 75594b36fd8cd0d409de8dacfcaf419b: 1320045643
     - 75594b36fd8cd0d409de8dacfcaf419b: 734688836
     - 75594b36fd8cd0d409de8dacfcaf419b: 1204406958
     - 75594b36fd8cd0d409de8dacfcaf419b: -110451255
@@ -309,6 +311,9 @@ SpriteAtlas:
     - 75594b36fd8cd0d409de8dacfcaf419b: -916310749
     - 75594b36fd8cd0d409de8dacfcaf419b: -1112382854
     - f59011461ecd73f4bafc48709d902230: -1302916514
+    - f59011461ecd73f4bafc48709d902230: 1939293987
+    - f59011461ecd73f4bafc48709d902230: -2066864580
+    - f59011461ecd73f4bafc48709d902230: 349764897
     - a89cf0f683df5c24c9a61c2d4a51d4eb: 1005839574
     - a89cf0f683df5c24c9a61c2d4a51d4eb: 1840635774
     - a89cf0f683df5c24c9a61c2d4a51d4eb: -187104496
@@ -932,6 +937,7 @@ SpriteAtlas:
   - {fileID: 449123009, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1855741160, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 811161192, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  - {fileID: 393603439, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 2118457468, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 456514419, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -602149933, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
@@ -939,6 +945,7 @@ SpriteAtlas:
   - {fileID: 1210640472, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -581595869, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1879242436, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  - {fileID: 1320045643, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 734688836, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1204406958, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -110451255, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
@@ -955,6 +962,9 @@ SpriteAtlas:
   - {fileID: -916310749, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1112382854, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1302916514, guid: f59011461ecd73f4bafc48709d902230, type: 3}
+  - {fileID: 1939293987, guid: f59011461ecd73f4bafc48709d902230, type: 3}
+  - {fileID: -2066864580, guid: f59011461ecd73f4bafc48709d902230, type: 3}
+  - {fileID: 349764897, guid: f59011461ecd73f4bafc48709d902230, type: 3}
   - {fileID: 1005839574, guid: a89cf0f683df5c24c9a61c2d4a51d4eb, type: 3}
   - {fileID: 1840635774, guid: a89cf0f683df5c24c9a61c2d4a51d4eb, type: 3}
   - {fileID: -187104496, guid: a89cf0f683df5c24c9a61c2d4a51d4eb, type: 3}
@@ -1577,6 +1587,7 @@ SpriteAtlas:
   - item_construction_table
   - item_bed
   - item_sapling
+  - item_fiber
   - item_miner_scroll
   - item_grass
   - item_wood
@@ -1584,6 +1595,7 @@ SpriteAtlas:
   - item_red_rune
   - item_tool_station
   - item_fishing_rod
+  - item_mushroom
   - item_wood_wall
   - item_stone_hammer
   - item_arrow
@@ -1600,6 +1612,9 @@ SpriteAtlas:
   - item_first_aid_kit
   - item_door
   - rsc_tree
+  - rsc_bush
+  - rsc_mushroom
+  - rsc_small_log
   - mon_ghost
   - mon_rusher
   - mon_zombie

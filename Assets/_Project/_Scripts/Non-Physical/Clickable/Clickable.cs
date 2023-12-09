@@ -10,7 +10,6 @@ namespace IslandBoy
     public abstract class Clickable : MonoBehaviour
     {
         [Header("Base Clickable Parameters")]
-        [SerializeField] private bool _dontGiveXp = false;
         [SerializeField] protected int _maxHitPoints;
         [SerializeField] protected ToolType _breakType;
         [SerializeField] protected MMF_Player _clickFeedback;
@@ -25,6 +24,8 @@ namespace IslandBoy
         protected GameObject _yellowCorners;
         protected SpriteRenderer _sr;
         protected Vector2 _dropPosition;
+
+        public ToolType BreakType { get { return _breakType; } }
 
         protected virtual void Awake()
         {
@@ -46,10 +47,10 @@ namespace IslandBoy
 
         protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.TryGetComponent<CursorControl>(out var cc))
-            {
-                ShowDisplay();
-            }
+            //if (collision.TryGetComponent<CursorControl>(out var cc))
+            //{
+            //    ShowDisplay();
+            //}
         }
 
         protected virtual void OnTriggerExit2D(Collider2D collision)
@@ -62,19 +63,19 @@ namespace IslandBoy
 
         public virtual bool OnHit(ToolType incomingToolType, int amount, bool displayHit = true)
         {
-            _clickFeedback?.PlayFeedbacks();
 
             if (incomingToolType != _breakType || incomingToolType == ToolType.None)
             {
-                if(displayHit && _timer.RemainingSeconds == 0)
-                {
-                    PopupMessage.Create(transform.position, $"I need a {_breakType} to hit this", Color.red, Vector2.one, 1f);
-                    _timer.RemainingSeconds = 3;
-                }
+                //if(displayHit && _timer.RemainingSeconds == 0)
+                //{
+                //    PopupMessage.Create(transform.position, $"I need a {_breakType} to hit this", Color.red, Vector2.one, 1f);
+                //    _timer.RemainingSeconds = 3;
+                //}
 
                 return false;
             }
 
+            _clickFeedback?.PlayFeedbacks();
             _currentHitPoints -= amount;
 
             GameSignals.CLICKABLE_CLICKED.Dispatch();
@@ -87,12 +88,6 @@ namespace IslandBoy
 
         protected virtual void OnBreak()
         {
-            if (!_dontGiveXp)
-            {
-                PopupMessage.Create(transform.position, $"+ {_maxHitPoints} XP", Color.white, Vector2.up, 1f);
-                PlayerExperience.AddExerpience(_maxHitPoints);
-            }
-
             if (_destroyFeedback != null)
             {
                 _destroyFeedback.transform.SetParent(null);

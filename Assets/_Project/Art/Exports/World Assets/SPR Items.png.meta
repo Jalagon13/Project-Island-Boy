@@ -1265,7 +1265,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1273,6 +1273,48 @@ TextureImporter:
       bones: []
       spriteID: 56707bc61ec726446aaa3b5dd6ddc228
       internalID: -1305312829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_fiber
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6c03eb179dceeb45b6752448fda18ce
+      internalID: 393603439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_mushroom
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4905c21cc2e1a654cb0e14f6feb0ce4d
+      internalID: 1320045643
       vertices: []
       indices: 
       edges: []
@@ -1302,6 +1344,7 @@ TextureImporter:
       item_cooked_fish: -2128986211
       item_diamond: -538633122
       item_door: -1112382854
+      item_fiber: 393603439
       item_first_aid_kit: -916310749
       item_fish: 1211993972
       item_fishing_rod: 1879242436
@@ -1317,6 +1360,7 @@ TextureImporter:
       item_iron_sword: 1805357805
       item_magic_potion: -1000768912
       item_miner_scroll: 2118457468
+      item_mushroom: 1320045643
       item_portal_to_home: 1494493913
       item_red_rune: 1210640472
       item_sand: -966422323

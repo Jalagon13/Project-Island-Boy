@@ -98,6 +98,20 @@ namespace IslandBoy
             DisplayCursor();
         }
 
+        private void OnTriggerStay2D(Collider2D collision)
+        {
+            if(collision.TryGetComponent<Clickable>(out var clickable))
+            {
+                if (_focusSlotRef.ItemObject is WallObject || _focusSlotRef.ItemObject is FloorObject || _focusSlotRef.ItemObject is DeployObject)
+                    return;
+
+                if (_focusSlotRef.ToolType == clickable.BreakType)
+                    clickable.ShowDisplay();
+                else
+                    clickable.HideDisplay();
+            }
+        }
+
         private void RefreshCd(ISignalParameters parameters)
         {
             _clickTimer.RemainingSeconds = _clickCd;

@@ -54,11 +54,11 @@ namespace IslandBoy
 
         protected override void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.TryGetComponent<CursorControl>(out var cc))
-            {
-                if (cc.FocusSlot.ToolType == _breakType)
-                    ShowDisplay();
-            }
+            //if (collision.TryGetComponent<CursorControl>(out var cc))
+            //{
+            //    if (cc.FocusSlot.ToolType == _breakType)
+            //        ShowDisplay();
+            //}
         }
 
         protected override void OnTriggerExit2D(Collider2D collision)

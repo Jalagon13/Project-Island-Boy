@@ -94,7 +94,7 @@ namespace IslandBoy
         {
             GraphNode startNode = AstarPath.active.GetNearest(transform.position, NNConstraint.Default).node;
 
-            List<GraphNode> nodes = PathUtilities.BFS(startNode, 20);
+            List<GraphNode> nodes = PathUtilities.BFS(startNode, 25);
             Vector3 singleRandomPoint = PathUtilities.GetPointsOnNodes(nodes, 1)[0];
 
             return singleRandomPoint;

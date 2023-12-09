@@ -8,6 +8,7 @@ namespace IslandBoy
     {
         [Header("Base Entity Parameters")]
         [SerializeField] private PlayerReference _pr;
+        [SerializeField] private bool _dontGiveXp = false;
 
         private KnockbackFeedback _knockback;
 
@@ -73,6 +74,13 @@ namespace IslandBoy
         protected override void OnBreak()
         {
             _dropPosition = transform.position;
+
+            if (!_dontGiveXp)
+            {
+                PopupMessage.Create(transform.position, $"+ {_maxHitPoints} XP", Color.white, Vector2.up, 1f);
+                PlayerExperience.AddExerpience(_maxHitPoints);
+            }
+
             base.OnBreak();
         }
     }
