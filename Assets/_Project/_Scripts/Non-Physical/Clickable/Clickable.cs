@@ -26,6 +26,7 @@ namespace IslandBoy
         protected Vector2 _dropPosition;
 
         public ToolType BreakType { get { return _breakType; } }
+        public MMF_Player ClickFeedback { get { return _clickFeedback; } }
 
         protected virtual void Awake()
         {

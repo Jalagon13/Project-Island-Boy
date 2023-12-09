@@ -11524,7 +11524,7 @@ MonoBehaviour:
   PR: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _agroSound: {fileID: 8300000, guid: 7d81ba19726f98a4c8dfbe502334c213, type: 3}
   Seeker: {fileID: 0}
-  _agroDistance: 4
+  _agroDistance: 3.5
 --- !u!114 &5992861903168681665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11565,7 +11565,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
   _onDone:
     m_PersistentCalls:

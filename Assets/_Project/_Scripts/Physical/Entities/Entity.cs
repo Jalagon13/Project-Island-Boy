@@ -26,6 +26,15 @@ namespace IslandBoy
             GameSignals.DAY_END.RemoveListener(DestroyThisEntity);
         }
 
+        //protected override void OnTriggerEnter2D(Collider2D collision)
+        //{
+        //    if(collision.TryGetComponent<Clickable>(out var click))
+        //    {
+        //        if(Random.Range(0, 2) == 0)
+        //            click.ClickFeedback?.PlayFeedbacks();
+        //    }
+        //}
+
         private void DestroyThisEntity(ISignalParameters parameters)
         {
             Destroy(gameObject);
