@@ -20,7 +20,7 @@ namespace IslandBoy
 
             _item = item;
             _rscImage.sprite = item.UiDisplay;
-            _countText.text = amount == 1 ? string.Empty : amount.ToString();
+            _countText.text = amount.ToString();
         }
     }
 }

@@ -354,7 +354,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: item_portal_to_home
+      name: item_furnace
       rect:
         serializedVersion: 2
         x: 0
@@ -816,7 +816,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: item_green_rune
+      name: item_wood_plank
       rect:
         serializedVersion: 2
         x: 0
@@ -837,7 +837,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: item_furance
+      name: item_cobblestone
       rect:
         serializedVersion: 2
         x: 32
@@ -1307,7 +1307,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1315,6 +1315,69 @@ TextureImporter:
       bones: []
       spriteID: 4905c21cc2e1a654cb0e14f6feb0ce4d
       internalID: 1320045643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_mushed_mushroom
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fca9cf955236e9e44b106a391722768f
+      internalID: -522266397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_mushed_apple
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89219c4a89f0fbc46974f15276d730ea
+      internalID: -1475151143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_iron_anvil
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e067b9e9a2e10a4db6308198649c5ee
+      internalID: 941267960
       vertices: []
       indices: 
       edges: []
@@ -1340,6 +1403,7 @@ TextureImporter:
       item_campfire: 1223464883
       item_chest: 1962245853
       item_coal: -1651487029
+      item_cobblestone: -1914655730
       item_construction_table: 449123009
       item_cooked_fish: -2128986211
       item_diamond: -538633122
@@ -1348,10 +1412,10 @@ TextureImporter:
       item_first_aid_kit: -916310749
       item_fish: 1211993972
       item_fishing_rod: 1879242436
-      item_furance: -1914655730
+      item_furnace: 1494493913
       item_grass: 456514419
-      item_green_rune: 1558334950
       item_hook: -1546665967
+      item_iron_anvil: 941267960
       item_iron_axe: 659459211
       item_iron_hammer: -1416747536
       item_iron_ingot: -189099797
@@ -1360,8 +1424,9 @@ TextureImporter:
       item_iron_sword: 1805357805
       item_magic_potion: -1000768912
       item_miner_scroll: 2118457468
+      item_mushed_apple: -1475151143
+      item_mushed_mushroom: -522266397
       item_mushroom: 1320045643
-      item_portal_to_home: 1494493913
       item_red_rune: 1210640472
       item_sand: -966422323
       item_sapling: 811161192
@@ -1384,6 +1449,7 @@ TextureImporter:
       item_wood_hammer: 1844556041
       item_wood_helmet: 1611562402
       item_wood_pickaxe: 504264504
+      item_wood_plank: 1558334950
       item_wood_sword: 86916168
       item_wood_wall: 734688836
       item_xp: -955445017

@@ -18,7 +18,7 @@ namespace IslandBoy
         private Action<float> _onRelease;
         private PlayerInput _input;
         private bool _isHeldDown, _isCharging;
-        private float _minLaunchForce = 5f, _maxLaunchForce = 25f, _maxChargeTime = 1.5f, _baseChargeTime = 1.5f;
+        private float _minLaunchForce = 5f, _maxLaunchForce = 25f, _maxChargeTime = 1f, _baseChargeTime = 1f;
         private float _chargeSpeed, _currentLaunchForce;
 
         public float LaunchForcePercentage 

@@ -8,11 +8,12 @@ namespace IslandBoy
     public class Sign : MonoBehaviour
     {
         [TextArea]
-        [SerializeField] private string _text;
+        [SerializeField] private string[] _text;
         [SerializeField] private TextMeshProUGUI _signText;
         [SerializeField] private bool _disableTextOverride;
         
         private GameObject _tutorialObject;
+        private int _counter = 0;
 
         private void Awake()
         {
@@ -20,7 +21,7 @@ namespace IslandBoy
 
             if (_disableTextOverride) return;
 
-            _signText.text = _text;
+            _signText.text = _text[0];
         }
 
         private IEnumerator Start()
@@ -36,6 +37,24 @@ namespace IslandBoy
         {
             StopAllCoroutines();
             Destroy(_tutorialObject);
+        }
+
+        public void NextText()
+        {
+            _counter++;
+            if (_counter >= _text.Length)
+                _counter = 0;
+
+            _signText.text = _text[_counter];
+        }
+
+        public void PreviousText()
+        {
+            _counter--;
+            if (_counter < 0)
+                _counter = _text.Length - 1;
+
+            _signText.text = _text[_counter];
         }
     }
 }

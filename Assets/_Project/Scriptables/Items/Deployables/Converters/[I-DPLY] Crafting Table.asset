@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: '[I-DPLY] Crafting Table'
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Crafting Table
-  <UiDisplay>k__BackingField: {fileID: -1413661134, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
+  <UiDisplay>k__BackingField: {fileID: -581595869, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   <Stackable>k__BackingField: 1
   <Description>k__BackingField: "\u2022 General Recipes"
   <DefaultParameterList>k__BackingField:
   - Parameter: {fileID: 11400000, guid: c25902e3274ad0a4a97f3515779aecea, type: 2}
     Value: 3
-  _tmr: {fileID: 11400000, guid: ec06355a14da7574295ea6e79aaebb6f, type: 2}
-  _prefabToDeploy: {fileID: 7398615981352729919, guid: fafe4dee7ab070341b5b78367daa3250, type: 3}
-  _deploySound: {fileID: 8300000, guid: 81630c27f46088149ba396244d1b8a68, type: 3}
+  _prefabToDeploy: {fileID: 175657912783014710, guid: af391ecf71d534e46851235193d06810, type: 3}
+  _deploySound: {fileID: 8300000, guid: 7af607a3736db8a43bd85f247755f233, type: 3}

@@ -13,10 +13,12 @@ namespace IslandBoy
         [Header("Timed Converter Parameters")]
         [SerializeField] private float _craftTimerSec;
         [SerializeField] private CraftingDatabaseObject _cdb;
+        [Header("Timed Converter References")]
         [SerializeField] private GameObject _tcSlotPrefab;
         [SerializeField] private RectTransform _slotHolder;
         [SerializeField] private RectTransform _progressInfo;
         [SerializeField] private TextMeshProUGUI _craftText;
+        [SerializeField] private TCCraftingUI _craftingUI;
         [Header("Game feel Parameters")]
         [SerializeField] private MMF_Player _craftingStartFeedback;
         [SerializeField] private MMF_Player _craftingOnGoingFeedback;
@@ -91,6 +93,19 @@ namespace IslandBoy
             DispatchTcSignal();
         }
 
+        public void RefreshCraftingUI(CraftingRecipeObject recipe)
+        {
+            _craftingUI.InjectRecipe(recipe);
+        }
+
+        private void DispatchPromptInteract()
+        {
+            Signal signal = GameSignals.PROMPT_INTERACT;
+            signal.ClearParameters();
+            signal.AddParameter("Prompt", this);
+            signal.Dispatch();
+        }
+
         public void TryToStartCraftingProcess(CraftingRecipeObject incomingRecipe)
         {
             Debug.Log($"Timed Conversion started for: {incomingRecipe.OutputItem.Name}");
@@ -144,6 +159,8 @@ namespace IslandBoy
             _craftingInProgress = true;
             _progressInfo.gameObject.SetActive(true);
 
+            GameSignals.ITEM_CRAFTED.Dispatch();
+
             foreach (ItemAmount ia in _inProgressRecipe.ResourceList)
             {
                 _pr.Inventory.RemoveItem(ia.Item, ia.Amount);
@@ -190,8 +207,8 @@ namespace IslandBoy
             for (int i = 0; i < _cdb.Database.Length; i++)
             {
                 GameObject cs = Instantiate(_tcSlotPrefab, _slotHolder.transform);
-                CraftSlot craftSlot = cs.GetComponent<CraftSlot>();
-                craftSlot.Initialize(_cdb.Database[i]);
+                TCSlot tcSlot = cs.GetComponent<TCSlot>();
+                tcSlot.Initialize(_cdb.Database[i]);
             }
         }
 
@@ -221,6 +238,8 @@ namespace IslandBoy
 
         public void EnableUI()
         {
+            DispatchPromptInteract();
+
             _tcCanvas.gameObject.SetActive(true);
             _progressInfo.gameObject.SetActive(_craftingInProgress);
         }

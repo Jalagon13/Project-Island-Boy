@@ -20,7 +20,7 @@ namespace IslandBoy
 
         public override string GetDescription()
         {
-            return $"{Description}";
+            return $"• Material{Description}";
         }
     }
 }

@@ -124,7 +124,7 @@ namespace IslandBoy
 
         private void SetUnCraftable()
         {
-            _outputImage.color = new Color(0.25f, 0.25f, 0.25f, 1);
+            _outputImage.color = new Color(.9f, .9f, .9f, 0.25f);
             _canCraft = false;
         }
     }

@@ -28,7 +28,7 @@ namespace IslandBoy
                 return;
             }
 
-            GameSignals.ITEM_CRAFTED.Dispatch();
+            
             _tc.TryToStartCraftingProcess(_cs.Recipe);
         }
     }

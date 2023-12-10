@@ -10,7 +10,7 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private TilemapReference _tmr;
-        [SerializeField] private AdventurerEntity _adventurerPrefab;
+        //[SerializeField] private AdventurerEntity _adventurerPrefab;
         [SerializeField] private FeedbackHolder _feedbackHolder;
         [SerializeField] private AudioClip _sonarSound;
         [SerializeField] private AudioClip _moveInSound;
@@ -20,7 +20,7 @@ namespace IslandBoy
         private Image _buttonBgImage;
         private Image _buttonIconImage;
         private HousingHoverImage _buttonHoverImage;
-        private AdventurerEntity _adventurerReference;
+        //private AdventurerEntity _adventurerReference;
         private Color _originalButtonColor;
 
         private void Awake()
@@ -34,7 +34,7 @@ namespace IslandBoy
 
         private void Start()
         {
-            string header = $"Attract a {_adventurerPrefab.AdventurerName} to your island!";
+            //string header = $"Attract a {_adventurerPrefab.AdventurerName} to your island!";
             string content = "Requirements:<br> * Bed<br>";
 
             foreach (Resource requirements in _furnitureCheckList)
@@ -42,16 +42,16 @@ namespace IslandBoy
                 content += $" * {requirements.ResourceName}<br>";
             }
 
-            _buttonHoverImage.Initialize(header, content);
+            //_buttonHoverImage.Initialize(header, content);
         }
 
         public void CheckHousing() // attached to button
         {
-            if (_adventurerReference != null)
-            {
-                _feedbackHolder.DisplayFeedback($"{_adventurerPrefab.name} is already occupying a room", Color.green);
-                return;
-            }
+            //if (_adventurerReference != null)
+            //{
+            //    _feedbackHolder.DisplayFeedback($"{_adventurerPrefab.name} is already occupying a room", Color.green);
+            //    return;
+            //}
 
             // checks if this is an enclosed space with flooring everywhere
             Stack<Vector3Int> tilesToCheck = new();
@@ -248,8 +248,8 @@ namespace IslandBoy
             Vector2 spawnNpcPosition = new(randFloorSpace.x + 0.5f, randFloorSpace.y + 0.5f);
 
             _feedbackHolder.DisplayFeedback("Housing found! NPC has moved in!", Color.green);
-            _adventurerReference = Instantiate(_adventurerPrefab, spawnNpcPosition, Quaternion.identity);
-            _adventurerReference.RegisterBed(foundBeds[0]);
+            //_adventurerReference = Instantiate(_adventurerPrefab, spawnNpcPosition, Quaternion.identity);
+            //_adventurerReference.RegisterBed(foundBeds[0]);
             //foundBeds[0].RegisterBed(_furnitureCheckList, _adventurerReference);
 
         }

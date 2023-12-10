@@ -7,10 +7,10 @@ namespace IslandBoy
     public class Entity : Clickable
     {
         [Header("Base Entity Parameters")]
-        [SerializeField] private PlayerReference _pr;
+        [SerializeField] protected PlayerReference _pr;
         [SerializeField] private bool _dontGiveXp = false;
 
-        private KnockbackFeedback _knockback;
+        protected KnockbackFeedback _knockback;
 
         protected override void Awake()
         {

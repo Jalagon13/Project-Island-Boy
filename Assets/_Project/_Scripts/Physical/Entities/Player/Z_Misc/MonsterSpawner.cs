@@ -28,8 +28,10 @@ namespace IslandBoy
             GameSignals.DAY_END.RemoveListener(PauseMonsterSpawning);
         }
 
-        private void Start()
+        private IEnumerator Start()
         {
+            yield return new WaitForSeconds(30f);
+
             StartCoroutine(SpawnMonsterTimer());
         }
 
