@@ -126,6 +126,21 @@ namespace IslandBoy
             }
         }
 
+        public int GetItemAmount(ItemObject item)
+        {
+            int amount = 0;
+
+            for (int i = 0; i < _allSlots.Count; i++)
+            {
+                Slot slot = _allSlots[i];
+
+                if (slot.ItemObject == item)
+                    amount += slot.InventoryItem.Count;
+            }
+
+            return amount;
+        }
+
         public bool Contains(ItemObject item, int amount)
         {
             var counter = amount;

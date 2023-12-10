@@ -13,6 +13,7 @@ namespace IslandBoy
             GameSignals.CHEST_INTERACT.AddListener(DisablePromptDisplay);
             GameSignals.CRAFT_STATION_INTERACT.AddListener(DisablePromptDisplay);
             GameSignals.PROMPT_INTERACT.AddListener(PromptInteract);
+            //GameSignals.TIMED_CONVERTER_INTERACT.AddListener(TCInteract);
         }
 
         private void OnDestroy()
@@ -20,6 +21,7 @@ namespace IslandBoy
             GameSignals.CHEST_INTERACT.RemoveListener(DisablePromptDisplay);
             GameSignals.CRAFT_STATION_INTERACT.RemoveListener(DisablePromptDisplay);
             GameSignals.PROMPT_INTERACT.RemoveListener(PromptInteract);
+            //GameSignals.TIMED_CONVERTER_INTERACT.RemoveListener(TCInteract);
         }
 
         private void Update()
@@ -35,6 +37,13 @@ namespace IslandBoy
         private void DisablePromptDisplay(ISignalParameters parameters)
         {
             InteractableHandle(null);
+        }
+
+        public void TCInteract(ISignalParameters parameters)
+        {
+            Interactable tc = (Interactable)parameters.GetParameter("TimedConverter");
+
+            InteractableHandle(tc);
         }
 
         public void PromptInteract(ISignalParameters parameters)

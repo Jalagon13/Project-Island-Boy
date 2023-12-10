@@ -32,6 +32,8 @@ namespace IslandBoy
         private int _inProgressCount;
         private bool _craftingInProgress;
 
+        public bool CraftingInProgress { get { return _craftingInProgress; } }
+
         protected override void Awake()
         {
             base.Awake();
@@ -106,27 +108,37 @@ namespace IslandBoy
             signal.Dispatch();
         }
 
-        public void TryToStartCraftingProcess(CraftingRecipeObject incomingRecipe)
+        public void StartCrafting(CraftingRecipeObject incomingRecipe, int amount)
         {
-            Debug.Log($"Timed Conversion started for: {incomingRecipe.OutputItem.Name}");
+            Debug.Log($"Timed Conversion started for: {incomingRecipe.OutputItem.Name} [{amount}]");
 
             if (_craftingInProgress)
             {
                 if (incomingRecipe.OutputItem.Name == _inProgressRecipe.OutputItem.Name)
                 {
-                    AddOneToCraftQueue();
+                    for (int i = 0; i < amount; i++)
+                    {
+                        AddOneToCraftQueue();
+                    }
                 }
                 else
                 {
                     EmptyCraftQueue();
                     OverrideCraftingInProgress(incomingRecipe);
-                    AddOneToCraftQueue();
+                    for (int i = 0; i < amount; i++)
+                    {
+                        AddOneToCraftQueue();
+                    }
                 }
             }
             else
             {
                 OverrideCraftingInProgress(incomingRecipe);
-                AddOneToCraftQueue();
+
+                for (int i = 0; i < amount; i++)
+                {
+                    AddOneToCraftQueue();
+                }
             }
         }
 
