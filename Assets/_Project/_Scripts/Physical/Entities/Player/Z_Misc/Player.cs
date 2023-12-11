@@ -28,9 +28,10 @@ namespace IslandBoy
 
         private KnockbackFeedback _knockback;
         private Collider2D _playerCollider;
-        private Vector2 _spawnPoint;
         private Slot _focusSlot;
         private Timer _iFrameTimer;
+        private SpriteRenderer _sr;
+        private Vector2 _spawnPoint;
         private int _currentHp, _currentNrg, _currentMp;
 
         private void Awake()
@@ -39,6 +40,7 @@ namespace IslandBoy
             _playerCollider = GetComponent<Collider2D>();
             _iFrameTimer = new Timer(_iFrameDuration);
             _spawnPoint = transform.position;
+            _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
 
             GameSignals.CLICKABLE_CLICKED.AddListener(OnSwing);
             GameSignals.DAY_START.AddListener(PlacePlayerAtSpawnPoint);
@@ -112,9 +114,14 @@ namespace IslandBoy
 
         private IEnumerator Delay()
         {
-            HealNrg((_maxNrg - _currentNrg) / 2);
+            if (_currentNrg < 0)
+                _currentNrg = 0;
+            if(_currentHp < 0)
+                _currentHp = 0;
+
+            HealNrg((_maxNrg - _currentNrg) / 2, consumeFocusSlot:false);
             yield return new WaitForSeconds(0.5f);
-            HealHp((_maxHp - _currentHp) / 2);
+            HealHp((_maxHp - _currentHp) / 2, consumeFocusSlot: false);
         }
 
         private void ChangeSpawnPoint(ISignalParameters parameters)
@@ -142,7 +149,7 @@ namespace IslandBoy
 
             return !fullHp;
         }
-        public void HealHp(int amount)
+        public void HealHp(int amount, bool consumeFocusSlot = true)
         {
             _currentHp += amount;
             if (_currentHp > _maxHp)
@@ -156,7 +163,8 @@ namespace IslandBoy
             signal.AddParameter("MaxHp", _maxHp);
             signal.Dispatch();
 
-            _focusSlot.InventoryItem.Count--;
+            if(consumeFocusSlot)
+                _focusSlot.InventoryItem.Count--;
         }
         public void AddToHp(int amount)
         {
@@ -193,7 +201,7 @@ namespace IslandBoy
 
             return !fullNrg;
         }
-        public void HealNrg(int amount)
+        public void HealNrg(int amount, bool consumeFocusSlot = true)
         {
             _currentNrg += amount;
             if (_currentNrg > _maxNrg)
@@ -207,7 +215,8 @@ namespace IslandBoy
             signal.AddParameter("MaxNrg", _maxNrg);
             signal.Dispatch();
 
-            _focusSlot.InventoryItem.Count--;
+            if (consumeFocusSlot)
+                _focusSlot.InventoryItem.Count--;
         }
         public void AddToNrg(int amount)
         {
@@ -343,11 +352,13 @@ namespace IslandBoy
         {
             GameSignals.PLAYER_DIED.Dispatch();
             _playerCollider.enabled = false;
+            _sr.enabled = false;
 
             yield return new WaitForSeconds(_deathTimer);
 
             GameSignals.DAY_END.Dispatch();
             _playerCollider.enabled = true;
+            _sr.enabled = true;
         }
     }
 }

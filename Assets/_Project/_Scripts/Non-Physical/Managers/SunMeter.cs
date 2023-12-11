@@ -176,7 +176,7 @@ namespace IslandBoy
                 yield return new WaitForSeconds(2f);
             }
 
-            text.text = "Resources have been replenished!";
+            text.text = "Health and Energy replenished!";
             button.gameObject.SetActive(true);
 
             _endDaySlides.Clear();

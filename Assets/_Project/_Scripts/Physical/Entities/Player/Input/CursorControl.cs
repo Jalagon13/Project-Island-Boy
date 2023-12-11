@@ -27,7 +27,7 @@ namespace IslandBoy
         private Timer _clickTimer;
         private Vector2 _previousCenterPos;
         private Vector2 _currentCenterPos;
-        private bool _canHit = true;
+        private bool _canUseActions = true;
         private bool _heldDown;
         private float _currentClickDistance;
 
@@ -141,7 +141,7 @@ namespace IslandBoy
                 _focusSlotRef.ItemObject is not ToolObject || _clickTimer.RemainingSeconds > 0) return;
 
 
-            if (_currentClickable != null && _canHit && _currentClickable is not Entity)
+            if (_currentClickable != null && _canUseActions && _currentClickable is not Entity)
             {
                 ToolType toolType = _focusSlotRef == null ? ToolType.None : _focusSlotRef.ToolType;
                 int totalHit = CalcToolHitAmount() + CalcBuffModifiers();
@@ -180,6 +180,8 @@ namespace IslandBoy
 
         private void Interact(InputAction.CallbackContext context)
         {
+            if (!_canUseActions) return;
+
             Collider2D[] colliders = Physics2D.OverlapPointAll(transform.position);
 
             foreach (Collider2D col in colliders)
@@ -276,12 +278,12 @@ namespace IslandBoy
 
         private void DisableAbilityToHit(ISignalParameters parameters)
         {
-            _canHit = false;
+            _canUseActions = false;
         }
 
         private void EnableAbilityToHit(ISignalParameters parameters)
         {
-            _canHit = true;
+            _canUseActions = true;
         }
 
         private Vector2 CalcCenterTile()
