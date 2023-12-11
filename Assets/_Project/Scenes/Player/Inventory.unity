@@ -4305,6 +4305,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _defaultCDB: {fileID: 11400000, guid: a9ccd67c3dd765140819e004f43dc459, type: 2}
   _craftHolder: {fileID: 344292602}
+  _openSound: {fileID: 8300000, guid: 8c85648c4fcf33d47aa2d92aa90d3de9, type: 3}
+  _closeSound: {fileID: 8300000, guid: cd722e7684526d94b86fc09ce8260e63, type: 3}
 --- !u!114 &5602138070249294676
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OutputItem: {fileID: 11400000, guid: eae71e2a67e33e44b937f21b5d3b79fe, type: 2}
   OutputAmount: 1
+  CraftingTimer: 3
   ResourceList:
   - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
     Amount: 15

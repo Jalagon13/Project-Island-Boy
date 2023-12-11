@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 8637284407677892633}
   - component: {fileID: 1220355064876252094}
   - component: {fileID: 2624207577642472327}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: GroundCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +299,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0201a65888066014abab745233113d36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dontGiveXp: 1
   _maxHitPoints: 6
   _breakType: 1
   _clickFeedback: {fileID: 3991662640476158506}

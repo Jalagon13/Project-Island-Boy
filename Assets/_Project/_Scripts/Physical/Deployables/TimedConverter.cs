@@ -20,7 +20,6 @@ namespace IslandBoy
         [SerializeField] private TextMeshProUGUI _craftText;
         [SerializeField] private TCCraftingUI _craftingUI;
         [Header("Game feel Parameters")]
-        [SerializeField] private MMF_Player _craftingStartFeedback;
         [SerializeField] private MMF_Player _craftingOnGoingFeedback;
         [SerializeField] private MMF_Player _craftingDoneFeedback;
 
@@ -86,7 +85,7 @@ namespace IslandBoy
 
         public override void Interact()
         {
-            if (!_canInteract || _tcCanvas.gameObject.activeInHierarchy) return;
+            if (!_canInteract || _tcCanvas.gameObject.activeInHierarchy || Pointer.IsOverUI()) return;
 
             EnableUI();
             ResetCraftSlots();
@@ -97,7 +96,7 @@ namespace IslandBoy
 
         public void RefreshCraftingUI(CraftingRecipeObject recipe)
         {
-            _craftingUI.InjectRecipe(recipe);
+            _craftingUI.PopulateRecipe(recipe);
         }
 
         private void DispatchPromptInteract()
@@ -110,35 +109,23 @@ namespace IslandBoy
 
         public void StartCrafting(CraftingRecipeObject incomingRecipe, int amount)
         {
-            Debug.Log($"Timed Conversion started for: {incomingRecipe.OutputItem.Name} [{amount}]");
-
             if (_craftingInProgress)
             {
                 if (incomingRecipe.OutputItem.Name == _inProgressRecipe.OutputItem.Name)
                 {
-                    for (int i = 0; i < amount; i++)
-                    {
-                        AddOneToCraftQueue();
-                    }
+                    AddToCraftQueue(amount);
                 }
                 else
                 {
                     EmptyCraftQueue();
                     OverrideCraftingInProgress(incomingRecipe);
-                    for (int i = 0; i < amount; i++)
-                    {
-                        AddOneToCraftQueue();
-                    }
+                    AddToCraftQueue(amount);
                 }
             }
             else
             {
                 OverrideCraftingInProgress(incomingRecipe);
-
-                for (int i = 0; i < amount; i++)
-                {
-                    AddOneToCraftQueue();
-                }
+                AddToCraftQueue(amount);
             }
         }
 
@@ -146,7 +133,7 @@ namespace IslandBoy
         {
             _inProgressRecipe = incomingRecipe;
             _craftingOnGoingFeedback?.PlayFeedbacks();
-            _craftingTimer.RemainingSeconds = _craftTimerSec;
+            _craftingTimer.RemainingSeconds = incomingRecipe.CraftingTimer == 0 ? 2f : incomingRecipe.CraftingTimer;
             _craftingTimer.OnTimerEnd -= CraftItem;
             _craftingTimer.OnTimerEnd += CraftItem;
         }
@@ -164,19 +151,21 @@ namespace IslandBoy
             ResetProcess();
         }
 
-        private void AddOneToCraftQueue()
+        private void AddToCraftQueue(int amount)
         {
-            _craftingStartFeedback?.PlayFeedbacks();
-            _inProgressCount++;
-            _craftingInProgress = true;
-            _progressInfo.gameObject.SetActive(true);
+            for (int i = 0; i < amount; i++)
+            {
+                _inProgressCount++;
+                _craftingInProgress = true;
+                _progressInfo.gameObject.SetActive(true);
+
+                foreach (ItemAmount ia in _inProgressRecipe.ResourceList)
+                {
+                    _pr.Inventory.RemoveItem(ia.Item, ia.Amount);
+                }
+            }
 
             GameSignals.ITEM_CRAFTED.Dispatch();
-
-            foreach (ItemAmount ia in _inProgressRecipe.ResourceList)
-            {
-                _pr.Inventory.RemoveItem(ia.Item, ia.Amount);
-            }
         }
 
         private void CraftItem()
@@ -205,10 +194,11 @@ namespace IslandBoy
             _inProgressRecipe = null;
             _craftingInProgress = false;
             _craftingTimer.OnTimerEnd -= CraftItem;
-            _craftingStartFeedback?.StopFeedbacks();
             _craftingOnGoingFeedback?.StopFeedbacks();
             _craftingDoneFeedback?.StopFeedbacks();
             _progressInfo.gameObject.SetActive(false);
+            _craftingUI.UpdateTexts();
+
             transform.GetChild(0).localScale = Vector3.one;
         }
 

@@ -1,7 +1,9 @@
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace IslandBoy
 {
@@ -9,6 +11,9 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private RectTransform _holder;
+        [SerializeField] private AudioClip _populateSound;
+        [Header("UI")]
+        [SerializeField] private Image _outputImage;
         [SerializeField] private TextMeshProUGUI _outputText;
         [SerializeField] private TextMeshProUGUI _ingredientText;
         [SerializeField] private TextMeshProUGUI _craftText;
@@ -27,39 +32,42 @@ namespace IslandBoy
             _holder.gameObject.SetActive(false);
         }
 
-        public void InjectRecipe(CraftingRecipeObject recipeObject)
+        public void PopulateRecipe(CraftingRecipeObject recipeObject)
         {
             _tc = transform.root.GetComponent<TimedConverter>();
             _holder.gameObject.SetActive(true);
             _recipeToDisplay = recipeObject;
-            _outputText.text = $"{_recipeToDisplay.OutputItem.Name}<br>{_recipeToDisplay.OutputItem.GetDescription()}";
+            _outputText.text = $"{_recipeToDisplay.OutputItem.Name}";
             _recipeAmount = 1;
+            _outputImage.sprite = recipeObject.OutputItem.UiDisplay;
 
-            UpdateIngTexts();
-            UpdateButtons();
-            UpgradeCraftText();
+            MMSoundManagerSoundPlayEvent.Trigger(_populateSound, MMSoundManager.MMSoundManagerTracks.UI, default);
+
+            UpdateTexts();
         }
+
         public void IncreaseButton()
         {
             _recipeAmount++;
-            UpdateButtons();
-            UpdateIngTexts();
-            UpgradeCraftText();
+            UpdateTexts();
         }
 
         public void DecreaseButton()
         {
             _recipeAmount--;
-            UpdateButtons();
-            UpdateIngTexts();
-            UpgradeCraftText();
+            UpdateTexts();
         }
 
         public void CraftButton()
         {
             _tc.StartCrafting(_recipeToDisplay, _recipeAmount);
-            UpdateButtons();
+            UpdateTexts();
+        }
+
+        public void UpdateTexts()
+        {
             UpdateIngTexts();
+            UpdateButtons();
             UpgradeCraftText();
         }
 
@@ -104,7 +112,7 @@ namespace IslandBoy
 
         private void UpdateIngTexts()
         {
-            string ingText = string.Empty;
+            string ingText = "Recipe:<br>";
 
             foreach (var ia in _recipeToDisplay.ResourceList)
             {
