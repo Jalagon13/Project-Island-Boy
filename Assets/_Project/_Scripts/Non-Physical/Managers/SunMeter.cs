@@ -12,6 +12,7 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerReference _pr;
         [SerializeField] private float _dayDurationInSec;
+        [SerializeField] private float _percentTillSunset = 0.7f;
         [Range(0, 1f)]
         [SerializeField] private float _percentTillSleepWarning;
         [Range(0, 1f)]
@@ -93,15 +94,18 @@ namespace IslandBoy
 
         private void VolumeHandle()
         {
-            if (_phasePercent <= 0.15f)
+            if (_phasePercent <= 0.4f)
             {
                 float percent = _phasePercent / 0.1f;
                 _globalVolume.weight = Mathf.Lerp(0.5f, _isDay ? 0 : 1, percent);
             }
-            else if(_phasePercent >= 0.85f && _phasePercent <= 1f)
+            else if(_phasePercent >= _percentTillSunset && _phasePercent <= 1f)
             {
-                float percent =  1 - ((1f - _phasePercent) * 10);
-                _globalVolume.weight = Mathf.Lerp(_isDay ? 0 : 1, 0.5f, percent);
+                float per = (1f - _phasePercent);
+                float p = (1 - _percentTillSunset) - per;
+                float x = p / (1 - _percentTillSunset);
+
+                _globalVolume.weight = Mathf.Lerp(_isDay ? 0 : 1, 0.5f, x);
             }
         }
 
