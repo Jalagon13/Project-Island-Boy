@@ -184,11 +184,11 @@ namespace IslandBoy
             {
                 int amountInInv = _pr.Inventory.GetItemAmount(ia.Item);
 
-                if (amountInInv > ia.Amount)
+                if (amountInInv >= ia.Amount)
                 {
                     // check if can increase
-                    int newAmount = ia.Amount * (_recipeAmount + 1);
-                    if (newAmount > amountInInv)
+                    int amountToCheck = ia.Amount * (_recipeAmount + 1);
+                    if (amountToCheck > amountInInv)
                         return false;
                 }
             }
