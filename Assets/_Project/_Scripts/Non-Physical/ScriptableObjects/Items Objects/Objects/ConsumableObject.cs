@@ -12,6 +12,7 @@ namespace IslandBoy
         [SerializeField] private PlayerStatType _consumeType;
         [SerializeField] private AudioClip _consumeSound;
         [SerializeField] private int _value;
+        [SerializeField] private float _chargeSpeed;
 
         private FocusSlotControl _selectedSlotControl;
 
@@ -53,6 +54,7 @@ namespace IslandBoy
             Signal signal = GameSignals.ITEM_CHARGING;
             signal.ClearParameters();
             signal.AddParameter("ReleaseBehavior", chargeReleaseBehavior);
+            signal.AddParameter("ChargeSpeed", _chargeSpeed);
             signal.Dispatch();
         }
 

@@ -92,6 +92,11 @@ namespace IslandBoy
                 _onRelease = (Action<float>)parameters.GetParameter("ReleaseBehavior");
                 _isCharging = true;
             }
+
+            if (parameters.HasParameter("ChargeSpeed"))
+            {
+                _chargeSpeed = (float)parameters.GetParameter("ChargeSpeed");
+            }
         }
 
         private void UpdateFocusSlot(ISignalParameters parameters)

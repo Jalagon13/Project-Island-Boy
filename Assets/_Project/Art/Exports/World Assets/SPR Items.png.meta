@@ -1152,7 +1152,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: item_magic_potion
+      name: item_health_potion
       rect:
         serializedVersion: 2
         x: 144
@@ -1414,6 +1414,7 @@ TextureImporter:
       item_fishing_rod: 1879242436
       item_furnace: 1494493913
       item_grass: 456514419
+      item_health_potion: -1000768912
       item_hook: -1546665967
       item_iron_anvil: 941267960
       item_iron_axe: 659459211
@@ -1422,7 +1423,6 @@ TextureImporter:
       item_iron_ore: 1648958029
       item_iron_pickaxe: -30285140
       item_iron_sword: 1805357805
-      item_magic_potion: -1000768912
       item_miner_scroll: 2118457468
       item_mushed_apple: -1475151143
       item_mushed_mushroom: -522266397

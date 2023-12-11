@@ -11506,7 +11506,11 @@ MonoBehaviour:
   _clickFeedback: {fileID: 1867381480340656044}
   _destroyFeedback: {fileID: 4566307676181140785}
   _lootTable:
-    <Table>k__BackingField: []
+    <Table>k__BackingField:
+    - Item: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
+      Min: 1
+      Max: 3
+      Chance: 100
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _dontGiveXp: 0
 --- !u!114 &3736007384578019363
