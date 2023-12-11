@@ -44,7 +44,7 @@ namespace IslandBoy
             if (collision.TryGetComponent(out CollectTag collectTag) && _canCollect && !_collected)
             {
                 var leftover = _pr.Inventory.AddItem(_item, _currentStack, _currentParameters);
-                MMSoundManagerSoundPlayEvent.Trigger(_pickupSound, MMSoundManager.MMSoundManagerTracks.Sfx, default, pitch: Random.Range(0.9f, 1.1f), volume: 0.85f);
+                MMSoundManagerSoundPlayEvent.Trigger(_pickupSound, MMSoundManager.MMSoundManagerTracks.Sfx, default, pitch: Random.Range(0.9f, 1.1f));
                 if (leftover == 0)
                 {
                     _collected = true;

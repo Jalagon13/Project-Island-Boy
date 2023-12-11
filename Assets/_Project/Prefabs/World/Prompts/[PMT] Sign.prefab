@@ -1359,12 +1359,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5759804511303924600, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Min
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5759804511303924600, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Item
       value: 
-      objectReference: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
+      objectReference: {fileID: 11400000, guid: c67ec61e0f752f845be2a959a4108887, type: 2}
     - target: {fileID: 5759804511303924600, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Chance
       value: 100
