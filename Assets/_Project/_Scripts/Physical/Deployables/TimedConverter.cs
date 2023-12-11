@@ -197,7 +197,7 @@ namespace IslandBoy
             _craftingOnGoingFeedback?.StopFeedbacks();
             _craftingDoneFeedback?.StopFeedbacks();
             _progressInfo.gameObject.SetActive(false);
-            _craftingUI.UpdateTexts();
+            _craftingUI.ResetCraftingUI();
 
             transform.GetChild(0).localScale = Vector3.one;
         }

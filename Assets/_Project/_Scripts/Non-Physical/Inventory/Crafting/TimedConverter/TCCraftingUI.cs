@@ -64,7 +64,13 @@ namespace IslandBoy
             UpdateTexts();
         }
 
-        public void UpdateTexts()
+        public void ResetCraftingUI()
+        {
+            _recipeAmount = 1;
+            UpdateTexts();
+        }
+
+        private void UpdateTexts()
         {
             UpdateIngTexts();
             UpdateButtons();
@@ -116,7 +122,13 @@ namespace IslandBoy
 
             foreach (var ia in _recipeToDisplay.ResourceList)
             {
-                ingText += $"{ ia.Item.Name} [{_pr.Inventory.GetItemAmount(ia.Item)}/{ia.Amount * _recipeAmount}]<br>";
+                string text = $"{ ia.Item.Name} [{_pr.Inventory.GetItemAmount(ia.Item)}/{ia.Amount * _recipeAmount}]";
+
+                if(_pr.Inventory.GetItemAmount(ia.Item) >= (ia.Amount * _recipeAmount))
+                    ingText += $"<color=white>{text}<color=white><br>";
+                else
+                    ingText += $"<color=red>{text}<color=red><br>";
+
             }
 
             _ingredientText.text = ingText;
@@ -129,7 +141,7 @@ namespace IslandBoy
             if (_recipeAmount == 1)
                 amountText = $"{1}";
             else
-                amountText = $"(x{_recipeToDisplay.OutputAmount * _recipeAmount})";
+                amountText = _recipeAmount == _recipeToDisplay.OutputAmount * _recipeAmount ? string.Empty : $"(x{_recipeToDisplay.OutputAmount * _recipeAmount})";
 
             string outputText = _recipeAmount == 1 ? (_recipeToDisplay.OutputAmount * _recipeAmount) > 1 ? 
                 $"(x{_recipeToDisplay.OutputAmount * _recipeAmount})" : string.Empty : amountText;

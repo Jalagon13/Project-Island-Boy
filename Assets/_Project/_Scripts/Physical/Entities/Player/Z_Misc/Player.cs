@@ -42,6 +42,7 @@ namespace IslandBoy
 
             GameSignals.CLICKABLE_CLICKED.AddListener(OnSwing);
             GameSignals.DAY_START.AddListener(PlacePlayerAtSpawnPoint);
+            GameSignals.DAY_START.AddListener(RestoreStats);
             GameSignals.FOCUS_SLOT_UPDATED.AddListener(FocusSlotUpdated);
             GameSignals.BED_TIME_EXECUTED.AddListener(ChangeSpawnPoint);
         }
@@ -50,6 +51,7 @@ namespace IslandBoy
         {
             GameSignals.CLICKABLE_CLICKED.RemoveListener(OnSwing);
             GameSignals.DAY_START.RemoveListener(PlacePlayerAtSpawnPoint);
+            GameSignals.DAY_START.RemoveListener(RestoreStats);
             GameSignals.FOCUS_SLOT_UPDATED.RemoveListener(FocusSlotUpdated);
             GameSignals.BED_TIME_EXECUTED.RemoveListener(ChangeSpawnPoint);
         }
@@ -101,6 +103,18 @@ namespace IslandBoy
         private void PlacePlayerAtSpawnPoint(ISignalParameters parameters)
         {
             transform.SetPositionAndRotation(_spawnPoint, Quaternion.identity);
+        }
+
+        private void RestoreStats(ISignalParameters parameters)
+        {
+            StartCoroutine(Delay());
+        }
+
+        private IEnumerator Delay()
+        {
+            HealNrg((_maxNrg - _currentNrg) / 2);
+            yield return new WaitForSeconds(0.5f);
+            HealHp((_maxHp - _currentHp) / 2);
         }
 
         private void ChangeSpawnPoint(ISignalParameters parameters)
