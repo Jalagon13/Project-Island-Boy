@@ -17,7 +17,7 @@ namespace IslandBoy
         [SerializeField] private AudioClip _upgradeSound;
 
         private CraftingRecipeObject _upgradeRecipe;
-        private int _xpNeedAmount;
+        //private int _xpNeedAmount;
 
         private void Start()
         {
@@ -76,21 +76,28 @@ namespace IslandBoy
 
             ToolObject tool = (ToolObject)ItemObject;
             _upgradeRecipe = tool.UpgradeRecipe;
-            _xpNeedAmount = tool.XpForUpgrade;
+            //_xpNeedAmount = tool.XpForUpgrade;
 
             if (tool.UpgradeRecipe != null) // if tool has an upgradable item
             {
-                string needList = string.Empty;
+                string ingText = "Recipe:<br>";
 
-                foreach (ItemAmount itemAmount in tool.UpgradeRecipe.ResourceList)
+                foreach (ItemAmount ia in tool.UpgradeRecipe.ResourceList)
                 {
-                    needList += $"<br>* {itemAmount.Item.Name} ({itemAmount.Amount})";
+                    //needList += $"<br>{ ia.Item.Name} [{_pr.Inventory.GetItemAmount(ia.Item)}/{ia.Amount}]";
+
+                    string text = $"{ ia.Item.Name} [{_pr.Inventory.GetItemAmount(ia.Item)}/{ia.Amount}]";
+
+                    if (_pr.Inventory.GetItemAmount(ia.Item) >= (ia.Amount))
+                        ingText += $"<color=white>{text}<color=white><br>";
+                    else
+                        ingText += $"<color=red>{text}<color=red><br>";
                 }
 
-                needList += $"<br>* {tool.XpForUpgrade} XP";
+                //needList += $"<br>* {tool.XpForUpgrade} XP";
 
                 _upgradeText.text = $"Upgrade:<br>{tool.UpgradeRecipe.OutputItem.Name}";
-                _needText.text = $"Need:{needList}";
+                _needText.text = ingText;
 
                 EnableUpgradeUI(true);
             }
@@ -99,7 +106,7 @@ namespace IslandBoy
         private void ToolRemoved()
         {
             _upgradeRecipe = null;
-            _xpNeedAmount = 0;
+            //_xpNeedAmount = 0;
 
             EnableUpgradeUI(false);
         }
@@ -122,11 +129,11 @@ namespace IslandBoy
                 if (!canCraft) break;
             }
 
-            if (PlayerExperience.Experience.Count < _xpNeedAmount)
-            {
-                PopupMessage.Create(_pr.Position, "I need more XP to craft this", Color.yellow, Vector2.up, 1f);
-                return;
-            }
+            //if (PlayerExperience.Experience.Count < _xpNeedAmount)
+            //{
+            //    PopupMessage.Create(_pr.Position, "I need more XP to craft this", Color.yellow, Vector2.up, 1f);
+            //    return;
+            //}
 
             if (_upgradeRecipe.ResourceList.Count <= 0)
                 canCraft = true;
@@ -148,7 +155,7 @@ namespace IslandBoy
                 }
 
                 MMSoundManagerSoundPlayEvent.Trigger(_upgradeSound, MMSoundManager.MMSoundManagerTracks.UI, transform.position);
-                PlayerExperience.AddExerpience(-_xpNeedAmount);
+                //PlayerExperience.AddExerpience(-_xpNeedAmount);
                 GameSignals.ITEM_CRAFTED.Dispatch();
 
                 Destroy(InventoryItem.gameObject);

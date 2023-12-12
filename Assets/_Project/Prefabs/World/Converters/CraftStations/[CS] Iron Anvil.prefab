@@ -167,8 +167,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 185.97144, y: 26.271896}
-  m_SizeDelta: {x: -301.7045, y: -75.2373}
+  m_AnchoredPosition: {x: 159.75412, y: 26.271896}
+  m_SizeDelta: {x: -319.5083, y: -75.2373}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3117321548173190152
 CanvasRenderer:
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Need:'
+  m_text: 'Recipe:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
   m_sharedMaterial: {fileID: 4835514525599508895, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
@@ -437,7 +437,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 93.7, y: -78.4}
+  m_AnchoredPosition: {x: 142, y: -78.4}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8891354985866307620
@@ -706,11 +706,11 @@ RectTransform:
   - {fileID: 6584191028298852293}
   m_Father: {fileID: 7624616619513187665}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -102}
-  m_SizeDelta: {x: 500, y: 225}
-  m_Pivot: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 32, y: 323}
+  m_SizeDelta: {x: 584.4155, y: 225}
+  m_Pivot: {x: 0, y: 0}
 --- !u!222 &3210758054270786757
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -785,7 +785,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -135, y: 1.9000015}
+  m_AnchoredPosition: {x: -214, y: -9}
   m_SizeDelta: {x: 65, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8558246062308660033
@@ -904,7 +904,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 30.199997, y: -0.8999939}
+  m_AnchoredPosition: {x: 4, y: 3}
   m_SizeDelta: {x: -294.6473, y: -149.4935}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1588071729687074362
@@ -1022,7 +1022,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7624616619513187665
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1140,8 +1140,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -128.3, y: 75.2}
-  m_SizeDelta: {x: -307.72, y: -163.5}
+  m_AnchoredPosition: {x: -210.70673, y: 75.2}
+  m_SizeDelta: {x: -421.4135, y: -163.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &93581552064237386
 CanvasRenderer:
@@ -1328,7 +1328,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3101685698662622380, guid: 705e2f0c60ddef248a9f090a86bc27dc, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3941540212395473597}
+      addedObject: {fileID: 239066331361696758}
   m_SourcePrefab: {fileID: 100100000, guid: 705e2f0c60ddef248a9f090a86bc27dc, type: 3}
 --- !u!114 &514644100431552703 stripped
 MonoBehaviour:
@@ -1362,7 +1362,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3101685698662622380, guid: 705e2f0c60ddef248a9f090a86bc27dc, type: 3}
   m_PrefabInstance: {fileID: 5595243960474753427}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3941540212395473597
+--- !u!114 &239066331361696758
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1371,25 +1371,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7398615981352729919}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 650ea134123f86d40b8fd0e6ebc1f173, type: 3}
+  m_Script: {fileID: 11500000, guid: 74fe0179708dc004c91c7b9ae2d255a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dontGiveXp: 0
   _maxHitPoints: 6
   _breakType: 2
   _clickFeedback: {fileID: 2867197687979788526}
   _destroyFeedback: {fileID: 514644100431552703}
   _lootTable:
-    <Table>k__BackingField:
-    - Item: {fileID: 11400000, guid: 094c99f31de27a34bb5bfa75e568b3b6, type: 2}
-      Min: 1
-      Max: 1
-      Chance: 100
+    <Table>k__BackingField: []
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _prompCanvas: {fileID: 7040909711411863758}
-  _onOpenPrompt:
-    m_PersistentCalls:
-      m_Calls: []
-  _onClosePrompt:
-    m_PersistentCalls:
-      m_Calls: []

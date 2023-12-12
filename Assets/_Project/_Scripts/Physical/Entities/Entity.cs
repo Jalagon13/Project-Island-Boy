@@ -8,32 +8,42 @@ namespace IslandBoy
     {
         [Header("Base Entity Parameters")]
         [SerializeField] protected PlayerReference _pr;
+        [SerializeField] private float _durationUntilDespawn;
         [SerializeField] private bool _dontGiveXp = false;
 
         protected KnockbackFeedback _knockback;
+        private Timer _despawnTimer;
 
         protected override void Awake()
         {
             base.Awake();
 
             _knockback = GetComponent<KnockbackFeedback>();
+            _despawnTimer = new(_durationUntilDespawn);
+            _despawnTimer.OnTimerEnd += Despawn;
 
             GameSignals.DAY_END.AddListener(DestroyThisEntity);
+            GameSignals.PLAYER_DIED.AddListener(DestroyThisEntity);
         }
 
         private void OnDestroy()
         {
             GameSignals.DAY_END.RemoveListener(DestroyThisEntity);
+            GameSignals.PLAYER_DIED.RemoveListener(DestroyThisEntity);
+            _despawnTimer.OnTimerEnd -= Despawn;
         }
 
-        //protected override void OnTriggerEnter2D(Collider2D collision)
-        //{
-        //    if(collision.TryGetComponent<Clickable>(out var click))
-        //    {
-        //        if(Random.Range(0, 2) == 0)
-        //            click.ClickFeedback?.PlayFeedbacks();
-        //    }
-        //}
+        protected override void Update()
+        {
+            base.Update();
+
+            _despawnTimer.Tick(Time.deltaTime);
+        }
+
+        private void Despawn()
+        {
+            Destroy(gameObject);
+        }
 
         private void DestroyThisEntity(ISignalParameters parameters)
         {
@@ -43,6 +53,7 @@ namespace IslandBoy
         public override bool OnHit(ToolType incomingToolType, int amount, bool displayHit = true)
         {
             _knockback.PlayFeedback(_pr.Position);
+            _despawnTimer.RemainingSeconds = _durationUntilDespawn;
 
             if (base.OnHit(incomingToolType, amount, displayHit))
             {

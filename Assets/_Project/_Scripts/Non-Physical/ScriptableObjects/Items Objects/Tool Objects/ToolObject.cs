@@ -19,12 +19,12 @@ namespace IslandBoy
         [SerializeField] private ToolType _type;
         [Header("Upgrade Parameters")]
         [SerializeField] private CraftingRecipeObject _upgradeRecipe;
-        [SerializeField] private int _xpForUpgrade;
+        //[SerializeField] private int _xpForUpgrade;
 
         public override ToolType ToolType => _type;
         public override ArmorType ArmorType => _baseArmorType;
         public CraftingRecipeObject UpgradeRecipe => _upgradeRecipe;
-        public int XpForUpgrade => _xpForUpgrade;
+        //public int XpForUpgrade => _xpForUpgrade;
 
         public override void ExecutePrimaryAction(FocusSlotControl control)
         {

@@ -91,20 +91,11 @@ namespace IslandBoy
             ResetCraftSlots();
             SetUpRecipes();
             EnableInstructions(false);
-            DispatchTcSignal();
         }
 
         public void RefreshCraftingUI(CraftingRecipeObject recipe)
         {
             _craftingUI.PopulateRecipe(recipe);
-        }
-
-        private void DispatchPromptInteract()
-        {
-            Signal signal = GameSignals.PROMPT_INTERACT;
-            signal.ClearParameters();
-            signal.AddParameter("Prompt", this);
-            signal.Dispatch();
         }
 
         public void StartCrafting(CraftingRecipeObject incomingRecipe, int amount)
@@ -240,7 +231,7 @@ namespace IslandBoy
 
         public void EnableUI()
         {
-            DispatchPromptInteract();
+            DispatchTcSignal();
 
             _tcCanvas.gameObject.SetActive(true);
             _progressInfo.gameObject.SetActive(_craftingInProgress);
