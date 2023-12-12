@@ -34,7 +34,7 @@ namespace IslandBoy
 
         private IEnumerator IdleDuration(Animator animator)
         {
-            yield return new WaitForSeconds(Random.Range(4f, 8f));
+            yield return new WaitForSeconds(Random.Range(8f, 16f));
             _ctx.AI.isStopped = false;
             _ctx.ChangeToMoveState(animator);
         }

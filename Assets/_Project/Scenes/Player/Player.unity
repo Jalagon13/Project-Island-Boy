@@ -918,7 +918,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1313964884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2196,7 +2196,7 @@ MonoBehaviour:
   _maxMp: 100
   _manaGenRate: 3
   _iFrameDuration: 1
-  _deathTimer: 5
+  _deathTimer: 3
   _damageSound: {fileID: 8300000, guid: 2ea738d159e7e35448fc9470a87096da, type: 3}
 --- !u!114 &7367368679351872877
 MonoBehaviour:

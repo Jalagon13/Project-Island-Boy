@@ -99,7 +99,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5589885843354716152
 Transform:
   m_ObjectHideFlags: 0
@@ -163,6 +163,10 @@ PrefabInstance:
     - target: {fileID: 5541026694009873878, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: m_text
       value: Expand
+      objectReference: {fileID: 0}
+    - target: {fileID: 5759804511303924600, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5759804511303924600, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: _breakType
@@ -277,10 +281,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7937654568965162758, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 8006377219171992168}
-    - target: {fileID: 7937654568965162758, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: TryExpand
       objectReference: {fileID: 0}
@@ -314,26 +314,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3101685698662622380, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2118592014590636399}
-    - targetCorrespondingSourceObject: {fileID: 3101685698662622380, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8006377219171992168}
   m_SourcePrefab: {fileID: 100100000, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
 --- !u!4 &1768524492382728186 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7382328970847094501, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
   m_PrefabInstance: {fileID: 9149135975600253215}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2005394880538604079 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7290442375305206576, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
-  m_PrefabInstance: {fileID: 9149135975600253215}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6193333528048405939 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3101685698662622380, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
@@ -346,29 +332,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6193333528048405939}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0707d3836b5744448aada388f98ab56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: 
+  _text: []
   _signText: {fileID: 0}
   _disableTextOverride: 1
---- !u!114 &8006377219171992168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6193333528048405939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d68f886d50da8f948b659e0a24a2492b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _expansionRecipe: {fileID: 11400000, guid: 7e45519479ed65041ab98bf1169cd2ab, type: 2}
-  _unlockFee: 30
-  _transitionScene: Island2
-  _expansionText: {fileID: 2005394880538604079}
-  _expandSound: {fileID: 8300000, guid: b505e92c4f4f6dd41b29b93a35c416a4, type: 3}

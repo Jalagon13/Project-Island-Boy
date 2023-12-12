@@ -15,7 +15,8 @@ MonoBehaviour:
   <Name>k__BackingField: Sapling
   <UiDisplay>k__BackingField: {fileID: 811161192, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   <Stackable>k__BackingField: 1
-  <Description>k__BackingField: Summons a tree when placed
+  <Description>k__BackingField: Turns into a tree at the start of the next day when
+    placed.
   <DefaultParameterList>k__BackingField:
   - Parameter: {fileID: 11400000, guid: c25902e3274ad0a4a97f3515779aecea, type: 2}
     Value: 3
