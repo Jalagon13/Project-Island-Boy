@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,7 @@ namespace IslandBoy
         public override ToolType ToolType => _baseToolType;
         public override ArmorType ArmorType => _baseArmorType;
 
-        public override void ExecutePrimaryAction(SelectedSlotControl control)
+        public override void ExecutePrimaryAction(FocusSlotControl control)
         {
             if(!_pr.Inventory.Contains(_ammo, 1))
             {
@@ -31,10 +32,10 @@ namespace IslandBoy
             Vector3 direction = (control.CursorControl.transform.position - ammo.transform.position).normalized;
             ammo.Setup(this, _ammo, direction);
 
-            AudioManager.Instance.PlayClip(_launchSound, false, true);
+            MMSoundManagerSoundPlayEvent.Trigger(_launchSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
         }
 
-        public override void ExecuteSecondaryAction(SelectedSlotControl control)
+        public override void ExecuteSecondaryAction(FocusSlotControl control)
         {
 
         }

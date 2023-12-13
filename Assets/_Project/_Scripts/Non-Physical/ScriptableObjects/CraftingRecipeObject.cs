@@ -10,6 +10,7 @@ namespace IslandBoy
     {
         public ItemObject OutputItem;
         public int OutputAmount;
+        public float CraftingTimer;
         public List<ItemAmount> ResourceList = new();
     }
 

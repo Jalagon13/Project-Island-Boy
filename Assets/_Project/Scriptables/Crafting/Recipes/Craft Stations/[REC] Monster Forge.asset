@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OutputItem: {fileID: 11400000, guid: 21d089cfc9506f74593ca24ca2e7a602, type: 2}
   OutputAmount: 1
-  ReplacementRecipe: {fileID: 0}
+  CraftingTimer: 3
   ResourceList:
-  - Item: {fileID: 11400000, guid: 407622edcea12884289355dc79cf7a6c, type: 2}
-    Amount: 12
-  - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
-    Amount: 12
+  - Item: {fileID: 11400000, guid: ad0ac35127c96834c90c0c80926ab721, type: 2}
+    Amount: 4
+  - Item: {fileID: 11400000, guid: a231bdcf0c738394697fe7f4a2f28cf4, type: 2}
+    Amount: 4

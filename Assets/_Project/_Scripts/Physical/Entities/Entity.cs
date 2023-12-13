@@ -4,26 +4,45 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public class Entity : Resource
+    public class Entity : Clickable
     {
-        [SerializeField] private PlayerReference _pr;
+        [Header("Base Entity Parameters")]
+        [SerializeField] protected PlayerReference _pr;
+        [SerializeField] private float _durationUntilDespawn;
+        [SerializeField] private bool _dontGiveXp = false;
 
-        private KnockbackFeedback _knockback;
+        protected KnockbackFeedback _knockback;
+        private Timer _despawnTimer;
 
         protected override void Awake()
         {
             base.Awake();
 
             _knockback = GetComponent<KnockbackFeedback>();
-            _idleHash = Animator.StringToHash("[ANIM] Idle");
-            _onClickHash = Animator.StringToHash("[ANIM] Hit");
+            _despawnTimer = new(_durationUntilDespawn);
+            _despawnTimer.OnTimerEnd += Despawn;
 
             GameSignals.DAY_END.AddListener(DestroyThisEntity);
+            GameSignals.PLAYER_DIED.AddListener(DestroyThisEntity);
         }
 
         private void OnDestroy()
         {
             GameSignals.DAY_END.RemoveListener(DestroyThisEntity);
+            GameSignals.PLAYER_DIED.RemoveListener(DestroyThisEntity);
+            _despawnTimer.OnTimerEnd -= Despawn;
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+
+            _despawnTimer.Tick(Time.deltaTime);
+        }
+
+        private void Despawn()
+        {
+            Destroy(gameObject);
         }
 
         private void DestroyThisEntity(ISignalParameters parameters)
@@ -31,17 +50,23 @@ namespace IslandBoy
             Destroy(gameObject);
         }
 
-        public override bool OnHit(ToolType incomingToolType, int amount)
+        public override bool OnHit(ToolType incomingToolType, int amount, bool displayHit = true)
         {
             _knockback.PlayFeedback(_pr.Position);
+            _despawnTimer.RemainingSeconds = _durationUntilDespawn;
 
-            if (base.OnHit(incomingToolType, amount))
+            if (base.OnHit(incomingToolType, amount, displayHit))
             {
-                PopupMessage.Create(transform.position, amount.ToString(), Color.yellow, Vector2.up * 0.5f, 0.4f);
-                EnableYellowCorners(false);
-                EnableAmountDisplay(false);
-                EnableInstructions(false);
-                EnableProgressBar(true);
+                if (displayHit)
+                {
+                    PopupMessage.Create(transform.position, amount.ToString(), Color.yellow, Vector2.up * 0.5f, 0.4f);
+                    UpdateAmountDisplay();
+                    UpdateFillImage();
+                    EnableYellowCorners(false);
+                    EnableAmountDisplay(false);
+                    EnableInstructions(false);
+                    EnableProgressBar(true);
+                }
                 return true;
             }
 
@@ -52,7 +77,6 @@ namespace IslandBoy
         {
             UpdateAmountDisplay();
             UpdateFillImage();
-
             EnableInstructions(true);
             EnableYellowCorners(true);
             EnableAmountDisplay(true);
@@ -70,7 +94,13 @@ namespace IslandBoy
         protected override void OnBreak()
         {
             _dropPosition = transform.position;
-            GameSignals.ENTITY_SLAIN.Dispatch();
+
+            if (!_dontGiveXp)
+            {
+                PopupMessage.Create(transform.position, $"+ {_maxHitPoints} XP", Color.white, Vector2.up, 1f);
+                PlayerExperience.AddExerpience(_maxHitPoints);
+            }
+
             base.OnBreak();
         }
     }

@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ namespace IslandBoy
     {
         private SlimeStateManager _ctx;
         private Vector2 _chasePos;
-        private float _chaseSpeed = 3.25f;
+        private float _chaseSpeed = 2.5f;
 
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
@@ -18,14 +19,14 @@ namespace IslandBoy
             _chasePos = _ctx.PR.Position;
             _ctx.OnMove += Chase;
 
-            AudioManager.Instance.PlayClip(_ctx._agroSound, false, true, 0.25f);
+            MMSoundManagerSoundPlayEvent.Trigger(_ctx._agroSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
         }
 
         override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             _chasePos = _ctx.PR.Position; 
 
-            if (!_ctx.PlayerClose() || !_ctx.CanGetToPlayer())
+            if (!_ctx.PlayerClose(6) || !_ctx.CanGetToPlayer())
             {
                 _ctx.ChangeToIdleState(animator);
             }

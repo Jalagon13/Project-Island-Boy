@@ -6,12 +6,20 @@ namespace IslandBoy
 {
     public class Sapling : MonoBehaviour
     {
-        [SerializeField] private float _growthTimerSec;
         [SerializeField] private GameObject _treePrefab;
 
-        private IEnumerator Start()
+        private void Awake()
         {
-            yield return new WaitForSeconds(_growthTimerSec);
+            GameSignals.DAY_START.AddListener(SpawnPrefab);
+        }
+
+        private void OnDestroy()
+        {
+            GameSignals.DAY_START.AddListener(SpawnPrefab);
+        }
+
+        private void SpawnPrefab(ISignalParameters parameters)
+        {
             Instantiate(_treePrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }

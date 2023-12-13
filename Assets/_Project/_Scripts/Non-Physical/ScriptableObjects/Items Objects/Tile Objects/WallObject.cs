@@ -1,6 +1,8 @@
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 namespace IslandBoy
 {
     [CreateAssetMenu(fileName = "New Wall", menuName = "Create Item/New Wall")]
@@ -11,26 +13,25 @@ namespace IslandBoy
         public override ToolType ToolType => _baseToolType;
         public override ArmorType ArmorType => _baseArmorType;
 
-        public override void ExecutePrimaryAction(SelectedSlotControl control)
+        public override void ExecutePrimaryAction(FocusSlotControl control)
         {
-
-        }
-
-        public override void ExecuteSecondaryAction(SelectedSlotControl control)
-        {
-            if (PointerHandler.IsOverLayer(5)) return;
-
             var pos = Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position);
 
-            if (!control.TMR.WallTilemap.HasTile(pos) && control.CursorControl.IsClear() && control.TMR.GroundTilemap.HasTile(pos))
+            if (!control.WallTm.Tilemap.HasTile(pos) && control.CursorControl.IsClear())
             {
                 control.FocusSlot.InventoryItem.Count--;
-                control.TMR.WallTilemap.SetTile(pos, _wallTile);
+                control.WallTm.Tilemap.SetTile(pos, _wallTile);
 
-                AudioManager.Instance.PlayClip(_wallTile.PlaceSound, false, true);
+                GameSignals.ITEM_DEPLOYED.Dispatch();
 
+                MMSoundManagerSoundPlayEvent.Trigger(_wallTile.PlaceSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
                 _wallTile.UpdatePathfinding(new(pos.x + 0.5f, pos.y + 0.5f));
             }
+        }
+
+        public override void ExecuteSecondaryAction(FocusSlotControl control)
+        {
+
         }
 
         public override string GetDescription()
@@ -47,7 +48,7 @@ namespace IslandBoy
                 }
             }
 
-            return $"• Right Click to place<br>• {clickDistance} build distance";
+            return $"• Left Click to place<br>• {clickDistance} build distance<br>{Description}";
         }
     }
 }

@@ -9,7 +9,8 @@ namespace IslandBoy
 {
     public class MonsterSpawner : MonoBehaviour
     {
-        [SerializeField] private TilemapReferences _tmr;
+        [SerializeField] private TilemapReference _wallTm;
+        [SerializeField] private TilemapReference _floorTm;
         [SerializeField] private Entity _monsterPrefab;
         [SerializeField] private int _maxMonsterCount;
         [SerializeField] private float _minSpawnTimerSec;
@@ -27,8 +28,10 @@ namespace IslandBoy
             GameSignals.DAY_END.RemoveListener(PauseMonsterSpawning);
         }
 
-        private void Start()
+        private IEnumerator Start()
         {
+            yield return new WaitForSeconds(30f);
+
             StartCoroutine(SpawnMonsterTimer());
         }
 
@@ -70,7 +73,7 @@ namespace IslandBoy
 
                 var spawn = CalcSpawnPos();
 
-                if (_tmr.WallTilemap.HasTile(Vector3Int.FloorToInt(spawn)) || _tmr.FloorTilemap.HasTile(Vector3Int.FloorToInt(spawn)))
+                if (_wallTm.Tilemap.HasTile(Vector3Int.FloorToInt(spawn)) || _floorTm.Tilemap.HasTile(Vector3Int.FloorToInt(spawn)))
                 {
                     continue;
                 }
@@ -91,10 +94,14 @@ namespace IslandBoy
 
         private Vector2 CalcSpawnPos()
         {
+            retry:
             GraphNode startNode = AstarPath.active.GetNearest(transform.position, NNConstraint.Default).node;
 
-            List<GraphNode> nodes = PathUtilities.BFS(startNode, 20);
+            List<GraphNode> nodes = PathUtilities.BFS(startNode, 35);
             Vector3 singleRandomPoint = PathUtilities.GetPointsOnNodes(nodes, 1)[0];
+
+            if (Vector3.Distance(singleRandomPoint, transform.position) < 5)
+                goto retry;
 
             return singleRandomPoint;
         }

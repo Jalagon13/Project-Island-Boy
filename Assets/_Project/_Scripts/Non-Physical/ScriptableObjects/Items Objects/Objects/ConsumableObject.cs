@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,23 +12,22 @@ namespace IslandBoy
         [SerializeField] private PlayerStatType _consumeType;
         [SerializeField] private AudioClip _consumeSound;
         [SerializeField] private int _value;
+        [SerializeField] private float _chargeSpeed;
 
-        private SelectedSlotControl _selectedSlotControl;
+        private FocusSlotControl _selectedSlotControl;
 
         public override ToolType ToolType => _baseToolType;
         public override ArmorType ArmorType => _baseArmorType;
         public PlayerStatType ConsumeType => _consumeType;
         public AudioClip ConsumeSound => _consumeSound;
 
-        public override void ExecutePrimaryAction(SelectedSlotControl control)
+        public override void ExecutePrimaryAction(FocusSlotControl control)
         {
 
         }
 
-        public override void ExecuteSecondaryAction(SelectedSlotControl control)
+        public override void ExecuteSecondaryAction(FocusSlotControl control)
         {
-            if (PointerHandler.IsOverLayer(5)) return;
-
             switch (_consumeType)
             {
                 case PlayerStatType.Health:
@@ -36,6 +36,7 @@ namespace IslandBoy
 
                 case PlayerStatType.Energy:
                     if (!control.Player.CanHealNrg()) return;
+                    
                     break;
 
                 case PlayerStatType.Mana:
@@ -53,6 +54,7 @@ namespace IslandBoy
             Signal signal = GameSignals.ITEM_CHARGING;
             signal.ClearParameters();
             signal.AddParameter("ReleaseBehavior", chargeReleaseBehavior);
+            signal.AddParameter("ChargeSpeed", _chargeSpeed);
             signal.Dispatch();
         }
 
@@ -68,6 +70,7 @@ namespace IslandBoy
 
                 case PlayerStatType.Energy:
                     _selectedSlotControl.Player.HealNrg(_value);
+                    GameSignals.ENERGY_RESTORED.Dispatch();
                     break;
 
                 case PlayerStatType.Mana:
@@ -75,7 +78,7 @@ namespace IslandBoy
                     break;
             }
 
-            AudioManager.Instance.PlayClip(_consumeSound, false, true);
+            MMSoundManagerSoundPlayEvent.Trigger(_consumeSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
         }
 
         public override string GetDescription()

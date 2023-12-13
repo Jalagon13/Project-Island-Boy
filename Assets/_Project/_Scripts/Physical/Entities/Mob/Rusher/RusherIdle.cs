@@ -19,7 +19,7 @@ namespace IslandBoy
 
         override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            if (_ctx.PlayerClose() && _ctx.CanGetToPlayer())
+            if (_ctx.PlayerClose(_ctx.AgroDistance) && _ctx.CanGetToPlayer())
             {
                 _ctx.AI.isStopped = false;
                 _ctx.ChangeToChaseState(animator);
@@ -38,7 +38,7 @@ namespace IslandBoy
 
         private IEnumerator IdleDuration(Animator animator)
         {
-            yield return new WaitForSeconds(Random.Range(2f, 4f));
+            yield return new WaitForSeconds(Random.Range(1f, 3f));
             _ctx.AI.isStopped = false;
             _ctx.ChangeToMoveState(animator);
         }

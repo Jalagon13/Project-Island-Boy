@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,6 +7,7 @@ namespace IslandBoy
 {
     public class Door : Interactable
     {
+        [Header("Base Door Parameters")]
         [SerializeField] private Sprite _openSprite;
         [SerializeField] private Sprite _closeSprite;
         [SerializeField] private AudioClip _doorOpenSound;
@@ -40,8 +42,8 @@ namespace IslandBoy
             _sr.sprite = _openSprite;
 
             Bounds updateBounds = new(transform.position, new(2, 2, 1));
+            MMSoundManagerSoundPlayEvent.Trigger(_doorOpenSound, MMSoundManager.MMSoundManagerTracks.Sfx, transform.position);
             AstarPath.active.UpdateGraphs(updateBounds, 0.1f);
-            AudioManager.Instance.PlayClip(_doorOpenSound, false, true);
         }
 
         public void Close()
@@ -51,8 +53,8 @@ namespace IslandBoy
             _sr.sprite = _closeSprite;
 
             Bounds updateBounds = new(transform.position, new(2, 2, 1));
+            MMSoundManagerSoundPlayEvent.Trigger(_doorCloseSound, MMSoundManager.MMSoundManagerTracks.Sfx, transform.position);
             AstarPath.active.UpdateGraphs(updateBounds, 0.1f);
-            AudioManager.Instance.PlayClip(_doorCloseSound, false, true);
         }
 
         public override void ShowDisplay()

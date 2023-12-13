@@ -25,7 +25,7 @@ namespace IslandBoy
         private void Awake()
         {
             _pr.Inventory = this;
-            _mouseItemHolder = transform.GetChild(3).GetComponent<MouseSlot>();
+            _mouseItemHolder = transform.GetChild(3).GetChild(0).GetComponent<MouseSlot>();
         }
 
         private IEnumerator Start()
@@ -124,6 +124,24 @@ namespace IslandBoy
                 else if (counter < amount)
                     goto repeat;
             }
+        }
+
+        public int GetItemAmount(ItemObject item)
+        {
+            int amount = 0;
+
+            for (int i = 0; i < _allSlots.Count; i++)
+            {
+                Slot slot = _allSlots[i];
+
+                if (slot.ItemObject == item)
+                {
+                    Debug.Log(slot == null);
+                    amount += slot.InventoryItem.Count;
+                }
+            }
+
+            return amount;
         }
 
         public bool Contains(ItemObject item, int amount)

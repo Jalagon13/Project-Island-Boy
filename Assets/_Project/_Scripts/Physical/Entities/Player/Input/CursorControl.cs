@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,10 +13,11 @@ namespace IslandBoy
     public class CursorControl : MonoBehaviour
     {
         [SerializeField] private PlayerReference _pr;
-        [SerializeField] private TilemapReferences _tmr;
+        [SerializeField] private TilemapReference _floorTm;
+        [SerializeField] private TilemapReference _wallTm;
         [SerializeField] private float _startingClickDistance;
         [SerializeField] private float _clickCd = 0.1f;
-        [SerializeField] private ItemParameter _powerParameter;
+        [SerializeField] private ItemParameter _hitParameter;
         [SerializeField] private ItemParameter _clickDistanceParameter;
 
         private PlayerInput _input;
@@ -25,7 +27,7 @@ namespace IslandBoy
         private Timer _clickTimer;
         private Vector2 _previousCenterPos;
         private Vector2 _currentCenterPos;
-        private bool _canHit = true;
+        private bool _canUseActions = true;
         private bool _heldDown;
         private float _currentClickDistance;
 
@@ -35,7 +37,7 @@ namespace IslandBoy
         private Timer _buffTimer;
         private int _buffAmount;
 
-        public Clickable CurrentClickable { get { return _currentClickable; } }
+        public Slot FocusSlot { get { return _focusSlotRef; } }
 
         private void Awake()
         {
@@ -59,7 +61,8 @@ namespace IslandBoy
             GameSignals.PLAYER_DIED.AddListener(DisableAbilityToHit);
             GameSignals.GAME_PAUSED.AddListener(DisableAbilityToHit);
             GameSignals.GAME_UNPAUSED.AddListener(EnableAbilityToHit);
-            GameSignals.ENTITY_SLAIN.AddListener(AddPlusTwoHitBuff);
+            //GameSignals.ENERGY_RESTORED.AddListener(AddPlusTwoHitBuff);
+            GameSignals.ITEM_DEPLOYED.AddListener(RefreshCd);
         }
 
         private void OnDestroy()
@@ -70,7 +73,8 @@ namespace IslandBoy
             GameSignals.PLAYER_DIED.RemoveListener(DisableAbilityToHit);
             GameSignals.GAME_PAUSED.RemoveListener(DisableAbilityToHit);
             GameSignals.GAME_UNPAUSED.RemoveListener(EnableAbilityToHit);
-            GameSignals.ENTITY_SLAIN.RemoveListener(AddPlusTwoHitBuff);
+            //GameSignals.ENERGY_RESTORED.RemoveListener(AddPlusTwoHitBuff);
+            GameSignals.ITEM_DEPLOYED.RemoveListener(RefreshCd);
 
             _input.Disable();
         }
@@ -81,11 +85,10 @@ namespace IslandBoy
 
             _clickTimer.Tick(Time.deltaTime);
 
-
-            //_buffTimer.Tick(Time.deltaTime);
-            //_buffText.enabled = _buffTimer.RemainingSeconds > 0;
-            //if (_buffTimer.RemainingSeconds > 0)
-            //    _buffText.text = $"+2 Hit Buff: {Math.Round(_buffTimer.RemainingSeconds, 1)} sec";
+            _buffTimer.Tick(Time.deltaTime);
+            _buffText.enabled = _buffTimer.RemainingSeconds > 0;
+            if (_buffTimer.RemainingSeconds > 0)
+                _buffText.text = $"+2 Hit Buff: {Math.Round(_buffTimer.RemainingSeconds, 1)} sec";
 
             if (_heldDown)
                 Hit(new());
@@ -95,9 +98,28 @@ namespace IslandBoy
             DisplayCursor();
         }
 
+        private void OnTriggerStay2D(Collider2D collision)
+        {
+            if(collision.TryGetComponent<Clickable>(out var clickable))
+            {
+                if (_focusSlotRef.ItemObject is WallObject || _focusSlotRef.ItemObject is FloorObject || _focusSlotRef.ItemObject is DeployObject)
+                    return;
+
+                if (_focusSlotRef.ToolType == clickable.BreakType || clickable is Interactable)
+                    clickable.ShowDisplay();
+                else
+                    clickable.HideDisplay();
+            }
+        }
+
+        private void RefreshCd(ISignalParameters parameters)
+        {
+            _clickTimer.RemainingSeconds = _clickCd;
+        }
+
         private void AddPlusTwoHitBuff(ISignalParameters parameters)
         {
-            _buffAmount = 0;
+            _buffAmount = 2;
             _buffTimer.RemainingSeconds += _buffDuration;
             _buffTimer.OnTimerEnd += RemovePlusTwoHitBuff;
         }
@@ -115,11 +137,11 @@ namespace IslandBoy
 
         private void Hit(InputAction.CallbackContext context)
         {
-            if (HammerHitSomething() || PointerHandler.IsOverLayer(5) ||
+            if (HammerHitSomething() || Pointer.IsOverUI() ||
                 _focusSlotRef.ItemObject is not ToolObject || _clickTimer.RemainingSeconds > 0) return;
 
 
-            if (_currentClickable != null && _canHit && _currentClickable is not Entity)
+            if (_currentClickable != null && _canUseActions && _currentClickable is not Entity)
             {
                 ToolType toolType = _focusSlotRef == null ? ToolType.None : _focusSlotRef.ToolType;
                 int totalHit = CalcToolHitAmount() + CalcBuffModifiers();
@@ -158,6 +180,8 @@ namespace IslandBoy
 
         private void Interact(InputAction.CallbackContext context)
         {
+            if (!_canUseActions) return;
+
             Collider2D[] colliders = Physics2D.OverlapPointAll(transform.position);
 
             foreach (Collider2D col in colliders)
@@ -184,9 +208,9 @@ namespace IslandBoy
         {
             if (_focusSlotRef.ItemObject == null) return 0;
 
-            if (_focusSlotRef.ItemObject.DefaultParameterList.Contains(_powerParameter))
+            if (_focusSlotRef.ItemObject.DefaultParameterList.Contains(_hitParameter))
             {
-                var index = _focusSlotRef.ItemObject.DefaultParameterList.IndexOf(_powerParameter);
+                var index = _focusSlotRef.ItemObject.DefaultParameterList.IndexOf(_hitParameter);
                 var powerParameter = _focusSlotRef.ItemObject.DefaultParameterList[index];
 
                 return (int)powerParameter.Value;
@@ -202,6 +226,7 @@ namespace IslandBoy
 
         private float CalcClickDistance()
         {
+            if (_focusSlotRef == null) return _startingClickDistance;
             if (_focusSlotRef.ItemObject == null) return _startingClickDistance;
 
             if (_focusSlotRef.ItemObject.DefaultParameterList.Contains(_clickDistanceParameter))
@@ -253,12 +278,12 @@ namespace IslandBoy
 
         private void DisableAbilityToHit(ISignalParameters parameters)
         {
-            _canHit = false;
+            _canUseActions = false;
         }
 
         private void EnableAbilityToHit(ISignalParameters parameters)
         {
-            _canHit = true;
+            _canUseActions = true;
         }
 
         private Vector2 CalcCenterTile()
@@ -288,16 +313,17 @@ namespace IslandBoy
             if (_focusSlotRef.ItemObject.ToolType == ToolType.None) return false;
             if (_focusSlotRef.ItemObject != null)
                 if (_focusSlotRef.ItemObject.ToolType != ToolType.Hammer) return false;
-            if (PointerHandler.IsOverLayer(5)) return false;
+            if (Pointer.IsOverUI()) return false;
+            if (CalcToolHitAmount() <= 0) return false;
 
-            if (_tmr.WallTilemap.HasTile(Vector3Int.FloorToInt(_currentCenterPos)))
+            if (_wallTm.Tilemap.HasTile(Vector3Int.FloorToInt(_currentCenterPos)))
             {
-                DestroyTile(_tmr.WallTilemap);
+                DestroyTile(_wallTm.Tilemap);
                 return true;
             }
-            else if (_tmr.FloorTilemap.HasTile(Vector3Int.FloorToInt(_currentCenterPos)))
+            else if (_floorTm.Tilemap.HasTile(Vector3Int.FloorToInt(_currentCenterPos)))
             {
-                DestroyTile(_tmr.FloorTilemap);
+                DestroyTile(_floorTm.Tilemap);
                 return true;
             }
 
@@ -312,7 +338,7 @@ namespace IslandBoy
 
             RuleTileExtended tile = tm.GetTile<RuleTileExtended>(pos);
             GameAssets.Instance.SpawnItem(transform.position, tile.Item, 1);
-            AudioManager.Instance.PlayClip(tile.BreakSound, false, true);
+            MMSoundManagerSoundPlayEvent.Trigger(tile.BreakSound, MMSoundManager.MMSoundManagerTracks.Sfx, transform.position);
             GameSignals.CLICKABLE_CLICKED.Dispatch();
 
             tm.SetTile(pos, null);

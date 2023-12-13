@@ -18,7 +18,7 @@ namespace IslandBoy
         private Action<float> _onRelease;
         private PlayerInput _input;
         private bool _isHeldDown, _isCharging;
-        private float _minLaunchForce = 5f, _maxLaunchForce = 25f, _maxChargeTime = 1.5f, _baseChargeTime = 1.5f;
+        private float _minLaunchForce = 5f, _maxLaunchForce = 25f, _maxChargeTime = 1f, _baseChargeTime = 1f;
         private float _chargeSpeed, _currentLaunchForce;
 
         public float LaunchForcePercentage 
@@ -92,6 +92,11 @@ namespace IslandBoy
                 _onRelease = (Action<float>)parameters.GetParameter("ReleaseBehavior");
                 _isCharging = true;
             }
+
+            if (parameters.HasParameter("ChargeSpeed"))
+            {
+                _chargeSpeed = (float)parameters.GetParameter("ChargeSpeed");
+            }
         }
 
         private void UpdateFocusSlot(ISignalParameters parameters)
@@ -104,6 +109,7 @@ namespace IslandBoy
 
         private void UpdateChargeTime(ISignalParameters parameters)
         {
+            if (FocusSlot == null) return;
             if (FocusSlot.CurrentParameters.Count <= 0) return;
             var itemParams = FocusSlot.CurrentParameters;
 

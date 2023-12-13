@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,6 +9,8 @@ namespace IslandBoy
     {
         [SerializeField] private CraftingDatabaseObject _defaultCDB;
         [SerializeField] private RectTransform _craftHolder;
+        [SerializeField] private AudioClip _openSound;
+        [SerializeField] private AudioClip _closeSound;
 
         private Inventory _inventory;
         private MouseSlot _mouseItemHolder;
@@ -23,11 +26,12 @@ namespace IslandBoy
             _inventory = GetComponent<Inventory>();
             _craftSlotsControl = GetComponent<CraftSlotsControl>();
             _mainInventory = transform.GetChild(0).GetComponent<RectTransform>();
-            _mouseItemHolder = transform.GetChild(3).GetComponent<MouseSlot>();
+            _mouseItemHolder = transform.GetChild(3).GetChild(0).GetComponent<MouseSlot>();
             _input.Player.ToggleInventory.started += ToggleInventory;
             _input.Enable();
 
             GameSignals.CHEST_INTERACT.AddListener(ChestInteract);
+            GameSignals.TIMED_CONVERTER_INTERACT.AddListener(TimedConverterInteract);
             GameSignals.GAME_PAUSED.AddListener(PauseHandle);
             GameSignals.GAME_UNPAUSED.AddListener(UnpauseHandle);
             GameSignals.PLAYER_DIED.AddListener(PauseHandle);
@@ -41,6 +45,7 @@ namespace IslandBoy
             _input.Disable();
 
             GameSignals.CHEST_INTERACT.RemoveListener(ChestInteract);
+            GameSignals.TIMED_CONVERTER_INTERACT.RemoveListener(TimedConverterInteract);
             GameSignals.GAME_PAUSED.RemoveListener(PauseHandle);
             GameSignals.GAME_UNPAUSED.RemoveListener(UnpauseHandle);
             GameSignals.PLAYER_DIED.RemoveListener(PauseHandle);
@@ -51,7 +56,7 @@ namespace IslandBoy
 
         private void Start()
         {
-            CloseInventory();
+            CloseInventory(playSound: false);
         }
 
         private void Update()
@@ -66,7 +71,7 @@ namespace IslandBoy
 
         private void PauseHandle(ISignalParameters parameter)
         {
-            CloseInventory();
+            CloseInventory(playSound:false);
             _input.Disable();
         }
 
@@ -82,6 +87,15 @@ namespace IslandBoy
             OpenInventory(true); // BROOKE
             _craftHolder.gameObject.SetActive(false);
             InteractableHandle(chestOpened);
+        }
+
+        public void TimedConverterInteract(ISignalParameters parameters)
+        {
+            Interactable timedConverter = (Interactable)parameters.GetParameter("TimedConverter");
+
+            OpenInventory(true); // BROOKE
+            _craftHolder.gameObject.SetActive(false);
+            InteractableHandle(timedConverter);
         }
 
         public void CraftStationInteract(Interactable craftStation, CraftingDatabaseObject rdb)
@@ -123,7 +137,7 @@ namespace IslandBoy
             _craftSlotsControl.RefreshCraftingMenu(_defaultCDB);
         }
 
-        public void CloseInventory()
+        public void CloseInventory(bool playSound = true)
         {
             if (_mouseItemHolder.HasItem()) return;
 
@@ -132,6 +146,9 @@ namespace IslandBoy
 
             _mainInventory.gameObject.SetActive(false);
             _inventoryOpen = false;
+
+            if(playSound)
+                MMSoundManagerSoundPlayEvent.Trigger(_closeSound, MMSoundManager.MMSoundManagerTracks.UI, default);
 
             GameSignals.INVENTORY_CLOSE.Dispatch();
 
@@ -142,11 +159,14 @@ namespace IslandBoy
             }
         }
 
-        public void OpenInventory(bool openChest = false)
+        public void OpenInventory(bool openChest = false, bool playSound = true)
         {
             _mainInventory.gameObject.SetActive(true);
             _inventoryOpen = true;
             _craftHolder.gameObject.SetActive(true);
+
+            if (playSound)
+                MMSoundManagerSoundPlayEvent.Trigger(_openSound, MMSoundManager.MMSoundManagerTracks.UI, default);
 
             GameSignals.INVENTORY_OPEN.Dispatch();
 

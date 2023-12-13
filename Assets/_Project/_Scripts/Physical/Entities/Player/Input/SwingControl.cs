@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +18,8 @@ namespace IslandBoy
         private Camera _camera;
         private Slot _focusSlotRef;
         private bool _holdDown;
-        private bool _inMidSwing;
+        private bool _performingSwing;
+        private bool _canSwing = true;
 
         private readonly int _hashRightHit = Animator.StringToHash("[ANM] RightSwing");
         private readonly int _hashUpHit = Animator.StringToHash("[ANM] UpSwing");
@@ -38,6 +40,10 @@ namespace IslandBoy
             _swingTimer = new(_swingCd);
 
             GameSignals.FOCUS_SLOT_UPDATED.AddListener(OnUpdateFocusSlot);
+            GameSignals.ITEM_DEPLOYED.AddListener(RefreshCd);
+            GameSignals.PLAYER_DIED.AddListener(DisableSwing);
+            GameSignals.DAY_END.AddListener(DisableSwing);
+            GameSignals.DAY_START.AddListener(EnableSwing);
         }
 
         private void OnDestroy()
@@ -45,6 +51,10 @@ namespace IslandBoy
             _input.Disable();
 
             GameSignals.FOCUS_SLOT_UPDATED.RemoveListener(OnUpdateFocusSlot);
+            GameSignals.ITEM_DEPLOYED.RemoveListener(RefreshCd);
+            GameSignals.PLAYER_DIED.RemoveListener(DisableSwing);
+            GameSignals.DAY_END.RemoveListener(DisableSwing);
+            GameSignals.DAY_START.RemoveListener(EnableSwing);
         }
 
         private IEnumerator Start()
@@ -53,12 +63,27 @@ namespace IslandBoy
             _camera = Camera.main;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             _swingTimer.Tick(Time.deltaTime);
 
             if (_holdDown)
                 PerformAnimation();
+        }
+
+        private void DisableSwing(ISignalParameters parameters)
+        {
+            _canSwing = false;
+        }
+
+        private void EnableSwing(ISignalParameters parameters)
+        {
+            _canSwing = true;
+        }
+
+        private void RefreshCd(ISignalParameters parameters)
+        {
+            _swingTimer.RemainingSeconds = _swingCd;
         }
 
         private void OnUpdateFocusSlot(ISignalParameters parameters)
@@ -77,25 +102,34 @@ namespace IslandBoy
 
         private void UpdateSwingSprite()
         {
+
+            if (_focusSlotRef == null)
+            {
+                _swingSr.sprite = null;
+                return;
+            }
             _swingSr.sprite = _focusSlotRef.ItemObject == null ? null : _focusSlotRef.ItemObject is ToolObject ? _focusSlotRef.ItemObject.UiDisplay : null;
         }
 
         private void PerformAnimation()
         {
-            if (_swingTimer.RemainingSeconds > 0 || _inMidSwing || !_focusSlotRef.HasItem() || 
-                _focusSlotRef.ItemObject is not ToolObject || PointerHandler.IsOverLayer(5)) return;
+            if (_swingTimer.RemainingSeconds > 0 || _performingSwing || !_focusSlotRef.HasItem() || 
+                _focusSlotRef.ItemObject is not ToolObject || Pointer.IsOverUI() || !_canSwing) return;
 
             PerformCorrectAnimation();
-            AudioManager.Instance.PlayClip(_wooshClip, false, true);
-            _inMidSwing = true;
         }
 
-        public void ChangeToIdle()
+        public void OnSwingStart()
         {
-            AnimStateManager.ChangeAnimationState(_animator, _hashIdle);
+            _performingSwing = true;
+            //MMSoundManagerSoundPlayEvent.Trigger(_wooshClip, MMSoundManager.MMSoundManagerTracks.Sfx, transform.position, pitch: Random.Range(0.85f, 1.15f), volume: 0.75f);
+        }
 
+        public void OnSwingEnd()
+        {
+            _performingSwing = false;
             _swingTimer.RemainingSeconds = _swingCd;
-            _inMidSwing = false;
+            AnimStateManager.ChangeAnimationState(_animator, _hashIdle);
         }
 
         private void PerformCorrectAnimation()
@@ -127,6 +161,8 @@ namespace IslandBoy
             {
                 AnimStateManager.ChangeAnimationState(_animator, _hashDownHit);
             }
+
+            
         }
     }
 }

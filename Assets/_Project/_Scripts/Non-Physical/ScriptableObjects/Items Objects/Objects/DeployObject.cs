@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,33 +9,30 @@ namespace IslandBoy
     [CreateAssetMenu(fileName = "New Deployable", menuName = "Create Item/New Deployable")]
     public class DeployObject : ItemObject
     {
-        [SerializeField] private TilemapReferences _tmr;
         [SerializeField] private GameObject _prefabToDeploy;
         [SerializeField] private AudioClip _deploySound;
 
         public override ToolType ToolType => _baseToolType;
         public override ArmorType ArmorType => _baseArmorType;
 
-        public override void ExecutePrimaryAction(SelectedSlotControl control)
+        public override void ExecutePrimaryAction(FocusSlotControl control)
         {
-
-        }
-
-        public override void ExecuteSecondaryAction(SelectedSlotControl control)
-        {
-            if (PointerHandler.IsOverLayer(5)) return;
-
-            bool wallTmHasTile = _tmr.WallTilemap.HasTile(Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position));
-            bool groundTmHasTile = _tmr.GroundTilemap.HasTile(Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position));
+            bool wallTmHasTile = control.WallTm.Tilemap.HasTile(Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position));
+            bool groundTmHasTile = control.GroundTm.Tilemap.HasTile(Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position));
             bool tilActionClear = control.CursorControl.IsClear();
 
             if (tilActionClear && !wallTmHasTile && groundTmHasTile)
             {
                 control.FocusSlot.InventoryItem.Count--;
                 control.CursorControl.PlaceDeployable(_prefabToDeploy);
-
-                AudioManager.Instance.PlayClip(_deploySound, false, true);
+                GameSignals.ITEM_DEPLOYED.Dispatch();
+                MMSoundManagerSoundPlayEvent.Trigger(_deploySound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
             }
+        }
+
+        public override void ExecuteSecondaryAction(FocusSlotControl control)
+        {
+
         }
 
         public override string GetDescription()
@@ -51,7 +49,7 @@ namespace IslandBoy
                 }
             }
 
-            return $"{Description}<br>• Right Click to place<br>• {clickDistance} build distance";
+            return $"{Description}<br>• Left Click to place<br>• {clickDistance} build distance";
         }
     }
 }

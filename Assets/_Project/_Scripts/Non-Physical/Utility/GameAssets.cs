@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,7 +30,7 @@ namespace IslandBoy
             WorldItem newItem = newItemGo.GetComponent<WorldItem>();
 
             if (playAudio)
-                AudioManager.Instance.PlayClip(_popSound, false, true, 1);
+                MMSoundManagerSoundPlayEvent.Trigger(_popSound, MMSoundManager.MMSoundManagerTracks.UI, default);
 
             if (!item.Stackable || stack <= 0)
                 stack = 1;

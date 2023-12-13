@@ -1,3 +1,5 @@
+using MoreMountains.Feedbacks;
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +9,7 @@ namespace IslandBoy
     public class WorldItem : MonoBehaviour
     {
         [SerializeField] private PlayerReference _pr;
+        [SerializeField] private MMF_Player _pickUpFeedback;
 
         private ItemObject _item;
         private List<ItemParameter> _currentParameters;
@@ -42,7 +45,7 @@ namespace IslandBoy
             if (collision.TryGetComponent(out CollectTag collectTag) && _canCollect && !_collected)
             {
                 var leftover = _pr.Inventory.AddItem(_item, _currentStack, _currentParameters);
-
+                _pickUpFeedback?.PlayFeedbacks();
                 if (leftover == 0)
                 {
                     _collected = true;

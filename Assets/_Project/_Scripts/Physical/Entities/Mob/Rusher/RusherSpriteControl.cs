@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,7 @@ namespace IslandBoy
 
         public void OnLandGameFeel()
         {
-            AudioManager.Instance.PlayClip(_landingSound, false, true);
+            MMSoundManagerSoundPlayEvent.Trigger(_landingSound, MMSoundManager.MMSoundManagerTracks.Sfx, transform.position);
         }
 
         public void OnLand()

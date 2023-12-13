@@ -37,7 +37,7 @@ namespace IslandBoy
                 if (slot.ItemObject != null)
                 {
                     Vector3 offset = new(0.5f, 0.5f);
-                    GameAssets.Instance.SpawnItem(this.transform.position += offset, slot.ItemObject, slot.InventoryItem.Count);
+                    GameAssets.Instance.SpawnItem(this.transform.position + offset, slot.ItemObject, slot.InventoryItem.Count);
                 }
             }
         }
@@ -135,7 +135,7 @@ namespace IslandBoy
         {
             if (!_canInteract) return;
 
-            _instructions.gameObject.SetActive(false);
+            EnableInstructions(false);
             DispatchChestInteract();
             EnableChestSlots(true);
         }

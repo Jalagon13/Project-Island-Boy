@@ -16,6 +16,8 @@ namespace IslandBoy
 
         private void OnDisable()
         {
+            if (_applicationQuitting) return;
+
             UpdatePathfinding();
         }
 
@@ -34,7 +36,7 @@ namespace IslandBoy
         private void UpdatePathfinding()
         {
             Bounds updateBounds = new(transform.parent.position, new(2, 2, 1));
-            AstarPath.active.UpdateGraphs(updateBounds, 0.1f);
+            //AstarPath.active.UpdateGraphs(updateBounds, 0.1f);
         }
     }
 }

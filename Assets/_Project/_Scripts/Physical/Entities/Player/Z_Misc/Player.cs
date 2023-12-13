@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,9 +28,10 @@ namespace IslandBoy
 
         private KnockbackFeedback _knockback;
         private Collider2D _playerCollider;
-        private Vector2 _spawnPoint;
         private Slot _focusSlot;
         private Timer _iFrameTimer;
+        private SpriteRenderer _sr;
+        private Vector2 _spawnPoint;
         private int _currentHp, _currentNrg, _currentMp;
 
         private void Awake()
@@ -38,9 +40,11 @@ namespace IslandBoy
             _playerCollider = GetComponent<Collider2D>();
             _iFrameTimer = new Timer(_iFrameDuration);
             _spawnPoint = transform.position;
+            _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
 
             GameSignals.CLICKABLE_CLICKED.AddListener(OnSwing);
             GameSignals.DAY_START.AddListener(PlacePlayerAtSpawnPoint);
+            GameSignals.DAY_START.AddListener(RestoreStats);
             GameSignals.FOCUS_SLOT_UPDATED.AddListener(FocusSlotUpdated);
             GameSignals.BED_TIME_EXECUTED.AddListener(ChangeSpawnPoint);
         }
@@ -49,6 +53,7 @@ namespace IslandBoy
         {
             GameSignals.CLICKABLE_CLICKED.RemoveListener(OnSwing);
             GameSignals.DAY_START.RemoveListener(PlacePlayerAtSpawnPoint);
+            GameSignals.DAY_START.RemoveListener(RestoreStats);
             GameSignals.FOCUS_SLOT_UPDATED.RemoveListener(FocusSlotUpdated);
             GameSignals.BED_TIME_EXECUTED.RemoveListener(ChangeSpawnPoint);
         }
@@ -64,12 +69,25 @@ namespace IslandBoy
             DispatchMpChange();
 
             StartCoroutine(RegenOneMana());
+            StartCoroutine(HungerWarningMessage());
         }
 
         private void Update()
         {
             _iFrameTimer.Tick(Time.deltaTime);
             _pr.Position = transform.position;
+        }
+
+        private IEnumerator HungerWarningMessage()
+        {
+            yield return new WaitForSeconds(15);
+
+            if(_currentNrg < (_maxNrg / 4))
+            {
+                PopupMessage.Create(transform.position, $"I need to eat soon..", Color.yellow, Vector2.up, 1f);
+            }
+
+            StartCoroutine(HungerWarningMessage());
         }
 
         private IEnumerator RegenOneMana()
@@ -87,6 +105,23 @@ namespace IslandBoy
         private void PlacePlayerAtSpawnPoint(ISignalParameters parameters)
         {
             transform.SetPositionAndRotation(_spawnPoint, Quaternion.identity);
+        }
+
+        private void RestoreStats(ISignalParameters parameters)
+        {
+            StartCoroutine(Delay());
+        }
+
+        private IEnumerator Delay()
+        {
+            if (_currentNrg < 0)
+                _currentNrg = 0;
+            if(_currentHp < 0)
+                _currentHp = 0;
+
+            HealNrg((_maxNrg - _currentNrg) / 2, consumeFocusSlot:false);
+            yield return new WaitForSeconds(0.5f);
+            HealHp((_maxHp - _currentHp) / 2, consumeFocusSlot: false);
         }
 
         private void ChangeSpawnPoint(ISignalParameters parameters)
@@ -114,7 +149,7 @@ namespace IslandBoy
 
             return !fullHp;
         }
-        public void HealHp(int amount)
+        public void HealHp(int amount, bool consumeFocusSlot = true)
         {
             _currentHp += amount;
             if (_currentHp > _maxHp)
@@ -128,7 +163,8 @@ namespace IslandBoy
             signal.AddParameter("MaxHp", _maxHp);
             signal.Dispatch();
 
-            _focusSlot.InventoryItem.Count--;
+            if(consumeFocusSlot)
+                _focusSlot.InventoryItem.Count--;
         }
         public void AddToHp(int amount)
         {
@@ -165,7 +201,7 @@ namespace IslandBoy
 
             return !fullNrg;
         }
-        public void HealNrg(int amount)
+        public void HealNrg(int amount, bool consumeFocusSlot = true)
         {
             _currentNrg += amount;
             if (_currentNrg > _maxNrg)
@@ -179,7 +215,8 @@ namespace IslandBoy
             signal.AddParameter("MaxNrg", _maxNrg);
             signal.Dispatch();
 
-            _focusSlot.InventoryItem.Count--;
+            if (consumeFocusSlot)
+                _focusSlot.InventoryItem.Count--;
         }
         public void AddToNrg(int amount)
         {
@@ -277,7 +314,7 @@ namespace IslandBoy
             DispatchPlayerDamaged(amount, damagerPosition);
 
             PopupMessage.Create(transform.position, $"{amount}", Color.red, new(0.5f, 0.5f), 1f);
-            AudioManager.Instance.PlayClip(_damageSound, false, true);
+            MMSoundManagerSoundPlayEvent.Trigger(_damageSound, MMSoundManager.MMSoundManagerTracks.Sfx, transform.position);
 
             if (_currentHp <= 0)
                 StartCoroutine(PlayerDead());
@@ -315,11 +352,13 @@ namespace IslandBoy
         {
             GameSignals.PLAYER_DIED.Dispatch();
             _playerCollider.enabled = false;
+            _sr.enabled = false;
 
             yield return new WaitForSeconds(_deathTimer);
 
             GameSignals.DAY_END.Dispatch();
             _playerCollider.enabled = true;
+            _sr.enabled = true;
         }
     }
 }

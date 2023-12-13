@@ -22,6 +22,8 @@ namespace IslandBoy
 
         [SerializeField] private float _agroDistance;
 
+        public float AgroDistance { get { return _agroDistance; } set { _agroDistance = value; } }
+
         private void Awake()
         {
             AI = GetComponent<IAstarAI>();
@@ -53,9 +55,9 @@ namespace IslandBoy
             AI.SearchPath();
         }
 
-        public bool PlayerClose()
+        public bool PlayerClose(float distance)
         {
-            return Vector3.Distance(gameObject.transform.position, PR.Position) < _agroDistance;
+            return Vector3.Distance(gameObject.transform.position, PR.Position) < distance;
         }
 
         public bool CanGetToPlayer()

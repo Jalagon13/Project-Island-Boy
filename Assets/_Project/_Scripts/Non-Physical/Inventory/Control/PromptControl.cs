@@ -6,13 +6,14 @@ namespace IslandBoy
 {
     public class PromptControl : MonoBehaviour
     {
-        private Prompt _currentPrompt;
+        private Interactable _currentInteractable;
 
         private void Awake()
         {
             GameSignals.CHEST_INTERACT.AddListener(DisablePromptDisplay);
             GameSignals.CRAFT_STATION_INTERACT.AddListener(DisablePromptDisplay);
             GameSignals.PROMPT_INTERACT.AddListener(PromptInteract);
+            //GameSignals.TIMED_CONVERTER_INTERACT.AddListener(TCInteract);
         }
 
         private void OnDestroy()
@@ -20,36 +21,44 @@ namespace IslandBoy
             GameSignals.CHEST_INTERACT.RemoveListener(DisablePromptDisplay);
             GameSignals.CRAFT_STATION_INTERACT.RemoveListener(DisablePromptDisplay);
             GameSignals.PROMPT_INTERACT.RemoveListener(PromptInteract);
+            //GameSignals.TIMED_CONVERTER_INTERACT.RemoveListener(TCInteract);
         }
 
         private void Update()
         {
-            if (_currentPrompt == null) return;
+            if (_currentInteractable == null) return;
 
-            if (!_currentPrompt.PlayerInRange(_currentPrompt.gameObject.transform.position))
+            if (!_currentInteractable.PlayerInRange(_currentInteractable.gameObject.transform.position))
             {
-                PromptHandle(null);
+                InteractableHandle(null);
             }
         }
 
         private void DisablePromptDisplay(ISignalParameters parameters)
         {
-            PromptHandle(null);
+            InteractableHandle(null);
+        }
+
+        public void TCInteract(ISignalParameters parameters)
+        {
+            Interactable tc = (Interactable)parameters.GetParameter("TimedConverter");
+
+            InteractableHandle(tc);
         }
 
         public void PromptInteract(ISignalParameters parameters)
         {
-            Prompt prompt = (Prompt)parameters.GetParameter("Prompt");
+            Interactable prompt = (Interactable)parameters.GetParameter("Prompt");
 
-            PromptHandle(prompt);
+            InteractableHandle(prompt);
         }
 
-        public void PromptHandle(Prompt adventurer)
+        public void InteractableHandle(Interactable interactable)
         {
-            if (_currentPrompt != null)
-                _currentPrompt.OnPlayerExitRange?.Invoke();
+            if (_currentInteractable != null)
+                _currentInteractable.OnPlayerExitRange?.Invoke();
 
-            _currentPrompt = adventurer;
+            _currentInteractable = interactable;
         }
     }
 }

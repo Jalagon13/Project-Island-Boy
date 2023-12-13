@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using UnityEngine;
 
 namespace IslandBoy
@@ -10,24 +11,22 @@ namespace IslandBoy
         public override ToolType ToolType => _baseToolType;
         public override ArmorType ArmorType => _baseArmorType;
 
-        public override void ExecutePrimaryAction(SelectedSlotControl control)
+        public override void ExecutePrimaryAction(FocusSlotControl control)
         {
-
-        }
-
-        public override void ExecuteSecondaryAction(SelectedSlotControl control)
-        {
-            if (PointerHandler.IsOverLayer(5)) return;
-
             var pos = Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position);
 
-            if (!control.TMR.WallTilemap.HasTile(pos) && !control.TMR.FloorTilemap.HasTile(pos) && control.TMR.GroundTilemap.HasTile(pos))
+            if (!control.WallTm.Tilemap.HasTile(pos) && !control.FloorTm.Tilemap.HasTile(pos))
             {
                 control.FocusSlot.InventoryItem.Count--;
-                control.TMR.FloorTilemap.SetTile(pos, _floorTile);
-
-                AudioManager.Instance.PlayClip(_floorTile.PlaceSound, false, true);
+                control.FloorTm.Tilemap.SetTile(pos, _floorTile);
+                GameSignals.ITEM_DEPLOYED.Dispatch();
+                MMSoundManagerSoundPlayEvent.Trigger(_floorTile.PlaceSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
             }
+        }
+
+        public override void ExecuteSecondaryAction(FocusSlotControl control)
+        {
+
         }
 
         public override string GetDescription()
@@ -44,7 +43,7 @@ namespace IslandBoy
                 }
             }
 
-            return $"• Right Click to place<br>• {clickDistance} build distance";
+            return $"• Left Click to place<br>• {clickDistance} build distance<br>{Description}";
         }
     }
 }
