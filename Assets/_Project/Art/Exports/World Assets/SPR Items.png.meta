@@ -942,7 +942,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: item_first_aid_kit
+      name: item_cactus
       rect:
         serializedVersion: 2
         x: 112
@@ -1382,6 +1382,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: item_glass_bottle
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba15c266ed3363148a7b3ecb7eb8cc8d
+      internalID: 390829686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1400,6 +1421,7 @@ TextureImporter:
       item_bow: 1529562530
       item_broken_bo: -1499702813
       item_broken_hammer: -1305312829
+      item_cactus: -916310749
       item_campfire: 1223464883
       item_chest: 1962245853
       item_coal: -1651487029
@@ -1409,10 +1431,10 @@ TextureImporter:
       item_diamond: -538633122
       item_door: -1112382854
       item_fiber: 393603439
-      item_first_aid_kit: -916310749
       item_fish: 1211993972
       item_fishing_rod: 1879242436
       item_furnace: 1494493913
+      item_glass_bottle: 390829686
       item_grass: 456514419
       item_health_potion: -1000768912
       item_hook: -1546665967
