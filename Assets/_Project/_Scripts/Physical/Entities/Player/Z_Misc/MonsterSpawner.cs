@@ -11,15 +11,18 @@ namespace IslandBoy
     {
         [SerializeField] private TilemapReference _wallTm;
         [SerializeField] private TilemapReference _floorTm;
-        [SerializeField] private Entity _monsterPrefab;
+        [SerializeField] private List<Entity> _monsterPrefabs;
         [SerializeField] private int _maxMonsterCount;
         [SerializeField] private float _minSpawnTimerSec;
         [SerializeField] private float _maxSpawnTimerSec;
+
+        private int numMobs;
 
         private void Awake()
         {
             GameSignals.DAY_START.AddListener(UnPauseMonsterSpawning);
             GameSignals.DAY_END.AddListener(PauseMonsterSpawning);
+            numMobs = _monsterPrefabs.Count;
         }
 
         private void OnDestroy()
@@ -78,13 +81,13 @@ namespace IslandBoy
                     continue;
                 }
 
-                Spawn(MonsterToSpawn(), spawn);
+                Spawn(MonsterToSpawn(UnityEngine.Random.Range(0, numMobs)), spawn);
             }
         }
 
-        private Entity MonsterToSpawn()
+        private Entity MonsterToSpawn(int mob)
         {
-            return _monsterPrefab;
+            return _monsterPrefabs[mob];
         }
 
         private void Spawn(Entity monster, Vector2 pos)

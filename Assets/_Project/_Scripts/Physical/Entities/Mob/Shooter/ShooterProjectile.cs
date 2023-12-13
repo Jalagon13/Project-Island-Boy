@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public class TreevilThorn : MonoBehaviour
+    public class ShooterProjectile : MonoBehaviour
     {
         [SerializeField] private float _force;
         [SerializeField] private int _damageAmount;
@@ -44,6 +44,21 @@ namespace IslandBoy
                 player.Damage(_damageAmount, damagerPosition);
 
                 Destroy(gameObject);
+            }
+
+            GameObject colliderGo = collision.gameObject;
+
+            if (!collision.gameObject.CompareTag("MOB"))
+            {
+                if (colliderGo.TryGetComponent<Clickable>(out var clickable))
+                {
+                    if (_clickableFound != null) return;
+
+                    _clickableFound = clickable;
+                    _clickableFound.OnHit(ToolType.Sword, _damageAmount, false);
+
+                    Destroy(gameObject);
+                }
             }
         }
     }
