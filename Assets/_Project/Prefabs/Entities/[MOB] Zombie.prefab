@@ -85,7 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3872004565418283390}
   - component: {fileID: 927801835214218565}
-  - component: {fileID: 1103165056264632232}
+  - component: {fileID: 3238770780803035484}
   m_Layer: 0
   m_Name: SpriteController
   m_TagString: Untagged
@@ -120,7 +120,7 @@ Animator:
   m_GameObject: {fileID: 254371358341620210}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 196fc83dbaf58994ca1397899245384b, type: 2}
+  m_Controller: {fileID: 9100000, guid: ba8c7cdc59a777647854e24a1b6acb61, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -131,7 +131,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1103165056264632232
+--- !u!114 &3238770780803035484
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,10 +140,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 254371358341620210}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f795aefbe221ec4c9bc59001308d1bb, type: 3}
+  m_Script: {fileID: 11500000, guid: 3176c2e379ef792418344f98d4ad7d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _landingSound: {fileID: 8300000, guid: 4cf47ad5b31ea6640addd4045fa77c8b, type: 3}
+  _landingSound: {fileID: 8300000, guid: acc9a292f9a4e9448953f37d61d47e54, type: 3}
   _onBeginningOfSpawn:
     m_PersistentCalls:
       m_Calls:
@@ -201,8 +201,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: -408499470062478843}
-        m_TargetAssemblyTypeName: IslandBoy.ShooterStateManager, Assembly-CSharp
+      - m_Target: {fileID: 3736007384578019363}
+        m_TargetAssemblyTypeName: IslandBoy.TestEntity, Assembly-CSharp
         m_MethodName: ChangeToIdleState
         m_Mode: 2
         m_Arguments:
@@ -211,7 +211,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &537705395422138771
 GameObject:
@@ -239,7 +239,7 @@ Transform:
   m_GameObject: {fileID: 537705395422138771}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.094, z: 0}
   m_LocalScale: {x: 5.76, y: 1.52, z: 3.92}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -287,7 +287,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: -1
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.4392157}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
@@ -11245,9 +11245,9 @@ Transform:
   m_GameObject: {fileID: 5140984312787161543}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.65, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3872004565418283390}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11292,7 +11292,7 @@ SpriteRenderer:
   m_SortingLayerID: -250621267
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4153240674832713612, guid: 8a1f96c93a153e34a98b5f6dd6bbfebd, type: 3}
+  m_Sprite: {fileID: -187104496, guid: a89cf0f683df5c24c9a61c2d4a51d4eb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -11394,13 +11394,13 @@ GameObject:
   - component: {fileID: 4144664716987894339}
   - component: {fileID: 3006192160976330081}
   - component: {fileID: 6224312026178961618}
-  - component: {fileID: -408499470062478843}
+  - component: {fileID: 3736007384578019363}
   - component: {fileID: 5992861903168681665}
   - component: {fileID: 5353874446116522579}
   - component: {fileID: 5773218019102184143}
   - component: {fileID: 8888723654129748411}
   m_Layer: 0
-  m_Name: '[MOB] Shooter'
+  m_Name: '[MOB] Zombie'
   m_TagString: MOB
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11425,7 +11425,6 @@ Transform:
   - {fileID: 1114472002073746249}
   - {fileID: 2262765121392551212}
   - {fileID: 635587742150858462}
-  - {fileID: 7385704452837733327}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &4144664716987894339
@@ -11508,14 +11507,14 @@ MonoBehaviour:
   _destroyFeedback: {fileID: 4566307676181140785}
   _lootTable:
     <Table>k__BackingField:
-    - Item: {fileID: 11400000, guid: ad8d77d5b0f8ba8439e6e8bad6571b59, type: 2}
+    - Item: {fileID: 11400000, guid: cf43aab6c50b00e4b8bf914676cf9ba3, type: 2}
       Min: 1
       Max: 3
-      Chance: 100
+      Chance: 50
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _durationUntilDespawn: 120
   _dontGiveXp: 0
---- !u!114 &-408499470062478843
+--- !u!114 &3736007384578019363
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11524,18 +11523,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5799062759696218101}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02b5004772f79004082512b2d749ec7a, type: 3}
+  m_Script: {fileID: 11500000, guid: b286198e21a882e42b52014774cd3e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PR: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _agroSound: {fileID: 8300000, guid: 18f19d03b5eb5f6438c7255ed4adfd44, type: 3}
-  proj: {fileID: 6869286514326003167, guid: e2b40a4c9bb1bf444b3d88baf18bc788, type: 3}
-  projPos: {fileID: 7385704452837733327}
-  _agroDistance: 7
-  _socialDistance: 3.5
-  _attackCooldown: 0
-  _attackFrequency: 3
-  _numAttacks: 1
+  _agroSound: {fileID: 8300000, guid: 7d81ba19726f98a4c8dfbe502334c213, type: 3}
+  Seeker: {fileID: 0}
+  _agroDistance: 5
 --- !u!114 &5992861903168681665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11696,37 +11690,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1 &5821625240341323796
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7385704452837733327}
-  m_Layer: 0
-  m_Name: ProjectilePosition
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7385704452837733327
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5821625240341323796}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8805461347593309612}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7129378274048281638
 GameObject:
   m_ObjectHideFlags: 0
@@ -11913,8 +11876,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.01813984, y: 0.39}
-  m_Size: {x: 0.797493, y: 0.797493}
+  m_Offset: {x: 0.02, y: 0.75}
+  m_Size: {x: 0.8, y: 1.4}
   m_Direction: 0
 --- !u!114 &6857535733822934068
 MonoBehaviour:
@@ -11928,7 +11891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d8c5ed8a3d5d5241abf99eb3e941f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageAmount: 3
+  _damageAmount: 10
 --- !u!1 &8275846407813757169
 GameObject:
   m_ObjectHideFlags: 0
