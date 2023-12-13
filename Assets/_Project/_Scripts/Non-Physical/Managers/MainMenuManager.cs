@@ -25,7 +25,6 @@ namespace IslandBoy
             yield return StartCoroutine(LoadSceneAdd("SunMeter"));
             yield return StartCoroutine(LoadSceneAdd("DeathPanel"));
             yield return StartCoroutine(LoadSceneAdd("ExperienceDisplay"));
-            yield return StartCoroutine(LoadSceneAdd("PersistantStructures"));
             yield return StartCoroutine(LoadSceneAdd("LaunchControl"));
             yield return StartCoroutine(LoadSceneAdd("LevelControl"));
 

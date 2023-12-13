@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace IslandBoy
     public class WorldItem : MonoBehaviour
     {
         [SerializeField] private PlayerReference _pr;
-        [SerializeField] private AudioClip _pickupSound;
+        [SerializeField] private MMF_Player _pickUpFeedback;
 
         private ItemObject _item;
         private List<ItemParameter> _currentParameters;
@@ -44,7 +45,7 @@ namespace IslandBoy
             if (collision.TryGetComponent(out CollectTag collectTag) && _canCollect && !_collected)
             {
                 var leftover = _pr.Inventory.AddItem(_item, _currentStack, _currentParameters);
-                MMSoundManagerSoundPlayEvent.Trigger(_pickupSound, MMSoundManager.MMSoundManagerTracks.Sfx, default, pitch: Random.Range(0.9f, 1.1f));
+                _pickUpFeedback?.PlayFeedbacks();
                 if (leftover == 0)
                 {
                     _collected = true;
