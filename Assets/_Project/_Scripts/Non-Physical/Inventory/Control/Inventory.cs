@@ -136,7 +136,7 @@ namespace IslandBoy
 
                 if (slot.ItemObject == item)
                 {
-                    Debug.Log(slot == null);
+                    //Debug.Log(slot == null);
                     amount += slot.InventoryItem.Count;
                 }
             }

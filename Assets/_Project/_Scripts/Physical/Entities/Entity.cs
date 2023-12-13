@@ -33,10 +33,8 @@ namespace IslandBoy
             _despawnTimer.OnTimerEnd -= Despawn;
         }
 
-        protected override void Update()
+        protected virtual void Update()
         {
-            base.Update();
-
             _despawnTimer.Tick(Time.deltaTime);
         }
 

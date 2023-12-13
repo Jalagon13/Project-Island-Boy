@@ -39,13 +39,21 @@ namespace IslandBoy
             gameObject.name = $"[Item] {item.Name}";
         }
 
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.TryGetComponent(out CollectTag collectTag) && _canCollect && !_collected)
+            {
+                _pickUpFeedback?.PlayFeedbacks();
+            }
+        }
+
         private void OnTriggerStay2D(Collider2D collision)
         {
             // need to add code later on to disable attractor when invetory full and enable it when inventory has space.
             if (collision.TryGetComponent(out CollectTag collectTag) && _canCollect && !_collected)
             {
                 var leftover = _pr.Inventory.AddItem(_item, _currentStack, _currentParameters);
-                _pickUpFeedback?.PlayFeedbacks();
+                
                 if (leftover == 0)
                 {
                     _collected = true;

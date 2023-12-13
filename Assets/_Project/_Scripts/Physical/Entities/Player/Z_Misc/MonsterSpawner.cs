@@ -78,6 +78,9 @@ namespace IslandBoy
                     continue;
                 }
 
+                if (Vector3.Distance(spawn, transform.position) < 5)
+                    continue;
+
                 Spawn(MonsterToSpawn(), spawn);
             }
         }
@@ -94,14 +97,10 @@ namespace IslandBoy
 
         private Vector2 CalcSpawnPos()
         {
-            retry:
             GraphNode startNode = AstarPath.active.GetNearest(transform.position, NNConstraint.Default).node;
 
             List<GraphNode> nodes = PathUtilities.BFS(startNode, 35);
             Vector3 singleRandomPoint = PathUtilities.GetPointsOnNodes(nodes, 1)[0];
-
-            if (Vector3.Distance(singleRandomPoint, transform.position) < 5)
-                goto retry;
 
             return singleRandomPoint;
         }
