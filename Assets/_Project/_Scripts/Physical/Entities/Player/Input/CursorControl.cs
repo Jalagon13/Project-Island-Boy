@@ -145,7 +145,6 @@ namespace IslandBoy
             {
                 ToolType toolType = _focusSlotRef == null ? ToolType.None : _focusSlotRef.ToolType;
                 int totalHit = CalcToolHitAmount() + CalcBuffModifiers();
-
                 _currentClickable.OnHit(toolType, totalHit);
                 _clickTimer.RemainingSeconds = _clickCd;
             }
