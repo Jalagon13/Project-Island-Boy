@@ -16,7 +16,7 @@ namespace IslandBoy
 
         private IEnumerator Start()
         {
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(1.5f);
 
             _ap.Scan();
         }
