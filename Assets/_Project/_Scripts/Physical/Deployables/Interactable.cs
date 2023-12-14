@@ -22,9 +22,14 @@ namespace IslandBoy
             base.Awake();
 
             _restoreHpTimer = new(5);
-            _restoreHpTimer.OnTimerEnd += () => { _currentHitPoints = _maxHitPoints; };
+            _restoreHpTimer.OnTimerEnd += RestoreHitPoints;
             _origin = transform.position + new Vector3(0.5f, 0.5f);
             _rightClickSr = transform.GetChild(1).GetComponent<SpriteRenderer>();
+        }
+
+        private void OnDestroy()
+        {
+            _restoreHpTimer.OnTimerEnd -= RestoreHitPoints;
         }
 
         public virtual IEnumerator Start()
@@ -34,24 +39,9 @@ namespace IslandBoy
             _canInteract = true;
         }
 
-        protected override void Update()
+        protected virtual void Update()
         {
-            base.Update();
-
             _restoreHpTimer.Tick(Time.deltaTime);
-        }
-
-        protected override void OnTriggerEnter2D(Collider2D collision)
-        {
-            //if (collision.TryGetComponent<CursorControl>(out var cc))
-            //{
-            //    if (cc.FocusSlot == null) return;
-
-            //    if (cc.FocusSlot.ItemObject is WallObject || cc.FocusSlot.ItemObject is FloorObject || cc.FocusSlot.ItemObject is DeployObject)
-            //        return;
-
-            //    ShowDisplay();
-            //}
         }
 
         protected override void OnTriggerExit2D(Collider2D collision)
@@ -82,6 +72,11 @@ namespace IslandBoy
             }
 
             return false;
+        }
+
+        private void RestoreHitPoints()
+        {
+            _currentHitPoints = _maxHitPoints;
         }
 
         public abstract void Interact();

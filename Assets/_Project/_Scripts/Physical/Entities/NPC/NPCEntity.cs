@@ -7,7 +7,7 @@ namespace IslandBoy
 {
     public class NPCEntity : Prompt
     {
-        [SerializeField] private ItemObject _treevilBark;
+        [SerializeField] private ItemObject _questItem;
         [SerializeField] private UnityEvent _onBarkDetected;
 
         private bool _questComplete;
@@ -22,7 +22,7 @@ namespace IslandBoy
 
         public override void Interact()
         {
-            if (QuestComplete())
+            if (_questComplete)
             {
                 return;
             }
@@ -53,23 +53,25 @@ namespace IslandBoy
             return false;
         }
 
-        public bool QuestComplete()
+        public void TryToCompleteQuest()
         {
             if (_questComplete)
             {
                 PopupMessage.Create(transform.position, $"You can now visit my hideout south of this island!", Color.yellow, Vector2.up, 2f);
-                return true;
+                return;
             }
 
-            if(_pr.Inventory.Contains(_treevilBark, 1))
+            if (_pr.Inventory.Contains(_questItem, 1))
             {
-                PopupMessage.Create(transform.position, $"Thank you for the Treevil bark! I have unlocked my hideout south of this island!", Color.yellow, Vector2.up, 5f);
+                PopupMessage.Create(transform.position, $"Just what I was looking for! Thank you! Goodluck out there!", Color.yellow, Vector2.up, 5f);
                 _questComplete = true;
                 _onBarkDetected?.Invoke();
-                return true;
+                return;
             }
-
-            return false;
+            else
+            {
+                PopupMessage.Create(transform.position, $"Silly goose! You don't have my quest item yet!", Color.red, Vector2.up, 3f);
+            }
         }
 
         public override void ShowDisplay()

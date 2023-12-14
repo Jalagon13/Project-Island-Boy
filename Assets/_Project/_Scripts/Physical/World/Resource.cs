@@ -23,8 +23,13 @@ namespace IslandBoy
             base.Awake();
 
             _restoreHpTimer = new(5);
-            _restoreHpTimer.OnTimerEnd += () => { _currentHitPoints = _maxHitPoints; };
+            _restoreHpTimer.OnTimerEnd += RestoreHitPoints;
             _dropPosition = transform.position + new Vector3(0.5f, 0.5f, 0);
+        }
+
+        private void OnDestroy()
+        {
+            _restoreHpTimer.OnTimerEnd -= RestoreHitPoints;
         }
 
         private void OnEnable()
@@ -45,20 +50,9 @@ namespace IslandBoy
             EnableInstructions(false);
         }
 
-        protected override void Update()
+        protected virtual void Update()
         {
-            base.Update();
-
             _restoreHpTimer.Tick(Time.deltaTime);
-        }
-
-        protected override void OnTriggerEnter2D(Collider2D collision)
-        {
-            //if (collision.TryGetComponent<CursorControl>(out var cc))
-            //{
-            //    if (cc.FocusSlot.ToolType == _breakType)
-            //        ShowDisplay();
-            //}
         }
 
         protected override void OnTriggerExit2D(Collider2D collision)
@@ -91,6 +85,11 @@ namespace IslandBoy
             }
 
             return false;
+        }
+
+        private void RestoreHitPoints()
+        {
+            _currentHitPoints = _maxHitPoints;
         }
 
         public override void ShowDisplay()

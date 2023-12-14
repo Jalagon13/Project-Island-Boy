@@ -32,7 +32,7 @@ namespace IslandBoy
             Vector3 direction = (control.CursorControl.transform.position - ammo.transform.position).normalized;
             ammo.Setup(this, _ammo, direction);
 
-            MMSoundManagerSoundPlayEvent.Trigger(_launchSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
+            MMSoundManagerSoundPlayEvent.Trigger(_launchSound, MMSoundManager.MMSoundManagerTracks.Sfx, control.transform.position);
         }
 
         public override void ExecuteSecondaryAction(FocusSlotControl control)

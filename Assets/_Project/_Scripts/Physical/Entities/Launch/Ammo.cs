@@ -43,7 +43,7 @@ namespace IslandBoy
 
             if (colliderGo.layer == 7) return;
 
-            if(colliderGo.TryGetComponent(out Clickable clickable))
+            if(colliderGo.TryGetComponent(out Entity clickable))
             {
                 if (_clickableFound != null) return;
 

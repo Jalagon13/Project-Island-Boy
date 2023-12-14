@@ -19,7 +19,13 @@ namespace IslandBoy
             _slotCanvas = transform.GetChild(3).GetComponent<Canvas>();
 
             GameSignals.INVENTORY_CLOSE.AddListener(CloseChest);
-            GameSignals.ADD_ITEMS_TO_CHEST.AddListener(AddItemsToChest); // BROOKE
+            
+            GameSignals.ADD_ITEMS_TO_CHEST.AddListener(AddItemsToChest); // BROOKE --------------------------------------------------
+            foreach (Transform transform in _slotCanvas.transform.GetChild(0))
+            {
+                Slot chestSlot = transform.GetComponent<Slot>();
+                chestSlot.SetChestSlot();
+            }                                                           // BROOKE --------------------------------------------------
         }
 
         private void OnDestroy()

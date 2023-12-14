@@ -20,6 +20,8 @@ namespace IslandBoy
 
         private void SpawnPrefab(ISignalParameters parameters)
         {
+            if (_treePrefab == null) return;
+
             Instantiate(_treePrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }

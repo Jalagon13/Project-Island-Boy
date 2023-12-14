@@ -17,7 +17,6 @@ namespace IslandBoy
         [SerializeField] protected LootTable _lootTable;
 
         protected int _currentHitPoints;
-        private Timer _timer;
         protected GameObject _progressBar;
         protected GameObject _amountDisplay;
         protected GameObject _instructions;
@@ -30,8 +29,6 @@ namespace IslandBoy
 
         protected virtual void Awake()
         {
-            _timer = new(3f);
-            _timer.RemainingSeconds = 0;
             _currentHitPoints = _maxHitPoints;
             _progressBar = transform.GetChild(2).GetChild(0).gameObject;
             _amountDisplay = transform.GetChild(2).GetChild(1).gameObject;
@@ -39,11 +36,6 @@ namespace IslandBoy
             _yellowCorners = transform.GetChild(2).GetChild(3).gameObject;
             _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
             _dropPosition = transform.position + (Vector3.one * 0.5f);
-        }
-
-        protected virtual void Update()
-        {
-            _timer.Tick(Time.deltaTime);
         }
 
         protected virtual void OnTriggerEnter2D(Collider2D collision)
