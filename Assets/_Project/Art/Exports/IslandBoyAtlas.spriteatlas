@@ -447,6 +447,8 @@ SpriteAtlas:
     - 62ea08f92c2779248a315a11272ffe75: 485633072
     - 62ea08f92c2779248a315a11272ffe75: 883676940
     - 62ea08f92c2779248a315a11272ffe75: -2059306806
+    - da78c65a34a13c748aef747f2477b7a2: -520020140
+    - da78c65a34a13c748aef747f2477b7a2: -1084511251
     - 954f438adddea594dac0fb494f0869ae: 1663711594
     - 954f438adddea594dac0fb494f0869ae: 414997368
     - 954f438adddea594dac0fb494f0869ae: 1450040114
@@ -1101,6 +1103,8 @@ SpriteAtlas:
   - {fileID: 485633072, guid: 62ea08f92c2779248a315a11272ffe75, type: 3}
   - {fileID: 883676940, guid: 62ea08f92c2779248a315a11272ffe75, type: 3}
   - {fileID: -2059306806, guid: 62ea08f92c2779248a315a11272ffe75, type: 3}
+  - {fileID: -520020140, guid: da78c65a34a13c748aef747f2477b7a2, type: 3}
+  - {fileID: -1084511251, guid: da78c65a34a13c748aef747f2477b7a2, type: 3}
   - {fileID: 1663711594, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
   - {fileID: 414997368, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
   - {fileID: 1450040114, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
@@ -1754,6 +1758,8 @@ SpriteAtlas:
   - decal_swing_hit_tutorial
   - decal_move_tutorial
   - decal_sta
+  - Kangarat_up
+  - Kangarat_idle
   - ws_tool_station
   - ws_chest
   - ws_tutorial_sign
