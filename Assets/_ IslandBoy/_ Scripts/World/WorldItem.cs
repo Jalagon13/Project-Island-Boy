@@ -22,7 +22,7 @@ namespace IslandBoy
         {
             _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
         }
-
+        
         private IEnumerator Start()
         {
             yield return new WaitForSeconds(0.5f);

@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 7290442375305206576, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
+      propertyPath: m_text
+      value: Start the next day?
+      objectReference: {fileID: 0}
     - target: {fileID: 7382328970847094501, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
