@@ -20,7 +20,6 @@ namespace IslandBoy
         protected GameObject _progressBar;
         protected GameObject _amountDisplay;
         protected GameObject _instructions;
-        protected GameObject _yellowCorners;
         protected SpriteRenderer _sr;
         protected Vector2 _dropPosition;
 
@@ -33,7 +32,6 @@ namespace IslandBoy
             _progressBar = transform.GetChild(2).GetChild(0).gameObject;
             _amountDisplay = transform.GetChild(2).GetChild(1).gameObject;
             _instructions = transform.GetChild(2).GetChild(2).gameObject;
-            _yellowCorners = transform.GetChild(2).GetChild(3).gameObject;
             _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
             _dropPosition = transform.position + (Vector3.one * 0.5f);
         }
@@ -59,12 +57,6 @@ namespace IslandBoy
 
             if (incomingToolType != _breakType || incomingToolType == ToolType.None)
             {
-                //if(displayHit && _timer.RemainingSeconds == 0)
-                //{
-                //    PopupMessage.Create(transform.position, $"I need a {_breakType} to hit this", Color.red, Vector2.one, 1f);
-                //    _timer.RemainingSeconds = 3;
-                //}
-
                 return false;
             }
 
@@ -98,7 +90,6 @@ namespace IslandBoy
             EnableProgressBar(false);
             EnableAmountDisplay(false);
             EnableInstructions(false);
-            EnableYellowCorners(false);
         }
 
         protected virtual void EnableProgressBar(bool _)
@@ -114,11 +105,6 @@ namespace IslandBoy
         protected virtual void EnableInstructions(bool _)
         {
             _instructions.SetActive(_);
-        }
-
-        protected virtual void EnableYellowCorners(bool _)
-        {
-            _yellowCorners.SetActive(_);
         }
 
         protected virtual void UpdateFillImage()

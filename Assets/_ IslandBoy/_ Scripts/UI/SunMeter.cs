@@ -38,15 +38,11 @@ namespace IslandBoy
             _timer.OnTimerEnd += OutOfTime;
 
             GameSignals.DAY_END.AddListener(EndDay);
-            GameSignals.NPC_MOVED_IN.AddListener(NpcMovedIn);
-            GameSignals.NPC_MOVED_OUT.AddListener(NpcMovedOut);
         }
 
         private void OnDestroy()
         {
             GameSignals.DAY_END.RemoveListener(EndDay);
-            GameSignals.NPC_MOVED_IN.RemoveListener(NpcMovedIn);
-            GameSignals.NPC_MOVED_OUT.RemoveListener(NpcMovedOut);
         }
 
         private void Start()
@@ -76,20 +72,6 @@ namespace IslandBoy
         {
             GameSignals.DAY_END.Dispatch();
             //GameSignals.DAY_OUT_OF_TIME.Dispatch();
-        }
-
-        private void NpcMovedIn(ISignalParameters parameters)
-        {
-            //NpcObject npc = parameters.GetParameter("MovedInNpc") as NpcObject;
-
-            //_endDaySlides.Add($"{npc.Name} has moved in!");
-        }
-
-        private void NpcMovedOut(ISignalParameters parameters)
-        {
-            //NpcObject npc = parameters.GetParameter("MovedOutNpc") as NpcObject;
-
-            //_endDaySlides.Add($"{npc.Name} has moved out!");
         }
 
         private void VolumeHandle()

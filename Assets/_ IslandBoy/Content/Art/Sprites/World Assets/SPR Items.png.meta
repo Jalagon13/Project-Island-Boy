@@ -1257,7 +1257,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: item_broken_hammer
+      name: item_broken_pickaxe
       rect:
         serializedVersion: 2
         x: 160
@@ -1391,7 +1391,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1420,7 +1420,7 @@ TextureImporter:
       item_boulder_spell: -1882208785
       item_bow: 1529562530
       item_broken_bo: -1499702813
-      item_broken_hammer: -1305312829
+      item_broken_pickaxe: -1305312829
       item_cactus: -916310749
       item_campfire: 1223464883
       item_chest: 1962245853

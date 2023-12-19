@@ -244,7 +244,6 @@ namespace IslandBoy
 
         public override void ShowDisplay()
         {
-            EnableYellowCorners(true);
             EnableInstructions(true);
         }
 
@@ -253,7 +252,6 @@ namespace IslandBoy
             EnableProgressBar(false);
             EnableAmountDisplay(false);
             EnableInstructions(false);
-            EnableYellowCorners(false);
         }
     }
 }

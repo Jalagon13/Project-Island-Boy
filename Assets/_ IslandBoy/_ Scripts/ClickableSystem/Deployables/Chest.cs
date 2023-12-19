@@ -166,7 +166,6 @@ namespace IslandBoy
 
         public override void ShowDisplay()
         {
-            _yellowCorners.gameObject.SetActive(true);
             _instructions.gameObject.SetActive(true);
         }
     }

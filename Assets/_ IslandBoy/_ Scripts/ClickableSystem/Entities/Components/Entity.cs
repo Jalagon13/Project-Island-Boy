@@ -60,7 +60,6 @@ namespace IslandBoy
                     PopupMessage.Create(transform.position, amount.ToString(), Color.yellow, Vector2.up * 0.5f, 0.4f);
                     UpdateAmountDisplay();
                     UpdateFillImage();
-                    EnableYellowCorners(false);
                     EnableAmountDisplay(false);
                     EnableInstructions(false);
                     EnableProgressBar(true);
@@ -76,7 +75,6 @@ namespace IslandBoy
             UpdateAmountDisplay();
             UpdateFillImage();
             EnableInstructions(true);
-            EnableYellowCorners(true);
             EnableAmountDisplay(true);
             EnableProgressBar(true);
         }
@@ -86,7 +84,6 @@ namespace IslandBoy
             EnableProgressBar(true);
             EnableAmountDisplay(false);
             EnableInstructions(false);
-            EnableYellowCorners(false);
         }
 
         protected override void OnBreak()

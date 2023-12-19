@@ -8,18 +8,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1506399974121624610, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
+      propertyPath: m_Name
+      value: EnterBtn
+      objectReference: {fileID: 0}
     - target: {fileID: 3101685698662622380, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: m_Name
-      value: '[PMT] Bed'
+      value: '[PMT] CaveEntrance'
       objectReference: {fileID: 0}
     - target: {fileID: 3637300847245684632, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1855741160, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+      objectReference: {fileID: -363508920, guid: f26f48daf8f5428489afd48be52c6594, type: 3}
     - target: {fileID: 5368905011583940908, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: managedReferences[1619343171848765462].Sfx
       value: 
       objectReference: {fileID: 8300000, guid: 1f5e75782a6e8434cba4bce854fb47eb, type: 3}
+    - target: {fileID: 5541026694009873878, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
+      propertyPath: m_text
+      value: Enter
+      objectReference: {fileID: 0}
     - target: {fileID: 5759804511303924600, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: _breakType
       value: 1
@@ -46,15 +54,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5781772469116784789, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5781772469116784789, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5781772469116784789, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290442375305206576, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
+      propertyPath: m_text
+      value: Enter Cave?
       objectReference: {fileID: 0}
     - target: {fileID: 7382328970847094501, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: m_LocalPosition.x
@@ -103,10 +115,14 @@ PrefabInstance:
     - target: {fileID: 7937654568965162758, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1543910499134551839}
+      objectReference: {fileID: 8667074333606363976}
     - target: {fileID: 7937654568965162758, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TryToEndDay
+      value: EnterCave
+      objectReference: {fileID: 0}
+    - target: {fileID: 7937654568965162758, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: IslandBoy.CaveEntrance, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -114,14 +130,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3101685698662622380, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1543910499134551839}
+      addedObject: {fileID: 8667074333606363976}
   m_SourcePrefab: {fileID: 100100000, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
 --- !u!1 &7067245150924448954 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3101685698662622380, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
   m_PrefabInstance: {fileID: 5267101261786103830}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1543910499134551839
+--- !u!114 &8667074333606363976
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,8 +146,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7067245150924448954}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ca4438dc42f5074b9a9c4397773ce41, type: 3}
+  m_Script: {fileID: 11500000, guid: c17ed74d6a68c4dfcb6852fa2b2d2716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wallTm: {fileID: 11400000, guid: f6a16e81c33dd85419a8102faaa86be0, type: 2}
-  _floorTm: {fileID: 11400000, guid: b781d136d63e9ae4597a0e6a2aba4acd, type: 2}

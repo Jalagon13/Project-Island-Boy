@@ -62,7 +62,6 @@ namespace IslandBoy
                     UpdateFillImage();
                     EnableProgressBar(true);
                     EnableAmountDisplay(true);
-                    EnableYellowCorners(false);
                     EnableInstructions(false);
                 }
 
@@ -89,6 +88,11 @@ namespace IslandBoy
         public bool PlayerInRange(Vector2 customPos)
         {
             return Vector2.Distance(customPos, _pr.Position) < _interactRange;
+        }
+
+        public override void ShowDisplay()
+        {
+            throw new NotImplementedException();
         }
     }
 }

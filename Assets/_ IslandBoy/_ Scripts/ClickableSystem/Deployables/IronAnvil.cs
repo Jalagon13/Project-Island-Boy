@@ -39,7 +39,6 @@ namespace IslandBoy
 
         public override void ShowDisplay()
         {
-            EnableYellowCorners(true);
             EnableInstructions(true);
         }
 

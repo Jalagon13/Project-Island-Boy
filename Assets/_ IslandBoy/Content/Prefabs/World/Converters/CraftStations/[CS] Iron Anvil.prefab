@@ -865,7 +865,6 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
-  _isChestSlot: 0
   _upgradeText: {fileID: 6232861603703912912}
   _needText: {fileID: 901945763533452657}
   _upgradeButton: {fileID: 3280935622671433869}
@@ -1022,7 +1021,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7624616619513187665
 RectTransform:
   m_ObjectHideFlags: 0
