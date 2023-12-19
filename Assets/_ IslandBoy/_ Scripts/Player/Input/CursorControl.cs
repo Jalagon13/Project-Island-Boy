@@ -56,6 +56,8 @@ namespace IslandBoy
             _currentClickDistance = _startingClickDistance;
 
             GameSignals.FOCUS_SLOT_UPDATED.AddListener(FocusSlotUpdated);
+            GameSignals.ADD_ITEMS_TO_CHEST.AddListener(FocusSlotUpdated);
+            GameSignals.ADD_ITEM_TO_INVENTORY_FROM_CHEST.AddListener(FocusSlotUpdated);
             GameSignals.DAY_END.AddListener(DisableAbilityToHit);
             GameSignals.DAY_START.AddListener(EnableAbilityToHit);
             GameSignals.PLAYER_DIED.AddListener(DisableAbilityToHit);
@@ -68,6 +70,8 @@ namespace IslandBoy
         private void OnDestroy()
         {
             GameSignals.FOCUS_SLOT_UPDATED.RemoveListener(FocusSlotUpdated);
+            GameSignals.ADD_ITEMS_TO_CHEST.RemoveListener(FocusSlotUpdated);
+            GameSignals.ADD_ITEM_TO_INVENTORY_FROM_CHEST.RemoveListener(FocusSlotUpdated);
             GameSignals.DAY_END.RemoveListener(DisableAbilityToHit);
             GameSignals.DAY_START.RemoveListener(EnableAbilityToHit);
             GameSignals.PLAYER_DIED.RemoveListener(DisableAbilityToHit);
