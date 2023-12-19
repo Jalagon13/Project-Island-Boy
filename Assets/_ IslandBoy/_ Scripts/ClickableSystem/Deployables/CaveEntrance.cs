@@ -4,11 +4,16 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public class CaveEntrance : MonoBehaviour
-    {
-        public void EnterCave()
-        {
-        	Debug.Log("Enter Cave");
-        }
-    }
+	public class CaveEntrance : MonoBehaviour
+	{
+		[SerializeField] private string _nextScene;
+		
+		public void EnterCave()
+		{
+			Signal signal = GameSignals.CHANGE_SCENE;
+			signal.ClearParameters();
+			signal.AddParameter("NextScene", _nextScene);
+			signal.Dispatch();
+		}
+	}
 }
