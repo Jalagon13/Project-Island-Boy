@@ -1,29 +1,26 @@
 using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace IslandBoy
 {
-    public class OverrideGridGraph : MonoBehaviour
-    {
-        private AstarPath _ap;
+	public class OverrideGridGraph : MonoBehaviour
+	{
+		[SerializeField] private PlayerObject _po;
+		private AstarPath _ap;
 
-        private void Awake()
-        {
-            _ap = GetComponent<AstarPath>();
-        }
+		private void OnEnable()
+		{
+			StartCoroutine(SceneStartup());
+		}
+		
+		private IEnumerator SceneStartup()
+		{
+			yield return new WaitForSeconds(1.25f);
 
-        private IEnumerator Start()
-        {
-            yield return new WaitForSeconds(1.5f);
-
-            _ap.Scan();
-        }
-
-        private void OnEnable()
-        {
-            _ap.scanOnStartup = true;
-        }
-    }
+			GetComponent<AstarPath>().Scan();
+		}
+	}
 }

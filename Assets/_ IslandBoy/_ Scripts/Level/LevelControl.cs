@@ -32,13 +32,11 @@ namespace IslandBoy
 				Scene nextScene = SceneManager.GetSceneByName(name);
 				if(nextScene.isLoaded)
 				{
-					Debug.Log("Scene already loaded");
 					SceneManager.SetActiveScene(nextScene);
 					EnableAllObjectsInScene(nextScene, true);
 				}
 				else
 				{
-					Debug.Log("Scene NOT already loaded");
 					StartCoroutine(TransitionScene(name));
 				}
 			}

@@ -24,8 +24,8 @@ namespace IslandBoy
             if (tilActionClear && !wallTmHasTile && groundTmHasTile)
             {
                 control.FocusSlot.InventoryItem.Count--;
-                control.CursorControl.PlaceDeployable(_prefabToDeploy);
                 GameSignals.ITEM_DEPLOYED.Dispatch();
+                control.CursorControl.PlaceDeployable(_prefabToDeploy);
                 MMSoundManagerSoundPlayEvent.Trigger(_deploySound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
             }
         }
@@ -49,7 +49,7 @@ namespace IslandBoy
                 }
             }
 
-            return $"{Description}<br>• Left Click to place<br>• {clickDistance} build distance";
+            return $"{Description}<br>ï¿½ Left Click to place<br>ï¿½ {clickDistance} build distance";
         }
     }
 }

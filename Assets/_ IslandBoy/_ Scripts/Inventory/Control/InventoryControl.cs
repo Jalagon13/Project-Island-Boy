@@ -63,7 +63,7 @@ namespace IslandBoy
         {
             if (_currentInteractableActive == null) return;
 
-            if (!_currentInteractableActive.PlayerInRange(_currentInteractableActive.gameObject.transform.position))
+            if (!_currentInteractableActive.PlayerInRange(_currentInteractableActive.gameObject.transform.position + new Vector3(0.5f, 0.5f)))
             {
                 InteractableHandle(null);
             }

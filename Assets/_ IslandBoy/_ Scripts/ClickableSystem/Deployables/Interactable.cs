@@ -11,7 +11,7 @@ namespace IslandBoy
         [Header("Base Interactable Parameters")]
         [SerializeField] protected PlayerObject _pr;
 
-        private float _interactRange = 3f;
+        private float _interactRange = 1.75f;
         protected bool _canInteract;
         private Vector3 _origin;
         private SpriteRenderer _rightClickSr;
@@ -79,11 +79,6 @@ namespace IslandBoy
         }
 
         public abstract void Interact();
-
-        public bool PlayerInRange()
-        {
-            return Vector2.Distance(_origin, _pr.Position) < _interactRange;
-        }
 
         public bool PlayerInRange(Vector2 customPos)
         {

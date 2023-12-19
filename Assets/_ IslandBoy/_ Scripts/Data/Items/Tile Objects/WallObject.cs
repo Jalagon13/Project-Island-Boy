@@ -20,10 +20,8 @@ namespace IslandBoy
             if (!control.WallTm.Tilemap.HasTile(pos) && control.CursorControl.IsClear())
             {
                 control.FocusSlot.InventoryItem.Count--;
-                control.WallTm.Tilemap.SetTile(pos, _wallTile);
-
                 GameSignals.ITEM_DEPLOYED.Dispatch();
-
+                control.WallTm.Tilemap.SetTile(pos, _wallTile);
                 MMSoundManagerSoundPlayEvent.Trigger(_wallTile.PlaceSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
                 _wallTile.UpdatePathfinding(new(pos.x + 0.5f, pos.y + 0.5f));
             }
@@ -48,7 +46,7 @@ namespace IslandBoy
                 }
             }
 
-            return $"• Left Click to place<br>• {clickDistance} build distance<br>{Description}";
+            return $"ï¿½ Left Click to place<br>ï¿½ {clickDistance} build distance<br>{Description}";
         }
     }
 }

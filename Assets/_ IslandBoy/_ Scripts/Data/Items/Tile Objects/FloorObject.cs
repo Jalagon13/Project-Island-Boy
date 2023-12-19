@@ -18,8 +18,8 @@ namespace IslandBoy
             if (!control.WallTm.Tilemap.HasTile(pos) && !control.FloorTm.Tilemap.HasTile(pos))
             {
                 control.FocusSlot.InventoryItem.Count--;
-                control.FloorTm.Tilemap.SetTile(pos, _floorTile);
                 GameSignals.ITEM_DEPLOYED.Dispatch();
+                control.FloorTm.Tilemap.SetTile(pos, _floorTile);
                 MMSoundManagerSoundPlayEvent.Trigger(_floorTile.PlaceSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
             }
         }
@@ -43,7 +43,7 @@ namespace IslandBoy
                 }
             }
 
-            return $"• Left Click to place<br>• {clickDistance} build distance<br>{Description}";
+            return $"ï¿½ Left Click to place<br>ï¿½ {clickDistance} build distance<br>{Description}";
         }
     }
 }
