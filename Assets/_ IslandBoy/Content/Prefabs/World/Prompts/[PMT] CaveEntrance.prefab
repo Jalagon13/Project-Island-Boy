@@ -118,11 +118,11 @@ PrefabInstance:
       objectReference: {fileID: 8667074333606363976}
     - target: {fileID: 7937654568965162758, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: EnterCave
+      value: SwitchScene
       objectReference: {fileID: 0}
     - target: {fileID: 7937654568965162758, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: IslandBoy.CaveEntrance, Assembly-CSharp
+      value: IslandBoy.TransitionScene, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

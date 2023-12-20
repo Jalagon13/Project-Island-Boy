@@ -40,8 +40,6 @@ namespace IslandBoy
 			_swingTimer = new(_swingCd);
 
 			GameSignals.FOCUS_SLOT_UPDATED.AddListener(OnUpdateFocusSlot);
-			GameSignals.ADD_ITEMS_TO_CHEST.AddListener(OnUpdateFocusSlot);
-			GameSignals.ADD_ITEM_TO_INVENTORY_FROM_CHEST.AddListener(OnUpdateFocusSlot);
 			GameSignals.ITEM_DEPLOYED.AddListener(RefreshCd);
 			GameSignals.PLAYER_DIED.AddListener(DisableSwing);
 			GameSignals.DAY_END.AddListener(DisableSwing);
@@ -53,8 +51,6 @@ namespace IslandBoy
 			_input.Disable();
 
 			GameSignals.FOCUS_SLOT_UPDATED.RemoveListener(OnUpdateFocusSlot);
-			GameSignals.ADD_ITEMS_TO_CHEST.RemoveListener(OnUpdateFocusSlot);
-            GameSignals.ADD_ITEM_TO_INVENTORY_FROM_CHEST.RemoveListener(OnUpdateFocusSlot);
 			GameSignals.ITEM_DEPLOYED.RemoveListener(RefreshCd);
 			GameSignals.PLAYER_DIED.RemoveListener(DisableSwing);
 			GameSignals.DAY_END.RemoveListener(DisableSwing);

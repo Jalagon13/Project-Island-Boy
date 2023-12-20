@@ -9,18 +9,18 @@ namespace IslandBoy
 	public class OverrideGridGraph : MonoBehaviour
 	{
 		[SerializeField] private PlayerObject _po;
-		private AstarPath _ap;
+		// private AstarPath _ap;
 
-		private void OnEnable()
-		{
-			StartCoroutine(SceneStartup());
-		}
+		// private void OnEnable()
+		// {
+		// 	StartCoroutine(SceneStartup());
+		// }
 		
-		private IEnumerator SceneStartup()
-		{
-			yield return new WaitForSeconds(1.25f);
+		// private IEnumerator SceneStartup()
+		// {
+		// 	yield return new WaitForSeconds(1.25f);
 
-			GetComponent<AstarPath>().Scan();
-		}
+		// 	GetComponent<AstarPath>().Scan();
+		// }
 	}
 }
