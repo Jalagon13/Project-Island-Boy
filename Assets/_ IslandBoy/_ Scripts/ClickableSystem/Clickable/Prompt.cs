@@ -41,7 +41,7 @@ namespace IslandBoy
 
         private void DispatchPromptInteract()
         {
-            Signal signal = GameSignals.PROMPT_INTERACT;
+            Signal signal = GameSignals.DISPLAY_PROMPT;
             signal.ClearParameters();
             signal.AddParameter("Prompt", this);
             signal.Dispatch();

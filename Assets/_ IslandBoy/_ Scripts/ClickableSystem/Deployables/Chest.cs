@@ -147,7 +147,7 @@ namespace IslandBoy
 			if (!_canInteract) return;
 
 			EnableInstructions(false);
-			DispatchChestInteract();
+			DisplayInteractable();
 			EnableChestSlots(true);
 		}
 
@@ -161,11 +161,11 @@ namespace IslandBoy
 			_slotCanvas.gameObject.SetActive(val);
 		}
 
-		private void DispatchChestInteract()
+		private void DisplayInteractable()
 		{
-			Signal signal = GameSignals.CHEST_INTERACT;
+			Signal signal = GameSignals.DISPLAY_INTERACTABLE;
 			signal.ClearParameters();
-			signal.AddParameter("ChestInteract", this);
+			signal.AddParameter("Interactable", this);
 			signal.Dispatch();
 		}
 

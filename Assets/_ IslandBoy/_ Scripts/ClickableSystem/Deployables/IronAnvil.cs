@@ -49,7 +49,7 @@ namespace IslandBoy
 
         public void EnableUI()
         {
-            DispatchTcSignal();
+            DisplayInteractable();
 
             _tcCanvas.gameObject.SetActive(true);
         }
@@ -59,12 +59,12 @@ namespace IslandBoy
             _tcCanvas.gameObject.SetActive(false);
         }
 
-        private void DispatchTcSignal()
-        {
-            Signal signal = GameSignals.TIMED_CONVERTER_INTERACT;
-            signal.ClearParameters();
-            signal.AddParameter("TimedConverter", this);
-            signal.Dispatch();
-        }
+		private void DisplayInteractable()
+		{
+			Signal signal = GameSignals.DISPLAY_INTERACTABLE;
+			signal.ClearParameters();
+			signal.AddParameter("Interactable", this);
+			signal.Dispatch();
+		}
     }
 }

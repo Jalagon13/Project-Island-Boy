@@ -7,10 +7,11 @@ namespace IslandBoy
 {
 	public class NPCEntity : Prompt
 	{
-		[SerializeField] private ItemObject _questItem;
-		[SerializeField] private UnityEvent _onBarkDetected;
+		[Header("NPC Parameters")]
+		[SerializeField] private string _name;
+		
+		public string Name { get { return _name; } }
 
-		private bool _questComplete;
 		protected KnockbackFeedback _knockback;
 
 		protected override void Awake()
@@ -27,10 +28,6 @@ namespace IslandBoy
 		
 		public override void Interact()
 		{
-			if (_questComplete)
-			{
-				return;
-			}
 
 			base.Interact();
 		}
@@ -55,27 +52,6 @@ namespace IslandBoy
 			}
 
 			return false;
-		}
-
-		public void TryToCompleteQuest()
-		{
-			if (_questComplete)
-			{
-				PopupMessage.Create(transform.position, $"You can now visit my hideout south of this island!", Color.yellow, Vector2.up, 2f);
-				return;
-			}
-
-			if (_pr.Inventory.Contains(_questItem, 1))
-			{
-				PopupMessage.Create(transform.position, $"Just what I was looking for! Thank you! Goodluck out there!", Color.yellow, Vector2.up, 5f);
-				_questComplete = true;
-				_onBarkDetected?.Invoke();
-				return;
-			}
-			else
-			{
-				PopupMessage.Create(transform.position, $"Silly goose! You don't have my quest item yet!", Color.red, Vector2.up, 3f);
-			}
 		}
 
 		public override void ShowDisplay()

@@ -18,10 +18,7 @@ namespace IslandBoy
 		public static readonly Signal SLOT_CLICKED = new("SlotClicked");
 		public static readonly Signal ITEM_ADDED = new("ItemAdded");
 		public static readonly Signal ITEM_CRAFTED = new("ItemCrafted");
-		public static readonly Signal CHEST_INTERACT = new("ChestInteract");
-		public static readonly Signal CRAFT_STATION_INTERACT = new("CraftStationInteract");
 		public static readonly Signal CLICKABLE_CLICKED = new("SwingPerformed");
-		public static readonly Signal PROMPT_INTERACT = new("PromptInteract");
 		public static readonly Signal PLAYER_DIED = new("PlayerDied");
 		public static readonly Signal PLAYER_HP_CHANGED = new("PlayerHpChanged");
 		public static readonly Signal PLAYER_NRG_CHANGED = new("PlayerNrgChanged");
@@ -33,7 +30,12 @@ namespace IslandBoy
 		public static readonly Signal FOCUS_SLOT_UPDATED = new("FocusSlotUpdated");
 		public static readonly Signal CURSOR_ENTERED_NEW_TILE = new("CursorEnteredNewTile");
 		public static readonly Signal ITEM_DEPLOYED = new("ItemDeployed");
-		public static readonly Signal TIMED_CONVERTER_INTERACT = new("TimedConverterInteract");
+		
+		// Interact Signals
+		public static readonly Signal DISPLAY_PROMPT = new("DisplayPrompt");
+		public static readonly Signal DISPLAY_INTERACTABLE = new("DisplayInteractable");
+		public static readonly Signal CRAFT_STATION_INTERACT = new("CraftStationInteract");
+		
 
 		// Pause Signals
 		public static readonly Signal GAME_PAUSED = new("GamePaused");

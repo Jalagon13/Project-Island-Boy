@@ -10,9 +10,11 @@ namespace IslandBoy
 		[SerializeField] private TilemapObject _floorTm;
 
 		private bool _canCheck;
-		
+		private bool _occupied;
 		private NPCEntity _npc;
 
+		public bool Occupied { get {return _occupied; } }
+		
 		public void Start()
 		{
 			_canCheck = true;
@@ -34,6 +36,17 @@ namespace IslandBoy
 			GameSignals.DAY_END.Dispatch();
 		}
 
+		public void MoveInNPC(NPCEntity npc)
+		{
+			_npc = npc;
+			_occupied = true;
+		}
+		
+		public void MoveOutNPC()
+		{
+			
+		}
+		
 		public bool InValidSpace() // check for floors and walls for house is valid. check furniture too. make floortilePos a global var.
 		{
 			Stack<Vector3Int> tilesToCheck = new();
