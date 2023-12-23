@@ -1,108 +1,107 @@
 using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 namespace IslandBoy
 {
-    public class MonsterSpawner : MonoBehaviour
-    {
-        [SerializeField] private TilemapObject _wallTm;
-        [SerializeField] private TilemapObject _floorTm;
-        [SerializeField] private Entity _monsterPrefab;
-        [SerializeField] private int _maxMonsterCount;
-        [SerializeField] private float _minSpawnTimerSec;
-        [SerializeField] private float _maxSpawnTimerSec;
+	public class MonsterSpawner : MonoBehaviour
+	{
+		[SerializeField] private EntityRuntimeSet _entityRTS;
+		[SerializeField] private TilemapObject _wallTm;
+		[SerializeField] private TilemapObject _floorTm;
+		[SerializeField] private MobSpawnSettingObject _forestSpawnSetting;
 
-        private void Awake()
-        {
-            GameSignals.DAY_START.AddListener(UnPauseMonsterSpawning);
-            GameSignals.DAY_END.AddListener(PauseMonsterSpawning);
-        }
+		private void Awake()
+		{
+			GameSignals.DAY_START.AddListener(UnPauseMonsterSpawning);
+			GameSignals.DAY_END.AddListener(PauseMonsterSpawning);
+			GameSignals.CHANGE_SCENE.AddListener(UpdateEntitySet);
+		}
 
-        private void OnDestroy()
-        {
-            GameSignals.DAY_START.RemoveListener(UnPauseMonsterSpawning);
-            GameSignals.DAY_END.RemoveListener(PauseMonsterSpawning);
-        }
+		private void OnDestroy()
+		{
+			GameSignals.DAY_START.RemoveListener(UnPauseMonsterSpawning);
+			GameSignals.DAY_END.RemoveListener(PauseMonsterSpawning);
+			GameSignals.CHANGE_SCENE.RemoveListener(UpdateEntitySet);
+		}
 
-        private IEnumerator Start()
-        {
-            yield return new WaitForSeconds(30f);
+		private void Start()
+		{
+			StartCoroutine(SpawnMonsterTimer());
+		}
 
-            StartCoroutine(SpawnMonsterTimer());
-        }
+		public void MonsterSpawnDebugButton()
+		{
+			SpawnMonster();
+		}
 
-        public void MonsterSpawnDebugButton()
-        {
-            StartCoroutine(SpawnMonsters());
-        }
+		private void UpdateEntitySet(ISignalParameters parameters)
+		{
+			_entityRTS.Initialize();
+			
+			// Update S
+		}
+		
+		private void PauseMonsterSpawning(ISignalParameters parameters)
+		{
+			StopAllCoroutines();
+		}
 
-        private void PauseMonsterSpawning(ISignalParameters parameters)
-        {
-            StopAllCoroutines();
-        }
+		private void UnPauseMonsterSpawning(ISignalParameters parameters)
+		{
+			StartCoroutine(SpawnMonsterTimer());
+		}
 
-        private void UnPauseMonsterSpawning(ISignalParameters parameters)
-        {
-            StartCoroutine(SpawnMonsterTimer());
-        }
+		private IEnumerator SpawnMonsterTimer()
+		{
+			yield return new WaitForSeconds(1);
+			if (Random.Range(0,100f) < _forestSpawnSetting.SpawnPercentPerSec && _entityRTS.ListSize < _forestSpawnSetting.MaxMonsterCount)
+			{
+				SpawnMonster();
+			}
 
-        private IEnumerator SpawnMonsterTimer()
-        {
-            yield return new WaitForSeconds(Random.Range(_minSpawnTimerSec, _maxSpawnTimerSec));
+			StartCoroutine(SpawnMonsterTimer());
+		}
 
-            if (true)
-            {
-                yield return SpawnMonsters();
-            }
+		private void SpawnMonster()
+		{
+			var spawnPos = CalcSpawnPos();
 
-            StartCoroutine(SpawnMonsterTimer());
-        }
+			if (_wallTm.Tilemap.HasTile(Vector3Int.FloorToInt(spawnPos)) || _floorTm.Tilemap.HasTile(Vector3Int.FloorToInt(spawnPos)))
+			{
+				return;
+			}
 
-        private IEnumerator SpawnMonsters()
-        {
-            int min = 1;
-            int numbMonstersToSpawn = Random.Range(min, _maxMonsterCount);
+			if (Vector3.Distance(spawnPos, transform.position) < 8)
+			{
+				return;
+			}
 
-            for (int i = 0; i < numbMonstersToSpawn; i++)
-            {
-                yield return new WaitForSeconds(Random.Range(0.5f, 2f));
+			Spawn(MonsterToSpawn(), spawnPos);
+		}
 
-                var spawn = CalcSpawnPos();
+		private Entity MonsterToSpawn()
+		{
+			return _forestSpawnSetting.GetRandomEntity;
+		}
 
-                if (_wallTm.Tilemap.HasTile(Vector3Int.FloorToInt(spawn)) || _floorTm.Tilemap.HasTile(Vector3Int.FloorToInt(spawn)))
-                {
-                    continue;
-                }
+		private void Spawn(Entity monster, Vector2 pos)
+		{
+			Instantiate(monster, pos, Quaternion.identity);
+		}
 
-                if (Vector3.Distance(spawn, transform.position) < 5)
-                    continue;
+		private Vector2 CalcSpawnPos()
+		{
+			GraphNode startNode = AstarPath.active.GetNearest(transform.position, NNConstraint.Default).node;
 
-                Spawn(MonsterToSpawn(), spawn);
-            }
-        }
+			List<GraphNode> nodes = PathUtilities.BFS(startNode, 35);
+			Vector3 singleRandomPoint = PathUtilities.GetPointsOnNodes(nodes, 1)[0];
 
-        private Entity MonsterToSpawn()
-        {
-            return _monsterPrefab;
-        }
-
-        private void Spawn(Entity monster, Vector2 pos)
-        {
-            Instantiate(monster, pos, Quaternion.identity);
-        }
-
-        private Vector2 CalcSpawnPos()
-        {
-            GraphNode startNode = AstarPath.active.GetNearest(transform.position, NNConstraint.Default).node;
-
-            List<GraphNode> nodes = PathUtilities.BFS(startNode, 35);
-            Vector3 singleRandomPoint = PathUtilities.GetPointsOnNodes(nodes, 1)[0];
-
-            return singleRandomPoint;
-        }
-    }
+			return singleRandomPoint;
+		}
+	}
 }
