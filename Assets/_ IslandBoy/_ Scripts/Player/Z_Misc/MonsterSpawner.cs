@@ -59,7 +59,10 @@ namespace IslandBoy
 		private IEnumerator SpawnMonsterTimer()
 		{
 			yield return new WaitForSeconds(1);
-			if (Random.Range(0,100f) < _forestSpawnSetting.SpawnPercentPerSec && _entityRTS.ListSize < _forestSpawnSetting.MaxMonsterCount)
+			
+			float chance = Random.Range(0,100f);
+			
+			if (chance < _forestSpawnSetting.SpawnPercentPerSec && _entityRTS.ListSize < _forestSpawnSetting.MaxMonsterCount)
 			{
 				SpawnMonster();
 			}
