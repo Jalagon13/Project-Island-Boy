@@ -8,6 +8,8 @@ namespace IslandBoy
 	public class NPCEntity : Prompt
 	{
 		[Header("NPC Parameters")]
+		[SerializeField] private Canvas _questCanvas;
+		[SerializeField] private Canvas _shopCanvas;
 		[SerializeField] private string _name;
 		
 		public string Name { get { return _name; } }
@@ -20,40 +22,39 @@ namespace IslandBoy
 
 			_knockback = GetComponent<KnockbackFeedback>();
 		}
-
-		private void OnDestroy()
+		
+		public void OpenQuestUI() // connected to quest button
 		{
-			
+			DisplayInteractable();
+
+			_questCanvas.gameObject.SetActive(true);
+			_shopCanvas.gameObject.SetActive(false);
 		}
 		
-		public override void Interact()
+		public void OpenShopUI() // connected to shop button
 		{
+			DisplayInteractable();
 
-			base.Interact();
+			_shopCanvas.gameObject.SetActive(true);
+			_questCanvas.gameObject.SetActive(false);
+		}
+		
+		public override void CloseUI()
+		{
+			base.CloseUI();
+			
+			_questCanvas.gameObject.SetActive(false);
+			_shopCanvas.gameObject.SetActive(false);
 		}
 
-		public override bool OnHit(ToolType incomingToolType, int amount, bool displayHit = true)
+		private void DisplayInteractable()
 		{
-			_knockback.PlayFeedback(_pr.Position);
-			_currentHitPoints = _maxHitPoints;
-
-			if (base.OnHit(incomingToolType, amount, displayHit))
-			{
-				if (displayHit)
-				{
-					PopupMessage.Create(transform.position, amount.ToString(), Color.yellow, Vector2.up * 0.5f, 0.4f);
-					UpdateAmountDisplay();
-					UpdateFillImage();
-					EnableAmountDisplay(false);
-					EnableInstructions(false);
-					EnableProgressBar(false);
-				}
-				return true;
-			}
-
-			return false;
+			Signal signal = GameSignals.DISPLAY_INTERACTABLE;
+			signal.ClearParameters();
+			signal.AddParameter("Interactable", this);
+			signal.Dispatch();
 		}
-
+		
 		public override void ShowDisplay()
 		{
 			EnableInstructions(true);

@@ -32,14 +32,14 @@ namespace IslandBoy
 
         private void RefreshCraftSlotsToDefault()
         {
-            _pr.Inventory.InventoryControl.RefreshCraftSlotsToDefault();
+            _po.Inventory.InventoryControl.RefreshCraftSlotsToDefault();
             GameSignals.CRAFT_STATION_INTERACT.Dispatch();
         }
 
         public override void Interact()
         {
             if (!_canInteract) return;
-            _pr.Inventory.InventoryControl.CraftStationInteract(this, _cdb);
+            _po.Inventory.InventoryControl.CraftStationInteract(this, _cdb);
 
             GameSignals.CRAFT_STATION_INTERACT.Dispatch();
             EnableInstructions(false);

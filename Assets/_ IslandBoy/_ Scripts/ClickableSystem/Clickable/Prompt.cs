@@ -52,7 +52,7 @@ namespace IslandBoy
             CloseUI();
         }
 
-        public void CloseUI()
+        public virtual void CloseUI()
         {
             _prompCanvas.gameObject.SetActive(false);
             _onClosePrompt?.Invoke();

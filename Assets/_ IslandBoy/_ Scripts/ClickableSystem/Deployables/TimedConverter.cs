@@ -135,7 +135,7 @@ namespace IslandBoy
 			{
 				foreach (ItemAmount ia in _inProgressRecipe.ResourceList)
 				{
-					_pr.Inventory.AddItem(ia.Item, ia.Amount);
+					_po.Inventory.AddItem(ia.Item, ia.Amount);
 				}
 			}
 
@@ -152,7 +152,7 @@ namespace IslandBoy
 
 				foreach (ItemAmount ia in _inProgressRecipe.ResourceList)
 				{
-					_pr.Inventory.RemoveItem(ia.Item, ia.Amount);
+					_po.Inventory.RemoveItem(ia.Item, ia.Amount);
 				}
 			}
 

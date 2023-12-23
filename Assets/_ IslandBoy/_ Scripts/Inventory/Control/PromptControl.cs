@@ -6,7 +6,7 @@ namespace IslandBoy
 {
     public class PromptControl : MonoBehaviour
     {
-        private Interactable _currentInteractable;
+        private Prompt _currentPrompt;
 
         private void Awake()
         {
@@ -20,9 +20,9 @@ namespace IslandBoy
 
         private void Update()
         {
-            if (_currentInteractable == null) return;
+            if (_currentPrompt == null) return;
 
-            if (!_currentInteractable.PlayerInRange(_currentInteractable.gameObject.transform.position + new Vector3(0.5f, 0.5f)))
+            if (!_currentPrompt.PlayerInRange(_currentPrompt.gameObject.transform.position + new Vector3(0.5f, 0.5f)))
             {
                 InteractableHandle(null);
             }
@@ -30,17 +30,17 @@ namespace IslandBoy
 
         public void DisplayPrompt(ISignalParameters parameters)
         {
-            Interactable prompt = (Interactable)parameters.GetParameter("Prompt");
+            Prompt prompt = (Prompt)parameters.GetParameter("Prompt");
 
             InteractableHandle(prompt);
         }
 
-        public void InteractableHandle(Interactable interactable)
+        public void InteractableHandle(Prompt interactable)
         {
-            if (_currentInteractable != null)
-                _currentInteractable.OnPlayerExitRange?.Invoke();
+            if (_currentPrompt != null)
+                _currentPrompt.OnPlayerExitRange?.Invoke();
 
-            _currentInteractable = interactable;
+            _currentPrompt = interactable;
         }
     }
 }
