@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 762220613}
   - component: {fileID: 762220612}
   m_Layer: 0
-  m_Name: XpText
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: XP
+  m_text: $
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
   m_sharedMaterial: {fileID: 4835514525599508895, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
@@ -518,7 +518,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9212620248405264548}
   m_Layer: 0
-  m_Name: XpDisplay
+  m_Name: GoldDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

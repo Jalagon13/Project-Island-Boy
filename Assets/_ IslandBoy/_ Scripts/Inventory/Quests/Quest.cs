@@ -4,18 +4,13 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public class Quest : MonoBehaviour
-    {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
-    }
+	public class Quest : MonoBehaviour
+	{
+		[SerializeField] private List<ChestInvSlot> _questItems;
+		
+		// public bool SatisfiesReq(MouseSlot mouseSlot)
+		// {
+		// 	if(_questItems.Contains())
+		// }
+	}
 }
