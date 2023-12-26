@@ -1021,7 +1021,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7624616619513187665
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1373,10 +1373,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74fe0179708dc004c91c7b9ae2d255a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _po: {fileID: 0}
   _maxHitPoints: 6
   _breakType: 2
   _clickFeedback: {fileID: 2867197687979788526}
   _destroyFeedback: {fileID: 514644100431552703}
   _lootTable:
     <Table>k__BackingField: []
-  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}

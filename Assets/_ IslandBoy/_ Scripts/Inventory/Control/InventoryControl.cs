@@ -81,8 +81,9 @@ namespace IslandBoy
 		public void DisplayInteractable(ISignalParameters parameters)
 		{
 			Interactable interactable = (Interactable)parameters.GetParameter("Interactable");
-
-			OpenInventory(true);
+			MMSoundManagerSoundPlayEvent.Trigger(_openSound, MMSoundManager.MMSoundManagerTracks.UI, default);
+			
+			OpenInventory(true, false);
 			_craftHolder.gameObject.SetActive(false);
 			InteractableHandle(interactable);
 		}

@@ -8,7 +8,7 @@ namespace IslandBoy
 {
 	public class Chest : Interactable
 	{
-		[SerializeField] private List<ChestInvSlot> _presetItems = new(); // need to build functionality to populate chests with preset items.
+		[SerializeField] private List<ChestInvSlot> _presetItems = new(); 
 
 		private Canvas _slotCanvas;
 		private bool _appQuitting;
