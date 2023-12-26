@@ -198,7 +198,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -99
   m_TargetDisplay: 0
 --- !u!114 &4390693040449439924
 MonoBehaviour:
@@ -239,7 +239,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1023
 --- !u!1 &2350328694657398924
 GameObject:
   m_ObjectHideFlags: 0
@@ -6535,7 +6535,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -99
   m_TargetDisplay: 0
 --- !u!114 &6260692910432953244
 MonoBehaviour:
@@ -6576,7 +6576,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1023
 --- !u!1 &4569820413127141918
 GameObject:
   m_ObjectHideFlags: 0
@@ -12967,13 +12967,76 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db64f49841bcd49199890e57921500d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _questItems:
-  - OutputItem: {fileID: 11400000, guid: 169433636f599ed4595792c252615c81, type: 2}
-    OutputAmount: 5
-  - OutputItem: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
-    OutputAmount: 5
-  - OutputItem: {fileID: 11400000, guid: 9b7ef9edf622c4541a567e8193b937c1, type: 2}
-    OutputAmount: 10
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 169433636f599ed4595792c252615c81, type: 2}
+    - {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
+    - {fileID: 11400000, guid: 9b7ef9edf622c4541a567e8193b937c1, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _questItems
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[IslandBoy.ItemObject, Assembly-CSharp],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[IslandBoy.ItemObject,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 0
+    - Name: $v
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 2
+    - Name: $v
+      Entry: 3
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  _slotCompleteSound: {fileID: 8300000, guid: 02121cc507b53c2489410a4889effc75, type: 3}
+  _questCompleteSound: {fileID: 8300000, guid: f7b568774dd7db745ba2768324150fed, type: 3}
 --- !u!1 &8109442588234008348
 GameObject:
   m_ObjectHideFlags: 0
@@ -13811,7 +13874,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -99
   m_TargetDisplay: 0
 --- !u!114 &3819187973566703782
 MonoBehaviour:
@@ -13852,7 +13915,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1023
 --- !u!114 &7310312247456354385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13865,7 +13928,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db64f49841bcd49199890e57921500d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _questItems: []
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _questItems
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[IslandBoy.ItemObject, Assembly-CSharp],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[IslandBoy.ItemObject,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  _slotCompleteSound: {fileID: 0}
+  _questCompleteSound: {fileID: 0}
 --- !u!1 &8679781084694123368
 GameObject:
   m_ObjectHideFlags: 0
