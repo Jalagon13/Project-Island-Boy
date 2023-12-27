@@ -31,12 +31,6 @@ namespace IslandBoy
         private bool _heldDown;
         private float _currentClickDistance;
 
-        // temp buff stuff will rework/refactor later
-        [SerializeField] private TextMeshProUGUI _buffText;
-        [SerializeField] private float _buffDuration;
-        private Timer _buffTimer;
-        private int _buffAmount;
-
         public Slot FocusSlot { get { return _focusSlotRef; } }
 
         private void Awake()
@@ -49,8 +43,6 @@ namespace IslandBoy
             _input.Enable();
 
             _clickTimer = new(_clickCd);
-            _buffTimer = new(0);
-            _buffText.enabled = false;
 
             _sr = GetComponent<SpriteRenderer>();
             _currentClickDistance = _startingClickDistance;
@@ -85,11 +77,6 @@ namespace IslandBoy
 
             _clickTimer.Tick(Time.deltaTime);
 
-            _buffTimer.Tick(Time.deltaTime);
-            _buffText.enabled = _buffTimer.RemainingSeconds > 0;
-            if (_buffTimer.RemainingSeconds > 0)
-                _buffText.text = $"+2 Hit Buff: {Math.Round(_buffTimer.RemainingSeconds, 1)} sec";
-
             if (_heldDown)
                 Hit(new());
 
@@ -117,19 +104,6 @@ namespace IslandBoy
             _clickTimer.RemainingSeconds = _clickCd;
         }
 
-        private void AddPlusTwoHitBuff(ISignalParameters parameters)
-        {
-            _buffAmount = 2;
-            _buffTimer.RemainingSeconds += _buffDuration;
-            _buffTimer.OnTimerEnd += RemovePlusTwoHitBuff;
-        }
-
-        private void RemovePlusTwoHitBuff()
-        {
-            _buffAmount = 0;
-            _buffTimer.OnTimerEnd -= RemovePlusTwoHitBuff;
-        }
-
         private void Hold(InputAction.CallbackContext context)
         {
             _heldDown = context.performed;
@@ -144,7 +118,7 @@ namespace IslandBoy
             if (_currentClickable != null && _canUseActions && _currentClickable is not Entity)
             {
                 ToolType toolType = _focusSlotRef == null ? ToolType.None : _focusSlotRef.ToolType;
-                int totalHit = CalcToolHitAmount() + CalcBuffModifiers();
+                int totalHit = CalcToolHitAmount();
                 _currentClickable.OnHit(toolType, totalHit);
                 _clickTimer.RemainingSeconds = _clickCd;
             }
@@ -216,11 +190,6 @@ namespace IslandBoy
             }
 
             return 0;
-        }
-
-        private int CalcBuffModifiers()
-        {
-            return _buffAmount;
         }
 
         private float CalcClickDistance()

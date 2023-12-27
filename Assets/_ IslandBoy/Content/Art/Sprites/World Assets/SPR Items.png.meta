@@ -1403,6 +1403,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: item_magic_potion
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cb70ca912d5d4426832a668fd78e839
+      internalID: -1424274245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1445,6 +1466,7 @@ TextureImporter:
       item_iron_ore: 1648958029
       item_iron_pickaxe: -30285140
       item_iron_sword: 1805357805
+      item_magic_potion: -1424274245
       item_miner_scroll: 2118457468
       item_mushed_apple: -1475151143
       item_mushed_mushroom: -522266397

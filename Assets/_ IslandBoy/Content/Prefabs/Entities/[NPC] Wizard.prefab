@@ -12617,7 +12617,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 1
-  m_CellSize: {x: 400, y: 80}
+  m_CellSize: {x: 500, y: 80}
   m_Spacing: {x: 8, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 1
@@ -14128,8 +14128,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -667.5, y: -118}
-  m_SizeDelta: {x: 400, y: 300}
+  m_AnchoredPosition: {x: -673, y: -90}
+  m_SizeDelta: {x: 500, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6879556176520324510
 CanvasRenderer:
@@ -14822,6 +14822,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7100588585185148601, guid: 1d5362d416eb04c0d9d89b21aa0d233c, type: 3}
+      propertyPath: _cost
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7100588585185148601, guid: 1d5362d416eb04c0d9d89b21aa0d233c, type: 3}
+      propertyPath: _sellItem
+      value: 
+      objectReference: {fileID: 11400000, guid: 8e1511e2a939a4ff6b295209783ceae8, type: 2}
+    - target: {fileID: 7100588585185148601, guid: 1d5362d416eb04c0d9d89b21aa0d233c, type: 3}
+      propertyPath: _sellAmount
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15144,6 +15156,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7100588585185148601, guid: 1d5362d416eb04c0d9d89b21aa0d233c, type: 3}
+      propertyPath: _cost
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7100588585185148601, guid: 1d5362d416eb04c0d9d89b21aa0d233c, type: 3}
+      propertyPath: _sellItem
+      value: 
+      objectReference: {fileID: 11400000, guid: 78fa1c5045bd8774eaae01363dd9948a, type: 2}
+    - target: {fileID: 7100588585185148601, guid: 1d5362d416eb04c0d9d89b21aa0d233c, type: 3}
+      propertyPath: _sellAmount
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15351,6 +15375,26 @@ PrefabInstance:
     - target: {fileID: 6460074974295357320, guid: 1d5362d416eb04c0d9d89b21aa0d233c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7100588585185148601, guid: 1d5362d416eb04c0d9d89b21aa0d233c, type: 3}
+      propertyPath: _cost
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7100588585185148601, guid: 1d5362d416eb04c0d9d89b21aa0d233c, type: 3}
+      propertyPath: _sellItem
+      value: 
+      objectReference: {fileID: 11400000, guid: d597b342234b58844a3a4f145cad0c2c, type: 2}
+    - target: {fileID: 7100588585185148601, guid: 1d5362d416eb04c0d9d89b21aa0d233c, type: 3}
+      propertyPath: _shopItem
+      value: 
+      objectReference: {fileID: 11400000, guid: d597b342234b58844a3a4f145cad0c2c, type: 2}
+    - target: {fileID: 7100588585185148601, guid: 1d5362d416eb04c0d9d89b21aa0d233c, type: 3}
+      propertyPath: _sellAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7100588585185148601, guid: 1d5362d416eb04c0d9d89b21aa0d233c, type: 3}
+      propertyPath: _shopAmount
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

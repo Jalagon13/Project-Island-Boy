@@ -98,7 +98,7 @@ namespace IslandBoy
 			if (!_dontGiveXp)
 			{
 				PopupMessage.Create(transform.position, $"+ {_maxHitPoints} XP", Color.white, Vector2.up, 1f);
-				PlayerExperience.AddExerpience(_maxHitPoints);
+				// PlayerExperience.AddExerpience(_maxHitPoints);
 			}
 
 			base.OnBreak();

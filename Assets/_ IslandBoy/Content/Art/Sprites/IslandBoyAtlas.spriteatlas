@@ -253,6 +253,7 @@ SpriteAtlas:
     - 7b4664f5da5f4bc4fb4c01aad9fc646d: 18002930929476221
     - 7b4664f5da5f4bc4fb4c01aad9fc646d: 3592268942824130315
     - 7b4664f5da5f4bc4fb4c01aad9fc646d: 996720472450852175
+    - 75594b36fd8cd0d409de8dacfcaf419b: -1424274245
     - 75594b36fd8cd0d409de8dacfcaf419b: -916310749
     - 75594b36fd8cd0d409de8dacfcaf419b: -848097959
     - 75594b36fd8cd0d409de8dacfcaf419b: 390829686
@@ -936,6 +937,7 @@ SpriteAtlas:
   - {fileID: 18002930929476221, guid: 7b4664f5da5f4bc4fb4c01aad9fc646d, type: 3}
   - {fileID: 3592268942824130315, guid: 7b4664f5da5f4bc4fb4c01aad9fc646d, type: 3}
   - {fileID: 996720472450852175, guid: 7b4664f5da5f4bc4fb4c01aad9fc646d, type: 3}
+  - {fileID: -1424274245, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -916310749, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -848097959, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 390829686, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
@@ -1618,6 +1620,7 @@ SpriteAtlas:
   - WS11_8
   - WS11_9
   - WS11_2
+  - item_magic_potion
   - item_cactus
   - item_wood_chestplate
   - item_glass_bottle

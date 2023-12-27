@@ -44,18 +44,18 @@ namespace IslandBoy
                 }
             }
 
-            if (PlayerExperience.Experience.Count < _unlockFee)
-            {
-                PopupMessage.Create(transform.position, $"I need more XP", Color.yellow, Vector2.up * 2, 1f);
-                return;
-            }
+            // if (PlayerExperience.Experience.Count < _unlockFee)
+            // {
+            //     PopupMessage.Create(transform.position, $"I need more XP", Color.yellow, Vector2.up * 2, 1f);
+            //     return;
+            // }
 
             foreach (ItemAmount ia in _expansionRecipe.ResourceList)
             {
                 _pr.Inventory.RemoveItem(ia.Item, ia.Amount);
             }
 
-            PlayerExperience.AddExerpience(-_unlockFee);
+            // PlayerExperience.AddExerpience(-_unlockFee);
             MMSoundManagerSoundPlayEvent.Trigger(_expandSound, MMSoundManager.MMSoundManagerTracks.Sfx, transform.position, persistent:true);
             StartCoroutine(LoadSceneAdd(_transitionScene));
         }
