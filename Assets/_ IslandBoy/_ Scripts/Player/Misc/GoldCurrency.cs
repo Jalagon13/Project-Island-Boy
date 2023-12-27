@@ -7,7 +7,8 @@ namespace IslandBoy
 {
 	public class GoldCurrency
 	{
-		public event Action ValueChanged;
+		public event Action ValueIncreased;
+		public event Action ValueDecreased;
 		
 		private int _currentValue = 0;
 		
@@ -17,14 +18,12 @@ namespace IslandBoy
 			_currentValue = value;
 			if(_currentValue < 0)
 				_currentValue = 0;
-				
-			UpdateCurrency();
 		}}
 		
 		public void Increment(int amount)
 		{
 			_currentValue += amount;
-			UpdateCurrency();
+			UpdateCurrencyIncrease();
 		}
 		
 		public void Decrement(int amount)
@@ -33,12 +32,16 @@ namespace IslandBoy
 			if(_currentValue < 0)
 				_currentValue = 0;
 				
-			UpdateCurrency();
+			UpdateCurrencyDecrease();
 		}
 		
-		public void UpdateCurrency()
+		public void UpdateCurrencyIncrease()
 		{
-			ValueChanged?.Invoke();
+			ValueIncreased?.Invoke();
+		}
+		public void UpdateCurrencyDecrease()
+		{
+			ValueDecreased?.Invoke();
 		}
 	}
 }

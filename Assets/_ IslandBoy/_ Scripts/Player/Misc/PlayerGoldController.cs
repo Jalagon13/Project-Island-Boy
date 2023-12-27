@@ -16,6 +16,8 @@ namespace IslandBoy
 			AddCurrency(100);
 		}
 		
+		private static int _changeAmount;
+		
 		private static GoldCurrency _currency = new();
 		
 		public static int CurrencyValue { get { return _currency.CurrentValue; } }
@@ -24,7 +26,8 @@ namespace IslandBoy
 		{
 			if(_currency != null)
 			{
-				_currency.ValueChanged += OnCurrencyChanged;
+				_currency.ValueIncreased += OnCurrencyIncrease;
+				_currency.ValueDecreased += OnCurrencyDecrease;
 			}
 		}
 		
@@ -32,17 +35,20 @@ namespace IslandBoy
 		{
 			if(_currency != null)
 			{
-				_currency.ValueChanged -= OnCurrencyChanged;
+				_currency.ValueIncreased += OnCurrencyIncrease;
+				_currency.ValueDecreased += OnCurrencyDecrease;
 			}
 		}
 		
 		public static void AddCurrency(int amount)
 		{
+			_changeAmount = amount;
 			_currency?.Increment(amount);
 		}
 		
 		public static void SubtractCurrency(int amount)
 		{
+			_changeAmount = amount;
 			_currency?.Decrement(amount);
 		}
 		
@@ -57,8 +63,17 @@ namespace IslandBoy
 			}
 		}
 		
-		private void OnCurrencyChanged()
+		private void OnCurrencyIncrease()
 		{
+			PopupMessage.Create(transform.position, $"+${_changeAmount}", Color.green, Vector2.up, 1f);
+			
+			UpdateView();
+		}
+		
+		private void OnCurrencyDecrease()
+		{
+			PopupMessage.Create(transform.position, $"-${_changeAmount}", Color.red, Vector2.up, 1f);
+			
 			UpdateView();
 		}
 	}
