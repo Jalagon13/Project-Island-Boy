@@ -58,7 +58,7 @@ namespace IslandBoy
 
 		private IEnumerator SpawnMonsterTimer()
 		{
-			yield return new WaitForSeconds(1);
+			yield return new WaitForSeconds(5);
 			
 			float chance = Random.Range(0,100f);
 			

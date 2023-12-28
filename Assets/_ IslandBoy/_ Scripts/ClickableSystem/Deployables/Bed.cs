@@ -11,9 +11,10 @@ namespace IslandBoy
 
 		private bool _canCheck;
 		private bool _occupied;
-		private NPCEntity _npc;
+		private NPC _npc;
 
-		public bool Occupied { get {return _occupied; } }
+		public bool Occupied { get { return _occupied; } }
+		public NPC NPC { get { return _npc; } }
 		
 		public void Start()
 		{
@@ -30,13 +31,7 @@ namespace IslandBoy
 			}
 		}
 
-		private void DispatchEvents()
-		{
-			GameSignals.BED_TIME_EXECUTED.Dispatch();
-			GameSignals.DAY_END.Dispatch();
-		}
-
-		public void MoveInNPC(NPCEntity npc)
+		public void MoveInNPC(NPC npc)
 		{
 			_npc = npc;
 			_occupied = true;
@@ -44,7 +39,26 @@ namespace IslandBoy
 		
 		public void MoveOutNPC()
 		{
-			
+			if(_npc != null)
+			{
+				_npc = null;
+				_occupied = false;
+			}
+		}
+		
+				
+		public void ResetNpc()
+		{
+			if(_occupied)
+			{
+				_npc.transform.position = transform.position;
+			}
+		}
+		
+		private void DispatchEvents()
+		{
+			GameSignals.BED_TIME_EXECUTED.Dispatch();
+			GameSignals.DAY_END.Dispatch();
 		}
 		
 		public bool InValidSpace() // check for floors and walls for house is valid. check furniture too. make floortilePos a global var.

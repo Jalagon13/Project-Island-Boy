@@ -49,7 +49,7 @@ namespace IslandBoy
                 }
             }
 
-            return $"{Description}<br>� Left Click to place<br>� {clickDistance} build distance";
+            return $"{Description}<br>* Left Click to place<br>* {clickDistance} build distance";
         }
     }
 }

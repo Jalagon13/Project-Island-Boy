@@ -62,23 +62,23 @@ namespace IslandBoy
             switch (_type)
             {
                 case ToolType.Axe:
-                    toolTypeDesc = $"? {hitValue} hits to trees<br>";
+                    toolTypeDesc = $"* {hitValue} hits to trees<br>";
                     break;
                 case ToolType.Pickaxe:
-                    toolTypeDesc = $"? {hitValue} hits to rocks<br>";
+                    toolTypeDesc = $"* {hitValue} hits to rocks<br>";
                     break;
                 case ToolType.Sword:
-                    toolTypeDesc = $"? {hitValue} hits to creatures<br>";
+                    toolTypeDesc = $"* {hitValue} hits to creatures<br>";
                     break;
                 case ToolType.Hammer:
-                    toolTypeDesc = $"? {hitValue} hits to floors and walls<br>";
+                    toolTypeDesc = $"* {hitValue} hits to floors and walls<br>";
                     break;
             }
 
-            string upgradeText = _upgradeRecipe != null ? $"? Upgradable at Iron Anvil<br>? Next upgrade: {_upgradeRecipe.OutputItem.Name}" : string.Empty;
+            string upgradeText = _upgradeRecipe != null ? $"* Upgradable at Iron Anvil<br>* Next upgrade: {_upgradeRecipe.OutputItem.Name}" : string.Empty;
             string damageText = $"{damage} damage<br>";
 
-            return $"{toolTypeDesc}? {damageText}{upgradeText}";
+            return $"{toolTypeDesc}* {damageText}{upgradeText}";
         }
     }
 }
