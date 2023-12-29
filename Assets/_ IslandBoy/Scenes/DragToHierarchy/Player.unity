@@ -2372,6 +2372,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TooltipManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7844433108773139227, guid: 705bedf1958508840b09b1a9b3f5ac2f, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 1023
+      objectReference: {fileID: 0}
     - target: {fileID: 7844433108773139230, guid: 705bedf1958508840b09b1a9b3f5ac2f, type: 3}
       propertyPath: m_Pivot.x
       value: 0

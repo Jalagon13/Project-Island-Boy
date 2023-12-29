@@ -6,7 +6,7 @@ namespace IslandBoy
 {
 	public static class GameSignals
 	{
-		// DayManager Signals
+		// SunMeter Signals
 		public static readonly Signal DAY_START = new("DayStart");
 		public static readonly Signal DAY_END = new("DayEnd");
 		public static readonly Signal BED_TIME_EXECUTED = new("BedTimeExecuted");
@@ -30,6 +30,7 @@ namespace IslandBoy
 		public static readonly Signal FOCUS_SLOT_UPDATED = new("FocusSlotUpdated");
 		public static readonly Signal CURSOR_ENTERED_NEW_TILE = new("CursorEnteredNewTile");
 		public static readonly Signal ITEM_DEPLOYED = new("ItemDeployed");
+		public static readonly Signal ENERGY_RESTORED = new("EnergyRestored");
 		
 		// Interact Signals
 		public static readonly Signal DISPLAY_PROMPT = new("DisplayPrompt");
@@ -42,8 +43,8 @@ namespace IslandBoy
 		public static readonly Signal GAME_UNPAUSED = new("GameUnpaused");
 
 		// World Signals
-		public static readonly Signal ENERGY_RESTORED = new("EntitySlain");
 		public static readonly Signal CHANGE_SCENE = new("ChangeScene");
+		public static readonly Signal RESIDENT_UPDATE = new("ResidentUpdate");
 
 		// Shift-click Signals
 		public static readonly Signal ADD_ITEMS_TO_CHEST = new("AddItemsToChest"); // BROOKE

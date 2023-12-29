@@ -10,9 +10,6 @@ namespace IslandBoy
 		[Header("NPC Parameters")]
 		[SerializeField] private Canvas _questCanvas;
 		[SerializeField] private Canvas _shopCanvas;
-		[SerializeField] private string _name;
-		
-		public string Name { get { return _name; } }
 
 		protected KnockbackFeedback _knockback;
 

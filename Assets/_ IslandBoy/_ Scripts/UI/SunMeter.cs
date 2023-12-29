@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -30,7 +31,7 @@ namespace IslandBoy
 		private float _duration;
 		private float _phasePercent;
 		private bool _isDay, _hasDisplayedWarning;
-		private List<string> _endDaySlides = new();
+		private Queue<string> _endDaySlides = new();
 
 		private void Awake()
 		{
@@ -39,11 +40,13 @@ namespace IslandBoy
 			_timer.OnTimerEnd += OutOfTime;
 
 			GameSignals.DAY_END.AddListener(EndDay);
+			GameSignals.RESIDENT_UPDATE.AddListener(ResidentUpdate);
 		}
 
 		private void OnDestroy()
 		{
 			GameSignals.DAY_END.RemoveListener(EndDay);
+			GameSignals.RESIDENT_UPDATE.RemoveListener(ResidentUpdate);
 		}
 
 		private void Start()
@@ -66,6 +69,15 @@ namespace IslandBoy
 			{
 				PopupMessage.Create(_pr.Position, "I need to sleep soon..", Color.cyan, new(0f, 0.75f), 1.5f);
 				_hasDisplayedWarning = true;
+			}
+		}
+		
+		private void ResidentUpdate(ISignalParameters parameters)
+		{
+			if(parameters.HasParameter("Message"))
+			{
+				string message = (string)parameters.GetParameter("Message");
+				AddEndDaySlide(message);
 			}
 		}
 
@@ -101,7 +113,6 @@ namespace IslandBoy
 
 		private void MoveMarker()
 		{
-			
 			float xValue = Mathf.Lerp(_markerStartPosition.x, _markerEndPosition.x, _phasePercent);
 			_marker.anchoredPosition = new Vector2(xValue, _markerStartPosition.y);
 		}
@@ -128,7 +139,7 @@ namespace IslandBoy
 
 		public void AddEndDaySlide(string text)
 		{
-			_endDaySlides.Add(text);
+			_endDaySlides.Enqueue(text);
 		}
 
 		public void ClearEndDaySlides()
@@ -136,7 +147,7 @@ namespace IslandBoy
 			_endDaySlides.Clear();
 		}
 
-		[ContextMenu("End Day")]
+		[Button("End Day")]
 		public void EndDay(ISignalParameters parameters) // connected to bed
 		{
 			_timer.IsPaused = true;
@@ -169,7 +180,7 @@ namespace IslandBoy
 			text.text = "Health and Energy replenished!";
 			button.gameObject.SetActive(true);
 
-			_endDaySlides.Clear();
+			ClearEndDaySlides();
 		}
 
 		private void PanelEnabled(bool _)

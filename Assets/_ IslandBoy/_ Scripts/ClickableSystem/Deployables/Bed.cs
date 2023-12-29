@@ -11,10 +11,10 @@ namespace IslandBoy
 
 		private bool _canCheck;
 		private bool _occupied;
-		private NPC _npc;
+		private Resident _resident;
 
 		public bool Occupied { get { return _occupied; } }
-		public NPC NPC { get { return _npc; } }
+		public Resident Resident { get { return _resident; } }
 		
 		public void Start()
 		{
@@ -31,27 +31,26 @@ namespace IslandBoy
 			}
 		}
 
-		public void MoveInNPC(NPC npc)
+		public void MoveInNPC(Resident resident)
 		{
-			_npc = npc;
+			_resident = resident;
 			_occupied = true;
 		}
 		
 		public void MoveOutNPC()
 		{
-			if(_npc != null)
+			if(_resident != null)
 			{
-				_npc = null;
+				_resident = null;
 				_occupied = false;
 			}
 		}
 		
-				
 		public void ResetNpc()
 		{
 			if(_occupied)
 			{
-				_npc.transform.position = transform.position;
+				_resident.SetPosition(transform.position);
 			}
 		}
 		
