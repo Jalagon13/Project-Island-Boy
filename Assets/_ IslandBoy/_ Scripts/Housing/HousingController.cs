@@ -13,9 +13,7 @@ namespace IslandBoy
 		
 		private static HousingController _i;
 		
-		public HousingController Instance { get { return _i; }} // used to access unlock method anywhere
-		
-
+		public static HousingController Instance { get { return _i; }} // used to access unlock method anywhere
 		
 		private void Awake() 
 		{
@@ -51,8 +49,7 @@ namespace IslandBoy
 			List<Bed> validBeds = new(); // beds found in valid house
 			List<Bed> nonValidBeds = new(); // beds found in non-valid setting
 			
-			//loop through all beds and find the ones that have a in a valid house.
-			for(int i = 0; i < allBeds.Length; i++)
+			for(int i = 0; i < allBeds.Length; i++) //loop through all beds and find the ones that have a in a valid house.
 			{
 				if (allBeds[i].InValidSpace())
 					validBeds.Add(allBeds[i]);

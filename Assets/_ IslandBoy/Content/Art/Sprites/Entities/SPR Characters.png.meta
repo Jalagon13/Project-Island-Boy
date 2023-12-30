@@ -168,7 +168,7 @@ TextureImporter:
       name: spr_wizard
       rect:
         serializedVersion: 2
-        x: 32
+        x: 48
         y: 1
         width: 15
         height: 28
@@ -185,6 +185,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: spr_bound_wizard
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 1
+        width: 15
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.0256916}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1485ccb27b6474aeea542c1aa17884d3
+      internalID: 1498854646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_bound_miner
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 1
+        width: 11
+        height: 19
+      alignment: 9
+      pivot: {x: 0.5, y: 0.0256916}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3969fa95d114243c89aa1dc533498327
+      internalID: -1592809215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -196,6 +238,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      spr_bound_miner: -1592809215
+      spr_bound_wizard: 1498854646
       spr_druid: 1094963970
       spr_island_boy: 1001675587
       spr_player: -1006392663
