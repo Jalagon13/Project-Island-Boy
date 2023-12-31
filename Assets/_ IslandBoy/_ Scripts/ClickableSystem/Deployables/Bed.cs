@@ -12,6 +12,7 @@ namespace IslandBoy
 		private bool _canCheck;
 		private bool _occupied;
 		private Resident _resident;
+		private List<Vector3Int> _floorTilePositions = new();
 
 		public bool Occupied { get { return _occupied; } }
 		public Resident Resident { get { return _resident; } }
@@ -50,8 +51,15 @@ namespace IslandBoy
 		{
 			if(_occupied)
 			{
-				_resident.SetPosition(transform.position);
+				_resident.SetPosition(ReturnRandomFloorTile());
 			}
+		}
+		
+		private Vector3 ReturnRandomFloorTile()
+		{
+			var randomIndex = Random.Range(0, _floorTilePositions.Count);
+			
+			return _floorTilePositions[randomIndex];
 		}
 		
 		private void DispatchEvents()
@@ -63,7 +71,7 @@ namespace IslandBoy
 		public bool InValidSpace() // check for floors and walls for house is valid. check furniture too. make floortilePos a global var.
 		{
 			Stack<Vector3Int> tilesToCheck = new();
-			List<Vector3Int> floorTilePositions = new();
+			_floorTilePositions = new();
 			List<Vector3Int> wallTilePositions = new(); // list of wall tiles around the free space
 			List<Vector3Int> doorPositions = new(); // list of all positions of doors if any door is found
 			int maxHouseSpaceTiles = 50;
@@ -98,9 +106,9 @@ namespace IslandBoy
 				}
 
 				// add floor tile to floorTilePositions and push new tiles to check
-				if (!floorTilePositions.Contains(p))
+				if (!_floorTilePositions.Contains(p))
 				{
-					floorTilePositions.Add(p);
+					_floorTilePositions.Add(p);
 
 					tilesToCheck.Push(new Vector3Int(p.x - 1, p.y));
 					tilesToCheck.Push(new Vector3Int(p.x + 1, p.y));
@@ -110,7 +118,7 @@ namespace IslandBoy
 			}
 
 			// if floor tile positions are greater than maxHouseSpaceTiles, then housing is too big.
-			if (floorTilePositions.Count > maxHouseSpaceTiles)
+			if (_floorTilePositions.Count > maxHouseSpaceTiles)
 			{
 				PopupMessage.Create(transform.position, "Space too large!", Color.yellow, new(0.5f, 0.5f), 1f);
 				return false;
@@ -139,10 +147,10 @@ namespace IslandBoy
 				{
 					int counter = 0;
 
-					if (floorTilePositions.Contains(en))
+					if (_floorTilePositions.Contains(en))
 						counter++;
 
-					if (floorTilePositions.Contains(wn))
+					if (_floorTilePositions.Contains(wn))
 						counter++;
 
 					if (counter == 1)
@@ -156,10 +164,10 @@ namespace IslandBoy
 				{
 					int counter = 0;
 
-					if (floorTilePositions.Contains(nn))
+					if (_floorTilePositions.Contains(nn))
 						counter++;
 
-					if (floorTilePositions.Contains(sn))
+					if (_floorTilePositions.Contains(sn))
 						counter++;
 
 					if (counter == 1)

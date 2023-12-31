@@ -12,7 +12,6 @@ namespace IslandBoy
             //if (!_inventoryOpen) return;
             if (eventData.button == PointerEventData.InputButton.Left && Input.GetKey(KeyCode.LeftShift) && _chestOpen) // BROOKE --------------
             {
-                Debug.Log("shift key was pressed"); // TEST
                 if (_isChestSlot) MoveItemIntoInventory();
                 else MoveItemIntoChest();
             }

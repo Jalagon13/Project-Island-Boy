@@ -23,7 +23,7 @@ namespace IslandBoy
 		
 		private void OnDestroy()
 		{
-			GameSignals.DAY_END.AddListener(DestroyEntity);
+			GameSignals.DAY_END.RemoveListener(DestroyEntity);
 		}
 
 		public void DestroyEntity(ISignalParameters parameters)

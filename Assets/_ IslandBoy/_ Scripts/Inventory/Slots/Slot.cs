@@ -157,8 +157,6 @@ namespace IslandBoy
 
 		protected void MoveItemIntoInventory()
 		{
-			Debug.Log("CHEST SLOT");
-
 			if (HasItem())
 			{
 				var item = transform.GetChild(0);

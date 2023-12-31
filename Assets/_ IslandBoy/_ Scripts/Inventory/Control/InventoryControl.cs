@@ -172,7 +172,6 @@ namespace IslandBoy
 
 		public void AddItemToInventoryFromChest(ISignalParameters parameters) // BROOKE --------------------------------------------------
 		{
-			Debug.Log("signal for additemtoinventory");
 			// if item was added successfully, delete item from chest
 			if (AddItemToInventoryFromChest(parameters.GetParameter("itemToAdd") as ChestInvSlot))
 			{

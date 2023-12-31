@@ -20,7 +20,6 @@ namespace IslandBoy
 			if(_i == null)
 				_i = this;
 			
-			UnlockNpc("Miner");
 			GameSignals.DAY_END.AddListener(UpdateHousing);
 		}
 

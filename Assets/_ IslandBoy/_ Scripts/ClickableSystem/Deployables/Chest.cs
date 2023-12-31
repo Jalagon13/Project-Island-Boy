@@ -74,7 +74,6 @@ namespace IslandBoy
 
 		private void AddItemsToChest(ISignalParameters parameters)
 		{
-			Debug.Log("signal for additemstochest");
 			// if item was added successfully, delete item from inventory
 			if (AddItemsToChest(parameters.GetParameter("itemsToAdd") as List<ChestInvSlot>))
 			{
