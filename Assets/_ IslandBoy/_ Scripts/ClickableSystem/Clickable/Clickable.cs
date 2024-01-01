@@ -37,14 +37,6 @@ namespace IslandBoy
 			_dropPosition = transform.position + (Vector3.one * 0.5f);
 		}
 
-		protected virtual void OnTriggerEnter2D(Collider2D collision)
-		{
-			//if (collision.TryGetComponent<CursorControl>(out var cc))
-			//{
-			//    ShowDisplay();
-			//}
-		}
-
 		protected virtual void OnTriggerExit2D(Collider2D collision)
 		{
 			if (collision.TryGetComponent<CursorControl>(out var cc))
@@ -72,17 +64,22 @@ namespace IslandBoy
 			return true;
 		}
 
-		protected virtual void OnBreak()
+		public virtual void OnBreak()
+		{
+			_lootTable.SpawnLoot(_dropPosition);
+			
+			PlayDestroyFeedbacks();
+			StopAllCoroutines();
+			Destroy(gameObject);
+		}
+		
+		private void PlayDestroyFeedbacks()
 		{
 			if (_destroyFeedback != null)
 			{
 				_destroyFeedback.transform.SetParent(null);
 				_destroyFeedback?.PlayFeedbacks();
 			}
-
-			_lootTable.SpawnLoot(_dropPosition);
-			StopAllCoroutines();
-			Destroy(gameObject);
 		}
 
 		public abstract void ShowDisplay();

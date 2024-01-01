@@ -36,9 +36,9 @@ namespace IslandBoy
 			_questCanvas.gameObject.SetActive(false);
 		}
 		
-		public override void CloseUI()
+		public override void CloseUI(ISignalParameters parameters)
 		{
-			base.CloseUI();
+			base.CloseUI(parameters);
 			
 			_questCanvas.gameObject.SetActive(false);
 			_shopCanvas.gameObject.SetActive(false);

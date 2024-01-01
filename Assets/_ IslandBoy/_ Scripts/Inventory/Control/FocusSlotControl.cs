@@ -52,8 +52,8 @@ namespace IslandBoy
 			GameSignals.HOTBAR_SLOT_UPDATED.AddListener(UpdateFocusSlotToHotbarSlot);
 			GameSignals.MOUSE_SLOT_HAS_ITEM.AddListener(UpdateFocusSlotToMouseSlot);
 			GameSignals.MOUSE_SLOT_GIVES_ITEM.AddListener(UpdateLocalMouseSlot);
-			GameSignals.ADD_ITEM_TO_INVENTORY_FROM_CHEST.AddListener(UpdateFocusSlotToHotbarSlot);
-			GameSignals.ADD_ITEMS_TO_CHEST.AddListener(UpdateFocusSlotToHotbarSlot);
+			GameSignals.ADD_ITEM_TO_INVENTORY_FROM_CHEST.AddListener(UpdateLocalMouseSlot);
+			GameSignals.ADD_ITEMS_TO_CHEST.AddListener(UpdateLocalMouseSlot);
 		}
 
 		private void OnDestroy()
@@ -63,8 +63,8 @@ namespace IslandBoy
 			GameSignals.HOTBAR_SLOT_UPDATED.RemoveListener(UpdateFocusSlotToHotbarSlot);
 			GameSignals.MOUSE_SLOT_HAS_ITEM.RemoveListener(UpdateFocusSlotToMouseSlot);
 			GameSignals.MOUSE_SLOT_GIVES_ITEM.RemoveListener(UpdateLocalMouseSlot);
-			GameSignals.ADD_ITEM_TO_INVENTORY_FROM_CHEST.RemoveListener(UpdateFocusSlotToHotbarSlot);
-			GameSignals.ADD_ITEMS_TO_CHEST.RemoveListener(UpdateFocusSlotToHotbarSlot);
+			GameSignals.ADD_ITEM_TO_INVENTORY_FROM_CHEST.RemoveListener(UpdateLocalMouseSlot);
+			GameSignals.ADD_ITEMS_TO_CHEST.RemoveListener(UpdateLocalMouseSlot);
 		}
 
 		private void Update()

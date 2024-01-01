@@ -29,12 +29,20 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: _swingDestructOnly
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: _destructableBySwing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Max
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Min
@@ -68,6 +76,10 @@ PrefabInstance:
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[2].Item
       value: 
       objectReference: {fileID: 11400000, guid: b881c5e1ea68b0b4bb24369d31c5a410, type: 2}
+    - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Chance
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[1].Chance
       value: 75
@@ -104,9 +116,49 @@ PrefabInstance:
       propertyPath: managedReferences[1619343171848765462].Sfx
       value: 
       objectReference: {fileID: 8300000, guid: b5200b6ea8cc82247bb456bbb17683a2, type: 3}
+    - target: {fileID: 4871828697884116381, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: managedReferences[1619343171848765445].Active
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4871828697884116381, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: managedReferences[1619343171848765462].MaxPitch
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4871828697884116381, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: managedReferences[1619343171848765462].MinPitch
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 5343309374458340233, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787002308347651762, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.38426763
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787002308347651762, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787002308347651762, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787002308347651762, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787002308347651762, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787002308347651762, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787002308347651762, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minScalar
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6422946327641943076, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_LocalPosition.x

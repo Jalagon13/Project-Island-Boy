@@ -13,17 +13,10 @@ namespace IslandBoy
 		private Inventory _playerInventory;
 		private GameObject _playerGameObject;
 
-		/// <summary>
-		/// Setting Position or MousePosition does NOT change the actual position or mouse position of the player.
-		/// It just changes THESE local variables respectively that should ONLY be referenced.
-		/// SpawnPoint, Position and MousePosition are set in PlayerStateMachine.
-		/// </summary>
 		public Vector2 Position { get { return _playerPosition; } set { _playerPosition = value; } }
 		public Vector2 MousePosition { get { return _mousePosition; } set { _mousePosition = value; } }
 		public Vector2 SpawnPoint { get { return _spawnPoint; } set { _spawnPoint = value; } }
 		public GameObject GameObject {get {return _playerGameObject; } set { _playerGameObject = value; }}
-		
-		// This is only SET in the Inventory Script do NOT SET this anywhere else. This is for reference only.
 		public Inventory Inventory { get { return _playerInventory; } set { _playerInventory = value; } }
 
 		public int Defense { get { return _defense; } set { _defense = value; } }

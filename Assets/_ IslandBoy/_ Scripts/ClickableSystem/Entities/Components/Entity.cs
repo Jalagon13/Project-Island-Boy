@@ -91,7 +91,7 @@ namespace IslandBoy
 			EnableInstructions(false);
 		}
 
-		protected override void OnBreak()
+		public override void OnBreak()
 		{
 			_dropPosition = transform.position;
 

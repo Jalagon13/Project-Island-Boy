@@ -19,6 +19,8 @@ namespace IslandBoy
 		private CraftSlotsControl _craftSlotsControl;
 		private Interactable _currentInteractableActive;
 		private bool _inventoryOpen;
+		
+		public bool IsInventoryOpen { get { return _inventoryOpen; } }
 
 		private void Awake()
 		{
@@ -37,6 +39,7 @@ namespace IslandBoy
 			GameSignals.DAY_END.AddListener(PauseHandle);
 			GameSignals.DAY_START.AddListener(UnpauseHandle);
 			GameSignals.ADD_ITEM_TO_INVENTORY_FROM_CHEST.AddListener(AddItemToInventoryFromChest); // BROOKE
+			GameSignals.INVENTORY_CLOSE.AddListener(CloseInventory);
 		}
 
 		private void OnDestroy()
@@ -50,11 +53,12 @@ namespace IslandBoy
 			GameSignals.DAY_END.RemoveListener(PauseHandle);
 			GameSignals.DAY_START.RemoveListener(UnpauseHandle);
 			GameSignals.ADD_ITEM_TO_INVENTORY_FROM_CHEST.RemoveListener(AddItemToInventoryFromChest); // BROOKE
+			GameSignals.INVENTORY_CLOSE.RemoveListener(CloseInventory);
 		}
 
 		private void Start()
 		{
-			CloseInventory(playSound: false);
+			CloseInventory(null);
 		}
 
 		private void Update()
@@ -69,7 +73,7 @@ namespace IslandBoy
 
 		private void PauseHandle(ISignalParameters parameter)
 		{
-			CloseInventory(playSound:false);
+			CloseInventory(null);
 			_input.Disable();
 		}
 
@@ -120,7 +124,7 @@ namespace IslandBoy
 		public void ToggleInventory(InputAction.CallbackContext context)
 		{
 			if (_inventoryOpen)
-				CloseInventory();
+				GameSignals.INVENTORY_CLOSE.Dispatch();
 			else
 				OpenInventory();
 		}
@@ -130,7 +134,7 @@ namespace IslandBoy
 			_craftSlotsControl.RefreshCraftingMenu(_defaultCDB);
 		}
 
-		public void CloseInventory(bool playSound = true)
+		public void CloseInventory(ISignalParameters parameters)
 		{
 			if (_mouseItemHolder.HasItem()) return;
 
@@ -140,10 +144,7 @@ namespace IslandBoy
 			_mainInventory.gameObject.SetActive(false);
 			_inventoryOpen = false;
 
-			if(playSound)
-				MMSoundManagerSoundPlayEvent.Trigger(_closeSound, MMSoundManager.MMSoundManagerTracks.UI, default);
-
-			GameSignals.INVENTORY_CLOSE.Dispatch();
+			MMSoundManagerSoundPlayEvent.Trigger(_closeSound, MMSoundManager.MMSoundManagerTracks.UI, default);
 
 			foreach (Slot slot in _inventory.InventorySlots)
 			{
