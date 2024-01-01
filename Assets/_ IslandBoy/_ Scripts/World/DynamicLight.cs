@@ -1,40 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 namespace IslandBoy
 {
-    public class DynamicLight : MonoBehaviour
-    {
-        private Light2D _light;
-        private float _intensity;
-        private Volume _globalVolume;
-
-        private void Awake()
-        {
-            _globalVolume = FindFirstObjectByType<Volume>();
-            _light = GetComponent<Light2D>();
-            _light.enabled = true;
-            _intensity = _light.intensity;
-        }
-
-        private void LateUpdate()
-        {
-            if (!_globalVolume.isActiveAndEnabled)
-            {
-                _light.intensity = _intensity * 0.25f;
-                return;
-            }
-
-            float globalBrightness = _globalVolume.weight;
-            float intensity = _intensity * globalBrightness;
-
-            _light.enabled = intensity > 1f;
-
-            if (_light.enabled)
-                _light.intensity = intensity;
-        }
-    }
+	public class DynamicLight : MonoBehaviour
+	{
+		[InfoBox("When sum of DayLight rgb is below this threshhold, turn on light. (each rgb value is represented from 0 to 1)")]
+		[Range(0, 3)]
+		[SerializeField] private float _rgbThreshhold;
+		
+		private Light2D _light;
+		
+		private void Awake()
+		{
+			_light = GetComponent<Light2D>();
+		}
+		
+		private void OnEnable()
+		{
+			_light.enabled = false;
+		}
+		
+		private void Update()
+		{
+			if(TimeManager.Instance.DayCycleHandler != null)
+			{
+				Color dayColor = TimeManager.Instance.DayCycleHandler.DayLight.color;
+				
+				float r = dayColor.r;
+				float g = dayColor.g;
+				float b = dayColor.b;
+				float rgbSum = r + b + g;
+				
+				_light.enabled = rgbSum < _rgbThreshhold;
+			}
+		}
+	}
 }

@@ -153,6 +153,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DynamicLight
       objectReference: {fileID: 0}
+    - target: {fileID: 2836146914331849061, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
+      propertyPath: _rgbThreshhold
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5434674419536051762, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
       propertyPath: m_Intensity
       value: 7
@@ -161,7 +165,9 @@ PrefabInstance:
       propertyPath: m_PointLightOuterRadius
       value: 16
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1775851432390732077, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
+    - {fileID: -2758600247765196620, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
