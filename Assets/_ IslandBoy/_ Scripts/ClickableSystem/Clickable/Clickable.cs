@@ -47,11 +47,8 @@ namespace IslandBoy
 
 		public virtual bool OnHit(ToolType incomingToolType, int amount, bool displayHit = true)
 		{
-
 			if (incomingToolType != _breakType || incomingToolType == ToolType.None)
-			{
 				return false;
-			}
 
 			_clickFeedback?.PlayFeedbacks();
 			_currentHitPoints -= amount;
