@@ -14,9 +14,9 @@ namespace IslandBoy
 	public class CursorControl : MonoBehaviour
 	{
 		[SerializeField] private PlayerObject _pr;
+		[SerializeField] private SwingControl _sc;
 		[SerializeField] private TilemapObject _floorTm;
 		[SerializeField] private TilemapObject _wallTm;
-		[SerializeField] private DynamicTilemap _dWallTm;
 		[SerializeField] private float _startingClickDistance;
 		[SerializeField] private float _clickCd = 0.1f;
 		[SerializeField] private ItemParameter _hitParameter;
@@ -109,24 +109,31 @@ namespace IslandBoy
 
 		private void Hit(InputAction.CallbackContext context)
 		{
-			if (Pointer.IsOverUI() || _focusSlotRef.ItemObject is not ToolObject || _clickTimer.RemainingSeconds > 0) return;
+			if (Pointer.IsOverUI() || _focusSlotRef.ItemObject is not ToolObject || _clickTimer.RemainingSeconds > 0 || !_canUseActions || _focusSlotRef == null) return;
 				
-			if (_currentClickable != null && _canUseActions && _currentClickable is not Entity)
-			{
-				ToolType toolType = _focusSlotRef == null ? ToolType.None : _focusSlotRef.ToolType;
-				int totalHit = CalcToolHitAmount();
-				_currentClickable.OnHit(toolType, totalHit);
-			}
+			_sc.PerformAnimation();
+			HitTilemap();
 			
-			if(_focusSlotRef.ToolType == ToolType.Hammer)
+			if (_currentClickable != null && _currentClickable is not Entity)
 			{
-				var pos = Vector3Int.FloorToInt(transform.position);
-				_dWallTm.Hit(pos);
+				_currentClickable.OnHit(_focusSlotRef.ToolType, CalcToolHitAmount());
+				_clickTimer.RemainingSeconds = _clickCd;
+				return;
 			}
+		}
+
+		private void HitTilemap()
+		{
+			var pos = Vector3Int.FloorToInt(transform.position);
+			
+			if(_wallTm.Tilemap.HasTile(pos))
+				_wallTm.DynamicTilemap.Hit(pos, _focusSlotRef.ToolType);
+			else if(_floorTm.Tilemap.HasTile(pos))
+				_floorTm.DynamicTilemap.Hit(pos, _focusSlotRef.ToolType);
 			
 			_clickTimer.RemainingSeconds = _clickCd;
 		}
-
+		
 		private void CheckWhenEnterNewTile()
 		{
 			_currentCenterPos = CalcCenterTile();

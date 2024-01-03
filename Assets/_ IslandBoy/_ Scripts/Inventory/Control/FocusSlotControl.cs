@@ -7,23 +7,15 @@ namespace IslandBoy
 {
 	public class FocusSlotControl : MonoBehaviour
 	{
-		[SerializeField] private TilemapObject _wallTm;
-		[SerializeField] private TilemapObject _floorTm;
-		[SerializeField] private TilemapObject _groundTm;
+		[SerializeField] private TilemapObject _wallTm, _floorTm, _groundTm;
 
-		private Timer _primaryDelayCooldownTimer;
-		private Timer _secondaryDelayCooldownTimer;
+		private Timer _primaryDelayCooldownTimer, _secondaryDelayCooldownTimer;
 		private PlayerInput _input;
-		private Slot _focusSlot;
-		private Slot _hotbarSlot;
-		private Slot _mouseSlot;
+		private Slot _focusSlot, _hotbarSlot, _mouseSlot;
 		private Player _player;
 		private CursorControl _cursorControl;
-		private float _primaryActionDelayCoolDown = 0.34f;
-		private float _secondayActionDelayCoolDown = 0.15f;
-		private bool _primaryHeldDown;
-		private bool _secondaryHeldDown;
-		private bool _mouseSlotHasitem;
+		private float _primaryActionDelayCoolDown = 0.34f, _secondayActionDelayCoolDown = 0.15f;
+		private bool _primaryHeldDown, _secondaryHeldDown, _mouseSlotHasitem;
 
 		public Slot FocusSlot { get { return _focusSlot; } }
 		public Player Player { get { return _player; } }

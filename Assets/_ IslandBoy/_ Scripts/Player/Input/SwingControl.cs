@@ -13,13 +13,9 @@ namespace IslandBoy
 
 		private SpriteRenderer _swingSr;
 		private Timer _swingTimer;
-		private PlayerInput _input;
 		private Animator _animator;
 		private Camera _camera;
 		private Slot _focusSlotRef;
-		private bool _holdDown;
-		private bool _performingSwing;
-		private bool _canSwing = true;
 
 		private readonly int _hashRightHit = Animator.StringToHash("[ANM] RightSwing");
 		private readonly int _hashUpHit = Animator.StringToHash("[ANM] UpSwing");
@@ -29,32 +25,18 @@ namespace IslandBoy
 
 		private void Awake()
 		{
-			_input = new();
-			_input.Player.PrimaryAction.started += HoldDown;
-			_input.Player.PrimaryAction.performed += HoldDown;
-			_input.Player.PrimaryAction.canceled += HoldDown;
-			_input.Enable();
-
 			_animator = GetComponent<Animator>();
 			_swingSr = transform.GetChild(0).GetComponent<SpriteRenderer>();
 			_swingTimer = new(_swingCd);
 
 			GameSignals.FOCUS_SLOT_UPDATED.AddListener(OnUpdateFocusSlot);
 			GameSignals.ITEM_DEPLOYED.AddListener(RefreshCd);
-			GameSignals.PLAYER_DIED.AddListener(DisableSwing);
-			GameSignals.DAY_END.AddListener(DisableSwing);
-			GameSignals.DAY_START.AddListener(EnableSwing);
 		}
 
 		private void OnDestroy()
 		{
-			_input.Disable();
-
 			GameSignals.FOCUS_SLOT_UPDATED.RemoveListener(OnUpdateFocusSlot);
 			GameSignals.ITEM_DEPLOYED.RemoveListener(RefreshCd);
-			GameSignals.PLAYER_DIED.RemoveListener(DisableSwing);
-			GameSignals.DAY_END.RemoveListener(DisableSwing);
-			GameSignals.DAY_START.RemoveListener(EnableSwing);
 		}
 
 		private IEnumerator Start()
@@ -66,19 +48,6 @@ namespace IslandBoy
 		private void FixedUpdate()
 		{
 			_swingTimer.Tick(Time.deltaTime);
-
-			if (_holdDown)
-				PerformAnimation();
-		}
-
-		private void DisableSwing(ISignalParameters parameters)
-		{
-			_canSwing = false;
-		}
-
-		private void EnableSwing(ISignalParameters parameters)
-		{
-			_canSwing = true;
 		}
 
 		private void RefreshCd(ISignalParameters parameters)
@@ -95,11 +64,6 @@ namespace IslandBoy
 			}
 		}
 
-		private void HoldDown(InputAction.CallbackContext context)
-		{
-			_holdDown = context.performed;
-		}
-
 		private void UpdateSwingSprite()
 		{
 			if (_focusSlotRef == null)
@@ -110,23 +74,15 @@ namespace IslandBoy
 			_swingSr.sprite = _focusSlotRef.ItemObject == null ? null : _focusSlotRef.ItemObject is ToolObject ? _focusSlotRef.ItemObject.UiDisplay : null;
 		}
 
-		private void PerformAnimation()
+		public void PerformAnimation()
 		{
-			if (_swingTimer.RemainingSeconds > 0 || _performingSwing || !_focusSlotRef.HasItem() || 
-				_focusSlotRef.ItemObject is not ToolObject || Pointer.IsOverUI() || !_canSwing) return;
-
+			if (_swingTimer.RemainingSeconds > 0 || _focusSlotRef == null || _focusSlotRef.ItemObject is not ToolObject || Pointer.IsOverUI()) return;
+				
 			PerformCorrectAnimation();
-		}
-
-		public void OnSwingStart()
-		{
-			_performingSwing = true;
-			//MMSoundManagerSoundPlayEvent.Trigger(_wooshClip, MMSoundManager.MMSoundManagerTracks.Sfx, transform.position, pitch: Random.Range(0.85f, 1.15f), volume: 0.75f);
 		}
 
 		public void OnSwingEnd()
 		{
-			_performingSwing = false;
 			_swingTimer.RemainingSeconds = _swingCd;
 			AnimStateManager.ChangeAnimationState(_animator, _hashIdle);
 		}
@@ -160,8 +116,6 @@ namespace IslandBoy
 			{
 				AnimStateManager.ChangeAnimationState(_animator, _hashDownHit);
 			}
-
-			
 		}
 	}
 }

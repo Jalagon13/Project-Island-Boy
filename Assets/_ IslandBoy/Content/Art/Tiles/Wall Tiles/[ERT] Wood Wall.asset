@@ -1679,6 +1679,7 @@ MonoBehaviour:
     m_RuleTransform: 0
   Item: {fileID: 11400000, guid: c67ec61e0f752f845be2a959a4108887, type: 2}
   HitSound: {fileID: 8300000, guid: 7af607a3736db8a43bd85f247755f233, type: 3}
-  DestroySound: {fileID: 8300000, guid: 1f5e75782a6e8434cba4bce854fb47eb, type: 3}
   PlaceSound: {fileID: 8300000, guid: 7af607a3736db8a43bd85f247755f233, type: 3}
-  MaxHitPoints: 6
+  DestroySound: {fileID: 8300000, guid: 1f5e75782a6e8434cba4bce854fb47eb, type: 3}
+  MaxHitPoints: 4
+  HitToolType: 1

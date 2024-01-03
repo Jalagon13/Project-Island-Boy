@@ -9,7 +9,8 @@ namespace IslandBoy
 	[CreateAssetMenu(fileName = "[TMR] ", menuName = "New Reference/Tilemap Reference")]
 	public class TilemapObject : ScriptableObject
 	{
-		[SerializeField] private Tilemap _tilemap;
-		public Tilemap Tilemap { get { return _tilemap; } set { _tilemap = value; } }
+		[SerializeField] private DynamicTilemap _dynamicTm;
+		public Tilemap Tilemap { get { return DynamicTilemap.Tilemap; } set { DynamicTilemap.Tilemap = value; } }
+		public DynamicTilemap DynamicTilemap { get { return _dynamicTm; } set { _dynamicTm = value; } }
 	}
 }

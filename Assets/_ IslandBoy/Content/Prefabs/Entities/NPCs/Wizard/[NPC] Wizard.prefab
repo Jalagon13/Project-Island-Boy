@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2542391055086701339}
   - component: {fileID: 2698222917868226525}
   - component: {fileID: 5830801473108310041}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HitPointBg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 325438422820050711}
   - component: {fileID: 3183065249934938125}
   - component: {fileID: 9012039538512646521}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5410,7 +5410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 50220640540027580}
   - component: {fileID: 5100864297788452520}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: YellowCorners
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6067,7 +6067,7 @@ GameObject:
   - component: {fileID: 6383849739521718200}
   - component: {fileID: 778811615413117366}
   - component: {fileID: 6068927760576905260}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6142,7 +6142,7 @@ GameObject:
   - component: {fileID: 3924048501989790544}
   - component: {fileID: 1286975870730550790}
   - component: {fileID: 5162673206951587738}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AmountDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6343,7 +6343,7 @@ GameObject:
   - component: {fileID: 7740014361956668382}
   - component: {fileID: 7392665759858011211}
   - component: {fileID: 1488111816606430009}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11813,7 +11813,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6681811946759147234}
   - component: {fileID: 4343672896942931996}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Instructions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12622,7 +12622,7 @@ GameObject:
   - component: {fileID: 7266540029597402446}
   - component: {fileID: 2695164682703414516}
   - component: {fileID: 3607321969790120299}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12695,7 +12695,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7803485137481827136}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ProgressBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14162,7 +14162,7 @@ GameObject:
   - component: {fileID: 2553279188458856193}
   - component: {fileID: 2912817930038803603}
   - component: {fileID: 2657724857103447527}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HpCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14254,7 +14254,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2047
 --- !u!1 &9206128417647629259
 GameObject:
   m_ObjectHideFlags: 0

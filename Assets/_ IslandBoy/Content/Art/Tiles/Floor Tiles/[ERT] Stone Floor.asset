@@ -17,5 +17,8 @@ MonoBehaviour:
   m_DefaultColliderType: 1
   m_TilingRules: []
   Item: {fileID: 11400000, guid: 1352f88ee60b34242bf66545ff7df119, type: 2}
-  BreakSound: {fileID: 8300000, guid: 9a262ed27dacc294c9df37f2265e9949, type: 3}
+  HitSound: {fileID: 8300000, guid: 9a262ed27dacc294c9df37f2265e9949, type: 3}
   PlaceSound: {fileID: 8300000, guid: 9a262ed27dacc294c9df37f2265e9949, type: 3}
+  DestroySound: {fileID: 8300000, guid: e2b6630a648447b47a66f7f8325c7440, type: 3}
+  MaxHitPoints: 3
+  HitToolType: 4

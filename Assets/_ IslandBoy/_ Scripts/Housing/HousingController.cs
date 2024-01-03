@@ -19,7 +19,7 @@ namespace IslandBoy
 		{
 			if(_i == null)
 				_i = this;
-			
+				
 			GameSignals.DAY_END.AddListener(UpdateHousing);
 		}
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace IslandBoy
@@ -13,6 +14,7 @@ namespace IslandBoy
 		public AudioClip PlaceSound;
 		public AudioClip DestroySound;
 		public int MaxHitPoints;
+		public ToolType HitToolType;
 		
 		public void UpdatePathfinding(Vector2 pos)
 		{

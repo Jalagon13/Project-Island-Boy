@@ -1322,6 +1322,7 @@ MonoBehaviour:
       Max: 2
       Chance: 100
   _destructable: 1
+  _swingDestructOnly: 0
 --- !u!1 &2808111002292170714
 GameObject:
   m_ObjectHideFlags: 0
@@ -1334,7 +1335,7 @@ GameObject:
   - component: {fileID: 5775311155464859716}
   - component: {fileID: 232475212793792330}
   - component: {fileID: 997957658747433883}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: HpCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1436,7 +1437,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1106134663214173741}
   - component: {fileID: 4884012045853901180}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Instructions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1484,7 +1485,7 @@ GameObject:
   - component: {fileID: 7415159692883819991}
   - component: {fileID: 3818403918503716285}
   - component: {fileID: 5360009175435482028}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1618,7 +1619,7 @@ GameObject:
   - component: {fileID: 6592979300483339422}
   - component: {fileID: 4889937094901598337}
   - component: {fileID: 3143734534101444069}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1691,7 +1692,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2534430218439404686}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: ProgressBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1730,7 +1731,7 @@ GameObject:
   - component: {fileID: 5779978505857450116}
   - component: {fileID: 6834936271446704841}
   - component: {fileID: 1013138776406923260}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11671,7 +11672,7 @@ GameObject:
   - component: {fileID: 7066579798011261995}
   - component: {fileID: 8805339118918380437}
   - component: {fileID: 5459472500470303983}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: AmountDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11889,7 +11890,7 @@ GameObject:
   - component: {fileID: 1026708630445501338}
   - component: {fileID: 4505993885984183916}
   - component: {fileID: 3798297298029935283}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: HitPointBg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11964,7 +11965,7 @@ GameObject:
   - component: {fileID: 1798423875149015231}
   - component: {fileID: 2464969548369892512}
   - component: {fileID: 7260606805276754575}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: MouseIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

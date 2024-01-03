@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 823526122588958639}
   - component: {fileID: 6234027911784142863}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DownArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -409,7 +409,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3873346345934606847}
   - component: {fileID: 8730359253071590324}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RightClick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -626,7 +626,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6668690703703834048}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TutorialSprites
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1479,4 +1479,5 @@ MonoBehaviour:
   - Test test test
   - HIPPI KYEAY
   _signText: {fileID: 6538679729245836497}
+  _tutorialObject: {fileID: 5099223661913255683}
   _disableTextOverride: 0

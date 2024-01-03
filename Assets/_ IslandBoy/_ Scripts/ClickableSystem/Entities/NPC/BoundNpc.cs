@@ -26,6 +26,8 @@ namespace IslandBoy
 			GameSignals.DAY_END.RemoveListener(DestroyEntity);
 		}
 
+		public void CloseUIBtn() => CloseUI(null); // attached to close button
+		
 		public void DestroyEntity(ISignalParameters parameters)
 		{
 			if(_isFree)

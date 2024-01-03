@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -9,8 +10,13 @@ namespace IslandBoy
 {
 	public class DynamicTilemap : MonoBehaviour
 	{
-		private Tilemap _tilemap;
+		[SerializeField]
+		private TilemapObject _tmToOverride;
+		[SerializeField]
+		private MMF_Player _hitFeedbacks;
+		private Timer _restoreHpTimer;
 		
+		public Tilemap Tilemap { get; set; }
 		private Dictionary<Vector3Int, TileData> _data = new();
 		
 		public class TileData
@@ -30,52 +36,108 @@ namespace IslandBoy
 				_currentHitPoints--;
 			}
 			
+			public void Restore()
+			{
+				if(RuleTile != null)
+					_currentHitPoints = RuleTile.MaxHitPoints;
+			}
+			
 			public bool IsDestroyed()
 			{
 				return _currentHitPoints <= 0;
 			}
 		}
 		
-		private void Awake()
+		private void OnEnable()
 		{
-			_tilemap = GetComponent<Tilemap>();
+			_tmToOverride.DynamicTilemap = this;
 		}
 		
-		public void Hit(Vector3Int pos)
+		private void OnDestroy()
+		{
+			_restoreHpTimer.OnTimerEnd -= RestoreHitPoints;
+		}
+		
+		private void Awake()
+		{
+			Tilemap = GetComponent<Tilemap>();
+			_restoreHpTimer = new(5);
+			_restoreHpTimer.OnTimerEnd += RestoreHitPoints;
+		}
+		
+		private void Update()
+		{
+			_restoreHpTimer.Tick(Time.deltaTime);
+		}
+		
+		private void RestoreHitPoints()
+		{
+			foreach (KeyValuePair<Vector3Int, TileData> item in _data)
+			{
+				item.Value.Restore();
+			}
+			
+			_data = new();
+		}
+		
+		public void Hit(Vector3Int pos, ToolType toolType)
 		{
 			if(IsHittable(pos))
 			{
 				if(!DataContains(pos))
 				{
-					RuleTileExtended tile = _tilemap.GetTile<RuleTileExtended>(pos);
+					RuleTileExtended tile = Tilemap.GetTile<RuleTileExtended>(pos);
 					TileData td = new(tile);
 					_data.Add(pos, td);
 				}
 				
-				HitTile(pos);
+				HitTile(pos, toolType);
 			}
 		}
 		
-		private void HitTile(Vector3Int target)
+		private void HitTile(Vector3Int target, ToolType tooltype)
 		{
-			TileData td = _data[target];
-			td.Hit();
+			_restoreHpTimer.RemainingSeconds = 5;
+			TileData tileData = _data[target];
 			
-			if(td.IsDestroyed())
+			if(tileData.RuleTile.HitToolType == tooltype)
 			{
-				_tilemap.SetTile(target, null);
-				_data.Remove(target);
+				tileData.Hit();
+				PlayGameFeel(target);
+				GameSignals.CLICKABLE_CLICKED.Dispatch();
 				
-				PlaySound(td.RuleTile.DestroySound);
-				return;
+				if(tileData.IsDestroyed())
+				{
+					Tilemap.SetTile(target, null);
+					_data.Remove(target);
+					_hitFeedbacks.transform.GetChild(1).gameObject.SetActive(false);
+					PlaySound(tileData.RuleTile.DestroySound);
+					SpawnItemFromTileData(tileData, target);
+					return;
+				}
+				
+				PlaySound(tileData.RuleTile.HitSound);
 			}
+		}
+		
+		private void PlayGameFeel(Vector3Int target)
+		{
+			var sr = _hitFeedbacks.transform.GetChild(1).GetComponent<SpriteRenderer>();
+			sr.sprite = Tilemap.GetSprite(target);
+			_hitFeedbacks.gameObject.transform.position = new Vector3(target.x + 0.5f, target.y + 0.5f);
+			_hitFeedbacks.PlayFeedbacks();
 			
-			PlaySound(td.RuleTile.HitSound);
+		}
+		
+		private void SpawnItemFromTileData(TileData data, Vector3Int target)
+		{
+			Vector2 spawnPos = new(target.x + 0.5f, target.y + 0.5f);
+			GameAssets.Instance.SpawnItem(spawnPos, data.RuleTile.Item, 1);
 		}
 		
 		private void PlaySound(AudioClip sound)
 		{
-			MMSoundManagerSoundPlayEvent.Trigger(sound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
+			MMSoundManagerSoundPlayEvent.Trigger(sound, MMSoundManager.MMSoundManagerTracks.Sfx, default, pitch:UnityEngine.Random.Range(0.9f, 1.1f));
 		}
 		
 		private bool DataContains(Vector3Int target)
@@ -85,7 +147,7 @@ namespace IslandBoy
 		
 		private bool IsHittable(Vector3Int target)
 		{
-			return _tilemap.HasTile(target);
+			return Tilemap.HasTile(target);
 		}
 	}
 }

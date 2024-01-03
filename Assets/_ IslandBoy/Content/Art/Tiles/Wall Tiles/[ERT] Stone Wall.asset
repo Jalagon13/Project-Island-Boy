@@ -1677,6 +1677,8 @@ MonoBehaviour:
     - {x: -1, y: -1, z: 0}
     m_RuleTransform: 0
   Item: {fileID: 11400000, guid: a89d325f56e1521458a926e9cc55bc79, type: 2}
-  BreakSound: {fileID: 8300000, guid: 9a262ed27dacc294c9df37f2265e9949, type: 3}
+  HitSound: {fileID: 8300000, guid: 9a262ed27dacc294c9df37f2265e9949, type: 3}
   PlaceSound: {fileID: 8300000, guid: 9a262ed27dacc294c9df37f2265e9949, type: 3}
-  MaxHitPoints: 6
+  DestroySound: {fileID: 8300000, guid: e2b6630a648447b47a66f7f8325c7440, type: 3}
+  MaxHitPoints: 4
+  HitToolType: 2
