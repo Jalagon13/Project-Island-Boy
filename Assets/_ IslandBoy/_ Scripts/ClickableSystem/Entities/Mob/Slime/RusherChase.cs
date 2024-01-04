@@ -9,13 +9,13 @@ namespace IslandBoy
     {
         private SlimeStateManager _ctx;
         private Vector2 _chasePos;
-        private float _chaseSpeed = 2.5f;
+        // private float _chaseSpeed = 2.5f;
 
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             //Debug.Log("Entering Chase State");
             _ctx = animator.transform.root.GetComponent<SlimeStateManager>();
-            _ctx.AI.maxSpeed = _chaseSpeed;
+            // _ctx.AI.maxSpeed = _chaseSpeed;
             _chasePos = _ctx.PR.Position;
             _ctx.OnMove += Chase;
 
@@ -34,7 +34,7 @@ namespace IslandBoy
 
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            _ctx.AI.maxSpeed = 1;
+            // _ctx.AI.maxSpeed = 1;
             _ctx.OnMove -= Chase;
         }
 

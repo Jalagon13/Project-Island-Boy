@@ -12,7 +12,7 @@ namespace IslandBoy
         public PlayerObject PR;
         private Rigidbody2D rb;
         private float timer;
-        private Clickable _clickableFound = null;
+        // private Clickable _clickableFound = null;
 
         void Start()
         {

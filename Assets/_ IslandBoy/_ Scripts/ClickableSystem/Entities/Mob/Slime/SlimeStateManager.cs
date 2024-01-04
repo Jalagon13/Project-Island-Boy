@@ -1,4 +1,3 @@
-using Pathfinding;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,9 +10,6 @@ namespace IslandBoy
         public PlayerObject PR;
         public AudioClip _agroSound;
         public Action OnMove;
-        [HideInInspector]
-        public Seeker Seeker;
-        public IAstarAI AI;
 
         public readonly int HashIdle = Animator.StringToHash("[Anm] RusherIdle");
         public readonly int HashMove = Animator.StringToHash("[Anm] RusherMove");
@@ -26,8 +22,6 @@ namespace IslandBoy
 
         private void Awake()
         {
-            AI = GetComponent<IAstarAI>();
-            Seeker = GetComponent<Seeker>();
         }
         private void Update()
         {
@@ -51,8 +45,6 @@ namespace IslandBoy
 
         public void Seek(Vector2 pos)
         {
-            AI.destination = pos;
-            AI.SearchPath();
         }
 
         public bool PlayerClose(float distance)
@@ -62,7 +54,6 @@ namespace IslandBoy
 
         public bool CanGetToPlayer()
         {
-            Path path = ABPath.Construct(gameObject.transform.position, PR.Position);
 
             // WIP
             return true;

@@ -1,4 +1,3 @@
-using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,10 +19,10 @@ namespace IslandBoy
 
         override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            if (_ctx.AI.reachedDestination)
-            {
-                _ctx.ChangeToIdleState(animator);
-            }
+            // if (_ctx.AI.reachedDestination)
+            // {
+            //     _ctx.ChangeToIdleState(animator);
+            // }
         }
 
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -45,10 +44,10 @@ namespace IslandBoy
 
             calcWanderPos:
 
-            GraphNode startNode = AstarPath.active.GetNearest(_ctx.transform.position, NNConstraint.Default).node;
-            List<GraphNode> nodes = PathUtilities.BFS(startNode, 10);
-            Vector3 singleRandomPoint = PathUtilities.GetPointsOnNodes(nodes, 1)[0];
-
+            // GraphNode startNode = AstarPath.active.GetNearest(_ctx.transform.position, NNConstraint.Default).node;
+            // List<GraphNode> nodes = PathUtilities.BFS(startNode, 10);
+            // Vector3 singleRandomPoint = PathUtilities.GetPointsOnNodes(nodes, 1)[0];
+            Vector3 singleRandomPoint = default;
             var colliders = Physics2D.OverlapCircleAll(singleRandomPoint, 0.2f);
 
             foreach (var col in colliders)

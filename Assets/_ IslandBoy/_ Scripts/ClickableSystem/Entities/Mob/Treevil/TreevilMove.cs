@@ -1,4 +1,3 @@
-using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,12 +42,12 @@ namespace IslandBoy
 
         private Vector2 CalcWanderPos()
         {
-            GraphNode startNode = AstarPath.active.GetNearest(_ctx.transform.position, NNConstraint.Default).node;
+            // GraphNode startNode = AstarPath.active.GetNearest(_ctx.transform.position, NNConstraint.Default).node;
 
-            List<GraphNode> nodes = PathUtilities.BFS(startNode, 20);
-            Vector3 singleRandomPoint = PathUtilities.GetPointsOnNodes(nodes, 1)[0];
+            // List<GraphNode> nodes = PathUtilities.BFS(startNode, 20);
+            // Vector3 singleRandomPoint = PathUtilities.GetPointsOnNodes(nodes, 1)[0];
 
-            return singleRandomPoint;
+            return default;
         }
 
     }

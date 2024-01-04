@@ -19,7 +19,7 @@ namespace IslandBoy
 		public void UpdatePathfinding(Vector2 pos)
 		{
 			Bounds updateBounds = new(pos, new(2, 2, 1));
-			AstarPath.active.UpdateGraphs(updateBounds, 0.1f);
+			// AstarPath.active.UpdateGraphs(updateBounds, 0.1f);
 		}
 	}
 }

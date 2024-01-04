@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Pathfinding.Util;
 using UnityEngine;
 
 namespace IslandBoy

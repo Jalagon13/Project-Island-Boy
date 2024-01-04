@@ -12,7 +12,7 @@ namespace IslandBoy
         {
             //Debug.Log("Entering Idle State");
             _ctx = animator.transform.root.GetComponent<SlimeStateManager>();
-            _ctx.AI.isStopped = true;
+            // _ctx.AI.isStopped = true;
             _ctx.OnMove += Idle;
             _ctx.StartCoroutine(IdleDuration(animator));
         }
@@ -21,7 +21,7 @@ namespace IslandBoy
         {
             if (_ctx.PlayerClose(_ctx.AgroDistance) && _ctx.CanGetToPlayer())
             {
-                _ctx.AI.isStopped = false;
+                // _ctx.AI.isStopped = false;
                 _ctx.ChangeToChaseState(animator);
             }
         }
@@ -39,7 +39,7 @@ namespace IslandBoy
         private IEnumerator IdleDuration(Animator animator)
         {
             yield return new WaitForSeconds(Random.Range(1f, 3f));
-            _ctx.AI.isStopped = false;
+            // _ctx.AI.isStopped = false;
             _ctx.ChangeToMoveState(animator);
         }
 
