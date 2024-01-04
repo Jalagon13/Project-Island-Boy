@@ -122,6 +122,8 @@ namespace IslandBoy
 		
 		private void PlayGameFeel(Vector3Int target)
 		{
+			if(_hitFeedbacks == null) return;
+			
 			var sr = _hitFeedbacks.transform.GetChild(1).GetComponent<SpriteRenderer>();
 			sr.sprite = Tilemap.GetSprite(target);
 			_hitFeedbacks.gameObject.transform.position = new Vector3(target.x + 0.5f, target.y + 0.5f);
