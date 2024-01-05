@@ -1279,11 +1279,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 2aa49c2486a9af147b68795c5f29e7de, type: 2}
     - target: {fileID: 7382328970847094501, guid: 705e2f0c60ddef248a9f090a86bc27dc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 7382328970847094501, guid: 705e2f0c60ddef248a9f090a86bc27dc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 7382328970847094501, guid: 705e2f0c60ddef248a9f090a86bc27dc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1373,10 +1373,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74fe0179708dc004c91c7b9ae2d255a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _po: {fileID: 0}
+  _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxHitPoints: 6
   _breakType: 2
   _clickFeedback: {fileID: 2867197687979788526}
   _destroyFeedback: {fileID: 514644100431552703}
   _lootTable:
-    <Table>k__BackingField: []
+    <Table>k__BackingField:
+    - Item: {fileID: 11400000, guid: 094c99f31de27a34bb5bfa75e568b3b6, type: 2}
+      Min: 1
+      Max: 1
+      Chance: 100
