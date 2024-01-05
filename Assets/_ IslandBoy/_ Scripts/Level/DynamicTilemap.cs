@@ -56,6 +56,12 @@ namespace IslandBoy
 		
 		private void OnEnable()
 		{
+			StartCoroutine("Delay");
+		}
+		
+		private IEnumerator Delay()
+		{
+			yield return new WaitForEndOfFrame();
 			_tmToOverride.DynamicTilemap = this;
 		}
 		
