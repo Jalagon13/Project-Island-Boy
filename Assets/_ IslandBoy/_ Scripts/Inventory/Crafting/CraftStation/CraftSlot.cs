@@ -71,7 +71,6 @@ namespace IslandBoy
             _rscPanel = transform.GetChild(1).GetComponent<RectTransform>();
             _rscSlots = transform.GetChild(1).GetChild(0).GetComponent<RectTransform>();
             _amountText = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-            //_playerInventory = transform.root.GetChild(0).GetComponent<Inventory>();
             _recipe = recipe;
             _outputImage.sprite = recipe.OutputItem.UiDisplay;
             _hoverImage.SetItemDescription(recipe.OutputItem);

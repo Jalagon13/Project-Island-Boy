@@ -49,9 +49,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4fbaf963147bba41904b86b49429182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _holder: {fileID: 350885074561931986}
+  _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _populateSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
+  _craftSound: {fileID: 8300000, guid: f7b568774dd7db745ba2768324150fed, type: 3}
+  _holder: {fileID: 350885074561931986}
+  _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _outputImage: {fileID: 2307368723558343726}
   _outputText: {fileID: 9016054688442077168}
   _ingredientText: {fileID: 3487360981135523110}
@@ -1050,7 +1052,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5085315246042961756
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1094,7 +1096,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -99
   m_TargetDisplay: 0
 --- !u!114 &2243686935372560366
 MonoBehaviour:
@@ -1135,7 +1137,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2047
 --- !u!1 &4021222561778578952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,9 +1637,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4fbaf963147bba41904b86b49429182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pr: {fileID: 0}
-  _holder: {fileID: 0}
+  _po: {fileID: 0}
   _populateSound: {fileID: 0}
+  _craftSound: {fileID: 0}
+  _holder: {fileID: 0}
+  _inventoryItemPrefab: {fileID: 0}
   _outputImage: {fileID: 0}
   _outputText: {fileID: 0}
   _ingredientText: {fileID: 0}
@@ -6515,13 +6519,15 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
-  m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
+  m_UseCustomVertexStreams: 0
   m_VertexStreams: 00010304
+  m_UseCustomTrailVertexStreams: 0
+  m_TrailVertexStreams: 00010304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -7573,11 +7579,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1798423875149015231, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.35
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1798423875149015231, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _hitSound
@@ -7714,13 +7720,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa4f64d7e5efe5f4d9a52685a13e20b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxHitPoints: 6
   _breakType: 1
   _clickFeedback: {fileID: 7668532473162371453}
   _destroyFeedback: {fileID: 5368905011583940908}
   _lootTable:
     <Table>k__BackingField: []
-  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _craftTimerSec: 5
   _cdb: {fileID: 11400000, guid: 45b76fd3ebe499645ae0a3af558138f9, type: 2}
   _tcSlotPrefab: {fileID: 6449567880495286189, guid: 1fd8c7aa8d6d0a946acb2fc3c217584a, type: 3}

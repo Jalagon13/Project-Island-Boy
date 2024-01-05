@@ -13,7 +13,7 @@ namespace IslandBoy
 
         public void ButtonGameFeel()
         {
-            MMSoundManagerSoundPlayEvent.Trigger(_pressSound, MMSoundManager.MMSoundManagerTracks.UI, default, pitch: Random.Range(0.9f, 1.1f));
+            // MMSoundManagerSoundPlayEvent.Trigger(_pressSound, MMSoundManager.MMSoundManagerTracks.UI, default, pitch: Random.Range(0.9f, 1.1f));
         }
 
         public void EnableButton()

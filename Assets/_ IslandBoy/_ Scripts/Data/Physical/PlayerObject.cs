@@ -12,12 +12,14 @@ namespace IslandBoy
 		private Vector2 _mousePosition;
 		private Inventory _playerInventory;
 		private GameObject _playerGameObject;
+		private MouseSlot _playerMouseSlot;
 
 		public Vector2 Position { get { return _playerPosition; } set { _playerPosition = value; } }
 		public Vector2 MousePosition { get { return _mousePosition; } set { _mousePosition = value; } }
 		public Vector2 SpawnPoint { get { return _spawnPoint; } set { _spawnPoint = value; } }
 		public GameObject GameObject {get {return _playerGameObject; } set { _playerGameObject = value; }}
 		public Inventory Inventory { get { return _playerInventory; } set { _playerInventory = value; } }
+		public MouseSlot MouseSlot { get { return _playerMouseSlot; } set { _playerMouseSlot = value; } }
 
 		public int Defense { get { return _defense; } set { _defense = value; } }
 
