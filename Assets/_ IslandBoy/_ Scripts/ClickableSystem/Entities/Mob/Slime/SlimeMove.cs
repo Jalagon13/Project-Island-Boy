@@ -5,15 +5,15 @@ using UnityEngine.AI;
 
 namespace IslandBoy
 {
-	public class NPCMove : StateMachineBehaviour
+	public class SlimeMove : StateMachineBehaviour
 	{
-		private NPCStateManager _ctx;
+		private SlimeStateManager _ctx;
 		private Vector2 _wanderPos;
 
 		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			//Debug.Log("Entering Move State");
-			_ctx = animator.transform.parent.GetComponent<NPCStateManager>();
+			// Debug.Log("Entering Move State");
+			_ctx = animator.transform.root.GetComponent<SlimeStateManager>();
 			_ctx.OnMove += Move;
 			_wanderPos = CalcWanderPos();
 		}
@@ -24,6 +24,11 @@ namespace IslandBoy
 			{
 				_ctx.ChangeToIdleState(animator);
 			}
+
+			// if (_ctx.PlayerClose(_ctx.AgroDistance) && _ctx.CanGetToPlayer())
+			// {
+			//     _ctx.ChangeToChaseState(animator);
+			// }
 		}
 
 		public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -36,13 +41,8 @@ namespace IslandBoy
 			_ctx.Seek(_wanderPos);
 		}
 
-		private Vector2 CalcWanderPos()
+		private Vector3 CalcWanderPos()
 		{
-			if(Vector3.Distance(_ctx.transform.position, _ctx.HomePoint) > 5)
-			{
-				return _ctx.HomePoint;
-			}
-
 			float radius = 4f;
 			Vector3 randomDirection = Random.insideUnitSphere * radius;
 			Vector3 origin = _ctx.gameObject.transform.position;
@@ -53,21 +53,11 @@ namespace IslandBoy
 			// Find the nearest point on the NavMesh within the specified radius
 			if (NavMesh.SamplePosition(randomDirection, out navMeshHit, radius, -1))
 			{
-				Vector3 target = navMeshHit.position;
-				var colliders = Physics2D.OverlapCircleAll(target, 0.2f);
-
-				foreach (var col in colliders)
-				{
-					if (col.TryGetComponent(out Door door))
-					{
-						return _ctx.HomePoint;
-					}
-				}
-
-				return target;
+				return navMeshHit.position;
 			}
 			
-			return _ctx.HomePoint;
+			return origin;
 		}
+
 	}
 }

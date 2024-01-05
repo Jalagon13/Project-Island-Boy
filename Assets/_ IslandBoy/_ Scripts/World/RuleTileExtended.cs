@@ -15,11 +15,5 @@ namespace IslandBoy
 		public AudioClip DestroySound;
 		public int MaxHitPoints;
 		public ToolType HitToolType;
-		
-		public void UpdatePathfinding(Vector2 pos)
-		{
-			Bounds updateBounds = new(pos, new(2, 2, 1));
-			// AstarPath.active.UpdateGraphs(updateBounds, 0.1f);
-		}
 	}
 }

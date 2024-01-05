@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
+using NavMeshPlus.Components;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Tilemaps;
 
 namespace IslandBoy
@@ -14,6 +17,9 @@ namespace IslandBoy
 		private TilemapObject _tmToOverride;
 		[SerializeField]
 		private MMF_Player _hitFeedbacks;
+		[Tooltip("Navmesh to update on tile update")]
+		[SerializeField]
+		private NavMeshSurface _navMesh;
 		private Timer _restoreHpTimer;
 		
 		public Tilemap Tilemap { get; set; }
@@ -112,11 +118,21 @@ namespace IslandBoy
 					_data.Remove(target);
 					_hitFeedbacks.transform.GetChild(1).gameObject.SetActive(false);
 					PlaySound(tileData.RuleTile.DestroySound);
+					UpdateNavMesh();
 					SpawnItemFromTileData(tileData, target);
 					return;
 				}
 				
 				PlaySound(tileData.RuleTile.HitSound);
+			}
+		}
+		
+		public void UpdateNavMesh()
+		{
+			if(_navMesh != null)
+			{
+				_navMesh.hideEditorLogs = true;
+				_navMesh.UpdateNavMesh(_navMesh.navMeshData);
 			}
 		}
 		

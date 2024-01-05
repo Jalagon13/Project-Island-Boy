@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
@@ -41,8 +42,6 @@ namespace IslandBoy
 		private void UpdateEntitySet(ISignalParameters parameters)
 		{
 			_entityRTS.Initialize();
-			
-			// Update S
 		}
 		
 		private void PauseMonsterSpawning(ISignalParameters parameters)
@@ -98,10 +97,18 @@ namespace IslandBoy
 
 		private Vector2 CalcSpawnPos()
 		{
-			// GraphNode startNode = AstarPath.active.GetNearest(transform.position, NNConstraint.Default).node;
+			float radius = 35f;
+			Vector3 randomDirection = Random.insideUnitSphere * radius;
+			Vector3 origin = gameObject.transform.position;
+			randomDirection += origin;
+			
+			NavMeshHit navMeshHit;
 
-			// List<GraphNode> nodes = PathUtilities.BFS(startNode, 35);
-			// Vector3 singleRandomPoint = PathUtilities.GetPointsOnNodes(nodes, 1)[0];
+			// Find the nearest point on the NavMesh within the specified radius
+			if (NavMesh.SamplePosition(randomDirection, out navMeshHit, radius, -1))
+			{
+				return navMeshHit.position;
+			}
 
 			return default	;
 		}

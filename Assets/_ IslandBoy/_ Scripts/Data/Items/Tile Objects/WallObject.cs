@@ -23,7 +23,7 @@ namespace IslandBoy
 				GameSignals.ITEM_DEPLOYED.Dispatch();
 				control.WallTm.Tilemap.SetTile(pos, _wallTile);
 				MMSoundManagerSoundPlayEvent.Trigger(_wallTile.PlaceSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
-				_wallTile.UpdatePathfinding(new(pos.x + 0.5f, pos.y + 0.5f));
+				control.WallTm.DynamicTilemap.UpdateNavMesh();
 			}
 		}
 

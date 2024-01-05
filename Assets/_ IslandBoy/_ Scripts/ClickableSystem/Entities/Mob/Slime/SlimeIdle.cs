@@ -4,26 +4,21 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public class RusherMove : StateMachineBehaviour
+    public class SlimeIdle : StateMachineBehaviour
     {
         private SlimeStateManager _ctx;
-        private Vector2 _wanderPos;
 
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            //Debug.Log("Entering Move State");
+            // Debug.Log("Entering Idle State");
             _ctx = animator.transform.root.GetComponent<SlimeStateManager>();
-            _ctx.OnMove += Move;
-            _wanderPos = CalcWanderPos();
+            _ctx.Agent.isStopped = true;
+            _ctx.OnMove += Idle;
+            _ctx.StartCoroutine(IdleDuration(animator));
         }
 
         override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            // if (_ctx.AI.reachedDestination)
-            // {
-            //     _ctx.ChangeToIdleState(animator);
-            // }
-
             if (_ctx.PlayerClose(_ctx.AgroDistance) && _ctx.CanGetToPlayer())
             {
                 _ctx.ChangeToChaseState(animator);
@@ -32,23 +27,21 @@ namespace IslandBoy
 
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            _ctx.OnMove -= Move;
+            _ctx.OnMove -= Idle;
         }
 
-        private void Move()
+        private void Idle()
         {
-            _ctx.Seek(_wanderPos);
+            
         }
 
-        private Vector2 CalcWanderPos()
+        private IEnumerator IdleDuration(Animator animator)
         {
-            // GraphNode startNode = AstarPath.active.GetNearest(_ctx.transform.position, NNConstraint.Default).node;
-
-            // List<GraphNode> nodes = PathUtilities.BFS(startNode, 20);
-            // Vector3 singleRandomPoint = PathUtilities.GetPointsOnNodes(nodes, 1)[0];
-
-            return default;
+            yield return new WaitForSeconds(Random.Range(1f, 3f));
+            _ctx.Agent.isStopped = false;
+            _ctx.ChangeToMoveState(animator);
         }
+
 
     }
 }
