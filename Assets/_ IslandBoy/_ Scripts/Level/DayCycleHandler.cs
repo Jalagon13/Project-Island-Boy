@@ -33,8 +33,11 @@ namespace IslandBoy
 		
 		private void UpdateLight(float ratio)
 		{
-			DayLight.color = DayLightGradient.Evaluate(ratio);
-			AmbientLight.color = AmbientLightGradient.Evaluate(ratio);
+			if(DayLight != null)
+				DayLight.color = DayLightGradient.Evaluate(ratio);
+				
+			if(AmbientLight != null)
+				AmbientLight.color = AmbientLightGradient.Evaluate(ratio);
 		}
 	}
 }

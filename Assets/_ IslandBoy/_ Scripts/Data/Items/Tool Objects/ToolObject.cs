@@ -19,12 +19,10 @@ namespace IslandBoy
         [SerializeField] private ToolType _type;
         [Header("Upgrade Parameters")]
         [SerializeField] private CraftingRecipeObject _upgradeRecipe;
-        //[SerializeField] private int _xpForUpgrade;
 
         public override ToolType ToolType => _type;
         public override ArmorType ArmorType => _baseArmorType;
         public CraftingRecipeObject UpgradeRecipe => _upgradeRecipe;
-        //public int XpForUpgrade => _xpForUpgrade;
 
         public override void ExecutePrimaryAction(FocusSlotControl control)
         {
@@ -61,17 +59,17 @@ namespace IslandBoy
 
             switch (_type)
             {
-                case ToolType.Axe:
-                    toolTypeDesc = $"* {hitValue} hits to trees<br>";
-                    break;
-                case ToolType.Pickaxe:
-                    toolTypeDesc = $"* {hitValue} hits to rocks<br>";
-                    break;
-                case ToolType.Sword:
-                    toolTypeDesc = $"* {hitValue} hits to creatures<br>";
-                    break;
+                // case ToolType.Axe:
+                //     toolTypeDesc = $"* {hitValue} hits to trees<br>";
+                //     break;
+                // case ToolType.Pickaxe:
+                //     toolTypeDesc = $"* {hitValue} hits to rocks<br>";
+                //     break;
+                // case ToolType.Sword:
+                //     toolTypeDesc = $"* {hitValue} hits to creatures<br>";
+                //     break;
                 case ToolType.Hammer:
-                    toolTypeDesc = $"* {hitValue} hits to floors and walls<br>";
+                    toolTypeDesc = $"* Used to remove floor<br>";
                     break;
             }
 

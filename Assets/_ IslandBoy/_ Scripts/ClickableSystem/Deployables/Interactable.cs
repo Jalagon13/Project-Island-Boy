@@ -59,7 +59,7 @@ namespace IslandBoy
 					UpdateAmountDisplay();
 					UpdateFillImage();
 					EnableProgressBar(true);
-					EnableAmountDisplay(true);
+					EnableAmountDisplay(false);
 					EnableInstructions(false);
 				}
 

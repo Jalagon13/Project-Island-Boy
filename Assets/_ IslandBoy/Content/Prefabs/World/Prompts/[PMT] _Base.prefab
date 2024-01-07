@@ -862,11 +862,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1798423875149015231, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.35
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1798423875149015231, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _hitSound
@@ -989,15 +989,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 650ea134123f86d40b8fd0e6ebc1f173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dontGiveXp: 1
+  _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxHitPoints: 6
   _breakType: 2
   _clickFeedback: {fileID: 7668532473162371453}
   _destroyFeedback: {fileID: 5368905011583940908}
   _lootTable:
     <Table>k__BackingField: []
-  _destructable: 1
-  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _prompCanvas: {fileID: 5252283257266191071}
   _onOpenPrompt:
     m_PersistentCalls:

@@ -1862,7 +1862,7 @@ Transform:
   m_GameObject: {fileID: 4210445617747853061}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.5, y: -22.5, z: 0}
+  m_LocalPosition: {x: -9.5, y: -19.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2312,7 +2312,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4210445617747853061}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43127cb7c1c73c943bce34009463f6f7, type: 3}
   m_Name: 
@@ -2333,7 +2333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00107b7f2544f4c0ca12f913ab630483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _goldIncreaseSound: {fileID: 8300000, guid: 207c168429f2d4274a5f8a98e46fd14d, type: 3}
+  _goldSound: {fileID: 8300000, guid: 207c168429f2d4274a5f8a98e46fd14d, type: 3}
   _goldViewText: {fileID: 6392798501310111274}
 --- !u!1001 &7844433109540383904
 PrefabInstance:

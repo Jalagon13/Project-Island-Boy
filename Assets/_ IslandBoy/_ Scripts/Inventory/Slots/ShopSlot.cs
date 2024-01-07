@@ -51,7 +51,7 @@ namespace IslandBoy
 					}
 				}
 				
-				if(PlayerGoldController.CurrencyValue >= _cost)
+				if(PlayerGoldController.Instance.CurrencyValue >= _cost)
 				{
 					ExecuteTransaction();
 				}
@@ -60,7 +60,7 @@ namespace IslandBoy
 		
 		private void ExecuteTransaction()
 		{
-			PlayerGoldController.SubtractCurrency(_cost);
+			PlayerGoldController.Instance.SubtractCurrency(_cost);
 			_buyFeedback?.PlayFeedbacks();
 			
 			if(_mouseItemHolder.ItemObject == _sellItem)

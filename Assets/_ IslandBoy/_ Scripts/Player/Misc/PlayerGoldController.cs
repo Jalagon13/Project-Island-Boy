@@ -9,8 +9,10 @@ namespace IslandBoy
 {
 	public class PlayerGoldController : MonoBehaviour
 	{
-		// [SerializeField] private AudioClip _goldIncreaseSound;
+		[SerializeField] private AudioClip _goldSound;
 		[SerializeField] private TextMeshProUGUI _goldViewText;
+		
+		private static PlayerGoldController _instance;
 		
 		[InfoBox("Debug Money button")]
 		[Button]
@@ -19,20 +21,27 @@ namespace IslandBoy
 			AddCurrency(100);
 		}
 		
-		private static int _changeAmount;
+		private int _changeAmount;
 		
-		private static GoldCurrency _currency = new();
+		private GoldCurrency _currency = new();
 		
-		public static int CurrencyValue { get { return _currency.CurrentValue; } }
+		public static PlayerGoldController Instance => _instance;
+		public int CurrencyValue { get { return _currency.CurrentValue; } }
+		
+		private void Awake()
+		{
+			_currency = new();
+			_instance = this;
+		}
 		
 		private void Start()
 		{
-			_currency = new();
+			
 			
 			if(_currency != null)
 			{
-				_currency.ValueIncreased += OnCurrencyIncrease;
-				_currency.ValueDecreased += OnCurrencyDecrease;
+				_currency.ValueIncreased += UpdateView;
+				_currency.ValueDecreased += UpdateView;
 			}
 		}
 		
@@ -40,19 +49,23 @@ namespace IslandBoy
 		{
 			if(_currency != null)
 			{
-				_currency.ValueIncreased += OnCurrencyIncrease;
-				_currency.ValueDecreased += OnCurrencyDecrease;
+				_currency.ValueIncreased += UpdateView;
+				_currency.ValueDecreased += UpdateView;
 			}
 		}
 		
-		public static void AddCurrency(int amount)
+		public void AddCurrency(int amount, Vector2 popupPosition = default)
 		{
-			// MMSoundManagerSoundPlayEvent.Trigger(_goldIncreaseSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
+			if(popupPosition == default)
+				popupPosition = transform.position;
+				
+			PopupMessage.Create(popupPosition, $"+${amount}", Color.green, Vector2.up, 1f);
+			MMSoundManagerSoundPlayEvent.Trigger(_goldSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
 			_changeAmount = amount;
 			_currency?.Increment(amount);
 		}
 		
-		public static void SubtractCurrency(int amount)
+		public void SubtractCurrency(int amount)
 		{
 			_changeAmount = amount;
 			_currency?.Decrement(amount);
@@ -67,20 +80,6 @@ namespace IslandBoy
 			{
 				_goldViewText.text = _currency.CurrentValue.ToString();
 			}
-		}
-		
-		private void OnCurrencyIncrease()
-		{
-			// PopupMessage.Create(transform.position, $"+${_changeAmount}", Color.green, Vector2.up, 1f);
-			
-			UpdateView();
-		}
-		
-		private void OnCurrencyDecrease()
-		{
-			PopupMessage.Create(transform.position, $"-${_changeAmount}", Color.red, Vector2.up, 1f);
-			
-			UpdateView();
 		}
 	}
 }

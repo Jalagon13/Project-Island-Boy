@@ -50,7 +50,7 @@ namespace IslandBoy
 			_isFree = true;
 			_sr.sprite = _unboundSprite;
 			_freeFeedback?.PlayFeedbacks();
-			PopupMessage.Create(transform.position, $"{_npcToUnlock} has been unlocked!", Color.green, Vector2.up, 2.5f);
+			PopupMessage.Create(transform.position, $"{_npcToUnlock} has been freed!", Color.green, Vector2.up, 2.5f);
 			HousingController.Instance.UnlockNpc(_npcToUnlock);
 		}
 	}

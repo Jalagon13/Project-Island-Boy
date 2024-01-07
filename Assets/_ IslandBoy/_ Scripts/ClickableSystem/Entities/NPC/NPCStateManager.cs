@@ -36,12 +36,14 @@ namespace IslandBoy
 
 		public void ChangeToIdleState(Animator animator)
 		{
-			AnimStateManager.ChangeAnimationState(animator, _hashIdle);
+			if(_agent.enabled)
+				AnimStateManager.ChangeAnimationState(animator, _hashIdle);
 		}
 
 		public void ChangeToMoveState(Animator animator)
 		{
-			AnimStateManager.ChangeAnimationState(animator, _hashMove);
+			if(_agent.enabled)
+				AnimStateManager.ChangeAnimationState(animator, _hashMove);
 		}
 
 		public void Seek(Vector2 pos)
