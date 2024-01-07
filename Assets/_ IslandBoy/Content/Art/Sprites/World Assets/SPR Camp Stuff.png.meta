@@ -320,7 +320,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -328,6 +328,27 @@ TextureImporter:
       bones: []
       spriteID: 47b233c24def7214e8f70fb879f848ab
       internalID: -1535823503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ws_pot
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 854c50171282b4e659bb01dadd0694e4
+      internalID: 302198925
       vertices: []
       indices: 
       edges: []
@@ -350,6 +371,7 @@ TextureImporter:
       ws_chest: 414997368
       ws_furnace: -1535823503
       ws_monster_forge: 593532975
+      ws_pot: 302198925
       ws_sleeping_bag: -90063712
       ws_stone_anvil: 1168968723
       ws_tool_station: 1663711594

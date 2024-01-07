@@ -20,6 +20,12 @@ namespace IslandBoy
 				_currentValue = 0;
 		}}
 		
+		public void Reset()
+		{
+			_currentValue = 0;
+			UpdateCurrencyDecrease();
+		}
+		
 		public void Increment(int amount)
 		{
 			_currentValue += amount;

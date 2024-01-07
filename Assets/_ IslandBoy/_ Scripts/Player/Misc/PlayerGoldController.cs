@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Tools;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -8,8 +9,10 @@ namespace IslandBoy
 {
 	public class PlayerGoldController : MonoBehaviour
 	{
+		// [SerializeField] private AudioClip _goldIncreaseSound;
 		[SerializeField] private TextMeshProUGUI _goldViewText;
 		
+		[InfoBox("Debug Money button")]
 		[Button]
 		private void PlusHundred()
 		{
@@ -24,6 +27,8 @@ namespace IslandBoy
 		
 		private void Start()
 		{
+			_currency = new();
+			
 			if(_currency != null)
 			{
 				_currency.ValueIncreased += OnCurrencyIncrease;
@@ -42,6 +47,7 @@ namespace IslandBoy
 		
 		public static void AddCurrency(int amount)
 		{
+			// MMSoundManagerSoundPlayEvent.Trigger(_goldIncreaseSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
 			_changeAmount = amount;
 			_currency?.Increment(amount);
 		}
@@ -65,7 +71,7 @@ namespace IslandBoy
 		
 		private void OnCurrencyIncrease()
 		{
-			PopupMessage.Create(transform.position, $"+${_changeAmount}", Color.green, Vector2.up, 1f);
+			// PopupMessage.Create(transform.position, $"+${_changeAmount}", Color.green, Vector2.up, 1f);
 			
 			UpdateView();
 		}
