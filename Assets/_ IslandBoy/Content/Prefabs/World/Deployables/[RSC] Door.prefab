@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 8637284407677892633}
   - component: {fileID: 1220355064876252094}
   - component: {fileID: 2624207577642472327}
+  - component: {fileID: 8640344145531149720}
   m_Layer: 8
   m_Name: GroundCollider
   m_TagString: Untagged
@@ -167,6 +168,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce444daaff29c174f8cb3112be7ce6b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!208 &8640344145531149720
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930340769005649377}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.5, y: 0.5, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &6059379343221250022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -299,6 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0201a65888066014abab745233113d36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _po: {fileID: 0}
   _maxHitPoints: 6
   _breakType: 1
   _clickFeedback: {fileID: 3991662640476158506}
@@ -309,8 +327,8 @@ MonoBehaviour:
       Min: 1
       Max: 1
       Chance: 100
-  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _openSprite: {fileID: 2135872218, guid: 86aecb705c543a948a0d95c4e351f0e1, type: 3}
   _closeSprite: {fileID: -173459065, guid: 86aecb705c543a948a0d95c4e351f0e1, type: 3}
   _doorOpenSound: {fileID: 8300000, guid: cb20e28fd019a0e46978681528c6abc2, type: 3}
   _doorCloseSound: {fileID: 8300000, guid: 2ab52be466951404b803306e15576ec6, type: 3}
+  _groundTm: {fileID: 11400000, guid: fa010110aca24f846b41a4a35146fe4c, type: 2}

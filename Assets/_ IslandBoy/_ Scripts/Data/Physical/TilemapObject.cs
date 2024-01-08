@@ -10,7 +10,7 @@ namespace IslandBoy
 	public class TilemapObject : ScriptableObject
 	{
 		[SerializeField] private DynamicTilemap _dynamicTm;
-		public Tilemap Tilemap { get { return DynamicTilemap.Tilemap; } set { DynamicTilemap.Tilemap = value; } }
+		public Tilemap Tilemap { get { return DynamicTilemap.Tilemap; } }
 		public DynamicTilemap DynamicTilemap { get { return _dynamicTm; } set { _dynamicTm = value; } }
 	}
 }

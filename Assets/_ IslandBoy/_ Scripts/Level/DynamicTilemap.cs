@@ -21,8 +21,9 @@ namespace IslandBoy
 		[SerializeField]
 		private NavMeshSurface _navMesh;
 		private Timer _restoreHpTimer;
+		private Tilemap _tilemap;
 		
-		public Tilemap Tilemap { get; set; }
+		public Tilemap Tilemap => _tilemap;
 		private Dictionary<Vector3Int, TileData> _data = new();
 		
 		public class TileData
@@ -56,7 +57,9 @@ namespace IslandBoy
 		
 		private void OnEnable()
 		{
-			StartCoroutine("Delay");
+			_tmToOverride.DynamicTilemap = this;
+			_tilemap = GetComponent<Tilemap>();
+			Debug.Log("Updaing DT");
 		}
 		
 		private IEnumerator Delay()
@@ -72,7 +75,6 @@ namespace IslandBoy
 		
 		private void Awake()
 		{
-			Tilemap = GetComponent<Tilemap>();
 			_restoreHpTimer = new(5);
 			_restoreHpTimer.OnTimerEnd += RestoreHitPoints;
 		}
@@ -137,6 +139,7 @@ namespace IslandBoy
 		{
 			if(_navMesh != null)
 			{
+				Debug.Log($"Navmesh Name: {_navMesh.gameObject.name}");
 				_navMesh.hideEditorLogs = true;
 				_navMesh.UpdateNavMesh(_navMesh.navMeshData);
 			}
