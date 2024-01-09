@@ -73,7 +73,7 @@ namespace IslandBoy
                     break;
             }
 
-            string upgradeText = _upgradeRecipe != null ? $"* Upgradable at Iron Anvil<br>* Next upgrade: {_upgradeRecipe.OutputItem.Name}" : string.Empty;
+            string upgradeText = _upgradeRecipe != null ? $"* Next upgrade: {_upgradeRecipe.OutputItem.Name}" : string.Empty;
             string damageText = $"{damage} damage<br>";
 
             return $"{toolTypeDesc}* {damageText}{upgradeText}";
