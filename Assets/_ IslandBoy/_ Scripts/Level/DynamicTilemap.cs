@@ -59,7 +59,6 @@ namespace IslandBoy
 		{
 			_tmToOverride.DynamicTilemap = this;
 			_tilemap = GetComponent<Tilemap>();
-			Debug.Log("Updaing DT");
 		}
 		
 		private IEnumerator Delay()
@@ -139,7 +138,6 @@ namespace IslandBoy
 		{
 			if(_navMesh != null)
 			{
-				Debug.Log($"Navmesh Name: {_navMesh.gameObject.name}");
 				_navMesh.hideEditorLogs = true;
 				_navMesh.UpdateNavMesh(_navMesh.navMeshData);
 			}

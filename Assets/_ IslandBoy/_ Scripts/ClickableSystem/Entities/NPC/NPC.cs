@@ -10,6 +10,7 @@ namespace IslandBoy
 		[Header("NPC Parameters")]
 		[SerializeField] private Canvas _questCanvas;
 		[SerializeField] private Canvas _shopCanvas;
+		[SerializeField] private Canvas _upgradeCanvas;
 
 		protected KnockbackFeedback _knockback;
 
@@ -24,8 +25,9 @@ namespace IslandBoy
 		{
 			DisplayInteractable();
 
-			_questCanvas.gameObject.SetActive(true);
 			_shopCanvas.gameObject.SetActive(false);
+			_questCanvas.gameObject.SetActive(true);
+			_upgradeCanvas.gameObject.SetActive(false);
 		}
 		
 		public void OpenShopUI() // connected to shop button
@@ -34,6 +36,16 @@ namespace IslandBoy
 
 			_shopCanvas.gameObject.SetActive(true);
 			_questCanvas.gameObject.SetActive(false);
+			_upgradeCanvas.gameObject.SetActive(false);
+		}
+		
+		public void OpenUpgradeUI() // connected to upgrade button
+		{
+			DisplayInteractable();
+
+			_shopCanvas.gameObject.SetActive(false);
+			_questCanvas.gameObject.SetActive(false);
+			_upgradeCanvas.gameObject.SetActive(true);
 		}
 		
 		public override void CloseUI(ISignalParameters parameters)
@@ -42,6 +54,7 @@ namespace IslandBoy
 			
 			_questCanvas.gameObject.SetActive(false);
 			_shopCanvas.gameObject.SetActive(false);
+			_upgradeCanvas.gameObject.SetActive(false);
 		}
 
 		private void DisplayInteractable()

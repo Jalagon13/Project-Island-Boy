@@ -293,7 +293,6 @@ namespace NavMeshPlus.Extensions
 			var modifierTilemap = tilemap.GetComponent<NavMeshModifierTilemap>();
 
 			var vec3int = new Vector3Int(0, 0, 0);
-			Debug.Log($"Tilemap null? {tilemap.gameObject.name} {tilemap.layoutGrid == null}");
 			
 			if(!tilemap.gameObject.activeInHierarchy)
 				return;

@@ -8,12 +8,6 @@ namespace IslandBoy
 {
 	public class NavmeshSceneChange : MonoBehaviour
 	{
-		// private void Start()
-		// {
-		// 	NavMeshSurface nms = GetComponent<NavMeshSurface>();
-		// 	nms.BuildNavMeshAsync();
-		// }
-		
 		private void OnEnable()
 		{
 			StartCoroutine(Delay());
@@ -23,7 +17,7 @@ namespace IslandBoy
 		{
 			yield return new WaitForEndOfFrame();
 			NavMeshSurface nms = GetComponent<NavMeshSurface>();
-			Debug.Log(nms == null);
+			nms.hideEditorLogs = true;
 			nms.BuildNavMeshAsync();
 		}
 	}
