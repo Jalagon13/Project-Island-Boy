@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6340205345550281534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3270862556395322563}
+  - component: {fileID: 9197625587140002860}
+  m_Layer: 0
+  m_Name: DayCycleHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3270862556395322563
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6340205345550281534}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9197625587140002860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6340205345550281534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40f5b54b8a3c94b67a7b808ff8c6dd5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DayLight: {fileID: 0}
+  DayLightGradient:
+    serializedVersion: 2
+    key0: {r: 0.8962264, g: 0.8015531, b: 0.6045301, a: 1}
+    key1: {r: 0.8980392, g: 0.8, b: 0.6039216, a: 1}
+    key2: {r: 0.81960785, g: 0.6509804, b: 0.2901961, a: 0}
+    key3: {r: 0.8207547, g: 0.38813782, b: 0.38327694, a: 0}
+    key4: {r: 0.07058824, g: 0.043137256, b: 0.18039216, a: 0}
+    key5: {r: 0.07058824, g: 0.043137256, b: 0.18039216, a: 0}
+    key6: {r: 0.12156863, g: 0.08235294, b: 0.29411766, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 193
+    ctime1: 26214
+    ctime2: 39321
+    ctime3: 45875
+    ctime4: 52428
+    ctime5: 58982
+    ctime6: 59753
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: 0
+    m_NumColorKeys: 5
+    m_NumAlphaKeys: 2
+  AmbientLight: {fileID: 0}
+  AmbientLightGradient:
+    serializedVersion: 2
+    key0: {r: 0.6627451, g: 0.7254902, b: 0.50980395, a: 1}
+    key1: {r: 0.408227, g: 0.38443395, b: 0.5, a: 1}
+    key2: {r: 0.408227, g: 0.38443395, b: 0.5, a: 0}
+    key3: {r: 0.408227, g: 0.38443395, b: 0.5, a: 0}
+    key4: {r: 0.408227, g: 0.38443395, b: 0.5, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 32768
+    ctime1: 45875
+    ctime2: 59560
+    ctime3: 59560
+    ctime4: 59560
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
