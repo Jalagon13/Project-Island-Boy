@@ -15,20 +15,19 @@ namespace IslandBoy
 
         private IEnumerator LoadScenes()
         {
-            yield return StartCoroutine(LoadSceneAdd("Island1"));
-            yield return StartCoroutine(LoadSceneAdd("LevelControl"));
-            yield return StartCoroutine(LoadSceneAdd("Player"));
-            yield return StartCoroutine(LoadSceneAdd("Inventory"));
-            yield return StartCoroutine(LoadSceneAdd("PauseMenu"));
-            yield return StartCoroutine(LoadSceneAdd("StatsDisplay"));
-            yield return StartCoroutine(LoadSceneAdd("PromptDisplay"));
-            yield return StartCoroutine(LoadSceneAdd("SunMeter"));
+            yield return StartCoroutine(LoadSceneAdd("Surface"));
+            yield return StartCoroutine(LoadSceneAdd("Camera"));
             yield return StartCoroutine(LoadSceneAdd("DeathPanel"));
-            yield return StartCoroutine(LoadSceneAdd("ExperienceDisplay"));
+            yield return StartCoroutine(LoadSceneAdd("Inventory"));
             yield return StartCoroutine(LoadSceneAdd("LaunchControl"));
             yield return StartCoroutine(LoadSceneAdd("LevelControl"));
+            yield return StartCoroutine(LoadSceneAdd("PauseMenu"));
+            yield return StartCoroutine(LoadSceneAdd("Player"));
+            yield return StartCoroutine(LoadSceneAdd("PromptDisplay"));
+            yield return StartCoroutine(LoadSceneAdd("StatsDisplay"));
+            yield return StartCoroutine(LoadSceneAdd("TimeManager"));
 
-            Scene gameWorld = SceneManager.GetSceneByName("Island1");
+            Scene gameWorld = SceneManager.GetSceneByName("Surface");
             SceneManager.SetActiveScene(gameWorld);
             SceneManager.UnloadSceneAsync("MainMenu");
 
