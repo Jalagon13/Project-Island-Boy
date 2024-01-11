@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    [Serializable]
+	[Serializable]
 	public class Resident
 	{
 		[Required]
@@ -24,7 +24,9 @@ namespace IslandBoy
 		
 		public void SetPosition(Vector2 pos)
 		{
+			NPC.gameObject.SetActive(false);
 			NPC.gameObject.transform.position = pos;
+			NPC.gameObject.SetActive(true);
 		}
 	}
 }

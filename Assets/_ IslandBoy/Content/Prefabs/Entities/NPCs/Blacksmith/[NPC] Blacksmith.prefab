@@ -12374,9 +12374,9 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 169433636f599ed4595792c252615c81, type: 2}
+    - {fileID: 11400000, guid: a231bdcf0c738394697fe7f4a2f28cf4, type: 2}
+    - {fileID: 11400000, guid: a89d325f56e1521458a926e9cc55bc79, type: 2}
     - {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
-    - {fileID: 11400000, guid: 9b7ef9edf622c4541a567e8193b937c1, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -12404,7 +12404,7 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 3
-      Data: 5
+      Data: 10
     - Name: 
       Entry: 8
       Data: 
@@ -12416,7 +12416,7 @@ MonoBehaviour:
       Data: 1
     - Name: $v
       Entry: 3
-      Data: 5
+      Data: 20
     - Name: 
       Entry: 8
       Data: 
@@ -16195,10 +16195,10 @@ PrefabInstance:
     - target: {fileID: 7203612605934902872, guid: f2294a7f930774c51bcb1ad62edaa88a, type: 3}
       propertyPath: _displayItem
       value: 
-      objectReference: {fileID: 11400000, guid: 169433636f599ed4595792c252615c81, type: 2}
+      objectReference: {fileID: 11400000, guid: a231bdcf0c738394697fe7f4a2f28cf4, type: 2}
     - target: {fileID: 7203612605934902872, guid: f2294a7f930774c51bcb1ad62edaa88a, type: 3}
       propertyPath: _displayAmount
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16411,10 +16411,10 @@ PrefabInstance:
     - target: {fileID: 7203612605934902872, guid: f2294a7f930774c51bcb1ad62edaa88a, type: 3}
       propertyPath: _displayItem
       value: 
-      objectReference: {fileID: 11400000, guid: 9b7ef9edf622c4541a567e8193b937c1, type: 2}
+      objectReference: {fileID: 11400000, guid: a89d325f56e1521458a926e9cc55bc79, type: 2}
     - target: {fileID: 7203612605934902872, guid: f2294a7f930774c51bcb1ad62edaa88a, type: 3}
       propertyPath: _displayAmount
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16524,7 +16524,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
     - target: {fileID: 7203612605934902872, guid: f2294a7f930774c51bcb1ad62edaa88a, type: 3}
       propertyPath: _displayAmount
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

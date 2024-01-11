@@ -36,6 +36,7 @@ namespace IslandBoy
 		{
 			_resident = resident;
 			_occupied = true;
+			ResetNpc();
 		}
 		
 		public void MoveOutNPC()
@@ -57,7 +58,7 @@ namespace IslandBoy
 		
 		private Vector3 ReturnRandomFloorTile()
 		{
-			var randomIndex = Random.Range(0, _floorTilePositions.Count);
+			var randomIndex = Random.Range(0, _floorTilePositions.Count - 1);
 			
 			return _floorTilePositions[randomIndex];
 		}
