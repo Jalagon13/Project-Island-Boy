@@ -16,7 +16,6 @@ namespace IslandBoy
         private IEnumerator LoadScenes()
         {
             yield return StartCoroutine(LoadSceneAdd("Surface"));
-            yield return StartCoroutine(LoadSceneAdd("Camera"));
             yield return StartCoroutine(LoadSceneAdd("DeathPanel"));
             yield return StartCoroutine(LoadSceneAdd("Inventory"));
             yield return StartCoroutine(LoadSceneAdd("LaunchControl"));
