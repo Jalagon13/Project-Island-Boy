@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7b8e7610e76b4c00ae63ff9ef6c523b, type: 3}
+  m_Name: '[SS] Forest'
+  m_EditorClassIdentifier: 
+  _spawnPercentPerSec: 10
+  _maxMonsterCount: 3
+  _entityList:
+  - {fileID: 6224312026178961618, guid: 64500d3032b4c6a4e90b42d01a16430c, type: 3}
