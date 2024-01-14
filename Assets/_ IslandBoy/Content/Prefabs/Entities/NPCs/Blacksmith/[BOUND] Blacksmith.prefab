@@ -16479,6 +16479,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1306350981014599772}
+        m_TargetAssemblyTypeName: IslandBoy.Sign, Assembly-CSharp
+        m_MethodName: ResetText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _npcToUnlock: Blacksmith
   _unboundSprite: {fileID: 1001675587, guid: d1fdf00d255e2d942a949c35bbb7ace1, type: 3}
   _freeFeedback: {fileID: 7101727425430380639}
@@ -16507,6 +16519,8 @@ MonoBehaviour:
     E to open your inventory.
   _signText: {fileID: 6317604928567283662}
   _tutorialObject: {fileID: 6986290445343982066}
+  _nextButton: {fileID: 6001333560551159596}
+  _backButton: {fileID: 8679781084694123368}
 --- !u!114 &4579137869153462530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17712,6 +17726,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1306350981014599772}
+        m_TargetAssemblyTypeName: IslandBoy.Sign, Assembly-CSharp
+        m_MethodName: ResetText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8275846407813757169
 GameObject:
   m_ObjectHideFlags: 0
@@ -18373,7 +18399,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5622366186967370960
 RectTransform:
   m_ObjectHideFlags: 0

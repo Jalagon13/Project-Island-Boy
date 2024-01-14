@@ -58,5 +58,15 @@ namespace IslandBoy
 
             _signText.text = _text[_counter];
         }
+
+        // called when text box is exited so dialogue can be cycled through again
+        public void ResetText()
+        {
+            _counter = 0;
+            _signText.text = _text[0];
+            _nextButton.SetActive(true);
+            _backButton.SetActive(false);
+        }
     }
+
 }
