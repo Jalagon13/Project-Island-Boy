@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace IslandBoy
 {
@@ -10,7 +11,8 @@ namespace IslandBoy
         [TextArea]
         [SerializeField] private string[] _text;
         [SerializeField] private TextMeshProUGUI _signText;
-        [SerializeField] private GameObject _tutorialObject, _nextButton, _backButton;
+        [SerializeField] private GameObject _tutorialObject;
+        [SerializeField] private Button _nextButton, _backButton;
         
         private int _counter = 0;
 
@@ -41,9 +43,9 @@ namespace IslandBoy
         {
             _counter++;
             if (_counter >= _text.Length - 1)
-                _nextButton.SetActive(false);
-            else if (!_backButton.activeSelf)
-                _backButton.SetActive(true);
+                _nextButton.interactable = false;
+            else if (!_backButton.interactable)
+                _backButton.interactable = true;
 
             _signText.text = _text[_counter];
         }
@@ -52,9 +54,9 @@ namespace IslandBoy
         {
             _counter--;
             if (_counter <= 0)  
-                _backButton.SetActive(false);
-            else if(!_nextButton.activeSelf)
-                _nextButton.SetActive(true);
+                _backButton.interactable = false;
+            else if(!_nextButton.interactable)
+                _nextButton.interactable = true;
 
             _signText.text = _text[_counter];
         }
@@ -64,8 +66,8 @@ namespace IslandBoy
         {
             _counter = 0;
             _signText.text = _text[0];
-            _nextButton.SetActive(true);
-            _backButton.SetActive(false);
+            _nextButton.interactable = true;
+            _backButton.interactable = false;
         }
     }
 
