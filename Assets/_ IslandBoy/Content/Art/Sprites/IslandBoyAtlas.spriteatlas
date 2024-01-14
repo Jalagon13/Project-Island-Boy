@@ -711,6 +711,7 @@ SpriteAtlas:
     - 679bfc5eacde47448ab633b4a1158edd: 5519562610857406319
     - 679bfc5eacde47448ab633b4a1158edd: 5462806806865470593
     - 679bfc5eacde47448ab633b4a1158edd: -3521167632996297477
+    - 006b1c8e615bb4f38b28f8c0fb8afa9e: 21300000
     - 1c0da41fba6c82c4687b01381cb85902: 1325263547
     - 1c0da41fba6c82c4687b01381cb85902: -730454844
     - 1c0da41fba6c82c4687b01381cb85902: -755577846
@@ -1398,6 +1399,7 @@ SpriteAtlas:
   - {fileID: 5519562610857406319, guid: 679bfc5eacde47448ab633b4a1158edd, type: 3}
   - {fileID: 5462806806865470593, guid: 679bfc5eacde47448ab633b4a1158edd, type: 3}
   - {fileID: -3521167632996297477, guid: 679bfc5eacde47448ab633b4a1158edd, type: 3}
+  - {fileID: 21300000, guid: 006b1c8e615bb4f38b28f8c0fb8afa9e, type: 3}
   - {fileID: 1325263547, guid: 1c0da41fba6c82c4687b01381cb85902, type: 3}
   - {fileID: -730454844, guid: 1c0da41fba6c82c4687b01381cb85902, type: 3}
   - {fileID: -755577846, guid: 1c0da41fba6c82c4687b01381cb85902, type: 3}
@@ -2084,6 +2086,7 @@ SpriteAtlas:
   - Grass Tileset_7
   - Grass Tileset_4
   - Grass Tileset_5
+  - TorchLight
   - tile_grass
   - tile_deep_water
   - tile_sand
