@@ -10,7 +10,7 @@ namespace IslandBoy
         [TextArea]
         [SerializeField] private string[] _text;
         [SerializeField] private TextMeshProUGUI _signText;
-        [SerializeField] private GameObject _tutorialObject;
+        [SerializeField] private GameObject _tutorialObject, _nextButton, _backButton;
         
         private int _counter = 0;
 
@@ -40,8 +40,10 @@ namespace IslandBoy
         public void NextText()
         {
             _counter++;
-            if (_counter >= _text.Length)
-                _counter = 0;
+            if (_counter >= _text.Length - 1)
+                _nextButton.SetActive(false);
+            else if (!_backButton.activeSelf)
+                _backButton.SetActive(true);
 
             _signText.text = _text[_counter];
         }
@@ -49,8 +51,10 @@ namespace IslandBoy
         public void PreviousText()
         {
             _counter--;
-            if (_counter < 0)
-                _counter = _text.Length - 1;
+            if (_counter <= 0)  
+                _backButton.SetActive(false);
+            else if(!_nextButton.activeSelf)
+                _nextButton.SetActive(true);
 
             _signText.text = _text[_counter];
         }
