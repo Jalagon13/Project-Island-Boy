@@ -10,9 +10,10 @@ namespace IslandBoy
 {
 	public class LevelGenerator : MonoBehaviour
 	{
+		[SerializeField] private Tilemap _wallTilemap;
+		[SerializeField] private Tilemap _floorTilemap;
 		[SerializeField] private TileBase _floorTile;
 		[SerializeField] private TileBase _wallTile;
-		[SerializeField] private Tilemap _tilemap;
 		[SerializeField] private int _borderLength;
 		[SerializeField] private int _centerBlobRadius;
 		[SerializeField] private int _iterations;
@@ -22,6 +23,11 @@ namespace IslandBoy
 		[SerializeField] private int _height = 100;
 		
 		private int[,] _map;
+		
+		private void Start()
+		{
+			Generate();
+		}
 		
 		[Button("Generate")]
 		private void Generate()
@@ -36,7 +42,8 @@ namespace IslandBoy
 		[Button("ResetTiles")]
 		private void Reset()
 		{
-			_tilemap.ClearAllTiles();
+			_floorTilemap.ClearAllTiles();
+			_wallTilemap.ClearAllTiles();
 		}
 		
 		void GenerateBlob()
@@ -51,7 +58,7 @@ namespace IslandBoy
 
 					if (IsInsideBlob(tilePosition, centerPosition))
 					{
-						_tilemap.SetTile(tilePosition, _floorTile);
+						_floorTilemap.SetTile(tilePosition, _floorTile);
 					}
 				}
 			}
@@ -72,16 +79,9 @@ namespace IslandBoy
 				{
 					var pos = new Vector3Int(x, y);
 					
-					if(_tilemap.HasTile(pos))
+					if(_floorTilemap.HasTile(pos))
 					{
-						if(_tilemap.GetTile(pos) == _floorTile)
-						{
-							_map[x, y] = 0;
-						}
-						else if(_tilemap.GetTile(pos) == _wallTile)
-						{
-							_map[x, y] = 1;
-						}
+						_map[x, y] = 0;
 					}
 					else
 					{
@@ -158,22 +158,32 @@ namespace IslandBoy
 					if (_map[x, y] == 1)
 					{
 						// Instantiate and position a wall tile
-						PlaceTile(_wallTile, x, y);
+						PlaceTile(_wallTilemap, _wallTile, x, y);
 					}
 					else
 					{
 						// Instantiate and position a floor tile
-						PlaceTile(_floorTile, x, y);
+						PlaceTile(_wallTilemap, null, x, y);
 					}
+					
+					PlaceFloorTile(x, y);
 				}
 			}
 		}
 		
-		private void PlaceTile(TileBase tile, int x, int y)
+		private void PlaceTile(Tilemap tilemap, TileBase tile, int x, int y)
 		{
 			Vector3Int pos = new(x, y);
-			_tilemap.SetTile(pos, tile);
+			tilemap.SetTile(pos, tile);
 		}
 		
+		private void PlaceFloorTile(int x , int y)
+		{
+			Vector3Int pos = new Vector3Int(x, y);
+			if(!_floorTilemap.HasTile(pos))
+			{
+				PlaceTile(_floorTilemap, _floorTile, x, y);
+			}
+		}
 	}
 }
