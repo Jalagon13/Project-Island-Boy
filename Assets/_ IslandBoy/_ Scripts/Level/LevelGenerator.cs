@@ -25,23 +25,30 @@ namespace IslandBoy
 		[SerializeField] private int _height = 100;
 		[Header("Resource Generation")]
 		[SerializeField] private Clickable _pot;
+		[SerializeField] private Clickable _stone;
+		[SerializeField] private Clickable _staircase; 
 		[SerializeField] private TileBase _rscTile;
 		
 		private int[,] _map;
 		
-		private Transform _resourceHolder;
+		private GameObject _resourceHolder;
 		private List<Vector2Int> _wallSpots;
 		private List<Vector2Int> _spaceSpots;
 		
-		private void Awake()
-		{
-			Reset();
-		}
+		private Vector3Int[] _directions = {
+			new Vector3Int(0, 1, 0),  // Up
+			new Vector3Int(0, -1, 0), // Down
+			new Vector3Int(-1, 0, 0), // Left
+			new Vector3Int(1, 0, 0),  // Right
+			new Vector3Int(-1, 1, 0),  // Top Left
+			new Vector3Int(1, 1, 0),   // Top Right
+			new Vector3Int(-1, -1, 0), // Bottom Left
+			new Vector3Int(1, -1, 0)   // Bottom Right
+		};
 		
 		private void Start()
 		{
 			Generate();
-			GenerateNodeResources();
 		}
 		
 		#region Map Generation
@@ -55,12 +62,17 @@ namespace IslandBoy
 			SmoothMap();	
 			GenerateWallResources();
 			CreateTiles();
+			GenerateStaircases();
+			GenerateNodeResources(_stone, 35);
+			GenerateNodeResources(_pot, 50);
 		}
+		
+		
 
 		[Button("ResetTiles")]
 		private void Reset()
 		{
-			_resourceHolder = transform.GetChild(2);
+			_resourceHolder = transform.GetChild(2).gameObject;
 			_floorTilemap.ClearAllTiles();
 			_wallTilemap.ClearAllTiles();
 			_wallSpots = new();
@@ -68,15 +80,11 @@ namespace IslandBoy
 			_spaceSpots = new();
 			_spaceSpots.Clear();
 			
-			if(_resourceHolder.childCount > 0)
+			if(_resourceHolder.transform.childCount > 0)
 			{
 				foreach (Transform transform in _resourceHolder.transform)
 				{
-					if(Application.isEditor)
-						DestroyImmediate(transform.gameObject);
-					else
-						Destroy(transform.gameObject);
-
+					Destroy(transform.gameObject);
 				}
 			}
 		}
@@ -237,30 +245,81 @@ namespace IslandBoy
 			
 			for (int i = 0; i < clumpsPerQuadrant; i++)
 			{
-				GenerateClump(iterations, Random.Range(_borderLength, _width / 2), Random.Range(_borderLength, _height / 2));
-				GenerateClump(iterations, Random.Range(_width / 2, _width - _borderLength), Random.Range(_borderLength, _height / 2));
-				GenerateClump(iterations, Random.Range(_width / 2, _width - _borderLength), Random.Range(_height / 2, _height - _borderLength));
-				GenerateClump(iterations, Random.Range(_borderLength, _width / 2), Random.Range(_height / 2, _height - _borderLength));
+				GenerateClump(iterations, GetRandomPositionBR());
+				GenerateClump(iterations, GetRandomPositionBL());
+				GenerateClump(iterations, GetRandomPositionTR());
+				GenerateClump(iterations, GetRandomPositionTL());
 			}
 		}
 		
-		private void GenerateClump(int iterations, int xPos, int yPos)
+		private void GenerateClump(int iterations, Vector3Int pos)
 		{
 			for (int clump = 0; clump < iterations; clump++)
 			{
 				Vector3Int offset = new Vector3Int(Random.Range(-3, 3), Random.Range(-3, 3));
-				GenerateBlob(new Vector3Int(xPos, yPos) + offset, Random.Range(1, 2), _wallTilemap, _rscTile);
+				GenerateBlob(pos + offset, Random.Range(1, 2), _wallTilemap, _rscTile);
 			}
 		}
 		
-		private void GenerateNodeResources()
+		private Vector3Int GetRandomPositionBR()
 		{
-			for (int i = 0; i < 20; i++)
+			return new(Random.Range(_borderLength, _width / 2), Random.Range(_borderLength, _height / 2));
+		}
+		
+		private Vector3Int GetRandomPositionBL()
+		{
+			return new(Random.Range(_width / 2, _width - _borderLength), Random.Range(_borderLength, _height / 2));
+		}
+		
+		private Vector3Int GetRandomPositionTR()
+		{
+			return new(Random.Range(_width / 2, _width - _borderLength), Random.Range(_height / 2, _height - _borderLength));
+		}
+		
+		private Vector3Int GetRandomPositionTL()
+		{
+			return new(Random.Range(_borderLength, _width / 2), Random.Range(_height / 2, _height - _borderLength));
+		}
+		
+		private void GenerateNodeResources(Clickable rsc, int amount)
+		{
+			for (int i = 0; i < amount; i++)
 			{
 				var pos = _spaceSpots[Random.Range(0, _spaceSpots.Count)];
-				var pot = Instantiate(_pot, new(pos.x, pos.y), quaternion.identity);
-				pot.transform.SetParent(_resourceHolder);
+				var pot = Instantiate(rsc, new(pos.x, pos.y), quaternion.identity);
+				pot.transform.SetParent(_resourceHolder.transform);
+				_spaceSpots.Remove(pos);
 			}
+		}
+		
+		private void GenerateStaircases()
+		{
+			GenerateStairs(GetRandomPositionBR());
+			GenerateStairs(GetRandomPositionBL());
+			GenerateStairs(GetRandomPositionTR());
+			GenerateStairs(GetRandomPositionTL());
+		}
+		
+		private void GenerateStairs(Vector3Int pos)
+		{
+			if(_wallTilemap.HasTile(pos))
+			{
+				_wallTilemap.SetTile(pos, null);
+			}
+			
+			foreach (var direction in _directions)
+			{
+				var neighborPosition = pos + direction;
+				
+				if(_wallTilemap.HasTile(neighborPosition))
+				{
+					_wallTilemap.SetTile(neighborPosition, null);
+				}
+			}
+			
+			var stairs = Instantiate(_staircase, pos, Quaternion.identity);
+			stairs.transform.SetParent(_resourceHolder.transform);
+			_spaceSpots.Remove((Vector2Int)pos);
 		}
 	}
 }
