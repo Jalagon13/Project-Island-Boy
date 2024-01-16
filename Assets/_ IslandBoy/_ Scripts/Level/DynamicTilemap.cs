@@ -117,6 +117,7 @@ namespace IslandBoy
 			{
 				tileData.Hit();
 				PlayGameFeel(target);
+				PlaySound(tileData.RuleTile.HitSound);
 				GameSignals.CLICKABLE_CLICKED.Dispatch();
 				
 				if(tileData.IsDestroyed())
@@ -127,10 +128,7 @@ namespace IslandBoy
 					PlaySound(tileData.RuleTile.DestroySound);
 					UpdateNavMesh();
 					SpawnItemFromTileData(tileData, target);
-					return;
 				}
-				
-				PlaySound(tileData.RuleTile.HitSound);
 			}
 		}
 		

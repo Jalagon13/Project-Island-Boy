@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
@@ -23,37 +24,37 @@ namespace IslandBoy
 		[SerializeField] private int _width = 100;
 		[SerializeField] private int _height = 100;
 		[Header("Resource Generation")]
-		[SerializeField] private Clickable _iron;
+		[SerializeField] private Clickable _pot;
 		[SerializeField] private TileBase _rscTile;
 		
 		private int[,] _map;
 		
 		private Transform _resourceHolder;
 		private List<Vector2Int> _wallSpots;
+		private List<Vector2Int> _spaceSpots;
 		
 		private void Awake()
 		{
-			_resourceHolder = transform.GetChild(2);
-			_wallSpots = new();
+			Reset();
 		}
 		
 		private void Start()
 		{
-			GenerateWallsFloors();
-			GenerateResourceNodes();
+			Generate();
+			GenerateNodeResources();
 		}
 		
 		#region Map Generation
 		
 		[Button("Generate")]
-		private void GenerateWallsFloors()
+		private void Generate()
 		{
 			Reset();
-			GenerateBlob();
+			GenerateBlob(new Vector3Int(_width / 2, _height / 2), _centerBlobRadius, _floorTilemap, _floorTile);
 			GenerateMap();
 			SmoothMap();	
+			GenerateWallResources();
 			CreateTiles();
-			GenerateResourceNodes();
 		}
 
 		[Button("ResetTiles")]
@@ -62,30 +63,35 @@ namespace IslandBoy
 			_resourceHolder = transform.GetChild(2);
 			_floorTilemap.ClearAllTiles();
 			_wallTilemap.ClearAllTiles();
+			_wallSpots = new();
 			_wallSpots.Clear();
+			_spaceSpots = new();
+			_spaceSpots.Clear();
 			
-			if(_resourceHolder.transform.childCount > 0)
+			if(_resourceHolder.childCount > 0)
 			{
 				foreach (Transform transform in _resourceHolder.transform)
 				{
-					Destroy(transform.gameObject);
+					if(Application.isEditor)
+						DestroyImmediate(transform.gameObject);
+					else
+						Destroy(transform.gameObject);
+
 				}
 			}
 		}
 		
-		void GenerateBlob()
+		private void GenerateBlob(Vector3Int pos, int radius, Tilemap tilemap, TileBase tilebase)
 		{
-			Vector3Int centerPosition = new(_width / 2, _height / 2);
-
-			for (int x = -_centerBlobRadius; x <= _centerBlobRadius; x++)
+			for (int x = -radius; x <= radius; x++)
 			{
-				for (int y = -_centerBlobRadius; y <= _centerBlobRadius; y++)
+				for (int y = -radius; y <= radius; y++)
 				{
-					Vector3Int tilePosition = new Vector3Int(centerPosition.x + x, centerPosition.y + y, centerPosition.z);
+					Vector3Int tilePosition = new Vector3Int(pos.x + x, pos.y + y, pos.z);
 
-					if (IsInsideBlob(tilePosition, centerPosition))
+					if (IsInsideBlob(tilePosition, pos))
 					{
-						_floorTilemap.SetTile(tilePosition, _floorTile);
+						tilemap.SetTile(tilePosition, tilebase);
 					}
 				}
 			}
@@ -120,6 +126,11 @@ namespace IslandBoy
 						{
 							float rand = Random.value;
 							_map[x, y] = (rand < _noiseDensity) ? 1 : 0;
+							
+							if(_map[x, y] == 1)
+							{
+								_wallSpots.Add(new(x, y));
+							}
 						}
 					}
 				}
@@ -185,13 +196,16 @@ namespace IslandBoy
 					if (_map[x, y] == 1)
 					{
 						// Instantiate and position a wall tile
-						PlaceTile(_wallTilemap, _wallTile, x, y);
-						_wallSpots.Add(new(x, y));
+						if(!_wallTilemap.HasTile(new(x,y)))
+						{
+							PlaceTile(_wallTilemap, _wallTile, x, y);
+						}
 					}
 					else
 					{
 						// Instantiate and position an air tile
 						PlaceTile(_wallTilemap, null, x, y);
+						_spaceSpots.Add(new(x, y));
 					}
 					
 					PlaceFloorTile(x, y);
@@ -216,30 +230,36 @@ namespace IslandBoy
 		
 		#endregion
 		
-		private void GenerateResourceNodes()
+		private void GenerateWallResources()
 		{
-			int clumpCount = 10;
-			int nodesPerClumpAvg = 20;
+			int clumpsPerQuadrant = 5;
+			int iterations = 3;
 			
-			for (int clump = 0; clump < clumpCount; clump++)
+			for (int i = 0; i < clumpsPerQuadrant; i++)
 			{
-				Vector2 clumpPosition = _wallSpots[Random.Range(0, _wallSpots.Count - 1)];
-				int nodeCount = Random.Range(nodesPerClumpAvg - 5, nodesPerClumpAvg + 5);
-
-				for (int node = 0; node < nodesPerClumpAvg; node++)
-				{
-					Vector2 offset = new Vector2(Random.Range(-1, 2), Random.Range(-1, 2));
-					Vector2 nodePosition = clumpPosition + offset;
-
-					// Ensure the node is within the grid boundaries
-					nodePosition.x = Mathf.Clamp(nodePosition.x, 0, _width - 1);
-					nodePosition.y = Mathf.Clamp(nodePosition.y, 0, _height - 1);
-
-					// Instantiate the resource node prefab at the calculated position
-					// var rsc = Instantiate(_iron, nodePosition, Quaternion.identity);
-					// rsc.transform.SetParent(_resourceHolder);
-					PlaceTile(_wallTilemap, _rscTile, (int)nodePosition.x, (int)nodePosition.y);
-				}
+				GenerateClump(iterations, Random.Range(_borderLength, _width / 2), Random.Range(_borderLength, _height / 2));
+				GenerateClump(iterations, Random.Range(_width / 2, _width - _borderLength), Random.Range(_borderLength, _height / 2));
+				GenerateClump(iterations, Random.Range(_width / 2, _width - _borderLength), Random.Range(_height / 2, _height - _borderLength));
+				GenerateClump(iterations, Random.Range(_borderLength, _width / 2), Random.Range(_height / 2, _height - _borderLength));
+			}
+		}
+		
+		private void GenerateClump(int iterations, int xPos, int yPos)
+		{
+			for (int clump = 0; clump < iterations; clump++)
+			{
+				Vector3Int offset = new Vector3Int(Random.Range(-3, 3), Random.Range(-3, 3));
+				GenerateBlob(new Vector3Int(xPos, yPos) + offset, Random.Range(1, 2), _wallTilemap, _rscTile);
+			}
+		}
+		
+		private void GenerateNodeResources()
+		{
+			for (int i = 0; i < 20; i++)
+			{
+				var pos = _spaceSpots[Random.Range(0, _spaceSpots.Count)];
+				var pot = Instantiate(_pot, new(pos.x, pos.y), quaternion.identity);
+				pot.transform.SetParent(_resourceHolder);
 			}
 		}
 	}
