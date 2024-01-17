@@ -11,7 +11,7 @@ namespace IslandBoy
 		[MinMaxSlider(0, 99, true)]
 		[SerializeField] private Vector2 _amount;
 
-		private void OnDestroy()
+		public void GiveMoney()
 		{
 			int amount = Random.Range((int)_amount.x, (int)_amount.y);
 			PlayerGoldController.Instance.AddCurrency(amount, transform.position);

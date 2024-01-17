@@ -67,7 +67,14 @@ namespace IslandBoy
 
 					_rscFoundThisSwing.Remove(rsc);
 					_rscHitThisSwing.Add(rsc);
+					
+					if(rsc.SwingDestructOnly)
+					{
+						rsc.GetComponent<GiveMoneyOnDestroy>().GiveMoney();
+					}
+					
 					rsc.OnBreak();
+					
 					yield return new WaitForSeconds(_detectionBetweenHits);
 				}
 			}

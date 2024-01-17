@@ -24,6 +24,8 @@ namespace IslandBoy
 		[SerializeField] private int _width = 100;
 		[SerializeField] private int _height = 100;
 		[Header("Resource Generation")]
+		
+		[SerializeField] private bool _generateResources = true;
 		[SerializeField] private Clickable _pot;
 		[SerializeField] private Clickable _stone;
 		[SerializeField] private Clickable _staircase; 
@@ -46,7 +48,7 @@ namespace IslandBoy
 			new(1, -1, 0)   // Bottom Right
 		};
 		
-		private void Start()
+		private void Awake()
 		{
 			Generate();
 		}
@@ -62,9 +64,13 @@ namespace IslandBoy
 			SmoothMap();	
 			GenerateWallResources();
 			CreateTiles();
-			GenerateStaircases();
-			GenerateNodeResources(_stone, 35);
-			GenerateNodeResources(_pot, 50);
+			
+			if(_generateResources)
+			{
+				GenerateStaircases();
+				GenerateNodeResources(_stone, 35);
+				GenerateNodeResources(_pot, 50);
+			}
 		}
 		
 		
