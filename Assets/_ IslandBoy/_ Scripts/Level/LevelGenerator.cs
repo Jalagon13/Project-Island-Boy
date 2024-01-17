@@ -36,14 +36,14 @@ namespace IslandBoy
 		private List<Vector2Int> _spaceSpots;
 		
 		private Vector3Int[] _directions = {
-			new Vector3Int(0, 1, 0),  // Up
-			new Vector3Int(0, -1, 0), // Down
-			new Vector3Int(-1, 0, 0), // Left
-			new Vector3Int(1, 0, 0),  // Right
-			new Vector3Int(-1, 1, 0),  // Top Left
-			new Vector3Int(1, 1, 0),   // Top Right
-			new Vector3Int(-1, -1, 0), // Bottom Left
-			new Vector3Int(1, -1, 0)   // Bottom Right
+			new(0, 1, 0),  // Up
+			new(0, -1, 0), // Down
+			new(-1, 0, 0), // Left
+			new(1, 0, 0),  // Right
+			new(-1, 1, 0),  // Top Left
+			new(1, 1, 0),   // Top Right
+			new(-1, -1, 0), // Bottom Left
+			new(1, -1, 0)   // Bottom Right
 		};
 		
 		private void Start()
@@ -286,6 +286,9 @@ namespace IslandBoy
 			for (int i = 0; i < amount; i++)
 			{
 				var pos = _spaceSpots[Random.Range(0, _spaceSpots.Count)];
+				if(!IsClear(new(pos.x, pos.y)))
+					continue;
+				
 				var pot = Instantiate(rsc, new(pos.x, pos.y), quaternion.identity);
 				pot.transform.SetParent(_resourceHolder.transform);
 				_spaceSpots.Remove(pos);
@@ -321,5 +324,19 @@ namespace IslandBoy
 			stairs.transform.SetParent(_resourceHolder.transform);
 			_spaceSpots.Remove((Vector2Int)pos);
 		}
+		
+		private bool IsClear(Vector3Int position)
+		{
+			var colliders = Physics2D.OverlapBoxAll(new(position.x + 0.5f, position.y + 0.5f), new Vector2(0.5f, 0.5f), 0);
+
+			foreach(Collider2D col in colliders)
+			{
+				if(col.gameObject.layer == 3) 
+					return false;
+			}
+
+			return true;
+		}
+		
 	}
 }
