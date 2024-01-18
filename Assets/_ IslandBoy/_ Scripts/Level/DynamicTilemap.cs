@@ -29,7 +29,7 @@ namespace IslandBoy
 		public class TileData
 		{
 			public RuleTileExtended RuleTile;
-			
+				
 			private int _currentHitPoints;
 			
 			public TileData(RuleTileExtended rte)
@@ -134,8 +134,12 @@ namespace IslandBoy
 			}
 		}
 		
-		public void UpdateNavMesh()
+		public void UpdateNavMesh() => StartCoroutine(UpdateNM());
+		
+		private IEnumerator UpdateNM()
 		{
+			yield return new WaitForEndOfFrame();
+			
 			if(_navMesh != null)
 			{
 				_navMesh.hideEditorLogs = true;
