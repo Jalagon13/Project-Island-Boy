@@ -70,7 +70,12 @@ namespace IslandBoy
 					
 					if(rsc.SwingDestructOnly)
 					{
-						rsc.GetComponent<GiveMoneyOnDestroy>().GiveMoney();
+						var gmod = rsc.GetComponent<GiveMoneyOnDestroy>();
+						
+						if(gmod != null)
+						{
+							gmod.GiveMoney();
+						}
 					}
 					
 					rsc.OnBreak();

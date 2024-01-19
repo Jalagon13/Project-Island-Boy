@@ -13,7 +13,6 @@ namespace IslandBoy
 		public void GoUpStairs()
 		{
 			_lg = transform.parent.parent.GetComponent<LevelGenerator>();
-			Debug.Log(_lg.SpawnPosition == null);
 			_lg.SpawnPosition.SetSpawnPos(_po.Position);
 			
 			CaveManager.Instance.AscendFloor();

@@ -28,7 +28,6 @@ namespace IslandBoy
 		private IEnumerator Delay()
 		{
 			yield return new WaitForEndOfFrame();
-			Debug.Log("Player brought to correct spot");
 			_po.GameObject.transform.position = _spawnPos;
 		}
 	}
