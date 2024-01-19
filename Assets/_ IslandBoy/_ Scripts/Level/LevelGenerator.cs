@@ -16,6 +16,7 @@ namespace IslandBoy
 		[SerializeField] private Tilemap _floorTilemap;
 		[SerializeField] private TileBase _floorTile;
 		[SerializeField] private TileBase _wallTile;
+		[SerializeField] private InitialSpawnPosition _isp;
 		[SerializeField] private int _borderLength;
 		[SerializeField] private int _centerBlobRadius;
 		[SerializeField] private int _iterations;
@@ -48,9 +49,21 @@ namespace IslandBoy
 			new(1, -1, 0)   // Bottom Right
 		};
 		
+		public InitialSpawnPosition SpawnPosition => _isp;
+		
 		private void Awake()
 		{
 			Generate();
+		}
+		
+		private void OnEnable()
+		{
+			LevelControl.DeployParent = _resourceHolder;
+		}
+		
+		private void OnDisable()
+		{
+			LevelControl.DeployParent = null;
 		}
 		
 		#region Map Generation

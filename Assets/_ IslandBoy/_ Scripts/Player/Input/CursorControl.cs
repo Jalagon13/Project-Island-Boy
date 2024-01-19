@@ -289,7 +289,12 @@ namespace IslandBoy
 		public void PlaceDeployable(GameObject deployable)
 		{
 			var position = _currentCenterPos -= new Vector2(0.5f, 0.5f);
-			Instantiate(deployable, position, Quaternion.identity);
+			var d = Instantiate(deployable, position, Quaternion.identity);
+			
+			if(LevelControl.DeployParent != null)
+			{
+				d.transform.SetParent(LevelControl.DeployParent.transform);
+			}
 		}
 
 		private Vector2 CalcPosition()

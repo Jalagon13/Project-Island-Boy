@@ -9,17 +9,77 @@ namespace IslandBoy
 	{
 		[SerializeField] private LevelGenerator _levelPrefab;
 		[SerializeField] private Transform _rewardRoom;
+		[SerializeField] private string _surfaceSceneName;
 		
 		private int _levelIndex = 0;
-		private int _rewardLevelIndex = 4;
+		private int _rewardLevelIndex = 2;
+		
+		private static CaveManager _instance;
+		
+		public static CaveManager Instance => _instance;
+		
+		private void Awake()
+		{
+			_instance = this;
+		}
+		
+		private void OnEnable()
+		{
+			LoadExistingLevel(LevelControl.CaveLevelToLoad);
+		}
+		
+		[Button("Descend Floor")]
+		public void DescendFloor()
+		{
+			int indexTested = _levelIndex + 1;
+			
+			if(indexTested > -1 && indexTested < transform.childCount)
+			{
+				_levelIndex++;
+				LoadExistingLevel(_levelIndex);
+			}
+			else
+			{
+				CreateLevel();
+			}
+		}
+		
+		[Button("Ascend Floor")]
+		public void AscendFloor()
+		{
+			if(_levelIndex == 0)
+			{
+				SwitchScene();
+				return;
+			}
+			
+			int indexTested = _levelIndex - 1;
+			
+			if(indexTested > -1 && indexTested < transform.childCount)
+			{
+				_levelIndex--;
+				LoadExistingLevel(_levelIndex);
+			}
+		}
+		
+		private void SwitchScene()
+		{
+			Signal signal = GameSignals.CHANGE_SCENE;
+			signal.ClearParameters();
+			signal.AddParameter("NextScene", _surfaceSceneName);
+			signal.Dispatch();
+		}
 		
 		[Button("Create Level")]
 		private void CreateLevel()
 		{
 			DeActivateAllLevels();
-			SetRewardRoomActive(_levelIndex == _rewardLevelIndex - 1);
 			
-			if(_levelIndex != _rewardLevelIndex - 1)
+			if(_levelIndex == _rewardLevelIndex - 1)
+			{
+				LoadRewardRoom();
+			}
+			else
 			{
 				SetLevelActive(InstantiateLevel());
 			}
@@ -28,19 +88,42 @@ namespace IslandBoy
 		[Button("Load Existing Level")]
 		private void LoadExistingLevel(int index)
 		{
-			DeActivateAllLevels();
-			SetRewardRoomActive(index == _rewardLevelIndex);
-			
-			if(index != _rewardLevelIndex)
+			if(transform.childCount <= 0)
 			{
-				SetLevelActive(index);
+				CreateLevel();
 				return;
+			}
+			
+			if(index != _rewardLevelIndex)	
+				SetRewardRoomActive(false);
+			Debug.Log("yum");
+			if(index > -1 && index < transform.childCount)
+			{
+				DeActivateAllLevels();
+				Debug.Log("YUMMY");
+				if(index == _rewardLevelIndex)
+				{
+					LoadRewardRoom();
+					Debug.Log("Loading Reward Room");
+				}
+				else
+				{
+					Debug.Log("Activing level above");
+					SetLevelActive(index);
+				}	
 			}
 		}
 		
 		private int InstantiateLevel()
 		{
 			return Instantiate(_levelPrefab, transform).gameObject.transform.GetSiblingIndex();
+		}
+		
+		private void LoadRewardRoom()
+		{
+			DeActivateAllLevels();
+			_levelIndex = _rewardLevelIndex;
+			_rewardRoom.gameObject.SetActive(true);
 		}
 		
 		private void SetRewardRoomActive(bool _)
@@ -50,9 +133,6 @@ namespace IslandBoy
 		
 		private void SetLevelActive(int index)
 		{
-			if(index == _rewardLevelIndex)
-				SetRewardRoomActive(true);
-			
 			foreach (Transform child in transform)
 			{
 				if(child.GetSiblingIndex() == index)

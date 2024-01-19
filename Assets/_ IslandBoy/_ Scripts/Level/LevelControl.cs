@@ -9,6 +9,10 @@ namespace IslandBoy
 {
 	public class LevelControl : MonoBehaviour
 	{
+		public static int CaveLevelToLoad = 0;
+		
+		public static GameObject DeployParent;
+		
 		private void Awake()
 		{
 			GameSignals.CHANGE_SCENE.AddListener(ChangeScene);

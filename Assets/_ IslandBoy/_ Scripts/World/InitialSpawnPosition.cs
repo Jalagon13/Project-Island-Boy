@@ -8,21 +8,28 @@ namespace IslandBoy
 	{
 		[SerializeField] private PlayerObject _po;
 		
-		private bool _onInitialEnable = true;
+		private Vector2 _spawnPos;
+		
+		private void Awake()
+		{
+			_spawnPos = transform.position;
+		}
 		
 		private void OnEnable()
 		{
-			if(!_onInitialEnable) return;
-			
 			StartCoroutine(Delay());
+		}
+		
+		public void SetSpawnPos(Vector2 pos)
+		{
+			_spawnPos = pos;
 		}
 		
 		private IEnumerator Delay()
 		{
 			yield return new WaitForEndOfFrame();
-			
-			_po.GameObject.transform.position = transform.position;
-			_onInitialEnable = false;
+			Debug.Log("Player brought to correct spot");
+			_po.GameObject.transform.position = _spawnPos;
 		}
 	}
 }

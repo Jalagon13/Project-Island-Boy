@@ -24,6 +24,8 @@ namespace IslandBoy
 		
 		public void SwitchScene()
 		{
+			LevelControl.CaveLevelToLoad = 0;
+			
 			_returnPosition = _po.Position;
 			_isReturnPoint = true;
 			
