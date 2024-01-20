@@ -12,21 +12,18 @@ namespace IslandBoy
 
 		private Action _onMove;
 		private Vector2 _homePoint;
+		private AstarAI _ai;
 		private readonly int _hashIdle = Animator.StringToHash("[Anm] NPCIdle");
 		private readonly int _hashMove = Animator.StringToHash("[Anm] NPCMove");
 		
-		private NavMeshAgent _agent;
-
 		public Action OnMove { get { return _onMove; } set { _onMove = value; } }
-		public Vector2 HomePoint { get { return _homePoint; } }
-		public NavMeshAgent Agent => _agent;
+		public Vector2 HomePoint => _homePoint;
+		public AstarAI AI;
 		
 		private void Awake()
 		{
 			_homePoint = transform.position;
-			_agent = GetComponent<NavMeshAgent>();
-			_agent.updateRotation = false;
-			_agent.updateUpAxis = false;
+			_ai = GetComponent<AstarAI>();
 		}
 
 		private void Update()
@@ -36,19 +33,12 @@ namespace IslandBoy
 
 		public void ChangeToIdleState(Animator animator)
 		{
-			if(_agent.enabled)
-				AnimStateManager.ChangeAnimationState(animator, _hashIdle);
+			AnimStateManager.ChangeAnimationState(animator, _hashMove);
 		}
 
 		public void ChangeToMoveState(Animator animator)
 		{
-			if(_agent.enabled)
-				AnimStateManager.ChangeAnimationState(animator, _hashMove);
-		}
-
-		public void Seek(Vector2 pos)
-		{
-			_agent.destination = pos;
+			AnimStateManager.ChangeAnimationState(animator, _hashMove);
 		}
 	}
 }

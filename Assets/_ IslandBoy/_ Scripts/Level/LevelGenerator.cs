@@ -19,7 +19,6 @@ namespace IslandBoy
 		[SerializeField] private TileBase _floorTile;
 		[SerializeField] private TileBase _wallTile;
 		[SerializeField] private InitialSpawnPosition _isp;
-		[SerializeField] private NavMeshSurface _navMesh;
 		[SerializeField] private int _borderLength;
 		[SerializeField] private int _centerBlobRadius;
 		[SerializeField] private int _iterations;
@@ -81,20 +80,6 @@ namespace IslandBoy
 			GenerateWallResources();
 			CreateTiles();
 			GenerateResources();
-			UpdateNavMesh();
-		}
-		
-		public void UpdateNavMesh() => StartCoroutine(UpdateNM());
-		
-		private IEnumerator UpdateNM()
-		{
-			yield return new WaitForEndOfFrame();
-			
-			if(_navMesh != null)
-			{
-				_navMesh.hideEditorLogs = true;
-				_navMesh.UpdateNavMesh(_navMesh.navMeshData);
-			}
 		}
 		
 		private void GenerateResources()

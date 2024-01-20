@@ -18,7 +18,7 @@ namespace IslandBoy
 		[SerializeField] private TilemapObject _floorTm;
 		[SerializeField] private TilemapObject _wallTm;
 		[SerializeField] private float _startingClickDistance;
-		[SerializeField] private float _clickCd = 0.1f;
+		// [SerializeField] private float _clickCd = 0.1f;
 		[SerializeField] private ItemParameter _hitParameter;
 		[SerializeField] private ItemParameter _clickDistanceParameter;
 

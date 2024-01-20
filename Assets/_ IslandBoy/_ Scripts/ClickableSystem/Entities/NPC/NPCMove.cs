@@ -20,10 +20,10 @@ namespace IslandBoy
 
 		override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			if (_ctx.Agent.remainingDistance < 0.25f)
-			{
-				_ctx.ChangeToIdleState(animator);
-			}
+			// if (_ctx.Agent.remainingDistance < 0.25f)
+			// {
+			// 	_ctx.ChangeToIdleState(animator);
+			// }
 		}
 
 		public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -33,7 +33,7 @@ namespace IslandBoy
 
 		private void Move()
 		{
-			_ctx.Seek(_wanderPos);
+			// _ctx.Seek(_wanderPos);
 		}
 
 		private Vector2 CalcWanderPos()

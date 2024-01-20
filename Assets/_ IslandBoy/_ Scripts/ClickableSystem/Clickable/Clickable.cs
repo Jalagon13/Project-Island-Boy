@@ -64,7 +64,7 @@ namespace IslandBoy
 		public virtual void OnBreak()
 		{
 			_lootTable.SpawnLoot(_dropPosition);
-			
+			AStarExtensions.Instance.UpdatePathfinding(transform.position, new(2,2,2));
 			PlayDestroyFeedbacks();
 			StopAllCoroutines();
 			Destroy(gameObject);
