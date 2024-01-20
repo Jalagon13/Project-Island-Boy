@@ -891,7 +891,7 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         RemapOrthographicSizeZero: 10
-        RemapOrthographicSizeOne: 9.85
+        RemapOrthographicSizeOne: 9.925
     - rid: 1619343171848765446
       type: {class: MMF_Particles, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
@@ -1317,7 +1317,7 @@ MonoBehaviour:
   _destroyFeedback: {fileID: 4871828697884116381}
   _lootTable:
     <Table>k__BackingField:
-    - Item: {fileID: 11400000, guid: c8dd697c00e61484a91e6dd13df9acf1, type: 2}
+    - Item: {fileID: 0}
       Min: 1
       Max: 2
       Chance: 100

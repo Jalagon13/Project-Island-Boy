@@ -11,6 +11,7 @@ namespace IslandBoy
 		[SerializeField] private string _npcToUnlock;
 		[SerializeField] private Sprite _unboundSprite;
 		[SerializeField] private MMF_Player _freeFeedback;
+		[SerializeField] private List<ChestInvSlot> _unboundRewards = new();
 		
 		private bool _isFree;
 
@@ -40,9 +41,22 @@ namespace IslandBoy
 		{
 			if (Pointer.IsOverUI()) return;
 			if(!_isFree)
+			{
 				FreeNpc();
+				GiveReward();
+			}
 
 			base.Interact();
+		}
+		
+		private void GiveReward()
+		{
+			foreach (ChestInvSlot item in _unboundRewards)
+			{
+				_po.Inventory.AddItem(item.OutputItem, item.OutputAmount, item.OutputItem.DefaultParameterList);
+			}
+			
+			GameSignals.SLOT_CLICKED.Dispatch();
 		}
 		
 		private void FreeNpc()

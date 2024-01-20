@@ -71,6 +71,7 @@ namespace IslandBoy
 				_swingSr.sprite = null;
 				return;
 			}
+			
 			_swingSr.sprite = _focusSlotRef.ItemObject == null ? null : _focusSlotRef.ItemObject is ToolObject ? _focusSlotRef.ItemObject.UiDisplay : null;
 		}
 
