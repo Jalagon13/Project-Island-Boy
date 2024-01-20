@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ced793ec58063419fad5e5ab897d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _swingCd: 0.15
+  _swingCd: 0.1
   _wooshClip: {fileID: 8300000, guid: 693f775d985d5c542a5f4361e1922d53, type: 3}
 --- !u!1 &365781309
 GameObject:
@@ -1524,13 +1524,14 @@ MonoBehaviour:
   _sc: {fileID: 64578573}
   _floorTm: {fileID: 11400000, guid: b781d136d63e9ae4597a0e6a2aba4acd, type: 2}
   _wallTm: {fileID: 11400000, guid: f6a16e81c33dd85419a8102faaa86be0, type: 2}
-  _startingClickDistance: 1
-  _clickCd: 0.235
   _hitParameter:
     Parameter: {fileID: 11400000, guid: c4b64d6fc16075a4ca7fd3181eeb7f65, type: 2}
     Value: 0
   _clickDistanceParameter:
     Parameter: {fileID: 11400000, guid: c25902e3274ad0a4a97f3515779aecea, type: 2}
+    Value: 0
+  _miningSpeedParameter:
+    Parameter: {fileID: 11400000, guid: 4ad4a0faaf8e8499e80aaf31f38ea091, type: 2}
     Value: 0
 --- !u!114 &1899998369453101134
 MonoBehaviour:

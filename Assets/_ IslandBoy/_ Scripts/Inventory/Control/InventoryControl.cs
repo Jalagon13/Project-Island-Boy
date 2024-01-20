@@ -85,7 +85,7 @@ namespace IslandBoy
 		public void DisplayInteractable(ISignalParameters parameters)
 		{
 			Interactable interactable = (Interactable)parameters.GetParameter("Interactable");
-			MMSoundManagerSoundPlayEvent.Trigger(_openSound, MMSoundManager.MMSoundManagerTracks.UI, default);
+			MMSoundManagerSoundPlayEvent.Trigger(_openSound, MMSoundManager.MMSoundManagerTracks.UI, default, volume:2f);
 			
 			OpenInventory(true, false);
 			_craftHolder.gameObject.SetActive(false);
@@ -144,7 +144,7 @@ namespace IslandBoy
 			_mainInventory.gameObject.SetActive(false);
 			_inventoryOpen = false;
 
-			MMSoundManagerSoundPlayEvent.Trigger(_closeSound, MMSoundManager.MMSoundManagerTracks.UI, default);
+			MMSoundManagerSoundPlayEvent.Trigger(_closeSound, MMSoundManager.MMSoundManagerTracks.UI, default, volume:2f);
 
 			foreach (Slot slot in _inventory.InventorySlots)
 			{
@@ -160,7 +160,7 @@ namespace IslandBoy
 			_craftHolder.gameObject.SetActive(true);
 
 			if (playSound)
-				MMSoundManagerSoundPlayEvent.Trigger(_openSound, MMSoundManager.MMSoundManagerTracks.UI, default);
+				MMSoundManagerSoundPlayEvent.Trigger(_openSound, MMSoundManager.MMSoundManagerTracks.UI, default, volume:2f);
 
 			GameSignals.INVENTORY_OPEN.Dispatch();
 

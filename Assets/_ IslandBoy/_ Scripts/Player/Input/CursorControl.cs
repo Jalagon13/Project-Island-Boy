@@ -17,10 +17,10 @@ namespace IslandBoy
 		[SerializeField] private SwingControl _sc;
 		[SerializeField] private TilemapObject _floorTm;
 		[SerializeField] private TilemapObject _wallTm;
-		[SerializeField] private float _startingClickDistance;
 		// [SerializeField] private float _clickCd = 0.1f;
 		[SerializeField] private ItemParameter _hitParameter;
 		[SerializeField] private ItemParameter _clickDistanceParameter;
+		[SerializeField] private ItemParameter _miningSpeedParameter;
 
 		private PlayerInput _input;
 		private SpriteRenderer _sr;
@@ -32,6 +32,7 @@ namespace IslandBoy
 		private bool _canUseActions = true;
 		private bool _heldDown;
 		private float _currentClickDistance;
+		private float _startingClickDistance = 1;
 
 		private void Awake()
 		{
@@ -42,7 +43,7 @@ namespace IslandBoy
 			_input.Player.SecondaryAction.started += Interact;
 			_input.Enable();
 
-			_clickTimer = new(_clickCd);
+			_clickTimer = new(0);
 
 			_sr = GetComponent<SpriteRenderer>();
 			_currentClickDistance = _startingClickDistance;
@@ -99,7 +100,7 @@ namespace IslandBoy
 
 		private void RefreshCd(ISignalParameters parameters)
 		{
-			_clickTimer.RemainingSeconds = _clickCd;
+			_clickTimer.RemainingSeconds = CalcMiningSpeed();
 		}
 
 		private void Hold(InputAction.CallbackContext context)
@@ -117,7 +118,7 @@ namespace IslandBoy
 			if (_currentClickable != null && _currentClickable is not Entity)
 			{
 				_currentClickable.OnHit(_focusSlotRef.ToolType, CalcToolHitAmount());
-				_clickTimer.RemainingSeconds = _clickCd;
+				_clickTimer.RemainingSeconds = CalcMiningSpeed();
 				return;
 			}
 		}
@@ -131,7 +132,7 @@ namespace IslandBoy
 			else if(_floorTm.Tilemap.HasTile(pos))
 				_floorTm.DynamicTilemap.Hit(pos, _focusSlotRef.ToolType);
 			
-			_clickTimer.RemainingSeconds = _clickCd;
+			_clickTimer.RemainingSeconds = CalcMiningSpeed();
 		}
 		
 		private void CheckWhenEnterNewTile()
@@ -185,6 +186,23 @@ namespace IslandBoy
 				_focusSlotRef = (Slot)parameters.GetParameter("FocusSlot");
 				_currentClickDistance = CalcClickDistance();
 			}
+		}
+
+		private float CalcMiningSpeed()
+		{
+			if (_focusSlotRef.ItemObject == null) return 0;
+
+			if (_focusSlotRef.ItemObject.DefaultParameterList.Contains(_miningSpeedParameter))
+			{
+				var index = _focusSlotRef.ItemObject.DefaultParameterList.IndexOf(_miningSpeedParameter);
+				var miningSpeedParameter = _focusSlotRef.ItemObject.DefaultParameterList[index];
+				var value = (float)miningSpeedParameter.Value;
+				var mSpeed = value / 60;
+				
+				return mSpeed;
+			}
+
+			return 0.25f;
 		}
 
 		private int CalcToolHitAmount()
