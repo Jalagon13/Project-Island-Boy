@@ -48,6 +48,8 @@ namespace IslandBoy
 			_upgradeCanvas.gameObject.SetActive(true);
 		}
 		
+		public void Close() => CloseUI(null);
+		
 		public override void CloseUI(ISignalParameters parameters)
 		{
 			base.CloseUI(parameters);

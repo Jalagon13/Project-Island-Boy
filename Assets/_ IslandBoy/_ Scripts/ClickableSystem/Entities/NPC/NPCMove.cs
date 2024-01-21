@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,19 +9,19 @@ namespace IslandBoy
 	public class NPCMove : StateMachineBehaviour
 	{
 		private NPCStateManager _ctx;
-		private Vector2 _wanderPos;
+		private Animator _animator;
 
 		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			//Debug.Log("Entering Move State");
+			Debug.Log("Entering Move State");
 			_ctx = animator.transform.parent.GetComponent<NPCStateManager>();
-			_ctx.OnMove += Move;
-			_wanderPos = CalcWanderPos();
+			_animator = animator;
+			_ctx.Seek(CalcWanderPos());
 		}
 
 		override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			if (_ctx.AI.remainingDistance < 0.25f)
+			if (_ctx.AI.reachedEndOfPath)
 			{
 				_ctx.ChangeToIdleState(animator);
 			}
@@ -28,12 +29,12 @@ namespace IslandBoy
 
 		public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			_ctx.OnMove -= Move;
+			
 		}
-
-		private void Move()
+		
+		private void SetToIdle()
 		{
-			// _ctx.Seek(_wanderPos);
+			_ctx.ChangeToIdleState(_animator);
 		}
 
 		private Vector2 CalcWanderPos()
@@ -48,14 +49,12 @@ namespace IslandBoy
 			Vector3 origin = _ctx.gameObject.transform.position;
 			randomDirection += origin;
 			
-			NavMeshHit navMeshHit;
-
-			// Find the nearest point on the NavMesh within the specified radius
-			if (NavMesh.SamplePosition(randomDirection, out navMeshHit, radius, -1))
+			GraphNode nearestNode = AstarPath.active.GetNearest(randomDirection).node;
+			if(nearestNode != null && nearestNode.Walkable)
 			{
-				Vector3 target = navMeshHit.position;
+				Vector3 target = (Vector3)nearestNode.position;
+			
 				var colliders = Physics2D.OverlapCircleAll(target, 0.2f);
-
 				foreach (var col in colliders)
 				{
 					if (col.TryGetComponent(out Door door))
