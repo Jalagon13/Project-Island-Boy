@@ -80,6 +80,7 @@ namespace IslandBoy
 			GenerateWallResources();
 			CreateTiles();
 			GenerateResources();
+			AStarExtensions.Instance.GenerateBarriers();
 		}
 		
 		private void GenerateResources()

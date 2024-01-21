@@ -16338,9 +16338,6 @@ GameObject:
   - component: {fileID: 4144664716987894339}
   - component: {fileID: 2173082719150023453}
   - component: {fileID: 1306350981014599772}
-  - component: {fileID: 4579137869153462530}
-  - component: {fileID: 3231673202136154181}
-  - component: {fileID: 1557209428420209652}
   m_Layer: 0
   m_Name: '[BOUND] Blacksmith'
   m_TagString: MOB
@@ -16403,8 +16400,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.4}
-  m_Size: {x: 1, y: 1}
+  m_Offset: {x: 0, y: 0.5487833}
+  m_Size: {x: 1, y: 1.3684158}
   m_Direction: 0
 --- !u!114 &2173082719150023453
 MonoBehaviour:
@@ -16441,7 +16438,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4130214595693391899}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
@@ -16459,6 +16456,7 @@ MonoBehaviour:
   _npcToUnlock: Blacksmith
   _unboundSprite: {fileID: 1001675587, guid: d1fdf00d255e2d942a949c35bbb7ace1, type: 3}
   _freeFeedback: {fileID: 7101727425430380639}
+  _unboundRewards: []
 --- !u!114 &1306350981014599772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16484,59 +16482,6 @@ MonoBehaviour:
     E to open your inventory.
   _signText: {fileID: 6317604928567283662}
   _tutorialObject: {fileID: 6986290445343982066}
---- !u!114 &4579137869153462530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5799062759696218101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32547f99ee7631b4b8138cf4543b7aff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
---- !u!114 &3231673202136154181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5799062759696218101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  drawGizmos: 1
-  detailedGizmos: 0
-  startEndModifier:
-    addPoints: 0
-    exactStartPoint: 3
-    exactEndPoint: 3
-    useRaycasting: 0
-    mask:
-      serializedVersion: 2
-      m_Bits: 4294967295
-    useGraphRaycasting: 0
-  traversableTags: -1
-  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  graphMask:
-    value: -1
---- !u!114 &1557209428420209652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5799062759696218101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 853825b7598e5455080954c0191f7d9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6001333560551159596
 GameObject:
   m_ObjectHideFlags: 0
@@ -17232,7 +17177,6 @@ GameObject:
   m_Component:
   - component: {fileID: 704874551988457571}
   - component: {fileID: 2857481710865779945}
-  - component: {fileID: 4130214595693391899}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -17307,27 +17251,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!95 &4130214595693391899
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7083302804194387072}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 753e238cba242014890d02d9d9d79e7c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7129378274048281638
 GameObject:
   m_ObjectHideFlags: 0

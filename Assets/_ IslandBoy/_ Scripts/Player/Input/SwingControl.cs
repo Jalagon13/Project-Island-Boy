@@ -16,6 +16,7 @@ namespace IslandBoy
 		private Animator _animator;
 		private Camera _camera;
 		private Slot _focusSlotRef;
+		private bool _canAnimate = true;
 
 		private readonly int _hashRightHit = Animator.StringToHash("[ANM] RightSwing");
 		private readonly int _hashUpHit = Animator.StringToHash("[ANM] UpSwing");
@@ -77,14 +78,20 @@ namespace IslandBoy
 
 		public void PerformAnimation()
 		{
-			if (_swingTimer.RemainingSeconds > 0 || _focusSlotRef == null || _focusSlotRef.ItemObject is not ToolObject || Pointer.IsOverUI()) return;
+			if (_swingTimer.RemainingSeconds > 0 || _focusSlotRef == null || _focusSlotRef.ItemObject is not ToolObject || Pointer.IsOverUI() || !_canAnimate) return;
 				
 			PerformCorrectAnimation();
 		}
 
+		public void OnSwingStart()
+		{
+			MMSoundManagerSoundPlayEvent.Trigger(_wooshClip, MMSoundManager.MMSoundManagerTracks.Sfx, default, volume:0.5f, pitch: Random.Range(0.9f, 1.1f));	
+		}
+		
 		public void OnSwingEnd()
 		{
 			_swingTimer.RemainingSeconds = _swingCd;
+			_canAnimate = true;
 			AnimStateManager.ChangeAnimationState(_animator, _hashIdle);
 		}
 
@@ -93,7 +100,8 @@ namespace IslandBoy
 			var cursorAngle = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 			var playerVec = cursorAngle - transform.root.position;
 			float angle = Mathf.Atan2(playerVec.y, playerVec.x) * Mathf.Rad2Deg;
-
+			_canAnimate = false;
+			
 			if (angle < 0)
 			{
 				angle = Mathf.Abs(angle);

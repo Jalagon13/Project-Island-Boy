@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,18 +13,18 @@ namespace IslandBoy
 
 		private Action _onMove;
 		private Vector2 _homePoint;
-		private AstarAI _ai;
+		private IAstarAI _ai;
 		private readonly int _hashIdle = Animator.StringToHash("[Anm] NPCIdle");
 		private readonly int _hashMove = Animator.StringToHash("[Anm] NPCMove");
 		
 		public Action OnMove { get { return _onMove; } set { _onMove = value; } }
 		public Vector2 HomePoint => _homePoint;
-		public AstarAI AI;
+		public IAstarAI AI => _ai;
 		
 		private void Awake()
 		{
 			_homePoint = transform.position;
-			_ai = GetComponent<AstarAI>();
+			_ai = GetComponent<IAstarAI>();
 		}
 
 		private void Update()

@@ -12,7 +12,7 @@ namespace IslandBoy
         {
             //Debug.Log("Entering Idle State");
             _ctx = animator.transform.parent.GetComponent<NPCStateManager>();
-            // _ctx.AI
+            _ctx.AI.isStopped = true;
             _ctx.OnMove += Idle;
             _ctx.StartCoroutine(IdleDuration(animator));
         }
@@ -35,7 +35,7 @@ namespace IslandBoy
         private IEnumerator IdleDuration(Animator animator)
         {
             yield return new WaitForSeconds(Random.Range(8f, 16f));
-            // _ctx.Agent.isStopped = false;
+            _ctx.AI.isStopped = false;
             _ctx.ChangeToMoveState(animator);
         }
     }
