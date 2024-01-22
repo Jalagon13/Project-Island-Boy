@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -20,15 +21,15 @@ namespace IslandBoy
 
 		override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			if (_ctx.Agent.remainingDistance < 0.25f)
+			if (_ctx.AI.remainingDistance < 0.25f)
 			{
 				_ctx.ChangeToIdleState(animator);
 			}
 
-			// if (_ctx.PlayerClose(_ctx.AgroDistance) && _ctx.CanGetToPlayer())
-			// {
-			//     _ctx.ChangeToChaseState(animator);
-			// }
+			if (_ctx.PlayerClose(_ctx.AgroDistance) && _ctx.CanGetToPlayer())
+			{
+				_ctx.ChangeToChaseState(animator);
+			}
 		}
 
 		public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -43,20 +44,27 @@ namespace IslandBoy
 
 		private Vector3 CalcWanderPos()
 		{
-			float radius = 4f;
-			Vector3 randomDirection = Random.insideUnitSphere * radius;
-			Vector3 origin = _ctx.gameObject.transform.position;
-			randomDirection += origin;
+			GraphNode startNode = AstarPath.active.GetNearest(_ctx.transform.position, NNConstraint.Default).node; 
+ 
+			List<GraphNode> nodes = PathUtilities.BFS(startNode, 10); 
+			Vector3 singleRandomPoint = PathUtilities.GetPointsOnNodes(nodes, 1)[0]; 
 			
-			NavMeshHit navMeshHit;
+			return singleRandomPoint;
+			
+			// float radius = 4f;
+			// Vector3 randomDirection = Random.insideUnitSphere * radius;
+			// Vector3 origin = _ctx.gameObject.transform.position;
+			// randomDirection += origin;
+			
+			// NavMeshHit navMeshHit;
 
-			// Find the nearest point on the NavMesh within the specified radius
-			if (NavMesh.SamplePosition(randomDirection, out navMeshHit, radius, -1))
-			{
-				return navMeshHit.position;
-			}
+			// // Find the nearest point on the NavMesh within the specified radius
+			// if (NavMesh.SamplePosition(randomDirection, out navMeshHit, radius, -1))
+			// {
+			// 	return navMeshHit.position;
+			// }
 			
-			return origin;
+			// return origin;
 		}
 
 	}

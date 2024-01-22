@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -16,18 +17,16 @@ namespace IslandBoy
 		public readonly int HashMove = Animator.StringToHash("[Anm] RusherMove");
 		public readonly int HashChase = Animator.StringToHash("[Anm] RusherChase");
 
-		private NavMeshAgent _agent;
+		private AIPath _agent;
 
 		[SerializeField] private float _agroDistance;
 
 		public float AgroDistance => _agroDistance;
-		public NavMeshAgent Agent => _agent;
+		public AIPath AI => _agent;
 
 		private void Awake()
 		{
-			_agent = GetComponent<NavMeshAgent>();
-			_agent.updateRotation = false;
-			_agent.updateUpAxis = false;
+			_agent = GetComponent<AIPath>();
 		}
 		
 		private void Update()

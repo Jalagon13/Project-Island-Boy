@@ -15,8 +15,8 @@ namespace IslandBoy
 		{
 			//Debug.Log("Entering Chase State");
 			_ctx = animator.transform.root.GetComponent<SlimeStateManager>();
-			_ctx.Agent.speed = _chaseSpeed;
-			_ctx.Agent.isStopped = false;
+			_ctx.AI.maxSpeed = _chaseSpeed;
+			_ctx.AI.isStopped = false;
 			_chasePos = _ctx.PR.Position;
 			_ctx.OnMove += Chase;
 
@@ -35,7 +35,7 @@ namespace IslandBoy
 
 		public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			_ctx.Agent.speed = 1;
+			_ctx.AI.maxSpeed = 1;
 			_ctx.OnMove -= Chase;
 		}
 
