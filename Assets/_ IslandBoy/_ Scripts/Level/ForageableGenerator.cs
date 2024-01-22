@@ -8,25 +8,33 @@ namespace IslandBoy
 {
     public class ForageableGenerator : SerializedMonoBehaviour
     {
-        public Tilemap gameFloor;
-        public TileBase placementTile; // Tile to place forageables on
-        public Dictionary<GameObject, double> forageables = new();
+        [SerializeField] private Tilemap gameFloorTm;
+        [SerializeField] private Tilemap _wallTm;
+        [SerializeField] private Tilemap _floorTm;
+        [SerializeField] private TileBase placementTile; // Tile to place forageables on
+        [SerializeField] private Dictionary<GameObject, double> forageables = new();
 
-        private BoundsInt bounds;
+        private BoundsInt _bounds;
 
         void Start()
         {
             GameSignals.DAY_START.AddListener(RefreshBiome);
-            gameFloor.CompressBounds();
-            bounds = gameFloor.cellBounds;
+            gameFloorTm.CompressBounds();
+            _bounds = gameFloorTm.cellBounds;
         }
 
         private void RefreshBiome(ISignalParameters parameters)
         {
-            for (int x = bounds.min.x; x < bounds.max.x; x++)
+            string test = "";
+            for (int x = _bounds.min.x; x < _bounds.max.x; x++)
             {
-                for (int y = bounds.min.y; y < bounds.max.y; y++)
+                for (int y = _bounds.min.y; y < _bounds.max.y; y++)
                 {
+                    if (!canSpawnOnTile(x, y)) // skip if there's no floor tile
+                        test += "-";//continue;
+                    else
+                        test += "*";
+                    /*
                     // skip if tile is occupied already
                     if (!canSpawnOnTile(x, y))
                         continue;
@@ -41,14 +49,26 @@ namespace IslandBoy
                     {
 
                     }
+                    */
                 }
+                test += '\n';
             }
+                    Debug.Log(test);
         }
 
         private bool canSpawnOnTile(int x, int y)
         {
-            Vector3Int cellPos = new Vector3Int(x, y, 0);
-            return gameFloor.GetTile(cellPos) == placementTile && gameFloor.GetInstantiatedObject(cellPos) == null;// figure out what empty tile returns
+            Vector3Int cellPos = new Vector3Int(x, y);
+            // Find out if there is a tile on floor, it is not a floor, it is not a wall, and if there is no resource on it
+            if (!gameFloorTm.HasTile(cellPos) || _floorTm.HasTile(cellPos) || _wallTm.HasTile(cellPos))
+                return false;
+            Collider2D[] cols = Physics2D.OverlapPointAll(new Vector2(x,y));
+            foreach(Collider2D c in cols)
+            {
+                if (c.gameObject.tag == "RSC")
+                    return false; // means theres a resouce at the space
+            }
+            return true;
         }
 
         private List<GameObject> getSurroundings(int x, int y)
@@ -59,13 +79,13 @@ namespace IslandBoy
                 for (int sy = y - 1; sy <= y + 1; sy++)
                 {
                     // skip if out of bounds or is the middle tile or is not a forageable
-                    if (sx < bounds.min.x || sx > bounds.max.x ||
-                        sy < bounds.min.y || sy < bounds.max.y ||
+                    if (sx < _bounds.min.x || sx > _bounds.max.x ||
+                        sy < _bounds.min.y || sy < _bounds.max.y ||
                         (sx == x && sy == y)) // add latter later
                         continue;
 
-                    Vector3Int cellPos = new Vector3Int(sx, sy, 0);
-                    surroundings.Add(gameFloor.GetInstantiatedObject(cellPos));
+                    Vector3Int cellPos = new Vector3Int(sx, sy);
+                    surroundings.Add(gameFloorTm.GetInstantiatedObject(cellPos));
                 }
             }
             return surroundings;

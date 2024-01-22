@@ -4322,8 +4322,16 @@ MonoBehaviour:
   _startingItems:
   - OutputItem: {fileID: 11400000, guid: 6dbf17cc40618ef4497ad3cc834f0ad2, type: 2}
     OutputAmount: 1
-  - OutputItem: {fileID: 11400000, guid: 5626bcedc9456416d94cab51284cc91a, type: 2}
+  - OutputItem: {fileID: 11400000, guid: 902774a644957654d84a660b19ecc643, type: 2}
+    OutputAmount: 1
+  - OutputItem: {fileID: 11400000, guid: c67ec61e0f752f845be2a959a4108887, type: 2}
     OutputAmount: 99
+  - OutputItem: {fileID: 11400000, guid: e5ab57a91a28c384882e588fbf1e3392, type: 2}
+    OutputAmount: 1
+  - OutputItem: {fileID: 11400000, guid: c471fb80a5facc043b05c95d8df96e43, type: 2}
+    OutputAmount: 99
+  - OutputItem: {fileID: 11400000, guid: f64092d6d0d834f43aed2758782adce6, type: 2}
+    OutputAmount: 1
   _allSlots:
   - {fileID: 1398917238}
   - {fileID: 658019018}
@@ -4384,7 +4392,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -20}
+  m_AnchoredPosition: {x: 0, y: -19.999878}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &5602138070249294678
