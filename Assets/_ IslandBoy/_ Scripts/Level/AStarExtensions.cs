@@ -26,10 +26,10 @@ namespace IslandBoy
 			_instance = this;
 		}
 		
-		private void Start()
-		{
-			GenerateBarriers();
-		}
+		// private void Start()
+		// {
+		// 	GenerateBarriers();
+		// }
 		
 		public void UpdatePathfinding(Vector3Int target, Vector3 size)
 		{
@@ -56,6 +56,7 @@ namespace IslandBoy
 		
 		public void GenerateBarriers()
 		{
+			_barrierTilemap = transform.GetChild(0).GetChild(0).GetComponent<Tilemap>();
 			_barrierTilemap.ClearAllTiles();
 			
 			var playerPos = Vector3Int.FloorToInt(_po.Position);
