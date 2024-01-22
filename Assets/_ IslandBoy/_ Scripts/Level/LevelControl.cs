@@ -11,7 +11,17 @@ namespace IslandBoy
 	{
 		public static int CaveLevelToLoad = 0;
 		
-		public static GameObject DeployParent;
+		private static GameObject DeployParent;
+		
+		public static void SetDP(GameObject dp)
+		{
+			DeployParent = dp;
+		}
+		
+		public static GameObject GetDP()
+		{
+			return DeployParent;
+		}
 		
 		private void Awake()
 		{

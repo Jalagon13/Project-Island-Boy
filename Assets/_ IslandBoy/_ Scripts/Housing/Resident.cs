@@ -26,6 +26,7 @@ namespace IslandBoy
 		{
 			NPC.gameObject.SetActive(false);
 			NPC.gameObject.transform.position = pos;
+			NPC.GetComponent<NPCStateManager>().SetHomePoint(pos);
 			NPC.gameObject.SetActive(true);
 		}
 	}

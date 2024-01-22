@@ -96,19 +96,16 @@ namespace IslandBoy
 			
 			if(index != _rewardLevelIndex)	
 				SetRewardRoomActive(false);
-			Debug.Log("yum");
+				
 			if(index > -1 && index < transform.childCount)
 			{
 				DeActivateAllLevels();
-				Debug.Log("YUMMY");
 				if(index == _rewardLevelIndex)
 				{
 					LoadRewardRoom();
-					Debug.Log("Loading Reward Room");
 				}
 				else
 				{
-					Debug.Log("Activing level above");
 					SetLevelActive(index);
 				}	
 			}

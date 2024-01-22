@@ -12562,8 +12562,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 88724639896519210}
-        m_TargetAssemblyTypeName: IslandBoy.NPCEntity, Assembly-CSharp
-        m_MethodName: CloseUI
+        m_TargetAssemblyTypeName: IslandBoy.NPC, Assembly-CSharp
+        m_MethodName: Close
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12835,7 +12835,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6171642594750953717
 Transform:
   m_ObjectHideFlags: 0
@@ -12944,10 +12944,34 @@ MonoBehaviour:
   _prompCanvas: {fileID: 2557673953188033689}
   _onOpenPrompt:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1721715907482162878}
+        m_TargetAssemblyTypeName: Pathfinding.AIBase, AstarPathfindingProject
+        m_MethodName: set_isStopped
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   _onClosePrompt:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1721715907482162878}
+        m_TargetAssemblyTypeName: Pathfinding.AIBase, AstarPathfindingProject
+        m_MethodName: set_isStopped
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _questCanvas: {fileID: 8090540733700207227}
   _shopCanvas: {fileID: 1667663690214485934}
   _upgradeCanvas: {fileID: 7386138585088704820}
@@ -12964,7 +12988,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  AI: {fileID: 0}
 --- !u!114 &155627716299402984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13075,7 +13098,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 5
-  radius: 0.5
+  radius: 0.01
   height: 2
   canMove: 1
   maxSpeed: 1
@@ -13097,12 +13120,12 @@ MonoBehaviour:
   targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
   rotationSpeed: 360
-  slowdownDistance: 0.25
-  pickNextWaypointDist: 2
-  endReachedDistance: 0.15
+  slowdownDistance: 0.15
+  pickNextWaypointDist: 0.1
+  endReachedDistance: 0.35
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
-  whenCloseToDestination: 1
+  whenCloseToDestination: 0
   constrainInsideGraph: 0
 --- !u!1 &5998598627032422697
 GameObject:

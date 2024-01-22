@@ -32,7 +32,8 @@ namespace IslandBoy
 		[SerializeField] private Clickable _pot;
 		[SerializeField] private Clickable _stone;
 		[SerializeField] private Clickable _staircase; 
-		[SerializeField] private TileBase _rscTile;
+		[SerializeField] private TileBase _ironOre;
+		[SerializeField] private TileBase _coalOre;
 		
 		private int[,] _map;
 		
@@ -53,19 +54,20 @@ namespace IslandBoy
 		
 		public InitialSpawnPosition SpawnPosition => _isp;
 		
-		private void Awake()
-		{
-			Generate();
-		}
-		
 		private void OnEnable()
 		{
-			LevelControl.DeployParent = _resourceHolder;
+			_resourceHolder = transform.GetChild(2).gameObject;
+			LevelControl.SetDP(_resourceHolder);
 		}
 		
 		private void OnDisable()
 		{
-			LevelControl.DeployParent = null;
+			LevelControl.SetDP(null);
+		}
+		
+		private void Start()
+		{
+			Generate();
 		}
 		
 		#region Map Generation
@@ -80,6 +82,13 @@ namespace IslandBoy
 			GenerateWallResources();
 			CreateTiles();
 			GenerateResources();
+			// AstarPath.active.Scan();
+			StartCoroutine(Delay());
+		}
+		
+		private IEnumerator Delay()
+		{
+			yield return new WaitForEndOfFrame();
 			AStarExtensions.Instance.GenerateBarriers();
 		}
 		
@@ -269,19 +278,27 @@ namespace IslandBoy
 			
 			for (int i = 0; i < clumpsPerQuadrant; i++)
 			{
-				GenerateClump(iterations, GetRandomPositionBR());
-				GenerateClump(iterations, GetRandomPositionBL());
-				GenerateClump(iterations, GetRandomPositionTR());
-				GenerateClump(iterations, GetRandomPositionTL());
+				GenerateClump(iterations, GetRandomPositionBR(), _ironOre);
+				GenerateClump(iterations, GetRandomPositionBL(), _ironOre);
+				GenerateClump(iterations, GetRandomPositionTR(), _ironOre);
+				GenerateClump(iterations, GetRandomPositionTL(), _ironOre);
+			}
+			
+			for (int i = 0; i < clumpsPerQuadrant; i++)
+			{
+				GenerateClump(iterations, GetRandomPositionBR(), _coalOre);
+				GenerateClump(iterations, GetRandomPositionBL(), _coalOre);
+				GenerateClump(iterations, GetRandomPositionTR(), _coalOre);
+				GenerateClump(iterations, GetRandomPositionTL(), _coalOre);
 			}
 		}
 		
-		private void GenerateClump(int iterations, Vector3Int pos)
+		private void GenerateClump(int iterations, Vector3Int pos, TileBase ore)
 		{
 			for (int clump = 0; clump < iterations; clump++)
 			{
-				Vector3Int offset = new Vector3Int(Random.Range(-3, 3), Random.Range(-3, 3));
-				GenerateBlob(pos + offset, Random.Range(1, 2), _wallTilemap, _rscTile);
+				Vector3Int offset = new Vector3Int(Random.Range(-2, 2), Random.Range(-2, 2));
+				GenerateBlob(pos + offset, Random.Range(1, 2), _wallTilemap, ore);
 			}
 		}
 		

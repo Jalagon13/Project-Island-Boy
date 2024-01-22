@@ -309,9 +309,9 @@ namespace IslandBoy
 			var position = _currentCenterPos -= new Vector2(0.5f, 0.5f);
 			var d = Instantiate(deployable, position, Quaternion.identity);
 			
-			if(LevelControl.DeployParent != null)
+			if(LevelControl.GetDP() != null)
 			{
-				d.transform.SetParent(LevelControl.DeployParent.transform);
+				d.transform.SetParent(LevelControl.GetDP().transform);
 			}
 		}
 
