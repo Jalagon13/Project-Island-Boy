@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace IslandBoy
@@ -9,7 +10,8 @@ namespace IslandBoy
 		[Header("Base Entity Parameters")]
 		[SerializeField] protected PlayerObject _pr;
 		[SerializeField] private float _durationUntilDespawn;
-		[SerializeField] private bool _dontGiveXp = false;
+		[MinMaxSlider(0, 99, true)]
+		[SerializeField] private Vector2 _amount;
 
 		protected KnockbackFeedback _knockback;
 		private Timer _despawnTimer;
@@ -94,14 +96,16 @@ namespace IslandBoy
 		public override void OnBreak()
 		{
 			_dropPosition = transform.position;
-
-			if (!_dontGiveXp)
-			{
-				PopupMessage.Create(transform.position, $"+ {_maxHitPoints} XP", Color.white, Vector2.up, 1f);
-				// PlayerExperience.AddExerpience(_maxHitPoints);
-			}
+			
+			GiveMoney();
 
 			base.OnBreak();
+		}
+		
+		public void GiveMoney()
+		{
+			int amount = Random.Range((int)_amount.x, (int)_amount.y);
+			PlayerGoldController.Instance.AddCurrency(amount, transform.position);
 		}
 	}
 }
