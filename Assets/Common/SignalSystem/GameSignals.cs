@@ -49,5 +49,8 @@ namespace IslandBoy
 		// Shift-click Signals
 		public static readonly Signal ADD_ITEMS_TO_CHEST = new("AddItemsToChest"); // BROOKE
 		public static readonly Signal ADD_ITEM_TO_INVENTORY_FROM_CHEST = new("AddItemToInventoryFromChest"); // BROOKE
+
+		// Fishing Signals
+		public static readonly Signal FISHING_MINIGAME_END = new("FishingMinigameEnd");
 	}
 }
