@@ -9,14 +9,12 @@ namespace IslandBoy
 	public class SlimeMove : StateMachineBehaviour
 	{
 		private SlimeStateManager _ctx;
-		private Vector2 _wanderPos;
 
 		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
 			// Debug.Log("Entering Move State");
 			_ctx = animator.transform.root.GetComponent<SlimeStateManager>();
-			_ctx.OnMove += Move;
-			_wanderPos = CalcWanderPos();
+			_ctx.Seek(CalcWanderPos());
 		}
 
 		override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -34,12 +32,6 @@ namespace IslandBoy
 
 		public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			_ctx.OnMove -= Move;
-		}
-
-		private void Move()
-		{
-			_ctx.Seek(_wanderPos);
 		}
 
 		private Vector3 CalcWanderPos()
@@ -50,21 +42,6 @@ namespace IslandBoy
 			Vector3 singleRandomPoint = PathUtilities.GetPointsOnNodes(nodes, 1)[0]; 
 			
 			return singleRandomPoint;
-			
-			// float radius = 4f;
-			// Vector3 randomDirection = Random.insideUnitSphere * radius;
-			// Vector3 origin = _ctx.gameObject.transform.position;
-			// randomDirection += origin;
-			
-			// NavMeshHit navMeshHit;
-
-			// // Find the nearest point on the NavMesh within the specified radius
-			// if (NavMesh.SamplePosition(randomDirection, out navMeshHit, radius, -1))
-			// {
-			// 	return navMeshHit.position;
-			// }
-			
-			// return origin;
 		}
 
 	}

@@ -7,7 +7,7 @@ namespace IslandBoy
 {
 	public abstract class RuntimeSet<T> : ScriptableObject
 	{
-		private List<T> _items = new();
+		protected List<T> _items = new();
 		
 		public int ListSize { get {return _items.Count; }}
 		

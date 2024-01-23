@@ -29,12 +29,16 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: _swingDestructOnly
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Max
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Min
@@ -104,6 +108,10 @@ PrefabInstance:
       propertyPath: managedReferences[1619343171848765462].Sfx
       value: 
       objectReference: {fileID: 8300000, guid: b5200b6ea8cc82247bb456bbb17683a2, type: 3}
+    - target: {fileID: 4871828697884116381, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: managedReferences[1619343171848765445].Active
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5343309374458340233, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_IsActive
       value: 0

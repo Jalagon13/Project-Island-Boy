@@ -82,14 +82,6 @@ namespace IslandBoy
 			GenerateWallResources();
 			CreateTiles();
 			GenerateResources();
-			// AstarPath.active.Scan();
-			StartCoroutine(Delay());
-		}
-		
-		private IEnumerator Delay()
-		{
-			yield return new WaitForEndOfFrame();
-			AStarExtensions.Instance.GenerateBarriers();
 		}
 		
 		private void GenerateResources()

@@ -88,7 +88,7 @@ namespace IslandBoy
 				if (!_floorTm.Tilemap.HasTile(p) && !_wallTm.Tilemap.HasTile(p) && !HasDoor(p))
 				{
 					//_feedbackHolder.DisplayFeedback("Not valid housing. Make sure the area around you is enclosed.", Color.yellow);
-					PopupMessage.Create(transform.position, "Area not enclosed with floor and wall", Color.yellow, new(0.5f, 0.5f), 3f);
+					PopupMessage.Create(transform.position, "Area not enclosed with floor and wall or missing a door", Color.yellow, new(0.5f, 0.5f), 3f);
 					return false;
 				}
 

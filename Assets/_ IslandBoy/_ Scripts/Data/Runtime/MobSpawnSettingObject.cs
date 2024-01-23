@@ -14,6 +14,12 @@ namespace IslandBoy
 		
 		public int MaxMonsterCount { get {return _maxMonsterCount; } }
 		public float SpawnPercentPerSec { get {return _spawnPercentPerSec; } }
-		public Entity GetRandomEntity { get{ return _entityList[Random.Range(0, _entityList.Count)]; } }
+		public int EntityListLength { get { return _entityList.Count; } }
+		public Entity GetRandomEntity { 
+			get
+			{ 
+				return _entityList[Random.Range(0, _entityList.Count)]; 
+			} 
+		}
 	}
 }

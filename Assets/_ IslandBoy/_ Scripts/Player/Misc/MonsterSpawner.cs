@@ -11,38 +11,42 @@ namespace IslandBoy
 {
 	public class MonsterSpawner : MonoBehaviour
 	{
+		[SerializeField] private PlayerObject _po;
 		[SerializeField] private EntityRuntimeSet _entityRTS;
 		[SerializeField] private TilemapObject _wallTm;
 		[SerializeField] private TilemapObject _floorTm;
-		[SerializeField] private MobSpawnSettingObject _forestSpawnSetting;
+		[SerializeField] private MobSpawnSettingObject _spawnSettings;
+		[SerializeField] private int _maxMonsterSpawnRange;
 
 		private void Awake()
 		{
 			GameSignals.DAY_START.AddListener(UnPauseMonsterSpawning);
 			GameSignals.DAY_END.AddListener(PauseMonsterSpawning);
-			GameSignals.CHANGE_SCENE.AddListener(UpdateEntitySet);
 		}
 
 		private void OnDestroy()
 		{
 			GameSignals.DAY_START.RemoveListener(UnPauseMonsterSpawning);
 			GameSignals.DAY_END.RemoveListener(PauseMonsterSpawning);
-			GameSignals.CHANGE_SCENE.RemoveListener(UpdateEntitySet);
 		}
-
-		private void Start()
+		
+		private void OnEnable()
 		{
+			if(_spawnSettings.EntityListLength <= 0)
+				return;
+			
 			StartCoroutine(SpawnMonsterTimer());
+		}
+		
+		private void OnDisable()
+		{
+			StopAllCoroutines();
+			_entityRTS.Initialize();
 		}
 
 		public void MonsterSpawnDebugButton()
 		{
 			SpawnMonster();
-		}
-
-		private void UpdateEntitySet(ISignalParameters parameters)
-		{
-			_entityRTS.Initialize();
 		}
 		
 		private void PauseMonsterSpawning(ISignalParameters parameters)
@@ -61,7 +65,7 @@ namespace IslandBoy
 			
 			float chance = Random.Range(0,100f);
 			
-			if (chance < _forestSpawnSetting.SpawnPercentPerSec && _entityRTS.ListSize < _forestSpawnSetting.MaxMonsterCount)
+			if (chance < _spawnSettings.SpawnPercentPerSec && _entityRTS.ListSize < _spawnSettings.MaxMonsterCount)
 			{
 				SpawnMonster();
 			}
@@ -88,19 +92,20 @@ namespace IslandBoy
 
 		private Entity MonsterToSpawn()
 		{
-			return _forestSpawnSetting.GetRandomEntity;
+			return _spawnSettings.GetRandomEntity;
 		}
 
 		private void Spawn(Entity monster, Vector2 pos)
 		{
+			Debug.Log($"Spawning: {monster.name}");
 			Instantiate(monster, pos, Quaternion.identity);
 		}
 
 		private Vector2 CalcSpawnPos()
 		{
-			GraphNode startNode = AstarPath.active.GetNearest(transform.position, NNConstraint.Default).node; 
+			GraphNode startNode = AstarPath.active.GetNearest(_po.Position, NNConstraint.Default).node; 
  
-			List<GraphNode> nodes = PathUtilities.BFS(startNode, 35); 
+			List<GraphNode> nodes = PathUtilities.BFS(startNode, _maxMonsterSpawnRange); 
 			Vector3 singleRandomPoint = PathUtilities.GetPointsOnNodes(nodes, 1)[0]; 
  
 			return singleRandomPoint; 

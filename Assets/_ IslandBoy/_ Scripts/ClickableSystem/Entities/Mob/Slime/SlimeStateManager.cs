@@ -11,7 +11,6 @@ namespace IslandBoy
 	{
 		public PlayerObject PR;
 		public AudioClip _agroSound;
-		public Action OnMove;
 
 		public readonly int HashIdle = Animator.StringToHash("[Anm] RusherIdle");
 		public readonly int HashMove = Animator.StringToHash("[Anm] RusherMove");
@@ -27,11 +26,6 @@ namespace IslandBoy
 		private void Awake()
 		{
 			_agent = GetComponent<AIPath>();
-		}
-		
-		private void Update()
-		{
-			OnMove?.Invoke();
 		}
 
 		public void ChangeToIdleState(Animator animator)

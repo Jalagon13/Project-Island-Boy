@@ -13,7 +13,6 @@ namespace IslandBoy
             // Debug.Log("Entering Idle State");
             _ctx = animator.transform.root.GetComponent<SlimeStateManager>();
             _ctx.AI.isStopped = true;
-            _ctx.OnMove += Idle;
             _ctx.StartCoroutine(IdleDuration(animator));
         }
 
@@ -27,12 +26,6 @@ namespace IslandBoy
 
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            _ctx.OnMove -= Idle;
-        }
-
-        private void Idle()
-        {
-            
         }
 
         private IEnumerator IdleDuration(Animator animator)
