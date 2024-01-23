@@ -4319,7 +4319,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxStack: 999
-  _startingItems: []
+  _startingItems:
+  - OutputItem: {fileID: 11400000, guid: 45360d815855e4d33ab39d15093b9b29, type: 2}
+    OutputAmount: 99
   _allSlots:
   - {fileID: 1398917238}
   - {fileID: 658019018}

@@ -39,9 +39,9 @@ namespace IslandBoy
 				_currentHitPoints = rte.MaxHitPoints;
 			}
 			
-			public void Hit()
+			public void Hit(int amount = 1)
 			{
-				_currentHitPoints--;
+				_currentHitPoints -= amount;
 			}
 			
 			public void Restore()
@@ -94,7 +94,7 @@ namespace IslandBoy
 			_data = new();
 		}
 		
-		public void Hit(Vector3Int pos, ToolType toolType)
+		public void Hit(Vector3Int pos, ToolType toolType, int amount = 1)
 		{
 			if(IsHittable(pos))
 			{
@@ -105,18 +105,18 @@ namespace IslandBoy
 					_data.Add(pos, td);
 				}
 				
-				HitTile(pos, toolType);
+				HitTile(pos, toolType, amount);
 			}
 		}
 		
-		private void HitTile(Vector3Int target, ToolType tooltype)
+		public void HitTile(Vector3Int target, ToolType tooltype, int amount = 1)
 		{
 			_restoreHpTimer.RemainingSeconds = 5;
 			TileData tileData = _data[target];
 			
 			if(tileData.RuleTile.HitToolType == tooltype)
 			{
-				tileData.Hit();
+				tileData.Hit(amount);
 				PlayGameFeel(target);
 				PlaySound(tileData.RuleTile.HitSound);
 				GameSignals.CLICKABLE_CLICKED.Dispatch();
@@ -133,6 +133,20 @@ namespace IslandBoy
 			}
 		}
 		
+		public void DestroyTile(Vector3Int target)
+		{
+			var tile = Tilemap.GetTile(target);
+			
+			if(tile is RuleTileExtended)
+			{
+				RuleTileExtended t = (RuleTileExtended)tile;
+				Vector2 spawnPos = new(target.x + UnityEngine.Random.Range(0.25f, 0.75f), target.y + UnityEngine.Random.Range(0.25f, 0.75f));
+				GameAssets.Instance.SpawnItem(spawnPos, t.Item, 1);
+				Tilemap.SetTile(target, null);
+				AStarExtensions.Instance.UpdatePathfinding(target, new(4, 4, 4));
+			}
+		}
+		
 		private void PlayGameFeel(Vector3Int target)
 		{
 			if(_hitFeedbacks == null) return;
@@ -146,7 +160,7 @@ namespace IslandBoy
 		
 		private void SpawnItemFromTileData(TileData data, Vector3Int target)
 		{
-			Vector2 spawnPos = new(target.x + 0.5f, target.y + 0.5f);
+			Vector2 spawnPos = new(target.x + UnityEngine.Random.Range(0.25f, 0.75f), target.y + UnityEngine.Random.Range(0.25f, 0.75f));
 			GameAssets.Instance.SpawnItem(spawnPos, data.RuleTile.Item, 1);
 		}
 		

@@ -315,6 +315,7 @@ SpriteAtlas:
     - 75594b36fd8cd0d409de8dacfcaf419b: -1305312829
     - 75594b36fd8cd0d409de8dacfcaf419b: -1995232107
     - 75594b36fd8cd0d409de8dacfcaf419b: 1844556041
+    - 75594b36fd8cd0d409de8dacfcaf419b: -1704994463
     - 75594b36fd8cd0d409de8dacfcaf419b: -1475151143
     - 75594b36fd8cd0d409de8dacfcaf419b: -2128986211
     - 75594b36fd8cd0d409de8dacfcaf419b: 941267960
@@ -1101,6 +1102,7 @@ SpriteAtlas:
   - {fileID: -1305312829, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1995232107, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1844556041, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  - {fileID: -1704994463, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1475151143, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -2128986211, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 941267960, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
@@ -1886,6 +1888,7 @@ SpriteAtlas:
   - item_broken_pickaxe
   - item_torch
   - item_wood_hammer
+  - item_bomb
   - item_mushed_apple
   - item_cooked_fish
   - item_iron_anvil
