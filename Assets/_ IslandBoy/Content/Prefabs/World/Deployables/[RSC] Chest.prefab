@@ -2648,6 +2648,10 @@ PrefabInstance:
       propertyPath: managedReferences[1619343171848765461].Sfx
       value: 
       objectReference: {fileID: 8300000, guid: 7af607a3736db8a43bd85f247755f233, type: 3}
+    - target: {fileID: 7260606805276754575, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1845987391, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
     - target: {fileID: 8029168127436864084, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
