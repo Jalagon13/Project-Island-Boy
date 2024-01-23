@@ -16,10 +16,12 @@ namespace IslandBoy
 		[SerializeField] protected bool _destructable = true;
 		[Tooltip("Think of Grass from Terraria")]
 		[SerializeField] protected bool _swingDestructOnly = false;
+		[SerializeField] protected int _spawnRate;
 
-		public bool SwingDestructOnly { get { return _swingDestructOnly; } }
+        public bool SwingDestructOnly { get { return _swingDestructOnly; } }
+        public int SpawnRate { get { return _spawnRate; } }
 
-		private Timer _restoreHpTimer;
+        private Timer _restoreHpTimer;
 
 
 		protected override void Awake()

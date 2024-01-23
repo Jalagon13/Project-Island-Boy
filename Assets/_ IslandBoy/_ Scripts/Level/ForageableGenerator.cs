@@ -1,18 +1,18 @@
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace IslandBoy
 {
-    public class ForageableGenerator : SerializedMonoBehaviour
+    public class ForageableGenerator : MonoBehaviour
     {
         [SerializeField] private Tilemap gameFloorTm;
         [SerializeField] private Tilemap _wallTm;
         [SerializeField] private Tilemap _floorTm;
-        [SerializeField] private TileBase placementTile; // Tile to place forageables on
-        [SerializeField] private Dictionary<GameObject, double> forageables = new();
+        [SerializeField] private List<GameObject> forageables = new();
 
         private BoundsInt _bounds;
 
@@ -30,30 +30,33 @@ namespace IslandBoy
             {
                 for (int y = _bounds.min.y; y < _bounds.max.y; y++)
                 {
-                    if (!canSpawnOnTile(x, y)) // skip if there's no floor tile
-                        test += "-";//continue;
-                    else
-                        test += "*";
-                    /*
                     // skip if tile is occupied already
                     if (!canSpawnOnTile(x, y))
+                    {
+                        test += "-";
                         continue;
+                    }
+                    else 
+                        test += "*";
                     // look at all surrounding tiles
                     List<GameObject> surroundings = getSurroundings(x,y);
-                    GameObject referenceTile = surroundings[Random.Range(0, surroundings.Count)];
-                    if (referenceTile == null)
+                    int tile = Random.Range(0, surroundings.Count);
+                    if (surroundings.Count == 0 || surroundings[tile] == null) // get random resource if empty tile chosen
                     {
-                        // choose random forageable
+                        int spawnOb = Random.Range(0, forageables.Count);
+                        // spawn object if probability met
+                        if (Random.Range(0, forageables[spawnOb].GetComponent<Resource>().SpawnRate) < forageables[spawnOb].GetComponent<Resource>().SpawnRate)
+                            Instantiate(forageables[spawnOb], new Vector3(x, y), Quaternion.identity);
                     }
-                    else
+                    else // attempt to spawn chosen tile if not empty tile
                     {
-
+                        if (Random.Range(0, surroundings[tile].GetComponent<Resource>().SpawnRate) < surroundings[tile].GetComponent<Resource>().SpawnRate)
+                            Instantiate(surroundings[tile], new Vector3(x, y), Quaternion.identity);
                     }
-                    */
                 }
                 test += '\n';
             }
-                    Debug.Log(test);
+            Debug.Log(test);
         }
 
         private bool canSpawnOnTile(int x, int y)
@@ -84,8 +87,19 @@ namespace IslandBoy
                         (sx == x && sy == y)) // add latter later
                         continue;
 
-                    Vector3Int cellPos = new Vector3Int(sx, sy);
-                    surroundings.Add(gameFloorTm.GetInstantiatedObject(cellPos));
+                    if (canSpawnOnTile(sx, sy))
+                        surroundings.Add(null);
+                    else
+                    {
+                        Collider2D[] cols = Physics2D.OverlapPointAll(new Vector2(x, y));
+                        foreach (Collider2D c in cols)
+                        {
+                            if (c.gameObject.tag == "RSC" &&
+                                c.gameObject.GetComponent<Resource>() != null &&
+                                c.gameObject.GetComponent<Resource>().SpawnRate > 0) // may chage to have bool for spawn naturally
+                                surroundings.Add(c.gameObject);
+                        }
+                    }
                 }
             }
             return surroundings;
