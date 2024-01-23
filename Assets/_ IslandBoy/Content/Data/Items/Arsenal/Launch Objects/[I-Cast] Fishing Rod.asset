@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb982a8c15ea7cd42bb34919be0f9795, type: 3}
+  m_Name: '[I-Cast] Fishing Rod'
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Fishing Rod
+  <UiDisplay>k__BackingField: {fileID: 1879242436, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  <Stackable>k__BackingField: 0
+  <Description>k__BackingField: 
+  <DefaultParameterList>k__BackingField: []
+  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
+  _launchPrefab: {fileID: 2130076380612678164, guid: 9e4580ef73ad9f94da05e9e90082105d, type: 3}
+  _ammo: {fileID: 11400000, guid: 8c12a5b27fd960049b50411862e5e96d, type: 2}
+  _launchSound: {fileID: 8300000, guid: 693f775d985d5c542a5f4361e1922d53, type: 3}

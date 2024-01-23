@@ -80,6 +80,24 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Fishing"",
+                    ""type"": ""Value"",
+                    ""id"": ""6784d131-fb5e-464d-9817-0344163ff9b9"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""CatchFish"",
+                    ""type"": ""Button"",
+                    ""id"": ""2dfd4991-4f7d-4fb2-8356-ba127c2b2a84"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -190,6 +208,50 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SpeedDebug"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Movement"",
+                    ""id"": ""572096e3-ebab-4096-acc0-6dd6e9b79145"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fishing"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""71a01a21-f320-4ee6-b6cd-8a3a4750da66"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fishing"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""d738f383-24fd-4c6f-bada-dc26ec4fb59f"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fishing"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""76fb5f61-3e79-4ac7-80e0-7c8b65e87c77"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CatchFish"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -414,6 +476,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_ToggleInventory = m_Player.FindAction("ToggleInventory", throwIfNotFound: true);
         m_Player_PauseMenu = m_Player.FindAction("PauseMenu", throwIfNotFound: true);
         m_Player_SpeedDebug = m_Player.FindAction("SpeedDebug", throwIfNotFound: true);
+        m_Player_Fishing = m_Player.FindAction("Fishing", throwIfNotFound: true);
+        m_Player_CatchFish = m_Player.FindAction("CatchFish", throwIfNotFound: true);
         // Hotbar
         m_Hotbar = asset.FindActionMap("Hotbar", throwIfNotFound: true);
         m_Hotbar__1 = m_Hotbar.FindAction("1", throwIfNotFound: true);
@@ -493,6 +557,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ToggleInventory;
     private readonly InputAction m_Player_PauseMenu;
     private readonly InputAction m_Player_SpeedDebug;
+    private readonly InputAction m_Player_Fishing;
+    private readonly InputAction m_Player_CatchFish;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -503,6 +569,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @ToggleInventory => m_Wrapper.m_Player_ToggleInventory;
         public InputAction @PauseMenu => m_Wrapper.m_Player_PauseMenu;
         public InputAction @SpeedDebug => m_Wrapper.m_Player_SpeedDebug;
+        public InputAction @Fishing => m_Wrapper.m_Player_Fishing;
+        public InputAction @CatchFish => m_Wrapper.m_Player_CatchFish;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -530,6 +598,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @SpeedDebug.started += instance.OnSpeedDebug;
             @SpeedDebug.performed += instance.OnSpeedDebug;
             @SpeedDebug.canceled += instance.OnSpeedDebug;
+            @Fishing.started += instance.OnFishing;
+            @Fishing.performed += instance.OnFishing;
+            @Fishing.canceled += instance.OnFishing;
+            @CatchFish.started += instance.OnCatchFish;
+            @CatchFish.performed += instance.OnCatchFish;
+            @CatchFish.canceled += instance.OnCatchFish;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -552,6 +626,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @SpeedDebug.started -= instance.OnSpeedDebug;
             @SpeedDebug.performed -= instance.OnSpeedDebug;
             @SpeedDebug.canceled -= instance.OnSpeedDebug;
+            @Fishing.started -= instance.OnFishing;
+            @Fishing.performed -= instance.OnFishing;
+            @Fishing.canceled -= instance.OnFishing;
+            @CatchFish.started -= instance.OnCatchFish;
+            @CatchFish.performed -= instance.OnCatchFish;
+            @CatchFish.canceled -= instance.OnCatchFish;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -695,6 +775,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnToggleInventory(InputAction.CallbackContext context);
         void OnPauseMenu(InputAction.CallbackContext context);
         void OnSpeedDebug(InputAction.CallbackContext context);
+        void OnFishing(InputAction.CallbackContext context);
+        void OnCatchFish(InputAction.CallbackContext context);
     }
     public interface IHotbarActions
     {
