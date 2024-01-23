@@ -10,29 +10,28 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerObject _pr;
         [SerializeField] private FishingHook _launchPrefab;
-        [SerializeField] private ItemObject _ammo;
+        [SerializeField] private ItemObject _bait;
         [SerializeField] private AudioClip _launchSound;
+        private GameObject _currentHook = null;
 
         public override ToolType ToolType => _baseToolType;
         public override ArmorType ArmorType => _baseArmorType;
 
         public override void ExecutePrimaryAction(FocusSlotControl control)
         {
-            if(!_pr.Inventory.Contains(_ammo, 1))
+            if(!_pr.Inventory.Contains(_bait, 1))
             {
-                PopupMessage.Create(control.Player.transform.position, $"Need {_ammo.Name} to cast!", Color.yellow, Vector2.up, 1f);
+                PopupMessage.Create(control.Player.transform.position, $"Need {_bait.Name} to cast!", Color.yellow, Vector2.up, 1f);
                 return;
             }
 
-            _pr.Inventory.RemoveItem(_ammo, 1);
-
-            Vector3 playerPosition = control.Player.transform.position;
-
-            FishingHook ammo = Instantiate(_launchPrefab, playerPosition + new Vector3(0, 0.65f), Quaternion.identity);
-            Vector3 direction = (control.CursorControl.transform.position - ammo.transform.position).normalized;
-            ammo.Setup(this, _ammo, direction);
-
-            MMSoundManagerSoundPlayEvent.Trigger(_launchSound, MMSoundManager.MMSoundManagerTracks.Sfx, control.transform.position);
+            if (_currentHook != null)
+            {
+                if (!_currentHook.GetComponent<FishingHook>()._inMinigame)
+                    CreateHook(control);
+            }
+            else
+                CreateHook(control);
         }
 
         public override void ExecuteSecondaryAction(FocusSlotControl control)
@@ -59,6 +58,24 @@ namespace IslandBoy
             }
 
             return $"{Description}<br>? {damage} damage<br>? {clickDistance} click distance";
+        }
+
+        private void CreateHook(FocusSlotControl control)
+        {
+            if (_currentHook != null)
+            {
+                _currentHook.GetComponent<FishingHook>().StopFishing();
+                _currentHook = null;
+            }
+            
+            Vector3 playerPosition = control.Player.transform.position;
+
+            FishingHook hook = Instantiate(_launchPrefab, playerPosition + new Vector3(0, 0.65f), Quaternion.identity);
+            _currentHook = hook.gameObject;
+            Vector3 direction = (control.CursorControl.transform.position - hook.transform.position).normalized;
+            hook.Setup(this, direction);
+
+            MMSoundManagerSoundPlayEvent.Trigger(_launchSound, MMSoundManager.MMSoundManagerTracks.Sfx, control.transform.position);
         }
     }
 }

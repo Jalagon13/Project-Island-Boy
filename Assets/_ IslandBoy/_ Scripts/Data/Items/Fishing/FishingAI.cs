@@ -9,6 +9,7 @@ namespace IslandBoy
     {
         [SerializeField] private PlayerObject _pr; 
         [SerializeField] private ItemObject _fish;
+        [SerializeField] private ItemObject _bait;
         [SerializeField] private Transform _target; //Target point to rotate around
         [SerializeField] private float _radius;
         [SerializeField] private float _fishingProgressSpeed; //how fast the fishing progress bar fills up
@@ -45,6 +46,7 @@ namespace IslandBoy
         private void Awake()
         {
             NewDirection();
+            _pr.Inventory.RemoveItem(_bait, 1);
         }
 
         void FixedUpdate()

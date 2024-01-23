@@ -25,6 +25,7 @@ namespace IslandBoy
 
         private Rigidbody2D _rb;
         private SpriteRenderer _sr;
+        private GameObject _line;
         private Vector2 _targetPosition;
         private float currentTime = 0f;
         private float waitTime;
@@ -33,6 +34,7 @@ namespace IslandBoy
 
         private PlayerInput _catchInput;
         private GameObject _bubbles;
+        [HideInInspector] public bool _inMinigame = false;
 
         [SerializeField] private GameObject _fishingUI;
 
@@ -46,6 +48,8 @@ namespace IslandBoy
             _catchInput.Enable();
 
             _bubbles = transform.GetChild(2).gameObject;
+
+            _line = transform.GetChild(3).gameObject;
         }
 
         private void Start()
@@ -53,6 +57,7 @@ namespace IslandBoy
             Vector2 direction = _rb.velocity.normalized;
             var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+            _line.SetActive(true);
         }
 
         private void FixedUpdate()
@@ -83,7 +88,7 @@ namespace IslandBoy
             }
         }
 
-        public void Setup(ItemObject launchObject, ItemObject ammoObject, Vector3 direction)
+        public void Setup(ItemObject launchObject, Vector3 direction)
         {
             _targetPosition = transform.position + (direction * _travelDistance);
             RotateSpriteTowards(_targetPosition);
@@ -104,7 +109,6 @@ namespace IslandBoy
             {
                 return true;
             }
-
             return false;
         }
 
@@ -116,7 +120,6 @@ namespace IslandBoy
         
         private void FishAppeared()
         {
-            Debug.Log("fish found");
             foundFish = true;
             waitingForFish = false;
             currentTime = 0;
@@ -127,7 +130,6 @@ namespace IslandBoy
 
         private void FishDisappeared()
         {
-            Debug.Log("fish left");
             foundFish = false;
             waitingForFish = true;
             currentTime = 0;
@@ -139,13 +141,13 @@ namespace IslandBoy
 
         private void FishingMinigame()
         {
-            Debug.Log("minigame");
             waitingForFish = true;
             _catchInput.Disable();
 
             _bubbles.SetActive(false);
             MMSoundManagerSoundPlayEvent.Trigger(_minigameStartSound, MMSoundManager.MMSoundManagerTracks.Sfx, this.transform.position);
 
+            _inMinigame = true;
             GameSignals.FISHING_MINIGAME_END.AddListener(FishingMinigameEnd);
             Instantiate(_fishingUI, transform.position, Quaternion.identity);
         }
@@ -164,15 +166,16 @@ namespace IslandBoy
             StopFishing();
         }
 
-        void StopFishing()
+        public void StopFishing()
         {
-            _catchInput.Disable();
-            Destroy(gameObject);
+            _catchInput.Disable(); 
+            if (gameObject != null)
+            {
+                _inMinigame = false;
+                _catchInput.Disable();
+                Destroy(gameObject);
+            }
         }
-
-        // TODO:
-        // - figure out how to only cast one hook at a time
-        // - figure out how to add fishing line to hook
 
         // MAYBE:
         // - add different fish types and difficulties
