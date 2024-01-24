@@ -4321,17 +4321,7 @@ MonoBehaviour:
   _maxStack: 999
   _startingItems:
   - OutputItem: {fileID: 11400000, guid: 45360d815855e4d33ab39d15093b9b29, type: 2}
-    OutputAmount: 99
-  - OutputItem: {fileID: 11400000, guid: e5ab57a91a28c384882e588fbf1e3392, type: 2}
-    OutputAmount: 1
-  - OutputItem: {fileID: 11400000, guid: c471fb80a5facc043b05c95d8df96e43, type: 2}
-    OutputAmount: 99
-  - OutputItem: {fileID: 11400000, guid: f64092d6d0d834f43aed2758782adce6, type: 2}
-    OutputAmount: 1
-  - OutputItem: {fileID: 11400000, guid: 408841cb44a5a3e4296fe5699309c472, type: 2}
-    OutputAmount: 1
-  - OutputItem: {fileID: 11400000, guid: 8c12a5b27fd960049b50411862e5e96d, type: 2}
-    OutputAmount: 99
+    OutputAmount: 44
   _allSlots:
   - {fileID: 1398917238}
   - {fileID: 658019018}
@@ -4372,6 +4362,7 @@ MonoBehaviour:
   - {fileID: 1781860673653041824}
   - {fileID: 8633483085307021670}
   - {fileID: 8633483085399154661}
+  - {fileID: 5602138069271407921}
 --- !u!224 &5602138070249294677
 RectTransform:
   m_ObjectHideFlags: 0

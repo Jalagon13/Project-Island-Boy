@@ -12318,8 +12318,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -667.5, y: -149}
-  m_SizeDelta: {x: 400, y: 250}
+  m_AnchoredPosition: {x: -667.5, y: -136.99997}
+  m_SizeDelta: {x: 400, y: 274}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5875800587010360175
 CanvasRenderer:
@@ -12375,9 +12375,9 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 9b7ef9edf622c4541a567e8193b937c1, type: 2}
-    - {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
-    - {fileID: 11400000, guid: 847fa5b490bd8174cac64b327757844a, type: 2}
+    - {fileID: 11400000, guid: c67ec61e0f752f845be2a959a4108887, type: 2}
+    - {fileID: 11400000, guid: 7c029831ef32a354a8254efb6e763674, type: 2}
+    - {fileID: 11400000, guid: a89d325f56e1521458a926e9cc55bc79, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -12417,7 +12417,7 @@ MonoBehaviour:
       Data: 1
     - Name: $v
       Entry: 3
-      Data: 5
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -12429,7 +12429,7 @@ MonoBehaviour:
       Data: 2
     - Name: $v
       Entry: 3
-      Data: 1
+      Data: 5
     - Name: 
       Entry: 8
       Data: 
@@ -12439,8 +12439,11 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _slotCompleteSound: {fileID: 8300000, guid: 02121cc507b53c2489410a4889effc75, type: 3}
   _questCompleteSound: {fileID: 8300000, guid: f7b568774dd7db745ba2768324150fed, type: 3}
+  _questRewardItem: {fileID: 11400000, guid: 408841cb44a5a3e4296fe5699309c472, type: 2}
+  _rewardAmount: 1
 --- !u!1 &5386643532526476054
 GameObject:
   m_ObjectHideFlags: 0
@@ -12745,7 +12748,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Blacksmith Quest
+  m_text: 'Blacksmith Quest
+
+    Reward: ???'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
   m_sharedMaterial: {fileID: 4835514525599508895, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
@@ -12780,11 +12785,11 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -31.47
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -15132,8 +15137,11 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  _po: {fileID: 0}
   _slotCompleteSound: {fileID: 0}
   _questCompleteSound: {fileID: 0}
+  _questRewardItem: {fileID: 0}
+  _rewardAmount: 0
 --- !u!1 &7828645192323732796
 GameObject:
   m_ObjectHideFlags: 0
@@ -16253,10 +16261,10 @@ PrefabInstance:
     - target: {fileID: 7203612605934902872, guid: f2294a7f930774c51bcb1ad62edaa88a, type: 3}
       propertyPath: _displayItem
       value: 
-      objectReference: {fileID: 11400000, guid: 9b7ef9edf622c4541a567e8193b937c1, type: 2}
+      objectReference: {fileID: 11400000, guid: 7c029831ef32a354a8254efb6e763674, type: 2}
     - target: {fileID: 7203612605934902872, guid: f2294a7f930774c51bcb1ad62edaa88a, type: 3}
       propertyPath: _displayAmount
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16575,7 +16583,7 @@ PrefabInstance:
     - target: {fileID: 7203612605934902872, guid: f2294a7f930774c51bcb1ad62edaa88a, type: 3}
       propertyPath: _displayItem
       value: 
-      objectReference: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
+      objectReference: {fileID: 11400000, guid: a89d325f56e1521458a926e9cc55bc79, type: 2}
     - target: {fileID: 7203612605934902872, guid: f2294a7f930774c51bcb1ad62edaa88a, type: 3}
       propertyPath: _displayAmount
       value: 5
@@ -16685,10 +16693,10 @@ PrefabInstance:
     - target: {fileID: 7203612605934902872, guid: f2294a7f930774c51bcb1ad62edaa88a, type: 3}
       propertyPath: _displayItem
       value: 
-      objectReference: {fileID: 11400000, guid: 847fa5b490bd8174cac64b327757844a, type: 2}
+      objectReference: {fileID: 11400000, guid: c67ec61e0f752f845be2a959a4108887, type: 2}
     - target: {fileID: 7203612605934902872, guid: f2294a7f930774c51bcb1ad62edaa88a, type: 3}
       propertyPath: _displayAmount
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -8,8 +8,11 @@ namespace IslandBoy
 {
 	public class Quest : SerializedMonoBehaviour
 	{
+		[SerializeField] private PlayerObject _po;
 		[SerializeField] private AudioClip _slotCompleteSound;
 		[SerializeField] private AudioClip _questCompleteSound;
+		[SerializeField] private ItemObject _questRewardItem;
+		[SerializeField] private int _rewardAmount;
 		[SerializeField] private Dictionary<ItemObject, int> _questItems = new();
 		
 		public Dictionary<ItemObject, int> QuestItems => _questItems;
@@ -29,7 +32,8 @@ namespace IslandBoy
 		
 		private void CompleteQuest()
 		{
-			Debug.Log("Quest Complete :D");
+			_po.Inventory.AddItem(_questRewardItem, _rewardAmount);
+			PopupMessage.Create(_po.Position, $"{_questRewardItem.Name} added to inventory!", Color.green, Vector2.up, 3f);
 			MMSoundManagerSoundPlayEvent.Trigger(_questCompleteSound, MMSoundManager.MMSoundManagerTracks.UI, default);
 		}
 	}

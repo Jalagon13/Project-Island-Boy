@@ -54,7 +54,7 @@ namespace IslandBoy
                 }
             }
 
-            return $"• {_manaCostPerCast} mana per click<br>• {damage} damage<br>• {clickDistance} cast distance<br>{Description}";
+            return $"* {_manaCostPerCast} mana per click<br>* {damage} damage<br>* {clickDistance} cast distance<br>{Description}";
         }
     }
 }

@@ -34,6 +34,13 @@ namespace IslandBoy
 
 		private void RefreshBiome(ISignalParameters parameters)
 		{
+			StartCoroutine(Delay());
+		}
+
+		private IEnumerator Delay()
+		{
+			yield return new WaitForEndOfFrame();
+			
 			// string test = "";
 			for (int x = _bounds.min.x; x < _bounds.max.x; x++)
 			{

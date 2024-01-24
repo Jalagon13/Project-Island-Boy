@@ -166,7 +166,7 @@ namespace IslandBoy
 		
 		private void PlaySound(AudioClip sound)
 		{
-			MMSoundManagerSoundPlayEvent.Trigger(sound, MMSoundManager.MMSoundManagerTracks.Sfx, default, pitch:UnityEngine.Random.Range(0.9f, 1.1f));
+			MMSoundManagerSoundPlayEvent.Trigger(sound, MMSoundManager.MMSoundManagerTracks.Sfx, default, pitch:UnityEngine.Random.Range(0.9f, 1.1f), volume:1.1f);
 		}
 		
 		private bool DataContains(Vector3Int target)

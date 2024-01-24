@@ -12,7 +12,7 @@ namespace IslandBoy
 		[SerializeField] private string _surfaceSceneName;
 		
 		private int _levelIndex = 0;
-		private int _rewardLevelIndex = 4;
+		private int _rewardLevelIndex = 3;
 		
 		private static CaveManager _instance;
 		

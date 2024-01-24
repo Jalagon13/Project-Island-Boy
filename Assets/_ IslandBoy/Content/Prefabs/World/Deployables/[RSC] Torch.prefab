@@ -32,6 +32,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[RSC] Torch'
       objectReference: {fileID: 0}
+    - target: {fileID: 2456008257036638237, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4279634690151273257, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -88,7 +92,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7833197121006353114, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8029168127436864084, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
@@ -179,7 +184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6023195277773901937, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
       propertyPath: m_PointLightOuterRadius
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6023195277773901937, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
       propertyPath: m_LightVolumeIntensityEnabled

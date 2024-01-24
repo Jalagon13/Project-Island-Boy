@@ -72,9 +72,13 @@ namespace IslandBoy
 					
 					rsc.OnBreak();
 				}
+				else if(colliderGo.layer == 12)
+				{
+					return;
+				}
 				else
 				{
-					 Destroy(gameObject);
+					Destroy(gameObject);
 				}
 			}
 		}

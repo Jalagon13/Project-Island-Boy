@@ -14,6 +14,7 @@ namespace IslandBoy
 	public class LevelGenerator : MonoBehaviour
 	{
 		[Header("Level Generation")]
+		[SerializeField] private bool _generate = true;
 		[SerializeField] private Tilemap _wallTilemap;
 		[SerializeField] private Tilemap _floorTilemap;
 		[SerializeField] private TileBase _floorTile;
@@ -75,6 +76,8 @@ namespace IslandBoy
 		[Button("Generate")]
 		private void Generate()
 		{
+			if(!_generate) return;
+			
 			Reset();
 			GenerateBlob(new Vector3Int(_width / 2, _height / 2), _centerBlobRadius, _floorTilemap, _floorTile);
 			GenerateMap();
@@ -265,8 +268,8 @@ namespace IslandBoy
 		
 		private void GenerateWallResources()
 		{
-			int clumpsPerQuadrant = 5;
-			int iterations = 3;
+			int clumpsPerQuadrant = 3;
+			int iterations = 2;
 			
 			for (int i = 0; i < clumpsPerQuadrant; i++)
 			{

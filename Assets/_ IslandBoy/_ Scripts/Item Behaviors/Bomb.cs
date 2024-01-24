@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,9 +8,9 @@ namespace IslandBoy
 {
 	public class Bomb : MonoBehaviour
 	{
+		[SerializeField] private MMF_Player _detonationFeedbacks;
 		[SerializeField] private TilemapObject _floorTilemap;
 		[SerializeField] private TilemapObject _wallTilemap;
-		[SerializeField] private AudioClip _explosionSound;
 		[SerializeField] private AudioSource _sizzlingSource;
 		[SerializeField] private float _detonationTimer;
 		[SerializeField] private int _explodeRadius;
@@ -19,6 +20,7 @@ namespace IslandBoy
 		private IEnumerator Start()
 		{
 			yield return new WaitForSeconds(_detonationTimer);
+			PlayDestroyFeedbacks();
 
 			BlowUpResources();
 			BlowUpEntities();
@@ -26,9 +28,16 @@ namespace IslandBoy
 
 			_sizzlingSource.Stop();
 
-			MMSoundManagerSoundPlayEvent.Trigger(_explosionSound, MMSoundManager.MMSoundManagerTracks.Sfx, transform.position);
-
 			Destroy(gameObject);
+		}
+		
+		private void PlayDestroyFeedbacks()
+		{
+			if (_detonationFeedbacks != null)
+			{
+				_detonationFeedbacks.transform.SetParent(null);
+				_detonationFeedbacks?.PlayFeedbacks();
+			}
 		}
 		
 		public void Setup(Vector3 direction)
@@ -103,6 +112,13 @@ namespace IslandBoy
 				if(entity != null)
 				{
 					entity.OnHit(ToolType.Sword, _enemyDamage);
+				}
+				
+				Player player = collider.GetComponent<Player>();
+				
+				if(player != null)
+				{
+					player.Damage(_enemyDamage, transform.position);
 				}
 			}
 		}
