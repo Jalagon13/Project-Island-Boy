@@ -23,7 +23,7 @@ namespace IslandBoy
 
         private void FixedUpdate()
         {
-            _lr.SetPosition(0, _pr.Position);
+            _lr.SetPosition(0, _pr.Position + new Vector2(0, 0.5f));
             _lr.SetPosition(1, _hookPoint.position);
         }
     }

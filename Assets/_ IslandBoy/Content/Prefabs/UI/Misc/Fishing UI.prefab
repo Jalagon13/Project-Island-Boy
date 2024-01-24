@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 3739807175942007135}
-  _speed: 0.05
+  _speed: 0.02
   _radius: 1.7
 --- !u!50 &7171043986736601542
 Rigidbody2D:
@@ -521,9 +521,9 @@ MonoBehaviour:
   _bait: {fileID: 11400000, guid: 8c12a5b27fd960049b50411862e5e96d, type: 2}
   _target: {fileID: 3739807175942007135}
   _radius: 1.7
-  _fishingProgressSpeed: 0.004
-  _maxSpeed: 0.05
-  _minSpeed: 0.01
+  _fishingProgressSpeed: 0.002
+  _maxSpeed: 0.01
+  _minSpeed: 0.005
   _maxDistance: 3
   _minDistance: 0.5
   _maxWait: 1

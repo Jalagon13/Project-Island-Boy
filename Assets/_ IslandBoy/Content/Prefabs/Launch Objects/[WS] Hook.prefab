@@ -410,7 +410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 0.275
-  _travelDistance: 8
+  _travelDistance: 10
   _maxDistance: 5
   _minFishTime: 5
   _maxFishTime: 10
@@ -419,6 +419,7 @@ MonoBehaviour:
   _bubbleSound: {fileID: 8300000, guid: 8c760513dd88a8f438ae3cffd334fab8, type: 3}
   _fleeSound: {fileID: 8300000, guid: 02121cc507b53c2489410a4889effc75, type: 3}
   _minigameStartSound: {fileID: 8300000, guid: 7611aaaf274e0624e8c19bf0ce84a0ec, type: 3}
+  _splashSound: {fileID: 8300000, guid: 6d55888e6190b4ecd9d69a9120fbc7a3, type: 3}
   _inMinigame: 0
   _fishingUI: {fileID: 5880156903412705664, guid: e715e16930307674b9b5546aaaea6277, type: 3}
 --- !u!1 &6869286515379972295

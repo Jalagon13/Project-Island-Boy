@@ -20,19 +20,18 @@ namespace IslandBoy
         {
             _fishingInput = new PlayerInput();
             _fishingInput.Enable();
-            _fishingInput.Player.Fishing.started += OnFishingInput;
-            _fishingInput.Player.Fishing.canceled += OffFishingInput;
+            _fishingInput.Player.CatchFish.started += OnFishingInput;
+            _fishingInput.Player.CatchFish.canceled += OffFishingInput;
         }
 
         private void FixedUpdate()
         {
-            if (_isMoving)
-                Move();
+            Move();
         }
 
         public void OnFishingInput(InputAction.CallbackContext context)
         {
-            _moveDirection = context.ReadValue<Vector2>();
+            // _moveDirection = context.ReadValue<Vector2>();
             _isMoving = true;
         }
 
@@ -43,11 +42,11 @@ namespace IslandBoy
 
         public void Move()
         {
-            if (_moveDirection.x > 0)
+            if (_isMoving)
             {
                 _angle -= _speed + Time.deltaTime; // right = clockwise
             }
-            else if (_moveDirection.x < 0)
+            else
             {
                 _angle += _speed + Time.deltaTime; // left = counter-clockwise
             }

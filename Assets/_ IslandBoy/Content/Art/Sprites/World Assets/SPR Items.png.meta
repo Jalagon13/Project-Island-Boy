@@ -1433,7 +1433,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1441,6 +1441,27 @@ TextureImporter:
       bones: []
       spriteID: 34795e853e640453d9cab35147de4044
       internalID: -1704994463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_bait
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6b750c6f54b448ca9454d5a17bd4cbb
+      internalID: 1130734024
       vertices: []
       indices: 
       edges: []
@@ -1458,6 +1479,7 @@ TextureImporter:
     nameFileIdTable:
       item_apple: -1201098598
       item_arrow: -110451255
+      item_bait: 1130734024
       item_bed: -1855741160
       item_bomb: -1704994463
       item_boulder_spell: -1882208785
