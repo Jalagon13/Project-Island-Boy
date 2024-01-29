@@ -22,7 +22,7 @@ namespace IslandBoy
 		
 		private void Awake()
 		{
-			_barrierTilemap = transform.GetChild(0).GetChild(0).GetComponent<Tilemap>();
+			// _barrierTilemap = transform.GetChild(0).GetChild(0).GetComponent<Tilemap>();
 			_instance = this;
 		}
 		

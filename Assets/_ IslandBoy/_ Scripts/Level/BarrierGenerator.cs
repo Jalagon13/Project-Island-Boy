@@ -26,7 +26,7 @@ namespace IslandBoy
 		
 		private void Start()
 		{
-			_lastUpdatePosition = _po.Position;
+			// _lastUpdatePosition = _po.Position;
 			// GenerateBarrier();
 		}
 		
