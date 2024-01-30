@@ -297,6 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e68ed59f1d60fc4aad4a15e3ffc9d8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playSound: 0
   _ambientSound: {fileID: 8300000, guid: 340d28e0e1e47194883710ff4a73c294, type: 3}
   _bgMusic: {fileID: 8300000, guid: 4145147866bf4423eacb722bba2fdf93, type: 3}
 --- !u!1 &389596063
@@ -632,7 +633,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12.33, y: -37.67}
+  m_AnchoredPosition: {x: 5.7283306, y: -1.0646858}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &639117983
@@ -863,13 +864,15 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -48.93194, y: 21.207943}
-      - {x: -48.7233, y: -25.500265}
-      - {x: -49.40731, y: -54.016476}
-      - {x: -13.607636, y: -59.20293}
-      - {x: 20.994799, y: -54.55674}
-      - {x: 20.981976, y: -12.301127}
-      - {x: 21.06488, y: 21.3851}
+    - - {x: 26.505476, y: 40.46638}
+      - {x: -9.26498, y: 19.993649}
+      - {x: -16.949257, y: -10.52396}
+      - {x: -0.07191849, y: -22.470434}
+      - {x: 18.628765, y: -30.562374}
+      - {x: 48.755856, y: -33.157707}
+      - {x: 64.34528, y: -25.236282}
+      - {x: 72.090904, y: 21.307695}
+      - {x: 54.355244, y: 41.575703}
   m_UseDelaunayMesh: 0
 --- !u!4 &681831925
 Transform:
@@ -1828,7 +1831,7 @@ Transform:
   m_GameObject: {fileID: 1874347828}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.33, y: -37.67, z: -10}
+  m_LocalPosition: {x: 1.5, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2439,7 +2442,7 @@ Transform:
   m_GameObject: {fileID: 4210445617747853061}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.33, y: -37.67, z: 0}
+  m_LocalPosition: {x: 1.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
