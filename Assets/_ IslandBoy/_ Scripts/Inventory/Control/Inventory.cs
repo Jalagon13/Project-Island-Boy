@@ -14,6 +14,8 @@ namespace IslandBoy
         [SerializeField] private int _maxStack;
         [SerializeField] private List<ChestInvSlot> _startingItems = new();
         [SerializeField] private List<Slot> _allSlots = new();
+        [SerializeField] private List<ArmorSlot> _armorSlots = new();
+        [SerializeField] private List<AccessorySlot> _accessorySlots = new();
 
         private MouseSlot _mouseItemHolder;
 
@@ -56,6 +58,41 @@ namespace IslandBoy
             //_onPickupItem?.Invoke(item, amount);
             return 0;
         }
+
+        public bool AddItemToSlot(ItemObject item, int amount) // Returns true if successful, false otherwise // BROOKE----------------------------------------------------------------
+        {
+            // Find an empty slot
+            if (item.AccessoryType != AccessoryType.None)
+            {
+                for (int i = 0; i < _accessorySlots.Count; i++)
+                {
+                    AccessorySlot slot = _accessorySlots[i];
+
+                    if (slot.SpawnInventoryItem(item))
+                    {
+                        slot.PlaySound();
+                        DispatchItemAdded();
+                        return true;
+                    }
+                }
+            }
+            /*else if (item.ArmorType != ArmorType.None)
+            {
+                for (int i = 0; i < _armorSlots.Count; i++)
+                {
+                    Slot slot = _armorSlots[i];
+
+                    if (slot.SpawnInventoryItem(item))
+                    {
+                        DispatchItemAdded();
+                        return true;
+                    }
+                }
+            }*/ // TODO: make this work for armor slots
+
+            DispatchItemAdded();
+            return false;
+        } // BROOKE----------------------------------------------------------------
 
         private void DispatchItemAdded()
         {

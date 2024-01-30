@@ -174,7 +174,24 @@ namespace IslandBoy
 				PlaySound();
 			}
 		}
-		// BROOKE ---------------------------------------------------------
+
+		protected void MoveItemIntoSlot()
+		{
+			if (HasItem())
+			{
+				var item = transform.GetChild(0);
+
+				ChestInvSlot chestItem = new ChestInvSlot();
+				chestItem.OutputItem = item.GetComponent<InventoryItem>().Item;
+				chestItem.OutputAmount = 1; // Should only ever be 1 because armor and accessories are not stackable
+
+				Signal signal = GameSignals.ADD_ITEM_TO_SLOT;
+				signal.ClearParameters();
+				signal.AddParameter("itemToAdd", chestItem);
+				signal.AddParameter("itemObj", item.gameObject);
+				signal.Dispatch();
+			}
+		} // BROOKE ---------------------------------------------------------
 
 		protected void GiveThisItemToMouseHolder()
 		{
@@ -192,14 +209,14 @@ namespace IslandBoy
 			return inventoryItem != null;
 		}
 
-		protected void PlaySound()
+		public void PlaySound()
 		{
 			MMSoundManagerSoundPlayEvent.Trigger(_popSound, MMSoundManager.MMSoundManagerTracks.UI, transform.position, volume:2.5f);
 		}
 
 		public bool SpawnInventoryItem(ItemObject item, List<ItemParameter> itemParameters = null, int count = 1)
 		{
-			if(transform.childCount == 0)
+			if (transform.childCount == 0)
 			{
 				GameObject inventoryItemGo = Instantiate(_inventoryItemPrefab, transform);
 				InventoryItem invItem = inventoryItemGo.GetComponent<InventoryItem>();
@@ -219,7 +236,7 @@ namespace IslandBoy
 			}
 		}
 
-		public int GetMaxStack() // BROOKE -------------
+		public int GetMaxStack()
 		{
 			return _maxStack;
 		}
@@ -233,6 +250,5 @@ namespace IslandBoy
 		{
 			_isChestSlot = true;
 		}
-		// BROOKE ------------------------------------
 	}
 }

@@ -38,7 +38,8 @@ namespace IslandBoy
 			GameSignals.PLAYER_DIED.AddListener(PauseHandle);
 			GameSignals.DAY_END.AddListener(PauseHandle);
 			GameSignals.DAY_START.AddListener(UnpauseHandle);
-			GameSignals.ADD_ITEM_TO_INVENTORY_FROM_CHEST.AddListener(AddItemToInventoryFromChest); // BROOKE
+			GameSignals.ADD_ITEM_TO_INVENTORY_FROM_CHEST.AddListener(AddItemToInventoryFromChest);
+			GameSignals.ADD_ITEM_TO_SLOT.AddListener(AddItemToSlot);
 			GameSignals.INVENTORY_CLOSE.AddListener(CloseInventory);
 		}
 
@@ -52,8 +53,9 @@ namespace IslandBoy
 			GameSignals.PLAYER_DIED.RemoveListener(PauseHandle);
 			GameSignals.DAY_END.RemoveListener(PauseHandle);
 			GameSignals.DAY_START.RemoveListener(UnpauseHandle);
-			GameSignals.ADD_ITEM_TO_INVENTORY_FROM_CHEST.RemoveListener(AddItemToInventoryFromChest); // BROOKE
+			GameSignals.ADD_ITEM_TO_INVENTORY_FROM_CHEST.RemoveListener(AddItemToInventoryFromChest);
 			GameSignals.INVENTORY_CLOSE.RemoveListener(CloseInventory);
+			GameSignals.ADD_ITEM_TO_SLOT.RemoveListener(AddItemToSlot);
 		}
 
 		private void Start()
@@ -190,6 +192,17 @@ namespace IslandBoy
 			if (leftOver > 0)
 				return false;
 			else return true;
+		}
+
+		public void AddItemToSlot(ISignalParameters parameters)
+		{
+			ChestInvSlot itemToAdd = parameters.GetParameter("itemToAdd") as ChestInvSlot;
+			// if item was added successfully, delete item from inv
+			if (_inventory.AddItemToSlot(itemToAdd.OutputItem, itemToAdd.OutputAmount))
+			{
+				Destroy(parameters.GetParameter("itemObj") as GameObject);
+			}
+			// TODO: play error sound if wasn't able to add item
 		} // BROOKE --------------------------------------------------
 	}
 }

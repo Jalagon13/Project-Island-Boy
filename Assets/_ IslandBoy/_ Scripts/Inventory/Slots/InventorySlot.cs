@@ -9,11 +9,20 @@ namespace IslandBoy
     {
         public override void OnPointerClick(PointerEventData eventData)
         {
-            //if (!_inventoryOpen) return;
-            if (eventData.button == PointerEventData.InputButton.Left && Input.GetKey(KeyCode.LeftShift) && _chestOpen) // BROOKE --------------
+            if (eventData.button == PointerEventData.InputButton.Left && Input.GetKey(KeyCode.LeftShift) && HasItem()) // BROOKE --------------
             {
-                if (_isChestSlot) MoveItemIntoInventory();
-                else MoveItemIntoChest();
+                if (_chestOpen)
+                {
+                    if (_isChestSlot) MoveItemIntoInventory();
+                    else MoveItemIntoChest();
+                }
+                else
+                {
+                    ItemObject item = transform.GetChild(0).GetComponent<InventoryItem>().Item;
+
+                    if (item.AccessoryType != AccessoryType.None || item.ArmorType != ArmorType.None)
+                        MoveItemIntoSlot();
+                }
             }
             else if (eventData.button == PointerEventData.InputButton.Left) // BROOKE ---------------------------
             {

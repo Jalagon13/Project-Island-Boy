@@ -16,6 +16,7 @@ namespace IslandBoy
 
         public override ToolType ToolType => _baseToolType;
         public override ArmorType ArmorType => _baseArmorType;
+        public override AccessoryType AccessoryType => _baseAccessoryType;
 
         public override void ExecutePrimaryAction(FocusSlotControl control)
         {
