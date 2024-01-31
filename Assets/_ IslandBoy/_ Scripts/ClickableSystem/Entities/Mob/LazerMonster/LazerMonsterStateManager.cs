@@ -7,22 +7,26 @@ namespace IslandBoy
 	public class LazerMonsterStateManager : MonoBehaviour
 	{
 		[SerializeField] private PlayerObject _po;
+		[SerializeField] private GameObject _laser;
+		[SerializeField] private float _delayFire;
 		
-		private void Start() 
+		private IEnumerator Start() 
 		{
+			yield return new WaitForSeconds(_delayFire);
 			
+			FireLaser();
+			
+			while(!_laser.gameObject.activeInHierarchy)
+			{
+				yield return new WaitForEndOfFrame();
+			}
+			
+			StartCoroutine(Start());
 		}
 		
-		private void FireSequence()
+		private void FireLaser()
 		{
-			// teleport to random location near player
-			// charge up for 3 seconds
-				// calcualte aim on player during this phase 
-				// while charging show red line
-			// stop aim at location then fire lazer
-				// lazer lasts for 1 second
-			// stay idle for 3 seconds
-			// repeat
+			_laser.gameObject.SetActive(true);
 		}
 	}
 }
