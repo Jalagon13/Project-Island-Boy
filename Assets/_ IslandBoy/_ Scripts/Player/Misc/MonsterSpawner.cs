@@ -43,11 +43,6 @@ namespace IslandBoy
 			StopAllCoroutines();
 			_entityRTS.Initialize();
 		}
-
-		public void MonsterSpawnDebugButton()
-		{
-			SpawnMonster();
-		}
 		
 		private void PauseMonsterSpawning(ISignalParameters parameters)
 		{
@@ -67,27 +62,27 @@ namespace IslandBoy
 			
 			if (chance < _spawnSettings.SpawnPercentPerSec && _entityRTS.ListSize < _spawnSettings.MaxMonsterCount)
 			{
-				SpawnMonster();
+				SpawnMonster(MonsterToSpawn());
 			}
 
 			StartCoroutine(SpawnMonsterTimer());
 		}
 
-		private void SpawnMonster()
+		public void SpawnMonster(Entity monster)
 		{
 			var spawnPos = CalcSpawnPos();
 
-			if (_wallTm.Tilemap.HasTile(Vector3Int.FloorToInt(spawnPos)) || _floorTm.Tilemap.HasTile(Vector3Int.FloorToInt(spawnPos)))
-			{
-				return;
-			}
+			// if (_wallTm.Tilemap.HasTile(Vector3Int.FloorToInt(spawnPos)) || _floorTm.Tilemap.HasTile(Vector3Int.FloorToInt(spawnPos)))
+			// {
+			// 	return;
+			// }
 
 			if (Vector3.Distance(spawnPos, transform.position) < 8)
 			{
 				return;
 			}
 
-			Spawn(MonsterToSpawn(), spawnPos);
+			Spawn(monster, spawnPos);
 		}
 
 		private Entity MonsterToSpawn()
@@ -97,7 +92,6 @@ namespace IslandBoy
 
 		private void Spawn(Entity monster, Vector2 pos)
 		{
-			Debug.Log($"Spawning: {monster.name}");
 			Instantiate(monster, pos, Quaternion.identity);
 		}
 

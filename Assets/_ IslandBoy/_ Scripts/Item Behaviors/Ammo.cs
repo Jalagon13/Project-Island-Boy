@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Tools;
 using UnityEngine;
 
 namespace IslandBoy
@@ -8,6 +9,7 @@ namespace IslandBoy
 	{
 		[SerializeField] private float _speed;
 		[SerializeField] private float _travelDistance;
+		[SerializeField] private AudioClip _fireSound;
 		[SerializeField] private ItemParameter _damageParameter;
 
 		private Rigidbody2D _rb;
@@ -82,6 +84,19 @@ namespace IslandBoy
 				}
 			}
 		}
+		
+		public void Setup(Vector3 direction)
+		{
+			_damage = 30;
+			_targetPosition = transform.position + (direction * _travelDistance);
+			
+			if(_fireSound != null)
+			{
+				MMSoundManagerSoundPlayEvent.Trigger(_fireSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
+			}
+			
+			RotateSpriteTowards(_targetPosition);
+		}
 
 		public void Setup(ItemObject launchObject, ItemObject ammoObject, Vector3 direction)
 		{
@@ -90,7 +105,12 @@ namespace IslandBoy
 
 			_damage = launchPower + ammoPower;
 			_targetPosition = transform.position + (direction * _travelDistance);
-			Debug.Log(_targetPosition);
+			
+			if(_fireSound != null)
+			{
+				MMSoundManagerSoundPlayEvent.Trigger(_fireSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
+			}
+			
 			RotateSpriteTowards(_targetPosition);
 		}
 

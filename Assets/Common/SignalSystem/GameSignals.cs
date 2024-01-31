@@ -45,6 +45,7 @@ namespace IslandBoy
 		// World Signals
 		public static readonly Signal CHANGE_SCENE = new("ChangeScene");
 		public static readonly Signal RESIDENT_UPDATE = new("ResidentUpdate");
+		public static readonly Signal MONSTER_KILLED = new("MonsterKilled");
 
 		// Shift-click Signals
 		public static readonly Signal ADD_ITEMS_TO_CHEST = new("AddItemsToChest"); // BROOKE

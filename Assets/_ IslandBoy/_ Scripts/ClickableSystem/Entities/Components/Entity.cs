@@ -14,15 +14,15 @@ namespace IslandBoy
 		[SerializeField] private Vector2 _amount;
 
 		protected KnockbackFeedback _knockback;
-		private Timer _despawnTimer;
+		// private Timer _despawnTimer;
 
 		protected override void Awake()
 		{
 			base.Awake();
 
 			_knockback = GetComponent<KnockbackFeedback>();
-			_despawnTimer = new(_durationUntilDespawn);
-			_despawnTimer.OnTimerEnd += Despawn;
+			// _despawnTimer = new(_durationUntilDespawn);
+			// _despawnTimer.OnTimerEnd += Despawn;
 
 			GameSignals.DAY_END.AddListener(DestroyThisEntity);
 			GameSignals.PLAYER_DIED.AddListener(DestroyThisEntity);
@@ -37,13 +37,13 @@ namespace IslandBoy
 		{
 			GameSignals.DAY_END.RemoveListener(DestroyThisEntity);
 			GameSignals.PLAYER_DIED.RemoveListener(DestroyThisEntity);
-			_despawnTimer.OnTimerEnd -= Despawn;
+			// _despawnTimer.OnTimerEnd -= Despawn;
 		}
 
-		protected virtual void Update()
-		{
-			_despawnTimer.Tick(Time.deltaTime);
-		}
+		// protected virtual void Update()
+		// {
+		// 	_despawnTimer.Tick(Time.deltaTime);
+		// }
 
 		private void Despawn()
 		{
@@ -58,7 +58,7 @@ namespace IslandBoy
 		public override bool OnHit(ToolType incomingToolType, int amount, bool displayHit = true)
 		{
 			_knockback.PlayFeedback(_pr.Position);
-			_despawnTimer.RemainingSeconds = _durationUntilDespawn;
+			// _despawnTimer.RemainingSeconds = _durationUntilDespawn;
 
 			if (base.OnHit(incomingToolType, amount, displayHit))
 			{
@@ -96,7 +96,7 @@ namespace IslandBoy
 		public override void OnBreak()
 		{
 			_dropPosition = transform.position;
-			
+			GameSignals.MONSTER_KILLED.Dispatch();
 			GiveMoney();
 
 			base.OnBreak();
