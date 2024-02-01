@@ -32,7 +32,8 @@ namespace IslandBoy
         private Timer _iFrameTimer;
         private SpriteRenderer _sr;
         private Vector2 _spawnPoint;
-        private int _currentHp, _currentNrg, _currentMp;
+        private int _currentHp, _currentNrg, _currentMp,
+            _armorHead, _armorChest, _armorLeg;
 
         private void Awake()
         {
@@ -306,6 +307,8 @@ namespace IslandBoy
         public void Damage(int amount, Vector2 damagerPosition)
         {
             if (!CanDamage()) return;
+
+            amount = calcdamage(amount);
                  
             _currentHp -= amount;
             _iFrameTimer.RemainingSeconds = _iFrameDuration;
@@ -332,16 +335,13 @@ namespace IslandBoy
         }
 
 
-        //WIP
-        //private int CalcDamage(int damage)
-        //{
-        //    int dmg = damage - PR.Defense;
-
-        //    if (dmg < 1)
-        //        dmg = 1;
-
-        //    return dmg;
-        //}
+        private int calcdamage(int damage)
+        {
+            if (damage < _pr.Defense + 1)
+                return 1;
+            else
+                return damage - _pr.Defense;
+        }
 
         public bool CanDamage()
         {

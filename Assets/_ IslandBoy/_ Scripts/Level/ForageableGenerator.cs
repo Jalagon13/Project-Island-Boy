@@ -1,7 +1,5 @@
-using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -60,20 +58,13 @@ namespace IslandBoy
 							var rsc = forageableToSpawn.GetComponent<Resource>();
 							if(rsc.SpawnRate > Random.Range(0, 100))
 							{
-								Debug.Log($"Spawning {rsc.name}");
+								//Debug.Log($"Spawning {rsc.name}");
 								Instantiate(forageableToSpawn, tilePosition, Quaternion.identity);
 							}
 						}
 					}
 					
-					// // skip if tile is occupied already
-					// if (!canSpawnOnTile(x, y))
-					// {
-					// 	test += "-";
-					// 	continue;
-					// }
-					// else 
-					// 	test += "*";
+					
 					// // look at all surrounding tiles
 					// List<GameObject> surroundings = getSurroundings(x,y);
 					// int tile = Random.Range(0, surroundings.Count);
@@ -90,9 +81,7 @@ namespace IslandBoy
 					// 		Instantiate(surroundings[tile], new Vector3(x, y), Quaternion.identity);
 					// }
 				}
-				// test += '\n';
 			}
-			// Debug.Log(test);
 		}
 		
 		private bool CanSpawnRscHere(Vector3Int target)
@@ -112,7 +101,7 @@ namespace IslandBoy
 
 			return true;
 		}
-
+		/*
 		private bool canSpawnOnTile(int x, int y)
 		{
 			Vector3Int cellPos = new Vector3Int(x, y);
@@ -157,6 +146,6 @@ namespace IslandBoy
 				}
 			}
 			return surroundings;
-		}
+		}*/
 	}
 }
