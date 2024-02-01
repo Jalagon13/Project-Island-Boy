@@ -39,5 +39,15 @@ namespace IslandBoy
 			if(AmbientLight != null)
 				AmbientLight.color = AmbientLightGradient.Evaluate(ratio);
 		}
+		
+		public void OverrideDayLight()
+		{
+			
+		}
+		
+		public void OverrideAmbientLight()
+		{
+			
+		}
 	}
 }

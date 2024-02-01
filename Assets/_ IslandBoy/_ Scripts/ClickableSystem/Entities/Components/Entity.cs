@@ -9,29 +9,20 @@ namespace IslandBoy
 	{
 		[Header("Base Entity Parameters")]
 		[SerializeField] protected PlayerObject _pr;
-		// [SerializeField] private float _durationUntilDespawn;
 		[MinMaxSlider(0, 99, true)]
 		[SerializeField] private Vector2 _amount;
 
 		protected KnockbackFeedback _knockback;
-		// private Timer _despawnTimer;
 
 		protected override void Awake()
 		{
 			base.Awake();
 
 			_knockback = GetComponent<KnockbackFeedback>();
-			// _despawnTimer = new(_durationUntilDespawn);
-			// _despawnTimer.OnTimerEnd += Despawn;
 
 			GameSignals.DAY_END.AddListener(DestroyThisEntity);
 			GameSignals.PLAYER_DIED.AddListener(DestroyThisEntity);
 			GameSignals.MONSTER_HEART_CLEARED.AddListener(Despawn);
-		}
-
-		private void OnDisable()
-		{
-			Despawn(null);
 		}
 		
 		private void OnDestroy()
@@ -39,17 +30,21 @@ namespace IslandBoy
 			GameSignals.DAY_END.RemoveListener(DestroyThisEntity);
 			GameSignals.PLAYER_DIED.RemoveListener(DestroyThisEntity);
 			GameSignals.MONSTER_HEART_CLEARED.RemoveListener(Despawn);
-			// _despawnTimer.OnTimerEnd -= Despawn;
 		}
-
-		// protected virtual void Update()
-		// {
-		// 	_despawnTimer.Tick(Time.deltaTime);
-		// }
 
 		private void Despawn(ISignalParameters parameters)
 		{
+			PlayDestroyFeedbacks();
 			Destroy(gameObject);
+		}
+		
+		private void PlayDestroyFeedbacks()
+		{
+			if (_destroyFeedback != null)
+			{
+				_destroyFeedback.transform.SetParent(null);
+				_destroyFeedback?.PlayFeedbacks();
+			}
 		}
 
 		private void DestroyThisEntity(ISignalParameters parameters)

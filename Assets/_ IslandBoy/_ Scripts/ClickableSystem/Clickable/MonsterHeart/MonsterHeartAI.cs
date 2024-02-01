@@ -13,11 +13,12 @@ namespace IslandBoy
 		[SerializeField] private SpriteRenderer _indicatorSr;
 		[SerializeField] private Transform _forceFieldTf;
 		[SerializeField] private MonsterHeartView _mhView;
-		[SerializeField] private Ammo _launchPrefab;
 		[SerializeField] private MonsterSpawner _monsterSpawner;
-		[SerializeField] private float _shootCooldown;
 		[SerializeField] private int _killQuota;
 		[SerializeField] private int _heartBeatQuota;
+		[Header("Laser stuff")]
+		[SerializeField] private Laser _laser;
+		[SerializeField] private float _delayFire;
 		[Header("Monsters")]
 		[SerializeField] private Entity _meleeMonster;
 		[SerializeField] private Entity _laserMonster;
@@ -32,14 +33,12 @@ namespace IslandBoy
 		private bool _forceFieldDown;
 		private bool _threatened; // if threatened, spawn monsters
 		private BoxCollider2D _rscCollider;
-		private Timer _shootTimer;
 		private SpriteRenderer _sprite;
 		
 		private void Awake() 
 		{
 			UpdateAgroIndicator(new Color(0.5f, 0.1f, 0.65f, 0.25f));
-			_shootTimer = new Timer(_shootCooldown);
-			_shootTimer.OnTimerEnd += ShootPlayer;
+			
 			_rscCollider = transform.parent.GetComponent<BoxCollider2D>();
 			_sprite = transform.parent.GetChild(0).GetComponent<SpriteRenderer>();
 			_rscCollider.enabled = false;
@@ -47,36 +46,51 @@ namespace IslandBoy
 			_mhView.UpdateHeartBeatText(_heartBeatCounter, _heartBeatQuota);
 		}
 		
-		private IEnumerator Start()
+		private IEnumerator HeartBeatRoutine()
 		{
 			yield return new WaitForSeconds(_heartBeatDelay);
 			
 			OnHeartBeat();
 			
-			StartCoroutine(Start());
+			StartCoroutine(HeartBeatRoutine());
+		}
+		
+		private IEnumerator LaserSequence() 
+		{
+			yield return new WaitForSeconds(_delayFire);
+			
+			if(_threatened)
+				FireLaser();
+			
+			while(_laser.gameObject.activeInHierarchy)
+			{
+				yield return new WaitForEndOfFrame();
+			}
+			
+			StartCoroutine(LaserSequence());
+		}
+		
+		private void FireLaser()
+		{
+			_laser.gameObject.SetActive(true);
 		}
 		
 		private void OnEnable() 
 		{
+			StartCoroutine(HeartBeatRoutine());
+			StartCoroutine(LaserSequence());
 			GameSignals.MONSTER_KILLED.AddListener(IncrementMonsterMeter);
 		}
 		
 		private void OnDisable()
 		{
+			StopAllCoroutines();
 			GameSignals.MONSTER_KILLED.RemoveListener(IncrementMonsterMeter);
 		}
 		
 		private void OnDestroy() 
 		{
 			GameSignals.MONSTER_HEART_CLEARED.Dispatch();
-		}
-		
-		private void Update() 
-		{
-			if(_threatened)
-			{
-				_shootTimer.Tick(Time.deltaTime);
-			}
 		}
 		
 		private void OnTriggerEnter2D(Collider2D other) 
@@ -133,13 +147,15 @@ namespace IslandBoy
 			
 			for (int i = 0; i < 8; i++)
 			{
-				yield return new WaitForSeconds(0.1f);
+				yield return new WaitForSeconds(0.2f);
 				_monsterSpawner.SpawnMonster(_meleeMonster);
 			}
 			
+			yield return new WaitForSeconds(1f);
+			
 			for (int i = 0; i < 2; i++)
 			{
-				yield return new WaitForSeconds(0.1f);
+				yield return new WaitForSeconds(1.25f);
 				_monsterSpawner.SpawnMonster(_laserMonster);
 			}
 		}
@@ -172,16 +188,6 @@ namespace IslandBoy
 			_indicatorSr.color = color;
 		}
 		
-		private void ShootPlayer()
-		{
-			if(_forceFieldDown) return;
-			
-			Ammo ammo = Instantiate(_launchPrefab, transform.position, Quaternion.identity);
-			Vector3 direction = (_po.Position - (Vector2)ammo.transform.position).normalized;
-			ammo.Setup(direction);
-			
-			_shootTimer.RemainingSeconds = _shootCooldown;
-			// need visual indicator for mosnter spawning
-		}
+		
 	}
 }

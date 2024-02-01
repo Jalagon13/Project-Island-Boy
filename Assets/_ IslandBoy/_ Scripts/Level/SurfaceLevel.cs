@@ -15,7 +15,7 @@ namespace IslandBoy
 		private IEnumerator Delay()
 		{
 			yield return new WaitForEndOfFrame();
-			AStarExtensions.Instance.GenerateBarriers();
+			// AStarExtensions.Instance.GenerateBarriers();
 		}
 	}
 }

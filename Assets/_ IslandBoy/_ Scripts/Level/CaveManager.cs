@@ -25,7 +25,7 @@ namespace IslandBoy
 		
 		private void OnEnable()
 		{
-			LoadExistingLevel(LevelControl.CaveLevelToLoad);
+			// LoadExistingLevel(LevelControl.CaveLevelToLoad);
 		}
 		
 		[Button("Descend Floor")]

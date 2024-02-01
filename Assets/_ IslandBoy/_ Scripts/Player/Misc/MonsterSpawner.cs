@@ -35,7 +35,7 @@ namespace IslandBoy
 			if(_spawnSettings.EntityListLength <= 0)
 				return;
 			
-			StartCoroutine(SpawnMonsterTimer());
+			// StartCoroutine(SpawnMonsterTimer());
 		}
 		
 		private void OnDisable()

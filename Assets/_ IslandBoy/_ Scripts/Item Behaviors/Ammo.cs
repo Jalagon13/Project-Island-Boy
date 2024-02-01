@@ -75,7 +75,7 @@ namespace IslandBoy
 
 			
 			
-			if(colliderGo.TryGetComponent(out Resource rsc))
+			if(colliderGo.TryGetComponent(out Resource rsc) && !_canHitPlayer)
 			{
 				if(rsc.SwingDestructOnly)
 				{
@@ -101,7 +101,7 @@ namespace IslandBoy
 		
 		public void Setup(Vector3 direction)
 		{
-			_damage = 14;
+			_damage = 5;
 			_targetPosition = transform.position + (direction * _travelDistance);
 			
 			if(_fireSound != null)
