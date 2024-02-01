@@ -1,4 +1,5 @@
 using MoreMountains.Tools;
+using SingularityGroup.HotReload;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -64,6 +65,7 @@ namespace IslandBoy
             _currentHp = _maxHp;
             _currentNrg = _maxNrg;
             _currentMp = _maxMp;
+            _pr.Defense = 0;
 
             DispatchHpChange();
             DispatchNrgChange();
@@ -337,7 +339,7 @@ namespace IslandBoy
 
         private int calcdamage(int damage)
         {
-            if (damage < _pr.Defense + 1)
+            if (damage <= _pr.Defense)
                 return 1;
             else
                 return damage - _pr.Defense;
