@@ -9,6 +9,7 @@ namespace IslandBoy
 	{
 		[SerializeField] private float _speed;
 		[SerializeField] private float _travelDistance;
+		[SerializeField] private bool _canHitPlayer;
 		[SerializeField] private AudioClip _fireSound;
 		[SerializeField] private ItemParameter _damageParameter;
 
@@ -50,16 +51,29 @@ namespace IslandBoy
 				Destroy(gameObject);
 				return;
 			}
-
-			if(colliderGo.TryGetComponent(out Entity clickable))
+			
+			if(_canHitPlayer)
 			{
-				if (_clickableFound != null) return;
-
-				_clickableFound = clickable;
-				_clickableFound.OnHit(ToolType.Sword, _damage);
-
-				Destroy(gameObject);
+				if (collision.TryGetComponent(out Player player))
+				{
+					int damageAmount = Mathf.RoundToInt(_damage);
+					player.Damage(damageAmount, transform.position);
+				}
 			}
+			else
+			{
+				if(colliderGo.TryGetComponent(out Entity clickable))
+				{
+					if (_clickableFound != null) return;
+
+					_clickableFound = clickable;
+					_clickableFound.OnHit(ToolType.Sword, _damage);
+
+					Destroy(gameObject);
+				}
+			}
+
+			
 			
 			if(colliderGo.TryGetComponent(out Resource rsc))
 			{
@@ -87,7 +101,7 @@ namespace IslandBoy
 		
 		public void Setup(Vector3 direction)
 		{
-			_damage = 30;
+			_damage = 14;
 			_targetPosition = transform.position + (direction * _travelDistance);
 			
 			if(_fireSound != null)

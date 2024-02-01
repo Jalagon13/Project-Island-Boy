@@ -18,9 +18,8 @@ namespace IslandBoy
 		private TilemapObject _tmToOverride;
 		[SerializeField]
 		private MMF_Player _hitFeedbacks;
-		// [Tooltip("Navmesh to update on tile update")]
-		// [SerializeField]
-		// private NavMeshSurface _navMesh;
+		[SerializeField]
+		private bool _canMine = true;
 		private Timer _restoreHpTimer;
 		private Tilemap _tilemap;
 		
@@ -176,7 +175,7 @@ namespace IslandBoy
 		
 		private bool IsHittable(Vector3Int target)
 		{
-			return Tilemap.HasTile(target);
+			return _canMine && Tilemap != null && Tilemap.HasTile(target);
 		}
 	}
 }

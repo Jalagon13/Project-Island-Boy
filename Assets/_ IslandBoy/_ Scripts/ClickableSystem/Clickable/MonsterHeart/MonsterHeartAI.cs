@@ -44,6 +44,7 @@ namespace IslandBoy
 			_sprite = transform.parent.GetChild(0).GetComponent<SpriteRenderer>();
 			_rscCollider.enabled = false;
 			_mhView.UpdateText(_killCounter, _killQuota);
+			_mhView.UpdateHeartBeatText(_heartBeatCounter, _heartBeatQuota);
 		}
 		
 		private IEnumerator Start()
@@ -62,7 +63,12 @@ namespace IslandBoy
 		
 		private void OnDisable()
 		{
-			GameSignals.MONSTER_KILLED.AddListener(IncrementMonsterMeter);
+			GameSignals.MONSTER_KILLED.RemoveListener(IncrementMonsterMeter);
+		}
+		
+		private void OnDestroy() 
+		{
+			GameSignals.MONSTER_HEART_CLEARED.Dispatch();
 		}
 		
 		private void Update() 
@@ -125,13 +131,13 @@ namespace IslandBoy
 		{
 			_monsterSpawnFeedbacks?.PlayFeedbacks();
 			
-			for (int i = 0; i < 10; i++)
+			for (int i = 0; i < 8; i++)
 			{
 				yield return new WaitForSeconds(0.1f);
 				_monsterSpawner.SpawnMonster(_meleeMonster);
 			}
 			
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i < 2; i++)
 			{
 				yield return new WaitForSeconds(0.1f);
 				_monsterSpawner.SpawnMonster(_laserMonster);

@@ -9,7 +9,7 @@ namespace IslandBoy
 	{
 		[Header("Base Entity Parameters")]
 		[SerializeField] protected PlayerObject _pr;
-		[SerializeField] private float _durationUntilDespawn;
+		// [SerializeField] private float _durationUntilDespawn;
 		[MinMaxSlider(0, 99, true)]
 		[SerializeField] private Vector2 _amount;
 
@@ -26,17 +26,19 @@ namespace IslandBoy
 
 			GameSignals.DAY_END.AddListener(DestroyThisEntity);
 			GameSignals.PLAYER_DIED.AddListener(DestroyThisEntity);
+			GameSignals.MONSTER_HEART_CLEARED.AddListener(Despawn);
 		}
 
 		private void OnDisable()
 		{
-			Despawn();
+			Despawn(null);
 		}
 		
 		private void OnDestroy()
 		{
 			GameSignals.DAY_END.RemoveListener(DestroyThisEntity);
 			GameSignals.PLAYER_DIED.RemoveListener(DestroyThisEntity);
+			GameSignals.MONSTER_HEART_CLEARED.RemoveListener(Despawn);
 			// _despawnTimer.OnTimerEnd -= Despawn;
 		}
 
@@ -45,7 +47,7 @@ namespace IslandBoy
 		// 	_despawnTimer.Tick(Time.deltaTime);
 		// }
 
-		private void Despawn()
+		private void Despawn(ISignalParameters parameters)
 		{
 			Destroy(gameObject);
 		}

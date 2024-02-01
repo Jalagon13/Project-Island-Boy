@@ -774,6 +774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
+  _laserSound: {fileID: 8300000, guid: f10281ea80c634c31bacd8f43661144b, type: 3}
   _chargeDuration: 3
   _waitBeforeFireDuration: 0.75
   _laserDuration: 1.5
@@ -1198,7 +1199,6 @@ MonoBehaviour:
       Max: 2
       Chance: 100
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _durationUntilDespawn: 0
   _amount: {x: 5, y: 20}
 --- !u!114 &8376000313990279719
 MonoBehaviour:

@@ -77,10 +77,10 @@ namespace IslandBoy
 			// 	return;
 			// }
 
-			if (Vector3.Distance(spawnPos, transform.position) < 8)
-			{
-				return;
-			}
+			// if (Vector3.Distance(spawnPos, transform.position) < 8)
+			// {
+			// 	return;
+			// }
 
 			Spawn(monster, spawnPos);
 		}

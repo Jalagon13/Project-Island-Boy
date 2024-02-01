@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Tools;
 using Pathfinding;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ namespace IslandBoy
 	public class Laser : MonoBehaviour
 	{
 		[SerializeField] private PlayerObject _po;
+		[SerializeField] private AudioClip _laserSound;
 		[SerializeField] private float _chargeDuration;
 		[SerializeField] private float _waitBeforeFireDuration;
 		[SerializeField] private float _laserDuration;
@@ -53,6 +55,9 @@ namespace IslandBoy
 			yield return new WaitForEndOfFrame();
 			UpdateLineWidth(laserWidth, laserWidth);
 			BuildDamageMesh(); 
+			
+			MMSoundManagerSoundPlayEvent.Trigger(_laserSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
+			
 			yield return new WaitForSeconds(_laserDuration);
 			_damageCollider.enabled = false;
 			gameObject.SetActive(false);
