@@ -22,6 +22,16 @@ namespace IslandBoy
 			_isReturnPoint = false;
 		}
 		
+		private void OnTriggerEnter2D(Collider2D other) 
+		{
+			FeetTag ct = other.GetComponent<FeetTag>();
+			
+			if(ct != null)
+			{
+				SwitchScene();
+			}
+		}
+		
 		public void SwitchScene()
 		{
 			LevelControl.CaveLevelToLoad = 0;
