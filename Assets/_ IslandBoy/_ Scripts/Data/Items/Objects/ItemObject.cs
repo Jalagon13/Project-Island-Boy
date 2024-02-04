@@ -15,13 +15,14 @@ namespace IslandBoy
 
         public abstract ToolType ToolType { get; }
         public abstract ArmorType ArmorType { get; }
+        public abstract AccessoryType AccessoryType { get; }
         public abstract void ExecutePrimaryAction(FocusSlotControl control);
         public abstract void ExecuteSecondaryAction(FocusSlotControl control);
         public abstract string GetDescription();
 
         protected ToolType _baseToolType = ToolType.None;
         protected ArmorType _baseArmorType = ArmorType.None;
-
+        protected AccessoryType _baseAccessoryType = AccessoryType.None;
     }
 
     [Serializable]

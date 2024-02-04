@@ -50,8 +50,9 @@ namespace IslandBoy
 		public static readonly Signal CONFINER_UPDATED = new("ConfinerUpdated");
 
 		// Shift-click Signals
-		public static readonly Signal ADD_ITEMS_TO_CHEST = new("AddItemsToChest"); // BROOKE
-		public static readonly Signal ADD_ITEM_TO_INVENTORY_FROM_CHEST = new("AddItemToInventoryFromChest"); // BROOKE
+		public static readonly Signal ADD_ITEMS_TO_CHEST = new("AddItemsToChest");
+		public static readonly Signal ADD_ITEM_TO_INVENTORY_FROM_CHEST = new("AddItemToInventoryFromChest");
+		public static readonly Signal ADD_ITEM_TO_SLOT = new("AddItemToSlot"); // when shift-clicking an item to an armor or accessory slot
 
 		// Fishing Signals
 		public static readonly Signal FISHING_MINIGAME_END = new("FishingMinigameEnd");

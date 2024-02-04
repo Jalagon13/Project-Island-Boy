@@ -47,7 +47,7 @@ namespace IslandBoy
 			_rb = GetComponent<Rigidbody2D>();
 			_catchInput = new PlayerInput();
 			_catchInput.Player.CatchFish.started += CatchFish;
-			_catchInput.Enable();
+			OnEnable();
 
 			_bubbles = transform.GetChild(2).gameObject;
 
@@ -59,6 +59,16 @@ namespace IslandBoy
 		private void OnDestroy()
 		{
 			GameSignals.HOTBAR_SLOT_UPDATED.RemoveListener(StopFishing);
+		}
+
+		private void OnEnable()
+		{
+			_catchInput.Enable();
+		}
+
+		private void OnDisable()
+		{
+			_catchInput.Disable();
 		}
 
 		private void Start()
@@ -182,11 +192,10 @@ namespace IslandBoy
 
 		public void StopFishing(ISignalParameters parameters = null)
 		{
-			_catchInput.Disable(); 
+			OnDisable(); 
 			if (gameObject != null)
 			{
 				_inMinigame = false;
-				_catchInput.Disable();
 				Destroy(gameObject);
 			}
 		}
