@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,6 +11,7 @@ namespace IslandBoy
         [SerializeField] private ArmorType _slotArmorType;
         [SerializeField] private ItemParameter _defenseParameter;
         [SerializeField] private ItemParameter _durabilityParameter;
+        [SerializeField] private TextMeshProUGUI _defenseText;
 
         private int _defense;
         private static readonly int _counterThreshold = 20; // for every x amount of damage taken, reduce durability by 1
@@ -100,11 +102,13 @@ namespace IslandBoy
         {
             _defense = GetDefenseFromItem();
             _pr.AddDefense(_defense);
+            _defenseText.text = _pr.Defense.ToString();
         }
 
         private void UnEquipArmor()
         {
             _pr.AddDefense(-_defense);
+            _defenseText.text = _pr.Defense.ToString();
             _defense = 0;
             _counter = 0;
         }

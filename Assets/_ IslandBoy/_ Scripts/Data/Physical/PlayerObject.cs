@@ -6,7 +6,7 @@ namespace IslandBoy
 	[CreateAssetMenu(fileName = "New Player Reference", menuName = "New Reference/Player Reference")]
 	public class PlayerObject : ScriptableObject
 	{
-		private int _defense; // set to 0 in PlayerEntity
+		private int _defense;
 		private Vector2 _spawnPoint;
 		private Vector2 _playerPosition;
 		private Vector2 _mousePosition;
