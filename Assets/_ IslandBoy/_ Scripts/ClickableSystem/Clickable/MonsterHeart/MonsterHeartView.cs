@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace IslandBoy
 {
 	public class MonsterHeartView : MonoBehaviour
 	{
+		[SerializeField] private Image _fillImage;
 		private TextMeshProUGUI _viewText;
 		private TextMeshProUGUI _heartBeatText;
 		
@@ -23,7 +25,8 @@ namespace IslandBoy
 		
 		public void UpdateHeartBeatText(int beatCounter, int beatQuota)
 		{
-			_heartBeatText.text = $"Heart Beats: {beatCounter} / {beatQuota}";
+			_fillImage.fillAmount = (float)beatCounter / (float)beatQuota;
+			// _heartBeatText.text = $"Heart Beats: {beatCounter} / {beatQuota}";
 		}
 	}
 }

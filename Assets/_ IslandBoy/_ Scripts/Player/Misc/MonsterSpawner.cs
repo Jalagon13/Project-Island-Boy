@@ -62,15 +62,15 @@ namespace IslandBoy
 			
 			if (chance < _spawnSettings.SpawnPercentPerSec && _entityRTS.ListSize < _spawnSettings.MaxMonsterCount)
 			{
-				SpawnMonster(MonsterToSpawn());
+				// SpawnMonster(MonsterToSpawn());
 			}
 
 			StartCoroutine(SpawnMonsterTimer());
 		}
 
-		public void SpawnMonster(Entity monster)
+		public void SpawnMonster(Entity monster, int maxSpawnRange)
 		{
-			var spawnPos = CalcSpawnPos();
+			var spawnPos = CalcSpawnPos(maxSpawnRange);
 
 			// if (_wallTm.Tilemap.HasTile(Vector3Int.FloorToInt(spawnPos)) || _floorTm.Tilemap.HasTile(Vector3Int.FloorToInt(spawnPos)))
 			// {
@@ -95,11 +95,11 @@ namespace IslandBoy
 			Instantiate(monster, pos, Quaternion.identity);
 		}
 
-		private Vector2 CalcSpawnPos()
+		private Vector2 CalcSpawnPos(int maxSpawnRange)
 		{
 			GraphNode startNode = AstarPath.active.GetNearest(_po.Position, NNConstraint.Default).node; 
  
-			List<GraphNode> nodes = PathUtilities.BFS(startNode, _maxMonsterSpawnRange); 
+			List<GraphNode> nodes = PathUtilities.BFS(startNode, maxSpawnRange); 
 			Vector3 singleRandomPoint = PathUtilities.GetPointsOnNodes(nodes, 1)[0]; 
  
 			return singleRandomPoint; 

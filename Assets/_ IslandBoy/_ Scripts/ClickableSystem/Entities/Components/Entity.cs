@@ -9,6 +9,7 @@ namespace IslandBoy
 	{
 		[Header("Base Entity Parameters")]
 		[SerializeField] protected PlayerObject _pr;
+		[SerializeField] private EntityRuntimeSet _entityRts;
 		[MinMaxSlider(0, 99, true)]
 		[SerializeField] private Vector2 _amount;
 
@@ -19,7 +20,7 @@ namespace IslandBoy
 			base.Awake();
 
 			_knockback = GetComponent<KnockbackFeedback>();
-
+			_entityRts.AddToList(this);
 			GameSignals.DAY_END.AddListener(DestroyThisEntity);
 			GameSignals.PLAYER_DIED.AddListener(DestroyThisEntity);
 			GameSignals.MONSTER_HEART_CLEARED.AddListener(Despawn);
@@ -27,6 +28,7 @@ namespace IslandBoy
 		
 		private void OnDestroy()
 		{
+			_entityRts.RemoveFromList(this);
 			GameSignals.DAY_END.RemoveListener(DestroyThisEntity);
 			GameSignals.PLAYER_DIED.RemoveListener(DestroyThisEntity);
 			GameSignals.MONSTER_HEART_CLEARED.RemoveListener(Despawn);

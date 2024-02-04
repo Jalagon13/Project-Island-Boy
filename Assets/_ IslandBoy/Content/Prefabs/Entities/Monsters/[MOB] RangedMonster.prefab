@@ -1093,6 +1093,7 @@ Transform:
   - {fileID: 2494678393997755281}
   - {fileID: 1231255532007606287}
   - {fileID: 5683012861343148676}
+  - {fileID: 3856532570546996033}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &4645090732600290231
@@ -1187,7 +1188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _maxHitPoints: 40
+  _maxHitPoints: 20
   _breakType: 3
   _clickFeedback: {fileID: 3130511575979003274}
   _destroyFeedback: {fileID: 3019761147227211072}
@@ -1199,6 +1200,7 @@ MonoBehaviour:
       Chance: 100
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _amount: {x: 5, y: 20}
+  _entityRts: {fileID: 11400000, guid: b8395270c8b53467b8a3f0ce6f083313, type: 2}
 --- !u!114 &8376000313990279719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17676,3 +17678,73 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &4140902669930230003
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6165658712655154151}
+    m_Modifications:
+    - target: {fileID: 932903701851796402, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 932903701851796402, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 932903701851796402, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 932903701851796402, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 932903701851796402, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 932903701851796402, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 932903701851796402, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 932903701851796402, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 932903701851796402, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 932903701851796402, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483596600131035560, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
+      propertyPath: m_Name
+      value: DynamicLight
+      objectReference: {fileID: 0}
+    - target: {fileID: 6023195277773901937, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
+      propertyPath: m_Intensity
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6023195277773901937, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
+--- !u!4 &3856532570546996033 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 932903701851796402, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
+  m_PrefabInstance: {fileID: 4140902669930230003}
+  m_PrefabAsset: {fileID: 0}

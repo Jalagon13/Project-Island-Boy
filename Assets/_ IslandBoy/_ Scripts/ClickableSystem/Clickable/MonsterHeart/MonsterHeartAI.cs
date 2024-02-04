@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,15 +18,17 @@ namespace IslandBoy
 		[SerializeField] private MonsterSpawner _monsterSpawner;
 		[SerializeField] private int _killQuota;
 		[SerializeField] private int _heartBeatQuota;
+		[Header("Monster Spawn")]
+		[SerializeField] private int _maxMonsterAmount;
+		[SerializeField] private EntityRuntimeSet _monsterRTS;
+		[SerializeField] private List<SpawnSetting> _spawnSettings;
 		[Header("Laser stuff")]
 		[SerializeField] private Laser _laser;
 		[SerializeField] private float _delayFire;
-		[Header("Monsters")]
-		[SerializeField] private Entity _meleeMonster;
-		[SerializeField] private Entity _laserMonster;
 		[Header("Feel")]
 		[SerializeField] private MMF_Player _heartBeatFeedbacks;
 		[SerializeField] private MMF_Player _monsterSpawnFeedbacks;
+		[SerializeField] private MMF_Player _forceFieldDestroyedFeedbacks;
 		[SerializeField] private AudioClip _agroSound;
 		
 		private int _killCounter;
@@ -35,10 +39,19 @@ namespace IslandBoy
 		private BoxCollider2D _rscCollider;
 		private SpriteRenderer _sprite;
 		
+		[Serializable]
+		public class SpawnSetting
+		{
+			[MinMaxSlider(0, 99, true)]
+			public Vector2 SpawnAmount;
+			public float BetweenSpawnTimer;
+			public int MaxSpawnRange;
+			public Entity MonsterToSpawn;
+		}
+		
 		private void Awake() 
 		{
 			UpdateAgroIndicator(new Color(0.5f, 0.1f, 0.65f, 0.25f));
-			
 			_rscCollider = transform.parent.GetComponent<BoxCollider2D>();
 			_sprite = transform.parent.GetChild(0).GetComponent<SpriteRenderer>();
 			_rscCollider.enabled = false;
@@ -77,6 +90,7 @@ namespace IslandBoy
 		
 		private void OnEnable() 
 		{
+			_mhView.UpdateHeartBeatText(_heartBeatCounter, _heartBeatQuota);
 			StartCoroutine(HeartBeatRoutine());
 			StartCoroutine(LaserSequence());
 			GameSignals.MONSTER_KILLED.AddListener(IncrementMonsterMeter);
@@ -145,18 +159,19 @@ namespace IslandBoy
 		{
 			_monsterSpawnFeedbacks?.PlayFeedbacks();
 			
-			for (int i = 0; i < 8; i++)
+			foreach(SpawnSetting setting in _spawnSettings)
 			{
-				yield return new WaitForSeconds(0.2f);
-				_monsterSpawner.SpawnMonster(_meleeMonster);
-			}
-			
-			yield return new WaitForSeconds(1f);
-			
-			for (int i = 0; i < 2; i++)
-			{
-				yield return new WaitForSeconds(1.25f);
-				_monsterSpawner.SpawnMonster(_laserMonster);
+				int amount = UnityEngine.Random.Range((int)setting.SpawnAmount.x, (int)setting.SpawnAmount.y);
+				
+				for (int i = 0; i < amount; i++)
+				{
+					yield return new WaitForSeconds(setting.BetweenSpawnTimer);
+					
+					if(_monsterRTS.ListSize < _maxMonsterAmount)
+					{
+						_monsterSpawner.SpawnMonster(setting.MonsterToSpawn, setting.MaxSpawnRange);
+					}
+				}
 			}
 		}
 		
@@ -168,6 +183,8 @@ namespace IslandBoy
 			_rscCollider.enabled = true;
 			_forceFieldDown = true;
 			ActivateAgroPhase();
+			
+			_forceFieldDestroyedFeedbacks?.PlayFeedbacks();
 		}
 		
 		private void IncrementMonsterMeter(ISignalParameters parameters)
@@ -187,7 +204,5 @@ namespace IslandBoy
 		{
 			_indicatorSr.color = color;
 		}
-		
-		
 	}
 }

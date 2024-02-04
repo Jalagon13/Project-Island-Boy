@@ -79,8 +79,7 @@ namespace IslandBoy
 				EnableProgressBar(true);
 				EnableAmountDisplay(false);
 			}
-
-			GameSignals.CLICKABLE_CLICKED.Dispatch();
+			
 			_restoreHpTimer.RemainingSeconds = 5;
 
 			return true;

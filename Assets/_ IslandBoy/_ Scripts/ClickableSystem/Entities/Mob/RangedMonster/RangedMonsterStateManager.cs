@@ -25,10 +25,10 @@ namespace IslandBoy
 			
 			yield return new WaitForSeconds(_shootCooldown);
 			
-			for (int i = 0; i < 4; i++)
+			for (int i = 0; i < 3; i++)
 			{
 				ShootPlayer();
-				yield return new WaitForSeconds(0.5f);
+				yield return new WaitForSeconds(2.5f);
 			}
 			
 			yield return new WaitForSeconds(_shootCooldown);

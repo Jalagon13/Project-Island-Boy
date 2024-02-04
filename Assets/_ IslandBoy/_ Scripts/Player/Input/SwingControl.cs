@@ -80,6 +80,7 @@ namespace IslandBoy
 		{
 			if (_swingTimer.RemainingSeconds > 0 || _focusSlotRef == null || _focusSlotRef.ItemObject is not ToolObject || Pointer.IsOverUI() || !_canAnimate) return;
 				
+			GameSignals.CLICKABLE_CLICKED.Dispatch();
 			PerformCorrectAnimation();
 		}
 

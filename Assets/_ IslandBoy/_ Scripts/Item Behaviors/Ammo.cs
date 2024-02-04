@@ -54,6 +54,12 @@ namespace IslandBoy
 			
 			if(_canHitPlayer)
 			{
+				if(collision.TryGetComponent(out PlayerAttackCollider pac))
+				{
+					Destroy(gameObject);
+					return;
+				}
+				
 				if (collision.TryGetComponent(out Player player))
 				{
 					int damageAmount = Mathf.RoundToInt(_damage);
@@ -101,7 +107,7 @@ namespace IslandBoy
 		
 		public void Setup(Vector3 direction)
 		{
-			_damage = 5;
+			_damage = 6;
 			_targetPosition = transform.position + (direction * _travelDistance);
 			
 			if(_fireSound != null)
