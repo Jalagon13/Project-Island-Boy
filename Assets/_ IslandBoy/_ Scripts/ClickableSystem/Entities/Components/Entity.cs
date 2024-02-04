@@ -52,9 +52,10 @@ namespace IslandBoy
 			Destroy(gameObject);
 		}
 
-		public override bool OnHit(ToolType incomingToolType, int amount, bool displayHit = true)
+		public bool Damage(ToolType incomingToolType, int amount, bool displayHit = true, bool kbEnabled = true)
 		{
-			_knockback.PlayFeedback(_pr.Position);
+			if(kbEnabled)
+				_knockback.PlayFeedback(_pr.Position);
 			// _despawnTimer.RemainingSeconds = _durationUntilDespawn;
 
 			if (base.OnHit(incomingToolType, amount, displayHit))
@@ -103,6 +104,25 @@ namespace IslandBoy
 		{
 			int amount = Random.Range((int)_amount.x, (int)_amount.y);
 			PlayerGoldController.Instance.AddCurrency(amount, transform.position);
+		}
+		
+		public void StartBurn()
+		{
+			StartCoroutine(Burn());
+		}
+		
+		private IEnumerator Burn()
+		{
+			Damage(ToolType.Sword, 1);
+			
+			yield return new WaitForSeconds(0.5f);
+			
+			StartCoroutine(Burn());
+		}
+		
+		public void StopBurn()
+		{
+			StopAllCoroutines();
 		}
 	}
 }

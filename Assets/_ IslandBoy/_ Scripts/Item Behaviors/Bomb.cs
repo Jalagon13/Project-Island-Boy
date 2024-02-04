@@ -111,7 +111,7 @@ namespace IslandBoy
 				
 				if(entity != null)
 				{
-					entity.OnHit(ToolType.Sword, _enemyDamage);
+					entity.Damage(ToolType.Sword, _enemyDamage);
 				}
 				
 				Player player = collider.GetComponent<Player>();

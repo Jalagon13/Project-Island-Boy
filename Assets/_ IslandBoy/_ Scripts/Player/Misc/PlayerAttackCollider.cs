@@ -52,7 +52,7 @@ namespace IslandBoy
 				{
 					if (_entitiesHitThisSwing.Contains(entity)) continue;
 
-					entity.OnHit(ToolType.Sword, _damage);
+					entity.Damage(ToolType.Sword, _damage);
 					yield return new WaitForSeconds(_detectionBetweenHits);
 					_entitiesFoundThisSwing.Remove(entity);
 					_entitiesHitThisSwing.Add(entity);

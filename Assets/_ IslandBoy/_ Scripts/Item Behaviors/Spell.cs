@@ -28,7 +28,7 @@ namespace IslandBoy
                 if (entity.TryGetComponent(out Entity e))
                 {
                     if (e == null) continue;
-                    e.OnHit(ToolType.Sword, _damage);
+                    e.Damage(ToolType.Sword, _damage);
                 }
             }
         }

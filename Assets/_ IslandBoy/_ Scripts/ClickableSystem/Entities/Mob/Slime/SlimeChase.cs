@@ -19,7 +19,7 @@ namespace IslandBoy
 			_ctx.AI.isStopped = false;
 			SeekPlayer();
 
-			MMSoundManagerSoundPlayEvent.Trigger(_ctx._agroSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
+			MMSoundManagerSoundPlayEvent.Trigger(_ctx._agroSound, MMSoundManager.MMSoundManagerTracks.Sfx, default, volume:0.25f);
 		}
 
 		override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

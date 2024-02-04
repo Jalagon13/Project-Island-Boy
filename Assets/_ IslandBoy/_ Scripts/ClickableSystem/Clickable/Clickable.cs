@@ -53,8 +53,6 @@ namespace IslandBoy
 			_clickFeedback?.PlayFeedbacks();
 			_currentHitPoints -= amount;
 
-			GameSignals.CLICKABLE_CLICKED.Dispatch();
-
 			if (_currentHitPoints <= 0)
 				OnBreak();
 

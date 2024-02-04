@@ -18,10 +18,10 @@ namespace IslandBoy
 		[SerializeField] protected bool _swingDestructOnly = false;
 		[SerializeField] protected int _spawnRate;
 
-        public bool SwingDestructOnly { get { return _swingDestructOnly; } }
-        public int SpawnRate { get { return _spawnRate; } }
+		public bool SwingDestructOnly { get { return _swingDestructOnly; } }
+		public int SpawnRate { get { return _spawnRate; } }
 
-        private Timer _restoreHpTimer;
+		private Timer _restoreHpTimer;
 
 
 		protected override void Awake()
@@ -80,6 +80,7 @@ namespace IslandBoy
 				EnableAmountDisplay(false);
 			}
 
+			GameSignals.CLICKABLE_CLICKED.Dispatch();
 			_restoreHpTimer.RemainingSeconds = 5;
 
 			return true;
