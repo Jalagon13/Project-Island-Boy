@@ -16,8 +16,11 @@ namespace IslandBoy
 		public override void ExecutePrimaryAction(FocusSlotControl control)
 		{
 			var pos = Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position);
-
-			if (!control.WallTm.Tilemap.HasTile(pos) && control.CursorControl.IsClear())
+			bool groundTmHasTile = control.GroundTm.Tilemap.HasTile(Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position));
+			bool wallTmHasTile = control.WallTm.Tilemap.HasTile(Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position));
+			bool tilActionClear = control.CursorControl.IsClear();
+			
+			if (groundTmHasTile && tilActionClear && !wallTmHasTile)
 			{
 				control.FocusSlot.InventoryItem.Count--;
 				GameSignals.ITEM_DEPLOYED.Dispatch();
