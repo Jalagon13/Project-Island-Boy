@@ -11476,7 +11476,7 @@ MonoBehaviour:
         BypassEffects: 0
         BypassListenerEffects: 0
         BypassReverbZones: 0
-        Priority: 128
+        Priority: 1
         ReverbZoneMix: 1
         PlaybackTime: {x: 0, y: 0}
         PlaybackDuration: {x: 0, y: 0}
@@ -11526,7 +11526,7 @@ MonoBehaviour:
     - rid: 2229823402722197506
       type: {class: MMF_SquashAndStretch, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
-        Active: 1
+        Active: 0
         UniqueID: 1739044283
         Label: Squash and Stretch
         ChannelMode: 0
@@ -11591,7 +11591,7 @@ MonoBehaviour:
         RemapRangeFalloff: {x: 0, y: 1}
         Owner: {fileID: 3130511575979003274}
         DebugActive: 0
-        SquashAndStretchTarget: {fileID: 0}
+        SquashAndStretchTarget: {fileID: 2622750276025026488}
         Mode: 0
         Axis: 4
         AnimateScaleDuration: 0.5

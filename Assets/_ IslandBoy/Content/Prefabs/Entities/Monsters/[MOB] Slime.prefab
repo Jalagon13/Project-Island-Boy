@@ -11518,7 +11518,6 @@ MonoBehaviour:
       Max: 2
       Chance: 100
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _durationUntilDespawn: 120
   _amount: {x: 5, y: 20}
 --- !u!114 &3736007384578019363
 MonoBehaviour:
@@ -12308,7 +12307,7 @@ MonoBehaviour:
         BypassEffects: 0
         BypassListenerEffects: 0
         BypassReverbZones: 0
-        Priority: 128
+        Priority: 1
         ReverbZoneMix: 1
         PlaybackTime: {x: 0, y: 0}
         PlaybackDuration: {x: 0, y: 0}
