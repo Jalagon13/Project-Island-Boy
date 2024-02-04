@@ -269,7 +269,7 @@ MonoBehaviour:
   AutomaticallyUnparentOnAwake: 1
   settingsSo: {fileID: 11400000, guid: 07ea3ff88e1ecb84d91f58aa804badc6, type: 2}
   AudioSourcePoolSize: 20
-  PoolCanExpand: 0
+  PoolCanExpand: 1
 --- !u!4 &365781311
 Transform:
   m_ObjectHideFlags: 0
@@ -2849,6 +2849,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7844433107734621509, guid: 705bedf1958508840b09b1a9b3f5ac2f, type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7844433107734621509, guid: 705bedf1958508840b09b1a9b3f5ac2f, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7844433108173394774, guid: 705bedf1958508840b09b1a9b3f5ac2f, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7844433108173394774, guid: 705bedf1958508840b09b1a9b3f5ac2f, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7844433108773139226, guid: 705bedf1958508840b09b1a9b3f5ac2f, type: 3}
       propertyPath: m_Name
       value: TooltipManager

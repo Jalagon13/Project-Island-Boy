@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using UnityEditor;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace IslandBoy
 		[SerializeField] private float _radius;
 		[SerializeField] private int _initialDamage;
 		[SerializeField] private float _torchDuration;
+		[SerializeField] private MMF_Player _torchPlaceFeedback;
 		
 		private void Awake() 
 		{
@@ -18,6 +20,8 @@ namespace IslandBoy
 		
 		private void Start() 
 		{
+			_torchPlaceFeedback?.PlayFeedbacks();
+			
 			StartCoroutine(TorchDuration());
 			StartCoroutine(Burn());
 		}
