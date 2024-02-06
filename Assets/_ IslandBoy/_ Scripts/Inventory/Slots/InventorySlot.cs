@@ -11,15 +11,21 @@ namespace IslandBoy
         {
             if (eventData.button == PointerEventData.InputButton.Left && Input.GetKey(KeyCode.LeftShift) && HasItem()) // BROOKE --------------
             {
+                ItemObject item = transform.GetChild(0).GetComponent<InventoryItem>().Item;
                 if (_chestOpen)
                 {
-                    if (_isChestSlot) MoveItemIntoInventory();
+                    if (_isChestSlot)
+                    {
+                        if (_pr.Inventory.CanAddItem(item))
+                            MoveItemIntoInventory();
+                        // TODO: play error sound if wasn't able to add item
+                    }
                     else MoveItemIntoChest();
+                    // FIX: currently plays adding sound if can't add item to chest
+                    // TODO: play error sound if wasn't able to add item
                 }
                 else
                 {
-                    ItemObject item = transform.GetChild(0).GetComponent<InventoryItem>().Item;
-
                     if (item.AccessoryType != AccessoryType.None || item.ArmorType != ArmorType.None)
                         MoveItemIntoSlot();
                 }

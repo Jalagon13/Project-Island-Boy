@@ -14,15 +14,20 @@ namespace IslandBoy
 		[AssetsOnly]
 		[SerializeField] protected GameObject _inventoryItemPrefab;
 		[SerializeField] protected AudioClip _popSound;
-		protected bool _isChestSlot; // BROOKE
+		[SerializeField] protected ArmorType _slotArmorType = ArmorType.None;
+		protected bool _isAccessorySlot = false;
+		protected bool _isChestSlot;
 
 		protected MouseSlot _mouseItemHolder;
 		protected int _maxStack;
 		protected bool _inventoryOpen;
-		protected bool _chestOpen; // BROOKE
+		protected bool _chestOpen;
 
+		public ArmorType ArmorType{ get { return _slotArmorType; } }
+		public bool IsAccessorySlot { get { return _isAccessorySlot; } }
 		public MouseSlot MouseItemHolder { get { return _mouseItemHolder; } }
 		public bool InventoryOpen { set { _inventoryOpen = value; } }
+		public bool ChestOpen { set { _chestOpen = value; } }
 
 		public ToolType ToolType
 		{
@@ -32,7 +37,6 @@ namespace IslandBoy
 			}
 		}
 
-		public bool ChestOpen { set { _chestOpen = value; } } // BROOKE
 		public ItemObject ItemObject
 		{
 			get
@@ -244,9 +248,12 @@ namespace IslandBoy
 		public void SetCount(int num)
 		{
 			transform.GetChild(0).GetComponent<InventoryItem>().Count = num;
-		} 
-		
-		public void SetChestSlot() // used by chests to mark their slots as chest slots
+		}
+
+		/// <summary>
+		/// used by chests to mark their slots as chest slots
+		/// </summary>
+		public void SetChestSlot()
 		{
 			_isChestSlot = true;
 		}

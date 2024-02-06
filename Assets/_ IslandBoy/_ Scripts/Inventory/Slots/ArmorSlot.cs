@@ -8,7 +8,7 @@ namespace IslandBoy
 {
     public class ArmorSlot : Slot
     {
-        [SerializeField] private ArmorType _slotArmorType;
+        //[SerializeField] private ArmorType _slotArmorType;
         [SerializeField] private ItemParameter _defenseParameter;
         [SerializeField] private ItemParameter _durabilityParameter;
         [SerializeField] private TextMeshProUGUI _defenseText;

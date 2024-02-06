@@ -14,10 +14,17 @@ namespace IslandBoy
     public class AccessoryObject : ItemObject
     {
         [SerializeField] private AccessoryType _accessoryType;
+        [SerializeField] private float _cooldown;
+        [SerializeField] private float _length; // how long effect lasts
+        [SerializeField] private float _dashSpeed;
 
         public override ToolType ToolType => _baseToolType;
         public override ArmorType ArmorType => _baseArmorType;
         public override AccessoryType AccessoryType => _accessoryType;
+        public float Cooldown => _cooldown;
+        public float Length => _length;
+        public float DashSpeed => _dashSpeed;
+
 
         public override void ExecutePrimaryAction(FocusSlotControl control)
         {
@@ -31,27 +38,15 @@ namespace IslandBoy
 
         public override string GetDescription()
         {
-            //string upgradeText = _upgradeRecipe != null ? $"* Next upgrade: {_upgradeRecipe.OutputItem.Name}" : string.Empty;
-
-            //return $"* {hitValue} per hit<br>* {miningSpeed} mining speed<br>* {damage} damage<br>{upgradeText}";
-
-            /*foreach (var item in DefaultParameterList)
+            string description = "";
+            switch (_accessoryType)
             {
-                switch (item.Parameter.ParameterName)
-                {
-                    case "Hit":
-                        hitValue = item.Value;
-                        break;
-                    case "MiningSpeed":
-                        miningSpeed = item.Value;
-                        break;
-                    case "Damage":
-                        damage = item.Value;
-                        break;
-                }
-            }*/
+                case AccessoryType.Dash:
+                    description += $"* Press SPRINT to Dash!<br>";
+                    break;
+            }
 
-            return _accessoryType + " Accessory";
+            return "* Accessory<br>" + description + $"* { _cooldown} second cooldown";
         }
     }
 }
