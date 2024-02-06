@@ -7,8 +7,7 @@ namespace IslandBoy
     public enum AccessoryType
     {
         None,
-        Dash,
-        Other
+        Dash
     }
 
     [CreateAssetMenu(fileName = "New Accessory Object", menuName = "Create Item/New Accessory Object")]
@@ -51,9 +50,3 @@ namespace IslandBoy
         }
     }
 }
-
-// TODO:
-// rename and create sprite for item
-// change sprite icon under stat bars
-// get rid of "Other" accessory type and temp accessory i created
-// update accessory slot icon

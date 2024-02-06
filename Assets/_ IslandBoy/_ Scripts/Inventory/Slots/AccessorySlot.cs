@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace IslandBoy
 {
     public class AccessorySlot : Slot
     {
         private AccessoryType _type = AccessoryType.None;
+        private Image _image;
+        private Sprite _accessorySlotSprite;
+        [SerializeField] private Sprite _blankSlotSprite;
 
         private void Awake()
         {
             GameSignals.EQUIP_ITEM.AddListener(EquipAccessory);
             _isAccessorySlot = true;
+            _image = GetComponent<Image>();
+            _accessorySlotSprite = _image.sprite;
         }
 
         private void OnDestroy()
@@ -82,6 +88,7 @@ namespace IslandBoy
                     _pr.GameObject.GetComponent<Accessories>().EnableDash();
                     break;
             }
+            _image.sprite = _blankSlotSprite;
         }
 
         private void UnequipAccessory()
@@ -93,6 +100,7 @@ namespace IslandBoy
                     break;
             }
             _type = AccessoryType.None;
+            _image.sprite = _accessorySlotSprite;
         }
     }
 }

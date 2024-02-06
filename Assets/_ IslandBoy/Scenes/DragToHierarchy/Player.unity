@@ -1971,8 +1971,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 10, y: 500}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 10, y: 457.2}
+  m_SizeDelta: {x: 110, y: 110}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1944238566
 MonoBehaviour:
@@ -1994,7 +1994,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -972602597, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  m_Sprite: {fileID: 1528400854, guid: 2db3130ab58ac524ab3184544581561c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3105,9 +3105,6 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _db: {fileID: 11400000, guid: f6e57a3c6afacbe42a95bdb7a74442f3, type: 2}
   _dashIcon: {fileID: 1944238564}
-  _dashCooldown: 5
-  _dashLength: 1
-  _dashSpeed: 15
 --- !u!1001 &7844433109540383904
 PrefabInstance:
   m_ObjectHideFlags: 0
