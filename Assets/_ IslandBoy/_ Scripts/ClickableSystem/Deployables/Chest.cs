@@ -82,11 +82,12 @@ namespace IslandBoy
 			// TODO: don't play sound or play error sound if wasn't able to add item
 		}
 
+		/// <summary>
+		/// only matters for when adding items in game via shift-click, does not matter otherwise
+		/// </summary>
+		/// <returns>true if all items were added successfully, false otherwise</returns>
 		private bool AddItemsToChest(List<ChestInvSlot> itemsToAdd)
 		{
-			// return true if all items were added successfully
-			// false otherwise
-			// only matters for when adding items in game via shift-click, does not matter otherwise
 			foreach (ChestInvSlot item in itemsToAdd)
 			{
 				if (AddItem(item) != 0)

@@ -98,6 +98,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""c7252544-57ff-4149-903f-585b157b0d91"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -252,6 +261,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""CatchFish"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9d4c2b6d-a769-4f52-9863-05ffacec8d39"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -478,6 +498,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_SpeedDebug = m_Player.FindAction("SpeedDebug", throwIfNotFound: true);
         m_Player_Fishing = m_Player.FindAction("Fishing", throwIfNotFound: true);
         m_Player_CatchFish = m_Player.FindAction("CatchFish", throwIfNotFound: true);
+        m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         // Hotbar
         m_Hotbar = asset.FindActionMap("Hotbar", throwIfNotFound: true);
         m_Hotbar__1 = m_Hotbar.FindAction("1", throwIfNotFound: true);
@@ -559,6 +580,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SpeedDebug;
     private readonly InputAction m_Player_Fishing;
     private readonly InputAction m_Player_CatchFish;
+    private readonly InputAction m_Player_Dash;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -571,6 +593,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @SpeedDebug => m_Wrapper.m_Player_SpeedDebug;
         public InputAction @Fishing => m_Wrapper.m_Player_Fishing;
         public InputAction @CatchFish => m_Wrapper.m_Player_CatchFish;
+        public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -604,6 +627,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @CatchFish.started += instance.OnCatchFish;
             @CatchFish.performed += instance.OnCatchFish;
             @CatchFish.canceled += instance.OnCatchFish;
+            @Dash.started += instance.OnDash;
+            @Dash.performed += instance.OnDash;
+            @Dash.canceled += instance.OnDash;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -632,6 +658,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @CatchFish.started -= instance.OnCatchFish;
             @CatchFish.performed -= instance.OnCatchFish;
             @CatchFish.canceled -= instance.OnCatchFish;
+            @Dash.started -= instance.OnDash;
+            @Dash.performed -= instance.OnDash;
+            @Dash.canceled -= instance.OnDash;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -777,6 +806,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnSpeedDebug(InputAction.CallbackContext context);
         void OnFishing(InputAction.CallbackContext context);
         void OnCatchFish(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
     public interface IHotbarActions
     {

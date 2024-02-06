@@ -59,7 +59,10 @@ namespace IslandBoy
             return 0;
         }
 
-        public bool AddItemToSlot(ItemObject item, int amount) // Returns true if successful, false otherwise // BROOKE----------------------------------------------------------------
+        /// <summary>
+        /// Returns true if successful, false otherwise
+        /// </summary>
+        public bool AddItemToSlot(ItemObject item, int amount) // BROOKE----------------------------------------------------------------
         {
             // Find an empty slot
             if (item.AccessoryType != AccessoryType.None)
@@ -72,27 +75,48 @@ namespace IslandBoy
                     {
                         slot.PlaySound();
                         DispatchItemAdded();
+                        DispatchItemToSlotAdded(item);
                         return true;
                     }
                 }
             }
             /*else if (item.ArmorType != ArmorType.None)
             {
-                for (int i = 0; i < _armorSlots.Count; i++)
-                {
-                    Slot slot = _armorSlots[i];
-
-                    if (slot.SpawnInventoryItem(item))
-                    {
-                        DispatchItemAdded();
-                        return true;
-                    }
-                }
             }*/ // TODO: make this work for armor slots
 
             DispatchItemAdded();
             return false;
-        } // BROOKE----------------------------------------------------------------
+        }
+
+        private void DispatchItemToSlotAdded(ItemObject item)
+        {
+            Signal signal = GameSignals.EQUIP_ITEM;
+            signal.ClearParameters();
+            signal.AddParameter("item", item);
+            signal.Dispatch();
+        }
+
+        /// <summary>
+        /// returns true if there is no empty slots, false otherwise
+        /// </summary>
+        public bool IsFull()
+        {
+            for (int i = 0; i < _allSlots.Count; i++)
+            {
+                Slot slot = _allSlots[i];
+
+                if (slot.ArmorType == ArmorType.None && !slot.IsAccessorySlot)
+                {
+                    if (!slot.HasItem())
+                    {
+                        return false;
+                    }
+                }
+                else return true;
+            }
+            return true;
+        }
+        // BROOKE----------------------------------------------------------------
 
         private void DispatchItemAdded()
         {
@@ -179,6 +203,27 @@ namespace IslandBoy
             }
 
             return amount;
+        }
+
+        /// <summary>
+        /// returns true if can add item to inventory
+        /// </summary>
+        public bool CanAddItem(ItemObject item)
+        {
+            if (!IsFull()) return true; // if empty slot in inv exists, always true
+            else if (!item.Stackable) return false; // if inv full and item isn't stackable, always false
+
+            for (int i = 0; i < _allSlots.Count; i++)
+            {
+                Slot slot = _allSlots[i];
+
+                if (slot.ItemObject == item && slot.InventoryItem.Count < _maxStack)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public bool Contains(ItemObject item, int amount)

@@ -179,16 +179,13 @@ namespace IslandBoy
 			if (AddItemToInventoryFromChest(parameters.GetParameter("itemToAdd") as ChestInvSlot))
 			{
 				Destroy(parameters.GetParameter("itemObj") as GameObject);
-				// TODO: creating errors?? related to destroying item when inventory full
 			}
-			// TODO: don't play sound or play error sound if wasn't able to add item
 		}
 
 		public bool AddItemToInventoryFromChest(ChestInvSlot itemToAdd)
 		{
 			int leftOver = _inventory.AddItem(itemToAdd.OutputItem, itemToAdd.OutputAmount);
 
-			// TODO: tries to add to armor inventory when inventory is full
 			if (leftOver > 0)
 				return false;
 			else return true;
@@ -202,7 +199,6 @@ namespace IslandBoy
 			{
 				Destroy(parameters.GetParameter("itemObj") as GameObject);
 			}
-			// TODO: play error sound if wasn't able to add item
 		} // BROOKE --------------------------------------------------
 	}
 }

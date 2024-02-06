@@ -7,14 +7,29 @@ namespace IslandBoy
 {
     public class AccessorySlot : Slot
     {
-        [SerializeField] private ItemParameter _defenseParameter;
-        [SerializeField] private ItemParameter _durabilityParameter;
+        private AccessoryType _type = AccessoryType.None;
+
+        private void Awake()
+        {
+            GameSignals.EQUIP_ITEM.AddListener(EquipAccessory);
+            _isAccessorySlot = true;
+        }
+
+        private void OnDestroy()
+        {
+            GameSignals.EQUIP_ITEM.RemoveListener(EquipAccessory);
+        }
 
         public override void OnPointerClick(PointerEventData eventData)
         {
             if (eventData.button == PointerEventData.InputButton.Left && Input.GetKey(KeyCode.LeftShift))
             {
-                MoveItemIntoInventory();
+                if (!_pr.Inventory.IsFull())
+                {
+                    UnequipAccessory();
+                    MoveItemIntoInventory();
+                }
+                // TODO: play error sound if wasn't able to remove item
             }
             else if (eventData.button == PointerEventData.InputButton.Left || eventData.button == PointerEventData.InputButton.Right)
             {
@@ -24,16 +39,16 @@ namespace IslandBoy
                     {
                         if (HasItem())
                         {
-                            //UnEquipArmor();
+                            UnequipAccessory();
                             SwapThisItemAndMouseItem();
-                            //EquipArmor();
+                            EquipAccessory();
                         }
                         else
                         {
                             _mouseItemHolder.GiveItemToSlot(transform);
                             TooltipManager.Instance.Show(ItemObject.GetDescription(), ItemObject.Name);
                             PlaySound();
-                            //EquipArmor();
+                            EquipAccessory();
                         }
                     }
                 }
@@ -41,9 +56,9 @@ namespace IslandBoy
                 {
                     if (HasItem())
                     {
+                        UnequipAccessory(); 
                         GiveThisItemToMouseHolder();
                         TooltipManager.Instance.Hide();
-                        //UnEquipArmor();
                     }
                 }
             }
@@ -51,46 +66,33 @@ namespace IslandBoy
             GameSignals.SLOT_CLICKED.Dispatch();
         }
 
-        private void DecreaseDurability(int decreaseAmount) 
+        private void EquipAccessory(ISignalParameters parameter)
         {
-            if (InventoryItem == null || decreaseAmount == 0) return;
-
-            var itemParams = InventoryItem.CurrentParameters;
-
-            int index = itemParams.IndexOf(_durabilityParameter);
-            float newValue = itemParams[index].Value - decreaseAmount;
-            itemParams[index] = new ItemParameter
-            {
-                Parameter = _durabilityParameter.Parameter,
-                Value = newValue
-            };
-
-            InventoryItem.UpdateDurabilityCounter();
-
-            StartCoroutine(FrameDelay());
+            ItemObject item = parameter.GetParameter("item") as ItemObject;
+            if (item.AccessoryType != AccessoryType.None && HasItem() && InventoryItem.Item == item)
+                EquipAccessory();
         }
 
-        private IEnumerator FrameDelay()
+        private void EquipAccessory()
         {
-            yield return new WaitForEndOfFrame();
-
-            if (!HasItem())
+            _type = transform.GetChild(0).GetComponent<InventoryItem>().Item.AccessoryType;
+            switch (_type)
             {
-                //UnEquipArmor();
+                case AccessoryType.Dash:
+                    _pr.GameObject.GetComponent<Accessories>().EnableDash();
+                    break;
             }
         }
 
-        private int GetDefenseFromItem()
+        private void UnequipAccessory()
         {
-            var itemParams = InventoryItem.CurrentParameters;
-
-            if (itemParams.Contains(_defenseParameter))
+            switch (_type)
             {
-                int index = itemParams.IndexOf(_defenseParameter);
-                return (int)itemParams[index].Value;
+                case AccessoryType.Dash:
+                    _pr.GameObject.GetComponent<Accessories>().DisableDash();
+                    break;
             }
-
-            return 0;
+            _type = AccessoryType.None;
         }
     }
 }
