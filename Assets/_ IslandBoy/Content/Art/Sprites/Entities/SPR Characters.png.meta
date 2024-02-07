@@ -227,6 +227,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: spr_old_lady
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 1
+        width: 13
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01db6c1be9a494ed882fe3a52c53ef6e
+      internalID: 1389064612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -242,6 +263,7 @@ TextureImporter:
       spr_bound_wizard: 1498854646
       spr_druid: 1094963970
       spr_island_boy: 1001675587
+      spr_old_lady: 1389064612
       spr_player: -1006392663
       spr_wizard: -1975342335
   mipmapLimitGroupName: 

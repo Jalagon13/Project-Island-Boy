@@ -19,8 +19,11 @@ namespace IslandBoy
 		{
 			base.Awake();
 
+			if(_entityRts != null)
+				_entityRts.AddToList(this);
+
 			_knockback = GetComponent<KnockbackFeedback>();
-			_entityRts.AddToList(this);
+			
 			GameSignals.DAY_END.AddListener(DestroyThisEntity);
 			GameSignals.PLAYER_DIED.AddListener(DestroyThisEntity);
 			GameSignals.MONSTER_HEART_CLEARED.AddListener(Despawn);
@@ -28,7 +31,9 @@ namespace IslandBoy
 		
 		private void OnDestroy()
 		{
-			_entityRts.RemoveFromList(this);
+			if(_entityRts != null)
+				_entityRts.RemoveFromList(this);
+				
 			GameSignals.DAY_END.RemoveListener(DestroyThisEntity);
 			GameSignals.PLAYER_DIED.RemoveListener(DestroyThisEntity);
 			GameSignals.MONSTER_HEART_CLEARED.RemoveListener(Despawn);

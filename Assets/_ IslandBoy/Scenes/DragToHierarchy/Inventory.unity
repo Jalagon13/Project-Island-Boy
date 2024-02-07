@@ -2588,7 +2588,7 @@ MonoBehaviour:
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
   _slotArmorType: 0
-  _blankSlotSprite: {fileID: -505856833, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
+  _blankSlotSprite: {fileID: 0}
 --- !u!114 &1384623467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3035,7 +3035,7 @@ MonoBehaviour:
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
   _slotArmorType: 0
-  _blankSlotSprite: {fileID: -505856833, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
+  _blankSlotSprite: {fileID: 0}
 --- !u!114 &2004119244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3234,7 +3234,7 @@ MonoBehaviour:
   _inventoryItemPrefab: {fileID: 3640613215537145207, guid: 107f895f6ecf0ee4fbd4a8f9f08342ed, type: 3}
   _popSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
   _slotArmorType: 0
-  _blankSlotSprite: {fileID: -505856833, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
+  _blankSlotSprite: {fileID: 0}
 --- !u!114 &2116776337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5149,6 +5149,8 @@ MonoBehaviour:
     OutputAmount: 1
   - OutputItem: {fileID: 11400000, guid: fb9c53bc5a9014142b9e07f97db75202, type: 2}
     OutputAmount: 1
+  - OutputItem: {fileID: 11400000, guid: c906a5571e025f748a2a8be768588981, type: 2}
+    OutputAmount: 1
   _allSlots:
   - {fileID: 1398917238}
   - {fileID: 658019018}
@@ -5218,7 +5220,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -19.999939}
+  m_AnchoredPosition: {x: 0, y: -20}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &5602138070249294678
@@ -6522,6 +6524,7 @@ RectTransform:
   - {fileID: 344292602}
   - {fileID: 8633483086173064487}
   - {fileID: 1111027109}
+  - {fileID: 1309782071}
   m_Father: {fileID: 5602138070249294677}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

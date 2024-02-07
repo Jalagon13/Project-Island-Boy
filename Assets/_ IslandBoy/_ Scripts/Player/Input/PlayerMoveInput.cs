@@ -10,6 +10,7 @@ namespace IslandBoy
 		private Rigidbody2D _rb;
 		private PlayerInput _playerInput;
 		private Vector2 _moveDirection;
+		private Vector2 _lastNonZeroMoveDirection;
 		private bool _isFacingRight;
 		private float _baseSpeed;
 
@@ -17,6 +18,7 @@ namespace IslandBoy
 		public float BaseSpeed { get { return _baseSpeed; }}
 
 		public Vector2 MoveDirection { get { return _moveDirection; } }
+		public Vector2 LastNonZeroMoveDirection { get { return _lastNonZeroMoveDirection; } }
 		public bool IsFacingRight { get { return _isFacingRight; } }
 
 		private void Awake()
@@ -51,8 +53,12 @@ namespace IslandBoy
 		private void MovementAction(InputAction.CallbackContext context)
 		{
 			_moveDirection = context.ReadValue<Vector2>();
+			
 			if (_moveDirection.x != 0)
 				_isFacingRight = _moveDirection.x > 0;
+				
+			if(_moveDirection.magnitude != 0)
+				_lastNonZeroMoveDirection = _moveDirection;
 		}
 	}
 }

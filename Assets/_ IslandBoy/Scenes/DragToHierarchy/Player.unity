@@ -1761,7 +1761,6 @@ GameObject:
   - component: {fileID: 1874347831}
   - component: {fileID: 1874347830}
   - component: {fileID: 1874347829}
-  - component: {fileID: 1874347832}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -2998,7 +2997,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4210445617747853061}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a634230476dc478b88eceac73b1c8a4, type: 3}
   m_Name: 
