@@ -605,6 +605,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: ui_sunset
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 1
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 687c702d1cc354f32bd84a791bc557af
+      internalID: -189181684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -639,6 +660,7 @@ TextureImporter:
       ui_right_click: 1845987391
       ui_sun_mark: -1565230189
       ui_sun_marker: -1176373306
+      ui_sunset: -189181684
       ui_wizard_logo: 1707470153
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

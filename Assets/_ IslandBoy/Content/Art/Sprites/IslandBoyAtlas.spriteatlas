@@ -57,6 +57,7 @@ SpriteAtlas:
     - 86aecb705c543a948a0d95c4e351f0e1: 2135872218
     - 163e8e7065e05434e96c5969ddf71b39: 2075716197
     - 163e8e7065e05434e96c5969ddf71b39: -1898290835
+    - 163e8e7065e05434e96c5969ddf71b39: -189181684
     - 163e8e7065e05434e96c5969ddf71b39: -505856833
     - 163e8e7065e05434e96c5969ddf71b39: 1183265060
     - 163e8e7065e05434e96c5969ddf71b39: 181257697
@@ -930,6 +931,7 @@ SpriteAtlas:
   - {fileID: 2135872218, guid: 86aecb705c543a948a0d95c4e351f0e1, type: 3}
   - {fileID: 2075716197, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   - {fileID: -1898290835, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
+  - {fileID: -189181684, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   - {fileID: -505856833, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   - {fileID: 1183265060, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   - {fileID: 181257697, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
@@ -1802,6 +1804,7 @@ SpriteAtlas:
   - ws_door_open
   - ui_inventory_slot
   - ui_miner_logo
+  - ui_sunset
   - 9sprite_mm_full
   - ui_moon_marker
   - ui_hp_icon

@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace IslandBoy
 {
 	public class TimeManager : MonoBehaviour
 	{
+		[SerializeField] private RectTransform _sunMoonMarker;
+		[SerializeField] private Sprite _sunSprite;
+		[SerializeField] private Sprite _moonSprite;
+		
 		public float CurrentDayRatio => _currentTimeOfTheDay / DayDurationInSeconds;
 		public DayCycleHandler DayCycleHandler { get; set; }
 		
@@ -16,6 +21,7 @@ namespace IslandBoy
 		private static TimeManager _instance;
 		private float _currentTimeOfTheDay;
 		private bool _isTicking;
+		private bool _canStartNight;
 		
 		public static TimeManager Instance { get { return _instance; } } 
 		
@@ -24,6 +30,7 @@ namespace IslandBoy
 			_instance = this;
 			_isTicking = true;
 			_currentTimeOfTheDay = StartingTime;
+			_canStartNight = true;
 		}
 		
 		private void OnEnable()
@@ -49,6 +56,12 @@ namespace IslandBoy
 				if(DayCycleHandler != null)
 					DayCycleHandler.Tick();
 					
+				if(_currentTimeOfTheDay > (DayDurationInSeconds / 2) && _canStartNight)
+				{
+					OnNightStart();
+					_canStartNight = false;
+				}
+					
 				if(_currentTimeOfTheDay > DayDurationInSeconds)
 				{
 					EndDay();
@@ -58,8 +71,17 @@ namespace IslandBoy
 		
 		private void OnDayStart(ISignalParameters parameters)
 		{
+			_canStartNight = true;
+			_sunMoonMarker.GetComponent<Image>().sprite = _sunSprite;
 			_currentTimeOfTheDay = 0;
 			Resume(null);
+		}
+		
+		private void OnNightStart()
+		{
+			Debug.Log("Night Started");
+			_sunMoonMarker.GetComponent<Image>().sprite = _moonSprite;
+			GameSignals.NIGHT_START.Dispatch();
 		}
 		
 		private void EndDay()
