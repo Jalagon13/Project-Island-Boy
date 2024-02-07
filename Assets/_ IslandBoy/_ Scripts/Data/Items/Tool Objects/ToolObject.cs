@@ -59,7 +59,7 @@ namespace IslandBoy
 
 			string upgradeText = _upgradeRecipe != null ? $"* Next upgrade: {_upgradeRecipe.OutputItem.Name}" : string.Empty;
 
-			return $"* {hitValue} per hit<br>* {miningSpeed} mining speed<br>* {damage} damage<br>{upgradeText}";
+			return $"{Description}<br>* {hitValue} per hit<br>* {damage} damage<br>{upgradeText}";
 		}
 	}
 }

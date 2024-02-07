@@ -18,7 +18,7 @@ namespace IslandBoy
 				MMSoundManagerSoundPlayEvent.Trigger(_ambientSound, MMSoundManager.MMSoundManagerTracks.Music, transform.position, loop: true, volume: 0.25f, persistent:true, priority:0);
 			
 			if(_playMusic)
-				MMSoundManagerSoundPlayEvent.Trigger(_bgMusic, MMSoundManager.MMSoundManagerTracks.Music, transform.position, loop: true, volume: 0.5f, persistent: true, priority:0);
+				MMSoundManagerSoundPlayEvent.Trigger(_bgMusic, MMSoundManager.MMSoundManagerTracks.Music, transform.position, loop: true, volume: 0.25f, persistent: true, priority:0);
 		}
 	}
 }

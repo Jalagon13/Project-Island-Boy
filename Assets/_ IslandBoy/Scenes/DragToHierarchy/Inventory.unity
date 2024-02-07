@@ -1182,7 +1182,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Left Click Recipes to Craft:'
+  m_text: 'Left Click to Craft:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
   m_sharedMaterial: {fileID: 4835514525599508895, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
@@ -5146,10 +5146,6 @@ MonoBehaviour:
   - OutputItem: {fileID: 11400000, guid: 6dbf17cc40618ef4497ad3cc834f0ad2, type: 2}
     OutputAmount: 1
   - OutputItem: {fileID: 11400000, guid: 902774a644957654d84a660b19ecc643, type: 2}
-    OutputAmount: 1
-  - OutputItem: {fileID: 11400000, guid: fb9c53bc5a9014142b9e07f97db75202, type: 2}
-    OutputAmount: 1
-  - OutputItem: {fileID: 11400000, guid: c906a5571e025f748a2a8be768588981, type: 2}
     OutputAmount: 1
   _allSlots:
   - {fileID: 1398917238}
