@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace IslandBoy
 {
@@ -12,6 +13,7 @@ namespace IslandBoy
 		[SerializeField] private EntityRuntimeSet _entityRts;
 		[MinMaxSlider(0, 99, true)]
 		[SerializeField] private Vector2 _amount;
+		[SerializeField] private UnityEvent _onDamage;
 
 		protected KnockbackFeedback _knockback;
 
@@ -61,6 +63,8 @@ namespace IslandBoy
 
 		public bool Damage(ToolType incomingToolType, int amount, bool displayHit = true, bool kbEnabled = true)
 		{
+			_onDamage?.Invoke();
+			
 			if(kbEnabled)
 				_knockback.PlayFeedback(_pr.Position);
 			// _despawnTimer.RemainingSeconds = _durationUntilDespawn;
@@ -75,6 +79,8 @@ namespace IslandBoy
 					EnableAmountDisplay(false);
 					EnableInstructions(false);
 					EnableProgressBar(true);
+					
+					
 				}
 				return true;
 			}

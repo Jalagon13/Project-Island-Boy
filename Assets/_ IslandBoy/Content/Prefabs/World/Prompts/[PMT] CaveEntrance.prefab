@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[PMT] CaveEntrance'
       objectReference: {fileID: 0}
+    - target: {fileID: 3101685698662622380, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3315156182157314165, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -82,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7382328970847094501, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -21
       objectReference: {fileID: 0}
     - target: {fileID: 7382328970847094501, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -162,4 +166,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _nextScene: 
+  _nextScene: Cave

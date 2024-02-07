@@ -10,7 +10,7 @@ namespace IslandBoy
 
 		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			Debug.Log("Entering Idle State");
+			// Debug.Log("Entering Idle State");
 			_ctx = animator.transform.parent.GetComponent<NPCStateManager>();
 			_ctx.AI.isStopped = true;
 			_ctx.StartCoroutine(IdleDuration(animator));
