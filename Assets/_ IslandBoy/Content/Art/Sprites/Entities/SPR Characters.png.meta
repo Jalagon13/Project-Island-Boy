@@ -126,7 +126,7 @@ TextureImporter:
       name: spr_player
       rect:
         serializedVersion: 2
-        x: 2
+        x: 18
         y: 1
         width: 11
         height: 23
@@ -147,7 +147,7 @@ TextureImporter:
       name: spr_island_boy
       rect:
         serializedVersion: 2
-        x: 18
+        x: 34
         y: 1
         width: 11
         height: 23
@@ -168,7 +168,7 @@ TextureImporter:
       name: spr_wizard
       rect:
         serializedVersion: 2
-        x: 48
+        x: 64
         y: 1
         width: 15
         height: 28
@@ -189,7 +189,7 @@ TextureImporter:
       name: spr_bound_wizard
       rect:
         serializedVersion: 2
-        x: 64
+        x: 80
         y: 1
         width: 15
         height: 24
@@ -210,7 +210,7 @@ TextureImporter:
       name: spr_bound_miner
       rect:
         serializedVersion: 2
-        x: 34
+        x: 50
         y: 1
         width: 11
         height: 19
@@ -231,7 +231,7 @@ TextureImporter:
       name: spr_old_lady
       rect:
         serializedVersion: 2
-        x: 82
+        x: 98
         y: 1
         width: 13
         height: 24
@@ -244,6 +244,27 @@ TextureImporter:
       bones: []
       spriteID: 01db6c1be9a494ed882fe3a52c53ef6e
       internalID: 1389064612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_player_f
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 13
+        height: 23
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 259172124c0ea459ea400d93bad5839b
+      internalID: -185649165
       vertices: []
       indices: 
       edges: []
@@ -265,6 +286,7 @@ TextureImporter:
       spr_island_boy: 1001675587
       spr_old_lady: 1389064612
       spr_player: -1006392663
+      spr_player_f: -185649165
       spr_wizard: -1975342335
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
