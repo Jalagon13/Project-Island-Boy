@@ -185,6 +185,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: mon_ghost2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 16
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4532a691ff7ef41c9bbf72560f71c646
+      internalID: -1305370754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -197,6 +218,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       mon_ghost: 1005839574
+      mon_ghost2: -1305370754
       mon_rusher: 1840635774
       mon_zombie: -187104496
   mipmapLimitGroupName: 

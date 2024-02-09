@@ -5,28 +5,33 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public class GhostMove : StateMachineBehaviour
-    {
-        private GhostStateManager _ctx;
+	public class GhostMove : StateMachineBehaviour
+	{
+		private GhostStateManager _ctx;
+		private Vector2 _target;
 
 		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			// Debug.Log("Entering CRAB Move State");
+			Debug.Log("Entering GHOST Move State");
 			_ctx = animator.transform.root.GetComponent<GhostStateManager>();
-			_ctx.Seek(CalcWanderPos());
+			_target = CalcWanderPos();
 		}
 
 		override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			if (_ctx.IsAgro)
+			var step = 1.5f * Time.deltaTime;
+			_ctx.transform.position = Vector2.MoveTowards(_ctx.transform.position, _target, step);
+			
+			if (_ctx.Agitated)
 			{
 				_ctx.ChangeToChaseState(animator);
 				return;
 			}
 			
-			if (_ctx.AI.remainingDistance < 0.25f)
+			if (Vector3.Distance(_ctx.transform.position, _target) < 0.01f)
 			{
 				_ctx.ChangeToIdleState(animator);
+				return;
 			}
 		}
 
@@ -36,15 +41,17 @@ namespace IslandBoy
 
 		private Vector3 CalcWanderPos()
 		{
-			if(Vector2.Distance(_ctx.transform.position, _ctx.HomePosition) > 5)
+			if(Vector2.Distance(_ctx.transform.position, _ctx.HomePosition) > 7)
 				return _ctx.HomePosition;
 			
-			GraphNode startNode = AstarPath.active.GetNearest(_ctx.transform.position, NNConstraint.Default).node; 
- 
-			List<GraphNode> nodes = PathUtilities.BFS(startNode, 3); 
-			Vector3 singleRandomPoint = PathUtilities.GetPointsOnNodes(nodes, 1)[0]; 
+			var randomPoint = _ctx.transform.position + Random.insideUnitSphere * 5;
 			
-			return singleRandomPoint;
+			// GraphNode startNode = AstarPath.active.GetNearest(_ctx.transform.position, NNConstraint.Default).node; 
+ 
+			// List<GraphNode> nodes = PathUtilities.BFS(startNode, 5); 
+			// Vector3 singleRandomPoint = PathUtilities.GetPointsOnNodes(nodes, 1)[0]; 
+			
+			return randomPoint;
 		}
-    }
+	}
 }

@@ -29,7 +29,7 @@ namespace IslandBoy
 		
 		private void Start() 
 		{
-			DayMonsterHandle(null);
+			// DayMonsterHandle(null);
 		}
 		
 		private void DayMonsterHandle(ISignalParameters parameters)

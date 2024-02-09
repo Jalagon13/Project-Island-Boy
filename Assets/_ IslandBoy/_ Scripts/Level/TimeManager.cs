@@ -56,7 +56,7 @@ namespace IslandBoy
 				if(DayCycleHandler != null)
 					DayCycleHandler.Tick();
 					
-				if(_currentTimeOfTheDay > (DayDurationInSeconds / 2) && _canStartNight)
+				if(_currentTimeOfTheDay > (DayDurationInSeconds * 0.53) && _canStartNight)
 				{
 					OnNightStart();
 					_canStartNight = false;
