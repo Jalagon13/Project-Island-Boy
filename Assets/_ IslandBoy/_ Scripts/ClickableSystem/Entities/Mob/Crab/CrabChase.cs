@@ -13,7 +13,7 @@ namespace IslandBoy
 
 		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			Debug.Log("Entering Chase State");
+			// Debug.Log("Entering Chase State");
 			_ctx = animator.transform.root.GetComponent<CrabStateManager>();
 			_ctx.AI.maxSpeed = _chaseSpeed;
 			_ctx.AI.isStopped = false;

@@ -11,7 +11,7 @@ namespace IslandBoy
 
 		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			Debug.Log("Entering CRAB Move State");
+			// Debug.Log("Entering CRAB Move State");
 			_ctx = animator.transform.root.GetComponent<CrabStateManager>();
 			_ctx.Seek(CalcWanderPos());
 		}

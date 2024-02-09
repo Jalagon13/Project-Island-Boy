@@ -26,10 +26,12 @@ namespace IslandBoy
 		{
 			if (!_canCheck) return;
 
-			if (InValidSpace())
-			{
-				DispatchEvents();
-			}
+			DispatchEvents();
+			
+			// if (InValidSpace())
+			// {
+			// 	DispatchEvents();
+			// }
 		}
 
 		public void MoveInNPC(Resident resident)

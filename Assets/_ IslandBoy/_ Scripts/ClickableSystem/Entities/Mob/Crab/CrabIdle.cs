@@ -10,7 +10,7 @@ namespace IslandBoy
 
 		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			Debug.Log("Entering CRAB Idle State");
+			// Debug.Log("Entering CRAB Idle State");
 			_ctx = animator.transform.root.GetComponent<CrabStateManager>();
 			_ctx.AI.isStopped = true;
 			_ctx.StartCoroutine(IdleDuration(animator));

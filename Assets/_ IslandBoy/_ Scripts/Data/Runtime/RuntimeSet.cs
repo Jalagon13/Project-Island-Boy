@@ -9,7 +9,8 @@ namespace IslandBoy
 	{
 		protected List<T> _items = new();
 		
-		public int ListSize { get {return _items.Count; }}
+		public int ListSize { get { return _items.Count; } }
+		public List<T> Items { get { return _items; } }
 		
 		public void Initialize()
 		{
