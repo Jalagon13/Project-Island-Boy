@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Tools;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,6 +13,7 @@ namespace IslandBoy
 
 		[Header("Accessory Icons")]
 		[SerializeField] private GameObject _dashIcon;
+		[SerializeField] private AudioClip _dashSound;
 
 		// Dash vars
 		private PlayerInput _dashInput;
@@ -75,8 +77,9 @@ namespace IslandBoy
 			{
 				_canDash = false;
 				_dashTimer.RemainingSeconds = 3;
-				
 				_direction = _pr.GameObject.GetComponent<PlayerMoveInput>().LastNonZeroMoveDirection;
+				MMSoundManagerSoundPlayEvent.Trigger(_dashSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
+				
 				StartCoroutine(DashDelay());
 			}
 			

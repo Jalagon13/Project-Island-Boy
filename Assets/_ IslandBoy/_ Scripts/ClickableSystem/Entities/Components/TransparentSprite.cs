@@ -20,7 +20,7 @@ namespace IslandBoy
 
         private void OnTriggerStay2D(Collider2D collision)
         {
-            if (collision.gameObject.CompareTag("Player") || collision.TryGetComponent(out NPC entity))
+            if (collision.gameObject.CompareTag("Player") || collision.TryGetComponent(out NPC entity) || collision.gameObject.CompareTag("MOB"))
             {
                 _spriteRenderer.color = _transparentColor;
             }
@@ -28,7 +28,7 @@ namespace IslandBoy
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (collision.gameObject.CompareTag("Player") || collision.TryGetComponent(out NPC entity))
+            if (collision.gameObject.CompareTag("Player") || collision.TryGetComponent(out NPC entity) || collision.gameObject.CompareTag("MOB"))
             {
                 _spriteRenderer.color = _originalColor;
             }

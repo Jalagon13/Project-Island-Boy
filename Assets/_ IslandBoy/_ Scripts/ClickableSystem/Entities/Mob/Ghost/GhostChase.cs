@@ -41,7 +41,7 @@ namespace IslandBoy
 			_ctx.AttackFeedbacks?.PlayFeedbacks();
 			_ctx.ChargePlayer(CalculateChargeDirection(), CalculateForce());
 			
-			yield return new WaitForSeconds(2f);
+			yield return new WaitForSeconds(Random.Range(1.75f, 2.25f));
 			
 			_ctx.transform.position = CalculateTpPosition();
 			_ctx.StartCoroutine(AttackSequence());
