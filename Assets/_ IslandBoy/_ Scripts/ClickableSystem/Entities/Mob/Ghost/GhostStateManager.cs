@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using Pathfinding;
 using UnityEngine;
 
@@ -8,6 +9,10 @@ namespace IslandBoy
 	public class GhostStateManager : MonoBehaviour
 	{
 		[SerializeField] private PlayerObject _po;
+		[SerializeField] private float _agroRange;
+		[SerializeField] private MMF_Player _chargeFeedbacks;
+		[SerializeField] private MMF_Player _attackFeedbacks;
+		[SerializeField] private MMF_Player _teleportFeedbacks;
 
 		private Vector2 _homePosition;
 		private Rigidbody2D _rb;
@@ -20,6 +25,9 @@ namespace IslandBoy
 		public readonly int HashIdle = Animator.StringToHash("[Anm] GhostIdle");
 		public readonly int HashMove = Animator.StringToHash("[Anm] GhostMove");
 		public readonly int HashChase = Animator.StringToHash("[Anm] GhostChase");
+		public MMF_Player ChargeFeedbacks => _chargeFeedbacks;
+		public MMF_Player AttackFeedbacks => _attackFeedbacks;
+		public MMF_Player TeleportFeedbacks => _teleportFeedbacks;
 
 		private void Awake()
 		{
@@ -31,7 +39,7 @@ namespace IslandBoy
 		{
 			if(_agitated) return;
 			
-			if(PlayerClose(5))
+			if(PlayerClose(_agroRange))
 			{
 				if(PlayerInLineOfSight())
 				{

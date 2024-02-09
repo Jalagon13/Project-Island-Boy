@@ -30,11 +30,15 @@ namespace IslandBoy
 		
 		private IEnumerator AttackSequence()
 		{
-			Debug.Log("Charging Attack...");
+			// Debug.Log("Charging Attack...");
 			_ctx.RigidBody.velocity = Vector2.zero;
+			_ctx.ChargeFeedbacks?.PlayFeedbacks();
+			
 			yield return new WaitForSeconds(2.5f);
 			
-			Debug.Log("Attack!");
+			// Debug.Log("Attack!");
+			_ctx.ChargeFeedbacks?.StopFeedbacks();
+			_ctx.AttackFeedbacks?.PlayFeedbacks();
 			_ctx.ChargePlayer(CalculateChargeDirection(), CalculateForce());
 			
 			yield return new WaitForSeconds(2f);
@@ -45,6 +49,7 @@ namespace IslandBoy
 		
 		private Vector2 CalculateTpPosition()
 		{
+			_ctx.TeleportFeedbacks?.PlayFeedbacks();
 			return _ctx.PlayerObject.Position + Random.insideUnitCircle * 8;
 		}
 		
