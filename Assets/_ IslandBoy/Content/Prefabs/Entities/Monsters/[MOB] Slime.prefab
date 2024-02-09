@@ -11513,13 +11513,16 @@ MonoBehaviour:
   _destroyFeedback: {fileID: 4566307676181140785}
   _lootTable:
     <Table>k__BackingField:
-    - Item: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
+    - Item: {fileID: 11400000, guid: a985f34c6e7814e139366a38f1bbd170, type: 2}
       Min: 1
       Max: 2
       Chance: 100
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _amount: {x: 5, y: 20}
   _entityRts: {fileID: 11400000, guid: b8395270c8b53467b8a3f0ce6f083313, type: 2}
+  _amount: {x: 5, y: 20}
+  _onDamage:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3736007384578019363
 MonoBehaviour:
   m_ObjectHideFlags: 0

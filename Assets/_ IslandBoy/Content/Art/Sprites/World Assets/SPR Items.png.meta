@@ -333,7 +333,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: item_undead_soul
+      name: item_ectoplasm
       rect:
         serializedVersion: 2
         x: 16
@@ -1454,7 +1454,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1462,6 +1462,48 @@ TextureImporter:
       bones: []
       spriteID: c6b750c6f54b448ca9454d5a17bd4cbb
       internalID: 1130734024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_slime
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51c58dabbaea345a1940d8dafe646dc2
+      internalID: 2044576360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_crab
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ce58d5ffffc247cea6316e190fa7c35
+      internalID: 2035972618
       vertices: []
       indices: 
       edges: []
@@ -1493,8 +1535,10 @@ TextureImporter:
       item_cobblestone: -1914655730
       item_construction_table: 449123009
       item_cooked_fish: -2128986211
+      item_crab: 2035972618
       item_diamond: -538633122
       item_door: -1112382854
+      item_ectoplasm: 1935163884
       item_fiber: 393603439
       item_fish: 1211993972
       item_fishing_rod: 1879242436
@@ -1518,6 +1562,7 @@ TextureImporter:
       item_red_rune: 1210640472
       item_sand: -966422323
       item_sapling: 811161192
+      item_slime: 2044576360
       item_stone: -512641925
       item_stone_axe: 563146846
       item_stone_floor: 1007983580
@@ -1528,7 +1573,6 @@ TextureImporter:
       item_stone_wall: -1501110074
       item_tool_station: -581595869
       item_torch: -1995232107
-      item_undead_soul: 1935163884
       item_wood: -602149933
       item_wood_axe: 1515656529
       item_wood_chestplate: -848097959

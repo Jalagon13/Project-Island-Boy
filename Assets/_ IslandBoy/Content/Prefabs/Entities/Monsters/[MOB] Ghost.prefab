@@ -17283,7 +17283,7 @@ MonoBehaviour:
   _destroyFeedback: {fileID: 4566307676181140785}
   _lootTable:
     <Table>k__BackingField:
-    - Item: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
+    - Item: {fileID: 11400000, guid: 21050477c36a02c42acd382148334d2b, type: 2}
       Min: 1
       Max: 2
       Chance: 100
@@ -17396,7 +17396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _agroRange: 10
+  _agroRange: 8
   _chargeFeedbacks: {fileID: 6794935565414296502}
   _attackFeedbacks: {fileID: 7792756874643659885}
   _teleportFeedbacks: {fileID: 2313857462369685421}
