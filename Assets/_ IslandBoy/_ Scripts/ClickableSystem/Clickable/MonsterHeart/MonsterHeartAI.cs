@@ -16,6 +16,7 @@ namespace IslandBoy
 		[SerializeField] private Transform _forceFieldTf;
 		[SerializeField] private MonsterHeartView _mhView;
 		[SerializeField] private MonsterSpawner _monsterSpawner;
+		[SerializeField] private Clickable _levelEntranceLower;
 		[SerializeField] private int _killQuota;
 		[SerializeField] private int _heartBeatQuota;
 		[Header("Monster Spawn")]
@@ -104,6 +105,8 @@ namespace IslandBoy
 		
 		private void OnDestroy() 
 		{
+			StopAllCoroutines();
+			Instantiate(_levelEntranceLower, transform.parent.position, Quaternion.identity);
 			GameSignals.MONSTER_HEART_CLEARED.Dispatch();
 		}
 		

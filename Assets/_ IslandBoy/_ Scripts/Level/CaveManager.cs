@@ -8,11 +8,9 @@ namespace IslandBoy
 	public class CaveManager : MonoBehaviour
 	{
 		[SerializeField] private LevelGenerator _levelPrefab;
-		[SerializeField] private Transform _rewardRoom;
 		[SerializeField] private string _surfaceSceneName;
 		
 		private int _levelIndex = 0;
-		private int _rewardLevelIndex = 3;
 		
 		private static CaveManager _instance;
 		
@@ -74,15 +72,7 @@ namespace IslandBoy
 		private void CreateLevel()
 		{
 			DeActivateAllLevels();
-			
-			if(_levelIndex == _rewardLevelIndex - 1)
-			{
-				LoadRewardRoom();
-			}
-			else
-			{
-				SetLevelActive(InstantiateLevel());
-			}
+			SetLevelActive(InstantiateLevel());
 		} 
 		
 		[Button("Load Existing Level")]
@@ -93,39 +83,17 @@ namespace IslandBoy
 				CreateLevel();
 				return;
 			}
-			
-			if(index != _rewardLevelIndex)	
-				SetRewardRoomActive(false);
 				
 			if(index > -1 && index < transform.childCount)
 			{
 				DeActivateAllLevels();
-				if(index == _rewardLevelIndex)
-				{
-					LoadRewardRoom();
-				}
-				else
-				{
-					SetLevelActive(index);
-				}	
+				SetLevelActive(index);	
 			}
 		}
 		
 		private int InstantiateLevel()
 		{
 			return Instantiate(_levelPrefab, transform).gameObject.transform.GetSiblingIndex();
-		}
-		
-		private void LoadRewardRoom()
-		{
-			DeActivateAllLevels();
-			_levelIndex = _rewardLevelIndex;
-			_rewardRoom.gameObject.SetActive(true);
-		}
-		
-		private void SetRewardRoomActive(bool _)
-		{
-			_rewardRoom.gameObject.SetActive(_);
 		}
 		
 		private void SetLevelActive(int index)
@@ -155,7 +123,6 @@ namespace IslandBoy
 		private void ResetCaveLevels()
 		{
 			_levelIndex = 0;
-			SetRewardRoomActive(false);
 			
 			foreach (Transform child in transform)
 			{
