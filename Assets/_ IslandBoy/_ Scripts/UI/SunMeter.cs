@@ -88,6 +88,19 @@ namespace IslandBoy
 
 		private IEnumerator TextSequence()
 		{
+			switch (Player.RESTED_STATUS)
+			{
+				case RestedStatus.Good:
+					AddEndDaySlide("You got a good night's rest!");
+					break;
+				case RestedStatus.Okay:
+					AddEndDaySlide("Your sleep last night was not the best..");
+					break;
+				case RestedStatus.Bad:
+					AddEndDaySlide("You passed out at the end of the day...");
+					break;
+			}
+			
 			var text = _panel.GetChild(0).GetComponent<TextMeshProUGUI>();
 			var button = _panel.GetChild(1).GetComponent<Button>();
 
@@ -107,7 +120,6 @@ namespace IslandBoy
 				yield return new WaitForSeconds(2f);
 			}
 
-			text.text = "Health and Energy replenished!";
 			button.gameObject.SetActive(true);
 
 			ClearEndDaySlides();

@@ -79,7 +79,6 @@ namespace IslandBoy
 		
 		private void OnNightStart()
 		{
-			Debug.Log("Night Started");
 			_sunMoonMarker.GetComponent<Image>().sprite = _moonSprite;
 			GameSignals.NIGHT_START.Dispatch();
 		}
@@ -87,6 +86,7 @@ namespace IslandBoy
 		private void EndDay()
 		{
 			Pause(null);
+			Player.RESTED_STATUS = RestedStatus.Bad;
 			GameSignals.DAY_END.Dispatch();
 		}
 		

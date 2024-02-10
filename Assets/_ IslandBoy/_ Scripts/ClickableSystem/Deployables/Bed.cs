@@ -26,12 +26,18 @@ namespace IslandBoy
 		{
 			if (!_canCheck) return;
 
-			DispatchEvents();
+			// DispatchEvents();
 			
-			// if (InValidSpace())
-			// {
-			// 	DispatchEvents();
-			// }
+			if (InValidSpace())
+			{
+				Player.RESTED_STATUS = RestedStatus.Good;
+			}
+			else
+			{
+				Player.RESTED_STATUS = RestedStatus.Okay;
+			}
+			
+			DispatchEvents();
 		}
 
 		public void MoveInNPC(Resident resident)
