@@ -20,6 +20,7 @@ namespace IslandBoy
 		
 		public void UpdateText(int killCounter, int killQuota)
 		{
+			if(_viewText == null) return;
 			_viewText.text = killCounter >= killQuota ? $"Force Field Down!" : $"Monster Quota: {killCounter} / {killQuota}";
 		}
 		

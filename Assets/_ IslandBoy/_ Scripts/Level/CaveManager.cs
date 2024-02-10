@@ -36,10 +36,6 @@ namespace IslandBoy
 				_levelIndex++;
 				LoadExistingLevel(_levelIndex);
 			}
-			else
-			{
-				CreateLevel();
-			}
 		}
 		
 		[Button("Ascend Floor")]
@@ -68,22 +64,10 @@ namespace IslandBoy
 			signal.Dispatch();
 		}
 		
-		[Button("Create Level")]
-		private void CreateLevel()
-		{
-			DeActivateAllLevels();
-			SetLevelActive(InstantiateLevel());
-		} 
 		
 		[Button("Load Existing Level")]
 		private void LoadExistingLevel(int index)
 		{
-			if(transform.childCount <= 0)
-			{
-				CreateLevel();
-				return;
-			}
-				
 			if(index > -1 && index < transform.childCount)
 			{
 				DeActivateAllLevels();

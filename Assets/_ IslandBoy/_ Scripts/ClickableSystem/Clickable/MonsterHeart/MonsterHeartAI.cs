@@ -106,7 +106,8 @@ namespace IslandBoy
 		private void OnDestroy() 
 		{
 			StopAllCoroutines();
-			Instantiate(_levelEntranceLower, transform.parent.position, Quaternion.identity);
+			var go = Instantiate(_levelEntranceLower, transform.parent.position, Quaternion.identity);
+			go.transform.SetParent(transform.parent.parent.transform);
 			GameSignals.MONSTER_HEART_CLEARED.Dispatch();
 		}
 		

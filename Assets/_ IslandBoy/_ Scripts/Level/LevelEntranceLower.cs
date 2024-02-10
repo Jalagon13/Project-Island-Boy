@@ -8,12 +8,12 @@ namespace IslandBoy
 	{
 		[SerializeField] private PlayerObject _po;
 		
-		private LevelGenerator _lg;
+		private InitialSpawnPosition _isp;
 		
 		public void GoDownStairs()
 		{
-			_lg = transform.parent.parent.GetComponent<LevelGenerator>();
-			_lg.SpawnPosition.SetSpawnPos(_po.Position);
+			_isp = transform.parent.GetChild(0).GetComponent<InitialSpawnPosition>();
+			_isp.SetSpawnPos(_po.Position);
 			
 			CaveManager.Instance.DescendFloor();
 		}
