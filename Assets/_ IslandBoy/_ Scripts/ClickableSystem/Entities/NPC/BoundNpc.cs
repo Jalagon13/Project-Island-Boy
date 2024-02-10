@@ -35,6 +35,17 @@ namespace IslandBoy
 			PlayRecruitFeedback();
 			PopupMessage.Create(transform.position, $"The {_npcToUnlock} has been recruited and will move in the next day!", Color.white, Vector2.up, 3f);
 			HousingController.Instance.UnlockNpc(_npcToUnlock);
+			
+			switch(_npcToUnlock)
+			{
+				case "Blacksmith":
+					NpcSlots.Instance.UpdateBlacksmithSlot();
+					break;
+				case "Wizard":
+					NpcSlots.Instance.UpdateWizardSlot();
+					break;
+			}
+			
 			Destroy(gameObject);
 		}
 		

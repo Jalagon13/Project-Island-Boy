@@ -414,8 +414,8 @@ MonoBehaviour:
         SequentialOrderHoldCooldownDuration: 2
         RandomUnique: 0
         SoundDataSO: {fileID: 0}
-        MinVolume: 1
-        MaxVolume: 1
+        MinVolume: 0.5
+        MaxVolume: 0.5
         MinPitch: 1
         MaxPitch: 1
         MmSoundManagerTrack: 0
@@ -16548,7 +16548,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1540170703081263505
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22032,7 +22032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text:
-  - 'Blacksmith: Thanks for untying me! '
+  - 'Blacksmith: Thanks for freeing me! <3'
   - I can <color=orange>upgrade and repair your tools </color=orange> for you but
     first I need a <color=orange>home </color=orange>to settle down in.
   - In order for a room to be considered a home, it needs to have a <color=orange>door

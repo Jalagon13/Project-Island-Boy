@@ -614,7 +614,7 @@ TextureImporter:
         width: 15
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -622,6 +622,27 @@ TextureImporter:
       bones: []
       spriteID: 687c702d1cc354f32bd84a791bc557af
       internalID: -189181684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_question_mark
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 317221c2885874543b8c990a9ac4d3f8
+      internalID: 1772898665
       vertices: []
       indices: 
       edges: []
@@ -657,6 +678,7 @@ TextureImporter:
       ui_miner_logo: -1898290835
       ui_moon_marker: 1183265060
       ui_pointer: 1367902511
+      ui_question_mark: 1772898665
       ui_right_click: 1845987391
       ui_sun_mark: -1565230189
       ui_sun_marker: -1176373306
