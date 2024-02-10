@@ -10,32 +10,13 @@ namespace IslandBoy
 		[Header("Bound NPC Parameters")]
 		[SerializeField] private string _npcToUnlock;
 		[SerializeField] private Sprite _unboundSprite;
+		[SerializeField] private MMF_Player _recruitFeedback;
 		[SerializeField] private MMF_Player _freeFeedback;
 		[SerializeField] private List<ChestInvSlot> _unboundRewards = new();
 		
 		private bool _isFree;
 
-		protected override void Awake()
-		{
-			base.Awake();
-			
-			GameSignals.DAY_END.AddListener(DestroyEntity);
-		}
-		
-		private void OnDestroy()
-		{
-			GameSignals.DAY_END.RemoveListener(DestroyEntity);
-		}
-
 		public void CloseUIBtn() => CloseUI(null); // attached to close button
-		
-		public void DestroyEntity(ISignalParameters parameters)
-		{
-			if(_isFree)
-			{
-				Destroy(gameObject);
-			}
-		}
 		
 		public override void Interact()
 		{
@@ -43,10 +24,27 @@ namespace IslandBoy
 			if(!_isFree)
 			{
 				FreeNpc();
-				GiveReward();
+				// GiveReward();
 			}
 
 			base.Interact();
+		}
+		
+		public void RecruitButton()
+		{
+			PlayRecruitFeedback();
+			PopupMessage.Create(transform.position, $"The {_npcToUnlock} has been recruited and will move in the next day!", Color.white, Vector2.up, 3f);
+			HousingController.Instance.UnlockNpc(_npcToUnlock);
+			Destroy(gameObject);
+		}
+		
+		private void PlayRecruitFeedback()
+		{
+			if (_recruitFeedback != null)
+			{
+				_recruitFeedback.transform.SetParent(null);
+				_recruitFeedback?.PlayFeedbacks();
+			}
 		}
 		
 		private void GiveReward()
@@ -64,8 +62,6 @@ namespace IslandBoy
 			_isFree = true;
 			_sr.sprite = _unboundSprite;
 			_freeFeedback?.PlayFeedbacks();
-			PopupMessage.Create(transform.position, $"The {_npcToUnlock} has been untied!", Color.white, Vector2.up, 2.5f);
-			HousingController.Instance.UnlockNpc(_npcToUnlock);
 		}
 	}
 }

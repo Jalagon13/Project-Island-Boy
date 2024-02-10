@@ -32,17 +32,9 @@ namespace IslandBoy
 		{
 			_currency = new();
 			_instance = this;
-		}
-		
-		private void Start()
-		{
 			
-			
-			if(_currency != null)
-			{
-				_currency.ValueIncreased += UpdateView;
-				_currency.ValueDecreased += UpdateView;
-			}
+			GameSignals.INVENTORY_OPEN.AddListener(EnableGoldDisplay);
+			GameSignals.INVENTORY_CLOSE.AddListener(DisableGoldDisplay);
 		}
 		
 		private void OnDestroy()
@@ -52,6 +44,30 @@ namespace IslandBoy
 				_currency.ValueIncreased += UpdateView;
 				_currency.ValueDecreased += UpdateView;
 			}
+			
+			GameSignals.INVENTORY_OPEN.RemoveListener(EnableGoldDisplay);
+			GameSignals.INVENTORY_CLOSE.RemoveListener(DisableGoldDisplay);
+		}
+		
+		private void Start()
+		{
+			if(_currency != null)
+			{
+				_currency.ValueIncreased += UpdateView;
+				_currency.ValueDecreased += UpdateView;
+			}
+			
+			DisableGoldDisplay(null);
+		}
+		
+		private void EnableGoldDisplay(ISignalParameters parameters)
+		{
+			_goldViewText.transform.parent.gameObject.SetActive(true);
+		}
+		
+		private void DisableGoldDisplay(ISignalParameters parameters)
+		{
+			_goldViewText.transform.parent.gameObject.SetActive(false);
 		}
 		
 		public void AddCurrency(int amount, Vector2 popupPosition = default)
