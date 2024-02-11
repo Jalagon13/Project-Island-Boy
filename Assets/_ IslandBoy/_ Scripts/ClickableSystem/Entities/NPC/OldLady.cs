@@ -17,7 +17,7 @@ namespace IslandBoy
 		
 		private void OnEnable() 
 		{
-			_promptText.text = $"Mysterious Old Lady: Come back when you found all my children...<br><br>Settlers Found: {NpcSlots.SettlerCount}/2";
+			_promptText.text = $"Mysterious Old Lady: I can't let you leave until you find all my children...<br><br>Settlers Found: {NpcSlots.SettlerCount}/2";
 			
 			if(NpcSlots.SettlerCount >= 2)
 			{
