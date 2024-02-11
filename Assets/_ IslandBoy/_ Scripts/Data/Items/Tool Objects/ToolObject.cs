@@ -39,7 +39,8 @@ namespace IslandBoy
 		{
 			float hitValue = 0;
 			float miningSpeed = 0;
-			float damage = 0;
+			float damageMax = 0;
+			float damageMin = 0;
 
 			foreach (var item in DefaultParameterList)
 			{
@@ -51,15 +52,18 @@ namespace IslandBoy
 					case "MiningSpeed":
 					   	miningSpeed = item.Value;
 					   	break;
-					case "Damage":
-						damage = item.Value;
+					case "Damage Max":
+						damageMax = item.Value;
+						break;
+					case "Damage Min":
+						damageMin = item.Value;
 						break;
 				}
 			}
 
 			string upgradeText = _upgradeRecipe != null ? $"* Next upgrade: {_upgradeRecipe.OutputItem.Name}" : string.Empty;
 
-			return $"{Description}<br>* {hitValue} per hit<br>* {damage} damage<br>{upgradeText}";
+			return $"{Description}<br>* {hitValue} per hit<br>* {damageMin}-{damageMax} damage<br>{upgradeText}";
 		}
 	}
 }

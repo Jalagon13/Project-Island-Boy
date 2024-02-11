@@ -470,9 +470,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playAmb: 1
-  _ambientSound: {fileID: 8300000, guid: 39c8d59b6860d2f4d9baeb77208ca07a, type: 3}
+  _ambientSound: {fileID: 8300000, guid: 340d28e0e1e47194883710ff4a73c294, type: 3}
   _playMusic: 1
-  _bgMusic: {fileID: 8300000, guid: fcfddb491c0944dd2a53c569f2e0f938, type: 3}
+  _bgMusic: {fileID: 8300000, guid: 4145147866bf4423eacb722bba2fdf93, type: 3}
 --- !u!1 &389596063
 GameObject:
   m_ObjectHideFlags: 0
@@ -1199,7 +1199,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _detectionBetweenHits: 0.075
-  _damageParameter:
+  _damageMinParameter:
+    Parameter: {fileID: 11400000, guid: af97f5c44051d4aefae3c19e0ccdc512, type: 2}
+    Value: 0
+  _damageMaxParameter:
     Parameter: {fileID: 11400000, guid: 8a8bef37f1c5e3c40ad4319761ff897a, type: 2}
     Value: 0
 --- !u!1 &1219050901
@@ -1831,6 +1834,7 @@ GameObject:
   - component: {fileID: 1874347831}
   - component: {fileID: 1874347830}
   - component: {fileID: 1874347829}
+  - component: {fileID: 1874347832}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -1910,6 +1914,18 @@ Transform:
   - {fileID: 2051811737}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1874347832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874347828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3d2ecf4db64847ebae2a4bafad840e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1944238564
 GameObject:
   m_ObjectHideFlags: 0

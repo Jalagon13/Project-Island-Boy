@@ -7,14 +7,16 @@ namespace IslandBoy
 	public class PlayerAttackCollider : MonoBehaviour
 	{
 		[SerializeField] private float _detectionBetweenHits;
-		[SerializeField] private ItemParameter _damageParameter;
+		[SerializeField] private ItemParameter _damageMinParameter;
+		[SerializeField] private ItemParameter _damageMaxParameter;
 
 		private Slot _focusSlotRef;
 		private List<Entity> _entitiesFoundThisSwing;
 		private List<Entity> _entitiesHitThisSwing;
 		private List<Resource> _rscFoundThisSwing;
 		private List<Resource> _rscHitThisSwing;
-		private int _damage;
+		private int _damageMin;
+		private int _damageMax;
 
 		private void Awake()
 		{
@@ -52,7 +54,10 @@ namespace IslandBoy
 				{
 					if (_entitiesHitThisSwing.Contains(entity)) continue;
 
-					entity.Damage(ToolType.Sword, _damage);
+					System.Random rnd = new System.Random();
+					var damage = rnd.Next(_damageMin, _damageMax); 
+					entity.Damage(ToolType.Sword, damage);
+					
 					yield return new WaitForSeconds(_detectionBetweenHits);
 					_entitiesFoundThisSwing.Remove(entity);
 					_entitiesHitThisSwing.Add(entity);
@@ -115,17 +120,33 @@ namespace IslandBoy
 				if (!_focusSlotRef.HasItem()) return;
 
 				if(_focusSlotRef.ItemObject is ToolObject)
-					_damage = ExtractDamage(_focusSlotRef.ItemObject);
+				{
+					_damageMin = ExtractMinDamage(_focusSlotRef.ItemObject);
+					_damageMax = ExtractMaxDamage(_focusSlotRef.ItemObject);
+				}
 			}
 		}
 
-		private int ExtractDamage(ItemObject item)
+		private int ExtractMinDamage(ItemObject item)
 		{
 			var itemParams = item.DefaultParameterList;
 
-			if (itemParams.Contains(_damageParameter))
+			if (itemParams.Contains(_damageMinParameter))
 			{
-				int index = itemParams.IndexOf(_damageParameter);
+				int index = itemParams.IndexOf(_damageMinParameter);
+				return (int)itemParams[index].Value;
+			}
+			
+			return 0;
+		}
+		
+		private int ExtractMaxDamage(ItemObject item)
+		{
+			var itemParams = item.DefaultParameterList;
+
+			if (itemParams.Contains(_damageMaxParameter))
+			{
+				int index = itemParams.IndexOf(_damageMaxParameter);
 				return (int)itemParams[index].Value;
 			}
 			
