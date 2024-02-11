@@ -78,11 +78,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[4].Max
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[4].Min
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[5].Max
@@ -111,30 +111,30 @@ PrefabInstance:
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[4].Item
       value: 
-      objectReference: {fileID: 11400000, guid: 8c12a5b27fd960049b50411862e5e96d, type: 2}
+      objectReference: {fileID: 11400000, guid: edc513b3ed3bd4344aa82974c2d886f1, type: 2}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[5].Item
       value: 
       objectReference: {fileID: 11400000, guid: 8c12a5b27fd960049b50411862e5e96d, type: 2}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Chance
-      value: 8.335
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[1].Chance
-      value: 8.335
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[2].Chance
-      value: 8.335
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[3].Chance
-      value: 8.335
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[4].Chance
-      value: 8.335
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[5].Chance

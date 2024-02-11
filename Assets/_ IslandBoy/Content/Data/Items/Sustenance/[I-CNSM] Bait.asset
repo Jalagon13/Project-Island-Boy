@@ -9,13 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eea4153a0022fb44a84b057480c1fa1, type: 3}
-  m_Name: '[I-Rsc] Bait'
+  m_Script: {fileID: 11500000, guid: 09fd42b4c15c2c041acba151e4b23fa5, type: 3}
+  m_Name: '[I-CNSM] Bait'
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Bait
   <UiDisplay>k__BackingField: {fileID: 1130734024, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   <Stackable>k__BackingField: 1
   <Description>k__BackingField: 
-  <DefaultParameterList>k__BackingField:
-  - Parameter: {fileID: 11400000, guid: 8a8bef37f1c5e3c40ad4319761ff897a, type: 2}
-    Value: 0
+  <DefaultParameterList>k__BackingField: []
+  _consumeType: 1
+  _consumeSound: {fileID: 8300000, guid: 8e1c936e926ce1f408a69e176d4ed9f0, type: 3}
+  _value: 1
+  _chargeSpeed: 25
