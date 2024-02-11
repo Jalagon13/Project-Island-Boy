@@ -82,7 +82,7 @@ namespace IslandBoy
 			{
 				GameObject cs = Instantiate(_tcSlotPrefab, _slotHolder.transform);
 				TCSlot tcSlot = cs.GetComponent<TCSlot>();
-				tcSlot.Initialize(upgradeRecipe.Value, upgradeRecipe.Key);
+				tcSlot.Initialize(upgradeRecipe.Value, null, upgradeRecipe.Key);
 			}
 		}
 

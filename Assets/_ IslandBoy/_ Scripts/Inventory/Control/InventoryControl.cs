@@ -7,7 +7,7 @@ namespace IslandBoy
 {
 	public class InventoryControl : MonoBehaviour
 	{
-		[SerializeField] private CraftingDatabaseObject _defaultCDB;
+		
 		[SerializeField] private RectTransform _craftHolder;
 		[SerializeField] private AudioClip _openSound;
 		[SerializeField] private AudioClip _closeSound;
@@ -131,17 +131,13 @@ namespace IslandBoy
 				OpenInventory();
 		}
 
-		public void RefreshCraftSlotsToDefault()
-		{
-			_craftSlotsControl.RefreshCraftingMenu(_defaultCDB);
-		}
+		
 
 		public void CloseInventory(ISignalParameters parameters)
 		{
 			if (_mouseItemHolder.HasItem()) return;
 
 			InteractableHandle(null);
-			RefreshCraftSlotsToDefault();
 
 			_mainInventory.gameObject.SetActive(false);
 			_inventoryOpen = false;

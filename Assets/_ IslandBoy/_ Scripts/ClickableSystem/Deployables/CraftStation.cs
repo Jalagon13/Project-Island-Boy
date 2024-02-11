@@ -32,7 +32,7 @@ namespace IslandBoy
 
         private void RefreshCraftSlotsToDefault()
         {
-            _po.Inventory.InventoryControl.RefreshCraftSlotsToDefault();
+            _po.Inventory.CraftSlotsControl.RefreshCraftSlotsToDefault(null);
             GameSignals.CRAFT_STATION_INTERACT.Dispatch();
         }
 

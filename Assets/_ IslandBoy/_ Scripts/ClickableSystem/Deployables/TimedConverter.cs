@@ -201,7 +201,7 @@ namespace IslandBoy
 			{
 				GameObject cs = Instantiate(_tcSlotPrefab, _slotHolder.transform);
 				TCSlot tcSlot = cs.GetComponent<TCSlot>();
-				tcSlot.Initialize(_cdb.Database[i]);
+				tcSlot.Initialize(_cdb.Database[i], RefreshCraftingUI);
 			}
 		}
 

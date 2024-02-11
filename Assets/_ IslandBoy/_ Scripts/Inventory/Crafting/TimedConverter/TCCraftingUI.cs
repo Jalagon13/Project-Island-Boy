@@ -26,7 +26,7 @@ namespace IslandBoy
 		[SerializeField] private DecreaseBtn _decreaseBtn;
 
 		private CraftingRecipeObject _recipeToDisplay;
-		private TimedConverter _tc;
+		// private TimedConverter _tc;
 		private int _recipeAmount;
 		private MouseSlot _mouseItemHolder;
 
@@ -38,7 +38,7 @@ namespace IslandBoy
 
 		public void PopulateRecipe(CraftingRecipeObject recipeObject)
 		{
-			_tc = transform.root.GetComponent<TimedConverter>();
+			// _tc = transform.root.GetComponent<TimedConverter>();
 			_holder.gameObject.SetActive(true);
 			_recipeToDisplay = recipeObject;
 			_outputText.text = $"{_recipeToDisplay.OutputItem.Name}";

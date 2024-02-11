@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,11 +14,13 @@ namespace IslandBoy
 		private Image _outputImage;
 		private TextMeshProUGUI _amountText;
 		private ItemObject _originalItem;
+		private Action<CraftingRecipeObject> _refreshAction;
 
-		public void Initialize(CraftingRecipeObject recipe, ItemObject originalItem = null)
+		public void Initialize(CraftingRecipeObject recipe, Action<CraftingRecipeObject> refreshAction, ItemObject originalItem = null)
 		{
 			SetGlobals(recipe, originalItem);
 			_recipe = recipe;
+			_refreshAction = refreshAction;
 		}
 
 		private void SetGlobals(CraftingRecipeObject recipe, ItemObject originalItem)
@@ -41,14 +44,14 @@ namespace IslandBoy
 				blacksmith.RefreshCraftingUI(_recipe, _originalItem);
 				return;
 			}
+			_refreshAction?.Invoke(_recipe);
+			// var tc = transform.parent.parent.parent.GetComponent<TimedConverter>();
 			
-			var tc = transform.parent.parent.parent.GetComponent<TimedConverter>();
-			
-			if(tc != null)
-			{
-				tc.RefreshCraftingUI(_recipe);
-				return;
-			}
+			// if(tc != null)
+			// {
+			// 	tc.RefreshCraftingUI(_recipe);
+			// 	return;
+			// }
 		}
 	}
 }
