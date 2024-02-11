@@ -77,7 +77,7 @@ namespace IslandBoy
 			_clickTimer.Tick(Time.deltaTime);
 
 			if (_heldDown)
-				Hit(new());
+				ExecuteHit();
 
 			CheckWhenEnterNewTile();
 			UpdateCurrentClickable();
@@ -109,6 +109,11 @@ namespace IslandBoy
 		}
 
 		private void Hit(InputAction.CallbackContext context)
+		{
+			ExecuteHit();
+		}
+		
+		private void ExecuteHit()
 		{
 			if (Pointer.IsOverUI() || _focusSlotRef.ItemObject is not ToolObject || _clickTimer.RemainingSeconds > 0 || !_canUseActions || _focusSlotRef == null) return;
 				

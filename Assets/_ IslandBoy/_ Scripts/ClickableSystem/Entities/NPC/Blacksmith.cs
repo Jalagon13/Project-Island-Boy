@@ -37,6 +37,18 @@ namespace IslandBoy
 		{
 			_upgradePanelHolder.gameObject.SetActive(false);
 			_upgradeDatabase.Clear();
+			_upgradeDatabase = new();
+			
+			if(_po.MouseSlot.ItemObject is ToolObject)
+			{
+				ToolObject tool = (ToolObject)_po.MouseSlot.ItemObject;
+				
+				if(tool.UpgradeRecipe != null)
+				{
+					if(!_upgradeDatabase.ContainsKey(tool))
+						_upgradeDatabase.Add(tool, tool.UpgradeRecipe);
+				}
+			}
 			
 			foreach (Slot item in _po.Inventory.InventorySlots)
 			{
@@ -46,18 +58,9 @@ namespace IslandBoy
 					
 					if(tool.UpgradeRecipe != null)
 					{
-						_upgradeDatabase.Add(tool, tool.UpgradeRecipe);
+						if(!_upgradeDatabase.ContainsKey(tool))
+							_upgradeDatabase.Add(tool, tool.UpgradeRecipe);
 					}
-				}
-			}
-			
-			if(_po.MouseSlot.ItemObject is ToolObject)
-			{
-				ToolObject tool = (ToolObject)_po.MouseSlot.ItemObject;
-				
-				if(tool.UpgradeRecipe != null)
-				{
-					_upgradeDatabase.Add(tool, tool.UpgradeRecipe);
 				}
 			}
 		}
