@@ -118,7 +118,6 @@ namespace IslandBoy
 				tileData.Hit(amount);
 				PlayGameFeel(target);
 				PlaySound(tileData.RuleTile.HitSound);
-				GameSignals.CLICKABLE_CLICKED.Dispatch();
 				
 				if(tileData.IsDestroyed())
 				{

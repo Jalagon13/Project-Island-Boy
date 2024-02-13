@@ -1538,7 +1538,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1546,6 +1546,27 @@ TextureImporter:
       bones: []
       spriteID: 41b525da3a7c845fbb2328e096346f6d
       internalID: -1242384599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_wood_club
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 652e94010612e4766b7ee6767adf5376
+      internalID: 1819103735
       vertices: []
       indices: 
       edges: []
@@ -1620,6 +1641,7 @@ TextureImporter:
       item_wood: -602149933
       item_wood_axe: 1515656529
       item_wood_chestplate: -848097959
+      item_wood_club: 1819103735
       item_wood_floor: 1850925332
       item_wood_greaves: -972602597
       item_wood_hammer: 1844556041

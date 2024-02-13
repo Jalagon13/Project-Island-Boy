@@ -61,12 +61,12 @@ namespace IslandBoy
 			Destroy(gameObject);
 		}
 
-		public bool Damage(ToolType incomingToolType, int amount, bool displayHit = true, bool kbEnabled = true)
+		public bool Damage(ToolType incomingToolType, int amount, bool displayHit = true, bool kbEnabled = true, float strength = 5)
 		{
 			_onDamage?.Invoke();
 			
 			if(kbEnabled)
-				_knockback.PlayFeedback(_pr.Position);
+				_knockback.PlayFeedback(_pr.Position, strength);
 			// _despawnTimer.RemainingSeconds = _durationUntilDespawn;
 
 			if (base.OnHit(incomingToolType, amount, displayHit))

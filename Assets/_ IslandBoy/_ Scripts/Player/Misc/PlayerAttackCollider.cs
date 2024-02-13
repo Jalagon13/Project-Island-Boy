@@ -9,6 +9,7 @@ namespace IslandBoy
 		[SerializeField] private float _detectionBetweenHits;
 		[SerializeField] private ItemParameter _damageMinParameter;
 		[SerializeField] private ItemParameter _damageMaxParameter;
+		[SerializeField] private ItemParameter _strengthParameter;
 
 		private Slot _focusSlotRef;
 		private List<Entity> _entitiesFoundThisSwing;
@@ -17,6 +18,7 @@ namespace IslandBoy
 		private List<Resource> _rscHitThisSwing;
 		private int _damageMin;
 		private int _damageMax;
+		private float _strength;
 
 		private void Awake()
 		{
@@ -56,7 +58,7 @@ namespace IslandBoy
 
 					System.Random rnd = new System.Random();
 					var damage = rnd.Next(_damageMin, _damageMax); 
-					entity.Damage(ToolType.Sword, damage);
+					entity.Damage(ToolType.Sword, damage, strength:_strength);
 					
 					yield return new WaitForSeconds(_detectionBetweenHits);
 					_entitiesFoundThisSwing.Remove(entity);
@@ -123,6 +125,7 @@ namespace IslandBoy
 				{
 					_damageMin = ExtractMinDamage(_focusSlotRef.ItemObject);
 					_damageMax = ExtractMaxDamage(_focusSlotRef.ItemObject);
+					_strength = ExtractStrength(_focusSlotRef.ItemObject);
 				}
 			}
 		}
@@ -151,6 +154,19 @@ namespace IslandBoy
 			}
 			
 			return 0;
+		}
+		
+		private float ExtractStrength(ItemObject item)
+		{
+			var itemParams = item.DefaultParameterList;
+
+			if (itemParams.Contains(_strengthParameter))
+			{
+				int index = itemParams.IndexOf(_strengthParameter);
+				return itemParams[index].Value;
+			}
+			
+			return 5;
 		}
 	}
 }

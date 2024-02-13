@@ -16,14 +16,14 @@ namespace IslandBoy
             
         }
 
-        public void PlayFeedback(Vector3 position)
+        public void PlayFeedback(Vector3 position, float strength)
         {
             if (!enabled) return;
 
             StopAllCoroutines();
             _onBegin?.Invoke();
             Vector2 direction = (transform.position - position).normalized;
-            _rb.AddForce(direction * _strength, ForceMode2D.Impulse);
+            _rb.AddForce(direction * strength, ForceMode2D.Impulse);
             StartCoroutine(Reset());
         }
 

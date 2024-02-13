@@ -227,7 +227,15 @@ namespace IslandBoy
 
 		private void OnSwing(ISignalParameters parameters)
 		{
-			AddToNrg(-1);
+			if(parameters.HasParameter("EnergyLost"))
+			{
+				var energyLost = (int)parameters.GetParameter("EnergyLost");
+				AddToNrg(-energyLost);
+			}
+			else
+			{
+				AddToNrg(-1);
+			}
 		}
 
 		#region HP Functions
@@ -409,7 +417,7 @@ namespace IslandBoy
 			if (_currentHp <= 0)
 				StartCoroutine(PlayerDead());
 			else
-				_knockback.PlayFeedback(damagerPosition);
+				_knockback.PlayFeedback(damagerPosition, 5f);
 		}
 
 		private void DispatchPlayerDamaged(int dmgAmount, Vector2 damagerPosition)
