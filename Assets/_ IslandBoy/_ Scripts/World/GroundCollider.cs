@@ -4,39 +4,47 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    // dynamicalls alters pathfinding area
-    public class GroundCollider : MonoBehaviour
-    {
-        private bool _applicationQuitting;
+	// dynamicalls alters pathfinding area
+	public class GroundCollider : MonoBehaviour
+	{
+		private bool _applicationQuitting;
 
-        private void OnEnable()
-        {
-            UpdatePathfinding();
-        }
+		private void OnEnable()
+		{
+			StartCoroutine(UpdatePathfinding());
+		}
 
-        private void OnDisable()
-        {
-            if (_applicationQuitting) return;
+		private void OnDisable()
+		{
+			if (_applicationQuitting) return;
 
-            UpdatePathfinding();
-        }
+			StartCoroutine(UpdatePathfinding());
+		}
 
-        private void OnDestroy()
-        {
-            if (_applicationQuitting) return;
+		// private void OnDestroy()
+		// {
+		// 	if (_applicationQuitting) return;
 
-            UpdatePathfinding();
-        }
+		// 	StartCoroutine(UpdatePathfinding());
+		// }
 
-        private void OnApplicationQuit()
-        {
-            _applicationQuitting = true;
-        }
+		private void OnApplicationQuit()
+		{
+			_applicationQuitting = true;
+		}
 
-        private void UpdatePathfinding()
-        {
-            Bounds updateBounds = new(transform.parent.position, new(2, 2, 1));
-            //AstarPath.active.UpdateGraphs(updateBounds, 0.1f);
-        }
-    }
+		private IEnumerator UpdatePathfinding()
+		{
+			Bounds updateBounds = new(transform.parent.position, new(2, 2, 1));
+			
+			if(AstarPath.active != null)
+			{
+				AstarPath.active.UpdateGraphs(updateBounds, 0.1f);
+			}
+			
+			yield return new WaitForEndOfFrame();
+			
+			
+		}
+	}
 }

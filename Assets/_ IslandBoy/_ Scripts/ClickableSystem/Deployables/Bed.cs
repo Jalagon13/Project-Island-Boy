@@ -60,16 +60,16 @@ namespace IslandBoy
 		{
 			if(_occupied)
 			{
-				_resident.SetPosition(ReturnRandomFloorTile());
+				_resident.SetPosition(transform.position + new Vector3(0.5f, 0.5f));
 			}
 		}
 		
-		private Vector3 ReturnRandomFloorTile()
-		{
-			var randomIndex = Random.Range(0, _floorTilePositions.Count - 1);
+		// private Vector3 ReturnRandomFloorTile()
+		// {
+		// 	var randomIndex = Random.Range(0, _floorTilePositions.Count - 1);
 			
-			return _floorTilePositions[randomIndex];
-		}
+		// 	return _floorTilePositions[randomIndex];
+		// }
 		
 		private void DispatchEvents()
 		{
