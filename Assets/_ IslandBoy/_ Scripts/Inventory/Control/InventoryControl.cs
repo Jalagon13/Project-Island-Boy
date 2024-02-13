@@ -180,7 +180,7 @@ namespace IslandBoy
 
 		public bool AddItemToInventoryFromChest(ChestInvSlot itemToAdd)
 		{
-			int leftOver = _inventory.AddItem(itemToAdd.OutputItem, itemToAdd.OutputAmount);
+			int leftOver = _inventory.AddItem(itemToAdd.OutputItem, itemToAdd.OutputAmount, itemToAdd.OutputItem.DefaultParameterList);
 
 			if (leftOver > 0)
 				return false;
@@ -190,8 +190,9 @@ namespace IslandBoy
 		public void AddItemToSlot(ISignalParameters parameters)
 		{
 			ChestInvSlot itemToAdd = parameters.GetParameter("itemToAdd") as ChestInvSlot;
+
 			// if item was added successfully, delete item from inv
-			if (_inventory.AddItemToSlot(itemToAdd.OutputItem, itemToAdd.OutputAmount))
+			if (_inventory.AddItemToSlot(itemToAdd.OutputItem, itemToAdd.OutputAmount, itemToAdd.OutputItem.DefaultParameterList))
 			{
 				Destroy(parameters.GetParameter("itemObj") as GameObject);
 			}

@@ -42,6 +42,7 @@ namespace IslandBoy
 						break;
 				}
 			}
+			_dashIcon.SetActive(false);
 		}
 
 		private void FixedUpdate()
@@ -69,6 +70,7 @@ namespace IslandBoy
 		private void AllowDash()
 		{
 			_canDash = true;
+			_dashIcon.SetActive(true);
 		}
 
 		private void PerformDash(InputAction.CallbackContext context)
@@ -95,6 +97,7 @@ namespace IslandBoy
 		private IEnumerator DashDelay()
 		{
 			GetComponent<PlayerMoveInput>().enabled = false;
+			_dashIcon.SetActive(false);
 			GetComponent<Rigidbody2D>().AddForce(_direction * 80, ForceMode2D.Impulse);
 			
 			yield return new WaitForSeconds(.25f);

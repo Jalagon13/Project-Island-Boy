@@ -29,6 +29,14 @@ namespace IslandBoy
 
 			if(_defense < 0)
 				_defense = 0;
+
+			DispatchDefense();
+		}
+
+		private void DispatchDefense()
+        {
+			Signal signal = GameSignals.UPDATE_DEFENSE;
+			signal.Dispatch();
 		}
 	}
 }
