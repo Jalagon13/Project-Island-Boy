@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a38df6f5fd8e134faa55cb288909a5a, type: 3}
   m_Name: '[REC] Wood Club'
   m_EditorClassIdentifier: 
-  OutputItem: {fileID: 0}
-  OutputAmount: 0
+  OutputItem: {fileID: 11400000, guid: f6ba702a5ed77414ba9b791c6080822c, type: 2}
+  OutputAmount: 1
   CraftingTimer: 0
-  ResourceList: []
+  ResourceList:
+  - Item: {fileID: 11400000, guid: c67ec61e0f752f845be2a959a4108887, type: 2}
+    Amount: 12
