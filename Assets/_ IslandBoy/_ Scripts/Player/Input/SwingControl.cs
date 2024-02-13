@@ -85,6 +85,11 @@ namespace IslandBoy
 
 		public void PerformAnimation()
 		{
+			if(_animator.GetCurrentAnimatorStateInfo(0).IsName("[ANM] Idle"))
+			{
+				_canAnimate = true;
+			}
+			
 			if (_swingTimer.RemainingSeconds > 0 || _focusSlotRef == null || _focusSlotRef.ItemObject is not ToolObject || Pointer.IsOverUI() || !_canAnimate) return;
 				
 			Signal signal = GameSignals.CLICKABLE_CLICKED;
