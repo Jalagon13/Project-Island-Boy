@@ -33,7 +33,7 @@ namespace IslandBoy
 
         public override string GetDescription()
         {
-            return "ARMORRRR";
+            return "* " + _armorType.ToString() + " Armor";
         }
     }
 }
