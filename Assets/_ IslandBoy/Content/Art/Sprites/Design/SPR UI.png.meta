@@ -635,7 +635,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -643,6 +643,27 @@ TextureImporter:
       bones: []
       spriteID: 317221c2885874543b8c990a9ac4d3f8
       internalID: 1772898665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: npc_knight_icon
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 64
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 708169ffbbb7046a3b4556fd9bd18d15
+      internalID: 965137422
       vertices: []
       indices: 
       edges: []
@@ -659,6 +680,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       9sprite_mm_full: -505856833
+      npc_knight_icon: 965137422
       npc_miner_icon: 1598067083
       npc_wizard_icon: 1460111371
       uc_nrg_icon: -513854623

@@ -12623,7 +12623,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  _questCanvas: {fileID: 0}
   _shopCanvas: {fileID: 1667663690214485934}
   _upgradeCanvas: {fileID: 7386138585088704820}
 --- !u!114 &8313836301681945795
@@ -14508,6 +14507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
+  _upgradeType: 1
   _tcSlotPrefab: {fileID: 6449567880495286189, guid: 1fd8c7aa8d6d0a946acb2fc3c217584a, type: 3}
   _slotHolder: {fileID: 4550916972615697606}
   _upgradePanelHolder: {fileID: 2533169441044257107}
@@ -15181,8 +15181,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Greetings adventurer! If you need any tools <color=orange>upgraded</color=corange>
-    let me know! '
+  m_text: If you need any <color=orange>tools upgraded</color=corange> let me know!
+    To upgrade close combat weapons, you need to acquire a <color=orange>Knight</color=orange>
+    to your town.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
   m_sharedMaterial: {fileID: 4835514525599508895, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}

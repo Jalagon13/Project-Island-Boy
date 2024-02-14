@@ -11,6 +11,14 @@ namespace IslandBoy
 		Sword,
 		Hammer
 	}
+	
+	public enum NpcUpgradeType
+	{
+		None,
+		Blacksmith,
+		Knight,
+		Wizard
+	}
 
 	[CreateAssetMenu(fileName = "New Tool", menuName = "Create Item/New Tool")]
 	public class ToolObject : ItemObject
@@ -18,12 +26,14 @@ namespace IslandBoy
 		[Space(10)]
 		[SerializeField] private ToolType _type;
 		[Header("Upgrade Parameters")]
+		[SerializeField] private NpcUpgradeType _npcUpgradeType = NpcUpgradeType.None;
 		[SerializeField] private CraftingRecipeObject _upgradeRecipe;
 
 		public override ToolType ToolType => _type;
 		public override ArmorType ArmorType => _baseArmorType;
 		public override AccessoryType AccessoryType => _baseAccessoryType;
 		public CraftingRecipeObject UpgradeRecipe => _upgradeRecipe;
+		public NpcUpgradeType NpcUpgradeType => _npcUpgradeType;
 
 		public override void ExecutePrimaryAction(FocusSlotControl control)
 		{
@@ -61,7 +71,7 @@ namespace IslandBoy
 				}
 			}
 
-			string upgradeText = _upgradeRecipe != null ? $"* Next upgrade: {_upgradeRecipe.OutputItem.Name}" : string.Empty;
+			string upgradeText = _upgradeRecipe != null && _npcUpgradeType != NpcUpgradeType.None ? $"* Can be Upgraded" : string.Empty;
 
 			return $"{Description}<br>* {hitValue} per hit<br>* {damageMin}-{damageMax} damage<br>{upgradeText}";
 		}

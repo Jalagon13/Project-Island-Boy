@@ -67,6 +67,7 @@ SpriteAtlas:
     - 163e8e7065e05434e96c5969ddf71b39: 1460111371
     - 163e8e7065e05434e96c5969ddf71b39: -1565230189
     - 163e8e7065e05434e96c5969ddf71b39: 507817295
+    - 163e8e7065e05434e96c5969ddf71b39: 965137422
     - 163e8e7065e05434e96c5969ddf71b39: 1845987391
     - 163e8e7065e05434e96c5969ddf71b39: 1369651022
     - 163e8e7065e05434e96c5969ddf71b39: 1598067083
@@ -796,6 +797,8 @@ SpriteAtlas:
     - d1fdf00d255e2d942a949c35bbb7ace1: -185649165
     - d1fdf00d255e2d942a949c35bbb7ace1: 1389064612
     - d1fdf00d255e2d942a949c35bbb7ace1: -1975342335
+    - d1fdf00d255e2d942a949c35bbb7ace1: -1974408737
+    - d1fdf00d255e2d942a949c35bbb7ace1: 1941603296
     - d1fdf00d255e2d942a949c35bbb7ace1: -1592809215
     - d1fdf00d255e2d942a949c35bbb7ace1: -1006392663
     - d1fdf00d255e2d942a949c35bbb7ace1: 1001675587
@@ -949,6 +952,7 @@ SpriteAtlas:
   - {fileID: 1460111371, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   - {fileID: -1565230189, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   - {fileID: 507817295, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
+  - {fileID: 965137422, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   - {fileID: 1845987391, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   - {fileID: 1369651022, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   - {fileID: 1598067083, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
@@ -1678,6 +1682,8 @@ SpriteAtlas:
   - {fileID: -185649165, guid: d1fdf00d255e2d942a949c35bbb7ace1, type: 3}
   - {fileID: 1389064612, guid: d1fdf00d255e2d942a949c35bbb7ace1, type: 3}
   - {fileID: -1975342335, guid: d1fdf00d255e2d942a949c35bbb7ace1, type: 3}
+  - {fileID: -1974408737, guid: d1fdf00d255e2d942a949c35bbb7ace1, type: 3}
+  - {fileID: 1941603296, guid: d1fdf00d255e2d942a949c35bbb7ace1, type: 3}
   - {fileID: -1592809215, guid: d1fdf00d255e2d942a949c35bbb7ace1, type: 3}
   - {fileID: -1006392663, guid: d1fdf00d255e2d942a949c35bbb7ace1, type: 3}
   - {fileID: 1001675587, guid: d1fdf00d255e2d942a949c35bbb7ace1, type: 3}
@@ -1830,6 +1836,7 @@ SpriteAtlas:
   - npc_wizard_icon
   - ui_sun_mark
   - ui_house
+  - npc_knight_icon
   - ui_right_click
   - ui_head_slot
   - npc_miner_icon
@@ -2559,6 +2566,8 @@ SpriteAtlas:
   - spr_player_f
   - spr_old_lady
   - spr_wizard
+  - spr_knight
+  - spr_bound_knight
   - spr_bound_miner
   - spr_player
   - spr_island_boy

@@ -269,6 +269,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: spr_knight
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 1
+        width: 11
+        height: 26
+      alignment: 9
+      pivot: {x: 0.58014196, y: 0.02106708}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb52fa8b4e87c499fa76c9904e108ba9
+      internalID: -1974408737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_bound_knight
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 1
+        width: 11
+        height: 23
+      alignment: 9
+      pivot: {x: 0.50993484, y: 0.034295667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 315a34b9a656f40948976a0d938858bc
+      internalID: 1941603296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -280,10 +322,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      spr_bound_knight: 1941603296
       spr_bound_miner: -1592809215
       spr_bound_wizard: 1498854646
       spr_druid: 1094963970
       spr_island_boy: 1001675587
+      spr_knight: -1974408737
       spr_old_lady: 1389064612
       spr_player: -1006392663
       spr_player_f: -185649165
