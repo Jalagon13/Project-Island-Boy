@@ -353,6 +353,7 @@ SpriteAtlas:
     - 75594b36fd8cd0d409de8dacfcaf419b: -538633122
     - 75594b36fd8cd0d409de8dacfcaf419b: -1201098598
     - 75594b36fd8cd0d409de8dacfcaf419b: -1416747536
+    - 75594b36fd8cd0d409de8dacfcaf419b: 903736636
     - 75594b36fd8cd0d409de8dacfcaf419b: -887866084
     - 75594b36fd8cd0d409de8dacfcaf419b: 2035972618
     - 75594b36fd8cd0d409de8dacfcaf419b: -1546665967
@@ -1238,6 +1239,7 @@ SpriteAtlas:
   - {fileID: -538633122, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1201098598, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1416747536, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  - {fileID: 903736636, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -887866084, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 2035972618, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1546665967, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
@@ -2122,6 +2124,7 @@ SpriteAtlas:
   - item_diamond
   - item_apple
   - item_iron_hammer
+  - item_upgrade_core
   - item_stone_shovel
   - item_crab
   - item_hook

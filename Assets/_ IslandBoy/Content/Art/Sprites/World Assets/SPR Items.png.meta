@@ -1559,7 +1559,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1567,6 +1567,27 @@ TextureImporter:
       bones: []
       spriteID: 652e94010612e4766b7ee6767adf5376
       internalID: 1819103735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_upgrade_core
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6062c6d17e2194cf18cf395f8b965166
+      internalID: 903736636
       vertices: []
       indices: 
       edges: []
@@ -1638,6 +1659,7 @@ TextureImporter:
       item_stone_wall: -1501110074
       item_tool_station: -581595869
       item_torch: -1995232107
+      item_upgrade_core: 903736636
       item_wood: -602149933
       item_wood_axe: 1515656529
       item_wood_chestplate: -848097959
