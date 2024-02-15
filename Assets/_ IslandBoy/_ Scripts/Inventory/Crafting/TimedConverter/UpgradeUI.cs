@@ -27,6 +27,7 @@ namespace IslandBoy
 		private ItemObject _originalItem;
 		private Blacksmith _blacksmith;
 		private MouseSlot _mouseItemHolder;
+		private int _xpCost;
 
 		private void OnEnable()
 		{
@@ -34,7 +35,7 @@ namespace IslandBoy
 			_holder.gameObject.SetActive(false);
 		}
 
-		public void PopulateRecipe(CraftingRecipeObject recipeObject, ItemObject originalItem)
+		public void PopulateRecipe(CraftingRecipeObject recipeObject, ItemObject originalItem, int xpCost)
 		{
 			_blacksmith = transform.parent.GetComponent<Blacksmith>();
 			_originalItem = originalItem;
@@ -42,6 +43,7 @@ namespace IslandBoy
 			_recipeToDisplay = recipeObject;
 			_outputText.text = $"{_recipeToDisplay.OutputItem.Name}";
 			_outputImage.sprite = recipeObject.OutputItem.UiDisplay;
+			_xpCost = xpCost;
 
 			MMSoundManagerSoundPlayEvent.Trigger(_populateSound, MMSoundManager.MMSoundManagerTracks.UI, default);
 
@@ -96,7 +98,10 @@ namespace IslandBoy
 
 		private void UpdateIngTexts()
 		{
-			string ingText = "Recipe:<br>";
+			int xpVal = PlayerGoldController.Instance.CurrencyValue;
+			string ingText = xpVal >= _xpCost ? 
+			$"Recipe:<br><color=white>XP [{xpVal}/{_xpCost}]<color=white><br>" : 
+			$"Recipe:<br><color=red>XP [{xpVal}/{_xpCost}]<color=red><br>";
 
 			foreach (var ia in _recipeToDisplay.ResourceList)
 			{
@@ -127,6 +132,9 @@ namespace IslandBoy
 
 				if (!canCraft) break;
 			}
+			
+			if(PlayerGoldController.Instance.CurrencyValue >= _xpCost)
+				canCraft = true;
 
 			if (_recipeToDisplay.ResourceList.Count <= 0)
 				canCraft = true;

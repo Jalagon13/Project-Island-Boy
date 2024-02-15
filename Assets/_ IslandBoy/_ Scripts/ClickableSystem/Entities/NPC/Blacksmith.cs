@@ -17,7 +17,7 @@ namespace IslandBoy
 		[SerializeField] private RectTransform _upgradePanelHolder;
 		[SerializeField] private UpgradeUI _upgradeUI;
 		
-		private Dictionary<ItemObject, CraftingRecipeObject>_upgradeDatabase = new();
+		private List<ToolObject>_upgradeDatabase = new();
 
 		private void Awake()
 		{
@@ -46,8 +46,8 @@ namespace IslandBoy
 				
 				if(tool.UpgradeRecipe != null)
 				{
-					if(!_upgradeDatabase.ContainsKey(tool) && tool.NpcUpgradeType == _upgradeType)
-						_upgradeDatabase.Add(tool, tool.UpgradeRecipe);
+					if(!_upgradeDatabase.Contains(tool) && tool.NpcUpgradeType == _upgradeType)
+						_upgradeDatabase.Add(tool);
 				}
 			}
 			
@@ -59,8 +59,8 @@ namespace IslandBoy
 					
 					if(tool.UpgradeRecipe != null)
 					{
-						if(!_upgradeDatabase.ContainsKey(tool) && tool.NpcUpgradeType == _upgradeType)
-							_upgradeDatabase.Add(tool, tool.UpgradeRecipe);
+						if(!_upgradeDatabase.Contains(tool) && tool.NpcUpgradeType == _upgradeType)
+						_upgradeDatabase.Add(tool);
 					}
 				}
 			}
@@ -73,9 +73,9 @@ namespace IslandBoy
 			SetUpRecipes();
 		}
 
-		public void RefreshCraftingUI(CraftingRecipeObject recipe, ItemObject originalItem)
+		public void RefreshCraftingUI(CraftingRecipeObject recipe, ItemObject originalItem, int xpCost)
 		{
-			_upgradeUI.PopulateRecipe(recipe, originalItem);
+			_upgradeUI.PopulateRecipe(recipe, originalItem, xpCost);
 		}
 
 		private void SetUpRecipes()
@@ -86,7 +86,7 @@ namespace IslandBoy
 			{
 				GameObject cs = Instantiate(_tcSlotPrefab, _slotHolder.transform);
 				TCSlot tcSlot = cs.GetComponent<TCSlot>();
-				tcSlot.Initialize(upgradeRecipe.Value, null, upgradeRecipe.Key);
+				tcSlot.Initialize(upgradeRecipe);
 			}
 		}
 
