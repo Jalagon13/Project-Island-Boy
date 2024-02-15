@@ -9,7 +9,7 @@ namespace IslandBoy
 	public class ThrowObject : ItemObject
 	{
 		[SerializeField] private PlayerObject _pr;
-		[SerializeField] private Bomb _throwPrefab;
+		[SerializeField] private Throwable _throwPrefab;
 		[SerializeField] private AudioClip _launchSound;
 
 		public override ToolType ToolType => _baseToolType;
@@ -22,7 +22,7 @@ namespace IslandBoy
 
 			Vector3 playerPosition = control.Player.transform.position;
 
-			Bomb throwObject = Instantiate(_throwPrefab, playerPosition + new Vector3(0, 0.65f), Quaternion.identity);
+			Throwable throwObject = Instantiate(_throwPrefab, playerPosition + new Vector3(0, 0.65f), Quaternion.identity);
 			Vector3 direction = (control.CursorControl.transform.position - throwObject.transform.position).normalized;
 			throwObject.Setup(direction);
 			
