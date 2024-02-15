@@ -20,10 +20,11 @@ namespace IslandBoy
 		private AccessoryObject _dash;
 		private Vector2 _direction;
 		private Timer _dashTimer;
-		private bool _canDash;
+		private bool _canDash = true;
 		private bool _usingDash = false;
 		private float _dashCurrentTime;
 		private bool _dashOnCooldown = false;
+		private bool _dashEquipped;
 
 		private void Awake()
 		{
@@ -42,6 +43,7 @@ namespace IslandBoy
 						break;
 				}
 			}
+			_dashIcon.SetActive(false);
 		}
 
 		private void FixedUpdate()
@@ -53,22 +55,25 @@ namespace IslandBoy
 		public void EnableDash()
 		{
 			_dashInput.Enable();
-			_dashIcon.SetActive(true);
+			_dashIcon.SetActive(_canDash);
+			_dashEquipped = _canDash;
 		}
 
 		public void DisableDash()
 		{
 			_dashInput.Disable();
 			_dashIcon.SetActive(false);
-			_dashOnCooldown = false;
-			_usingDash = false;
-			_dashCurrentTime = 0;
-			GetComponent<PlayerMoveInput>().Speed = GetComponent<PlayerMoveInput>().BaseSpeed;
+			_dashEquipped = false;
+			// _dashOnCooldown = false;
+			// _usingDash = false;
+			// _dashCurrentTime = 0;
+			// GetComponent<PlayerMoveInput>().Speed = GetComponent<PlayerMoveInput>().BaseSpeed;
 		}
 		
 		private void AllowDash()
 		{
 			_canDash = true;
+			_dashIcon.SetActive(_dashEquipped);
 		}
 
 		private void PerformDash(InputAction.CallbackContext context)
@@ -76,6 +81,7 @@ namespace IslandBoy
 			if(_canDash)
 			{
 				_canDash = false;
+				_dashIcon.SetActive(false);
 				_dashTimer.RemainingSeconds = 3;
 				_direction = _pr.GameObject.GetComponent<PlayerMoveInput>().LastNonZeroMoveDirection;
 				MMSoundManagerSoundPlayEvent.Trigger(_dashSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
@@ -95,6 +101,7 @@ namespace IslandBoy
 		private IEnumerator DashDelay()
 		{
 			GetComponent<PlayerMoveInput>().enabled = false;
+			_dashIcon.SetActive(false);
 			GetComponent<Rigidbody2D>().AddForce(_direction * 80, ForceMode2D.Impulse);
 			
 			yield return new WaitForSeconds(.25f);

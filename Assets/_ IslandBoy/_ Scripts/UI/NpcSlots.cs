@@ -8,6 +8,7 @@ namespace IslandBoy
 	{
 		[SerializeField] private GameObject _blacksmithSlot;
 		[SerializeField] private GameObject _wizardSlot;
+		[SerializeField] private GameObject _knightSlot;
 		
 		private static NpcSlots _instance;
 		private static int _settlerCount;
@@ -32,6 +33,13 @@ namespace IslandBoy
 		{
 			_wizardSlot.transform.GetChild(0).gameObject.SetActive(true);
 			_wizardSlot.transform.GetChild(1).gameObject.SetActive(false);
+			_settlerCount++;
+		}
+		
+		public void UpdateKnightSlot()
+		{
+			_knightSlot.transform.GetChild(0).gameObject.SetActive(true);
+			_knightSlot.transform.GetChild(1).gameObject.SetActive(false);
 			_settlerCount++;
 		}
 	}

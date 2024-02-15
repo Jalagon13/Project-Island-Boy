@@ -32,7 +32,8 @@ namespace IslandBoy
 		public static readonly Signal CURSOR_ENTERED_NEW_TILE = new("CursorEnteredNewTile");
 		public static readonly Signal ITEM_DEPLOYED = new("ItemDeployed");
 		public static readonly Signal ENERGY_RESTORED = new("EnergyRestored");
-		
+		public static readonly Signal UPDATE_DEFENSE = new("UpdateDefense");
+
 		// Interact Signals
 		public static readonly Signal DISPLAY_PROMPT = new("DisplayPrompt");
 		public static readonly Signal DISPLAY_INTERACTABLE = new("DisplayInteractable");

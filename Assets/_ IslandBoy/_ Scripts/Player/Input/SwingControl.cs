@@ -10,6 +10,9 @@ namespace IslandBoy
 	{
 		[SerializeField] private float _swingCd;
 		[SerializeField] private AudioClip _wooshClip;
+		[SerializeField] private ItemParameter _swingCooldownParameter;
+		[SerializeField] private ItemParameter _swingSpeedParameter;
+		[SerializeField] private ItemParameter _energyPerSwingParameter;
 
 		private SpriteRenderer _swingSr;
 		private Timer _swingTimer;
@@ -17,6 +20,7 @@ namespace IslandBoy
 		private Camera _camera;
 		private Slot _focusSlotRef;
 		private bool _canAnimate = true;
+		private float _defaultAnimSpeed = 1;
 
 		private readonly int _hashRightHit = Animator.StringToHash("[ANM] RightSwing");
 		private readonly int _hashUpHit = Animator.StringToHash("[ANM] UpSwing");
@@ -27,6 +31,7 @@ namespace IslandBoy
 		private void Awake()
 		{
 			_animator = GetComponent<Animator>();
+			_animator.speed = _defaultAnimSpeed;
 			_swingSr = transform.GetChild(0).GetComponent<SpriteRenderer>();
 			_swingTimer = new(_swingCd);
 
@@ -61,6 +66,8 @@ namespace IslandBoy
 			if (parameters.HasParameter("FocusSlot"))
 			{
 				_focusSlotRef = (Slot)parameters.GetParameter("FocusSlot");
+				_swingTimer.RemainingSeconds = 0;
+				_animator.speed = CalcSwingSpeed();
 				UpdateSwingSprite();
 			}
 		}
@@ -78,9 +85,18 @@ namespace IslandBoy
 
 		public void PerformAnimation()
 		{
+			if(_animator.GetCurrentAnimatorStateInfo(0).IsName("[ANM] Idle"))
+			{
+				_canAnimate = true;
+			}
+			
 			if (_swingTimer.RemainingSeconds > 0 || _focusSlotRef == null || _focusSlotRef.ItemObject is not ToolObject || Pointer.IsOverUI() || !_canAnimate) return;
 				
-			GameSignals.CLICKABLE_CLICKED.Dispatch();
+			Signal signal = GameSignals.CLICKABLE_CLICKED;
+			signal.ClearParameters();
+			signal.AddParameter("EnergyLost", CalcEnergyPerSwing());
+			signal.Dispatch();
+			
 			PerformCorrectAnimation();
 		}
 
@@ -91,7 +107,7 @@ namespace IslandBoy
 		
 		public void OnSwingEnd()
 		{
-			_swingTimer.RemainingSeconds = _swingCd;
+			_swingTimer.RemainingSeconds = CalcSwingCd();
 			_canAnimate = true;
 			AnimStateManager.ChangeAnimationState(_animator, _hashIdle);
 		}
@@ -126,6 +142,54 @@ namespace IslandBoy
 			{
 				AnimStateManager.ChangeAnimationState(_animator, _hashDownHit);
 			}
+		}
+		
+		private float CalcSwingCd()
+		{
+			if(_focusSlotRef == null) return _swingCd;
+			if (_focusSlotRef.ItemObject == null) return _swingCd;
+
+			if (_focusSlotRef.ItemObject.DefaultParameterList.Contains(_swingCooldownParameter))
+			{
+				var index = _focusSlotRef.ItemObject.DefaultParameterList.IndexOf(_swingCooldownParameter);
+				var powerParameter = _focusSlotRef.ItemObject.DefaultParameterList[index];
+
+				return powerParameter.Value;
+			}
+
+			return _swingCd;
+		}
+		
+		private float CalcSwingSpeed()
+		{
+			if(_focusSlotRef == null) return _defaultAnimSpeed;
+			if (_focusSlotRef.ItemObject == null) return _defaultAnimSpeed;
+
+			if (_focusSlotRef.ItemObject.DefaultParameterList.Contains(_swingSpeedParameter))
+			{
+				var index = _focusSlotRef.ItemObject.DefaultParameterList.IndexOf(_swingSpeedParameter);
+				var powerParameter = _focusSlotRef.ItemObject.DefaultParameterList[index];
+
+				return powerParameter.Value;
+			}
+
+			return _defaultAnimSpeed;
+		}
+		
+		private int CalcEnergyPerSwing()
+		{
+			if(_focusSlotRef == null) return 1;
+			if (_focusSlotRef.ItemObject == null) return 1;
+
+			if (_focusSlotRef.ItemObject.DefaultParameterList.Contains(_energyPerSwingParameter))
+			{
+				var index = _focusSlotRef.ItemObject.DefaultParameterList.IndexOf(_energyPerSwingParameter);
+				var powerParameter = _focusSlotRef.ItemObject.DefaultParameterList[index];
+
+				return (int)powerParameter.Value;
+			}
+
+			return 1;
 		}
 	}
 }

@@ -8,7 +8,7 @@ namespace IslandBoy
 	public class NPC : Prompt
 	{
 		[Header("NPC Parameters")]
-		[SerializeField] private Canvas _questCanvas;
+		// [SerializeField] private Canvas _questCanvas;
 		[SerializeField] private Canvas _shopCanvas;
 		[SerializeField] private Canvas _upgradeCanvas;
 
@@ -26,7 +26,7 @@ namespace IslandBoy
 			DisplayInteractable();
 
 			_shopCanvas.gameObject.SetActive(false);
-			_questCanvas.gameObject.SetActive(true);
+			// _questCanvas.gameObject.SetActive(true);
 			_upgradeCanvas.gameObject.SetActive(false);
 		}
 		
@@ -35,7 +35,7 @@ namespace IslandBoy
 			DisplayInteractable();
 
 			_shopCanvas.gameObject.SetActive(true);
-			_questCanvas.gameObject.SetActive(false);
+			// _questCanvas.gameObject.SetActive(false);
 			_upgradeCanvas.gameObject.SetActive(false);
 		}
 		
@@ -44,7 +44,7 @@ namespace IslandBoy
 			DisplayInteractable();
 
 			_shopCanvas.gameObject.SetActive(false);
-			_questCanvas.gameObject.SetActive(false);
+			// _questCanvas.gameObject.SetActive(false);
 			_upgradeCanvas.gameObject.SetActive(true);
 		}
 		
@@ -54,7 +54,7 @@ namespace IslandBoy
 		{
 			base.CloseUI(parameters);
 			
-			_questCanvas.gameObject.SetActive(false);
+			// _questCanvas.gameObject.SetActive(false);
 			_shopCanvas.gameObject.SetActive(false);
 			_upgradeCanvas.gameObject.SetActive(false);
 		}

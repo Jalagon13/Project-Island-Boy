@@ -65,16 +65,15 @@ namespace IslandBoy
 		/// <summary>
 		/// Returns true if successful, false otherwise
 		/// </summary>
-		public bool AddItemToSlot(ItemObject item, int amount) // BROOKE----------------------------------------------------------------
+		public bool AddItemToSlot(ItemObject item, int amount, List<ItemParameter> itemParameters = null) // BROOKE----------------------------------------------------------------
 		{
-			// Find an empty slot
 			if (item.AccessoryType != AccessoryType.None)
 			{
 				for (int i = 0; i < _accessorySlots.Count; i++)
 				{
 					AccessorySlot slot = _accessorySlots[i];
 
-					if (slot.SpawnInventoryItem(item))
+					if (slot.SpawnInventoryItem(item, itemParameters))
 					{
 						slot.PlaySound();
 						DispatchItemAdded();
@@ -83,9 +82,21 @@ namespace IslandBoy
 					}
 				}
 			}
-			/*else if (item.ArmorType != ArmorType.None)
+			else if (item.ArmorType != ArmorType.None)
 			{
-			}*/ // TODO: make this work for armor slots
+				for (int i = 0; i < _armorSlots.Count; i++)
+				{
+					ArmorSlot slot = _armorSlots[i];
+
+					if (slot.ArmorType == item.ArmorType && slot.SpawnInventoryItem(item, itemParameters))
+					{
+						slot.PlaySound();
+						DispatchItemAdded();
+						DispatchItemToSlotAdded(item);
+						return true;
+					}
+				}
+			}
 
 			DispatchItemAdded();
 			return false;

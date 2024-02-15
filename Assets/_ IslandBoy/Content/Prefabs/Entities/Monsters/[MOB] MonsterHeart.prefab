@@ -16633,6 +16633,7 @@ MonoBehaviour:
   _forceFieldTf: {fileID: 5357074776478674715}
   _mhView: {fileID: 847657976144958287}
   _monsterSpawner: {fileID: 3554114106260185034}
+  _levelEntranceLower: {fileID: 0}
   _killQuota: 25
   _heartBeatQuota: 10
   _maxMonsterAmount: 6
@@ -23963,7 +23964,10 @@ MonoBehaviour:
     <Table>k__BackingField: []
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _entityRts: {fileID: 11400000, guid: b8395270c8b53467b8a3f0ce6f083313, type: 2}
-  _amount: {x: 40, y: 50}
+  _amount: {x: 45, y: 55}
+  _onDamage:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6943798528114064227
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ namespace IslandBoy
 
 		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			// Debug.Log("Entering Move State");
+			Debug.Log("Entering Move State");
 			_ctx = animator.transform.parent.GetComponent<NPCStateManager>();
 			_animator = animator;
 			_ctx.Seek(CalcWanderPos());

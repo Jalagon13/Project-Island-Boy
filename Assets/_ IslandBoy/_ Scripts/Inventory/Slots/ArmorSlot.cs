@@ -3,23 +3,44 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace IslandBoy
 {
     public class ArmorSlot : Slot
     {
-        //[SerializeField] private ArmorType _slotArmorType;
         [SerializeField] private ItemParameter _defenseParameter;
         [SerializeField] private ItemParameter _durabilityParameter;
-        [SerializeField] private TextMeshProUGUI _defenseText;
+        private Image _image;
+        private Sprite _armorSlotSprite;
+        [SerializeField] private Sprite _blankSlotSprite;
 
         private int _defense;
-        private static readonly int _counterThreshold = 20; // for every x amount of damage taken, reduce durability by 1
-        private int _counter; // keeps track of damage taken;
+
+        private void Awake()
+        {
+            GameSignals.EQUIP_ITEM.AddListener(EquipArmor);
+            _image = GetComponent<Image>();
+            _armorSlotSprite = _image.sprite;
+        }
+
+        private void OnDestroy()
+        {
+            GameSignals.EQUIP_ITEM.RemoveListener(EquipArmor);
+        }
 
         public override void OnPointerClick(PointerEventData eventData)
         {
-            if(eventData.button == PointerEventData.InputButton.Left || eventData.button == PointerEventData.InputButton.Right)
+            if (eventData.button == PointerEventData.InputButton.Left && Input.GetKey(KeyCode.LeftShift))
+            {
+                if (!_pr.Inventory.IsFull())
+                {
+                    UnEquipArmor();
+                    MoveItemIntoInventory();
+                }
+                // TODO: play error sound if wasn't able to remove item
+            }
+            else if (eventData.button == PointerEventData.InputButton.Left || eventData.button == PointerEventData.InputButton.Right)
             {
                 if (_mouseItemHolder.HasItem())
                 {
@@ -44,73 +65,35 @@ namespace IslandBoy
                 {
                     if (HasItem())
                     {
+                        UnEquipArmor();
                         GiveThisItemToMouseHolder();
                         TooltipManager.Instance.Hide();
-                        UnEquipArmor();
                     }
                 }
             }
+
+            GameSignals.SLOT_CLICKED.Dispatch();
         }
 
-        public void DamageArmor(int incomingDamage) // connected to PlayerEntity
+        private void EquipArmor(ISignalParameters parameter)
         {
-            if (InventoryItem == null) return;
-
-            _counter += incomingDamage;
-
-            int decreaseAmount = 0;
-
-            while(_counter >= _counterThreshold)
-            {
-                _counter -= _counterThreshold;
-                decreaseAmount++;
-            }
-
-            DecreaseDurability(decreaseAmount);
-        }
-
-        private void DecreaseDurability(int decreaseAmount) 
-        {
-            if (InventoryItem == null || decreaseAmount == 0) return;
-
-            var itemParams = InventoryItem.CurrentParameters;
-
-            int index = itemParams.IndexOf(_durabilityParameter);
-            float newValue = itemParams[index].Value - decreaseAmount;
-            itemParams[index] = new ItemParameter
-            {
-                Parameter = _durabilityParameter.Parameter,
-                Value = newValue
-            };
-
-            InventoryItem.UpdateDurabilityCounter();
-
-            StartCoroutine(FrameDelay());
-        }
-
-        private IEnumerator FrameDelay()
-        {
-            yield return new WaitForEndOfFrame();
-
-            if (!HasItem())
-            {
-                UnEquipArmor();
-            }
+            ItemObject item = parameter.GetParameter("item") as ItemObject;
+            if (item.ArmorType != ArmorType.None && item.ArmorType == _slotArmorType && HasItem() && InventoryItem.Item == item)
+                EquipArmor();
         }
 
         private void EquipArmor()
         {
             _defense = GetDefenseFromItem();
             _pr.AddDefense(_defense);
-            _defenseText.text = _pr.Defense.ToString();
+            _image.sprite = _blankSlotSprite;
         }
 
         private void UnEquipArmor()
         {
             _pr.AddDefense(-_defense);
-            _defenseText.text = _pr.Defense.ToString();
             _defense = 0;
-            _counter = 0;
+            _image.sprite = _armorSlotSprite;
         }
 
         private int GetDefenseFromItem()
@@ -122,7 +105,6 @@ namespace IslandBoy
                 int index = itemParams.IndexOf(_defenseParameter);
                 return (int)itemParams[index].Value;
             }
-
             return 0;
         }
     }

@@ -11,6 +11,7 @@ namespace IslandBoy
 	{
 		[Header("Blacksmith Parameters")]
 		[SerializeField] private PlayerObject _po;
+		[SerializeField] private NpcUpgradeType _upgradeType;
 		[SerializeField] private GameObject _tcSlotPrefab;
 		[SerializeField] private RectTransform _slotHolder;
 		[SerializeField] private RectTransform _upgradePanelHolder;
@@ -45,7 +46,7 @@ namespace IslandBoy
 				
 				if(tool.UpgradeRecipe != null)
 				{
-					if(!_upgradeDatabase.ContainsKey(tool))
+					if(!_upgradeDatabase.ContainsKey(tool) && tool.NpcUpgradeType == _upgradeType)
 						_upgradeDatabase.Add(tool, tool.UpgradeRecipe);
 				}
 			}
@@ -58,7 +59,7 @@ namespace IslandBoy
 					
 					if(tool.UpgradeRecipe != null)
 					{
-						if(!_upgradeDatabase.ContainsKey(tool))
+						if(!_upgradeDatabase.ContainsKey(tool) && tool.NpcUpgradeType == _upgradeType)
 							_upgradeDatabase.Add(tool, tool.UpgradeRecipe);
 					}
 				}

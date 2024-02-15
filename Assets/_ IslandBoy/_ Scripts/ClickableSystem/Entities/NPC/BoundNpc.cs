@@ -44,6 +44,9 @@ namespace IslandBoy
 				case "Wizard":
 					NpcSlots.Instance.UpdateWizardSlot();
 					break;
+				case "Knight":
+					NpcSlots.Instance.UpdateKnightSlot();
+					break;
 			}
 			
 			Destroy(gameObject);
