@@ -656,7 +656,7 @@ TextureImporter:
         width: 11
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -664,6 +664,27 @@ TextureImporter:
       bones: []
       spriteID: 708169ffbbb7046a3b4556fd9bd18d15
       internalID: 965137422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_help
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 48
+        width: 25
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2eb5f6ce0db4b4959b0f1b76267a0c91
+      internalID: 333315517
       vertices: []
       indices: 
       edges: []
@@ -690,6 +711,7 @@ TextureImporter:
       ui_exclamation: -795051301
       ui_fill: -1558005462
       ui_head_slot: 1369651022
+      ui_help: 333315517
       ui_house: 507817295
       ui_hp_icon: 181257697
       ui_inventory_slot: 2075716197
