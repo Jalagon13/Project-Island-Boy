@@ -67,7 +67,8 @@ namespace IslandBoy
 				MMSoundManagerSoundPlayEvent.Trigger(_craftSound, MMSoundManager.MMSoundManagerTracks.UI, transform.position);
 				GameSignals.ITEM_CRAFTED.Dispatch();
 				
-				StartCoroutine(_blacksmith.ResetMenu());
+				// StartCoroutine(_blacksmith.ResetMenu());
+				_blacksmith.UpdateUpgradeList(_originalItem);
 				UpdateTexts();
 			}
 		}
@@ -103,6 +104,11 @@ namespace IslandBoy
 			$"Recipe:<br><color=white>XP [{xpVal}/{_xpCost}]<color=white><br>" : 
 			$"Recipe:<br><color=red>XP [{xpVal}/{_xpCost}]<color=red><br>";
 
+			if(_po.Inventory.GetItemAmount(_originalItem) >= 1)
+				ingText += $"<color=white>{_originalItem.Name} [{_po.Inventory.GetItemAmount(_originalItem)}/{1}]<color=white><br>";
+			else
+				ingText += $"<color=red>{_originalItem.Name} [{_po.Inventory.GetItemAmount(_originalItem)}/{1}]<color=red><br>";
+			
 			foreach (var ia in _recipeToDisplay.ResourceList)
 			{
 				string text = $"{ ia.Item.Name} [{_po.Inventory.GetItemAmount(ia.Item)}/{ia.Amount}]";
@@ -124,22 +130,33 @@ namespace IslandBoy
 
 		private bool CheckIfCanCraft()
 		{
-			bool canCraft = false;
-
+			bool hasAllIngredients = false;
 			foreach (ItemAmount ia in _recipeToDisplay.ResourceList)
 			{
-				canCraft = _po.Inventory.Contains(ia.Item, ia.Amount);
+				hasAllIngredients = _po.Inventory.Contains(ia.Item, ia.Amount);
 
-				if (!canCraft) break;
+				if (!hasAllIngredients) break;
 			}
 			
+			bool hasEnoughXp = false;
 			if(PlayerGoldController.Instance.CurrencyValue >= _xpCost)
-				canCraft = true;
+				hasEnoughXp = true;
+			
+			bool hasOriginalItem = false;
+			if(_po.Inventory.Contains(_originalItem, 1))
+				hasOriginalItem = true;
 
+			bool resourceListZero = false;
 			if (_recipeToDisplay.ResourceList.Count <= 0)
-				canCraft = true;
+				resourceListZero = true;
 
-			return canCraft;
+			if(resourceListZero)
+				return true;
+				
+			if(hasAllIngredients && hasEnoughXp && hasOriginalItem)
+				return true;
+				
+			return false;
 		}
 	}
 }

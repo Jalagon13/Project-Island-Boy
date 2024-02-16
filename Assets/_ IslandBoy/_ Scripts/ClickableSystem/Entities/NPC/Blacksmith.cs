@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.Feedbacks;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -11,16 +12,20 @@ namespace IslandBoy
 	{
 		[Header("Blacksmith Parameters")]
 		[SerializeField] private PlayerObject _po;
-		[SerializeField] private NpcUpgradeType _upgradeType;
+		// [SerializeField] private NpcUpgradeType _upgradeType;
 		[SerializeField] private GameObject _tcSlotPrefab;
 		[SerializeField] private RectTransform _slotHolder;
 		[SerializeField] private RectTransform _upgradePanelHolder;
 		[SerializeField] private UpgradeUI _upgradeUI;
+		[SerializeField] private List<ItemObject> _startingUpgradeList;
 		
-		private List<ToolObject>_upgradeDatabase = new();
+		private List<ItemObject> _persistantUpgradeList;
 
 		private void Awake()
 		{
+			_persistantUpgradeList = new();
+			_persistantUpgradeList = _startingUpgradeList;
+			
 			GameSignals.INVENTORY_CLOSE.AddListener(CloseUI);
 		}
 		
@@ -37,17 +42,17 @@ namespace IslandBoy
 		public void UpdateUpgradeDatabase()
 		{
 			_upgradePanelHolder.gameObject.SetActive(false);
-			_upgradeDatabase.Clear();
-			_upgradeDatabase = new();
+			_persistantUpgradeList.Clear();
+			_persistantUpgradeList = new();
 			
 			if(_po.MouseSlot.ItemObject is ToolObject)
 			{
-				ToolObject tool = (ToolObject)_po.MouseSlot.ItemObject;
+				ItemObject item = _po.MouseSlot.ItemObject;
 				
-				if(tool.UpgradeRecipe != null)
+				if(item.UpgradeRecipe != null)
 				{
-					if(!_upgradeDatabase.Contains(tool) && tool.NpcUpgradeType == _upgradeType)
-						_upgradeDatabase.Add(tool);
+					if(!_persistantUpgradeList.Contains(item) /* && tool.NpcUpgradeType == _upgradeType */)
+						_persistantUpgradeList.Add(item);
 				}
 			}
 			
@@ -55,22 +60,33 @@ namespace IslandBoy
 			{
 				if(item.ItemObject is ToolObject)
 				{
-					ToolObject tool = (ToolObject)item.ItemObject;
+					ItemObject i = _po.MouseSlot.ItemObject;
 					
-					if(tool.UpgradeRecipe != null)
+					if(i.UpgradeRecipe != null)
 					{
-						if(!_upgradeDatabase.Contains(tool) && tool.NpcUpgradeType == _upgradeType)
-						_upgradeDatabase.Add(tool);
+						if(!_persistantUpgradeList.Contains(i) /* && tool.NpcUpgradeType == _upgradeType */)
+						_persistantUpgradeList.Add(i);
 					}
 				}
 			}
 		}
 		
-		public IEnumerator ResetMenu()
+		private IEnumerator ResetMenu()
 		{
 			yield return new WaitForEndOfFrame();
 			ResetCraftSlots();
 			SetUpRecipes();
+		}
+		
+		public void UpdateUpgradeList(ItemObject originalItem)
+		{
+			if(_persistantUpgradeList.Contains(originalItem))
+			{
+				var index = _persistantUpgradeList.IndexOf(originalItem);
+				_persistantUpgradeList[index] = originalItem.UpgradeRecipe.OutputItem;
+				
+				StartCoroutine(ResetMenu());
+			}
 		}
 
 		public void RefreshCraftingUI(CraftingRecipeObject recipe, ItemObject originalItem, int xpCost)
@@ -80,13 +96,13 @@ namespace IslandBoy
 
 		private void SetUpRecipes()
 		{
-			UpdateUpgradeDatabase();
+			//UpdateUpgradeDatabase();
 			
-			foreach (var upgradeRecipe in _upgradeDatabase)
+			foreach (ItemObject item in _persistantUpgradeList)
 			{
 				GameObject cs = Instantiate(_tcSlotPrefab, _slotHolder.transform);
 				TCSlot tcSlot = cs.GetComponent<TCSlot>();
-				tcSlot.Initialize(upgradeRecipe);
+				tcSlot.Initialize(item);
 			}
 		}
 

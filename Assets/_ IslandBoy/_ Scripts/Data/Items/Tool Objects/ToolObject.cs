@@ -25,17 +25,15 @@ namespace IslandBoy
 	{
 		[Space(10)]
 		[SerializeField] private ToolType _type;
-		[Header("Upgrade Parameters")]
-		[SerializeField] private int _xpUpgradeCost;
-		[SerializeField] private NpcUpgradeType _npcUpgradeType = NpcUpgradeType.None;
-		[SerializeField] private CraftingRecipeObject _upgradeRecipe;
+		// [Header("Upgrade Parameters")]
+		// [SerializeField] private int _xpUpgradeCost;
+		// [SerializeField] private CraftingRecipeObject _upgradeRecipe;
 
 		public override ToolType ToolType => _type;
 		public override ArmorType ArmorType => _baseArmorType;
 		public override AccessoryType AccessoryType => _baseAccessoryType;
-		public CraftingRecipeObject UpgradeRecipe => _upgradeRecipe;
-		public NpcUpgradeType NpcUpgradeType => _npcUpgradeType;
-		public int XpUpgradeCost => _xpUpgradeCost;
+		// public CraftingRecipeObject UpgradeRecipe => _upgradeRecipe;
+		// public int XpUpgradeCost => _xpUpgradeCost;
 
 		public override void ExecutePrimaryAction(FocusSlotControl control)
 		{
@@ -73,9 +71,9 @@ namespace IslandBoy
 				}
 			}
 
-			string upgradeText = _upgradeRecipe != null && _npcUpgradeType != NpcUpgradeType.None ? $"* Talk to the {_npcUpgradeType} to upgrade" : string.Empty;
+			// string upgradeText = UpgradeRecipe != null && NpcUpgradeType != NpcUpgradeType.None ? $"* Talk to the {NpcUpgradeType} to upgrade" : string.Empty;
 
-			return $"{Description}<br>* {hitValue} per hit<br>* {damageMin}-{damageMax} damage<br>{upgradeText}";
+			return $"{Description}<br>* {hitValue} per hit<br>* {damageMin}-{damageMax} damage";
 		}
 	}
 }

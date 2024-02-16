@@ -9,6 +9,7 @@ namespace IslandBoy
 {
 	public class TCSlot : MonoBehaviour
 	{
+		[SerializeField] private PlayerObject _po;
 		private CraftingRecipeObject _recipe;
 		private CraftSlotImageHover _hoverImage;
 		private Image _outputImage;
@@ -24,10 +25,12 @@ namespace IslandBoy
 			_refreshAction = refreshAction;
 		}
 		
-		public void Initialize(ToolObject tool)
+		public void Initialize(ItemObject item)
 		{
-			SetGlobals(tool.UpgradeRecipe, tool, tool.XpUpgradeCost);
-			_recipe = tool.UpgradeRecipe;
+			SetGlobals(item.UpgradeRecipe, item, item.XpUpgradeCost);
+			
+			_outputImage.color = new(1, 1, 1, _po.Inventory.Contains(_originalItem, 1) ? 1f : 0.4f);
+			_recipe = item.UpgradeRecipe;
 			_refreshAction = null;
 		}
 

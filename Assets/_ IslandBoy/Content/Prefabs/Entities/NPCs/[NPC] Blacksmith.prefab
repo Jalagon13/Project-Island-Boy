@@ -12,6 +12,42 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1001675587, guid: d1fdf00d255e2d942a949c35bbb7ace1, type: 3}
+    - target: {fileID: 4828264215266892703, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _upgradeList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828264215266892703, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4828264215266892703, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+    - target: {fileID: 4828264215266892703, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _upgradeList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6dbf17cc40618ef4497ad3cc834f0ad2, type: 2}
+    - target: {fileID: 4828264215266892703, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _upgradeList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 902774a644957654d84a660b19ecc643, type: 2}
+    - target: {fileID: 4828264215266892703, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _upgradeList.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: fb9c53bc5a9014142b9e07f97db75202, type: 2}
+    - target: {fileID: 4828264215266892703, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _startingUpgradeList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828264215266892703, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _startingUpgradeList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6dbf17cc40618ef4497ad3cc834f0ad2, type: 2}
+    - target: {fileID: 4828264215266892703, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _startingUpgradeList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 902774a644957654d84a660b19ecc643, type: 2}
+    - target: {fileID: 4828264215266892703, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _startingUpgradeList.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: fb9c53bc5a9014142b9e07f97db75202, type: 2}
     - target: {fileID: 5750841754287189946, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: m_Name
       value: '[NPC] Blacksmith'

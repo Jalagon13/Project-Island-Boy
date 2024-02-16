@@ -15,6 +15,7 @@ MonoBehaviour:
   <Name>k__BackingField: Wood Pickaxe
   <UiDisplay>k__BackingField: {fileID: 504264504, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   <Stackable>k__BackingField: 0
+  <UpgradeRecipe>k__BackingField: {fileID: 11400000, guid: 1264f5417e69fed40bdc854093914808, type: 2}
   <Description>k__BackingField: 
   <DefaultParameterList>k__BackingField:
   - Parameter: {fileID: 11400000, guid: 4ad4a0faaf8e8499e80aaf31f38ea091, type: 2}
@@ -26,5 +27,4 @@ MonoBehaviour:
   - Parameter: {fileID: 11400000, guid: 8a8bef37f1c5e3c40ad4319761ff897a, type: 2}
     Value: 2
   _type: 2
-  _npcUpgradeType: 1
-  _upgradeRecipe: {fileID: 11400000, guid: 1264f5417e69fed40bdc854093914808, type: 2}
+  _xpUpgradeCost: 0
