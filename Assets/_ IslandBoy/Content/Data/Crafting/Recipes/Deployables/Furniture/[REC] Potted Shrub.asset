@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a38df6f5fd8e134faa55cb288909a5a, type: 3}
-  m_Name: '[REC] Treevil Door'
+  m_Name: '[REC] Potted Shrub'
   m_EditorClassIdentifier: 
-  OutputItem: {fileID: 11400000, guid: e834c09d256892249b96fe61123ede30, type: 2}
+  OutputItem: {fileID: 11400000, guid: 9dcc99be7ccd0cb44a9e66f93deef224, type: 2}
   OutputAmount: 1
-  CraftingTimer: 5
+  CraftingTimer: 3
   ResourceList:
-  - Item: {fileID: 11400000, guid: 9b7ef9edf622c4541a567e8193b937c1, type: 2}
-    Amount: 2
+  - Item: {fileID: 11400000, guid: b881c5e1ea68b0b4bb24369d31c5a410, type: 2}
+    Amount: 1
+  - Item: {fileID: 11400000, guid: a89d325f56e1521458a926e9cc55bc79, type: 2}
+    Amount: 1

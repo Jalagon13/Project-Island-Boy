@@ -353,6 +353,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: ws_chest_stone
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6e069e9e6e902842ade305807a4cb40
+      internalID: -1479564670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ws_chest_treevil
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f186dc90cdd77154bac71d52561acd55
+      internalID: 279432173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -364,12 +406,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      SPR Camp Stuff_1: -768599380
       ws_alchemy_station: -1413661134
       ws_arcane_anvil: 1168968723
       ws_blueprint_table: -407047741
       ws_campfire: 586656638
       ws_chest: 414997368
+      ws_chest_stone: -1479564670
+      ws_chest_treevil: -768599380
       ws_furnace: -1535823503
       ws_monster_forge: 593532975
       ws_pot: 302198925

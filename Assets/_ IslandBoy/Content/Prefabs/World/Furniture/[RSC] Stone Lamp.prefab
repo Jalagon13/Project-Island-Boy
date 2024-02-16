@@ -194,16 +194,24 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2456008257036638237, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_Name
-      value: '[RSC] Treevil Door'
+      value: '[RSC] Stone Lamp'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2819205200215340228, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4279634690151273257, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -26900422, guid: 86aecb705c543a948a0d95c4e351f0e1, type: 3}
+      objectReference: {fileID: -1967165280, guid: 4f748df8bc619484697935c72b812ac7, type: 3}
     - target: {fileID: 4871828697884116381, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: managedReferences[1619343171848765462].Sfx
       value: 
       objectReference: {fileID: 8300000, guid: 1f5e75782a6e8434cba4bce854fb47eb, type: 3}
+    - target: {fileID: 5343309374458340233, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5360009175435482028, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_text
       value: Use
@@ -274,7 +282,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2456008257036638237, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3352299199505194686}
+      addedObject: {fileID: 1781378503636748588}
   m_SourcePrefab: {fileID: 100100000, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
 --- !u!114 &1696461830264001147 stripped
 MonoBehaviour:
@@ -308,7 +316,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2456008257036638237, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
   m_PrefabInstance: {fileID: 6059379343221250022}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3352299199505194686
+--- !u!114 &1781378503636748588
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -317,22 +325,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8503432816486420475}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0201a65888066014abab745233113d36, type: 3}
+  m_Script: {fileID: 11500000, guid: e15be3f528d8a504d912ab17a4c221aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxHitPoints: 6
-  _breakType: 1
+  _breakType: 2
   _clickFeedback: {fileID: 3991662640476158506}
   _destroyFeedback: {fileID: 1696461830264001147}
   _lootTable:
     <Table>k__BackingField:
-    - Item: {fileID: 11400000, guid: e834c09d256892249b96fe61123ede30, type: 2}
+    - Item: {fileID: 11400000, guid: 616ddd3ebb5daf341b5eb4f9e03a1139, type: 2}
       Min: 1
       Max: 1
       Chance: 100
-  _openSprite: {fileID: 756175998, guid: 86aecb705c543a948a0d95c4e351f0e1, type: 3}
-  _closeSprite: {fileID: -26900422, guid: 86aecb705c543a948a0d95c4e351f0e1, type: 3}
-  _doorOpenSound: {fileID: 8300000, guid: cb20e28fd019a0e46978681528c6abc2, type: 3}
-  _doorCloseSound: {fileID: 8300000, guid: 2ab52be466951404b803306e15576ec6, type: 3}
-  _groundTm: {fileID: 11400000, guid: fa010110aca24f846b41a4a35146fe4c, type: 2}

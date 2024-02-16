@@ -41,7 +41,7 @@ namespace IslandBoy
             if (parameters.HasParameter("FocusSlot"))
             {
                 _focusSlotRef = (Slot)parameters.GetParameter("FocusSlot");
-                if (_focusSlotRef != null) ItemSprite = _focusSlotRef.ItemObject.UiDisplay;
+                if (_focusSlotRef != null && _focusSlotRef.ItemObject != null) ItemSprite = _focusSlotRef.ItemObject.UiDisplay;
                 SpriteHandle();
             }
         }

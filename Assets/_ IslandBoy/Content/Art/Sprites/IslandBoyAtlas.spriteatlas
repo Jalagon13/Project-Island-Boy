@@ -745,6 +745,8 @@ SpriteAtlas:
     - 954f438adddea594dac0fb494f0869ae: 1450040114
     - 954f438adddea594dac0fb494f0869ae: -1535823503
     - 954f438adddea594dac0fb494f0869ae: -1413661134
+    - 954f438adddea594dac0fb494f0869ae: -1479564670
+    - 954f438adddea594dac0fb494f0869ae: 279432173
     - 954f438adddea594dac0fb494f0869ae: 593532975
     - 954f438adddea594dac0fb494f0869ae: 586656638
     - 954f438adddea594dac0fb494f0869ae: 1168968723
@@ -1766,6 +1768,8 @@ SpriteAtlas:
   - {fileID: 1450040114, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
   - {fileID: -1535823503, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
   - {fileID: -1413661134, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
+  - {fileID: -1479564670, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
+  - {fileID: 279432173, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
   - {fileID: 593532975, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
   - {fileID: 586656638, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
   - {fileID: 1168968723, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
@@ -2786,6 +2790,8 @@ SpriteAtlas:
   - ws_tutorial_sign
   - ws_furnace
   - ws_alchemy_station
+  - ws_chest_stone
+  - ws_chest_treevil
   - ws_monster_forge
   - ws_campfire
   - ws_arcane_anvil
