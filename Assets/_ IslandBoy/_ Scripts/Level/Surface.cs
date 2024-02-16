@@ -49,8 +49,8 @@ namespace IslandBoy
 			{
 				Vector3 randomSpawnPoint = tf.position + (Vector3)Random.insideUnitCircle * 5;
 				
-				if(Vector2.Distance(randomSpawnPoint, _po.Position) < 10)
-					continue;
+				// if(Vector2.Distance(randomSpawnPoint, _po.Position) < 10)
+				// 	continue;
 				
 				Instantiate(_ghostEntity, randomSpawnPoint, Quaternion.identity);
 			}

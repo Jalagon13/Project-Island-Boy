@@ -958,6 +958,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 859eb91911a43ab48abb86bf553465eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
+  _xpSound: {fileID: 8300000, guid: 30bb8e6c32354154cbb71ee2aebcfbe8, type: 3}
   _marker: {fileID: 443493517}
   _panel: {fileID: 8325212771761043721}
   _markerStartPosition: {x: -475, y: -5}
@@ -1586,7 +1588,7 @@ MonoBehaviour:
   _sunSprite: {fileID: -1176373306, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   _moonSprite: {fileID: 1183265060, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   DayDurationInSeconds: 480
-  StartingTime: 0
+  StartingTime: 475
 --- !u!4 &1687631756
 Transform:
   m_ObjectHideFlags: 0
@@ -2120,7 +2122,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -74.1}
+  m_AnchoredPosition: {x: 0, y: -247}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &8325212771761043721

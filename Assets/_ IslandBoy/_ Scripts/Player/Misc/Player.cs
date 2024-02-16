@@ -126,6 +126,8 @@ namespace IslandBoy
 
 		private IEnumerator Delay()
 		{
+			yield return new WaitForSeconds(1.5f);
+			
 			if (_currentNrg < 0)
 				_currentNrg = 0;
 			if(_currentHp < 0)

@@ -9,13 +9,16 @@ namespace IslandBoy
 	public class Entity : Clickable
 	{
 		[Header("Base Entity Parameters")]
+		[SerializeField] private string _entityName;
+		[SerializeField] private int _xpAmount;
 		[SerializeField] protected PlayerObject _pr;
 		[SerializeField] private EntityRuntimeSet _entityRts;
-		[MinMaxSlider(0, 99, true)]
-		[SerializeField] private Vector2 _amount;
 		[SerializeField] private UnityEvent _onDamage;
 
 		protected KnockbackFeedback _knockback;
+		
+		public int XpAmount => _xpAmount;
+		public string EntityName => _entityName;
 
 		protected override void Awake()
 		{
@@ -115,8 +118,13 @@ namespace IslandBoy
 		
 		public void GiveMoney()
 		{
-			int amount = Random.Range((int)_amount.x, (int)_amount.y);
-			PlayerGoldController.Instance.AddCurrency(amount, transform.position);
+			// int amount = Random.Range((int)_amount.x, (int)_amount.y);
+			// PlayerGoldController.Instance.AddCurrency(amount, transform.position);
+			
+			Signal signal = GameSignals.ENTITY_DIED;
+			signal.ClearParameters();
+			signal.AddParameter("Entity", this);
+			signal.Dispatch();
 		}
 		
 		public void StartBurn()
