@@ -171,10 +171,37 @@ namespace IslandBoy
 					yield return new WaitForSeconds(0.5f);
 				}
 				
-				MMSoundManagerSoundPlayEvent.Trigger(_xpSound, MMSoundManager.MMSoundManagerTracks.UI, default);
-				monsterWording += $"<br>Total XP Gained: <color=green>{grandTotalXp}</color=green>";
-				_grandTotalXpGain = grandTotalXp;
+				float multiplier = 0;
 				
+				if(Player.RESTED_STATUS != RestedStatus.Good)
+				{
+					if(Player.RESTED_STATUS == RestedStatus.Bad)
+					{
+						multiplier = 0.5f;
+					}
+					else if(Player.RESTED_STATUS == RestedStatus.Okay)
+					{
+						multiplier = 0.75f;
+					}
+				}
+				
+				if(multiplier != 0)
+				{
+					// MMSoundManagerSoundPlayEvent.Trigger(_xpSound, MMSoundManager.MMSoundManagerTracks.UI, default);
+					monsterWording += $"<br>Sleep Penalty Xp Multiplier: <color=red>x{multiplier}</color=red>";
+					// text.text = monsterWording;
+					
+					// yield return new WaitForSeconds(1f);
+				}
+				
+				MMSoundManagerSoundPlayEvent.Trigger(_xpSound, MMSoundManager.MMSoundManagerTracks.UI, default);
+				if(multiplier != 0)
+					monsterWording += $"<br>Total XP Gained: <color=green>{grandTotalXp}</color=green> x <color=red>{multiplier}</color=red> = <color=green>{(int)(grandTotalXp * multiplier)}</color=green>";
+				else
+					monsterWording += $"<br>Total XP Gained: <color=green>{grandTotalXp}</color=green>";
+					
+				grandTotalXp = (int)(grandTotalXp * multiplier);
+				_grandTotalXpGain = grandTotalXp;
 				text.text = monsterWording;
 				
 				yield return new WaitForSeconds(3f);
