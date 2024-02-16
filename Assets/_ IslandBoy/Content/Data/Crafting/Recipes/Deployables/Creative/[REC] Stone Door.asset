@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a38df6f5fd8e134faa55cb288909a5a, type: 3}
-  m_Name: '[REC] Bed'
+  m_Name: '[REC] Stone Door'
   m_EditorClassIdentifier: 
-  OutputItem: {fileID: 11400000, guid: e5ab57a91a28c384882e588fbf1e3392, type: 2}
+  OutputItem: {fileID: 11400000, guid: 9b926798129ac80439973ba50cea2204, type: 2}
   OutputAmount: 1
-  CraftingTimer: 3
+  CraftingTimer: 5
   ResourceList:
-  - Item: {fileID: 11400000, guid: c67ec61e0f752f845be2a959a4108887, type: 2}
+  - Item: {fileID: 11400000, guid: a89d325f56e1521458a926e9cc55bc79, type: 2}
     Amount: 4

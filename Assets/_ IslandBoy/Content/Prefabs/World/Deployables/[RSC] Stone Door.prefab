@@ -194,12 +194,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2456008257036638237, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_Name
-      value: '[RSC] Door'
+      value: '[RSC] Stone Door'
       objectReference: {fileID: 0}
     - target: {fileID: 4279634690151273257, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -173459065, guid: 86aecb705c543a948a0d95c4e351f0e1, type: 3}
+      objectReference: {fileID: 1358876382, guid: 86aecb705c543a948a0d95c4e351f0e1, type: 3}
     - target: {fileID: 4871828697884116381, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: managedReferences[1619343171848765462].Sfx
       value: 
@@ -331,8 +331,8 @@ MonoBehaviour:
       Min: 1
       Max: 1
       Chance: 100
-  _openSprite: {fileID: 2135872218, guid: 86aecb705c543a948a0d95c4e351f0e1, type: 3}
-  _closeSprite: {fileID: -173459065, guid: 86aecb705c543a948a0d95c4e351f0e1, type: 3}
+  _openSprite: {fileID: -224717009, guid: 86aecb705c543a948a0d95c4e351f0e1, type: 3}
+  _closeSprite: {fileID: 1358876382, guid: 86aecb705c543a948a0d95c4e351f0e1, type: 3}
   _doorOpenSound: {fileID: 8300000, guid: cb20e28fd019a0e46978681528c6abc2, type: 3}
   _doorCloseSound: {fileID: 8300000, guid: 2ab52be466951404b803306e15576ec6, type: 3}
   _groundTm: {fileID: 11400000, guid: fa010110aca24f846b41a4a35146fe4c, type: 2}
