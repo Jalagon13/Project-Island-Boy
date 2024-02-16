@@ -11493,9 +11493,13 @@ MonoBehaviour:
       Min: 5
       Max: 10
       Chance: 100
+  _entityName: Treevil
+  _xpAmount: 250
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _entityRts: {fileID: 11400000, guid: b8395270c8b53467b8a3f0ce6f083313, type: 2}
-  _amount: {x: 90, y: 99}
+  _onDamage:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2214081521386534771
 MonoBehaviour:
   m_ObjectHideFlags: 0

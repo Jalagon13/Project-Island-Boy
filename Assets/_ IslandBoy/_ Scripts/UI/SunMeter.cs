@@ -177,11 +177,11 @@ namespace IslandBoy
 				{
 					if(Player.RESTED_STATUS == RestedStatus.Bad)
 					{
-						multiplier = 0.5f;
+						multiplier = 0.25f;
 					}
 					else if(Player.RESTED_STATUS == RestedStatus.Okay)
 					{
-						multiplier = 0.75f;
+						multiplier = 0.5f;
 					}
 				}
 				
@@ -190,7 +190,6 @@ namespace IslandBoy
 					// MMSoundManagerSoundPlayEvent.Trigger(_xpSound, MMSoundManager.MMSoundManagerTracks.UI, default);
 					monsterWording += $"<br>Sleep Penalty Xp Multiplier: <color=red>x{multiplier}</color=red>";
 					// text.text = monsterWording;
-					
 					// yield return new WaitForSeconds(1f);
 				}
 				

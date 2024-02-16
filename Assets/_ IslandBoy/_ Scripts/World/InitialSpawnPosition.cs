@@ -20,6 +20,11 @@ namespace IslandBoy
 			StartCoroutine(Delay());
 		}
 		
+		private void OnDisable() 
+		{
+			SetSpawnPos(_po.Position);
+		}
+		
 		public void SetSpawnPos(Vector2 pos)
 		{
 			_spawnPos = pos;
