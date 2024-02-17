@@ -17,7 +17,7 @@ namespace IslandBoy
 		[SerializeField] private float _timeUntilFishLeaves;
 
 		[Header("Tilemap")]
-		[SerializeField] private TilemapObject _groundTm;
+		[SerializeField] private TilemapObject _waterTm;
 
 		[Header("Audio")]
 		[SerializeField] private AudioClip _bubbleSound;
@@ -126,7 +126,7 @@ namespace IslandBoy
 		public bool ValidSpace()
 		{
 			var currentPos = Vector3Int.FloorToInt(transform.root.position);
-			if (!_groundTm.Tilemap.HasTile(currentPos))
+			if (_waterTm.Tilemap.HasTile(currentPos))
 			{
 				return true;
 			}

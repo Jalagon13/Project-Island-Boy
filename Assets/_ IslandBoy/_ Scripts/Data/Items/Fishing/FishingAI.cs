@@ -46,10 +46,16 @@ namespace IslandBoy
 		private void Awake()
 		{
 			NewDirection();
-			_pr.Inventory.RemoveItem(_bait, 1);
+			
 			
 			GameSignals.HOTBAR_SLOT_UPDATED.AddListener(EndMinigame);
 			
+		}
+		
+		private void Start() 
+		{
+			Debug.Log("Taking biat");
+			_pr.Inventory.RemoveItem(_bait, 1);
 		}
 		
 		private void OnDestroy()
@@ -106,7 +112,13 @@ namespace IslandBoy
 		{
 			Signal signal = GameSignals.FISHING_MINIGAME_END;
 			signal.Dispatch();
+			TakeBait();
 			Destroy(_target.gameObject);
+		}
+		
+		private void TakeBait()
+		{
+			
 		}
 
 		private void FixedMove() // old set movement system, doesn't change directions
