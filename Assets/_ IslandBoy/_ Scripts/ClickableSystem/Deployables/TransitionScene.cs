@@ -9,6 +9,7 @@ namespace IslandBoy
 	{
 		[SerializeField] private PlayerObject _po;
 		[SerializeField] private string _nextScene;
+		[SerializeField] private bool _enableColliderSceneSwitch;
 		
 		private Vector2 _returnPosition;
 		private bool _isReturnPoint;
@@ -23,6 +24,8 @@ namespace IslandBoy
 		
 		private void OnTriggerEnter2D(Collider2D other) 
 		{
+			if(!_enableColliderSceneSwitch) return;
+			
 			FeetTag ct = other.GetComponent<FeetTag>();
 			
 			if(ct != null)

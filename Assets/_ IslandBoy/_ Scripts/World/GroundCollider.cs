@@ -18,7 +18,12 @@ namespace IslandBoy
 		{
 			if (_applicationQuitting) return;
 
-			StartCoroutine(UpdatePathfinding());
+			Bounds updateBounds = new(transform.parent.position, new(2, 2, 1));
+			
+			if(AstarPath.active != null)
+			{
+				AstarPath.active.UpdateGraphs(updateBounds, 0.1f);
+			}
 		}
 
 		// private void OnDestroy()

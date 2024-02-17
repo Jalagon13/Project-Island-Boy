@@ -13,7 +13,7 @@ namespace IslandBoy
         private Slot _focusSlotRef;
 
         private GameObject _itemSpriteHolder;
-        private Image _image;
+        private SpriteRenderer _image;
         private Sprite _itemSprite;
 
         public Sprite ItemSprite { get { return _itemSprite; } set { _itemSprite = value; _image.sprite = _itemSprite; } }
@@ -23,7 +23,7 @@ namespace IslandBoy
             _spriteHolder = transform.GetChild(0).gameObject;
 
             _itemSpriteHolder = _spriteHolder.transform.GetChild(1).gameObject;
-            _image = _itemSpriteHolder.GetComponent<Image>();
+            _image = _itemSpriteHolder.GetComponent<SpriteRenderer>();
             _pr.PlaceDownIndicator = gameObject.GetComponent<PlaceDownIndicator>();
 
             GameSignals.FOCUS_SLOT_UPDATED.AddListener(FocusSlotHandle);
