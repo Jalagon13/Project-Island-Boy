@@ -13,8 +13,8 @@ namespace IslandBoy
 
 		public void GiveMoney()
 		{
-			int amount = Random.Range((int)_amount.x, (int)_amount.y);
-			PlayerGoldController.Instance.AddCurrency(amount, transform.position);
+			// int amount = Random.Range((int)_amount.x, (int)_amount.y);
+			// PlayerGoldController.Instance.AddCurrency(amount, transform.position);
 		}
 	}
 }

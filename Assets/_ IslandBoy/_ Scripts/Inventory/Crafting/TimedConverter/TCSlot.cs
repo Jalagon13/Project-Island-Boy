@@ -27,13 +27,26 @@ namespace IslandBoy
 		
 		public void Initialize(ItemObject item)
 		{
-			SetGlobals(item.UpgradeRecipe, item, item.XpUpgradeCost);
+			SetGlobalsUpgrades(item.UpgradeRecipe, item, item.XpUpgradeCost);
 			
 			_outputImage.color = new(1, 1, 1, _po.Inventory.Contains(_originalItem, 1) ? 1f : 0.4f);
 			_recipe = item.UpgradeRecipe;
 			_refreshAction = null;
 		}
 
+		private void SetGlobalsUpgrades(CraftingRecipeObject recipe, ItemObject originalItem, int xpCost)
+		{
+			_outputImage = transform.GetChild(0).GetComponent<Image>();
+			_hoverImage = transform.GetChild(0).GetComponent<CraftSlotImageHover>();
+			_amountText = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+			_recipe = recipe;
+			_xpCost = xpCost;
+			_originalItem = originalItem;
+			_outputImage.sprite = originalItem.UiDisplay;
+			_hoverImage.SetItemDescription(originalItem);
+			_amountText.text = recipe.OutputAmount == 1 ? string.Empty : recipe.OutputAmount.ToString();
+		}
+		
 		private void SetGlobals(CraftingRecipeObject recipe, ItemObject originalItem, int xpCost)
 		{
 			_outputImage = transform.GetChild(0).GetComponent<Image>();

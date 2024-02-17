@@ -1188,7 +1188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _maxHitPoints: 20
+  _maxHitPoints: 45
   _breakType: 3
   _clickFeedback: {fileID: 3130511575979003274}
   _destroyFeedback: {fileID: 3019761147227211072}
@@ -1199,7 +1199,7 @@ MonoBehaviour:
       Max: 2
       Chance: 100
   _entityName: Ranged Monster
-  _xpAmount: 6
+  _xpAmount: 10
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _entityRts: {fileID: 11400000, guid: b8395270c8b53467b8a3f0ce6f083313, type: 2}
   _onDamage:

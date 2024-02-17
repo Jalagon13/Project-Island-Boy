@@ -54,7 +54,7 @@ namespace IslandBoy
 		{
 			_prompCanvas.gameObject.SetActive(false);
 			_onClosePrompt?.Invoke();
-			Debug.Log(" closed Called");
+			// Debug.Log(" closed Called");
 		}
 
 		public void OpenUI()
@@ -63,7 +63,7 @@ namespace IslandBoy
 
 			_prompCanvas.gameObject.SetActive(true);
 			_onOpenPrompt?.Invoke();
-			Debug.Log(" open Called");
+			// Debug.Log(" open Called");
 		}
 
 		protected override void EnableInstructions(bool _)

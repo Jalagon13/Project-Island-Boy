@@ -83,7 +83,15 @@ namespace IslandBoy
 			if(_persistantUpgradeList.Contains(originalItem))
 			{
 				var index = _persistantUpgradeList.IndexOf(originalItem);
-				_persistantUpgradeList[index] = originalItem.UpgradeRecipe.OutputItem;
+				
+				if(originalItem.UpgradeRecipe != null)
+				{
+					_persistantUpgradeList[index] = originalItem.UpgradeRecipe.OutputItem;
+				}
+				else
+				{
+					_persistantUpgradeList.Remove(_persistantUpgradeList[index]);
+				}
 				
 				StartCoroutine(ResetMenu());
 			}

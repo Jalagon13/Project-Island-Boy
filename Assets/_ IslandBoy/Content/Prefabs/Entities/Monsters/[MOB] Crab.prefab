@@ -11507,7 +11507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _maxHitPoints: 1
+  _maxHitPoints: 15
   _breakType: 3
   _clickFeedback: {fileID: 1867381480340656044}
   _destroyFeedback: {fileID: 4566307676181140785}
@@ -11518,7 +11518,7 @@ MonoBehaviour:
       Max: 1
       Chance: 100
   _entityName: Crab
-  _xpAmount: 4
+  _xpAmount: 3
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _entityRts: {fileID: 11400000, guid: c10890a72884b4620825b7390a1593f9, type: 2}
   _onDamage:

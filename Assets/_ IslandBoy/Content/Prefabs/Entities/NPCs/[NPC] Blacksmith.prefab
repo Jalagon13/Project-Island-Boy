@@ -42,31 +42,43 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: fb9c53bc5a9014142b9e07f97db75202, type: 2}
     - target: {fileID: 4828264215266892703, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: _startingUpgradeList.Array.size
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4828264215266892703, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: _startingUpgradeList.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 6dbf17cc40618ef4497ad3cc834f0ad2, type: 2}
+      objectReference: {fileID: 11400000, guid: 902774a644957654d84a660b19ecc643, type: 2}
     - target: {fileID: 4828264215266892703, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: _startingUpgradeList.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 902774a644957654d84a660b19ecc643, type: 2}
+      objectReference: {fileID: 11400000, guid: fb9c53bc5a9014142b9e07f97db75202, type: 2}
     - target: {fileID: 4828264215266892703, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: _startingUpgradeList.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: fb9c53bc5a9014142b9e07f97db75202, type: 2}
+      objectReference: {fileID: 11400000, guid: 6dbf17cc40618ef4497ad3cc834f0ad2, type: 2}
+    - target: {fileID: 4828264215266892703, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _startingUpgradeList.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 487d82ad0f4e2344f9733ce37e25a7b9, type: 2}
+    - target: {fileID: 4828264215266892703, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _startingUpgradeList.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6d450b0eec30a274193f9daac85ebcaf, type: 2}
+    - target: {fileID: 4828264215266892703, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _startingUpgradeList.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: a7aa616b06a183d478ddd00b41ede5e6, type: 2}
     - target: {fileID: 5750841754287189946, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: m_Name
       value: '[NPC] Blacksmith'
       objectReference: {fileID: 0}
     - target: {fileID: 6171642594750953717, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 6171642594750953717, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6171642594750953717, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: m_LocalPosition.z
