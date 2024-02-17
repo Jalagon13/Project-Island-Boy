@@ -19,6 +19,8 @@ namespace IslandBoy
 
 		protected KnockbackFeedback _knockback;
 		private bool _isFree;
+		
+		public bool IsFree => _isFree;
 
 		protected override void Awake()
 		{

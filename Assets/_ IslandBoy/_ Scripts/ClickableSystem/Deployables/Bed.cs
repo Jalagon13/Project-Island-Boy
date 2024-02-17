@@ -96,7 +96,7 @@ namespace IslandBoy
 				if (!_floorTm.Tilemap.HasTile(p) && !_wallTm.Tilemap.HasTile(p) && !HasDoor(p))
 				{
 					//_feedbackHolder.DisplayFeedback("Not valid housing. Make sure the area around you is enclosed.", Color.yellow);
-					PopupMessage.Create(transform.position, "Area not enclosed with floor and wall or missing a door", Color.yellow, new(0.5f, 0.5f), 3f);
+					// PopupMessage.Create(transform.position, "Area not enclosed with floor and wall or missing a door", Color.yellow, new(0.5f, 0.5f), 3f);
 					return false;
 				}
 
@@ -129,14 +129,14 @@ namespace IslandBoy
 			// if floor tile positions are greater than maxHouseSpaceTiles, then housing is too big.
 			if (_floorTilePositions.Count > maxHouseSpaceTiles)
 			{
-				PopupMessage.Create(transform.position, "Space too large!", Color.yellow, new(0.5f, 0.5f), 1f);
+				// PopupMessage.Create(transform.position, "Space too large!", Color.yellow, new(0.5f, 0.5f), 1f);
 				return false;
 			}
 
 			// if there is no doors found then housing not valid
 			if (doorPositions.Count <= 0)
 			{
-				PopupMessage.Create(transform.position, "No door found!", Color.yellow, new(0.5f, 0.5f), 1f);
+				// PopupMessage.Create(transform.position, "No door found!", Color.yellow, new(0.5f, 0.5f), 1f);
 				return false;
 			}
 
@@ -189,7 +189,7 @@ namespace IslandBoy
 
 			if (!validDoorFound)
 			{
-				PopupMessage.Create(transform.position, "Door must lead to outside!", Color.yellow, new(0.5f, 0.5f), 1f);
+				// PopupMessage.Create(transform.position, "Door must lead to outside!", Color.yellow, new(0.5f, 0.5f), 1f);
 				return false;
 			}
 

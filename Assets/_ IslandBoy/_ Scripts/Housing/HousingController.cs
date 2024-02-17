@@ -56,13 +56,21 @@ namespace IslandBoy
 					nonValidBeds.Add(allBeds[i]);
 			}
 			
-			List<Resident> movedOutResidents = new(); // store list of NPCs moved out this update to prevent them from spawning again on the same update
-			foreach (Bed bed in nonValidBeds) // loop through all non valid beds and move out NPCs
+			// List<Resident> movedOutResidents = new(); // store list of NPCs moved out this update to prevent them from spawning again on the same update
+			// foreach (Bed bed in nonValidBeds) // loop through all non valid beds and move out NPCs
+			// {
+			// 	if(bed.Occupied)
+			// 	{
+			// 		movedOutResidents.Add(bed.Resident);
+			// 		MoveOutNpc(bed);
+			// 	}
+			// }
+			
+			foreach (Bed noValBed in nonValidBeds)
 			{
-				if(bed.Occupied)
+				if(noValBed.Occupied)
 				{
-					movedOutResidents.Add(bed.Resident);
-					MoveOutNpc(bed);
+					noValBed.MoveOutNPC();
 				}
 			}
 			
@@ -70,8 +78,8 @@ namespace IslandBoy
 			{
 				foreach (Resident resident in _residents)
 				{
-					if(movedOutResidents.Contains(resident))
-						continue;
+					// if(movedOutResidents.Contains(resident))
+					// 	continue;
 					
 					if(NpcAvailableToMoveIn(bed, resident))
 					{
@@ -90,17 +98,17 @@ namespace IslandBoy
 			}
 		}
 		
-		private void MoveOutNpc(Bed bed)
-		{
-			DispatchResidentSignal($"{bed.Resident.Name} has moved out of your town!");
-			EnableNpc(bed.Resident, false);
-			bed.MoveOutNPC();
-		}
+		// private void MoveOutNpc(Bed bed)
+		// {
+		// 	DispatchResidentSignal($"{bed.Resident.Name} has moved out of your town!");
+		// 	EnableNpc(bed.Resident, false);
+		// 	bed.MoveOutNPC();
+		// }
 		
 		private void MoveInNpc(Bed bed, Resident resident)
 		{
 			DispatchResidentSignal($"{resident.Name} has moved into your town!");
-			EnableNpc(resident, true);
+			// EnableNpc(resident, true);
 			bed.MoveInNPC(resident);
 		}
 		
@@ -114,12 +122,12 @@ namespace IslandBoy
 		
 		private bool NpcAvailableToMoveIn(Bed bed, Resident resident)
 		{
-			return !resident.NPC.gameObject.activeInHierarchy && resident.Unlocked && !bed.Occupied;
+			return resident.NPC.IsFree /* && resident.Unlocked */ && !bed.Occupied;
 		}
 		
-		private void EnableNpc(Resident resident, bool _)
-		{
-			resident.NPC.gameObject.SetActive(_);
-		}
+		// private void EnableNpc(Resident resident, bool _)
+		// {
+		// 	resident.NPC.gameObject.SetActive(_);
+		// }
 	}
 }

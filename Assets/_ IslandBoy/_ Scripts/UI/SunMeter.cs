@@ -80,6 +80,7 @@ namespace IslandBoy
 			{
 				string message = (string)parameters.GetParameter("Message");
 				AddEndDaySlide(message);
+				Debug.Log("Mvoed in");
 			}
 		}
 
@@ -111,6 +112,7 @@ namespace IslandBoy
 		public void ClearEndDaySlides()
 		{
 			_endDaySlides.Clear();
+			_endDaySlides = new();
 		}
 
 		[Button("End Day")]
@@ -143,16 +145,19 @@ namespace IslandBoy
 
 			yield return new WaitForSeconds(1f);
 
-			// text.text = "Day has ended.";
+			text.text = "Day has ended.";
 			text.gameObject.SetActive(true);
 
 			// yield return new WaitForSeconds(2f);
-
+			Debug.Log(_endDaySlides.Count);
+			
 			foreach (string slide in _endDaySlides)
 			{
 				text.text = slide;
 				yield return new WaitForSeconds(2f);
 			}
+			
+			ClearEndDaySlides();
 			
 			if(_entityTally.Count > 0)
 			{
