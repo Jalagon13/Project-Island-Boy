@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ namespace IslandBoy
         [Space(10)]
         [SerializeField] private int _manaCostPerCast;
         [SerializeField] private Spell _spellPrefab;
+        [SerializeField] private Throwable _throwPrefab; // for now, either Spell or Throwable should be null
+        [SerializeField] private bool _isThrowable; // false for casting, true for throwing
         [SerializeField] private AudioClip _castSound;
 
         public override ToolType ToolType => _baseToolType;
@@ -25,11 +28,22 @@ namespace IslandBoy
                 return;
             }
 
-            Spell spell = Instantiate(_spellPrefab, control.CursorControl.transform.position, Quaternion.identity);
-            spell.Setup(this);
+            if (_isThrowable)
+            {
+                Vector3 playerPosition = control.Player.transform.position;
+
+                Throwable throwObject = Instantiate(_throwPrefab, playerPosition + new Vector3(0, 0.65f), Quaternion.identity);
+                Vector3 direction = (control.CursorControl.transform.position - throwObject.transform.position).normalized;
+                throwObject.Setup(direction);
+            }
+            else
+            {
+                Spell spell = Instantiate(_spellPrefab, control.CursorControl.transform.position, Quaternion.identity);
+                spell.Setup(this);
+            }
 
             control.Player.AddToMp(-_manaCostPerCast);
-            //AudioManager.Instance.PlayClip(_castSound, false, true);
+            MMSoundManagerSoundPlayEvent.Trigger(_castSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
         }
 
         public override void ExecuteSecondaryAction(FocusSlotControl control)

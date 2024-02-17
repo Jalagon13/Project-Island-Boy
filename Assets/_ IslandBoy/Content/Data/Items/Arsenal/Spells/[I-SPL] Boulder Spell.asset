@@ -23,4 +23,6 @@ MonoBehaviour:
     Value: 6
   _manaCostPerCast: 5
   _spellPrefab: {fileID: 3259274435755826204, guid: 6d74940dc03f74f40a5e68d7dfc4174f, type: 3}
+  _throwPrefab: {fileID: 0}
+  _isThrowable: 0
   _castSound: {fileID: 8300000, guid: 81630c27f46088149ba396244d1b8a68, type: 3}

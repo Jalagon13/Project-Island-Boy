@@ -10,7 +10,6 @@ namespace IslandBoy
 	{
         [SerializeField] private Animator _animator;
         [SerializeField] private float _cooldownTimer;
-        [SerializeField] private int _manaCostPerCast;
 
         private IEnumerator Start()
 		{
