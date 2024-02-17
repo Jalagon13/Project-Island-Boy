@@ -9,7 +9,7 @@ namespace IslandBoy
 	{
 		public Action OnPlayerExitRange;
 		
-		private float _interactRange = 1.75f;
+		private float _interactRange = 2;
 		protected bool _canInteract;
 		private Vector3 _origin;
 		private SpriteRenderer _rightClickSr;

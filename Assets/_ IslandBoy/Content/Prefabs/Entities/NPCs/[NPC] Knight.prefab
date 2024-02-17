@@ -8,9 +8,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 88724639896519210, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _npcToUnlock
+      value: Knight
+      objectReference: {fileID: 0}
+    - target: {fileID: 88724639896519210, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _unboundSprite
+      value: 
+      objectReference: {fileID: -1974408737, guid: d1fdf00d255e2d942a949c35bbb7ace1, type: 3}
+    - target: {fileID: 376953390307532538, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1941603296, guid: d1fdf00d255e2d942a949c35bbb7ace1, type: 3}
     - target: {fileID: 5750841754287189946, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: m_Name
-      value: '[NPC] _Base'
+      value: '[NPC] Knight'
       objectReference: {fileID: 0}
     - target: {fileID: 6171642594750953717, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: m_LocalPosition.x

@@ -8,9 +8,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1306350981014599772, guid: d9b2a07e8e7544165abbb8900494b91e, type: 3}
+      propertyPath: _text.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306350981014599772, guid: d9b2a07e8e7544165abbb8900494b91e, type: 3}
+      propertyPath: _text.Array.data[1]
+      value: I can <color=orange>upgrade certain tools </color=orange> for you but
+        first I need a <color=orange>home </color=orange>to settle down in.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306350981014599772, guid: d9b2a07e8e7544165abbb8900494b91e, type: 3}
+      propertyPath: _text.Array.data[4]
+      value: 'Almonst forgot, here''s '
+      objectReference: {fileID: 0}
+    - target: {fileID: 2173082719150023453, guid: d9b2a07e8e7544165abbb8900494b91e, type: 3}
+      propertyPath: _unboundRewards.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2173082719150023453, guid: d9b2a07e8e7544165abbb8900494b91e, type: 3}
+      propertyPath: _unboundRewards.Array.data[0].OutputItem
+      value: 
+      objectReference: {fileID: 11400000, guid: 487d82ad0f4e2344f9733ce37e25a7b9, type: 2}
+    - target: {fileID: 2173082719150023453, guid: d9b2a07e8e7544165abbb8900494b91e, type: 3}
+      propertyPath: _unboundRewards.Array.data[1].OutputItem
+      value: 
+      objectReference: {fileID: 11400000, guid: fb9c53bc5a9014142b9e07f97db75202, type: 2}
+    - target: {fileID: 2173082719150023453, guid: d9b2a07e8e7544165abbb8900494b91e, type: 3}
+      propertyPath: _unboundRewards.Array.data[2].OutputItem
+      value: 
+      objectReference: {fileID: 11400000, guid: fb9c53bc5a9014142b9e07f97db75202, type: 2}
+    - target: {fileID: 2173082719150023453, guid: d9b2a07e8e7544165abbb8900494b91e, type: 3}
+      propertyPath: _unboundRewards.Array.data[0].OutputAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5799062759696218101, guid: d9b2a07e8e7544165abbb8900494b91e, type: 3}
       propertyPath: m_Name
-      value: '[BOUND] _Base'
+      value: '[BOUND] Blacksmith'
       objectReference: {fileID: 0}
     - target: {fileID: 8805461347593309612, guid: d9b2a07e8e7544165abbb8900494b91e, type: 3}
       propertyPath: m_LocalPosition.x

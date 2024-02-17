@@ -10,25 +10,26 @@ namespace IslandBoy
 	{
 		[Header("Base Prompt Parameters")]
 		[SerializeField] private Canvas _prompCanvas;
-		[SerializeField] private UnityEvent _onOpenPrompt;
-		[SerializeField] private UnityEvent _onClosePrompt;
+		[SerializeField] protected UnityEvent _onOpenPrompt;
+		[SerializeField] protected UnityEvent _onClosePrompt;
 
 		private void OnEnable()
 		{
-			GameSignals.INVENTORY_CLOSE.AddListener(CloseUI);
+			// GameSignals.INVENTORY_CLOSE.AddListener(CloseUI);
 			GameSignals.GAME_PAUSED.AddListener(CloseUI);
 		}
 
 		private void OnDisable()
 		{
-			GameSignals.INVENTORY_CLOSE.RemoveListener(CloseUI);
+			// GameSignals.INVENTORY_CLOSE.RemoveListener(CloseUI);
 			GameSignals.GAME_PAUSED.RemoveListener(CloseUI);
 		}
 
 		public override IEnumerator Start()
 		{
 			OnPlayerExitRange += () => CloseUI(null);
-			CloseUI(null);
+			_prompCanvas.gameObject.SetActive(false);
+			// CloseUI(null);
 
 			yield return base.Start();
 		}
@@ -53,6 +54,7 @@ namespace IslandBoy
 		{
 			_prompCanvas.gameObject.SetActive(false);
 			_onClosePrompt?.Invoke();
+			Debug.Log(" closed Called");
 		}
 
 		public void OpenUI()
@@ -61,6 +63,7 @@ namespace IslandBoy
 
 			_prompCanvas.gameObject.SetActive(true);
 			_onOpenPrompt?.Invoke();
+			Debug.Log(" open Called");
 		}
 
 		protected override void EnableInstructions(bool _)

@@ -61,7 +61,7 @@ namespace IslandBoy
 			}
 		}
 		
-		private void GiveReward()
+		public void GiveReward()
 		{
 			foreach (ChestInvSlot item in _unboundRewards)
 			{

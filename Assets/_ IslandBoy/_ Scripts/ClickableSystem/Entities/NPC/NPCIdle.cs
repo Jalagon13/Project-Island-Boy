@@ -30,7 +30,11 @@ namespace IslandBoy
 		{
 			yield return new WaitForSeconds(Random.Range(8,16));
 			_ctx.AI.isStopped = false;
-			_ctx.ChangeToMoveState(animator);
+			
+			if(_ctx.CanMove)
+				_ctx.ChangeToMoveState(animator);
+			else
+				_ctx.StartCoroutine(IdleDuration(animator));
 		}
 	}
 }

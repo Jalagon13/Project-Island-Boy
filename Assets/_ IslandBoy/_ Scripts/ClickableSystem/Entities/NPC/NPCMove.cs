@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,7 +14,7 @@ namespace IslandBoy
 
 		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			Debug.Log("Entering Move State");
+			// Debug.Log("Entering Move State");
 			_ctx = animator.transform.parent.GetComponent<NPCStateManager>();
 			_animator = animator;
 			_ctx.Seek(CalcWanderPos());
@@ -41,7 +42,10 @@ namespace IslandBoy
 		{
 			if(Vector3.Distance(_ctx.transform.position, _ctx.HomePoint) > 5)
 			{
-				return _ctx.HomePoint;
+				if(_ctx.HomePoint != new Vector2(999,999))
+				{
+					return _ctx.HomePoint;
+				}
 			}
 
 			float radius = 4f;
