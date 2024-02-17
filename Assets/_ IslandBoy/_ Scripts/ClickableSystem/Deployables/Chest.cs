@@ -12,6 +12,7 @@ namespace IslandBoy
 
 		private Canvas _slotCanvas;
 		private bool _appQuitting;
+		private bool _isOpen = false;
 
 		protected override void Awake()
 		{
@@ -75,9 +76,12 @@ namespace IslandBoy
 		private void AddItemsToChest(ISignalParameters parameters)
 		{
 			// if item was added successfully, delete item from inventory
-			if (AddItemsToChest(parameters.GetParameter("itemsToAdd") as List<ChestInvSlot>))
+			if (_isOpen)
 			{
-				Destroy(parameters.GetParameter("itemObj") as GameObject);
+				if (AddItemsToChest(parameters.GetParameter("itemsToAdd") as List<ChestInvSlot>))
+				{
+					Destroy(parameters.GetParameter("itemObj") as GameObject);
+				}
 			}
 			// TODO: don't play sound or play error sound if wasn't able to add item
 		}
@@ -159,6 +163,7 @@ namespace IslandBoy
 		public void EnableChestSlots(bool val)
 		{
 			_slotCanvas.gameObject.SetActive(val);
+			_isOpen = val;
 		}
 
 		private void DisplayInteractable()

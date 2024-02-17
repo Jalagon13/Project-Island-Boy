@@ -9,8 +9,8 @@ namespace IslandBoy
     [CreateAssetMenu(fileName = "New Deployable", menuName = "Create Item/New Deployable")]
     public class DeployObject : ItemObject
     {
-        [SerializeField] private GameObject _prefabToDeploy;
-        [SerializeField] private AudioClip _deploySound;
+        [SerializeField] protected GameObject _prefabToDeploy;
+        [SerializeField] protected AudioClip _deploySound;
 
         public override ToolType ToolType => _baseToolType;
         public override ArmorType ArmorType => _baseArmorType;

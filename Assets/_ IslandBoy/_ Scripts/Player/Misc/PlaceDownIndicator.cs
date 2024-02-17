@@ -1,19 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace IslandBoy
 {
     public class PlaceDownIndicator : MonoBehaviour
     {
-        //private SpriteRenderer _sr;
+        [SerializeField] private PlayerObject _pr;
+
         private GameObject _spriteHolder;
         private Slot _focusSlotRef;
 
+        private GameObject _itemSpriteHolder;
+        private Image _image;
+        private Sprite _itemSprite;
+
+        public Sprite ItemSprite { get { return _itemSprite; } set { _itemSprite = value; _image.sprite = _itemSprite; } }
+
         private void Awake()
         {
-            //_sr = GetComponent<SpriteRenderer>();
             _spriteHolder = transform.GetChild(0).gameObject;
+
+            _itemSpriteHolder = _spriteHolder.transform.GetChild(1).gameObject;
+            _image = _itemSpriteHolder.GetComponent<Image>();
+            _pr.PlaceDownIndicator = gameObject.GetComponent<PlaceDownIndicator>();
 
             GameSignals.FOCUS_SLOT_UPDATED.AddListener(FocusSlotHandle);
             GameSignals.CURSOR_ENTERED_NEW_TILE.AddListener(UpdatePositionToNewCenterTile);
@@ -30,7 +41,7 @@ namespace IslandBoy
             if (parameters.HasParameter("FocusSlot"))
             {
                 _focusSlotRef = (Slot)parameters.GetParameter("FocusSlot");
-
+                if (_focusSlotRef != null && _focusSlotRef.ItemObject != null) ItemSprite = _focusSlotRef.ItemObject.UiDisplay;
                 SpriteHandle();
             }
         }
@@ -50,6 +61,7 @@ namespace IslandBoy
                     if (col.gameObject.layer == 3)
                     {
                         _spriteHolder.SetActive(false);
+                        _itemSpriteHolder.SetActive(false);
                         return;
                     }
                 }
@@ -59,18 +71,28 @@ namespace IslandBoy
         private void SpriteHandle()
         {
             _spriteHolder.SetActive(false);
+            _itemSpriteHolder.SetActive(false);
 
-            if(_focusSlotRef == null)
+            if (_focusSlotRef == null)
             {
                 _spriteHolder.SetActive(false);
+                _itemSpriteHolder.SetActive(false);
                 return;
             }
 
             if (_focusSlotRef.ItemObject == null)
+            {
                 _spriteHolder.SetActive(false);
+                _itemSpriteHolder.SetActive(false);
+            }
 
             if (_focusSlotRef.ItemObject is DeployObject || _focusSlotRef.ItemObject is WallObject || _focusSlotRef.ItemObject is FloorObject)
+            {
                 _spriteHolder.SetActive(true);
+
+                if(_focusSlotRef.ItemObject is FurnitureObject)
+                    _itemSpriteHolder.SetActive(true);
+            }
         }
     }
 }

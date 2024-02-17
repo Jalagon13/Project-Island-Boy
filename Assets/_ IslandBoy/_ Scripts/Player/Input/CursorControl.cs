@@ -309,10 +309,11 @@ namespace IslandBoy
 		}
 
 
-		public void PlaceDeployable(GameObject deployable)
+		public void PlaceDeployable(GameObject deployable, Sprite s = null)
 		{
 			var position = _currentCenterPos -= new Vector2(0.5f, 0.5f);
 			var d = Instantiate(deployable, position, Quaternion.identity);
+			if (s != null) d.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = s;
 			
 			if(LevelControl.GetDP() != null)
 			{
