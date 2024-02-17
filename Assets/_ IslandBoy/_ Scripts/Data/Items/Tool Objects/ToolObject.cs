@@ -71,9 +71,9 @@ namespace IslandBoy
 				}
 			}
 
-			// string upgradeText = UpgradeRecipe != null && NpcUpgradeType != NpcUpgradeType.None ? $"* Talk to the {NpcUpgradeType} to upgrade" : string.Empty;
+			string upgradeText = UpgradeRecipe != null ? $"<br>* Upgradable" : string.Empty;
 
-			return $"{Description}<br>* {hitValue} per hit<br>* {damageMin}-{damageMax} damage";
+			return $"{Description}<br>* {hitValue} per hit<br>* {damageMin}-{damageMax} damage{upgradeText}";
 		}
 	}
 }

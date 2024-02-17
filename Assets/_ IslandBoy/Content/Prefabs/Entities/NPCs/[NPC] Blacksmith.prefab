@@ -112,6 +112,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _text.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _text.Array.data[0]
+      value: 'Blacksmith: "I can upgrade your tools with more power as long as you
+        provide me with the materials!"'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _text.Array.data[1]
+      value: 'Blacksmith: "If your looking to upgrade your <color=orange>weapons</color=orange>,
+        find and talk to the <color=orange>Knight</color=orange>.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _text.Array.data[2]
+      value: 'Blacksmith: "If your looking to upgrade your <color=orange>accessories
+        or spells</color=orange>, find and talk to the <color=orange>Wizard</color=orange>.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943030590927019520, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -80,7 +80,7 @@ namespace IslandBoy
 			{
 				string message = (string)parameters.GetParameter("Message");
 				AddEndDaySlide(message);
-				Debug.Log("Mvoed in");
+				// Debug.Log("Mvoed in");
 			}
 		}
 
@@ -149,7 +149,7 @@ namespace IslandBoy
 			text.gameObject.SetActive(true);
 
 			// yield return new WaitForSeconds(2f);
-			Debug.Log(_endDaySlides.Count);
+			// Debug.Log(_endDaySlides.Count);
 			
 			foreach (string slide in _endDaySlides)
 			{

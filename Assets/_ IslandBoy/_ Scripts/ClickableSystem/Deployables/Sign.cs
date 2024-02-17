@@ -65,6 +65,8 @@ namespace IslandBoy
 			else if(!_nextButton.interactable)
 				_nextButton.interactable = true;
 
+			if(_counter < 0)
+				_counter = 0;
 			_signText.text = _text[_counter];
 		}
 
