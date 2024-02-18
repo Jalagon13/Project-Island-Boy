@@ -109,10 +109,10 @@ namespace IslandBoy
 			// else
 			// 	ingText += $"<color=red>{_originalItem.Name} [{_po.Inventory.GetItemAmount(_originalItem)}/{1}]<color=red><br>";
 				
-			if(_po.Inventory.GetItemAmount(_upgradeStone) >= 1)
-				ingText += $"<color=white>{_upgradeStone.Name} [{_po.Inventory.GetItemAmount(_upgradeStone)}/{1}]<color=white><br>";
-			else
-				ingText += $"<color=red>{_upgradeStone.Name} [{_po.Inventory.GetItemAmount(_upgradeStone)}/{1}]<color=red><br>";
+			// if(_po.Inventory.GetItemAmount(_upgradeStone) >= 1)
+			// 	ingText += $"<color=white>{_upgradeStone.Name} [{_po.Inventory.GetItemAmount(_upgradeStone)}/{1}]<color=white><br>";
+			// else
+			// 	ingText += $"<color=red>{_upgradeStone.Name} [{_po.Inventory.GetItemAmount(_upgradeStone)}/{1}]<color=red><br>";
 				
 			ingText += xpVal >= _xpCost ? 
 			$"<color=white>XP [{xpVal}/{_xpCost}]<color=white><br>" : 
@@ -155,9 +155,9 @@ namespace IslandBoy
 			if(_po.Inventory.Contains(_originalItem, 1))
 				hasOriginalItem = true;
 				
-			bool hasUpgradeStone = false;
-			if(_po.Inventory.Contains(_upgradeStone, 1))
-				hasUpgradeStone = true;
+			// bool hasUpgradeStone = false;
+			// if(_po.Inventory.Contains(_upgradeStone, 1))
+			// 	hasUpgradeStone = true;
 
 			bool resourceListZero = false;
 			if (_recipeToDisplay.ResourceList.Count <= 0)
@@ -166,7 +166,7 @@ namespace IslandBoy
 			if(resourceListZero)
 				return true;
 				
-			if(hasAllIngredients && hasEnoughXp && hasOriginalItem && hasUpgradeStone)
+			if(hasAllIngredients && hasEnoughXp && hasOriginalItem /* && hasUpgradeStone */)
 				return true;
 				
 			return false;

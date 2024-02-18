@@ -71,7 +71,7 @@ namespace IslandBoy
 				foreach (Resource rsc in _rscFoundThisSwing.ToArray())
 				{
 					if (_rscHitThisSwing.Contains(rsc)) continue;
-
+					
 					_rscFoundThisSwing.Remove(rsc);
 					_rscHitThisSwing.Add(rsc);
 					

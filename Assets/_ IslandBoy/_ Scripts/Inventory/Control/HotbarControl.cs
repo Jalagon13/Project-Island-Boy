@@ -78,6 +78,8 @@ namespace IslandBoy
 
 		private void SelectSlotScroll(InputAction.CallbackContext context)
 		{
+			if(Pointer.IsOverUI()) return;
+			
 			float scrollNum = context.ReadValue<float>();
 
 			UnHighlightPrevious();
