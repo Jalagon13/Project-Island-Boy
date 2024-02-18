@@ -11,6 +11,7 @@ namespace IslandBoy
 	{
 		[Header("Main Fields")]
 		[SerializeField] private PlayerObject _po;
+		[SerializeField] private ItemObject _upgradeStone;
 		[SerializeField] private AudioClip _populateSound;
 		[SerializeField] private AudioClip _craftSound;
 		[Header("UI")]
@@ -100,14 +101,22 @@ namespace IslandBoy
 		private void UpdateIngTexts()
 		{
 			int xpVal = PlayerGoldController.Instance.CurrencyValue;
-			string ingText = xpVal >= _xpCost ? 
-			$"Recipe:<br><color=white>XP [{xpVal}/{_xpCost}]<color=white><br>" : 
-			$"Recipe:<br><color=red>XP [{xpVal}/{_xpCost}]<color=red><br>";
-
-			if(_po.Inventory.GetItemAmount(_originalItem) >= 1)
-				ingText += $"<color=white>{_originalItem.Name} [{_po.Inventory.GetItemAmount(_originalItem)}/{1}]<color=white><br>";
+			
+			string ingText = "Recipe:<br>";
+			
+			// if(_po.Inventory.GetItemAmount(_originalItem) >= 1)
+			// 	ingText += $"<color=white>{_originalItem.Name} [{_po.Inventory.GetItemAmount(_originalItem)}/{1}]<color=white><br>";
+			// else
+			// 	ingText += $"<color=red>{_originalItem.Name} [{_po.Inventory.GetItemAmount(_originalItem)}/{1}]<color=red><br>";
+				
+			if(_po.Inventory.GetItemAmount(_upgradeStone) >= 1)
+				ingText += $"<color=white>{_upgradeStone.Name} [{_po.Inventory.GetItemAmount(_upgradeStone)}/{1}]<color=white><br>";
 			else
-				ingText += $"<color=red>{_originalItem.Name} [{_po.Inventory.GetItemAmount(_originalItem)}/{1}]<color=red><br>";
+				ingText += $"<color=red>{_upgradeStone.Name} [{_po.Inventory.GetItemAmount(_upgradeStone)}/{1}]<color=red><br>";
+				
+			ingText += xpVal >= _xpCost ? 
+			$"<color=white>XP [{xpVal}/{_xpCost}]<color=white><br>" : 
+			$"<color=red>XP [{xpVal}/{_xpCost}]<color=red><br>";
 			
 			foreach (var ia in _recipeToDisplay.ResourceList)
 			{
@@ -145,6 +154,10 @@ namespace IslandBoy
 			bool hasOriginalItem = false;
 			if(_po.Inventory.Contains(_originalItem, 1))
 				hasOriginalItem = true;
+				
+			bool hasUpgradeStone = false;
+			if(_po.Inventory.Contains(_upgradeStone, 1))
+				hasUpgradeStone = true;
 
 			bool resourceListZero = false;
 			if (_recipeToDisplay.ResourceList.Count <= 0)
@@ -153,7 +166,7 @@ namespace IslandBoy
 			if(resourceListZero)
 				return true;
 				
-			if(hasAllIngredients && hasEnoughXp && hasOriginalItem)
+			if(hasAllIngredients && hasEnoughXp && hasOriginalItem && hasUpgradeStone)
 				return true;
 				
 			return false;

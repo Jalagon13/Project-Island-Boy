@@ -12,11 +12,11 @@ namespace IslandBoy
 	public class MonsterHeartAI : MonoBehaviour
 	{
 		[SerializeField] private PlayerObject _po;
-		[SerializeField] private SpriteRenderer _indicatorSr;
 		[SerializeField] private Transform _forceFieldTf;
 		[SerializeField] private MonsterHeartView _mhView;
 		[SerializeField] private MonsterSpawner _monsterSpawner;
 		[SerializeField] private Clickable _levelEntranceLower;
+		[SerializeField] private float _heartBeatDelay = 2.5f;
 		[SerializeField] private int _killQuota;
 		[SerializeField] private int _heartBeatQuota;
 		[Header("Monster Spawn")]
@@ -34,11 +34,8 @@ namespace IslandBoy
 		
 		private int _killCounter;
 		private int _heartBeatCounter;
-		private float _heartBeatDelay = 2.5f;
 		private bool _forceFieldDown;
-		private bool _threatened; // if threatened, spawn monsters
 		private BoxCollider2D _rscCollider;
-		private SpriteRenderer _sprite;
 		
 		[Serializable]
 		public class SpawnSetting
@@ -52,12 +49,9 @@ namespace IslandBoy
 		
 		private void Awake() 
 		{
-			UpdateAgroIndicator(new Color(0.5f, 0.1f, 0.65f, 0.25f));
 			_rscCollider = transform.parent.GetComponent<BoxCollider2D>();
-			_sprite = transform.parent.GetChild(0).GetComponent<SpriteRenderer>();
 			_rscCollider.enabled = false;
 			_mhView.UpdateText(_killCounter, _killQuota);
-			_mhView.UpdateHeartBeatText(_heartBeatCounter, _heartBeatQuota);
 		}
 		
 		private IEnumerator HeartBeatRoutine()
@@ -73,8 +67,7 @@ namespace IslandBoy
 		{
 			yield return new WaitForSeconds(_delayFire);
 			
-			if(_threatened)
-				FireLaser();
+			FireLaser();
 			
 			while(_laser.gameObject.activeInHierarchy)
 			{
@@ -91,9 +84,9 @@ namespace IslandBoy
 		
 		private void OnEnable() 
 		{
-			_mhView.UpdateHeartBeatText(_heartBeatCounter, _heartBeatQuota);
+			_mhView.UpdateText(_killCounter, _killQuota);
 			StartCoroutine(HeartBeatRoutine());
-			StartCoroutine(LaserSequence());
+			
 			GameSignals.MONSTER_KILLED.AddListener(IncrementMonsterMeter);
 		}
 		
@@ -111,49 +104,15 @@ namespace IslandBoy
 			GameSignals.MONSTER_HEART_CLEARED.Dispatch();
 		}
 		
-		private void OnTriggerEnter2D(Collider2D other) 
-		{
-			if(other.TryGetComponent<CollectTag>(out var ct))
-			{
-				ActivateAgroPhase();
-			}
-		}
-		
-		private void ActivateAgroPhase()
-		{
-				UpdateAgroIndicator(new Color(1, 0, 0, 0.25f));
-				_sprite.color = Color.red;
-				_sprite.transform.localScale = new(1.2f, 1.2f, 1.2f);
-				_threatened = true;
-				_heartBeatDelay = 1f;
-				
-				MMSoundManagerSoundPlayEvent.Trigger(_agroSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
-				// need visual indicator it's agroed on player
-				// line going to player maybe
-		}
-		
-		private void OnTriggerExit2D(Collider2D other) 
-		{
-			if(other.TryGetComponent<CollectTag>(out var ct))
-			{
-				UpdateAgroIndicator(new Color(0.5f, 0.1f, 0.65f, 0.25f));
-				_sprite.color = Color.white;
-				_sprite.transform.localScale = new(1f, 1f, 1f);
-				_threatened = false;
-				_heartBeatDelay = 2.5f;
-				
-				// need visual indicator that its NOT agrod anymore
-			}
-		}
-		
 		private void OnHeartBeat()
 		{
 			_heartBeatFeedbacks?.PlayFeedbacks();
 			_heartBeatCounter++;
-			_mhView.UpdateHeartBeatText(_heartBeatCounter, _heartBeatQuota);
+			// _mhView.UpdateHeartBeatText(_heartBeatCounter, _heartBeatQuota);
 			
 			if(_heartBeatCounter >= _heartBeatQuota)
 			{
+				_mhView.ShowSpawningText();
 				StartCoroutine(SpawnMonsters());
 				_heartBeatCounter = 0;
 			}
@@ -182,11 +141,12 @@ namespace IslandBoy
 		public void DropForceField()
 		{
 			_forceFieldTf.gameObject.SetActive(false);
-			GetComponent<CircleCollider2D>().enabled = false;
 			transform.GetChild(0).gameObject.SetActive(false);
 			_rscCollider.enabled = true;
 			_forceFieldDown = true;
-			ActivateAgroPhase();
+			_mhView.DisableForceFieldUI();
+			_heartBeatDelay = 1.5f;
+			StartCoroutine(LaserSequence());
 			
 			_forceFieldDestroyedFeedbacks?.PlayFeedbacks();
 		}
@@ -202,11 +162,6 @@ namespace IslandBoy
 			{
 				DropForceField();
 			}
-		}
-		
-		private void UpdateAgroIndicator(Color color)
-		{
-			_indicatorSr.color = color;
 		}
 	}
 }

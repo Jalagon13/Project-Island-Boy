@@ -12,6 +12,10 @@ namespace IslandBoy
 		private TextMeshProUGUI _viewText;
 		private TextMeshProUGUI _heartBeatText;
 		
+		private int _killCounter;
+		private int _killQuota;
+		private bool _showingSpawnText;
+		
 		private void Awake() 
 		{
 			_viewText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
@@ -20,14 +24,39 @@ namespace IslandBoy
 		
 		public void UpdateText(int killCounter, int killQuota)
 		{
-			if(_viewText == null) return;
-			_viewText.text = killCounter >= killQuota ? $"Force Field Down!" : $"Monster Quota: {killCounter} / {killQuota}";
+			if(_viewText == null || _showingSpawnText) return;
+			
+			_killCounter = killCounter;
+			_killQuota = killQuota;
+			_viewText.enabled = false;
+			// _viewText.text = killCounter >= killQuota ? $"Force Field Down!" : $"Monster Quota: {killCounter} / {killQuota}";
+			// _fillImage.fillAmount = (float)killCounter / (float)killQuota;
+			_fillImage.fillAmount = ((float)killQuota - (float)killCounter) / (float)killQuota;
 		}
 		
-		public void UpdateHeartBeatText(int beatCounter, int beatQuota)
+		public void ShowSpawningText()
 		{
-			_fillImage.fillAmount = (float)beatCounter / (float)beatQuota;
-			// _heartBeatText.text = $"Heart Beats: {beatCounter} / {beatQuota}";
+			// StartCoroutine(SpawningText());
 		}
+		
+		private IEnumerator SpawningText()
+		{
+			_viewText.text = "Spawning Monsters!";
+			_showingSpawnText = true;
+			yield return new WaitForSeconds(2);
+			_showingSpawnText = false;
+			_viewText.text = _killCounter >= _killQuota ? $"Force Field Down!" : $"Monster Quota: {_killCounter} / {_killQuota}";
+		}
+		
+		public void DisableForceFieldUI()
+		{
+			_fillImage.transform.parent.gameObject.SetActive(false);
+		}
+		
+		// public void UpdateHeartBeatText(int beatCounter, int beatQuota)
+		// {
+		// 	_fillImage.fillAmount = (float)beatCounter / (float)beatQuota;
+		// 	// _heartBeatText.text = $"Heart Beats: {beatCounter} / {beatQuota}";
+		// }
 	}
 }

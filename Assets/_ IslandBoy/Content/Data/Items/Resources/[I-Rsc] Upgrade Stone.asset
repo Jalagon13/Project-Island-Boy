@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3eea4153a0022fb44a84b057480c1fa1, type: 3}
-  m_Name: '[I-Rsc] Upgrade Core'
+  m_Name: '[I-Rsc] Upgrade Stone'
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Upgrade Core
+  <Name>k__BackingField: Upgrade Stone
   <UiDisplay>k__BackingField: {fileID: 903736636, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   <Stackable>k__BackingField: 0
+  <UpgradeRecipe>k__BackingField: {fileID: 0}
+  <XpUpgradeCost>k__BackingField: 0
   <Description>k__BackingField: 
   <DefaultParameterList>k__BackingField: []

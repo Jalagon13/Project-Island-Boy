@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[3].Max
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[3].Min
@@ -107,11 +107,11 @@ PrefabInstance:
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[3].Item
       value: 
-      objectReference: {fileID: 11400000, guid: 45360d815855e4d33ab39d15093b9b29, type: 2}
+      objectReference: {fileID: 11400000, guid: edc513b3ed3bd4344aa82974c2d886f1, type: 2}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[4].Item
       value: 
-      objectReference: {fileID: 11400000, guid: edc513b3ed3bd4344aa82974c2d886f1, type: 2}
+      objectReference: {fileID: 11400000, guid: ce783dbfbfb1d4f52a3c3a332623c318, type: 2}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[5].Item
       value: 
@@ -130,11 +130,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[3].Chance
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[4].Chance
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[5].Chance
