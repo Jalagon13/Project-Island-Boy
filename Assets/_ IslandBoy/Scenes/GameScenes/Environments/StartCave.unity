@@ -4179,6 +4179,7 @@ MonoBehaviour:
   _playMusic: 1
   _bgmVolume: 1
   _bgMusic: {fileID: 0}
+  _delay: 0.5
 --- !u!4 &438831941
 Transform:
   m_ObjectHideFlags: 0
@@ -57389,6 +57390,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a58b3946c0734fe4fb603a0ac755b4c4, type: 3}
+--- !u!1 &2010116965
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2010116966}
+  m_Layer: 0
+  m_Name: yum
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2010116966
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010116965}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2053031798 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7382328970847094501, guid: 7e5725c4c700240939e7b83d0395d565, type: 3}
@@ -70622,3 +70654,4 @@ SceneRoots:
   - {fileID: 438831941}
   - {fileID: 7504486447912349120}
   - {fileID: 1941592344}
+  - {fileID: 2010116966}
