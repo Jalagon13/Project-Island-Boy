@@ -10,6 +10,7 @@ namespace IslandBoy
 		[SerializeField] private RectTransform _sunMoonMarker;
 		[SerializeField] private Sprite _sunSprite;
 		[SerializeField] private Sprite _moonSprite;
+		[SerializeField] private bool _stopTime = false;
 		
 		public float CurrentDayRatio => _currentTimeOfTheDay / DayDurationInSeconds;
 		public DayCycleHandler DayCycleHandler { get; set; }
@@ -49,7 +50,7 @@ namespace IslandBoy
 		
 		private void Update()
 		{
-			if(_isTicking)
+			if(_isTicking && !_stopTime)
 			{
 				_currentTimeOfTheDay += Time.deltaTime;
 				
