@@ -36,5 +36,11 @@ namespace IslandBoy
 
             _pr.PlaceDownIndicator.ItemSprite = _sprites[_index];
         }
+
+        public Sprite ResetIndex()
+        {
+            _index = 0;
+            return _sprites[_index];
+        }
     }
 }
