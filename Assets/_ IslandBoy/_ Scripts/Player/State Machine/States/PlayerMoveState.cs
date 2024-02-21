@@ -13,7 +13,7 @@ namespace IslandBoy
 
         public override void UpdateState()
         {
-            Ctx.SpriteFlipHandle();
+            // Ctx.SpriteFlipHandle();
             CheckSwitchStates();
         }
 

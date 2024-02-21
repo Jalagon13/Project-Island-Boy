@@ -11,8 +11,6 @@ namespace IslandBoy
 	{
 		[SerializeField] private PlayerObject _pr;
 
-		private static Vector3 _rightDirScale;
-		private static Vector3 _leftDirScale;
 		private PlayerBaseState _currentState;
 		private PlayerStateFactory _states;
 		private PlayerMoveInput _moveInput;
@@ -27,8 +25,6 @@ namespace IslandBoy
 			_pr.SpawnPoint = transform.position;
 			_pr.GameObject = gameObject;
 			_sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
-			_rightDirScale = _sr.transform.localScale;
-			_leftDirScale = new(-_rightDirScale.x, _rightDirScale.y);
 			_states = new PlayerStateFactory(this);
 			_moveInput = GetComponent<PlayerMoveInput>();
 			
@@ -82,11 +78,6 @@ namespace IslandBoy
 		private void TeleportPlayerToSpawn()
 		{
 			transform.SetPositionAndRotation(_pr.SpawnPoint, Quaternion.identity);
-		}
-
-		public void SpriteFlipHandle()
-		{
-			_sr.transform.localScale = _moveInput.IsFacingRight ? _rightDirScale : _leftDirScale;
 		}
 	}
 }
