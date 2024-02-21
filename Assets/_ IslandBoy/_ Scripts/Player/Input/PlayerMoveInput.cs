@@ -46,7 +46,7 @@ namespace IslandBoy
 
 		private void Start()
 		{
-			_playerInput.Player.Move.started += MovementAction;
+			// _playerInput.Player.Move.started += MovementAction;
 			_playerInput.Player.Move.performed += MovementAction;
 			_playerInput.Player.Move.canceled += MovementAction;
 		}
