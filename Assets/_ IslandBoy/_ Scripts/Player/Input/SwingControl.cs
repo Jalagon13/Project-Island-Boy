@@ -41,7 +41,7 @@ namespace IslandBoy
 		{
 			_animator = GetComponent<Animator>();
 			_animator.speed = _defaultAnimSpeed;
-			_swingSr = transform.GetChild(0).GetComponent<SpriteRenderer>();
+			_swingSr = transform.GetChild(0).GetChild(2).GetComponent<SpriteRenderer>();
 			_swingTimer = new(_swingCd);
 
 			GameSignals.FOCUS_SLOT_UPDATED.AddListener(OnUpdateFocusSlot);
