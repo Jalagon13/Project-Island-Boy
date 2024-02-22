@@ -14,16 +14,16 @@ namespace IslandBoy
 		[SerializeField] private UnityEvent _onLeftMove;
 		[SerializeField] private UnityEvent _onBackMove;
 		
-
 		private Rigidbody2D _rb;
 		private PlayerInput _playerInput;
 		private Vector2 _moveDirection;
 		private Vector2 _lastNonZeroMoveDirection;
 		private float _baseSpeed;
+		private bool _swinging;
+		private bool _moving;
 
 		public float Speed { get { return _speed; } set { _speed = value; } }
 		public float BaseSpeed { get { return _baseSpeed; }}
-
 		public Vector2 MoveDirection { get { return _moveDirection; } }
 		public Vector2 LastNonZeroMoveDirection { get { return _lastNonZeroMoveDirection; } }
 
@@ -56,23 +56,38 @@ namespace IslandBoy
 			_rb.MovePosition(_rb.position + _moveDirection * _speed * Time.deltaTime);
 		}
 
-		private void MovementAction(InputAction.CallbackContext context)
+		public void SetSwing(bool _)
 		{
-			_moveDirection = context.ReadValue<Vector2>();
-			bool moving;
-			
-			if(_moveDirection.magnitude > 0.1f || _moveDirection.magnitude < -0.1f)
-			{
-				_onMove?.Invoke();
-				moving = true;
-			}
-			else
-			{
-				_onIdle?.Invoke();
-				moving = false;
-			}
-			
-			if(moving)
+			_swinging = _;
+		}
+		
+		public void InvokeBackMove()
+		{
+			_onBackMove?.Invoke();
+			_swinging = true;
+		}
+		
+		public void InvokeFrontMove()
+		{
+			_onFrontMove?.Invoke();
+			_swinging = true;
+		}
+		
+		public void InvokeRightMove()
+		{
+			_onRightMove?.Invoke();
+			_swinging = true;
+		}
+		
+		public void InvokeLeftMove()
+		{
+			_onLeftMove?.Invoke();
+			_swinging = true;
+		}
+		
+		public void SetMoveAnimation()
+		{
+			if(_moving)
 			{
 				if(_moveDirection.x > 0 && _moveDirection.y > 0)
 				{
@@ -106,6 +121,27 @@ namespace IslandBoy
 				{
 					_onFrontMove?.Invoke();
 				}
+			}
+		}
+		
+		private void MovementAction(InputAction.CallbackContext context)
+		{
+			_moveDirection = context.ReadValue<Vector2>();
+			
+			if(_moveDirection.magnitude > 0.1f || _moveDirection.magnitude < -0.1f)
+			{
+				_onMove?.Invoke();
+				_moving = true;
+			}
+			else
+			{
+				_onIdle?.Invoke();
+				_moving = false;
+			}
+			
+			if(!_swinging)
+			{
+				SetMoveAnimation();
 			}
 				
 			if(_moveDirection.magnitude != 0)

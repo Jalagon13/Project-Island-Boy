@@ -2,6 +2,7 @@ using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace IslandBoy
@@ -10,9 +11,14 @@ namespace IslandBoy
 	{
 		[SerializeField] private float _swingCd;
 		[SerializeField] private AudioClip _wooshClip;
+		[SerializeField] private PlayerMoveInput _pmi;
 		[SerializeField] private ItemParameter _swingCooldownParameter;
 		[SerializeField] private ItemParameter _swingSpeedParameter;
 		[SerializeField] private ItemParameter _energyPerSwingParameter;
+		[SerializeField] private UnityEvent _onRightSwing;
+		[SerializeField] private UnityEvent _onUpSwing;
+		[SerializeField] private UnityEvent _onLeftSwing;
+		[SerializeField] private UnityEvent _onDownSwing;
 
 		private SpriteRenderer _swingSr;
 		private Timer _swingTimer;
@@ -88,6 +94,8 @@ namespace IslandBoy
 			if(_animator.GetCurrentAnimatorStateInfo(0).IsName("[ANM] Idle"))
 			{
 				_canAnimate = true;
+				_pmi.SetSwing(false);
+				_pmi.SetMoveAnimation();
 			}
 			
 			if (_swingTimer.RemainingSeconds > 0 || _focusSlotRef == null || _focusSlotRef.ItemObject is not ToolObject || Pointer.IsOverUI() || !_canAnimate) return;
@@ -109,6 +117,8 @@ namespace IslandBoy
 		{
 			_swingTimer.RemainingSeconds = CalcSwingCd();
 			_canAnimate = true;
+			_pmi.SetSwing(false);
+			_pmi.SetMoveAnimation();
 			AnimStateManager.ChangeAnimationState(_animator, _hashIdle);
 		}
 
@@ -117,7 +127,9 @@ namespace IslandBoy
 			var cursorAngle = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 			var playerVec = cursorAngle - transform.root.position;
 			float angle = Mathf.Atan2(playerVec.y, playerVec.x) * Mathf.Rad2Deg;
+			
 			_canAnimate = false;
+			_pmi.SetSwing(true);
 			
 			if (angle < 0)
 			{
@@ -128,18 +140,26 @@ namespace IslandBoy
 
 			if ((angle < 45 && angle > 0) || (angle < 359.999 && angle > 315))
 			{
+				_pmi.InvokeRightMove();
+				_onRightSwing?.Invoke();
 				AnimStateManager.ChangeAnimationState(_animator, _hashRightHit);
 			}
 			else if (angle < 135 && angle > 45)
 			{
+				_pmi.InvokeBackMove();
+				_onUpSwing?.Invoke();
 				AnimStateManager.ChangeAnimationState(_animator, _hashUpHit);
 			}
 			else if (angle < 225 && angle > 135)
 			{
+				_pmi.InvokeLeftMove();
+				_onLeftSwing?.Invoke();
 				AnimStateManager.ChangeAnimationState(_animator, _hashLeftHit);
 			}
 			else if (angle < 315 && angle > 225)
 			{
+				_pmi.InvokeFrontMove();
+				_onDownSwing?.Invoke();
 				AnimStateManager.ChangeAnimationState(_animator, _hashDownHit);
 			}
 		}

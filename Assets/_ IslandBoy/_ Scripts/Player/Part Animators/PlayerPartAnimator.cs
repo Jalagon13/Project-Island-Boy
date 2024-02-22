@@ -24,11 +24,13 @@ namespace IslandBoy
 		
 		public void PlayIdle()
 		{
+			_animator = GetComponent<Animator>();
 			AnimStateManager.ChangeAnimationState(_animator, _idleHash);
 		}
 		
 		public void PlayMove()
 		{
+			_animator = GetComponent<Animator>();
 			AnimStateManager.ChangeAnimationState(_animator, _moveHash);
 		}
 	}
