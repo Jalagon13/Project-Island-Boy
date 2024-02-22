@@ -8,7 +8,7 @@ namespace IslandBoy
 
         public override void EnterState()
         {
-            //Debug.Log("Entered Idle State");
+            // Debug.Log("Entered Idle State");
             // Ctx.SpriteFlipHandle();
         }
 

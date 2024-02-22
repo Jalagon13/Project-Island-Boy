@@ -19,6 +19,9 @@ namespace IslandBoy
 		[SerializeField] private UnityEvent _onUpSwing;
 		[SerializeField] private UnityEvent _onLeftSwing;
 		[SerializeField] private UnityEvent _onDownSwing;
+		[SerializeField] private UnityEvent _onBackSwingDone;
+		[SerializeField] private UnityEvent _onFrontSwingDone;
+		[SerializeField] private UnityEvent _onSideSwingDone;
 
 		private SpriteRenderer _swingSr;
 		private Timer _swingTimer;
@@ -113,7 +116,25 @@ namespace IslandBoy
 			MMSoundManagerSoundPlayEvent.Trigger(_wooshClip, MMSoundManager.MMSoundManagerTracks.Sfx, default, volume:0.5f, pitch: Random.Range(0.9f, 1.1f));	
 		}
 		
-		public void OnSwingEnd()
+		public void OnFrontSwingDone()
+		{
+			_onFrontSwingDone?.Invoke();
+			OnSwingEnd();
+		}
+		
+		public void OnBackSwingDone()
+		{
+			_onBackSwingDone?.Invoke();
+			OnSwingEnd();
+		}
+		
+		public void OnSideSwingDone()
+		{
+			_onSideSwingDone?.Invoke();
+			OnSwingEnd();
+		}
+		
+		private void OnSwingEnd()
 		{
 			_swingTimer.RemainingSeconds = CalcSwingCd();
 			_canAnimate = true;

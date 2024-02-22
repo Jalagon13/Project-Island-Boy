@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -87,6 +88,17 @@ namespace IslandBoy
 		
 		public void SetMoveAnimation()
 		{
+			if(_moveDirection.magnitude > 0.1f || _moveDirection.magnitude < -0.1f)
+			{
+				_onMove?.Invoke();
+				_moving = true;
+			}
+			else
+			{
+				_onIdle?.Invoke();
+				_moving = false;
+			}
+			
 			if(_moving)
 			{
 				if(_moveDirection.x > 0 && _moveDirection.y > 0)
@@ -128,6 +140,11 @@ namespace IslandBoy
 		{
 			_moveDirection = context.ReadValue<Vector2>();
 			
+			StartCoroutine(PlayTwice());
+		}
+		
+		private void MoveHandle()
+		{
 			if(_moveDirection.magnitude > 0.1f || _moveDirection.magnitude < -0.1f)
 			{
 				_onMove?.Invoke();
@@ -146,6 +163,13 @@ namespace IslandBoy
 				
 			if(_moveDirection.magnitude != 0)
 				_lastNonZeroMoveDirection = _moveDirection;
+		}
+		
+		private IEnumerator PlayTwice()
+		{
+			MoveHandle();
+			yield return new WaitForEndOfFrame();
+			MoveHandle();
 		}
 	}
 }
