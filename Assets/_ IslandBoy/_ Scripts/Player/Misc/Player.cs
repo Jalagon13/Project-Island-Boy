@@ -40,7 +40,7 @@ namespace IslandBoy
 		private Collider2D _playerCollider;
 		private Slot _focusSlot;
 		private Timer _iFrameTimer;
-		private SpriteRenderer _sr;
+		private GameObject _sr;
 		private Vector2 _spawnPoint;
 		private int _currentHp, _currentNrg, _currentMp, _armorHead, _armorChest, _armorLeg;
 			
@@ -51,7 +51,7 @@ namespace IslandBoy
 			_playerCollider = GetComponent<Collider2D>();
 			_iFrameTimer = new Timer(_iFrameDuration);
 			_spawnPoint = transform.position;
-			_sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
+			_sr = transform.GetChild(0).gameObject;
 
 			GameSignals.CLICKABLE_CLICKED.AddListener(OnSwing);
 			GameSignals.DAY_START.AddListener(PlacePlayerAtSpawnPoint);
@@ -449,13 +449,13 @@ namespace IslandBoy
 		{
 			GameSignals.PLAYER_DIED.Dispatch();
 			_playerCollider.enabled = false;
-			_sr.enabled = false;
+			_sr.SetActive(false);
 
 			yield return new WaitForSeconds(_deathTimer);
 
 			GameSignals.DAY_END.Dispatch();
 			_playerCollider.enabled = true;
-			_sr.enabled = true;
-		}
+            _sr.SetActive(true);
+        }
 	}
 }

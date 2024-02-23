@@ -30,7 +30,7 @@ namespace IslandBoy
 			_knockback = GetComponent<KnockbackFeedback>();
 			
 			GameSignals.DAY_END.AddListener(DestroyThisEntity);
-			GameSignals.PLAYER_DIED.AddListener(DestroyThisEntity);
+			//GameSignals.PLAYER_DIED.AddListener(DestroyThisEntity);
 			GameSignals.MONSTER_HEART_CLEARED.AddListener(Despawn);
 		}
 		
@@ -40,7 +40,7 @@ namespace IslandBoy
 				_entityRts.RemoveFromList(this);
 				
 			GameSignals.DAY_END.RemoveListener(DestroyThisEntity);
-			GameSignals.PLAYER_DIED.RemoveListener(DestroyThisEntity);
+			//GameSignals.PLAYER_DIED.RemoveListener(DestroyThisEntity);
 			GameSignals.MONSTER_HEART_CLEARED.RemoveListener(Despawn);
 		}
 

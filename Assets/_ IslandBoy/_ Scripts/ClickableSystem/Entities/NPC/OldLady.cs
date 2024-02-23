@@ -14,10 +14,21 @@ namespace IslandBoy
 		[SerializeField] private TextMeshProUGUI _promptText;
 		[SerializeField] private UnityEvent _onReqsMet;
 		[SerializeField] private UnityEvent _onSummon;
-		
-		private void OnEnable() 
+
+
+        private void Awake()
+        {
+            GameSignals.DAY_START.AddListener(Respawn);
+        }
+
+        private void OnDestroy()
+        {
+            GameSignals.DAY_START.RemoveListener(Respawn);
+        }
+
+        private void OnEnable() 
 		{
-			_promptText.text = $"Mysterious Old Lady: I can't let you leave until you find all my children...<br><br>Settlers Found: {NpcSlots.SettlerCount}/3";
+			_promptText.text = $"Mysterious Old Lady: Hello there youngling...Are you read for a special treet?<br><br>Settlers Found: {NpcSlots.SettlerCount}/3";
 			
 			if(NpcSlots.SettlerCount >= 3)
 			{
@@ -34,7 +45,12 @@ namespace IslandBoy
 		public void Summon()
 		{
 			Instantiate(_spawnPrefab, transform.root.position, Quaternion.identity);
-			Destroy(transform.root.gameObject);
+			transform.root.gameObject.SetActive(false);
 		}
+
+		private void Respawn(ISignalParameters parameters)
+		{
+            transform.root.gameObject.SetActive(true);
+        }
 	}
 }
