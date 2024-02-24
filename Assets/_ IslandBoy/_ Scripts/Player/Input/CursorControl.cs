@@ -324,7 +324,7 @@ namespace IslandBoy
 		private Vector2 CalcPosition()
 		{
 			Vector2 taPosition;
-			Vector2 playerPos = transform.root.transform.localPosition;
+			Vector2 playerPos = transform.root.transform.localPosition + new Vector3(0, -0.3f, 0);
 			Vector2 direction = (_pr.MousePosition - playerPos).normalized;
 
 			taPosition = Vector2.Distance(playerPos, _pr.MousePosition) > _currentClickDistance ? (playerPos += new Vector2(0, 0.25f)) + (direction * _currentClickDistance) : _pr.MousePosition;
