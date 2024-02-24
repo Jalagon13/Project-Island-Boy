@@ -11785,6 +11785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
+  _upgradeStone: {fileID: 0}
   _populateSound: {fileID: 8300000, guid: 383790fc2ca61fa49a920963cc4d2a38, type: 3}
   _craftSound: {fileID: 8300000, guid: f7b568774dd7db745ba2768324150fed, type: 3}
   _holder: {fileID: 2533169441044257107}
@@ -12979,9 +12980,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _questCanvas: {fileID: 8090540733700207227}
   _shopCanvas: {fileID: 1667663690214485934}
   _upgradeCanvas: {fileID: 7386138585088704820}
+  _npcToUnlock: 
+  _unboundSprite: {fileID: 0}
+  _recruitFeedback: {fileID: 0}
+  _freeFeedback: {fileID: 0}
 --- !u!114 &8313836301681945795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13710,6 +13714,21 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+  _onSummon:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 88724639896519210}
+        m_TargetAssemblyTypeName: IslandBoy.NPC, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &6913816107328613023
 GameObject:
@@ -15025,6 +15044,7 @@ MonoBehaviour:
   _slotHolder: {fileID: 4550916972615697606}
   _upgradePanelHolder: {fileID: 2533169441044257107}
   _upgradeUI: {fileID: 3401352026585481553}
+  _startingUpgradeList: []
 --- !u!1 &7733191438874754140
 GameObject:
   m_ObjectHideFlags: 0
@@ -15741,7 +15761,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Mysterious Old Lady: "Come back when you found all my children..."
+  m_text: 'Old Lady: "I can''t let you leave my island until you find all my children..."
 
 
     Settlers
