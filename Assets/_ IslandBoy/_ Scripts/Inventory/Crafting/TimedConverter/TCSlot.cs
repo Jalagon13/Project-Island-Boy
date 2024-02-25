@@ -37,6 +37,7 @@ namespace IslandBoy
 		private void SetGlobalsUpgrades(CraftingRecipeObject recipe, ItemObject originalItem, int xpCost)
 		{
 			_outputImage = transform.GetChild(0).GetComponent<Image>();
+			_outputImage.SetNativeSize();
 			_hoverImage = transform.GetChild(0).GetComponent<CraftSlotImageHover>();
 			_amountText = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
 			_recipe = recipe;
@@ -50,6 +51,7 @@ namespace IslandBoy
 		private void SetGlobals(CraftingRecipeObject recipe, ItemObject originalItem, int xpCost)
 		{
 			_outputImage = transform.GetChild(0).GetComponent<Image>();
+			_outputImage.SetNativeSize();
 			_hoverImage = transform.GetChild(0).GetComponent<CraftSlotImageHover>();
 			_amountText = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
 			_recipe = recipe;

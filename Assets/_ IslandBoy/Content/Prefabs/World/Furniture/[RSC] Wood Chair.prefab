@@ -216,6 +216,14 @@ PrefabInstance:
       propertyPath: m_text
       value: Use
       objectReference: {fileID: 0}
+    - target: {fileID: 6422946327641943076, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6422946327641943076, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7165791526722579916, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: managedReferences[1619343171848765461].Sfx
       value: 

@@ -44,6 +44,7 @@ namespace IslandBoy
 			_recipeToDisplay = recipeObject;
 			_outputText.text = $"{_recipeToDisplay.OutputItem.Name}";
 			_outputImage.sprite = recipeObject.OutputItem.UiDisplay;
+			_outputImage.SetNativeSize();
 			_xpCost = xpCost;
 
 			MMSoundManagerSoundPlayEvent.Trigger(_populateSound, MMSoundManager.MMSoundManagerTracks.UI, default);

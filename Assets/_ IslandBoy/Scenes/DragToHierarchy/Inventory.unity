@@ -5820,7 +5820,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 27.000004}
+  m_AnchoredPosition: {x: 50, y: 50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5602138069271407923
@@ -7576,6 +7576,16 @@ MonoBehaviour:
     OutputAmount: 1
   - OutputItem: {fileID: 11400000, guid: 902774a644957654d84a660b19ecc643, type: 2}
     OutputAmount: 1
+  - OutputItem: {fileID: 11400000, guid: fb9c53bc5a9014142b9e07f97db75202, type: 2}
+    OutputAmount: 1
+  - OutputItem: {fileID: 11400000, guid: c67ec61e0f752f845be2a959a4108887, type: 2}
+    OutputAmount: 999
+  - OutputItem: {fileID: 11400000, guid: 47c3a9b74278ee349b95932b23f8112c, type: 2}
+    OutputAmount: 999
+  - OutputItem: {fileID: 11400000, guid: dbada59a56ea5c649b2808ceffff5d67, type: 2}
+    OutputAmount: 999
+  - OutputItem: {fileID: 11400000, guid: a89d325f56e1521458a926e9cc55bc79, type: 2}
+    OutputAmount: 999
   _allSlots:
   - {fileID: 1398917238}
   - {fileID: 658019018}
