@@ -215,7 +215,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -236,7 +236,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -244,6 +244,27 @@ TextureImporter:
       bones: []
       spriteID: 9e8b39d7cea234b4db7823f9cbe234e9
       internalID: -730454844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tile_stone_decor
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1932c0c6b1c5b431bb87a8caf8a16286
+      internalID: 1444282430
       vertices: []
       indices: 
       edges: []
@@ -264,6 +285,7 @@ TextureImporter:
       tile_sand: -755577846
       tile_shallow_water: 661316942
       tile_stone: -2070871216
+      tile_stone_decor: 1444282430
       tile_wall: 970268544
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
