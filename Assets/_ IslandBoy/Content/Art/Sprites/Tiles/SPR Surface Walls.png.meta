@@ -811,7 +811,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -832,7 +832,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -840,6 +840,48 @@ TextureImporter:
       bones: []
       spriteID: 057139db283bd4a55814252dee0746b4
       internalID: -1841324723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPR Surface Walls_29
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e588225366d4484fad130dac73a3245
+      internalID: -808828174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SPR Surface Walls_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a836e202f0e04930ba5087833ceaa36
+      internalID: -625434574
       vertices: []
       indices: 
       edges: []
@@ -877,7 +919,9 @@ TextureImporter:
       SPR Surface Walls_26: -1587175569
       SPR Surface Walls_27: -1815311277
       SPR Surface Walls_28: -875587250
+      SPR Surface Walls_29: -808828174
       SPR Surface Walls_3: -1313604467
+      SPR Surface Walls_30: -625434574
       SPR Surface Walls_4: 324675023
       SPR Surface Walls_5: 692050710
       SPR Surface Walls_6: -2067905472
