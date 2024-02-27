@@ -125,7 +125,7 @@ namespace IslandBoy
 			
 			foreach(SpawnSetting setting in _spawnSettings)
 			{
-				int amount = UnityEngine.Random.Range((int)setting.SpawnAmount.x, (int)setting.SpawnAmount.y);
+				int amount = UnityEngine.Random.Range((int)setting.SpawnAmount.x, (int)setting.SpawnAmount.y + 1);
 				
 				for (int i = 0; i < amount; i++)
 				{
