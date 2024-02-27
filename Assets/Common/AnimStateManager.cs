@@ -27,9 +27,12 @@ namespace IslandBoy
 
         private static void PlayHashAnimation(Animator animator, int newHashState)
         {
-            animator.Play(newHashState);
-            CurrentStateHash = newHashState;
-            CurrentAnimatorInstanceID = animator.GetInstanceID();
+            if (animator.gameObject.activeInHierarchy)
+            {
+                animator.Play(newHashState);
+                CurrentStateHash = newHashState;
+                CurrentAnimatorInstanceID = animator.GetInstanceID();
+            }
         }
 
         public static void ChangeAnimationState(Animator animator, AnimationClip newState)

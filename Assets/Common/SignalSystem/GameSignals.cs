@@ -51,9 +51,10 @@ namespace IslandBoy
 		public static readonly Signal MONSTER_KILLED = new("MonsterKilled");
 		public static readonly Signal MONSTER_HEART_CLEARED = new("MonsterHeartCleared");
 		public static readonly Signal CONFINER_UPDATED = new("ConfinerUpdated");
+        public static readonly Signal TREEVIL_VANQUISHED = new("TreevilVanquished");
 
-		// Shift-click Signals
-		public static readonly Signal ADD_ITEMS_TO_CHEST = new("AddItemsToChest");
+        // Shift-click Signals
+        public static readonly Signal ADD_ITEMS_TO_CHEST = new("AddItemsToChest");
 		public static readonly Signal ADD_ITEM_TO_INVENTORY_FROM_CHEST = new("AddItemToInventoryFromChest");
 		public static readonly Signal ADD_ITEM_TO_SLOT = new("AddItemToSlot"); // when shift-clicking an item to an armor or accessory slot
 		public static readonly Signal EQUIP_ITEM = new("EquipItem");

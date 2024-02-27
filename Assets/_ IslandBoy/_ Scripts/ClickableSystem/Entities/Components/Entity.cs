@@ -30,7 +30,6 @@ namespace IslandBoy
 			_knockback = GetComponent<KnockbackFeedback>();
 			
 			GameSignals.DAY_END.AddListener(DestroyThisEntity);
-			//GameSignals.PLAYER_DIED.AddListener(DestroyThisEntity);
 			GameSignals.MONSTER_HEART_CLEARED.AddListener(Despawn);
 		}
 		
@@ -40,7 +39,6 @@ namespace IslandBoy
 				_entityRts.RemoveFromList(this);
 				
 			GameSignals.DAY_END.RemoveListener(DestroyThisEntity);
-			//GameSignals.PLAYER_DIED.RemoveListener(DestroyThisEntity);
 			GameSignals.MONSTER_HEART_CLEARED.RemoveListener(Despawn);
 		}
 
@@ -108,8 +106,11 @@ namespace IslandBoy
 		}
 
 		public override void OnBreak()
-		{
-			_dropPosition = transform.position;
+        {
+            if (_entityName == "Treevil") // will only be set off if the entity is a Treevil
+				GameSignals.TREEVIL_VANQUISHED.Dispatch();
+
+            _dropPosition = transform.position;
 			GameSignals.MONSTER_KILLED.Dispatch();
 			GiveMoney();
 
