@@ -50,9 +50,9 @@ namespace IslandBoy
 			}
 		}
 
-		public override bool OnHit(ToolType incomingToolType, int amount, bool displayHit = true)
+		public override bool OnHit(ToolType incomingToolType, int amount, bool displayHit = true, ToolTier incomingToolTier = ToolTier.None)
 		{
-			if (base.OnHit(incomingToolType, amount, displayHit))
+			if (base.OnHit(incomingToolType, amount, displayHit, incomingToolTier))
 			{
 				if (displayHit)
 				{

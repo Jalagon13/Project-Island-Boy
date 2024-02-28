@@ -17,6 +17,7 @@ namespace IslandBoy
 		[field: SerializeField] public List<ItemParameter> DefaultParameterList { get; set; }
 
 		public abstract ToolType ToolType { get; }
+		public abstract ToolTier ToolTier { get; }
 		public abstract ArmorType ArmorType { get; }
 		public abstract AccessoryType AccessoryType { get; }
 		public abstract void ExecutePrimaryAction(FocusSlotControl control);
@@ -24,6 +25,7 @@ namespace IslandBoy
 		public abstract string GetDescription();
 
 		protected ToolType _baseToolType = ToolType.None;
+		protected ToolTier _baseToolTier = ToolTier.None;
 		protected ArmorType _baseArmorType = ArmorType.None;
 		protected AccessoryType _baseAccessoryType = AccessoryType.None;
 	}

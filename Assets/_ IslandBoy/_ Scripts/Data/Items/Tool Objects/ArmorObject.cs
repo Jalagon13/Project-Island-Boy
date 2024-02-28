@@ -18,6 +18,7 @@ namespace IslandBoy
 		[SerializeField] private ArmorType _armorType;
 
 		public override ToolType ToolType => _baseToolType;
+		public override ToolTier ToolTier => _baseToolTier;
 		public override ArmorType ArmorType => _armorType;
 		public override AccessoryType AccessoryType => _baseAccessoryType;
 

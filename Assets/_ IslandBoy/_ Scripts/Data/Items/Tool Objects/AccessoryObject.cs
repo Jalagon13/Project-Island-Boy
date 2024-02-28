@@ -19,6 +19,7 @@ namespace IslandBoy
         [SerializeField] private float _dashSpeed;
 
         public override ToolType ToolType => _baseToolType;
+        public override ToolTier ToolTier => _baseToolTier;
         public override ArmorType ArmorType => _baseArmorType;
         public override AccessoryType AccessoryType => _accessoryType;
         public float Cooldown => _cooldown;

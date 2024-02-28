@@ -11,6 +11,7 @@ namespace IslandBoy
 		[SerializeField] private RuleTileExtended _wallTile;
 
 		public override ToolType ToolType => _baseToolType;
+		public override ToolTier ToolTier => _baseToolTier;
 		public override ArmorType ArmorType => _baseArmorType;
 		public override AccessoryType AccessoryType => _baseAccessoryType;
 
