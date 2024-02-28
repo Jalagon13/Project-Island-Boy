@@ -15,6 +15,8 @@ namespace IslandBoy
 		[SerializeField] private GameObject _tutorialObject;
 		[SerializeField] private Button _nextButton, _backButton;
 		[SerializeField] private UnityEvent _reachedLastDialogue;
+		[SerializeField] private string _noBedText;
+		private string _mainText;
 		
 		private int _counter = 0;
 
@@ -23,6 +25,7 @@ namespace IslandBoy
 			if (_signText != null)
 			{
 				_signText.text = _text[0];
+				_mainText = _text[0];
 			}
 		}
 
@@ -77,6 +80,18 @@ namespace IslandBoy
 			_signText.text = _text[0];
 			_nextButton.interactable = true;
 			_backButton.interactable = false;
+		}
+
+		public void NoBedText()
+        {
+			_text[0] = _noBedText;
+			_signText.text = _text[0];
+		}
+
+		public void HasBedText()
+		{
+			_text[0] = _mainText;
+			_signText.text = _text[0];
 		}
 	}
 

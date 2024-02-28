@@ -229,6 +229,9 @@ SpriteAtlas:
     - 84188563c40383642a900a2417e9b488: 1692513690
     - 84188563c40383642a900a2417e9b488: 63348611
     - 84188563c40383642a900a2417e9b488: -589386608
+    - 22edad244cd5c7345b51cc41df844657: 578162002
+    - 22edad244cd5c7345b51cc41df844657: -149983553
+    - 22edad244cd5c7345b51cc41df844657: 1907803313
     - 6d2b23449b2ec4fd1aeda3df6bf85639: -790631511
     - 6d2b23449b2ec4fd1aeda3df6bf85639: 1881148436
     - a8ee0b54010a00942b1d90cd4c8f59ca: 2076171840444846165
@@ -1326,6 +1329,9 @@ SpriteAtlas:
   - {fileID: 1692513690, guid: 84188563c40383642a900a2417e9b488, type: 3}
   - {fileID: 63348611, guid: 84188563c40383642a900a2417e9b488, type: 3}
   - {fileID: -589386608, guid: 84188563c40383642a900a2417e9b488, type: 3}
+  - {fileID: 578162002, guid: 22edad244cd5c7345b51cc41df844657, type: 3}
+  - {fileID: -149983553, guid: 22edad244cd5c7345b51cc41df844657, type: 3}
+  - {fileID: 1907803313, guid: 22edad244cd5c7345b51cc41df844657, type: 3}
   - {fileID: -790631511, guid: 6d2b23449b2ec4fd1aeda3df6bf85639, type: 3}
   - {fileID: 1881148436, guid: 6d2b23449b2ec4fd1aeda3df6bf85639, type: 3}
   - {fileID: 2076171840444846165, guid: a8ee0b54010a00942b1d90cd4c8f59ca, type: 3}
@@ -2422,6 +2428,9 @@ SpriteAtlas:
   - Treevil_Sapling
   - Treevil_Bark
   - Treevil_Thorn
+  - NPC_Icons_Blacksmith
+  - NPC_Icons_Knight
+  - NPC_Icons_Wizard
   - mob_evil_heart
   - mob_heart_iris
   - WS14_9

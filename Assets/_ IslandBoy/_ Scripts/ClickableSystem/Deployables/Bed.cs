@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace IslandBoy
 {
@@ -8,6 +9,8 @@ namespace IslandBoy
 	{
 		[SerializeField] private TilemapObject _wallTm;
 		[SerializeField] private TilemapObject _floorTm;
+		[SerializeField] private GameObject _npcIcon;
+		[SerializeField] private List<Sprite> _npcIconSprites;
 
 		private bool _canCheck;
 		private bool _occupied;
@@ -20,6 +23,11 @@ namespace IslandBoy
 		public void Start()
 		{
 			_canCheck = true;
+		}
+
+		public void OnDestroy()
+		{
+			MoveOutNPC();
 		}
 
 		public void TryToEndDay() // connected to bed button
@@ -44,6 +52,9 @@ namespace IslandBoy
 		{
 			_resident = resident;
 			_occupied = true;
+			_resident.SetBed(this);
+			_npcIcon.SetActive(true);
+			_npcIcon.GetComponent<Image>().sprite = GetNPCIcon();
 			ResetNpc();
 		}
 		
@@ -51,8 +62,10 @@ namespace IslandBoy
 		{
 			if(_resident != null)
 			{
+				_resident.RemoveBed();
 				_resident = null;
 				_occupied = false;
+				_npcIcon.SetActive(false);
 			}
 		}
 		
@@ -62,6 +75,20 @@ namespace IslandBoy
 			{
 				_resident.SetPosition(transform.position + new Vector3(0.5f, 0.5f));
 			}
+		}
+
+		private Sprite GetNPCIcon()
+        {
+			switch (_resident.Name)
+            {
+				case "Blacksmith":
+					return _npcIconSprites[0];
+				case "Knight":
+					return _npcIconSprites[1];
+				case "Wizard":
+					return _npcIconSprites[2];
+			}
+			return _npcIconSprites[0];
 		}
 		
 		// private Vector3 ReturnRandomFloorTile()

@@ -23354,6 +23354,7 @@ MonoBehaviour:
   _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxHitPoints: 999
   _breakType: 3
+  _breakTier: 0
   _clickFeedback: {fileID: 916017273567779306}
   _destroyFeedback: {fileID: 4532754497356607760}
   _lootTable:
@@ -23443,6 +23444,7 @@ MonoBehaviour:
   _unboundSprite: {fileID: 0}
   _recruitFeedback: {fileID: 2224635453730646341}
   _freeFeedback: {fileID: 7962256366746410039}
+  _shopButton: {fileID: 6070770589722955639}
 --- !u!114 &8313836301681945795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23624,6 +23626,7 @@ MonoBehaviour:
   _reachedLastDialogue:
     m_PersistentCalls:
       m_Calls: []
+  _noBedText: I can help you out if I had a place to <color=orange>sleep</color=orange>.
 --- !u!1 &5998598627032422697
 GameObject:
   m_ObjectHideFlags: 0
