@@ -1,4 +1,4 @@
-using System.Collections;
+ 	using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.Feedbacks;
 using Pathfinding;
@@ -12,28 +12,49 @@ namespace IslandBoy
 		[SerializeField] private Ammo _launchPrefab;
 		[SerializeField] private MMF_Player _spawnFeedback;
 		[SerializeField] private float _shootCooldown;
-		[SerializeField] private int _maxTeleportRange;
+		private Vector2 _velocity = Vector2.up; // Initial direction of movement
+		private Rigidbody2D _rb;
+
 		
 		private void Awake() 
 		{
+			_rb = GetComponent<Rigidbody2D>();
+			_rb.velocity = new Vector2(0.5f, 0.5f) * 3;
 			_spawnFeedback?.PlayFeedbacks();
 		}
 		
 		private IEnumerator Start() 
 		{
-			Teleport();
-			
 			yield return new WaitForSeconds(_shootCooldown);
 			
-			for (int i = 0; i < 3; i++)
-			{
-				ShootPlayer();
-				yield return new WaitForSeconds(2.5f);
-			}
-			
-			yield return new WaitForSeconds(_shootCooldown);
+			ShootPlayer();
 			
 			StartCoroutine(Start());
+		}
+		
+		private void FixedUpdate()
+		{
+			_rb.velocity = _rb.velocity.normalized * 3;
+			_velocity = _rb.velocity;
+			
+			if(_rb.velocity.sqrMagnitude == 0)
+			{
+				_rb.velocity = new Vector2(0.5f, 0.5f) * 5;
+			}
+		}
+		
+		private void OnCollisionEnter2D(Collision2D other)
+		{
+			System.Random rnd = new System.Random();
+			var randomRotationAngle = rnd.Next(-90, 90); 
+			var newAngle = Quaternion.AngleAxis(randomRotationAngle, Vector2.up) * other.contacts[0].normal;
+			_rb.velocity = Vector2.Reflect(_velocity, newAngle);
+		}
+		
+		public void OnHit()
+		{
+			Vector2 direction = (transform.position - (Vector3)_po.Position).normalized;
+			_rb.velocity = direction;
 		}
 		
 		private void ShootPlayer()
@@ -43,21 +64,6 @@ namespace IslandBoy
 			ammo.Setup(direction);
 			
 			// need visual indicator for mosnter spawning
-		}
-		
-		private void Teleport()
-		{
-			transform.position = CalcTpPos();
-		}
-		
-		private Vector2 CalcTpPos()
-		{
-			GraphNode startNode = AstarPath.active.GetNearest(_po.Position, NNConstraint.Default).node; 
- 
-			List<GraphNode> nodes = PathUtilities.BFS(startNode, _maxTeleportRange); 
-			Vector3 singleRandomPoint = PathUtilities.GetPointsOnNodes(nodes, 1)[0]; 
- 
-			return singleRandomPoint; 
 		}
 	}
 }
