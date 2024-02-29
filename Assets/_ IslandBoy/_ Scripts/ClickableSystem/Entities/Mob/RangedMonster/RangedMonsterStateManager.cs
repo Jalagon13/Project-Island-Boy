@@ -11,7 +11,9 @@ namespace IslandBoy
 		[SerializeField] private PlayerObject _po;
 		[SerializeField] private Ammo _launchPrefab;
 		[SerializeField] private MMF_Player _spawnFeedback;
+		[SerializeField] private MMF_Player _shootFeedback;
 		[SerializeField] private float _shootCooldown;
+		
 		private Vector2 _velocity = Vector2.up; // Initial direction of movement
 		private Rigidbody2D _rb;
 
@@ -27,7 +29,7 @@ namespace IslandBoy
 		{
 			yield return new WaitForSeconds(_shootCooldown);
 			
-			ShootPlayer();
+			_shootFeedback?.PlayFeedbacks();
 			
 			StartCoroutine(Start());
 		}
@@ -57,7 +59,7 @@ namespace IslandBoy
 			_rb.velocity = direction;
 		}
 		
-		private void ShootPlayer()
+		public void ShootPlayer()
 		{
 			Ammo ammo = Instantiate(_launchPrefab, transform.position, Quaternion.identity);
 			Vector3 direction = (_po.Position - (Vector2)ammo.transform.position).normalized;

@@ -32,7 +32,7 @@ namespace IslandBoy
 		
 		private IEnumerator FireBeam()
 		{
-			UpdateLineWidth(0.1f, 0.1f);
+			UpdateLineWidth(0.1f, 0.1f, new Color(1, 0, 0, .4f));
 			_damageCollider.enabled = false;
 			
 			float counter = 0;
@@ -53,7 +53,7 @@ namespace IslandBoy
 		private IEnumerator Fire()
 		{
 			yield return new WaitForEndOfFrame();
-			UpdateLineWidth(laserWidth, laserWidth);
+			UpdateLineWidth(laserWidth, laserWidth, new Color(1, 0, 0, 1f));
 			BuildDamageMesh(); 
 			
 			MMSoundManagerSoundPlayEvent.Trigger(_laserSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
@@ -112,12 +112,12 @@ namespace IslandBoy
 			return _line.startWidth;
 		}
 		
-		private void UpdateLineWidth(float start, float end)
+		private void UpdateLineWidth(float start, float end, Color lineColor)
 		{
 			_line.startWidth = start;
 			_line.endWidth = end;
-			_line.startColor = Color.red;
-			_line.endColor = Color.red;
+			_line.startColor = lineColor;
+			_line.endColor = lineColor;
 		}
 		
 		private void UpdateAimRenderer()

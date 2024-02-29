@@ -255,8 +255,12 @@ PrefabInstance:
       value: 5.194751
       objectReference: {fileID: 0}
     - target: {fileID: 6023195277773901937, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
+      propertyPath: m_Intensity
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6023195277773901937, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
       propertyPath: m_PointLightOuterRadius
-      value: 3
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1775851432390732077, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}

@@ -146,7 +146,7 @@ namespace IslandBoy
 			_rscCollider.enabled = true;
 			_forceFieldDown = true;
 			_mhView.DisableForceFieldUI();
-			_heartBeatDelay = 1.5f;
+			// _heartBeatDelay = 1.5f;
 			StartCoroutine(LaserSequence());
 			
 			_forceFieldDestroyedFeedbacks?.PlayFeedbacks();
