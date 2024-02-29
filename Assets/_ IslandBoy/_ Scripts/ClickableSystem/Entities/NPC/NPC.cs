@@ -90,6 +90,7 @@ namespace IslandBoy
 			_isFree = true;
 			_sr.sprite = _unboundSprite;
 			_freeFeedback?.PlayFeedbacks();
+			NpcSlots.Instance.FreeNPC(_npcToUnlock);
 		}
 
 		private void DisplayInteractable()

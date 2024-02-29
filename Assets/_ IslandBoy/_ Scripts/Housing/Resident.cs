@@ -36,14 +36,13 @@ namespace IslandBoy
         {
 			_bed = bed;
 			NPC.UnlockShop();
-			Debug.Log("set bed");
         }
 
 		public void RemoveBed()
 		{
 			_bed = null;
-			NPC.CloseShop();
-			Debug.Log("remove bed");
+			if (NPC != null)
+				NPC.CloseShop();
 		}
 	}
 }

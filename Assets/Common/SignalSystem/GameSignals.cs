@@ -61,5 +61,8 @@ namespace IslandBoy
 
 		// Fishing Signals
 		public static readonly Signal FISHING_MINIGAME_END = new("FishingMinigameEnd");
+
+		// NPC signals
+		public static readonly Signal NPC_FREED = new("NpcFreed");
 	}
 }

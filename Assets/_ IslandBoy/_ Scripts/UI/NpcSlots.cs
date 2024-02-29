@@ -11,15 +11,20 @@ namespace IslandBoy
 		[SerializeField] private GameObject _knightSlot;
 		
 		private static NpcSlots _instance;
-		//private static int _settlerCount;
 		private static List<string> _settlers = new List<string>();
-		
+		private static List<string> _freedNPCs = new List<string>();
+		private static List<string> _allNPCs = new List<string> { "Blacksmith", "Knight", "Wizard" };
+
 		public static NpcSlots Instance => _instance;
 		public static int SettlerCount => _settlers.Count;
-		
+
+		public List<string> AllNPCs { get { return _allNPCs; } }
+
 		private void Awake() 
 		{
 			_instance = this;
+			_freedNPCs.Clear();
+			_settlers.Clear();
 		}
 		
 		public void UpdateBlacksmithSlot()
@@ -67,6 +72,25 @@ namespace IslandBoy
 					_wizardSlot.transform.GetChild(1).gameObject.SetActive(true);
 					break;
 			}
+		}
+
+		public void FreeNPC(string npc)
+        {
+			if (!_freedNPCs.Contains(npc))
+            {
+				_freedNPCs.Add(npc);
+
+				Signal signal = GameSignals.NPC_FREED;
+				signal.Dispatch();
+			}
+		}
+
+		public bool HasBeenFreed(string npc)
+		{
+			if (_freedNPCs.Contains(npc))
+				return true;
+			else
+				return false;
 		}
 	}
 }

@@ -9,8 +9,9 @@ namespace IslandBoy
 	{
 		[SerializeField] private TilemapObject _wallTm;
 		[SerializeField] private TilemapObject _floorTm;
-		[SerializeField] private GameObject _npcIcon;
-		[SerializeField] private List<Sprite> _npcIconSprites;
+
+		[SerializeField] private GameObject _npcIcons;
+		private BedNpcButton _npcButton;
 
 		private bool _canCheck;
 		private bool _occupied;
@@ -19,15 +20,23 @@ namespace IslandBoy
 
 		public bool Occupied { get { return _occupied; } }
 		public Resident Resident { get { return _resident; } }
-		
-		public void Start()
+
+
+        public void Awake()
+        {
+			GameSignals.NPC_FREED.AddListener(UpdateNpcIcons);
+		}
+
+        public void Start()
 		{
 			_canCheck = true;
+			UpdateNpcIcons();
 		}
 
 		public void OnDestroy()
 		{
 			MoveOutNPC();
+			GameSignals.NPC_FREED.RemoveListener(UpdateNpcIcons);
 		}
 
 		public void TryToEndDay() // connected to bed button
@@ -53,8 +62,8 @@ namespace IslandBoy
 			_resident = resident;
 			_occupied = true;
 			_resident.SetBed(this);
-			_npcIcon.SetActive(true);
-			_npcIcon.GetComponent<Image>().sprite = GetNPCIcon();
+			_npcButton = GetNPCButton();
+			_npcButton.Select();
 			ResetNpc();
 		}
 		
@@ -65,7 +74,8 @@ namespace IslandBoy
 				_resident.RemoveBed();
 				_resident = null;
 				_occupied = false;
-				_npcIcon.SetActive(false);
+				_npcButton.Deselect();
+				_npcButton = null;
 			}
 		}
 		
@@ -77,27 +87,54 @@ namespace IslandBoy
 			}
 		}
 
-		private Sprite GetNPCIcon()
-        {
-			switch (_resident.Name)
-            {
-				case "Blacksmith":
-					return _npcIconSprites[0];
-				case "Knight":
-					return _npcIconSprites[1];
-				case "Wizard":
-					return _npcIconSprites[2];
+		public void ReassignNpc(string npc)
+		{
+			if (!(_resident != null && _resident.Name == npc))
+			{
+				MoveOutNPC();
+				if (InValidSpace())
+				{
+					Resident res = HousingController.Instance.GetResident(npc);
+					if (res != null)
+					{
+						if (res.Bed != null)
+							res.Bed.MoveOutNPC();
+						MoveInNPC(res);
+					}
+				}
 			}
-			return _npcIconSprites[0];
+			else
+            {
+				MoveOutNPC();
+			}
 		}
-		
+
+		private BedNpcButton GetNPCButton()
+        {
+			return _npcIcons.transform.Find(_resident.Name).GetComponent<BedNpcButton>();
+		}
+
+		private void UpdateNpcIcons(ISignalParameters parameters)
+        {
+			UpdateNpcIcons();
+		}
+
+		private void UpdateNpcIcons()
+        {
+			foreach (string npc in NpcSlots.Instance.AllNPCs)
+			{
+				if (NpcSlots.Instance.HasBeenFreed(npc))
+					_npcIcons.transform.Find(npc).gameObject.SetActive(true);
+			}
+		}
+
 		// private Vector3 ReturnRandomFloorTile()
 		// {
 		// 	var randomIndex = Random.Range(0, _floorTilePositions.Count - 1);
-			
+
 		// 	return _floorTilePositions[randomIndex];
 		// }
-		
+
 		private void DispatchEvents()
 		{
 			GameSignals.BED_TIME_EXECUTED.Dispatch();
