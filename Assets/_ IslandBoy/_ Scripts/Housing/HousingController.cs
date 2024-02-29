@@ -122,7 +122,7 @@ namespace IslandBoy
 		
 		private bool NpcAvailableToMoveIn(Bed bed, Resident resident)
 		{
-			return resident.NPC.IsFree /* && resident.Unlocked */ && !bed.Occupied;
+			return resident.NPC.IsFree /* && resident.Unlocked */ && !bed.Occupied && resident.Bed == null;
 		}
 		
 		// private void EnableNpc(Resident resident, bool _)

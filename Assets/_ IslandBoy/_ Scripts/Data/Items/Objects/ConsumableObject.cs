@@ -17,6 +17,7 @@ namespace IslandBoy
         private FocusSlotControl _selectedSlotControl;
 
         public override ToolType ToolType => _baseToolType;
+        public override ToolTier ToolTier => _baseToolTier;
         public override ArmorType ArmorType => _baseArmorType;
         public override AccessoryType AccessoryType => _baseAccessoryType;
         public PlayerStatType ConsumeType => _consumeType;

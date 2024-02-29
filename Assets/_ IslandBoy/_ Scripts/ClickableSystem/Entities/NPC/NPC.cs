@@ -17,9 +17,12 @@ namespace IslandBoy
 		[SerializeField] private MMF_Player _recruitFeedback;
 		[SerializeField] private MMF_Player _freeFeedback;
 
+		[SerializeField] private GameObject _shopButton;
+		private Sign _sign;
+
 		protected KnockbackFeedback _knockback;
 		private bool _isFree;
-		
+
 		public bool IsFree => _isFree;
 
 		protected override void Awake()
@@ -27,6 +30,7 @@ namespace IslandBoy
 			base.Awake();
 
 			_knockback = GetComponent<KnockbackFeedback>();
+			_sign = GetComponent<Sign>();
 		}
 		
 		public void OpenQuestUI() // connected to quest button
@@ -73,9 +77,11 @@ namespace IslandBoy
 			if(!_isFree)
 			{
 				FreeNpc();
+				_sign.NoBedText();
+				_shopButton.SetActive(false);
 				// GiveReward();
 			}
-
+				
 			base.Interact();
 		}
 		
@@ -84,19 +90,6 @@ namespace IslandBoy
 			_isFree = true;
 			_sr.sprite = _unboundSprite;
 			_freeFeedback?.PlayFeedbacks();
-			
-			switch(_npcToUnlock)
-			{
-				case "Blacksmith":
-					NpcSlots.Instance.UpdateBlacksmithSlot();
-					break;
-				case "Wizard":
-					NpcSlots.Instance.UpdateWizardSlot();
-					break;
-				case "Knight":
-					NpcSlots.Instance.UpdateKnightSlot();
-					break;
-			}
 		}
 
 		private void DisplayInteractable()
@@ -112,6 +105,31 @@ namespace IslandBoy
 			EnableInstructions(true);
 			EnableAmountDisplay(false);
 			EnableProgressBar(false);
+		}
+
+		public void UnlockShop()
+        {
+			switch (_npcToUnlock)
+			{
+				case "Blacksmith":
+					NpcSlots.Instance.UpdateBlacksmithSlot();
+					break;
+				case "Wizard":
+					NpcSlots.Instance.UpdateWizardSlot();
+					break;
+				case "Knight":
+					NpcSlots.Instance.UpdateKnightSlot();
+					break;
+			}
+			_shopButton.gameObject.SetActive(true);
+			_sign.HasBedText();
+		}
+
+		public void CloseShop()
+		{
+			NpcSlots.Instance.RemoveSlot(_npcToUnlock);
+			_shopButton.gameObject.SetActive(false);
+			_sign.NoBedText();
 		}
 	}
 }

@@ -91,7 +91,7 @@ namespace IslandBoy
 				if (_focusSlotRef.ItemObject is WallObject || _focusSlotRef.ItemObject is FloorObject || _focusSlotRef.ItemObject is DeployObject)
 					return;
 
-				if (_focusSlotRef.ToolType == clickable.BreakType || clickable is Interactable)
+				if ((_focusSlotRef.ToolType == clickable.BreakType && clickable.IsTierCompatibleWith(_focusSlotRef.ToolTier, clickable.BreakTier)) || clickable is Interactable)
 					clickable.ShowDisplay();
 				else
 					clickable.HideDisplay();
@@ -122,7 +122,7 @@ namespace IslandBoy
 			
 			if (_currentClickable != null && _currentClickable is not Entity)
 			{
-				_currentClickable.OnHit(_focusSlotRef.ToolType, CalcToolHitAmount());
+				_currentClickable.OnHit(_focusSlotRef.ToolType, CalcToolHitAmount(), true, _focusSlotRef.ToolTier);
 				_clickTimer.RemainingSeconds = CalcMiningSpeed();
 				return;
 			}

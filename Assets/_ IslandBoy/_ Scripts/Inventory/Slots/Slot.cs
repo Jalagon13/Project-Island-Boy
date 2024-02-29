@@ -37,6 +37,14 @@ namespace IslandBoy
 			}
 		}
 
+		public ToolTier ToolTier
+		{
+			get
+			{
+				return HasItem() ? GetComponentInChildren<InventoryItem>().Item.ToolTier : ToolTier.None;
+			}
+		}
+
 		public ItemObject ItemObject
 		{
 			get

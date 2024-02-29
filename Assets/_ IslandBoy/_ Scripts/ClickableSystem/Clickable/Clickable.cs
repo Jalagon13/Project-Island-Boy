@@ -13,6 +13,7 @@ namespace IslandBoy
 		[SerializeField] protected PlayerObject _po;
 		[SerializeField] protected int _maxHitPoints;
 		[SerializeField] protected ToolType _breakType;
+		[SerializeField] protected ToolTier _breakTier;
 		[SerializeField] protected MMF_Player _clickFeedback;
 		[SerializeField] protected MMF_Player _destroyFeedback;
 		[SerializeField] protected LootTable _lootTable;
@@ -25,6 +26,7 @@ namespace IslandBoy
 		protected Vector2 _dropPosition;
 
 		public ToolType BreakType { get { return _breakType; } }
+		public ToolTier BreakTier { get { return _breakTier; } }
 		public MMF_Player ClickFeedback { get { return _clickFeedback; } }
 
 		protected virtual void Awake()
@@ -45,9 +47,33 @@ namespace IslandBoy
 			}
 		}
 
-		public virtual bool OnHit(ToolType incomingToolType, int amount, bool displayHit = true)
+		/// <summary>
+		/// Checks if given tool's tier can break the given object's tier.
+		/// </summary>
+		/// <returns>true if can break it, false otherwise</returns>
+		public bool IsTierCompatibleWith(ToolTier toolTier, ToolTier objTier)
 		{
-			if (incomingToolType != _breakType || incomingToolType == ToolType.None)
+			switch (toolTier)
+			{
+				case ToolTier.Iron:
+					if (objTier == ToolTier.Iron) return true;
+					goto case ToolTier.Stone;
+				case ToolTier.Stone:
+					if (objTier == ToolTier.Stone) return true;
+					goto case ToolTier.Wood;
+				case ToolTier.Wood:
+					if (objTier == ToolTier.Wood) return true;
+					goto case ToolTier.None;
+				case ToolTier.None:
+					if (objTier == ToolTier.None) return true;
+					return false;
+			}
+			return false;
+		}
+
+		public virtual bool OnHit(ToolType incomingToolType, int amount, bool displayHit = true, ToolTier incomingToolTier = ToolTier.None)
+		{
+			if (incomingToolType != _breakType || !IsTierCompatibleWith(incomingToolTier, _breakTier) || incomingToolType == ToolType.None)
 				return false;
 
 			_clickFeedback?.PlayFeedbacks();

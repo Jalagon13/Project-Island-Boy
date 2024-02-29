@@ -11,7 +11,15 @@ namespace IslandBoy
 		Sword,
 		Hammer
 	}
-	
+
+	public enum ToolTier
+	{
+		None,
+		Wood,
+		Stone,
+		Iron
+	}
+
 	public enum NpcUpgradeType
 	{
 		None,
@@ -25,11 +33,13 @@ namespace IslandBoy
 	{
 		[Space(10)]
 		[SerializeField] private ToolType _type;
+		[SerializeField] private ToolTier _tier;
 		// [Header("Upgrade Parameters")]
 		// [SerializeField] private int _xpUpgradeCost;
 		// [SerializeField] private CraftingRecipeObject _upgradeRecipe;
 
 		public override ToolType ToolType => _type;
+		public override ToolTier ToolTier => _tier;
 		public override ArmorType ArmorType => _baseArmorType;
 		public override AccessoryType AccessoryType => _baseAccessoryType;
 		// public CraftingRecipeObject UpgradeRecipe => _upgradeRecipe;

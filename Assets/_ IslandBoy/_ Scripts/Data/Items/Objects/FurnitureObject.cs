@@ -42,5 +42,22 @@ namespace IslandBoy
             _index = 0;
             return _sprites[_index];
         }
+
+        public override string GetDescription()
+        {
+            float clickDistance = 0;
+
+            foreach (var item in DefaultParameterList)
+            {
+                switch (item.Parameter.ParameterName)
+                {
+                    case "ClickDistance":
+                        clickDistance = item.Value;
+                        break;
+                }
+            }
+
+            return $"{Description}<br>* Left Click to place<br>* Right Click to change sprite<br>* {clickDistance} build distance";
+        }
     }
 }
