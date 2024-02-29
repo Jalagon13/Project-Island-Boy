@@ -28,6 +28,18 @@ namespace IslandBoy
 			GameSignals.DAY_END.RemoveListener(UpdateHousing);
 		}
 		
+		public Resident GetResident(string npc)
+        {
+			foreach (Resident resident in _residents)
+			{
+				if (npc == resident.Name)
+				{
+					return resident;
+				}
+			}
+			return null;
+		}
+
 		public void UnlockNpc(string npcName)
 		{
 			foreach (Resident resident in _residents)
