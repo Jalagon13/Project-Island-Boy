@@ -134,6 +134,13 @@ namespace IslandBoy
 					continue;
 				}
 
+				// if there is a bed in the house other than this bed, not valid housing
+				if (HasBed(p))
+				{
+					print("Too many beds!");
+					return false;
+				}
+
 				// if tile has a wall, continue
 				if (_wallTm.Tilemap.HasTile(p))
 				{
@@ -232,6 +239,23 @@ namespace IslandBoy
 			{
 				if (col.TryGetComponent(out Door door))
 					return true;
+			}
+
+			return false;
+		}
+
+		private bool HasBed(Vector3Int pos)
+		{
+			var centerPos = new Vector2(pos.x + 0.5f, pos.y + 0.5f);
+			var colliders = Physics2D.OverlapCircleAll(centerPos, 0.1f);
+
+			foreach (Collider2D col in colliders)
+			{
+				if (col.TryGetComponent(out Bed bed))
+                {
+					if (transform.position != col.transform.position)
+						return true;
+				}
 			}
 
 			return false;
