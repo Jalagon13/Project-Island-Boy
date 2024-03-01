@@ -38,7 +38,6 @@ namespace IslandBoy
 			yield return new WaitForSeconds(.5f);
 			
 			_po.GameObject.transform.SetPositionAndRotation(_returnPoint.position, Quaternion.identity);
-			Debug.Log("Working?");
 			yield return new WaitForSeconds(.5f);
 			if(_transitionCollider != null)
 				_transitionCollider.enabled = true;

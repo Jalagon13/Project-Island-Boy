@@ -70,12 +70,14 @@ namespace IslandBoy
 		
 		private void EnableMovement(ISignalParameters parameters)
 		{
-			_canMove = true;
+			// _canMove = true;
+			_playerInput.Enable();
 		}
 		
 		private void DisableMovement(ISignalParameters parameters)
 		{
-			_canMove = false;
+			// _canMove = false;
+			_playerInput.Disable();
 			_moveDirection = Vector2.zero;
 			_onIdle?.Invoke();
 			StopAllCoroutines();
@@ -162,7 +164,7 @@ namespace IslandBoy
 		
 		private void MovementAction(InputAction.CallbackContext context)
 		{
-			if(!_canMove) return;
+			// if(!_canMove) return;
 			
 			_moveDirection = context.ReadValue<Vector2>();
 			

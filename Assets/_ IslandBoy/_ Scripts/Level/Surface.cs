@@ -27,8 +27,9 @@ namespace IslandBoy
 			GameSignals.NIGHT_START.RemoveListener(NightMonsterHandle);
 		}
 		
-		private void Start() 
+		private IEnumerator Start() 
 		{
+			yield return new WaitForSeconds(.5f);
 			DayMonsterHandle(null);
 		}
 		
