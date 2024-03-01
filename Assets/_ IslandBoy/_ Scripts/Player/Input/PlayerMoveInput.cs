@@ -22,6 +22,7 @@ namespace IslandBoy
 		private float _baseSpeed;
 		private bool _swinging;
 		private bool _moving;
+		private bool _canMove = true;
 
 		public float Speed { get { return _speed; } set { _speed = value; } }
 		public float BaseSpeed { get { return _baseSpeed; }}
@@ -33,6 +34,16 @@ namespace IslandBoy
 			_playerInput = new();
 			_baseSpeed = _speed;
 			_rb = GetComponent<Rigidbody2D>();
+			
+			GameSignals.SCENE_TRANSITION_START.AddListener(DisableMovement);
+			GameSignals.SCENE_TRANSITION_END.AddListener(EnableMovement);
+		}
+		
+		private void OnDestroy()
+		{
+			GameSignals.SCENE_TRANSITION_START.RemoveListener(DisableMovement);
+			GameSignals.SCENE_TRANSITION_END.RemoveListener(EnableMovement);
+			
 		}
 
 		private void OnEnable()
@@ -55,6 +66,19 @@ namespace IslandBoy
 		private void FixedUpdate()
 		{
 			_rb.MovePosition(_rb.position + _moveDirection * _speed * Time.deltaTime);
+		}
+		
+		private void EnableMovement(ISignalParameters parameters)
+		{
+			_canMove = true;
+		}
+		
+		private void DisableMovement(ISignalParameters parameters)
+		{
+			_canMove = false;
+			_moveDirection = Vector2.zero;
+			_onIdle?.Invoke();
+			StopAllCoroutines();
 		}
 
 		public void SetSwing(bool _)
@@ -138,6 +162,8 @@ namespace IslandBoy
 		
 		private void MovementAction(InputAction.CallbackContext context)
 		{
+			if(!_canMove) return;
+			
 			_moveDirection = context.ReadValue<Vector2>();
 			
 			StartCoroutine(PlayTwice());

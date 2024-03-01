@@ -53,7 +53,9 @@ namespace IslandBoy
 			GameSignals.DAY_START.AddListener(EnableAbilityToHit);
 			GameSignals.PLAYER_DIED.AddListener(DisableAbilityToHit);
 			GameSignals.GAME_PAUSED.AddListener(DisableAbilityToHit);
+			GameSignals.SCENE_TRANSITION_START.AddListener(DisableAbilityToHit);
 			GameSignals.GAME_UNPAUSED.AddListener(EnableAbilityToHit);
+			GameSignals.SCENE_TRANSITION_END.AddListener(EnableAbilityToHit);
 			GameSignals.ITEM_DEPLOYED.AddListener(RefreshCd);
 		}
 
@@ -64,7 +66,9 @@ namespace IslandBoy
 			GameSignals.DAY_START.RemoveListener(EnableAbilityToHit);
 			GameSignals.PLAYER_DIED.RemoveListener(DisableAbilityToHit);
 			GameSignals.GAME_PAUSED.RemoveListener(DisableAbilityToHit);
+			GameSignals.SCENE_TRANSITION_START.RemoveListener(DisableAbilityToHit);
 			GameSignals.GAME_UNPAUSED.RemoveListener(EnableAbilityToHit);
+			GameSignals.SCENE_TRANSITION_END.RemoveListener(EnableAbilityToHit);
 			GameSignals.ITEM_DEPLOYED.RemoveListener(RefreshCd);
 
 			_input.Disable();

@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,16 +12,36 @@ namespace IslandBoy
 		[SerializeField] private PlayerObject _po;
 		[SerializeField] private string _nextScene;
 		[SerializeField] private bool _enableColliderSceneSwitch;
+		[SerializeField] private MMF_Player _transitionFeedback;
+		[SerializeField] private Transform _returnPoint;
 		
-		private Vector2 _returnPosition;
 		private bool _isReturnPoint;
+		private Collider2D _transitionCollider;
+		
+		private void Awake()
+		{
+			_transitionCollider = GetComponent<Collider2D>();
+		}
 		
 		private void OnEnable()
 		{
 			if(!_isReturnPoint) return;
 			
-			_po.GameObject.transform.position = _returnPosition;
+			
 			_isReturnPoint = false;
+			
+			StartCoroutine(ColliderDelay());
+		}
+		
+		private IEnumerator ColliderDelay()
+		{
+			yield return new WaitForSeconds(.5f);
+			
+			_po.GameObject.transform.SetPositionAndRotation(_returnPoint.position, Quaternion.identity);
+			Debug.Log("Working?");
+			yield return new WaitForSeconds(.5f);
+			if(_transitionCollider != null)
+				_transitionCollider.enabled = true;
 		}
 		
 		private void OnTriggerEnter2D(Collider2D other) 
@@ -30,15 +52,23 @@ namespace IslandBoy
 			
 			if(ct != null)
 			{
-				SwitchScene();
+				PlayTransitionFeedback();
 			}
+		}
+		
+		public void PlayTransitionFeedback()
+		{
+			GameSignals.SCENE_TRANSITION_START.Dispatch();
+			_transitionFeedback?.PlayFeedbacks();
 		}
 		
 		public void SwitchScene()
 		{
+			if(_transitionCollider != null)
+				_transitionCollider.enabled = false;
+			
 			LevelControl.CaveLevelToLoad = 0;
 			
-			_returnPosition = _po.Position;
 			_isReturnPoint = true;
 			
 			Signal signal = GameSignals.CHANGE_SCENE;
