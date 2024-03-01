@@ -46,11 +46,11 @@ namespace IslandBoy
 
 			if (colliderGo.layer == 7 ) return;
 			
-			if(colliderGo.layer == 8)
-			{
-				Destroy(gameObject);
-				return;
-			}
+			// if(colliderGo.layer == 8)
+			// {
+			// 	Destroy(gameObject);
+			// 	return;
+			// }
 			
 			if(_canHitPlayer)
 			{
