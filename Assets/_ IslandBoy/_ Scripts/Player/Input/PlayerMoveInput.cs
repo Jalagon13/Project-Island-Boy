@@ -22,7 +22,6 @@ namespace IslandBoy
 		private float _baseSpeed;
 		private bool _swinging;
 		private bool _moving;
-		private bool _canMove = true;
 
 		public float Speed { get { return _speed; } set { _speed = value; } }
 		public float BaseSpeed { get { return _baseSpeed; }}

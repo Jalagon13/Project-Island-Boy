@@ -27,7 +27,7 @@ namespace IslandBoy
 				control.FocusSlot.InventoryItem.Count--;
 				GameSignals.ITEM_DEPLOYED.Dispatch();
 				control.WallTm.Tilemap.SetTile(pos, _wallTile);
-				MMSoundManagerSoundPlayEvent.Trigger(_wallTile.PlaceSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
+				MMSoundManagerSoundPlayEvent.Trigger(_wallTile.PlaceSound, MMSoundManager.MMSoundManagerTracks.Sfx, default, pitch:UnityEngine.Random.Range(0.9f, 1.1f));
 				AStarExtensions.Instance.UpdatePathfinding(pos, new(2, 2, 2));
 			}
 		}
