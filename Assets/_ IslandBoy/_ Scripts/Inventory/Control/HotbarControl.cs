@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using MoreMountains.Feedbacks;
+using MoreMountains.Tools;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -10,6 +12,7 @@ namespace IslandBoy
 	{
 		[SerializeField] private Color _highlightedColor;
 		[SerializeField] private Color _notHighlightedColor;
+		[SerializeField] private MMF_Player _hotbarUpdateFeedback;
 		[SerializeField] private InventorySlot[] _hotbarSlots;
 
 		private PlayerInput _input;
@@ -80,18 +83,21 @@ namespace IslandBoy
 		{
 			if(Pointer.IsOverUI()) return;
 			
+			
 			float scrollNum = context.ReadValue<float>();
 
 			UnHighlightPrevious();
 
 			if (scrollNum < 0)
 			{
+				_hotbarUpdateFeedback?.PlayFeedbacks();
 				_slotIndex++;
 				if (_slotIndex > _hotbarSlots.Length - 1)
 					_slotIndex = 0;
 			}
 			else if(scrollNum > 0)
 			{
+				_hotbarUpdateFeedback?.PlayFeedbacks();
 				_slotIndex--;
 				if(_slotIndex < 0)
 					_slotIndex = _hotbarSlots.Length - 1;
@@ -102,6 +108,7 @@ namespace IslandBoy
 
 		private void SelectSlot(InputAction.CallbackContext context)
 		{
+			_hotbarUpdateFeedback?.PlayFeedbacks();
 			_slotIndex = Int32.Parse(context.action.name) - 1;
 
 			if (_selectedSlot != _hotbarSlots[_slotIndex])
@@ -117,7 +124,7 @@ namespace IslandBoy
 			_selectedSlot = _hotbarSlots[_slotIndex];
 			var image = _selectedSlot.GetComponent<Image>();
 			image.color = _highlightedColor;
-
+			
 			DispatchSelectedSlotUpdated();
 		}
 
