@@ -15,6 +15,8 @@ namespace IslandBoy
 		[SerializeField] private Entity _ghostEntity;
 		[SerializeField] private List<Transform> _ghostSpawnPositions;
 		
+		private bool _enabledStartingUI;
+		
 		private void Awake() 
 		{
 			GameSignals.DAY_START.AddListener(DayMonsterHandle);
@@ -25,6 +27,23 @@ namespace IslandBoy
 		{
 			GameSignals.DAY_START.RemoveListener(DayMonsterHandle);
 			GameSignals.NIGHT_START.RemoveListener(NightMonsterHandle);
+		}
+		
+		private void OnEnable()
+		{
+			if(!_enabledStartingUI)
+			{
+				StartCoroutine(Delay());
+				
+				_enabledStartingUI = true;
+			}
+		}
+		
+		private IEnumerator Delay()
+		{
+			yield return new WaitForSeconds(3f);
+			
+			GameSignals.ENABLE_STARTING_MECHANICS.Dispatch();
 		}
 		
 		private IEnumerator Start() 

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -12,6 +13,7 @@ namespace IslandBoy
 	{
 		[SerializeField] private PlayerObject _pr;
 		[SerializeField] private int _maxStack;
+		[SerializeField] private MMF_Player _tutorialFeedback;
 		[SerializeField] private List<ChestInvSlot> _startingItems = new();
 		[SerializeField] private List<Slot> _allSlots = new();
 		[SerializeField] private List<ArmorSlot> _armorSlots = new();
@@ -31,6 +33,13 @@ namespace IslandBoy
 			_pr.Inventory = this;
 			_csc = GetComponent<CraftSlotsControl>();
 			_mouseItemHolder = transform.GetChild(3).GetChild(0).GetComponent<MouseSlot>();
+			
+			GameSignals.ENABLE_STARTING_MECHANICS.AddListener(EnableNPCView);
+		}
+		
+		private void OnDestroy()
+		{
+			GameSignals.ENABLE_STARTING_MECHANICS.RemoveListener(EnableNPCView);
 		}
 
 		private IEnumerator Start()
@@ -41,6 +50,11 @@ namespace IslandBoy
 			{
 				AddItem(item.OutputItem, item.OutputAmount, item.OutputItem.DefaultParameterList);
 			}
+		}
+		
+		private void EnableNPCView(ISignalParameters parameters)
+		{
+			_tutorialFeedback?.PlayFeedbacks();
 		}
 
 		public int AddItem(ItemObject item, int amount, List<ItemParameter> itemParameters = null)

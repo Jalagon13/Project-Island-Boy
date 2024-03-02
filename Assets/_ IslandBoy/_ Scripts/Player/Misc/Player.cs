@@ -43,6 +43,7 @@ namespace IslandBoy
 		private GameObject _sr;
 		private Vector2 _spawnPoint;
 		private int _currentHp, _currentNrg, _currentMp, _armorHead, _armorChest, _armorLeg;
+		private bool _canDepleteEnergy;
 			
 
 		private void Awake()
@@ -58,6 +59,7 @@ namespace IslandBoy
 			GameSignals.DAY_START.AddListener(RestoreStats);
 			GameSignals.FOCUS_SLOT_UPDATED.AddListener(FocusSlotUpdated);
 			GameSignals.BED_TIME_EXECUTED.AddListener(ChangeSpawnPoint);
+			GameSignals.ENABLE_STARTING_MECHANICS.AddListener(AllowEnergyDeplete);
 		}
 
 		private void OnDestroy()
@@ -67,6 +69,7 @@ namespace IslandBoy
 			GameSignals.DAY_START.RemoveListener(RestoreStats);
 			GameSignals.FOCUS_SLOT_UPDATED.RemoveListener(FocusSlotUpdated);
 			GameSignals.BED_TIME_EXECUTED.RemoveListener(ChangeSpawnPoint);
+			GameSignals.ENABLE_STARTING_MECHANICS.RemoveListener(AllowEnergyDeplete);
 		}
 
 		private void Start()
@@ -114,6 +117,11 @@ namespace IslandBoy
 			StartCoroutine(RegenOneMana());
 		}
 
+		private void AllowEnergyDeplete(ISignalParameters parameters)
+		{
+			_canDepleteEnergy = true;
+		}
+		
 		private void PlacePlayerAtSpawnPoint(ISignalParameters parameters)
 		{
 			transform.SetPositionAndRotation(_spawnPoint, Quaternion.identity);
@@ -229,6 +237,8 @@ namespace IslandBoy
 
 		private void OnSwing(ISignalParameters parameters)
 		{
+			if(!_canDepleteEnergy) return;
+			
 			if(parameters.HasParameter("EnergyLost"))
 			{
 				var energyLost = (int)parameters.GetParameter("EnergyLost");
@@ -455,7 +465,7 @@ namespace IslandBoy
 
 			GameSignals.DAY_END.Dispatch();
 			_playerCollider.enabled = true;
-            _sr.SetActive(true);
-        }
+			_sr.SetActive(true);
+		}
 	}
 }

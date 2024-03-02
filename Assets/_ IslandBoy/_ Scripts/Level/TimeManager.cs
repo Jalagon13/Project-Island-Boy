@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ namespace IslandBoy
 		[SerializeField] private Sprite _sunSprite;
 		[SerializeField] private Sprite _moonSprite;
 		[SerializeField] private bool _stopTime = false;
+		[SerializeField] private MMF_Player _tutorialFeedback;
 		
 		public float CurrentDayRatio => _currentTimeOfTheDay / DayDurationInSeconds;
 		public DayCycleHandler DayCycleHandler { get; set; }
@@ -39,6 +41,7 @@ namespace IslandBoy
 			GameSignals.GAME_PAUSED.AddListener(Pause);
 			GameSignals.GAME_UNPAUSED.AddListener(Resume);
 			GameSignals.DAY_START.AddListener(OnDayStart);
+			GameSignals.ENABLE_STARTING_MECHANICS.AddListener(StartTime);
 		}
 		
 		private void OnDisable()
@@ -46,6 +49,7 @@ namespace IslandBoy
 			GameSignals.GAME_PAUSED.RemoveListener(Pause);
 			GameSignals.GAME_UNPAUSED.RemoveListener(Resume);
 			GameSignals.DAY_START.RemoveListener(OnDayStart);
+			GameSignals.ENABLE_STARTING_MECHANICS.RemoveListener(StartTime);
 		}
 		
 		private void Update()
@@ -68,6 +72,12 @@ namespace IslandBoy
 					EndDay();
 				}
 			}
+		}
+		
+		private void StartTime(ISignalParameters parameters)
+		{
+			_stopTime = false;
+			_tutorialFeedback?.PlayFeedbacks();
 		}
 		
 		private void OnDayStart(ISignalParameters parameters)

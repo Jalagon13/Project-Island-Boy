@@ -70,5 +70,8 @@ namespace IslandBoy
 		// Scene Signals
 		public static readonly Signal SCENE_TRANSITION_START = new("SceneTransitionStart");
 		public static readonly Signal SCENE_TRANSITION_END = new("SceneTransitionStart");
+		
+		// Tutorial Signals
+		public static readonly Signal ENABLE_STARTING_MECHANICS = new("EnableStartingMechanics");
 	}
 }
