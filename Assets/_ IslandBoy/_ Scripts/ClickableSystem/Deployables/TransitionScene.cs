@@ -57,6 +57,7 @@ namespace IslandBoy
 		
 		public void PlayTransitionFeedback()
 		{
+			GameSignals.PLAYER_IS_NOT_MOVING.Dispatch();
 			GameSignals.SCENE_TRANSITION_START.Dispatch();
 			_transitionFeedback?.PlayFeedbacks();
 		}

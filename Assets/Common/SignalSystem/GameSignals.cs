@@ -34,6 +34,8 @@ namespace IslandBoy
 		public static readonly Signal ITEM_DEPLOYED = new("ItemDeployed");
 		public static readonly Signal ENERGY_RESTORED = new("EnergyRestored");
 		public static readonly Signal UPDATE_DEFENSE = new("UpdateDefense");
+		public static readonly Signal PLAYER_IS_MOVING = new("PlayerIsMoving");
+		public static readonly Signal PLAYER_IS_NOT_MOVING = new("PlayerIsNotMoving");
 
 		// Interact Signals
 		public static readonly Signal DISPLAY_PROMPT = new("DisplayPrompt");

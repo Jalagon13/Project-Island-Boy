@@ -197,6 +197,11 @@ namespace IslandBoy
 			MoveHandle();
 			yield return new WaitForEndOfFrame();
 			MoveHandle();
+			
+			if(_moving)
+				GameSignals.PLAYER_IS_MOVING.Dispatch();
+			else
+				GameSignals.PLAYER_IS_NOT_MOVING.Dispatch();
 		}
 	}
 }
