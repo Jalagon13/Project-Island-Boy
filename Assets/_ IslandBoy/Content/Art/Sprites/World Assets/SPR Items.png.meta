@@ -1664,7 +1664,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1685,7 +1685,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1693,6 +1693,69 @@ TextureImporter:
       bones: []
       spriteID: e4ab23cda6c0946a8b2596b782103312
       internalID: -1479775636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_wood_chair
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bbb54febceee401794cee06fe712ec8
+      internalID: -957350385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_wood_book_case
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da84021e7301e4515b33d854b1080abd
+      internalID: -683566292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_wood_lamp
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2929c63163e445479b6bc600b430af6
+      internalID: -1551106919
       vertices: []
       indices: 
       edges: []
@@ -1772,12 +1835,15 @@ TextureImporter:
       item_upgrade_core: 903736636
       item_wood: -602149933
       item_wood_axe: 1515656529
+      item_wood_book_case: -683566292
+      item_wood_chair: -957350385
       item_wood_chestplate: -848097959
       item_wood_club: 1819103735
       item_wood_floor: 1850925332
       item_wood_greaves: -972602597
       item_wood_hammer: 1844556041
       item_wood_helmet: 1611562402
+      item_wood_lamp: -1551106919
       item_wood_pickaxe: 504264504
       item_wood_plank: 1558334950
       item_wood_sword: 86916168

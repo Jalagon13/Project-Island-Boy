@@ -37,13 +37,21 @@ namespace IslandBoy
 		private void SetGlobalsUpgrades(CraftingRecipeObject recipe, ItemObject originalItem, int xpCost)
 		{
 			_outputImage = transform.GetChild(0).GetComponent<Image>();
-			_outputImage.SetNativeSize();
 			_hoverImage = transform.GetChild(0).GetComponent<CraftSlotImageHover>();
 			_amountText = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
 			_recipe = recipe;
 			_xpCost = xpCost;
 			_originalItem = originalItem;
 			_outputImage.sprite = originalItem.UiDisplay;
+			
+			// // // Get the original dimensions of the sprite
+			// float originalWidth = _outputImage.sprite.texture.width;
+			// float originalHeight = _outputImage.sprite.texture.height;
+			
+			// // // Set the size of the RectTransform component of the image
+			// // RectTransform rectTransform = _outputImage.GetComponent<RectTransform>();
+			// // rectTransform.sizeDelta = new Vector2(originalWidth, originalHeight);
+			// _outputImage.SetNativeSize();
 			_hoverImage.SetItemDescription(originalItem);
 			_amountText.text = recipe.OutputAmount == 1 ? string.Empty : recipe.OutputAmount.ToString();
 		}
@@ -51,13 +59,25 @@ namespace IslandBoy
 		private void SetGlobals(CraftingRecipeObject recipe, ItemObject originalItem, int xpCost)
 		{
 			_outputImage = transform.GetChild(0).GetComponent<Image>();
-			_outputImage.SetNativeSize();
 			_hoverImage = transform.GetChild(0).GetComponent<CraftSlotImageHover>();
 			_amountText = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
 			_recipe = recipe;
 			_xpCost = xpCost;
 			_originalItem = originalItem;
 			_outputImage.sprite = recipe.OutputItem.UiDisplay;
+			
+			// // // Get the original dimensions of the sprite
+			// float originalWidth = recipe.OutputItem.UiDisplay.texture.width;
+			// float originalHeight = recipe.OutputItem.UiDisplay.texture.height;
+			
+			// float scaleX = Mathf.Clamp(200 / originalWidth, 0.1f, 1f);
+            // float scaleY = Mathf.Clamp(200 / originalHeight, 0.1f, 1f);
+			
+			// // // Set the size of the RectTransform component of the image
+			// RectTransform rectTransform = _outputImage.GetComponent<RectTransform>();
+			// rectTransform.localScale = new Vector2(scaleX, scaleY);
+			
+			// _outputImage.SetNativeSize();
 			_hoverImage.SetItemDescription(recipe.OutputItem);
 			_amountText.text = recipe.OutputAmount == 1 ? string.Empty : recipe.OutputAmount.ToString();
 		}
