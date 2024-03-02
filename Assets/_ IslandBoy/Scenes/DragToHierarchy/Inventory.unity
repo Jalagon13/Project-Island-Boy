@@ -7878,8 +7878,12 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxStack: 999
   _startingItems:
-  - OutputItem: {fileID: 11400000, guid: a89d325f56e1521458a926e9cc55bc79, type: 2}
-    OutputAmount: 99
+  - OutputItem: {fileID: 11400000, guid: f9306cafa82c97447bc4f47c37ef4b10, type: 2}
+    OutputAmount: 1
+  - OutputItem: {fileID: 11400000, guid: 6dbf17cc40618ef4497ad3cc834f0ad2, type: 2}
+    OutputAmount: 1
+  - OutputItem: {fileID: 11400000, guid: 902774a644957654d84a660b19ecc643, type: 2}
+    OutputAmount: 1
   _allSlots:
   - {fileID: 1398917238}
   - {fileID: 658019018}

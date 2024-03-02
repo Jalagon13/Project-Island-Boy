@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace IslandBoy
 {
 	public class CaveManager : MonoBehaviour
 	{
+		[SerializeField] private MMF_Player _transitionFeedback;
 		[SerializeField] private LevelGenerator _levelPrefab;
 		[SerializeField] private string _surfaceSceneName;
 		
@@ -43,7 +45,7 @@ namespace IslandBoy
 		{
 			if(_levelIndex == 0)
 			{
-				SwitchScene();
+				PlayTransitionFeedback();
 				return;
 			}
 			
@@ -56,7 +58,14 @@ namespace IslandBoy
 			}
 		}
 		
-		private void SwitchScene()
+		public void PlayTransitionFeedback()
+		{
+			GameSignals.PLAYER_IS_NOT_MOVING.Dispatch();
+			GameSignals.SCENE_TRANSITION_START.Dispatch();
+			_transitionFeedback?.PlayFeedbacks();
+		}
+		
+		public void SwitchScene()
 		{
 			Signal signal = GameSignals.CHANGE_SCENE;
 			signal.ClearParameters();

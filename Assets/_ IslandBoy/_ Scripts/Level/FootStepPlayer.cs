@@ -29,7 +29,6 @@ namespace IslandBoy
 			if(!_moving)
 			{
 				_moving = true;
-				Debug.Log(_moving);
 				StartCoroutine(WalkingRoutine());
 			}
 		}
@@ -46,7 +45,6 @@ namespace IslandBoy
 			if(_moving)
 			{
 				_moving = false;
-				Debug.Log(_moving);
 				StopAllCoroutines();
 			}
 		}
