@@ -9,8 +9,8 @@ namespace IslandBoy
 	{
 		private void Awake()
 		{
-			StartCoroutine(LoadScenes());
-			// LoadSceneAdditively("MainMenu");
+			// StartCoroutine(LoadScenes());
+			LoadSceneAdditively("MainMenu");
 			// LoadSceneAdditively("Camera");
 		}
 		

@@ -26,6 +26,8 @@ namespace IslandBoy
 		
 		private void Update()
 		{
+			if(TimeManager.Instance == null) return;
+			
 			if(TimeManager.Instance.DayCycleHandler != null)
 			{
 				Color dayColor = TimeManager.Instance.DayCycleHandler.DayLight.color;

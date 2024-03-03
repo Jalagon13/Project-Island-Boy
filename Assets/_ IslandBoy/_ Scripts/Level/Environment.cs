@@ -30,7 +30,7 @@ namespace IslandBoy
 			yield return new WaitForEndOfFrame();
 			AStarExtensions.Instance.ReScanNodeGraph(_width, _height, _center);
 			
-			yield return new WaitForSeconds(0.25f);
+			yield return new WaitForSeconds(.5f);
 			_enviornmentSoundFeedback?.PlayFeedbacks();
 			GameSignals.SCENE_TRANSITION_END.Dispatch();
 		}

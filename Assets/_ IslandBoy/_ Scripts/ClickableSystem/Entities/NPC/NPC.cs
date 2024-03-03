@@ -30,7 +30,8 @@ namespace IslandBoy
 		protected override void Awake()
 		{
 			base.Awake();
-			_hoverText.text = "Free";
+			if(_hoverText != null)
+				_hoverText.text = "Free";
 			_knockback = GetComponent<KnockbackFeedback>();
 			_sign = GetComponent<Sign>();
 		}
