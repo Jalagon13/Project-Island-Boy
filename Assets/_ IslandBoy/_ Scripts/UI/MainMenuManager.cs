@@ -19,15 +19,15 @@ namespace IslandBoy
             yield return StartCoroutine(LoadSceneAdd("LevelControl"));
             yield return StartCoroutine(LoadSceneAdd("TimeManager"));
             yield return StartCoroutine(LoadSceneAdd("StartCave"));
+            Scene gameWorld = SceneManager.GetSceneByName("StartCave");
+            SceneManager.SetActiveScene(gameWorld);
             yield return StartCoroutine(LoadSceneAdd("DeathPanel"));
-            yield return StartCoroutine(LoadSceneAdd("Inventory"));
             yield return StartCoroutine(LoadSceneAdd("LaunchControl"));
             yield return StartCoroutine(LoadSceneAdd("PauseMenu"));
             yield return StartCoroutine(LoadSceneAdd("PromptDisplay"));
             yield return StartCoroutine(LoadSceneAdd("StatsDisplay"));
+            yield return StartCoroutine(LoadSceneAdd("Inventory"));
 
-            Scene gameWorld = SceneManager.GetSceneByName("StartCave");
-            SceneManager.SetActiveScene(gameWorld);
             SceneManager.UnloadSceneAsync("MainMenu");
 
         }
