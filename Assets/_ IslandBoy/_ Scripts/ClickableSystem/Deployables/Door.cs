@@ -25,6 +25,28 @@ namespace IslandBoy
 			_sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
 
 		}
+		
+		private void OnTriggerEnter2D(Collider2D other)
+		{
+			var playerFeet = other.GetComponent<FeetTag>();
+			
+			if(playerFeet != null)
+			{
+				Open();
+			}
+		}
+		
+		protected override void OnTriggerExit2D(Collider2D other)
+		{
+			base.OnTriggerExit2D(other);
+			
+			var playerFeet = other.GetComponent<FeetTag>();
+			
+			if(playerFeet != null)
+			{
+				Close();
+			}
+		}
 
 		public override void Interact()
 		{

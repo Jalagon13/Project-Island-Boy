@@ -3024,7 +3024,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Settlers Housed:'
+  m_text: 'Settlers Saved:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
   m_sharedMaterial: {fileID: 4835514525599508895, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
@@ -8323,7 +8323,11 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxStack: 999
   _tutorialFeedback: {fileID: 355020581}
-  _startingItems: []
+  _startingItems:
+  - OutputItem: {fileID: 11400000, guid: f9306cafa82c97447bc4f47c37ef4b10, type: 2}
+    OutputAmount: 1
+  - OutputItem: {fileID: 11400000, guid: 902774a644957654d84a660b19ecc643, type: 2}
+    OutputAmount: 1
   _allSlots:
   - {fileID: 1398917238}
   - {fileID: 658019018}

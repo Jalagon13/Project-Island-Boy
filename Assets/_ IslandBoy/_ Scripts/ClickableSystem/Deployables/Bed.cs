@@ -83,7 +83,7 @@ namespace IslandBoy
 		{
 			if(_occupied)
 			{
-				_resident.SetPosition(transform.position + new Vector3(0.5f, 0.5f));
+				_resident.SetPosition(_floorTilePositions[Random.Range(0, _floorTilePositions.Count)] + new Vector3(0.5f, 0.5f));
 			}
 		}
 

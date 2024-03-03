@@ -23442,6 +23442,7 @@ MonoBehaviour:
   _upgradeCanvas: {fileID: 7386138585088704820}
   _npcToUnlock: 
   _unboundSprite: {fileID: 0}
+  _hoverText: {fileID: 5409757075472808431}
   _recruitFeedback: {fileID: 2224635453730646341}
   _freeFeedback: {fileID: 7962256366746410039}
   _shopButton: {fileID: 6070770589722955639}
@@ -25709,7 +25710,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.5951, y: -0.118}
+  m_AnchoredPosition: {x: 0.726, y: -0.118}
   m_SizeDelta: {x: 114.9374, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4243473498137629473

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.Feedbacks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,6 +15,7 @@ namespace IslandBoy
 		[SerializeField] private Canvas _upgradeCanvas;
 		[SerializeField] private string _npcToUnlock;
 		[SerializeField] private Sprite _unboundSprite;
+		[SerializeField] private TextMeshProUGUI _hoverText;
 		[SerializeField] private MMF_Player _recruitFeedback;
 		[SerializeField] private MMF_Player _freeFeedback;
 
@@ -28,7 +30,7 @@ namespace IslandBoy
 		protected override void Awake()
 		{
 			base.Awake();
-
+			_hoverText.text = "Free";
 			_knockback = GetComponent<KnockbackFeedback>();
 			_sign = GetComponent<Sign>();
 		}
@@ -89,6 +91,7 @@ namespace IslandBoy
 		{
 			_isFree = true;
 			_sr.sprite = _unboundSprite;
+			_hoverText.text = "Talk";
 			_freeFeedback?.PlayFeedbacks();
 			NpcSlots.Instance.FreeNPC(_npcToUnlock);
 		}
@@ -109,7 +112,7 @@ namespace IslandBoy
 		}
 
 		public void UnlockShop()
-        {
+		{
 			switch (_npcToUnlock)
 			{
 				case "Blacksmith":
