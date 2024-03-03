@@ -16,8 +16,8 @@ namespace IslandBoy
         private IEnumerator LoadScenes()
         {
             yield return StartCoroutine(LoadSceneAdd("Player"));
-            yield return StartCoroutine(LoadSceneAdd("LevelControl"));
             yield return StartCoroutine(LoadSceneAdd("TimeManager"));
+            yield return StartCoroutine(LoadSceneAdd("LevelControl"));
             yield return StartCoroutine(LoadSceneAdd("StartCave"));
             Scene gameWorld = SceneManager.GetSceneByName("StartCave");
             SceneManager.SetActiveScene(gameWorld);
