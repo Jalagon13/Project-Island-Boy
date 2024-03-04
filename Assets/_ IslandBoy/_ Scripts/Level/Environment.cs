@@ -14,9 +14,24 @@ namespace IslandBoy
 		[Header("BGM/A")]
 		[SerializeField] private MMF_Player _enviornmentSoundFeedback;
 		
+		private bool _firstTimeLoad;
+		
+		private void Start()
+		{
+			if(!_firstTimeLoad)
+			{
+				_firstTimeLoad = true;
+				StartCoroutine(Delay());
+			}
+		}
+		
 		private void OnEnable()
 		{
-			StartCoroutine(Delay());
+			if(_firstTimeLoad)
+			{
+				StartCoroutine(Delay());
+			}
+			
 		}
 		
 		private void OnDisable()
@@ -29,7 +44,7 @@ namespace IslandBoy
 		{
 			yield return new WaitForEndOfFrame();
 			AStarExtensions.Instance.ReScanNodeGraph(_width, _height, _center);
-			Debug.Log("Test");
+				Debug.Log("Test");
 			yield return new WaitForSeconds(.75f);
 			_enviornmentSoundFeedback?.PlayFeedbacks();
 			// yield return new WaitForSeconds(.25f);
