@@ -21,6 +21,7 @@ namespace IslandBoy
 			
 			yield return StartCoroutine(LoadSceneAdd("Surface"));
 			Scene surfaceScene = SceneManager.GetSceneByName("Surface");
+			yield return new WaitForSeconds(0.2f);
 			EnableAllObjectsInScene(surfaceScene, false);
 			
 			yield return StartCoroutine(LoadSceneAdd("StartCave"));

@@ -44,8 +44,8 @@ namespace IslandBoy
 		{
 			// SceneManager.sceneLoaded -= OnSceneLoaded;
 			
-			// _enviornmentSoundFeedback?.StopFeedbacks();
-			// StopAllCoroutines();
+			_enviornmentSoundFeedback?.StopFeedbacks();
+			StopAllCoroutines();
 		}
 		
 		private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
