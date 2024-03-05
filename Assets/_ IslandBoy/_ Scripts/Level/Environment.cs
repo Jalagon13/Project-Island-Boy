@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace IslandBoy
 {
@@ -27,6 +28,8 @@ namespace IslandBoy
 		
 		private void OnEnable()
 		{
+			// SceneManager.sceneLoaded += OnSceneLoaded;
+			
 			if(_firstTimeLoad)
 			{
 				StartCoroutine(Delay());
@@ -36,15 +39,23 @@ namespace IslandBoy
 		
 		private void OnDisable()
 		{
+			// SceneManager.sceneLoaded -= OnSceneLoaded;
+			
 			_enviornmentSoundFeedback?.StopFeedbacks();
 			StopAllCoroutines();
+		}
+		
+		private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+		{
+			StartCoroutine(Delay());
 		}
 		
 		private IEnumerator Delay()
 		{
 			yield return new WaitForEndOfFrame();
+			
 			AStarExtensions.Instance.ReScanNodeGraph(_width, _height, _center);
-				Debug.Log("Test");
+			
 			yield return new WaitForSeconds(.75f);
 			_enviornmentSoundFeedback?.PlayFeedbacks();
 			// yield return new WaitForSeconds(.25f);
