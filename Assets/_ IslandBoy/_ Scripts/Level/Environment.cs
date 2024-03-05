@@ -14,6 +14,7 @@ namespace IslandBoy
 		[SerializeField] private Vector3 _center;
 		[Header("BGM/A")]
 		[SerializeField] private MMF_Player _enviornmentSoundFeedback;
+		[SerializeField] private MMF_Player _enviornmentSoundFeedback2;
 		
 		private bool _firstTimeLoad;
 		
@@ -21,6 +22,8 @@ namespace IslandBoy
 		{
 			if(!_firstTimeLoad)
 			{
+				
+				// yield return new WaitForSeconds(2);
 				_firstTimeLoad = true;
 				StartCoroutine(Delay());
 			}
@@ -41,8 +44,8 @@ namespace IslandBoy
 		{
 			// SceneManager.sceneLoaded -= OnSceneLoaded;
 			
-			_enviornmentSoundFeedback?.StopFeedbacks();
-			StopAllCoroutines();
+			// _enviornmentSoundFeedback?.StopFeedbacks();
+			// StopAllCoroutines();
 		}
 		
 		private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -56,13 +59,18 @@ namespace IslandBoy
 			
 			AStarExtensions.Instance.ReScanNodeGraph(_width, _height, _center);
 			
-			yield return new WaitForSeconds(.75f);
-			_enviornmentSoundFeedback?.PlayFeedbacks();
+			GameSignals.SCENE_TRANSITION_END.Dispatch();
+			yield return new WaitForSeconds(1f);
+			
+			if(_enviornmentSoundFeedback != null)
+				_enviornmentSoundFeedback?.PlayFeedbacks();
+				
+			if(_enviornmentSoundFeedback2 != null)
+				_enviornmentSoundFeedback2?.PlayFeedbacks();
 			// yield return new WaitForSeconds(.25f);
 			// _enviornmentSoundFeedback?.StopFeedbacks();
 			// yield return new WaitForSeconds(.25f);
 			// _enviornmentSoundFeedback?.PlayFeedbacks();
-			GameSignals.SCENE_TRANSITION_END.Dispatch();
 		}
 	}
 }

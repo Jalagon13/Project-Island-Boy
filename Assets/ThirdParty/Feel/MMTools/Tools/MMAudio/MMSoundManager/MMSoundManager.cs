@@ -50,7 +50,7 @@ namespace MoreMountains.Tools
 		
 		/// the possible ways to manage a track
 		public enum MMSoundManagerTracks { Sfx, Music, UI, Master, Other}
-        
+		
 		[Header("Settings")]
 		/// the current sound settings 
 		[Tooltip("the current sound settings ")]
@@ -63,7 +63,7 @@ namespace MoreMountains.Tools
 		/// whether or not the pool can expand (create new audiosources on demand). In a perfect world you'd want to avoid this, and have a sufficiently big pool, to avoid costly runtime creations.
 		[Tooltip("whether or not the pool can expand (create new audiosources on demand). In a perfect world you'd want to avoid this, and have a sufficiently big pool, to avoid costly runtime creations.")]
 		public bool PoolCanExpand = true;
-        
+		
 		protected MMSoundManagerAudioPool _pool;
 		protected GameObject _tempAudioSourceGameObject;
 		protected MMSoundManagerSound _sound;
@@ -83,7 +83,7 @@ namespace MoreMountains.Tools
 			base.Awake();
 			InitializeSoundManager();
 		}
-        
+		
 		/// <summary>
 		/// On Start we load and apply our saved settings if needed.
 		/// This is done on Start and not Awake because of a bug in Unity's AudioMixer API
@@ -111,9 +111,9 @@ namespace MoreMountains.Tools
 			_fadeOutSoundCoroutines = new Dictionary<AudioSource, Coroutine>();
 			_fadeTrackCoroutines = new Dictionary<MMSoundManagerTracks, Coroutine>();
 		}
-        
+		
 		#endregion
-        
+		
 		#region PlaySound
 
 		/// <summary>
@@ -189,12 +189,12 @@ namespace MoreMountains.Tools
 		{
 			if (this == null) { return null; }
 			if (!audioClip) { return null; }
-            
+			
 			// audio source setup ---------------------------------------------------------------------------------
-            
+			
 			// we reuse an audiosource if one is passed in parameters
 			AudioSource audioSource = recycleAudioSource;   
-            
+			
 			if (!audioSource)
 			{
 				// we pick an idle audio source from the pool if possible
@@ -214,9 +214,9 @@ namespace MoreMountains.Tools
 				SceneManager.MoveGameObjectToScene(_tempAudioSourceGameObject, this.gameObject.scene);
 				audioSource = _tempAudioSourceGameObject.AddComponent<AudioSource>();
 			}
-            
+			
 			// audio source settings ---------------------------------------------------------------------------------
-            
+			
 			audioSource.transform.position = location;
 			audioSource.clip = audioClip;
 			audioSource.pitch = pitch;
@@ -257,9 +257,9 @@ namespace MoreMountains.Tools
 				followTarget.FollowScale = false;
 				followTarget.enabled = true;
 			}
-            
+			
 			// track and volume ---------------------------------------------------------------------------------
-            
+			
 			if (settingsSo != null)
 			{
 				audioSource.outputAudioMixerGroup = settingsSo.MasterAudioMixerGroup;
@@ -281,23 +281,23 @@ namespace MoreMountains.Tools
 			}
 			if (audioGroup) { audioSource.outputAudioMixerGroup = audioGroup; }
 			audioSource.volume = volume;  
-            
+			
 			// we start playing the sound
 			audioSource.Play();
-            
+			
 			// we destroy the host after the clip has played if it was a one time AS.
 			if (!loop && !recycleAudioSource)
 			{
 				float destroyDelay = (playbackDuration > 0) ? playbackDuration : audioClip.length - playbackTime;
 				Destroy(_tempAudioSourceGameObject, destroyDelay);
 			}
-            
+			
 			// we fade the sound in if needed
 			if (fade)
 			{
 				FadeSound(audioSource, fadeDuration, fadeInitialVolume, volume, fadeTween);
 			}
-            
+			
 			// we handle soloing
 			if (soloSingleTrack)
 			{
@@ -317,7 +317,7 @@ namespace MoreMountains.Tools
 					StartCoroutine(MuteAllSoundsCoroutine(audioClip.length - playbackTime, false));
 				}
 			}
-            
+			
 			// we prepare for storage
 			_sound.ID = ID;
 			_sound.Track = mmSoundManagerTrack;
@@ -345,7 +345,7 @@ namespace MoreMountains.Tools
 			// we return the audiosource reference
 			return audioSource;
 		}
-        
+		
 		#endregion
 
 		#region SoundControls
@@ -367,7 +367,7 @@ namespace MoreMountains.Tools
 		{
 			source.Play();
 		}
-        
+		
 		/// <summary>
 		/// Stops the specified audio source
 		/// </summary>
@@ -376,7 +376,7 @@ namespace MoreMountains.Tools
 		{
 			source.Stop();
 		}
-        
+		
 		/// <summary>
 		/// Frees a specific sound, stopping it and returning it to the pool
 		/// </summary>
@@ -391,9 +391,9 @@ namespace MoreMountains.Tools
 		}
 
 		#endregion
-        
+		
 		#region TrackControls
-        
+		
 		/// <summary>
 		/// Mutes an entire track
 		/// </summary>
@@ -471,7 +471,7 @@ namespace MoreMountains.Tools
 
 			return 1f;
 		}
-        
+		
 		/// <summary>
 		/// Pauses all sounds on a track
 		/// </summary>
@@ -550,7 +550,7 @@ namespace MoreMountains.Tools
 			}
 			return soundsPlaying;
 		}
-        
+		
 		/// <summary>
 		/// Stops all sounds on a track, and returns them to the pool
 		/// </summary>
@@ -566,49 +566,49 @@ namespace MoreMountains.Tools
 				}
 			}
 		}
-        
+		
 		/// <summary>
 		/// Mutes the music track, QoL method ready to bind to a UnityEvent
 		/// </summary>
 		public virtual void MuteMusic() { MuteTrack(MMSoundManagerTracks.Music); }
-        
+		
 		/// <summary>
 		/// Unmutes the music track, QoL method ready to bind to a UnityEvent
 		/// </summary>
 		public virtual void UnmuteMusic() { UnmuteTrack(MMSoundManagerTracks.Music); }
-        
+		
 		/// <summary>
 		/// Mutes the sfx track, QoL method ready to bind to a UnityEvent
 		/// </summary>
 		public virtual void MuteSfx() { MuteTrack(MMSoundManagerTracks.Sfx); }
-        
-        
+		
+		
 		/// <summary>
 		/// Unmutes the sfx track, QoL method ready to bind to a UnityEvent
 		/// </summary>
 		public virtual void UnmuteSfx() { UnmuteTrack(MMSoundManagerTracks.Sfx); }
-        
+		
 		/// <summary>
 		/// Mutes the UI track, QoL method ready to bind to a UnityEvent
 		/// </summary>
 		public virtual void MuteUI() { MuteTrack(MMSoundManagerTracks.UI); }
-        
+		
 		/// <summary>
 		/// Unmutes the UI track, QoL method ready to bind to a UnityEvent
 		/// </summary>
 		public virtual void UnmuteUI() { UnmuteTrack(MMSoundManagerTracks.UI); }
-        
+		
 		/// <summary>
 		/// Mutes the master track, QoL method ready to bind to a UnityEvent
 		/// </summary>
 		public virtual void MuteMaster() { MuteTrack(MMSoundManagerTracks.Master); }
-        
+		
 		/// <summary>
 		/// Unmutes the master track, QoL method ready to bind to a UnityEvent
 		/// </summary>
 		public virtual void UnmuteMaster() { UnmuteTrack(MMSoundManagerTracks.Master); }
-        
-        
+		
+		
 		/// <summary>
 		/// Sets the volume of the Music track to the specified value, QoL method, ready to bind to a UnityEvent
 		/// </summary>
@@ -646,7 +646,7 @@ namespace MoreMountains.Tools
 			}
 			return false;
 		}
-        
+		
 		/// <summary>
 		/// A method that will let you mute/unmute a track, or set it to a specified volume
 		/// </summary>
@@ -655,7 +655,7 @@ namespace MoreMountains.Tools
 		{
 			string target = "";
 			float savedVolume = 0f; 
-            
+			
 			switch (track)
 			{
 				case MMSoundManagerTracks.Master:
@@ -700,11 +700,11 @@ namespace MoreMountains.Tools
 				settingsSo.SaveSoundSettings();
 			}
 		}
-        
+		
 		#endregion
 
 		#region Fades
-        
+		
 		/// <summary>
 		/// Fades an entire track over the specified duration towards the desired finalVolume
 		/// </summary>
@@ -718,7 +718,7 @@ namespace MoreMountains.Tools
 			Coroutine coroutine = StartCoroutine(FadeTrackCoroutine(track, duration, initialVolume, finalVolume, tweenType));
 			_fadeTrackCoroutines[track] = coroutine;
 		}
-        
+		
 		/// <summary>
 		/// Fades a target sound towards a final volume over time
 		/// </summary>
@@ -868,7 +868,7 @@ namespace MoreMountains.Tools
 				_fadeOutSoundCoroutines[source] = null;
 			}
 		}
-        
+		
 		#endregion
 
 		#region Solo
@@ -883,7 +883,7 @@ namespace MoreMountains.Tools
 		{
 			StartCoroutine(MuteSoundsOnTrackCoroutine(track, mute, delay));
 		}
-        
+		
 		/// <summary>
 		/// Mutes all sounds playing on the MMSoundManager
 		/// </summary>
@@ -906,7 +906,7 @@ namespace MoreMountains.Tools
 			{
 				yield return MMCoroutine.WaitForUnscaled(delay);    
 			}
-            
+			
 			foreach (MMSoundManagerSound sound in _sounds)
 			{
 				if (sound.Track == track)
@@ -1024,7 +1024,7 @@ namespace MoreMountains.Tools
 				}
 			}
 		}
-        
+		
 		/// <summary>
 		/// Stops all sounds except the persistent ones, and returns them to the pool
 		/// </summary>
@@ -1056,7 +1056,7 @@ namespace MoreMountains.Tools
 		#endregion
 
 		#region Events
-        
+		
 		/// <summary>
 		/// Registered on enable, triggers every time a new scene is loaded
 		/// At which point we free all sounds except the persistent ones
@@ -1093,7 +1093,7 @@ namespace MoreMountains.Tools
 					break;
 			}
 		}
-        
+		
 		public virtual void OnMMEvent(MMSoundManagerEvent soundManagerEvent)
 		{
 			switch (soundManagerEvent.EventType)
@@ -1133,7 +1133,7 @@ namespace MoreMountains.Tools
 		{
 			settingsSo.ResetSoundSettings();
 		}
-        
+		
 		public virtual void OnMMEvent(MMSoundManagerSoundControlEvent soundControlEvent)
 		{
 			if (soundControlEvent.TargetSource == null)
@@ -1164,7 +1164,7 @@ namespace MoreMountains.Tools
 				}
 			}
 		}
-        
+		
 		public virtual void OnMMEvent(MMSoundManagerTrackFadeEvent trackFadeEvent)
 		{
 			switch (trackFadeEvent.Mode)
@@ -1177,7 +1177,7 @@ namespace MoreMountains.Tools
 					break;
 			}
 		}
-        
+		
 		public virtual void OnMMEvent(MMSoundManagerSoundFadeEvent soundFadeEvent)
 		{
 			_tempAudioSource = FindByID(soundFadeEvent.SoundID);
@@ -1195,7 +1195,7 @@ namespace MoreMountains.Tools
 					break;
 			}
 		}
-        
+		
 		public virtual void OnMMEvent(MMSoundManagerAllSoundsControlEvent allSoundsControlEvent)
 		{
 			switch (allSoundsControlEvent.EventType)
@@ -1234,7 +1234,7 @@ namespace MoreMountains.Tools
 			}
 			options.MmSoundManagerTrack = MMSoundManagerTracks.Sfx;
 			options.Loop = false;
-            
+			
 			PlaySound(clipToPlay, options);
 		}
 
@@ -1242,7 +1242,7 @@ namespace MoreMountains.Tools
 		{
 			return PlaySound(clip, options);
 		}
-        
+		
 		/// <summary>
 		/// On enable we start listening for events
 		/// </summary>
@@ -1256,7 +1256,7 @@ namespace MoreMountains.Tools
 			this.MMEventStartListening<MMSoundManagerTrackFadeEvent>();
 			this.MMEventStartListening<MMSoundManagerSoundFadeEvent>();
 			this.MMEventStartListening<MMSoundManagerAllSoundsControlEvent>();
-            
+			
 			SceneManager.sceneLoaded += OnSceneLoaded;
 		}
 
@@ -1275,11 +1275,11 @@ namespace MoreMountains.Tools
 				this.MMEventStopListening<MMSoundManagerTrackFadeEvent>();
 				this.MMEventStopListening<MMSoundManagerSoundFadeEvent>();
 				this.MMEventStopListening<MMSoundManagerAllSoundsControlEvent>();
-            
+			
 				SceneManager.sceneLoaded -= OnSceneLoaded;
 			}
 		}
-        
+		
 		#endregion
 	}    
 }
