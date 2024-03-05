@@ -95,6 +95,7 @@ namespace IslandBoy
 			ResetDay();
 			PanelEnabled(false);
 			GameSignals.DAY_START.Dispatch();
+			Debug.Log(_grandTotalXpGain);
 			PlayerGoldController.Instance.AddCurrency(_grandTotalXpGain, _po.Position + new Vector2(0.5f, 0.5f));
 			_grandTotalXpGain = 0;
 		}
@@ -176,7 +177,7 @@ namespace IslandBoy
 					yield return new WaitForSeconds(0.5f);
 				}
 				
-				float multiplier = 0;
+				float multiplier = 1;
 				
 				if(Player.RESTED_STATUS != RestedStatus.Good)
 				{
@@ -190,7 +191,7 @@ namespace IslandBoy
 					}
 				}
 				
-				if(multiplier != 0)
+				if(multiplier != 1)
 				{
 					// MMSoundManagerSoundPlayEvent.Trigger(_xpSound, MMSoundManager.MMSoundManagerTracks.UI, default);
 					monsterWording += $"<br>Sleep Penalty Xp Multiplier: <color=red>x{multiplier}</color=red>";
@@ -199,12 +200,13 @@ namespace IslandBoy
 				}
 				
 				MMSoundManagerSoundPlayEvent.Trigger(_xpSound, MMSoundManager.MMSoundManagerTracks.UI, default);
-				if(multiplier != 0)
+				if(multiplier != 1)
 					monsterWording += $"<br>Total XP Gained: <color=green>{grandTotalXp}</color=green> x <color=red>{multiplier}</color=red> = <color=green>{(int)(grandTotalXp * multiplier)}</color=green>";
 				else
 					monsterWording += $"<br>Total XP Gained: <color=green>{grandTotalXp}</color=green>";
 					
 				grandTotalXp = (int)(grandTotalXp * multiplier);
+				Debug.Log(grandTotalXp);
 				_grandTotalXpGain = grandTotalXp;
 				text.text = monsterWording;
 				
