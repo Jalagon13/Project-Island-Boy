@@ -16,6 +16,8 @@ namespace IslandBoy
 		
 		private Vector2 _velocity = Vector2.up; // Initial direction of movement
 		private Rigidbody2D _rb;
+		private Animator _anim;
+		private bool _isAttacking;
 
 		
 		private void Awake() 
@@ -23,6 +25,7 @@ namespace IslandBoy
 			_rb = GetComponent<Rigidbody2D>();
 			_rb.velocity = new Vector2(0.5f, 0.5f) * 3;
 			_spawnFeedback?.PlayFeedbacks();
+			_anim = GetComponentInChildren<Animator>();
 		}
 		
 		private IEnumerator Start() 
@@ -44,8 +47,17 @@ namespace IslandBoy
 				_rb.velocity = new Vector2(0.5f, 0.5f) * 5;
 			}
 		}
-		
-		private void OnCollisionEnter2D(Collision2D other)
+
+		private void Update()
+		{
+			if (_isAttacking)
+            {
+				_isAttacking = false;
+				_anim.SetBool("isAttacking", false);
+			}
+		}
+
+			private void OnCollisionEnter2D(Collision2D other)
 		{
 			System.Random rnd = new System.Random();
 			var randomRotationAngle = rnd.Next(-90, 90); 
@@ -64,7 +76,8 @@ namespace IslandBoy
 			Ammo ammo = Instantiate(_launchPrefab, transform.position, Quaternion.identity);
 			Vector3 direction = (_po.Position - (Vector2)ammo.transform.position).normalized;
 			ammo.Setup(direction);
-			
+			_anim.SetBool("isAttacking", true);
+			_isAttacking = true;
 			// need visual indicator for mosnter spawning
 		}
 	}
