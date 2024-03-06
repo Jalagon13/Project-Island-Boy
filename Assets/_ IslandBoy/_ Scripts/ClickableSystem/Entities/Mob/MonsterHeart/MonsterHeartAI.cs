@@ -19,6 +19,7 @@ namespace IslandBoy
 		[SerializeField] private float _heartBeatDelay = 2.5f;
 		[SerializeField] private int _killQuota;
 		[SerializeField] private int _heartBeatQuota;
+		[SerializeField] private bool _spawnLowerLevelEntrance = true;
 		[Header("Monster Spawn")]
 		[SerializeField] private int _maxMonsterAmount;
 		[SerializeField] private EntityRuntimeSet _monsterRTS;
@@ -100,9 +101,13 @@ namespace IslandBoy
 		private void OnDestroy() 
 		{
 			StopAllCoroutines();
-			var go = Instantiate(_levelEntranceLower, transform.parent.position, Quaternion.identity);
-			go.transform.SetParent(transform.parent.parent.transform);
 			GameSignals.MONSTER_HEART_CLEARED.Dispatch();
+			
+			if(_spawnLowerLevelEntrance)
+			{
+				var go = Instantiate(_levelEntranceLower, transform.parent.position, Quaternion.identity);
+				go.transform.SetParent(transform.parent.parent.transform);
+			}
 		}
 		
 		private void OnHeartBeat()
