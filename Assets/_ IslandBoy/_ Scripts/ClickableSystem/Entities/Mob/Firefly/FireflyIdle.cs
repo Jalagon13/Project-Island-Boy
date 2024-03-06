@@ -1,20 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace IslandBoy
 {
-	public class GhostIdle : StateMachineBehaviour
-	{
-		private GhostStateManager _ctx;
+    public class FireflyIdle : StateMachineBehaviour
+    {
+        private FireflyStateManager _ctx;
 		private bool _stopStateChange;
 
 		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			// Debug.Log("Entering GHOST Idle State");
+			Debug.Log("Entering Firefly Idle State");
 			_stopStateChange = false;
-			_ctx = animator.transform.root.GetComponent<GhostStateManager>();
+			_ctx = animator.transform.root.GetComponent<FireflyStateManager>();
 			_ctx.StartCoroutine(IdleDuration(animator));
 		}
 
@@ -40,5 +39,5 @@ namespace IslandBoy
 			if(!_stopStateChange) 
 				_ctx.ChangeToMoveState(animator);
 		}
-	}
+    }
 }

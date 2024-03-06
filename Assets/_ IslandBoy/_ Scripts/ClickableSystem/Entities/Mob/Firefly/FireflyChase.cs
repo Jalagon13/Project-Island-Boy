@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-	public class GhostChase : StateMachineBehaviour
-	{
-		private GhostStateManager _ctx;
+    public class FireflyChase : StateMachineBehaviour
+    {
+        private FireflyStateManager _ctx;
 
 		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			// Debug.Log("Entering AGRO State");
-			_ctx = animator.transform.root.GetComponent<GhostStateManager>();
+			Debug.Log("Entering AGRO State");
+			_ctx = animator.transform.root.GetComponent<FireflyStateManager>();
 			_ctx.StartCoroutine(AttackSequence());
 			// SeekPlayer();
 
@@ -69,5 +69,5 @@ namespace IslandBoy
 			Vector2 target = _ctx.PlayerObject.Position + Vector2.up * 0.5f;
 			return (target - origin).normalized;
 		}
-	}
+    }
 }

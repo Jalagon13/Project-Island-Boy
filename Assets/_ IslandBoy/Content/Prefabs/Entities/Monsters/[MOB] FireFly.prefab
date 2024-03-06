@@ -120,7 +120,7 @@ Animator:
   m_GameObject: {fileID: 254371358341620210}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4249f9838dc2d4ec0b41682e7360256c, type: 2}
+  m_Controller: {fileID: 9100000, guid: b455c13fdc8774f278147f414ac0e193, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -17168,8 +17168,8 @@ GameObject:
   - component: {fileID: 6224312026178961618}
   - component: {fileID: 5992861903168681665}
   - component: {fileID: 8888723654129748411}
-  - component: {fileID: -6863491918765301415}
   - component: {fileID: 5779260461928057468}
+  - component: {fileID: 5129041674498936442}
   m_Layer: 0
   m_Name: '[MOB] Firefly'
   m_TagString: MOB
@@ -17385,23 +17385,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-6863491918765301415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5799062759696218101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cdd36614671c48568dd01a0c49e77c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _agroRange: 8
-  _chargeFeedbacks: {fileID: 6794935565414296502}
-  _attackFeedbacks: {fileID: 7792756874643659885}
-  _teleportFeedbacks: {fileID: 2313857462369685421}
 --- !u!114 &5779260461928057468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17415,6 +17398,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entityRTS: {fileID: 11400000, guid: b8395270c8b53467b8a3f0ce6f083313, type: 2}
+--- !u!114 &5129041674498936442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5799062759696218101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e136f53fc2e436183feea519801f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
+  _agroRange: 8
+  _chargeFeedbacks: {fileID: 6794935565414296502}
+  _attackFeedbacks: {fileID: 7792756874643659885}
+  _teleportFeedbacks: {fileID: 2313857462369685421}
 --- !u!1 &7129378274048281638
 GameObject:
   m_ObjectHideFlags: 0
