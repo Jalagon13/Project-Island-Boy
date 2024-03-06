@@ -53,7 +53,6 @@ namespace IslandBoy
 			// // rectTransform.sizeDelta = new Vector2(originalWidth, originalHeight);
 			// _outputImage.SetNativeSize();
 			_hoverImage.SetItemDescription(originalItem);
-			Debug.Log(recipe == null);
 			_amountText.text = recipe.OutputAmount == 1 ? string.Empty : recipe.OutputAmount.ToString();
 		}
 		

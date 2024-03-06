@@ -68,7 +68,7 @@ namespace IslandBoy
 
 				MMSoundManagerSoundPlayEvent.Trigger(_craftSound, MMSoundManager.MMSoundManagerTracks.UI, transform.position);
 				GameSignals.ITEM_CRAFTED.Dispatch();
-				
+				PlayerGoldController.Instance.SubtractCurrency(_xpCost);
 				// StartCoroutine(_blacksmith.ResetMenu());
 				_blacksmith.UpdateUpgradeList(_originalItem);
 				UpdateTexts();
