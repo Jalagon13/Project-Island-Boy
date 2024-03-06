@@ -108,6 +108,9 @@ namespace IslandBoy
 			
 			foreach (ItemObject item in _persistantUpgradeList)
 			{
+				if(item.UpgradeRecipe == null)
+					continue;
+				
 				GameObject cs = Instantiate(_tcSlotPrefab, _slotHolder.transform);
 				TCSlot tcSlot = cs.GetComponent<TCSlot>();
 				tcSlot.Initialize(item);

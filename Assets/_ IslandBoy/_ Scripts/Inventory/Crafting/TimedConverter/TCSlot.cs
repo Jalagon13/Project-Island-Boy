@@ -53,6 +53,7 @@ namespace IslandBoy
 			// // rectTransform.sizeDelta = new Vector2(originalWidth, originalHeight);
 			// _outputImage.SetNativeSize();
 			_hoverImage.SetItemDescription(originalItem);
+			Debug.Log(recipe == null);
 			_amountText.text = recipe.OutputAmount == 1 ? string.Empty : recipe.OutputAmount.ToString();
 		}
 		
@@ -71,7 +72,7 @@ namespace IslandBoy
 			// float originalHeight = recipe.OutputItem.UiDisplay.texture.height;
 			
 			// float scaleX = Mathf.Clamp(200 / originalWidth, 0.1f, 1f);
-            // float scaleY = Mathf.Clamp(200 / originalHeight, 0.1f, 1f);
+			// float scaleY = Mathf.Clamp(200 / originalHeight, 0.1f, 1f);
 			
 			// // // Set the size of the RectTransform component of the image
 			// RectTransform rectTransform = _outputImage.GetComponent<RectTransform>();
