@@ -20,6 +20,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1498854646, guid: d1fdf00d255e2d942a949c35bbb7ace1, type: 3}
+    - target: {fileID: 4828264215266892703, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _startingUpgradeList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828264215266892703, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _startingUpgradeList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: c2415e147b9416d4cb4e1b9f904b49b9, type: 2}
+    - target: {fileID: 4828264215266892703, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _startingUpgradeList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: b57a9d475edbde54e9893a49e8b58626, type: 2}
     - target: {fileID: 5750841754287189946, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: m_Name
       value: '[NPC] Wizard'

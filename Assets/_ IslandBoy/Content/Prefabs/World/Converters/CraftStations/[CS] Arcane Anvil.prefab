@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[CS] Arcane Anvil'
       objectReference: {fileID: 0}
+    - target: {fileID: 3315156182157314165, guid: 59e42fe503dbdcf408d53a9875dc9939, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3637300847245684632, guid: 59e42fe503dbdcf408d53a9875dc9939, type: 3}
       propertyPath: m_Sprite
       value: 

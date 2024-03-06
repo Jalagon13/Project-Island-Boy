@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: '[I-DPLY] Treevil Bookcase'
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Treevil Bookcase
-  <UiDisplay>k__BackingField: {fileID: 1507174296, guid: 4f748df8bc619484697935c72b812ac7, type: 3}
+  <UiDisplay>k__BackingField: {fileID: 314722755, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   <Stackable>k__BackingField: 1
+  <UpgradeRecipe>k__BackingField: {fileID: 0}
+  <XpUpgradeCost>k__BackingField: 0
   <Description>k__BackingField: 
   <DefaultParameterList>k__BackingField:
   - Parameter: {fileID: 11400000, guid: c25902e3274ad0a4a97f3515779aecea, type: 2}
     Value: 3
-  _prefabToDeploy: {fileID: 8503432816486420475, guid: 3105c2776ae38034b8429a5b6920257d, type: 3}
+  _prefabToDeploy: {fileID: 8503432816486420475, guid: 2d72501f04006054f813a9c1e764f0c7, type: 3}
   _deploySound: {fileID: 8300000, guid: acc9a292f9a4e9448953f37d61d47e54, type: 3}
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _sprites:
