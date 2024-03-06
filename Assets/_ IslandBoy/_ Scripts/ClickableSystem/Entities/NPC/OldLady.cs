@@ -28,9 +28,9 @@ namespace IslandBoy
 
         private void OnEnable() 
 		{
-			_promptText.text = $"Mysterious Old Lady: Hello there youngling...Are you read for a special treet?<br><br>Settlers Found: {NpcSlots.SettlerCount}/3";
+			_promptText.text = $"Mysterious Old Lady: Hello there youngling...Free the others and I'll give you a special treet?<br><br>Settlers Found: {NpcSlots.SettlerCount}/2";
 			
-			if(NpcSlots.SettlerCount >= 3)
+			if(NpcSlots.SettlerCount >= 2)
 			{
 				_onReqsMet?.Invoke();
 			}
