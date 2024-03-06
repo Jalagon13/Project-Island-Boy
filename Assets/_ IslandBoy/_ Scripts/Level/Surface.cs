@@ -34,15 +34,13 @@ namespace IslandBoy
 			if(!_enabledStartingUI)
 			{
 				StartCoroutine(Delay());
-				
-				_enabledStartingUI = true;
 			}
 		}
 		
 		private IEnumerator Delay()
 		{
 			yield return new WaitForSeconds(3f);
-			
+			_enabledStartingUI = true;
 			GameSignals.ENABLE_STARTING_MECHANICS.Dispatch();
 		}
 		
