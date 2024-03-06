@@ -362,7 +362,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -383,7 +383,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -391,6 +391,27 @@ TextureImporter:
       bones: []
       spriteID: f186dc90cdd77154bac71d52561acd55
       internalID: 279432173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ws_blueprint_table_advanced
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5b997fea1c05fd49a7bd56a8a560d2d
+      internalID: -1770572732
       vertices: []
       indices: 
       edges: []
@@ -409,6 +430,7 @@ TextureImporter:
       ws_alchemy_station: -1413661134
       ws_arcane_anvil: 1168968723
       ws_blueprint_table: -407047741
+      ws_blueprint_table_advanced: -1770572732
       ws_campfire: 586656638
       ws_chest: 414997368
       ws_chest_stone: -1479564670

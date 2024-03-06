@@ -95,7 +95,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8637284407677892633
 Transform:
   m_ObjectHideFlags: 0
@@ -207,23 +207,23 @@ PrefabInstance:
     - target: {fileID: 4871828697884116381, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: managedReferences[1619343171848765462].Sfx
       value: 
-      objectReference: {fileID: 8300000, guid: 1f5e75782a6e8434cba4bce854fb47eb, type: 3}
+      objectReference: {fileID: 8300000, guid: e2b6630a648447b47a66f7f8325c7440, type: 3}
     - target: {fileID: 5343309374458340233, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5360009175435482028, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_text
-      value: Use
+      value: Hold
       objectReference: {fileID: 0}
     - target: {fileID: 7165791526722579916, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: managedReferences[1619343171848765461].Sfx
       value: 
-      objectReference: {fileID: 8300000, guid: 7af607a3736db8a43bd85f247755f233, type: 3}
+      objectReference: {fileID: 8300000, guid: 9a262ed27dacc294c9df37f2265e9949, type: 3}
     - target: {fileID: 7260606805276754575, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1845987391, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
+      objectReference: {fileID: -252373080, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
     - target: {fileID: 8029168127436864084, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -331,6 +331,7 @@ MonoBehaviour:
   _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxHitPoints: 6
   _breakType: 2
+  _breakTier: 0
   _clickFeedback: {fileID: 3991662640476158506}
   _destroyFeedback: {fileID: 1696461830264001147}
   _lootTable:

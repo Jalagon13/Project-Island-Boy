@@ -7837,6 +7837,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7260606805276754575, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1845987391, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
     - target: {fileID: 7415159692883819991, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_SizeDelta.x
       value: 115.3934
@@ -7935,6 +7939,7 @@ MonoBehaviour:
   _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxHitPoints: 6
   _breakType: 1
+  _breakTier: 0
   _clickFeedback: {fileID: 7668532473162371453}
   _destroyFeedback: {fileID: 5368905011583940908}
   _lootTable:

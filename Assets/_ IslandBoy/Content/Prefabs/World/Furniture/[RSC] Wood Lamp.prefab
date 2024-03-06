@@ -266,6 +266,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[RSC] Wood Lamp'
       objectReference: {fileID: 0}
+    - target: {fileID: 2534430218439404686, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 192
+      objectReference: {fileID: 0}
     - target: {fileID: 2819205200215340228, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -284,7 +288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5360009175435482028, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_text
-      value: Use
+      value: Hold
       objectReference: {fileID: 0}
     - target: {fileID: 6422946327641943076, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_LocalPosition.x
@@ -301,7 +305,7 @@ PrefabInstance:
     - target: {fileID: 7260606805276754575, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1845987391, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
+      objectReference: {fileID: -252373080, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
     - target: {fileID: 8029168127436864084, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

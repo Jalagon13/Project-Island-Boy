@@ -11473,13 +11473,14 @@ MonoBehaviour:
   _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxHitPoints: 500
   _breakType: 3
+  _breakTier: 0
   _clickFeedback: {fileID: 4857741665004852582}
   _destroyFeedback: {fileID: 6431521983977084862}
   _lootTable:
     <Table>k__BackingField:
     - Item: {fileID: 11400000, guid: 9b7ef9edf622c4541a567e8193b937c1, type: 2}
-      Min: 10
-      Max: 20
+      Min: 15
+      Max: 25
       Chance: 100
     - Item: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
       Min: 2
@@ -11492,6 +11493,10 @@ MonoBehaviour:
     - Item: {fileID: 11400000, guid: d597b342234b58844a3a4f145cad0c2c, type: 2}
       Min: 5
       Max: 10
+      Chance: 100
+    - Item: {fileID: 11400000, guid: eb36c492ca4c7db47ab86c0d35237b99, type: 2}
+      Min: 1
+      Max: 1
       Chance: 100
   _entityName: Treevil
   _xpAmount: 250
