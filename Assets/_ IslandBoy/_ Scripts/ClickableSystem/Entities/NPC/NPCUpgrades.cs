@@ -8,9 +8,9 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-	public class Blacksmith : MonoBehaviour
+	public class NPCUpgrades : MonoBehaviour
 	{
-		[Header("Blacksmith Parameters")]
+		[Header("Upgrade Parameters")]
 		[SerializeField] private PlayerObject _po;
 		// [SerializeField] private NpcUpgradeType _upgradeType;
 		[SerializeField] private GameObject _tcSlotPrefab;

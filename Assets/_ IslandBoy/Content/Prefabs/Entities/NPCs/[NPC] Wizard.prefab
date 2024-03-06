@@ -38,11 +38,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6171642594750953717, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -34
+      value: -33.5
       objectReference: {fileID: 0}
     - target: {fileID: 6171642594750953717, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 6171642594750953717, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: m_LocalPosition.z
@@ -78,25 +78,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: _noBedText
-      value: 'Wizard: "I can upgrade your <color=orange>accessories and spells</color=orange>
-        if I had my own place to <color=orange>sleep</color=orange>."'
+      value: 'Wizard: "Thank you for freeing me Totally didn''t know she was a <color=purple>Treevil</color=purple>
+        in disguise... I hate to ask, but can I get a place to <color=orange>sleep</color=orange>?"'
       objectReference: {fileID: 0}
     - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: _text.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: _text.Array.data[0]
+      value: 'Wizard: "Thank you for freeing me Totally didn''t know she was a <color=purple>Treevil</color=purple>
+        in disguise... I hate to ask, but can I get a place to <color=orange>sleep</color=orange>?"'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _text.Array.data[1]
       value: 'Wizard: "I can upgrade your <color=orange>accessories and spells</color=orange>
         with more power as long as you provide me with the materials!"'
       objectReference: {fileID: 0}
     - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
-      propertyPath: _text.Array.data[1]
+      propertyPath: _text.Array.data[2]
       value: 'Wizard: "If your looking to upgrade your <color=orange>weapons</color=orange>,
         find and talk to the <color=orange>Knight</color=orange>.'
       objectReference: {fileID: 0}
     - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
-      propertyPath: _text.Array.data[2]
+      propertyPath: _text.Array.data[3]
+      value: 'Wizard: "If your looking to upgrade your <color=orange>tools</color=orange>,
+        find and talk to the <color=orange>Blacksmith</color=orange>.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _text.Array.data[4]
       value: 'Wizard: "If your looking to upgrade your <color=orange>tools</color=orange>,
         find and talk to the <color=orange>Blacksmith</color=orange>.'
       objectReference: {fileID: 0}
@@ -107,5 +117,25 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5750841754287189946, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3427901655038234795}
   m_SourcePrefab: {fileID: 100100000, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+--- !u!1 &6578495129070317044 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5750841754287189946, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+  m_PrefabInstance: {fileID: 1478476366853309006}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3427901655038234795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6578495129070317044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b609d6d2e7167304499b38418d7b3332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

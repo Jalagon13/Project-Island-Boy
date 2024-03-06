@@ -26,7 +26,7 @@ namespace IslandBoy
 
 		private CraftingRecipeObject _recipeToDisplay;
 		private ItemObject _originalItem;
-		private Blacksmith _blacksmith;
+		private NPCUpgrades _blacksmith;
 		private MouseSlot _mouseItemHolder;
 		private int _xpCost;
 
@@ -38,7 +38,7 @@ namespace IslandBoy
 
 		public void PopulateRecipe(CraftingRecipeObject recipeObject, ItemObject originalItem, int xpCost)
 		{
-			_blacksmith = transform.parent.GetComponent<Blacksmith>();
+			_blacksmith = transform.parent.GetComponent<NPCUpgrades>();
 			_originalItem = originalItem;
 			_holder.gameObject.SetActive(true);
 			_recipeToDisplay = recipeObject;
