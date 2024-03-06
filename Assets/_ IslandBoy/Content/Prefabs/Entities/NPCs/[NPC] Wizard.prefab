@@ -66,8 +66,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: _noBedText
-      value: 'Wizard: "I can upgrade your <color=orange>accessories and spells</color=orange>
-        if I had my own place to <color=orange>sleep</color=orange>."'
+      value: 'Wizard: "Thank you for freeing me Totally didn''t know she was a <color=purple>Treevil</color=purple>
+        in disguise... I hate to ask, but can I get a place to <color=orange>sleep</color=orange>?"'
       objectReference: {fileID: 0}
     - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: _text.Array.size
@@ -75,8 +75,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: _text.Array.data[0]
-      value: 'Wizard: "Thank you for freeing me from that creepy old lady! Totally
-        didn''t know she was a <color=purple>Treevil</color=purple> in disguise..."'
+      value: 'Wizard: "Thank you for freeing me Totally didn''t know she was a <color=purple>Treevil</color=purple>
+        in disguise... I hate to ask, but can I get a place to <color=orange>sleep</color=orange>?"'
       objectReference: {fileID: 0}
     - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: _text.Array.data[1]
@@ -90,6 +90,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: _text.Array.data[3]
+      value: 'Wizard: "If your looking to upgrade your <color=orange>tools</color=orange>,
+        find and talk to the <color=orange>Blacksmith</color=orange>.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _text.Array.data[4]
       value: 'Wizard: "If your looking to upgrade your <color=orange>tools</color=orange>,
         find and talk to the <color=orange>Blacksmith</color=orange>.'
       objectReference: {fileID: 0}
