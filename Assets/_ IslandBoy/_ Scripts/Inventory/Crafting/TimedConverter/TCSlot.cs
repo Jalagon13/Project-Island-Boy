@@ -84,7 +84,7 @@ namespace IslandBoy
 
 		public void DisplayCraftingUI() // connected to this button
 		{
-			var blacksmith = transform.parent.parent.GetComponent<Blacksmith>();
+			var blacksmith = transform.parent.parent.GetComponent<NPCUpgrades>();
 			
 			if(blacksmith != null && _originalItem != null)
 			{
