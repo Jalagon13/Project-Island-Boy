@@ -206,7 +206,6 @@ namespace IslandBoy
 					monsterWording += $"<br>Total XP Gained: <color=green>{grandTotalXp}</color=green>";
 					
 				grandTotalXp = (int)(grandTotalXp * multiplier);
-				Debug.Log(grandTotalXp);
 				_grandTotalXpGain = grandTotalXp;
 				text.text = monsterWording;
 				

@@ -43,23 +43,23 @@ namespace IslandBoy
 
         public override string GetDescription()
         {
-            float clickDistance = 0;
-            float damage = 0;
+            // float clickDistance = 0;
+            // float damage = 0;
 
             foreach (var item in DefaultParameterList)
             {
                 switch (item.Parameter.ParameterName)
                 {
-                    case "ClickDistance":
-                        clickDistance = item.Value;
-                        break;
-                    case "Damage":
-                        damage = item.Value;
-                        break;
+                    // case "ClickDistance":
+                    //     clickDistance = item.Value;
+                        // break;
+                    // case "Damage":
+                    //     damage = item.Value;
+                    //     break;
                 }
             }
 
-            return $"{Description}<br>? {damage} damage<br>? {clickDistance} click distance";
+            return $"{Description}";
         }
 
         private void CreateHook(FocusSlotControl control)

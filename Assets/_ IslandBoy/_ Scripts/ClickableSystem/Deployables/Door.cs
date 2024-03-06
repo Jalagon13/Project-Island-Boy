@@ -30,7 +30,7 @@ namespace IslandBoy
 		{
 			var playerFeet = other.GetComponent<FeetTag>();
 			
-			if(playerFeet != null)
+			if(playerFeet != null || other.CompareTag("NPC"))
 			{
 				Open();
 			}
@@ -42,7 +42,7 @@ namespace IslandBoy
 			
 			var playerFeet = other.GetComponent<FeetTag>();
 			
-			if(playerFeet != null)
+			if(playerFeet != null || other.CompareTag("NPC"))
 			{
 				Close();
 			}

@@ -463,6 +463,7 @@ namespace IslandBoy
 
 			yield return new WaitForSeconds(_deathTimer);
 
+			RESTED_STATUS = RestedStatus.Bad;
 			GameSignals.DAY_END.Dispatch();
 			_playerCollider.enabled = true;
 			_sr.SetActive(true);

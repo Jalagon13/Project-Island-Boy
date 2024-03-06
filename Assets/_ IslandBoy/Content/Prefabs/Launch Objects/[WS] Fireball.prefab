@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e22787559e92c82468ed2b42ae316e83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.1
+  _speed: 0.05
   _travelDistance: 20
   _canHitPlayer: 1
   _fireSound: {fileID: 8300000, guid: 81630c27f46088149ba396244d1b8a68, type: 3}

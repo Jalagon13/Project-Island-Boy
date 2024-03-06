@@ -148,9 +148,7 @@ namespace IslandBoy
 
 		public override void Interact()
 		{
-			Debug.Log("Meow");
 			if (!_canInteract) return;
-			Debug.Log("Meow2");
 			EnableInstructions(false);
 			DisplayInteractable();
 			EnableChestSlots(true);
