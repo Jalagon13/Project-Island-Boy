@@ -81,8 +81,8 @@ namespace IslandBoy
 			{
 				FreeNpc();
 				_sign.NoBedText();
-				_shopButton.SetActive(true);
-				_shopButton.gameObject.SetActive(true);
+				_shopButton.SetActive(false);
+				// _shopButton.gameObject.SetActive(true);
 				// GiveReward();
 			}
 				
