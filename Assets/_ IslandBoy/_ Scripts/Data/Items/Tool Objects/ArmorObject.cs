@@ -34,9 +34,21 @@ namespace IslandBoy
 
 		public override string GetDescription()
 		{
+			float defense = 0;
+			
+			foreach (var item in DefaultParameterList)
+			{
+				switch (item.Parameter.ParameterName)
+				{
+					case "Defense":
+						defense = item.Value;
+						break;
+				}
+			}
+			
 			string upgradeText = UpgradeRecipe != null ? $"<br>* Upgradable" : string.Empty;
 			
-			return "* " + _armorType.ToString() + $" Armor{upgradeText}";
+			return "* " + _armorType.ToString() + $" Armor<br>* {defense} defense{upgradeText}";
 		}
 	}
 }

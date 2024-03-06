@@ -61,6 +61,7 @@ namespace IslandBoy
 			float miningSpeed = 0;
 			float damageMax = 0;
 			float damageMin = 0;
+			float energyPerSwing = 0;
 
 			foreach (var item in DefaultParameterList)
 			{
@@ -78,12 +79,20 @@ namespace IslandBoy
 					case "Damage Min":
 						damageMin = item.Value;
 						break;
+					case "Energy Per Swing":
+						energyPerSwing = item.Value;
+						break;
 				}
 			}
 
 			string upgradeText = UpgradeRecipe != null ? $"<br>* Upgradable" : string.Empty;
 
-			return $"{Description}<br>* {hitValue} per hit<br>* {damageMin}-{damageMax} damage{upgradeText}";
+			if(energyPerSwing == 0)
+				return $"{Description}<br>* {damageMin}-{damageMax} damage<br>* 1 energy per swing{upgradeText}";
+			else
+				return $"{Description}<br>* {damageMin}-{damageMax} damage<br>* {energyPerSwing} energy per swing{upgradeText}";
+
+			
 		}
 	}
 }

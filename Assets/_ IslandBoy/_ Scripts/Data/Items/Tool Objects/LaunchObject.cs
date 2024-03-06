@@ -44,23 +44,19 @@ namespace IslandBoy
 
         public override string GetDescription()
         {
-            float clickDistance = 0;
             float damage = 0;
 
             foreach (var item in DefaultParameterList)
             {
                 switch (item.Parameter.ParameterName)
                 {
-                    case "ClickDistance":
-                        clickDistance = item.Value;
-                        break;
-                    case "Damage":
+                    case "Damage Max":
                         damage = item.Value;
                         break;
                 }
             }
 
-            return $"{Description}<br>? {damage} damage<br>? {clickDistance} click distance";
+            return $"{Description}<br>* {damage} damage";
         }
     }
 }

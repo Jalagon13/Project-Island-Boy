@@ -15,7 +15,11 @@ MonoBehaviour:
   <Name>k__BackingField: Crafting Table
   <UiDisplay>k__BackingField: {fileID: 1663711594, guid: 954f438adddea594dac0fb494f0869ae, type: 3}
   <Stackable>k__BackingField: 1
+  <UpgradeRecipe>k__BackingField: {fileID: 0}
+  <XpUpgradeCost>k__BackingField: 0
   <Description>k__BackingField: "\u2022 General Recipes"
-  <DefaultParameterList>k__BackingField: []
+  <DefaultParameterList>k__BackingField:
+  - Parameter: {fileID: 11400000, guid: c25902e3274ad0a4a97f3515779aecea, type: 2}
+    Value: 3
   _prefabToDeploy: {fileID: 175657912783014710, guid: af391ecf71d534e46851235193d06810, type: 3}
   _deploySound: {fileID: 8300000, guid: 7af607a3736db8a43bd85f247755f233, type: 3}

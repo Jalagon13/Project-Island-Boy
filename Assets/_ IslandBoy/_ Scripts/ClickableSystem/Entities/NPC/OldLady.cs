@@ -29,7 +29,7 @@ namespace IslandBoy
 
         private void OnEnable() 
 		{
-			_promptText.text = $"Mysterious Old Lady: Hello there youngling...Free the others and I'll give you a special <color=purple>treet</color=purple>?<br><br>Settlers Found: {NpcSlots.SettlerCount}/2";
+			_promptText.text = $"Mysterious Old Lady: Hello there youngling...Free the others and I'll give you a special <color=purple>treet</color=purple>?<br><br>Settlers Housed: {NpcSlots.SettlerCount}/2";
 			
 			if(NpcSlots.SettlerCount >= 2 || _bypassUnlockPrereq)
 			{
