@@ -8,27 +8,27 @@ namespace IslandBoy
 	public class FishingAI : MonoBehaviour
 	{
 		[SerializeField] private PlayerObject _pr; 
-		[SerializeField] private ItemObject _fish;
+		[SerializeField] private FishingDatabaseObject _db;
 		[SerializeField] private ItemObject _bait;
 		[SerializeField] private Transform _target; //Target point to rotate around
 		[SerializeField] private float _radius;
 		[SerializeField] private float _fishingProgressSpeed; //how fast the fishing progress bar fills up
+		private ItemObject _fish;
 
-		[Header("Fish AI")]
 		// speed of the fish
-		[SerializeField] private float _maxSpeed = 0.05f;
-		[SerializeField] private float _minSpeed = 0.01f;
+		private float _maxSpeed;
+		private float _minSpeed;
 		private float _speed;
 
 		// how long a fish moves in the current direction (in seconds)
-		[SerializeField] private float _maxDistance = 3f;
-		[SerializeField] private float _minDistance = 0.5f;
+		private float _maxDistance;
+		private float _minDistance;
 		private float _distance;
 		private float _currentDistance;
 
 		// how long a fish waits once it reaches the current direction, before choosing a new direction
-		[SerializeField] private float _maxWait = 1f;
-		[SerializeField] private float _minWait = 0f;
+		private float _maxWait;
+		private float _minWait;
 		private float _wait;
 		private float _currentWait;
 
@@ -45,16 +45,14 @@ namespace IslandBoy
 
 		private void Awake()
 		{
+			SetupFish();
 			NewDirection();
 			
-			
 			GameSignals.HOTBAR_SLOT_UPDATED.AddListener(EndMinigame);
-			
 		}
 		
 		private void Start() 
 		{
-			Debug.Log("Taking biat");
 			_pr.Inventory.RemoveItem(_bait, 1);
 		}
 		
@@ -97,7 +95,7 @@ namespace IslandBoy
 		void CatchFish()
 		{
 			_pr.Inventory.AddItem(_fish, 1);
-			PopupMessage.Create(transform.position, $"You caught a fish!", Color.green, Vector2.up, 1f);
+			PopupMessage.Create(transform.position, $"You caught a {_fish.Name}!", Color.green, Vector2.up, 1f);
 			MMSoundManagerSoundPlayEvent.Trigger(_successSound, MMSoundManager.MMSoundManagerTracks.Sfx, _target.transform.position);
 			EndMinigame();
 		}
@@ -150,6 +148,45 @@ namespace IslandBoy
 
 			_currentDistance = 0f;
 			_currentWait = 0f;
+		}
+
+		private void SetupFish()
+        {
+			// get randomized fish
+			FishDifficulty difficulty = _db.Database[GetRandomFishIndex()];
+			_fish = difficulty.fish;
+
+			// set up difficulty
+			_maxSpeed = difficulty.maxSpeed;
+			_minSpeed = difficulty.minSpeed;
+			_maxDistance = difficulty.maxDistance;
+			_minDistance = difficulty.minDistance;
+			_maxWait = difficulty.maxWait;
+			_minWait = difficulty.minWait;
+	}
+
+		public int GetRandomFishIndex()
+		{
+			// total sum of all the weights
+			float weightSum = 0f;
+			for (int i = 0; i < _db.Database.Length; ++i)
+			{
+				weightSum += _db.Database[i].rarity;
+			}
+
+			// get randomized number
+			float randNum = UnityEngine.Random.Range(0f, weightSum);
+			float currentSum = 0f;
+			float w;
+
+			for (int i = 0; i < _db.Database.Length; ++i)
+			{
+				w = _db.Database[i].rarity;
+				currentSum += w / weightSum;
+				if (currentSum >= randNum) return i;
+			}
+
+			return -1;
 		}
 	}
 }

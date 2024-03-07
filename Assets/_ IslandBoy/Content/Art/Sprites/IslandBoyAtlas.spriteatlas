@@ -427,6 +427,7 @@ SpriteAtlas:
     - 75594b36fd8cd0d409de8dacfcaf419b: 1844556041
     - 75594b36fd8cd0d409de8dacfcaf419b: -1704994463
     - 75594b36fd8cd0d409de8dacfcaf419b: -1475151143
+    - 75594b36fd8cd0d409de8dacfcaf419b: 1188444659
     - 75594b36fd8cd0d409de8dacfcaf419b: -2128986211
     - 75594b36fd8cd0d409de8dacfcaf419b: 941267960
     - 75594b36fd8cd0d409de8dacfcaf419b: -1267388021
@@ -449,6 +450,7 @@ SpriteAtlas:
     - 75594b36fd8cd0d409de8dacfcaf419b: -955445017
     - 75594b36fd8cd0d409de8dacfcaf419b: 1819103735
     - 75594b36fd8cd0d409de8dacfcaf419b: 86916168
+    - 75594b36fd8cd0d409de8dacfcaf419b: -1909896247
     - 75594b36fd8cd0d409de8dacfcaf419b: 1529562530
     - 75594b36fd8cd0d409de8dacfcaf419b: 1805357805
     - 75594b36fd8cd0d409de8dacfcaf419b: 2044576360
@@ -463,6 +465,7 @@ SpriteAtlas:
     - 75594b36fd8cd0d409de8dacfcaf419b: -2138976625
     - 75594b36fd8cd0d409de8dacfcaf419b: -1479775636
     - 75594b36fd8cd0d409de8dacfcaf419b: -1499702813
+    - 75594b36fd8cd0d409de8dacfcaf419b: 1478592601
     - 75594b36fd8cd0d409de8dacfcaf419b: 393603439
     - 75594b36fd8cd0d409de8dacfcaf419b: 2118457468
     - 75594b36fd8cd0d409de8dacfcaf419b: 456514419
@@ -1554,6 +1557,7 @@ SpriteAtlas:
   - {fileID: 1844556041, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1704994463, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1475151143, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  - {fileID: 1188444659, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -2128986211, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 941267960, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1267388021, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
@@ -1576,6 +1580,7 @@ SpriteAtlas:
   - {fileID: -955445017, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1819103735, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 86916168, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  - {fileID: -1909896247, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1529562530, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 1805357805, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 2044576360, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
@@ -1590,6 +1595,7 @@ SpriteAtlas:
   - {fileID: -2138976625, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1479775636, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: -1499702813, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  - {fileID: 1478592601, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 393603439, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 2118457468, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   - {fileID: 456514419, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
@@ -2680,6 +2686,7 @@ SpriteAtlas:
   - item_wood_hammer
   - item_bomb
   - item_mushed_apple
+  - item_iron_club
   - item_cooked_fish
   - item_iron_anvil
   - item_firefly
@@ -2702,6 +2709,7 @@ SpriteAtlas:
   - item_xp
   - item_wood_club
   - item_wood_sword
+  - item_shark
   - item_bow
   - item_iron_sword
   - item_slime
@@ -2716,6 +2724,7 @@ SpriteAtlas:
   - item_phantom_ingot
   - item_stone_bow
   - item_broken_bo
+  - item_iron_bow
   - item_fiber
   - item_miner_scroll
   - item_grass

@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cc7ad8a71945924282991f68fec9fab, type: 3}
-  m_Name: '[IDB] Fishing'
+  m_Script: {fileID: 11500000, guid: 28a78a0b85d388c4f9a2108dbbcede68, type: 3}
+  m_Name: '[FDB] Fishing'
   m_EditorClassIdentifier: 
   Database:
-  - {fileID: 11400000, guid: 666eb40bc9bc9144a96d280bde4e45f8, type: 2}
-  - {fileID: 11400000, guid: e43c60c2ca65d2448ae6819e64192b49, type: 2}
-  Rarity:
-  - 0.9
-  - 0.1
-  Difficulty: []
+  - {fileID: 11400000, guid: fe7b19897d089644ab0d38c17e8f45b2, type: 2}
+  - {fileID: 11400000, guid: 25672bca6f2ee9445bb77557481d15c7, type: 2}

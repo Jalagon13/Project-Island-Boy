@@ -11471,7 +11471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _maxHitPoints: 500
+  _maxHitPoints: 550
   _breakType: 3
   _breakTier: 0
   _clickFeedback: {fileID: 4857741665004852582}
@@ -17635,4 +17635,4 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 65535

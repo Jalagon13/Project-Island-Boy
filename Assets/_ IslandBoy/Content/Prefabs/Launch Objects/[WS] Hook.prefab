@@ -545,6 +545,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6869286514326003166}
     m_Modifications:
+    - target: {fileID: 712555117965124627, guid: b7e686ec4c3f1ea4f8c863aa63707166, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 712555117965124627, guid: b7e686ec4c3f1ea4f8c863aa63707166, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 712555117965124627, guid: b7e686ec4c3f1ea4f8c863aa63707166, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -250621267
+      objectReference: {fileID: 0}
     - target: {fileID: 3833277561126422449, guid: b7e686ec4c3f1ea4f8c863aa63707166, type: 3}
       propertyPath: m_Name
       value: Bubbles

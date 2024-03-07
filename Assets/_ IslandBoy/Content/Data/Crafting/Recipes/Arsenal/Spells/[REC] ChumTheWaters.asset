@@ -16,7 +16,9 @@ MonoBehaviour:
   OutputAmount: 1
   CraftingTimer: 0
   ResourceList:
+  - Item: {fileID: 11400000, guid: e43c60c2ca65d2448ae6819e64192b49, type: 2}
+    Amount: 1
   - Item: {fileID: 11400000, guid: 666eb40bc9bc9144a96d280bde4e45f8, type: 2}
-    Amount: 5
+    Amount: 3
   - Item: {fileID: 11400000, guid: edc513b3ed3bd4344aa82974c2d886f1, type: 2}
-    Amount: 5
+    Amount: 3
