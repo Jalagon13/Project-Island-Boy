@@ -8,5 +8,7 @@ namespace IslandBoy
     public class ItemDatabaseObject : ScriptableObject
     {
         public ItemObject[] Database;
+        public float[] Rarity; // rarity is only for fishing
+        public float[] Difficulty; // difficulty is only for fishing
     }
 }

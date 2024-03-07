@@ -2021,7 +2021,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2029,6 +2029,69 @@ TextureImporter:
       bones: []
       spriteID: 9e883bbc8faff4bd2a6dc0524e4cf62b
       internalID: -1267388021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_iron_club
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91712f483fd9b474193ac5af01d57668
+      internalID: 1188444659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_iron_bow
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6edc9fd7bbd75d54584ad3edd5b43212
+      internalID: 1478592601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_shark
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b82a18d39d07ab42b9f5f21b8ff44f9
+      internalID: -1909896247
       vertices: []
       indices: 
       edges: []
@@ -2078,6 +2141,8 @@ TextureImporter:
       item_hook: -1546665967
       item_iron_anvil: 941267960
       item_iron_axe: 659459211
+      item_iron_bow: 1478592601
+      item_iron_club: 1188444659
       item_iron_hammer: -1416747536
       item_iron_ingot: -189099797
       item_iron_ore: 1648958029
@@ -2093,6 +2158,7 @@ TextureImporter:
       item_red_rune: 1210640472
       item_sand: -966422323
       item_sapling: 811161192
+      item_shark: -1909896247
       item_shark_spell: 1935646819
       item_slime: 2044576360
       item_stone: -512641925
