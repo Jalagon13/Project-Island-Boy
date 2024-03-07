@@ -38,11 +38,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6171642594750953717, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -33.5
+      value: -18.24
       objectReference: {fileID: 0}
     - target: {fileID: 6171642594750953717, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21
+      value: -6.28
       objectReference: {fileID: 0}
     - target: {fileID: 6171642594750953717, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: m_LocalPosition.z
@@ -78,37 +78,54 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: _noBedText
-      value: 'Wizard: "Thank you for freeing me Totally didn''t know she was a <color=purple>Treevil</color=purple>
-        in disguise... I hate to ask, but can I get a place to <color=orange>sleep</color=orange>?"'
+      value: 'The Wiz: "Thank you for freeing me! Totally didn''t know she was a
+        <color=purple>Treevil</color=purple> in disguise... I hate to ask, but can
+        I get a place to <color=orange>sleep</color=orange>?"'
       objectReference: {fileID: 0}
     - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: _text.Array.size
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: _text.Array.data[0]
-      value: 'Wizard: "Thank you for freeing me Totally didn''t know she was a <color=purple>Treevil</color=purple>
-        in disguise... I hate to ask, but can I get a place to <color=orange>sleep</color=orange>?"'
+      value: 'The Wiz: "Thanks again for freeing me! We are so grateful that you
+        saved us all!"'
       objectReference: {fileID: 0}
     - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: _text.Array.data[1]
-      value: 'Wizard: "I can upgrade your <color=orange>accessories and spells</color=orange>
-        with more power as long as you provide me with the materials!"'
+      value: 'The Wiz: "A fair warning: that creepy old lady is a persistent one...
+        She''ll likely be back <color=orange>tomorrow</color=orange>, but I''m sure
+        you''ll teach her a lesson again."'
       objectReference: {fileID: 0}
     - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: _text.Array.data[2]
-      value: 'Wizard: "If your looking to upgrade your <color=orange>weapons</color=orange>,
-        find and talk to the <color=orange>Knight</color=orange>.'
+      value: 'The Wiz: "I can provide you with <color=orange>accessories and spells</color=orange>
+        with special abilities as long as you provide me with the materials!"'
       objectReference: {fileID: 0}
     - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: _text.Array.data[3]
-      value: 'Wizard: "If your looking to upgrade your <color=orange>tools</color=orange>,
-        find and talk to the <color=orange>Blacksmith</color=orange>.'
+      value: 'The Wiz: "Oh! By the way, I found this note while I was tied up back
+        there. Let me read it for you. *AHEM*"'
       objectReference: {fileID: 0}
     - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: _text.Array.data[4]
-      value: 'Wizard: "If your looking to upgrade your <color=orange>tools</color=orange>,
-        find and talk to the <color=orange>Blacksmith</color=orange>.'
+      value: A MESSAGE FROM THE CRAFTAWAY TEAM<br><br>Congrats on vanquishing the
+        Treevil!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _text.Array.data[5]
+      value: If you're reading this, that means you have essentially completed most
+        if not everything we have in the game.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _text.Array.data[6]
+      value: Feel free to keep exploring and playing! If you want to fight Treevil
+        again, simply talk to that old lady again at the start of the next day...
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841640084733415165, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _text.Array.data[7]
+      value: Thanks again for playing our game!<br><br>-Justin, Kevin, Brooke, Ben,
+        Noah
       objectReference: {fileID: 0}
     - target: {fileID: 6943030590927019520, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: m_IsActive
@@ -121,25 +138,5 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5750841754287189946, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3427901655038234795}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
---- !u!1 &6578495129070317044 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5750841754287189946, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
-  m_PrefabInstance: {fileID: 1478476366853309006}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3427901655038234795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6578495129070317044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b609d6d2e7167304499b38418d7b3332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
