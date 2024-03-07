@@ -13,8 +13,8 @@ namespace IslandBoy
 		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
 			Debug.Log("Entering GHOST Move State");
-			_ctx = animator.transform.root.GetComponent<GhostStateManager>();
-			_target = CalcWanderPos();
+			// _ctx = animator.transform.root.GetComponent<GhostStateManager>();
+			// _target = CalcWanderPos();
 		}
 
 		override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -27,19 +27,22 @@ namespace IslandBoy
 			// if(_target == null)
 			// 	_target = CalcWanderPos();
 			
-			_ctx.transform.position = Vector2.MoveTowards(_ctx.transform.position, _target, step);
+			// Debug.Log(_ctx != null);
+			// Debug.Log(_target != null);
 			
-			if (_ctx.Agitated)
-			{
-				_ctx.ChangeToChaseState(animator);
-				return;
-			}
+			// _ctx.transform.position = Vector2.MoveTowards(_ctx.transform.position, _target, step);
 			
-			if (Vector3.Distance(_ctx.transform.position, _target) < 0.01f)
-			{
-				_ctx.ChangeToIdleState(animator);
-				return;
-			}
+			// if (_ctx.Agitated)
+			// {
+			// 	_ctx.ChangeToChaseState(animator);
+			// 	return;
+			// }
+			
+			// if (Vector3.Distance(_ctx.transform.position, _target) < 0.01f)
+			// {
+			// 	_ctx.ChangeToIdleState(animator);
+			// 	return;
+			// }
 		}
 
 		public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
