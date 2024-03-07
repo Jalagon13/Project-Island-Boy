@@ -46,18 +46,18 @@ namespace IslandBoy
             // float clickDistance = 0;
             // float damage = 0;
 
-            foreach (var item in DefaultParameterList)
-            {
-                switch (item.Parameter.ParameterName)
-                {
-                    // case "ClickDistance":
-                    //     clickDistance = item.Value;
-                        // break;
-                    // case "Damage":
-                    //     damage = item.Value;
-                    //     break;
-                }
-            }
+            // foreach (var item in DefaultParameterList)
+            // {
+            //     switch (item.Parameter.ParameterName)
+            //     {
+            //         // case "ClickDistance":
+            //         //     clickDistance = item.Value;
+            //             // break;
+            //         // case "Damage":
+            //         //     damage = item.Value;
+            //         //     break;
+            //     }
+            // }
 
             return $"{Description}";
         }

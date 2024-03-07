@@ -7,10 +7,10 @@ namespace IslandBoy
 {
 	public class BootstrapSoundSetup : MonoBehaviour
 	{
-		[SerializeField] private bool _playAmb = true;
-		[SerializeField] private AudioClip _ambientSound;
-		[SerializeField] private bool _playMusic = true;
-		[SerializeField] private AudioClip _bgMusic;
+		// [SerializeField] private bool _playAmb = true;
+		// [SerializeField] private AudioClip _ambientSound;
+		// [SerializeField] private bool _playMusic = true;
+		// [SerializeField] private AudioClip _bgMusic;
 
 		private void Start()
 		{
