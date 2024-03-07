@@ -170,8 +170,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 163.79, y: 10}
-  m_SizeDelta: {x: 150, y: 30}
+  m_AnchoredPosition: {x: 182.5, y: 10}
+  m_SizeDelta: {x: 120.7535, y: 30}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &5576898088139624016
 CanvasRenderer:
@@ -636,7 +636,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Summon...
+  m_text: Okay..?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
   m_sharedMaterial: {fileID: 4835514525599508895, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
@@ -12945,6 +12945,7 @@ MonoBehaviour:
   _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxHitPoints: 999
   _breakType: 3
+  _breakTier: 0
   _clickFeedback: {fileID: 916017273567779306}
   _destroyFeedback: {fileID: 4532754497356607760}
   _lootTable:
@@ -12984,8 +12985,10 @@ MonoBehaviour:
   _upgradeCanvas: {fileID: 7386138585088704820}
   _npcToUnlock: 
   _unboundSprite: {fileID: 1389064612, guid: d1fdf00d255e2d942a949c35bbb7ace1, type: 3}
+  _hoverText: {fileID: 0}
   _recruitFeedback: {fileID: 0}
   _freeFeedback: {fileID: 0}
+  _shopButton: {fileID: 0}
 --- !u!114 &8313836301681945795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13700,6 +13703,12 @@ MonoBehaviour:
   _spawnPrefab: {fileID: 5799062759696218101, guid: f68cfc1801f587e46a2948d51c86eb17, type: 3}
   _summonFeedbacks: {fileID: 7794238029906395322}
   _promptText: {fileID: 4052584637787122113}
+  _startText: 'Mysterious Old Lady: Hello there youngling... Free the others and
+    I''ll give you a special <color=purple>treet</color=purple>?'
+  _rematchText: 'Mysterious Old Lady: Hello again... Back for more I see... You''ll
+    make another fine <color=purple>treet</color=purple> for me indeed...'
+  _vanquishedText: 'Mysterious Old Lady: Well hello again.... I feel so bad about
+    trying to kill you... Why don''t you come closer for an apology <color=purple>treet</color=purple>?'
   _onReqsMet:
     m_PersistentCalls:
       m_Calls:
@@ -13730,6 +13739,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _bypassUnlockPrereq: 0
 --- !u!1 &6913816107328613023
 GameObject:
   m_ObjectHideFlags: 0
