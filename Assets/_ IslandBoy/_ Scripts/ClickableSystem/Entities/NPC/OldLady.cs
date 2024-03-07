@@ -12,26 +12,38 @@ namespace IslandBoy
 		[SerializeField] private GameObject _spawnPrefab;
 		[SerializeField] private MMF_Player _summonFeedbacks;
 		[SerializeField] private TextMeshProUGUI _promptText;
-		[SerializeField] private UnityEvent _onReqsMet;
+		[SerializeField] private string _startText;
+        [SerializeField] private string _rematchText;
+        [SerializeField] private string _vanquishedText;
+        [SerializeField] private UnityEvent _onReqsMet;
 		[SerializeField] private UnityEvent _onSummon;
 		[SerializeField] private bool _bypassUnlockPrereq;
+
+		private bool _beenSummoned, _beenVanquished;
 
 
         private void Awake()
         {
             GameSignals.DAY_START.AddListener(Respawn);
+			GameSignals.TREEVIL_VANQUISHED.AddListener(VanquishListener);
         }
 
         private void OnDestroy()
         {
             GameSignals.DAY_START.RemoveListener(Respawn);
+            GameSignals.TREEVIL_VANQUISHED.RemoveListener(VanquishListener);
         }
 
         private void OnEnable() 
 		{
-			_promptText.text = $"Mysterious Old Lady: Hello there youngling...Free the others and I'll give you a special <color=purple>treet</color=purple>?<br><br>Settlers Housed: {NpcSlots.SettlerCount}/2";
-			
-			if(NpcSlots.SettlerCount >= 2 || _bypassUnlockPrereq)
+			if(!_beenSummoned)
+				_promptText.text = _startText + $"<br><br>Settlers Housed: {NpcSlots.SettlerCount}/2";
+			else if(!_beenVanquished)
+				_promptText.text = _rematchText + $"<br><br>Settlers Housed: {NpcSlots.SettlerCount}/2";
+			else
+                _promptText.text = _vanquishedText + $"<br><br>Settlers Housed: {NpcSlots.SettlerCount}/2";
+
+            if (NpcSlots.SettlerCount >= 2 || _bypassUnlockPrereq)
 			{
 				_onReqsMet?.Invoke();
 			}
@@ -45,7 +57,9 @@ namespace IslandBoy
 		
 		public void Summon()
 		{
-			Instantiate(_spawnPrefab, transform.root.position, Quaternion.identity);
+            Instantiate(_spawnPrefab, transform.root.position, Quaternion.identity);
+			_beenSummoned = true;
+			_beenVanquished = false;
 			transform.root.gameObject.SetActive(false);
 		}
 
@@ -53,5 +67,11 @@ namespace IslandBoy
 		{
             transform.root.gameObject.SetActive(true);
         }
-	}
+
+		private void VanquishListener(ISignalParameters parameters)
+		{
+			_beenVanquished = true;
+		}
+
+    }
 }

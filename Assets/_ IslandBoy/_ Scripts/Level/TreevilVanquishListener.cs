@@ -7,7 +7,6 @@ namespace IslandBoy
         private void Awake()
         {
             GameSignals.TREEVIL_VANQUISHED.AddListener(TreevilVictory);
-            gameObject.SetActive(false);
         }
 
         private void OnDestroy()
@@ -17,7 +16,7 @@ namespace IslandBoy
 
         private void TreevilVictory(ISignalParameters parameters)
         {
-            gameObject.SetActive(true);
+            gameObject.SetActive(false);
         }
     }
 }
