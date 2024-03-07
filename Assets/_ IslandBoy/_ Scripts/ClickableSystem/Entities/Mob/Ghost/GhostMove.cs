@@ -20,6 +20,13 @@ namespace IslandBoy
 		override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
 			var step = 1.5f * Time.deltaTime;
+			
+			// if(_ctx == null)
+			// 	_ctx = animator.transform.root.GetComponent<GhostStateManager>();
+				
+			// if(_target == null)
+			// 	_target = CalcWanderPos();
+			
 			_ctx.transform.position = Vector2.MoveTowards(_ctx.transform.position, _target, step);
 			
 			if (_ctx.Agitated)
