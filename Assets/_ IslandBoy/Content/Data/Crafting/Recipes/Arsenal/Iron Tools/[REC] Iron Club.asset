@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a38df6f5fd8e134faa55cb288909a5a, type: 3}
-  m_Name: '[REC] ChumTheWaters'
+  m_Name: '[REC] Iron Club'
   m_EditorClassIdentifier: 
-  OutputItem: {fileID: 11400000, guid: 0b7f0d54ab7111e46846d8a5e889f224, type: 2}
+  OutputItem: {fileID: 11400000, guid: 071e3dc0335a6f441b4742c1336acdb7, type: 2}
   OutputAmount: 1
-  CraftingTimer: 0
+  CraftingTimer: 3
   ResourceList:
-  - Item: {fileID: 11400000, guid: e43c60c2ca65d2448ae6819e64192b49, type: 2}
-    Amount: 1
-  - Item: {fileID: 11400000, guid: 666eb40bc9bc9144a96d280bde4e45f8, type: 2}
-    Amount: 3
-  - Item: {fileID: 11400000, guid: edc513b3ed3bd4344aa82974c2d886f1, type: 2}
-    Amount: 3
+  - Item: {fileID: 11400000, guid: a231bdcf0c738394697fe7f4a2f28cf4, type: 2}
+    Amount: 5
+  - Item: {fileID: 11400000, guid: a89d325f56e1521458a926e9cc55bc79, type: 2}
+    Amount: 5

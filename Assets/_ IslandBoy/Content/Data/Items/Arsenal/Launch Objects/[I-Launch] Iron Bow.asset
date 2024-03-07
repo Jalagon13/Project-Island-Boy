@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b48e90e43a081924283740da00ff416a, type: 3}
-  m_Name: '[I-Launch] Stone Bow'
+  m_Name: '[I-Launch] Iron Bow'
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Stone Bow
-  <UiDisplay>k__BackingField: {fileID: -1479775636, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  <Name>k__BackingField: Iron Bow
+  <UiDisplay>k__BackingField: {fileID: 1478592601, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   <Stackable>k__BackingField: 0
-  <UpgradeRecipe>k__BackingField: {fileID: 11400000, guid: 768c198c8f913124f949c2def3eb0a41, type: 2}
-  <XpUpgradeCost>k__BackingField: 25
+  <UpgradeRecipe>k__BackingField: {fileID: 0}
+  <XpUpgradeCost>k__BackingField: 0
   <Description>k__BackingField: "\u2022 Fire rate: Average"
   <DefaultParameterList>k__BackingField:
   - Parameter: {fileID: 11400000, guid: 8a8bef37f1c5e3c40ad4319761ff897a, type: 2}
-    Value: 6
+    Value: 7
   - Parameter: {fileID: 11400000, guid: c25902e3274ad0a4a97f3515779aecea, type: 2}
-    Value: 4
+    Value: 5
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _launchPrefab: {fileID: -5539637311781077729, guid: f10bcf5ae9c63f74e8eea0514827ae94, type: 3}
   _ammo: {fileID: 11400000, guid: ad8d77d5b0f8ba8439e6e8bad6571b59, type: 2}
