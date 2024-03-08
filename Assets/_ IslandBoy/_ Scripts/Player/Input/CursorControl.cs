@@ -24,6 +24,7 @@ namespace IslandBoy
 
 		private PlayerInput _input;
 		private SpriteRenderer _sr;
+		private CircleCollider2D _collider;
 		private Slot _focusSlotRef;
 		private Clickable _currentClickable;
 		private Timer _clickTimer;
@@ -46,6 +47,7 @@ namespace IslandBoy
 			_clickTimer = new(0);
 
 			_sr = GetComponent<SpriteRenderer>();
+			_collider = GetComponent<CircleCollider2D>();
 			_currentClickDistance = _startingClickDistance;
 
 			GameSignals.FOCUS_SLOT_UPDATED.AddListener(FocusSlotUpdated);
@@ -173,7 +175,7 @@ namespace IslandBoy
 
 		private void Interact(InputAction.CallbackContext context)
 		{
-			if (!_canUseActions) return;
+			if (!_canUseActions || (transform.localPosition + new Vector3(0, 0.05f, 0)).magnitude > 1) return;
 
 			Collider2D[] colliders = Physics2D.OverlapPointAll(transform.position);
 
@@ -238,11 +240,10 @@ namespace IslandBoy
 			{
 				var index = _focusSlotRef.ItemObject.DefaultParameterList.IndexOf(_clickDistanceParameter);
 				var clickDistanceParameter = _focusSlotRef.ItemObject.DefaultParameterList[index];
-
+								
 				return clickDistanceParameter.Value;
 			}
-
-			return _startingClickDistance;
+            return _startingClickDistance;
 		}
 
 		private void UpdateCurrentClickable()
@@ -264,7 +265,7 @@ namespace IslandBoy
 
 		private Clickable ClickableFound()
 		{
-			Collider2D[] colliders = Physics2D.OverlapPointAll(transform.position);
+            Collider2D[] colliders = Physics2D.OverlapPointAll(transform.position);
 			List<Clickable> clickablesFound = new();
 
 			if (colliders.Count() > 0)
@@ -332,6 +333,11 @@ namespace IslandBoy
 			Vector2 direction = (_pr.MousePosition - playerPos).normalized;
 
 			taPosition = Vector2.Distance(playerPos, _pr.MousePosition) > _currentClickDistance ? (playerPos += new Vector2(0, 0.25f)) + (direction * _currentClickDistance) : _pr.MousePosition;
+
+			if ((transform.localPosition + new Vector3(0, 0.05f, 0)).magnitude > 1)
+				_collider.enabled = false;
+			else
+				_collider.enabled = true;
 
 			return taPosition;
 		}
