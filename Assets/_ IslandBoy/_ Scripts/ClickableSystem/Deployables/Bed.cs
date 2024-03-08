@@ -147,7 +147,6 @@ namespace IslandBoy
 			_floorTilePositions = new();
 			List<Vector3Int> wallTilePositions = new(); // list of wall tiles around the free space
 			List<Vector3Int> doorPositions = new(); // list of all positions of doors if any door is found
-			int maxHouseSpaceTiles = 50;
 
 			var checkPos = Vector3Int.FloorToInt(transform.root.position);
 			tilesToCheck.Push(checkPos);

@@ -1,7 +1,9 @@
+using MoreMountains.Tools;
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace IslandBoy
 {
@@ -10,8 +12,7 @@ namespace IslandBoy
 	{
 		MENU,
 		PLAYING,
-		PAUSED,
-		GAMEOVER
+		PAUSED
 	}
 
 	public class PauseMenuAction : MonoBehaviour
@@ -22,12 +23,14 @@ namespace IslandBoy
 
 		private PlayerInput _playerInput;
 		private static GAMESTATE _state;
+		private bool _quitGame;
 
 		private void Awake()
 		{
 			_playerInput = new();
 			_playerInput.Player.PauseMenu.started += TogglePause;
 			_state = GAMESTATE.PLAYING;
+			_quitGame = false;
 		}
 
 		private void OnEnable()
@@ -46,8 +49,8 @@ namespace IslandBoy
 		}
 
 		public void TogglePause(InputAction.CallbackContext ctx)
-		{
-			if(_po.Inventory.InventoryControl.IsInventoryOpen)
+        {
+            if (_po.Inventory.InventoryControl.IsInventoryOpen)
 			{
 				GameSignals.INVENTORY_CLOSE.Dispatch();
 				return;
@@ -63,6 +66,7 @@ namespace IslandBoy
 			}
 			else if (_state == GAMESTATE.PAUSED)
 			{
+				OnClickBack2Pause();
 				_state = GAMESTATE.PLAYING;
 				_pauseMenu.SetActive(false);
 
@@ -71,10 +75,24 @@ namespace IslandBoy
 			}
 		}
 
-		public void OnClickTitle()
+		public void ExitOrQuit(bool toggle)
 		{
-			Debug.Log("Quit button clicked");
-			Application.Quit();
+			// true to quit, false to exit to menu
+			_quitGame = toggle;
+		}
+
+		public void OnClickVerifyMenu()
+		{
+            // Brings up menu asking if player is sure they want to exit/quit
+            transform.GetChild(0).GetChild(2).gameObject.SetActive(false);
+            transform.GetChild(0).GetChild(3).gameObject.SetActive(true);
+		}
+
+		public void OnClickBack2Pause()
+		{
+            // Brings main pause menu back
+            transform.GetChild(0).GetChild(2).gameObject.SetActive(true);
+            transform.GetChild(0).GetChild(3).gameObject.SetActive(false);
 		}
 
 		public void OnClickSettings()
@@ -87,9 +105,61 @@ namespace IslandBoy
 			Debug.Log("Save button clicked");
 		}
 
-		public void OnClickBack()
+		public void OnClickBack2Game()
 		{
-			TogglePause(new());
+            TogglePause(new());
 		}
-	}
+
+		public void OnClickLeaveGame()
+		{
+			if (_quitGame)
+			{
+				Debug.Log("Quit game");
+				Application.Quit();
+			}
+			else //exit to title
+			{
+				Debug.Log("Exited game");
+                SceneManager.LoadScene("MainMenu");
+                //LoadScene("MainMenu");
+				/*
+                SceneManager.UnloadSceneAsync("Player");
+				SceneManager.UnloadSceneAsync("TimeManager");
+				SceneManager.UnloadSceneAsync("LevelControl");
+				SceneManager.UnloadSceneAsync("Inventory");
+
+				SceneManager.UnloadSceneAsync("Surface");
+				SceneManager.UnloadSceneAsync("StartCave");
+				try
+				{
+					SceneManager.UnloadSceneAsync("Cave");
+				}
+				catch(Exception e){}
+				SceneManager.UnloadSceneAsync("DeathPanel");
+				SceneManager.UnloadSceneAsync("LaunchControl");
+				SceneManager.UnloadSceneAsync("PauseMenu");
+				SceneManager.UnloadSceneAsync("PromptDisplay");
+				SceneManager.UnloadSceneAsync("StatsDisplay");*/
+			}
+		}
+
+        private IEnumerator LoadScene(string sceneName)
+        {
+            AsyncOperation sceneAsync = new();
+            sceneAsync = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            sceneAsync.allowSceneActivation = false;
+
+            while (sceneAsync.progress < 0.9f)
+            {
+                yield return null;
+            }
+
+            sceneAsync.allowSceneActivation = true;
+
+            while (!sceneAsync.isDone)
+            {
+                yield return null;
+            }
+        }
+    }
 }
