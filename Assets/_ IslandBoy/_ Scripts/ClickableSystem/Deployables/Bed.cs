@@ -147,7 +147,6 @@ namespace IslandBoy
 			_floorTilePositions = new();
 			List<Vector3Int> wallTilePositions = new(); // list of wall tiles around the free space
 			List<Vector3Int> doorPositions = new(); // list of all positions of doors if any door is found
-			int maxHouseSpaceTiles = 50;
 
 			var checkPos = Vector3Int.FloorToInt(transform.root.position);
 			tilesToCheck.Push(checkPos);
@@ -197,8 +196,15 @@ namespace IslandBoy
 				}
 			}
 
-			// if floor tile positions are greater than maxHouseSpaceTiles, then housing is too big.
-			if (_floorTilePositions.Count > maxHouseSpaceTiles)
+			// if floor tile positions are less than 9 tiles, then housing is too small.
+			if (_floorTilePositions.Count < 9)
+			{
+				// PopupMessage.Create(transform.position, "Space too small!", Color.yellow, new(0.5f, 0.5f), 1f);
+				return false;
+			}
+
+			// if floor tile positions are greater than 100 tiles, then housing is too big.
+			if (_floorTilePositions.Count > 100)
 			{
 				// PopupMessage.Create(transform.position, "Space too large!", Color.yellow, new(0.5f, 0.5f), 1f);
 				return false;
