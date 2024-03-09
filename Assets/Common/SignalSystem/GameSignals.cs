@@ -73,5 +73,9 @@ namespace IslandBoy
 		
 		// Tutorial Signals
 		public static readonly Signal ENABLE_STARTING_MECHANICS = new("EnableStartingMechanics");
+		
+		// Armor Signals
+		public static readonly Signal ARMOR_EQUIPPED = new("ArmorEquipped");
+		public static readonly Signal ARMOR_UNEQUIPPED = new("ArmorUnEquipped");
 	}
 }
