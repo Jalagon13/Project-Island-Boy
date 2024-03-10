@@ -264,7 +264,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2456008257036638237, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_Name
-      value: '[RSC] Lantern'
+      value: '[RSC] Torch'
       objectReference: {fileID: 0}
     - target: {fileID: 2819205200215340228, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_IsActive
@@ -273,11 +273,11 @@ PrefabInstance:
     - target: {fileID: 4279634690151273257, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 648865685, guid: 4f748df8bc619484697935c72b812ac7, type: 3}
+      objectReference: {fileID: -1995232107, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
     - target: {fileID: 4871828697884116381, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: managedReferences[1619343171848765462].Sfx
       value: 
-      objectReference: {fileID: 8300000, guid: e2b6630a648447b47a66f7f8325c7440, type: 3}
+      objectReference: {fileID: 8300000, guid: 1f5e75782a6e8434cba4bce854fb47eb, type: 3}
     - target: {fileID: 5343309374458340233, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -289,7 +289,7 @@ PrefabInstance:
     - target: {fileID: 7165791526722579916, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: managedReferences[1619343171848765461].Sfx
       value: 
-      objectReference: {fileID: 8300000, guid: 9a262ed27dacc294c9df37f2265e9949, type: 3}
+      objectReference: {fileID: 8300000, guid: 7af607a3736db8a43bd85f247755f233, type: 3}
     - target: {fileID: 7260606805276754575, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -403,13 +403,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxHitPoints: 6
-  _breakType: 2
+  _breakType: 1
   _breakTier: 0
   _clickFeedback: {fileID: 3991662640476158506}
   _destroyFeedback: {fileID: 1696461830264001147}
   _lootTable:
     <Table>k__BackingField:
-    - Item: {fileID: 11400000, guid: ea180782456c6d046a3c3c24d5cef8d2, type: 2}
+    - Item: {fileID: 11400000, guid: d4ce00f2e6502f44c8f3f2e6e33af73e, type: 2}
       Min: 1
       Max: 1
       Chance: 100

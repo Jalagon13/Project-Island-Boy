@@ -10,20 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74d2e031f0f1c27429d030216aec4522, type: 3}
-  m_Name: '[I-DPLY] Wood Bed'
+  m_Name: '[I-FURN] Stone Table'
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Wood Bed
-  <UiDisplay>k__BackingField: {fileID: -1449653993, guid: 4f748df8bc619484697935c72b812ac7, type: 3}
+  <Name>k__BackingField: Stone Table
+  <UiDisplay>k__BackingField: {fileID: 1192028786, guid: 4f748df8bc619484697935c72b812ac7, type: 3}
   <Stackable>k__BackingField: 1
   <Description>k__BackingField: 
   <DefaultParameterList>k__BackingField:
   - Parameter: {fileID: 11400000, guid: c25902e3274ad0a4a97f3515779aecea, type: 2}
     Value: 3
-  _prefabToDeploy: {fileID: 7067245150924448954, guid: 1381f5df28eeea94ea7aa4433c8f73b1, type: 3}
+  _prefabToDeploy: {fileID: 8503432816486420475, guid: 4ec457a2cf4ee1149bf78e3788538939, type: 3}
   _deploySound: {fileID: 8300000, guid: acc9a292f9a4e9448953f37d61d47e54, type: 3}
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _sprites:
-  - {fileID: -626996246, guid: 4f748df8bc619484697935c72b812ac7, type: 3}
-  - {fileID: -410780003, guid: 4f748df8bc619484697935c72b812ac7, type: 3}
-  - {fileID: 880870550, guid: 4f748df8bc619484697935c72b812ac7, type: 3}
-  - {fileID: -1449653993, guid: 4f748df8bc619484697935c72b812ac7, type: 3}
+  - {fileID: 1192028786, guid: 4f748df8bc619484697935c72b812ac7, type: 3}
+  - {fileID: 1154393036, guid: 4f748df8bc619484697935c72b812ac7, type: 3}
