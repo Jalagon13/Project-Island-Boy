@@ -73,6 +73,7 @@ namespace IslandBoy
 			{
 				_armorSprites.Clear();
 				_armorSprites = new();
+				_armorSr.sprite = null;
 			}
 		}
 		
