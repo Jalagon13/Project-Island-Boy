@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74d2e031f0f1c27429d030216aec4522, type: 3}
+  m_Name: '[I-FURN] Treevil Bed'
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Treevil Bed
+  <UiDisplay>k__BackingField: {fileID: -540900935, guid: 4f748df8bc619484697935c72b812ac7, type: 3}
+  <Stackable>k__BackingField: 1
+  <UpgradeRecipe>k__BackingField: {fileID: 0}
+  <XpUpgradeCost>k__BackingField: 0
+  <Description>k__BackingField: 
+  <DefaultParameterList>k__BackingField:
+  - Parameter: {fileID: 11400000, guid: c25902e3274ad0a4a97f3515779aecea, type: 2}
+    Value: 3
+  _prefabToDeploy: {fileID: 7067245150924448954, guid: e75e906fdb7ef854a942e332227f9383, type: 3}
+  _deploySound: {fileID: 8300000, guid: acc9a292f9a4e9448953f37d61d47e54, type: 3}
+  _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
+  _sprites:
+  - {fileID: 73954393, guid: 4f748df8bc619484697935c72b812ac7, type: 3}
+  - {fileID: 475737572, guid: 4f748df8bc619484697935c72b812ac7, type: 3}
+  - {fileID: -1293991899, guid: 4f748df8bc619484697935c72b812ac7, type: 3}
+  - {fileID: -540900935, guid: 4f748df8bc619484697935c72b812ac7, type: 3}
