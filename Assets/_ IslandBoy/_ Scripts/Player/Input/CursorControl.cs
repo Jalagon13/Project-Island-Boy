@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -76,7 +77,7 @@ namespace IslandBoy
 			_input.Disable();
 		}
 
-		private void FixedUpdate()
+		private void LateUpdate()
 		{
 			transform.SetPositionAndRotation(CalcPosition(), Quaternion.identity);
 
@@ -96,11 +97,10 @@ namespace IslandBoy
 			{
 				if (_focusSlotRef.ItemObject is WallObject || _focusSlotRef.ItemObject is FloorObject || _focusSlotRef.ItemObject is DeployObject)
 					return;
-
 				if ((_focusSlotRef.ToolType == clickable.BreakType && clickable.IsTierCompatibleWith(_focusSlotRef.ToolTier, clickable.BreakTier)) || clickable is Interactable)
 					clickable.ShowDisplay();
-				else
-					clickable.HideDisplay();
+				// else
+				// 	clickable.HideDisplay();
 			}
 		}
 
@@ -334,10 +334,10 @@ namespace IslandBoy
 
 			taPosition = Vector2.Distance(playerPos, _pr.MousePosition) > _currentClickDistance ? (playerPos += new Vector2(0, 0.25f)) + (direction * _currentClickDistance) : _pr.MousePosition;
 
-			if ((transform.localPosition + new Vector3(0, 0.05f, 0)).magnitude > 1)
-				_collider.enabled = false;
-			else
-				_collider.enabled = true;
+			// if ((transform.localPosition + new Vector3(0, 0.05f, 0)).magnitude > 1)
+			// 	_collider.enabled = false;
+			// else
+			// 	_collider.enabled = true;
 
 			return taPosition;
 		}
