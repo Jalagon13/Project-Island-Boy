@@ -89,7 +89,9 @@ namespace IslandBoy
 			_image.sprite = _blankSlotSprite;
 			
 			Signal signal = GameSignals.ARMOR_EQUIPPED;
-			
+			signal.ClearParameters();
+			ArmorObject armorObject = (ArmorObject)ItemObject;
+			signal.AddParameter("ArmorObject", armorObject);
 			signal.Dispatch();
 		}
 
@@ -100,7 +102,9 @@ namespace IslandBoy
 			_image.sprite = _armorSlotSprite;
 			
 			Signal signal = GameSignals.ARMOR_UNEQUIPPED;
-			
+			signal.ClearParameters();
+			ArmorObject armorObject = (ArmorObject)ItemObject;
+			signal.AddParameter("ArmorObject", armorObject);
 			signal.Dispatch();
 		}
 

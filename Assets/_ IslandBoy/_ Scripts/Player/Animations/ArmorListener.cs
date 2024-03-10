@@ -9,7 +9,7 @@ namespace IslandBoy
 		[SerializeField] private ArmorType _armorType;
 		private SpriteRenderer _leadSr;
 		private SpriteRenderer _armorSr;
-		private Dictionary<string, Sprite> _armorSprites;
+		private Dictionary<string, Sprite> _armorSprites = new();
 		
 		private void Awake()
 		{
@@ -32,6 +32,8 @@ namespace IslandBoy
 			
 			if(_armorSr.enabled)
 			{
+				_armorSr.flipX = _leadSr.flipX;
+				
 				if(CurrentSpriteName(_armorSr) != CurrentSpriteName(_leadSr))
 				{
 					Sprite sprite;
@@ -46,16 +48,39 @@ namespace IslandBoy
 		
 		private void OnArmorEquipped(ISignalParameters parameters)
 		{
+			var armorObject = (ArmorObject)parameters.GetParameter("ArmorObject");
 			
+			if(armorObject.ArmorType == _armorType)
+			{
+				// equip armor
+				_armorSprites.Clear();
+				_armorSprites = new();
+				
+				var armorSprites = armorObject.SpriteList;
+				
+				foreach (Sprite sprite in armorSprites)
+				{
+					_armorSprites.Add(sprite.name, sprite);
+				}
+			}
 		}
 		
 		private void OnArmorUnEquipped(ISignalParameters parameters)
 		{
+			var armorObject = (ArmorObject)parameters.GetParameter("ArmorObject");
 			
+			if(armorObject.ArmorType == _armorType)
+			{
+				_armorSprites.Clear();
+				_armorSprites = new();
+			}
 		}
 		
 		private string CurrentSpriteName(SpriteRenderer sr)
 		{
+			if(sr.sprite == null)
+				return string.Empty;
+			
 			return sr.sprite.name;
 		}
 	}
