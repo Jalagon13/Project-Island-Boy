@@ -52,7 +52,12 @@ namespace IslandBoy
 		{
 			_fillImage.transform.parent.gameObject.SetActive(false);
 		}
-		
+
+		public void EnableForceFieldUI()
+		{
+			_fillImage.transform.parent.gameObject.SetActive(true);
+		}
+
 		// public void UpdateHeartBeatText(int beatCounter, int beatQuota)
 		// {
 		// 	_fillImage.fillAmount = (float)beatCounter / (float)beatQuota;

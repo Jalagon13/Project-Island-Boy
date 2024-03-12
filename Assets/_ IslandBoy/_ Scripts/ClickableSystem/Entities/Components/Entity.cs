@@ -59,7 +59,9 @@ namespace IslandBoy
 
 		private void DestroyThisEntity(ISignalParameters parameters)
 		{
-			Destroy(gameObject);
+			if (_entityName != "Monster Heart")
+				Destroy(gameObject);
+			else ResetHealth();
 		}
 
 		public bool Damage(ToolType incomingToolType, int amount, bool displayHit = true, bool kbEnabled = true, float strength = 5)
