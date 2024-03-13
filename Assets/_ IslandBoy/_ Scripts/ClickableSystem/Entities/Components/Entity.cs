@@ -95,9 +95,9 @@ namespace IslandBoy
 		{
 			UpdateAmountDisplay();
 			UpdateFillImage();
-			EnableInstructions(true);
-			EnableAmountDisplay(true);
-			EnableProgressBar(true);
+			// EnableInstructions(true);
+			// EnableAmountDisplay(true);
+			// EnableProgressBar(true);
 		}
 
 		public override void HideDisplay()
