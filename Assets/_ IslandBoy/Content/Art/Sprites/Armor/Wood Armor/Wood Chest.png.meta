@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: plr_side_body1
+      name: plr_side_body_1
       rect:
         serializedVersion: 2
         x: 0
@@ -131,7 +131,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_side_body2
+      name: plr_side_body_2
       rect:
         serializedVersion: 2
         x: 16
@@ -152,7 +152,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_side_body3
+      name: plr_side_body_3
       rect:
         serializedVersion: 2
         x: 32
@@ -173,7 +173,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_side_body4
+      name: plr_side_body_4
       rect:
         serializedVersion: 2
         x: 48
@@ -194,7 +194,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_side_body5
+      name: plr_side_body_5
       rect:
         serializedVersion: 2
         x: 64
@@ -215,7 +215,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_side_body6
+      name: plr_side_body_6
       rect:
         serializedVersion: 2
         x: 80
@@ -236,7 +236,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_front_body1
+      name: plr_front_body_1
       rect:
         serializedVersion: 2
         x: 0
@@ -257,7 +257,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_front_body2
+      name: plr_front_body_2
       rect:
         serializedVersion: 2
         x: 16
@@ -278,7 +278,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_front_body3
+      name: plr_front_body_3
       rect:
         serializedVersion: 2
         x: 32
@@ -299,7 +299,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_front_body4
+      name: plr_front_body_4
       rect:
         serializedVersion: 2
         x: 48
@@ -320,7 +320,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_front_body5
+      name: plr_front_body_5
       rect:
         serializedVersion: 2
         x: 64
@@ -341,7 +341,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_front_body6
+      name: plr_front_body_6
       rect:
         serializedVersion: 2
         x: 80
@@ -362,7 +362,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_back_body1
+      name: plr_back_body_1
       rect:
         serializedVersion: 2
         x: 0
@@ -383,7 +383,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_back_body2
+      name: plr_back_body_2
       rect:
         serializedVersion: 2
         x: 16
@@ -404,7 +404,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_back_body3
+      name: plr_back_body_3
       rect:
         serializedVersion: 2
         x: 32
@@ -425,7 +425,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_back_body4
+      name: plr_back_body_4
       rect:
         serializedVersion: 2
         x: 48
@@ -446,7 +446,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_back_body5
+      name: plr_back_body_5
       rect:
         serializedVersion: 2
         x: 64
@@ -467,7 +467,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_back_body6
+      name: plr_back_body_6
       rect:
         serializedVersion: 2
         x: 80
@@ -498,24 +498,24 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      plr_back_body1: -654348778
-      plr_back_body2: -1718437043
-      plr_back_body3: 351614189
-      plr_back_body4: -2070502154
-      plr_back_body5: -339082898
-      plr_back_body6: -1141376584
-      plr_front_body1: 741843571
-      plr_front_body2: 707640899
-      plr_front_body3: 740454349
-      plr_front_body4: 1670968056
-      plr_front_body5: -1163193055
-      plr_front_body6: 1929661236
-      plr_side_body1: 599046093
-      plr_side_body2: -1808594722
-      plr_side_body3: 1035519108
-      plr_side_body4: -1118396815
-      plr_side_body5: 1921092798
-      plr_side_body6: -1272661967
+      plr_back_body_1: -654348778
+      plr_back_body_2: -1718437043
+      plr_back_body_3: 351614189
+      plr_back_body_4: -2070502154
+      plr_back_body_5: -339082898
+      plr_back_body_6: -1141376584
+      plr_front_body_1: 741843571
+      plr_front_body_2: 707640899
+      plr_front_body_3: 740454349
+      plr_front_body_4: 1670968056
+      plr_front_body_5: -1163193055
+      plr_front_body_6: 1929661236
+      plr_side_body_1: 599046093
+      plr_side_body_2: -1808594722
+      plr_side_body_3: 1035519108
+      plr_side_body_4: -1118396815
+      plr_side_body_5: 1921092798
+      plr_side_body_6: -1272661967
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: plr_side_legs1
+      name: plr_side_legs_1
       rect:
         serializedVersion: 2
         x: 0
@@ -131,7 +131,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_side_legs2
+      name: plr_side_legs_2
       rect:
         serializedVersion: 2
         x: 16
@@ -152,7 +152,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_side_legs3
+      name: plr_side_legs_3
       rect:
         serializedVersion: 2
         x: 32
@@ -173,7 +173,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_side_legs4
+      name: plr_side_legs_4
       rect:
         serializedVersion: 2
         x: 48
@@ -194,7 +194,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_side_legs5
+      name: plr_side_legs_5
       rect:
         serializedVersion: 2
         x: 64
@@ -215,7 +215,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_side_legs6
+      name: plr_side_legs_6
       rect:
         serializedVersion: 2
         x: 80
@@ -236,7 +236,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_front_legs1
+      name: plr_front_legs_1
       rect:
         serializedVersion: 2
         x: 0
@@ -257,7 +257,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_front_legs2
+      name: plr_front_legs_2
       rect:
         serializedVersion: 2
         x: 16
@@ -278,7 +278,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_front_legs3
+      name: plr_front_legs_3
       rect:
         serializedVersion: 2
         x: 32
@@ -299,7 +299,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_front_legs4
+      name: plr_front_legs_4
       rect:
         serializedVersion: 2
         x: 48
@@ -320,7 +320,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_front_legs5
+      name: plr_front_legs_5
       rect:
         serializedVersion: 2
         x: 64
@@ -341,7 +341,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_front_legs6
+      name: plr_front_legs_6
       rect:
         serializedVersion: 2
         x: 80
@@ -362,7 +362,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_back_legs1
+      name: plr_back_legs_1
       rect:
         serializedVersion: 2
         x: 0
@@ -383,7 +383,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_back_legs2
+      name: plr_back_legs_2
       rect:
         serializedVersion: 2
         x: 16
@@ -404,7 +404,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_back_legs3
+      name: plr_back_legs_3
       rect:
         serializedVersion: 2
         x: 32
@@ -425,7 +425,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_back_legs4
+      name: plr_back_legs_4
       rect:
         serializedVersion: 2
         x: 48
@@ -446,7 +446,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_back_legs5
+      name: plr_back_legs_5
       rect:
         serializedVersion: 2
         x: 64
@@ -467,7 +467,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_back_legs6
+      name: plr_back_legs_6
       rect:
         serializedVersion: 2
         x: 80
@@ -498,24 +498,24 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      plr_back_legs1: -974699618
-      plr_back_legs2: -772979660
-      plr_back_legs3: 848419630
-      plr_back_legs4: -1323218861
-      plr_back_legs5: 1245477788
-      plr_back_legs6: -1200014389
-      plr_front_legs1: -1167644358
-      plr_front_legs2: -1577078874
-      plr_front_legs3: 550841254
-      plr_front_legs4: -203119226
-      plr_front_legs5: -1983363264
-      plr_front_legs6: -1927179875
-      plr_side_legs1: 1693096690
-      plr_side_legs2: 1726783553
-      plr_side_legs3: -600788145
-      plr_side_legs4: -1188766825
-      plr_side_legs5: 741013747
-      plr_side_legs6: -20052641
+      plr_back_legs_1: -974699618
+      plr_back_legs_2: -772979660
+      plr_back_legs_3: 848419630
+      plr_back_legs_4: -1323218861
+      plr_back_legs_5: 1245477788
+      plr_back_legs_6: -1200014389
+      plr_front_legs_1: -1167644358
+      plr_front_legs_2: -1577078874
+      plr_front_legs_3: 550841254
+      plr_front_legs_4: -203119226
+      plr_front_legs_5: -1983363264
+      plr_front_legs_6: -1927179875
+      plr_side_legs_1: 1693096690
+      plr_side_legs_2: 1726783553
+      plr_side_legs_3: -600788145
+      plr_side_legs_4: -1188766825
+      plr_side_legs_5: 741013747
+      plr_side_legs_6: -20052641
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

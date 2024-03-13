@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 820c53eb084de4f00a87a364a35ebbe2
+guid: 41bb957da5f34ff4dbfd5e8fd29643d7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,127 +110,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: plr_side_head_1
+      name: 1_side_head_1
       rect:
         serializedVersion: 2
         x: 0
         y: 32
         width: 16
         height: 16
-      alignment: 7
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7f2662cee85b4e1aba2c57348156793
-      internalID: 2099565082
+      spriteID: 09b00aae518d14c62a57aa24b16891df
+      internalID: 427568860
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_side_head_2
+      name: 1_side_head_2
       rect:
         serializedVersion: 2
         x: 16
         y: 32
         width: 16
         height: 16
-      alignment: 7
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86c2959acbdd64e2487618e8c3c9dcd5
-      internalID: -563951524
+      spriteID: 15fa6da6e719e4a9ea2bd5928739cb01
+      internalID: 970422893
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_front_head_1
+      name: 1_front_head_1
       rect:
         serializedVersion: 2
         x: 0
         y: 16
         width: 16
         height: 16
-      alignment: 7
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b9431fbe82584c3a990f81db41d8351
-      internalID: -1569151454
+      spriteID: c3e7f140188444f1ea9ff672888903e3
+      internalID: -1181171117
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_front_head_2
+      name: 1_front_head_2
       rect:
         serializedVersion: 2
         x: 16
         y: 16
         width: 16
         height: 16
-      alignment: 7
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ee96d0770f18445084981f3c67ae851
-      internalID: -567041586
+      spriteID: 4b05edef6a0944448bb3891c58420f6d
+      internalID: 574796607
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_back_head_1
+      name: 1_back_head_1
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 16
         height: 16
-      alignment: 7
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4071d9a5d23d4486b9a7f6b0ad8826c
-      internalID: -360913304
+      spriteID: 81f7dd0c937494a7eb751c2176291eb7
+      internalID: 2012636272
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_back_head_2
+      name: 1_back_head_2
       rect:
         serializedVersion: 2
         x: 16
         y: 0
         width: 16
         height: 16
-      alignment: 7
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb0a4812bc82a490c95a19422e88b032
-      internalID: 1665293882
+      spriteID: b31c637f9379343e78280580651e8647
+      internalID: 459237283
       vertices: []
       indices: 
       edges: []
@@ -246,12 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      plr_back_head_1: -360913304
-      plr_back_head_2: 1665293882
-      plr_front_head_1: -567041586
-      plr_front_head_2: -567041586
-      plr_side_head_1: -563951524
-      plr_side_head_2: -1569151454
+      1_back_head_1: 2012636272
+      1_back_head_2: 459237283
+      1_front_head_1: 2012636272
+      1_front_head_2: -1181171117
+      1_side_head_1: 970422893
+      1_side_head_2: 574796607
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

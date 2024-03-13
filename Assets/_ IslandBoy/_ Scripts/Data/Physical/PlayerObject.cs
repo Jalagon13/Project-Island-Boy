@@ -14,6 +14,7 @@ namespace IslandBoy
 		private GameObject _playerGameObject;
 		private MouseSlot _playerMouseSlot;
 		private PlaceDownIndicator _placeDownIndicator;
+		private int _skinNum;
 
 		public Vector2 Position { get { return _playerPosition; } set { _playerPosition = value; } }
 		public Vector2 MousePosition { get { return _mousePosition; } set { _mousePosition = value; } }
@@ -23,6 +24,7 @@ namespace IslandBoy
 		public MouseSlot MouseSlot { get { return _playerMouseSlot; } set { _playerMouseSlot = value; } }
 		public PlaceDownIndicator PlaceDownIndicator { get { return _placeDownIndicator; } set { _placeDownIndicator = value; } }
 		public int Defense { get { return _defense; } set { _defense = value; } }
+		public int Skin { get { return _skinNum; } set { _skinNum = value; } }
 
 		public void AddDefense(int val)
 		{

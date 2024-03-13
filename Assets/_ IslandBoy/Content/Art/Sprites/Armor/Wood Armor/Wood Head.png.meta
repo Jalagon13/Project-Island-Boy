@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: plr_side_head1
+      name: plr_side_head_1
       rect:
         serializedVersion: 2
         x: 0
@@ -131,7 +131,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_side_head2
+      name: plr_side_head_2
       rect:
         serializedVersion: 2
         x: 16
@@ -152,7 +152,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_front_head1
+      name: plr_front_head_1
       rect:
         serializedVersion: 2
         x: 0
@@ -173,7 +173,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_front_head2
+      name: plr_front_head_2
       rect:
         serializedVersion: 2
         x: 16
@@ -194,7 +194,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_back_head1
+      name: plr_back_head_1
       rect:
         serializedVersion: 2
         x: 0
@@ -215,7 +215,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_back_head2
+      name: plr_back_head_2
       rect:
         serializedVersion: 2
         x: 16
@@ -246,12 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      plr_back_head1: 2012636272
-      plr_back_head2: 459237283
-      plr_front_head1: -1181171117
-      plr_front_head2: 574796607
-      plr_side_head1: 427568860
-      plr_side_head2: 970422893
+      plr_back_head_1: 2012636272
+      plr_back_head_2: 459237283
+      plr_front_head_1: -1181171117
+      plr_front_head_2: 574796607
+      plr_side_head_1: 427568860
+      plr_side_head_2: 970422893
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
