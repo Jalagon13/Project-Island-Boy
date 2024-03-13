@@ -6,6 +6,7 @@ namespace IslandBoy
 {
 	public class ArmorListener : MonoBehaviour
 	{
+		[SerializeField] private PlayerObject _pr; 
 		[SerializeField] private ArmorType _armorType;
 		private SpriteRenderer _leadSr;
 		private SpriteRenderer _armorSr;
@@ -58,9 +59,18 @@ namespace IslandBoy
 				
 				var armorSprites = armorObject.SpriteList;
 				
+				// only add armor sprites with prefixes matching the current player skin
 				foreach (Sprite sprite in armorSprites)
 				{
-					_armorSprites.Add(sprite.name, sprite);
+					string prefix = sprite.name.Split('_')[0];
+					if (prefix=="plr" && _pr.Skin==0)
+                    {
+						_armorSprites.Add(sprite.name, sprite);
+					} 
+					else if (prefix!="plr" && int.Parse(prefix)==_pr.Skin)
+                    {
+						_armorSprites.Add(sprite.name, sprite);
+					}
 				}
 			}
 		}
@@ -81,8 +91,20 @@ namespace IslandBoy
 		{
 			if(sr.sprite == null)
 				return string.Empty;
-			
-			return sr.sprite.name;
+
+			// get rid of prefix
+			var splitName = new List<string>(sr.sprite.name.Split('_'));
+			splitName.RemoveAt(0);
+			string noPrefix = string.Join('_', splitName);
+
+			// get the prefix matching the current player skin
+			string prefix = "";
+			if (_pr.Skin == 0)
+				prefix = "plr_";
+			else
+				prefix += _pr.Skin + "_";
+
+			return prefix + noPrefix;
 		}
 	}
 }

@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: plr_side_swing_arm1
+      name: plr_side_swing_arm_1
       rect:
         serializedVersion: 2
         x: 0
@@ -131,7 +131,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_side_swing_arm2
+      name: plr_side_swing_arm_2
       rect:
         serializedVersion: 2
         x: 16
@@ -152,7 +152,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_side_swing_arm3
+      name: plr_side_swing_arm_3
       rect:
         serializedVersion: 2
         x: 32
@@ -173,7 +173,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_side_swing_arm4
+      name: plr_side_swing_arm_4
       rect:
         serializedVersion: 2
         x: 48
@@ -194,7 +194,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_side_swing_arm5
+      name: plr_side_swing_arm_5
       rect:
         serializedVersion: 2
         x: 64
@@ -215,7 +215,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_side_swing_arm6
+      name: plr_side_swing_arm_6
       rect:
         serializedVersion: 2
         x: 80
@@ -236,7 +236,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_front_swing_arm1
+      name: plr_front_swing_arm_1
       rect:
         serializedVersion: 2
         x: 0
@@ -257,7 +257,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_front_swing_arm2
+      name: plr_front_swing_arm_2
       rect:
         serializedVersion: 2
         x: 16
@@ -278,7 +278,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_front_swing_arm3
+      name: plr_front_swing_arm_3
       rect:
         serializedVersion: 2
         x: 32
@@ -299,7 +299,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_front_swing_arm4
+      name: plr_front_swing_arm_4
       rect:
         serializedVersion: 2
         x: 48
@@ -320,7 +320,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_front_swing_arm5
+      name: plr_front_swing_arm_5
       rect:
         serializedVersion: 2
         x: 64
@@ -341,7 +341,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_front_swing_arm6
+      name: plr_front_swing_arm_6
       rect:
         serializedVersion: 2
         x: 80
@@ -362,7 +362,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_back_swing_arm1
+      name: plr_back_swing_arm_1
       rect:
         serializedVersion: 2
         x: 0
@@ -383,7 +383,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_back_swing_arm2
+      name: plr_back_swing_arm_2
       rect:
         serializedVersion: 2
         x: 16
@@ -404,7 +404,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_back_swing_arm3
+      name: plr_back_swing_arm_3
       rect:
         serializedVersion: 2
         x: 32
@@ -425,7 +425,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_back_swing_arm4
+      name: plr_back_swing_arm_4
       rect:
         serializedVersion: 2
         x: 48
@@ -446,7 +446,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_back_swing_arm5
+      name: plr_back_swing_arm_5
       rect:
         serializedVersion: 2
         x: 64
@@ -467,7 +467,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: plr_back_swing_arm6
+      name: plr_back_swing_arm_6
       rect:
         serializedVersion: 2
         x: 80
@@ -498,24 +498,24 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      plr_back_swing_arm1: 159102159
-      plr_back_swing_arm2: -352717503
-      plr_back_swing_arm3: -1030378319
-      plr_back_swing_arm4: 1369112880
-      plr_back_swing_arm5: -1143438046
-      plr_back_swing_arm6: 1238943654
-      plr_front_swing_arm1: 85613946
-      plr_front_swing_arm2: 1643909758
-      plr_front_swing_arm3: 1526025485
-      plr_front_swing_arm4: 1828795693
-      plr_front_swing_arm5: -1508014439
-      plr_front_swing_arm6: -532631816
-      plr_side_swing_arm1: -63428984
-      plr_side_swing_arm2: 1046999111
-      plr_side_swing_arm3: -1339207892
-      plr_side_swing_arm4: -1516822428
-      plr_side_swing_arm5: -1272771140
-      plr_side_swing_arm6: -672597755
+      plr_back_swing_arm_1: 159102159
+      plr_back_swing_arm_2: -352717503
+      plr_back_swing_arm_3: -1030378319
+      plr_back_swing_arm_4: 1369112880
+      plr_back_swing_arm_5: -1143438046
+      plr_back_swing_arm_6: 1238943654
+      plr_front_swing_arm_1: 85613946
+      plr_front_swing_arm_2: 1643909758
+      plr_front_swing_arm_3: 1526025485
+      plr_front_swing_arm_4: 1828795693
+      plr_front_swing_arm_5: -1508014439
+      plr_front_swing_arm_6: -532631816
+      plr_side_swing_arm_1: -63428984
+      plr_side_swing_arm_2: 1046999111
+      plr_side_swing_arm_3: -1339207892
+      plr_side_swing_arm_4: -1516822428
+      plr_side_swing_arm_5: -1272771140
+      plr_side_swing_arm_6: -672597755
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

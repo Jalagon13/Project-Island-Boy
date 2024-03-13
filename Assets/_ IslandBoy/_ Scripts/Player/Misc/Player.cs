@@ -44,6 +44,8 @@ namespace IslandBoy
 		private Vector2 _spawnPoint;
 		private int _currentHp, _currentNrg, _currentMp, _armorHead, _armorChest, _armorLeg;
 		private bool _canDepleteEnergy;
+
+		[SerializeField] private int _skinNum;
 			
 
 		private void Awake()
@@ -85,6 +87,8 @@ namespace IslandBoy
 
 			StartCoroutine(RegenOneMana());
 			StartCoroutine(HungerWarningMessage());
+
+			_pr.Skin = _skinNum;
 		}
 
 		private void Update()
@@ -468,5 +472,13 @@ namespace IslandBoy
 			_playerCollider.enabled = true;
 			_sr.SetActive(true);
 		}
+
+		public void NextSkin()
+        {
+			int num = _pr.Skin + 1;
+			if (num > 1)
+				num = 0;
+			_pr.Skin = num;
+        }
 	}
 }
