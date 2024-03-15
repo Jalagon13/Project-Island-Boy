@@ -478,7 +478,12 @@ namespace IslandBoy
 			int num = _pr.Skin + 1;
 			if (num > 1)
 				num = 0;
-			_pr.Skin = num;
+			SetSkin(num);
         }
-	}
+
+        public void SetSkin(int num)
+        {
+            _pr.Skin = num;
+        }
+    }
 }
