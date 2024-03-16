@@ -9,6 +9,7 @@ namespace IslandBoy
 {
 	public class FishingHook : MonoBehaviour
 	{
+		[SerializeField] private PlayerObject _po;	
 		[SerializeField] private float _speed;
 		[SerializeField] private float _travelDistance;
 		[SerializeField] private float _maxDistance;
@@ -36,6 +37,7 @@ namespace IslandBoy
 
 		private PlayerInput _catchInput;
 		private GameObject _bubbles;
+		private Vector2 _initialSpot;
 		[HideInInspector] public bool _inMinigame = false;
 
 		[SerializeField] private GameObject _fishingUI;
@@ -47,6 +49,7 @@ namespace IslandBoy
 			_rb = GetComponent<Rigidbody2D>();
 			_catchInput = new PlayerInput();
 			_catchInput.Player.CatchFish.started += CatchFish;
+			_initialSpot = _po.Position;
 			OnEnable();
 
 			_bubbles = transform.GetChild(2).gameObject;
@@ -81,6 +84,12 @@ namespace IslandBoy
 
 		private void FixedUpdate()
 		{
+			if(Vector2.Distance(_initialSpot, _po.Position) > 2.5f)
+			{
+				StopFishing();
+				return;
+			}
+			
 			transform.position = Vector2.MoveTowards(transform.position, _targetPosition, _speed);
 
 			if (Vector2.Distance(transform.position, _targetPosition) < _maxDistance && !waitingForFish && !foundFish)

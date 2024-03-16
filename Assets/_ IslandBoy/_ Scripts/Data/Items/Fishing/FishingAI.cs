@@ -34,6 +34,7 @@ namespace IslandBoy
 
 		private int[] directions = { -1, 1 };
 		private int _direction;
+		private Vector2 _initialPosition;
 
 		[Header("Audio")]
 		[SerializeField] private AudioClip _successSound;
@@ -63,6 +64,12 @@ namespace IslandBoy
 
 		void FixedUpdate()
 		{
+			if(Vector2.Distance(_initialPosition, _pr.Position) > 2.5f)
+			{
+				Fail();
+				return;
+			}
+			
 			if (fishProgress >= 1f)
 				CatchFish();
 			else if (!_onFish && fishProgress > 0f)
@@ -151,7 +158,7 @@ namespace IslandBoy
 		}
 
 		private void SetupFish()
-        {
+		{
 			// get randomized fish
 			FishDifficulty difficulty = _db.Database[GetRandomFishIndex()];
 			_fish = difficulty.fish;
@@ -163,6 +170,8 @@ namespace IslandBoy
 			_minDistance = difficulty.minDistance;
 			_maxWait = difficulty.maxWait;
 			_minWait = difficulty.minWait;
+			
+			_initialPosition = _pr.Position;
 	}
 
 		public int GetRandomFishIndex()
