@@ -8,6 +8,8 @@ namespace IslandBoy
 	{
 		[SerializeField] private PlayerObject _po;
 		[SerializeField] private EntityRuntimeSet _entityRTS;
+		[SerializeField] private TilemapObject _floorTilemapObject;
+		[SerializeField] private TilemapObject _wallTilemapObject;
 		[Header("Crab Spawn")]
 		[SerializeField] private Entity _crabEntity;
 		[SerializeField] private List<Transform> _crabSpawnPositions;
@@ -95,7 +97,11 @@ namespace IslandBoy
 			foreach (Transform tf in _crabSpawnPositions)
 			{
 				Vector3 randomSpawnPoint = tf.position + (Vector3)Random.insideUnitCircle * 3;
-				Instantiate(_crabEntity, randomSpawnPoint, Quaternion.identity);
+				
+				if(!_floorTilemapObject.Tilemap.HasTile(Vector3Int.FloorToInt(randomSpawnPoint)) && !_wallTilemapObject.Tilemap.HasTile(Vector3Int.FloorToInt(randomSpawnPoint)))
+				{
+					Instantiate(_crabEntity, randomSpawnPoint, Quaternion.identity);
+				}
 			}
 		}
 		
