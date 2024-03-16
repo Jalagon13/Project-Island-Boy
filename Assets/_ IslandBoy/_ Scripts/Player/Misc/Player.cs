@@ -99,12 +99,14 @@ namespace IslandBoy
 
 		private IEnumerator HungerWarningMessage()
 		{
-			yield return new WaitForSeconds(15);
+			yield return new WaitForSeconds(2);
 
 			if(_currentNrg < (_maxNrg / 4))
 			{
 				PopupMessage.Create(transform.position, $"I need to eat soon..", Color.yellow, Vector2.up, 1f);
+				GameSignals.PLAYER_HUNGRY_WARNING.Dispatch();
 			}
+			
 
 			StartCoroutine(HungerWarningMessage());
 		}
@@ -474,16 +476,16 @@ namespace IslandBoy
 		}
 
 		public void NextSkin()
-        {
+		{
 			int num = _pr.Skin + 1;
 			if (num > 1)
 				num = 0;
 			SetSkin(num);
-        }
+		}
 
-        public void SetSkin(int num)
-        {
-            _pr.Skin = num;
-        }
-    }
+		public void SetSkin(int num)
+		{
+			_pr.Skin = num;
+		}
+	}
 }
