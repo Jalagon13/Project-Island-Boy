@@ -257,6 +257,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 0.275
   _travelDistance: 18
+  _canHitPlayer: 0
+  _fireSound: {fileID: 0}
   _damageParameter:
     Parameter: {fileID: 11400000, guid: 8a8bef37f1c5e3c40ad4319761ff897a, type: 2}
     Value: 0
