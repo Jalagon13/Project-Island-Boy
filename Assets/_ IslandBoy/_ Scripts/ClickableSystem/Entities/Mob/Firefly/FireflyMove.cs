@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public class FireflyMove : StateMachineBehaviour
-    {
-        private FireflyStateManager _ctx;
+	public class FireflyMove : StateMachineBehaviour
+	{
+		private FireflyStateManager _ctx;
 		private Vector2 _target;
 
 		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -14,6 +14,11 @@ namespace IslandBoy
 			Debug.Log("Entering GHOST Move State");
 			_ctx = animator.transform.root.GetComponent<FireflyStateManager>();
 			_target = CalcWanderPos();
+			
+			if(_ctx.WallTilemap.Tilemap.HasTile(Vector3Int.FloorToInt(_target)) || _ctx.FloorTilemap.Tilemap.HasTile(Vector3Int.FloorToInt(_target)))
+			{
+				_ctx.ChangeToIdleState(animator);
+			}
 		}
 
 		override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -43,7 +48,7 @@ namespace IslandBoy
 			if(Vector2.Distance(_ctx.transform.position, _ctx.HomePosition) > 7)
 				return _ctx.HomePosition;
 			
-			var randomPoint = _ctx.transform.position + Random.insideUnitSphere * 5;
+			Vector3 randomPoint = _ctx.transform.position + Random.insideUnitSphere * 5;
 			
 			// GraphNode startNode = AstarPath.active.GetNearest(_ctx.transform.position, NNConstraint.Default).node; 
  
@@ -52,5 +57,5 @@ namespace IslandBoy
 			
 			return randomPoint;
 		}
-    }
+	}
 }

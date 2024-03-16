@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.Feedbacks;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace IslandBoy
 {
-    public class FireflyStateManager : MonoBehaviour
-    {
-        [SerializeField] private PlayerObject _po;
+	public class FireflyStateManager : MonoBehaviour
+	{
+		[SerializeField] private PlayerObject _po;
 		[SerializeField] private float _agroRange;
+		[SerializeField] private TilemapObject _floorTilemap;
+		[SerializeField] private TilemapObject _wallTilemap;
 		[SerializeField] private MMF_Player _chargeFeedbacks;
 		[SerializeField] private MMF_Player _attackFeedbacks;
 		[SerializeField] private MMF_Player _teleportFeedbacks;
@@ -27,6 +30,8 @@ namespace IslandBoy
 		public MMF_Player ChargeFeedbacks => _chargeFeedbacks;
 		public MMF_Player AttackFeedbacks => _attackFeedbacks;
 		public MMF_Player TeleportFeedbacks => _teleportFeedbacks;
+		public TilemapObject FloorTilemap => _floorTilemap;
+		public TilemapObject WallTilemap => _wallTilemap;
 
 		private void Awake()
 		{
@@ -89,5 +94,5 @@ namespace IslandBoy
 		{
 			return Vector3.Distance(transform.position, _po.Position) < distance;
 		}
-    }
+	}
 }

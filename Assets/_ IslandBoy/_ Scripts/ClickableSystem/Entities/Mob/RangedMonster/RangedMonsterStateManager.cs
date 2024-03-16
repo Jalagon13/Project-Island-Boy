@@ -57,7 +57,7 @@ namespace IslandBoy
 			}
 		}
 
-			private void OnCollisionEnter2D(Collision2D other)
+		private void OnCollisionEnter2D(Collision2D other)
 		{
 			System.Random rnd = new System.Random();
 			var randomRotationAngle = rnd.Next(-90, 90); 
