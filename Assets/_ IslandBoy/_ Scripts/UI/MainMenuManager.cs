@@ -34,11 +34,8 @@ namespace IslandBoy
 			yield return StartCoroutine(LoadSceneAdd("PromptDisplay")); 
 			yield return StartCoroutine(LoadSceneAdd("StatsDisplay")); 
 			
- 
-			 
-			 
-			SceneManager.UnloadSceneAsync("MainMenu"); 
-
+			GameSignals.SCENE_FINISH_SETUP.Dispatch();
+			SceneManager.UnloadSceneAsync("MainMenu");
 		}
 		
 		private void EnableAllObjectsInScene(Scene scene, bool _)
@@ -54,25 +51,6 @@ namespace IslandBoy
 		{
 			AsyncOperation sceneAsync = new();
 			sceneAsync = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-			sceneAsync.allowSceneActivation = false;
-
-			while (sceneAsync.progress < 0.9f)
-			{
-				yield return null;
-			}
-
-			sceneAsync.allowSceneActivation = true;
-
-			while (!sceneAsync.isDone)
-			{
-				yield return null;
-			}
-		}
-
-		private IEnumerator LoadScene(string sceneName)
-		{
-			AsyncOperation sceneAsync = new();
-			sceneAsync = SceneManager.LoadSceneAsync(sceneName);
 			sceneAsync.allowSceneActivation = false;
 
 			while (sceneAsync.progress < 0.9f)

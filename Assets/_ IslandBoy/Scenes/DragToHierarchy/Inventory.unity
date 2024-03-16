@@ -2132,6 +2132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 597839535}
   - component: {fileID: 597839536}
+  - component: {fileID: 597839537}
   m_Layer: 0
   m_Name: NumberHolder
   m_TagString: Untagged
@@ -2191,6 +2192,18 @@ MonoBehaviour:
   m_Spacing: {x: 33.05, y: 0}
   m_Constraint: 2
   m_ConstraintCount: 1
+--- !u!114 &597839537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597839534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af89cad081f1b4c4ca55808ce4754042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &605537798
 GameObject:
   m_ObjectHideFlags: 0
@@ -7075,6 +7088,7 @@ GameObject:
   - component: {fileID: 5602138069577523693}
   - component: {fileID: 5602138069577523694}
   - component: {fileID: 5602138069577523695}
+  - component: {fileID: 5602138069577523696}
   m_Layer: 0
   m_Name: Hotbar
   m_TagString: Untagged
@@ -7144,6 +7158,18 @@ MonoBehaviour:
   m_Spacing: {x: 5, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &5602138069577523696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5602138069577523681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af89cad081f1b4c4ca55808ce4754042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5602138069600209265
 PrefabInstance:
   m_ObjectHideFlags: 0
