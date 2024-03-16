@@ -120,7 +120,7 @@ namespace IslandBoy
 			else //exit to title
 			{
 				Debug.Log("Exited game");
-                SceneManager.LoadScene("MainMenu");
+                SceneManager.LoadScene("Startup");
                 //LoadScene("MainMenu");
 				/*
                 SceneManager.UnloadSceneAsync("Player");

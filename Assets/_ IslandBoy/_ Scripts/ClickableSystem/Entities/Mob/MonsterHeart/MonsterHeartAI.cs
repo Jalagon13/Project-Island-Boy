@@ -5,6 +5,7 @@ using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 
 namespace IslandBoy
@@ -33,11 +34,13 @@ namespace IslandBoy
 		[SerializeField] private MMF_Player _forceFieldDestroyedFeedbacks;
 		[SerializeField] private MMF_Player _monsterKilledFeedbacks;
 		[SerializeField] private AudioClip _agroSound;
+		[SerializeField] private Image _forceFieldProgress;	
 		
 		private int _killCounter;
 		private int _heartBeatCounter;
 		private bool _forceFieldDown;
 		private BoxCollider2D _rscCollider;
+		private SpriteRenderer _srCracks;
 		
 		[Serializable]
 		public class SpawnSetting
@@ -54,6 +57,8 @@ namespace IslandBoy
 			_rscCollider = transform.parent.GetComponent<BoxCollider2D>();
 			_rscCollider.enabled = false;
 			_mhView.UpdateText(_killCounter, _killQuota);
+			GameSignals.DAY_END.AddListener(ResetMonsterHeart);
+			_srCracks = transform.GetChild(0).GetChild(0).gameObject.GetComponent<SpriteRenderer>();
 		}
 		
 		private IEnumerator HeartBeatRoutine()
@@ -102,12 +107,13 @@ namespace IslandBoy
 		{
 			StopAllCoroutines();
 			GameSignals.MONSTER_HEART_CLEARED.Dispatch();
-			
-			if(_spawnLowerLevelEntrance)
+
+			if (_spawnLowerLevelEntrance)
 			{
 				var go = Instantiate(_levelEntranceLower, transform.parent.position, Quaternion.identity);
 				go.transform.SetParent(transform.parent.parent.transform);
 			}
+			GameSignals.DAY_END.RemoveListener(ResetMonsterHeart);
 		}
 		
 		private void OnHeartBeat()
@@ -156,7 +162,19 @@ namespace IslandBoy
 			
 			_forceFieldDestroyedFeedbacks?.PlayFeedbacks();
 		}
-		
+
+		public void ResetForceField()
+		{
+			_forceFieldTf.gameObject.SetActive(true);
+			transform.GetChild(0).gameObject.SetActive(true);
+			_rscCollider.enabled = false;
+			_forceFieldDown = false;
+			
+			_mhView.EnableForceFieldUI();
+			StopAllCoroutines();
+			_laser.gameObject.SetActive(false);
+		}
+
 		private void IncrementMonsterMeter(ISignalParameters parameters)
 		{
 			if(_forceFieldDown) return;
@@ -165,11 +183,22 @@ namespace IslandBoy
 			_monsterKilledFeedbacks?.StopFeedbacks();
 			_monsterKilledFeedbacks?.PlayFeedbacks();
 			// _mhView.UpdateText(_killCounter, _killQuota);
+			_forceFieldProgress.fillAmount = _killCounter / (float)_killQuota;
 			
 			if(_killCounter >= _killQuota)
 			{
 				DropForceField();
 			}
+		}
+
+		public void ResetMonsterHeart(ISignalParameters parameters)
+		{
+			_killCounter = 0;
+			if (_forceFieldDown)
+				ResetForceField();
+			_monsterKilledFeedbacks?.StopFeedbacks();
+			_srCracks.color = new Color(_srCracks.color.r, _srCracks.color.g, _srCracks.color.b, 0f);
+			_forceFieldProgress.fillAmount = 0;
 		}
 	}
 }

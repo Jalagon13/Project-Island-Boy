@@ -93,7 +93,13 @@ namespace IslandBoy
 			StopAllCoroutines();
 			Destroy(gameObject);
 		}
-		
+
+		public void ResetHealth()
+		{
+			_currentHitPoints = _maxHitPoints;
+			EnableProgressBar(false);
+		}
+
 		private void PlayDestroyFeedbacks()
 		{
 			if (_destroyFeedback != null)

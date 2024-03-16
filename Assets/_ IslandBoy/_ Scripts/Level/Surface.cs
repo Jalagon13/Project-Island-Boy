@@ -16,17 +16,21 @@ namespace IslandBoy
 		[SerializeField] private List<Transform> _ghostSpawnPositions;
 		
 		private bool _enabledStartingUI;
+		private bool _isNight;
+		private bool _hasSpawnedNightMonsters;
 		
 		private void Awake() 
 		{
 			GameSignals.DAY_START.AddListener(DayMonsterHandle);
 			GameSignals.NIGHT_START.AddListener(NightMonsterHandle);
+			GameSignals.ENABLE_STARTING_MECHANICS.AddListener(DayMonsterHandle);
 		}
 		
 		private void OnDestroy() 
 		{
 			GameSignals.DAY_START.RemoveListener(DayMonsterHandle);
 			GameSignals.NIGHT_START.RemoveListener(NightMonsterHandle);
+			GameSignals.ENABLE_STARTING_MECHANICS.RemoveListener(DayMonsterHandle);
 		}
 		
 		private void OnEnable()
@@ -34,6 +38,11 @@ namespace IslandBoy
 			if(!_enabledStartingUI)
 			{
 				StartCoroutine(Delay());
+			}
+			
+			if(_isNight && !_hasSpawnedNightMonsters)
+			{
+				SpawnNightMonsters();
 			}
 		}
 		
@@ -52,17 +61,24 @@ namespace IslandBoy
 		
 		private void DayMonsterHandle(ISignalParameters parameters)
 		{
+			_isNight = false;
+			_hasSpawnedNightMonsters = false;
 			ClearMonsters();
 			SpawnDayMonsters();
 		}
 		
 		private void NightMonsterHandle(ISignalParameters parameters)
 		{
+			_isNight = true;
+			if(!gameObject.activeInHierarchy) return;
+			
 			SpawnNightMonsters();
 		}
 		
 		private void SpawnNightMonsters()
 		{
+			_hasSpawnedNightMonsters = true;
+			
 			foreach (Transform tf in _ghostSpawnPositions)
 			{
 				Vector3 randomSpawnPoint = tf.position + (Vector3)Random.insideUnitCircle * 5;

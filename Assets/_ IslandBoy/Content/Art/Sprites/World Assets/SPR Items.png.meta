@@ -2042,7 +2042,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2063,7 +2063,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2084,7 +2084,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2092,6 +2092,27 @@ TextureImporter:
       bones: []
       spriteID: 7b82a18d39d07ab42b9f5f21b8ff44f9
       internalID: -1909896247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: item_monster_flare
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9b7663b71a296d40be0b78f84c24017
+      internalID: -215561803
       vertices: []
       indices: 
       edges: []
@@ -2150,6 +2171,7 @@ TextureImporter:
       item_iron_sword: 1805357805
       item_magic_potion: -1424274245
       item_miner_scroll: 2118457468
+      item_monster_flare: -215561803
       item_mushed_apple: -1475151143
       item_mushed_crab: -1242384599
       item_mushed_mushroom: -522266397

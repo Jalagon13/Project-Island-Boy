@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace IslandBoy
@@ -16,11 +17,13 @@ namespace IslandBoy
 	public class ArmorObject : ItemObject
 	{
 		[SerializeField] private ArmorType _armorType;
+		[SerializeField] private List<Sprite> _spriteList;
 
 		public override ToolType ToolType => _baseToolType;
 		public override ToolTier ToolTier => _baseToolTier;
 		public override ArmorType ArmorType => _armorType;
 		public override AccessoryType AccessoryType => _baseAccessoryType;
+		public List<Sprite> SpriteList => _spriteList;
 
 		public override void ExecutePrimaryAction(FocusSlotControl control)
 		{
