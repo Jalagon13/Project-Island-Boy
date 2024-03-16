@@ -13,6 +13,7 @@ namespace IslandBoy
 		[SerializeField] private PlayerObject _po;
 		[SerializeField] private string _nextScene;
 		[SerializeField] private bool _enableColliderSceneSwitch;
+		[SerializeField] private bool _setTransitionOnPlayerDeath;
 		[SerializeField] private MMF_Player _transitionFeedback;
 		[SerializeField] private Transform _returnPoint;
 		
@@ -22,6 +23,12 @@ namespace IslandBoy
 		private void Awake()
 		{
 			_transitionCollider = GetComponent<Collider2D>();
+			GameSignals.PLAYER_DIED.AddListener(OnPlayerDeath);
+		}
+		
+		private void OnDestroy()
+		{
+			GameSignals.PLAYER_DIED.RemoveListener(OnPlayerDeath);
 		}
 		
 		private void OnEnable()
@@ -32,6 +39,18 @@ namespace IslandBoy
 			_isReturnPoint = false;
 			
 			StartCoroutine(ColliderDelay());
+		}
+		
+		private void OnPlayerDeath(ISignalParameters parameters)
+		{
+			if(_setTransitionOnPlayerDeath)
+			{
+				_isReturnPoint = true;
+			}
+			else
+			{
+				_isReturnPoint = false;
+			}
 		}
 		
 		private IEnumerator ColliderDelay()

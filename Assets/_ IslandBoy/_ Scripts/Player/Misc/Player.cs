@@ -99,7 +99,7 @@ namespace IslandBoy
 
 		private IEnumerator HungerWarningMessage()
 		{
-			yield return new WaitForSeconds(2);
+			yield return new WaitForSeconds(8);
 
 			if(_currentNrg < (_maxNrg / 4))
 			{

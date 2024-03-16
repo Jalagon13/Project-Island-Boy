@@ -59280,6 +59280,7 @@ MonoBehaviour:
   _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _nextScene: Surface
   _enableColliderSceneSwitch: 1
+  _setTransitionOnPlayerDeath: 1
   _transitionFeedback: {fileID: 1133800464}
   _returnPoint: {fileID: 905043388}
 --- !u!1 &1955998882
@@ -72416,6 +72417,7 @@ MonoBehaviour:
   _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _nextScene: Cave
   _enableColliderSceneSwitch: 0
+  _setTransitionOnPlayerDeath: 0
   _transitionFeedback: {fileID: 1156653869}
   _returnPoint: {fileID: 392888491}
 --- !u!222 &7076224584098916703
