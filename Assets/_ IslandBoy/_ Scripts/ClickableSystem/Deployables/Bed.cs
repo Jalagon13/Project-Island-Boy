@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ namespace IslandBoy
 	{
 		[SerializeField] private TilemapObject _wallTm;
 		[SerializeField] private TilemapObject _floorTm;
+		[SerializeField] private TextMeshProUGUI _bedText;
 
 		[SerializeField] private GameObject _npcIcons;
 		private BedNpcButton _npcButton;
@@ -22,12 +24,12 @@ namespace IslandBoy
 		public Resident Resident { get { return _resident; } }
 
 
-        public void Awake()
-        {
+		public void Awake()
+		{
 			GameSignals.NPC_FREED.AddListener(UpdateNpcIcons);
 		}
 
-        public void Start()
+		public void Start()
 		{
 			_canCheck = true;
 			UpdateNpcIcons();
@@ -48,12 +50,17 @@ namespace IslandBoy
 			if (InValidSpace())
 			{
 				Player.RESTED_STATUS = RestedStatus.Good;
+				_bedText.text = "<color=green>Valid House Detected:</color=green> <br><br>This bed is in a valid house, sleep penality will be avoided.";
 			}
 			else
 			{
 				Player.RESTED_STATUS = RestedStatus.Okay;
+				_bedText.text = "<color=red>Sleep Penality Detected!:</color=red> <br><br>Sleeping in a bed in an uncomplete house will apply a sleep penality upon the next day.";
 			}
-			
+		}
+		
+		public void Sleep()
+		{
 			DispatchEvents();
 		}
 
@@ -104,23 +111,23 @@ namespace IslandBoy
 				}
 			}
 			else
-            {
+			{
 				MoveOutNPC();
 			}
 		}
 
 		private BedNpcButton GetNPCButton()
-        {
+		{
 			return _npcIcons.transform.Find(_resident.Name).GetComponent<BedNpcButton>();
 		}
 
 		private void UpdateNpcIcons(ISignalParameters parameters)
-        {
+		{
 			UpdateNpcIcons();
 		}
 
 		private void UpdateNpcIcons()
-        {
+		{
 			foreach (string npc in NpcSlots.Instance.AllNPCs)
 			{
 				if (NpcSlots.Instance.HasBeenFreed(npc))
@@ -295,7 +302,7 @@ namespace IslandBoy
 			foreach (Collider2D col in colliders)
 			{
 				if (col.TryGetComponent(out Bed bed))
-                {
+				{
 					if (transform.position != col.transform.position)
 						return true;
 				}
