@@ -120,46 +120,9 @@ namespace IslandBoy
 			else //exit to title
 			{
 				Debug.Log("Exited game");
-                SceneManager.LoadScene("Startup");
-                //LoadScene("MainMenu");
-				/*
-                SceneManager.UnloadSceneAsync("Player");
-				SceneManager.UnloadSceneAsync("TimeManager");
-				SceneManager.UnloadSceneAsync("LevelControl");
-				SceneManager.UnloadSceneAsync("Inventory");
-
-				SceneManager.UnloadSceneAsync("Surface");
-				SceneManager.UnloadSceneAsync("StartCave");
-				try
-				{
-					SceneManager.UnloadSceneAsync("Cave");
-				}
-				catch(Exception e){}
-				SceneManager.UnloadSceneAsync("DeathPanel");
-				SceneManager.UnloadSceneAsync("LaunchControl");
-				SceneManager.UnloadSceneAsync("PauseMenu");
-				SceneManager.UnloadSceneAsync("PromptDisplay");
-				SceneManager.UnloadSceneAsync("StatsDisplay");*/
+				TogglePause(new());
+                SceneManager.LoadScene("MainMenu");
 			}
 		}
-
-        private IEnumerator LoadScene(string sceneName)
-        {
-            AsyncOperation sceneAsync = new();
-            sceneAsync = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-            sceneAsync.allowSceneActivation = false;
-
-            while (sceneAsync.progress < 0.9f)
-            {
-                yield return null;
-            }
-
-            sceneAsync.allowSceneActivation = true;
-
-            while (!sceneAsync.isDone)
-            {
-                yield return null;
-            }
-        }
     }
 }

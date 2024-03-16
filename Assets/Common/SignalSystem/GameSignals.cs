@@ -68,6 +68,7 @@ namespace IslandBoy
 		public static readonly Signal NPC_FREED = new("NpcFreed");
 		
 		// Scene Signals
+		public static readonly Signal SCENE_FINISH_SETUP = new("SceneStartup");
 		public static readonly Signal SCENE_TRANSITION_START = new("SceneTransitionStart");
 		public static readonly Signal SCENE_TRANSITION_END = new("SceneTransitionStart");
 		
