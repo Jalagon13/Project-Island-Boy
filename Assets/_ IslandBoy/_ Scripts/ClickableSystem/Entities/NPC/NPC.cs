@@ -80,8 +80,10 @@ namespace IslandBoy
 			if(!_isFree)
 			{
 				FreeNpc();
-				_sign.NoBedText();
-				_shopButton.SetActive(false);
+				if(_sign != null)
+					_sign.NoBedText();
+				if(_shopButton != null)
+					_shopButton.SetActive(false);
 				// _shopButton.gameObject.SetActive(true);
 				// GiveReward();
 			}
@@ -93,7 +95,8 @@ namespace IslandBoy
 		{
 			_isFree = true;
 			_sr.sprite = _unboundSprite;
-			_hoverText.text = "Talk";
+			if(_hoverText != null)
+				_hoverText.text = "Talk";
 			_freeFeedback?.PlayFeedbacks();
 			NpcSlots.Instance.FreeNPC(_npcToUnlock);
 		}

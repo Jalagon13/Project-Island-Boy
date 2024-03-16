@@ -2755,13 +2755,7 @@ MonoBehaviour:
       Min: 1
       Max: 1
       Chance: 100
-  _presetItems:
-  - OutputItem: {fileID: 11400000, guid: 6dbf17cc40618ef4497ad3cc834f0ad2, type: 2}
-    OutputAmount: 1
-  - OutputItem: {fileID: 11400000, guid: fb9c53bc5a9014142b9e07f97db75202, type: 2}
-    OutputAmount: 1
-  - OutputItem: {fileID: 11400000, guid: 2e3252816e32bdf498d246ff576ae5ae, type: 2}
-    OutputAmount: 3
+  _presetItems: []
 --- !u!114 &5092986752287878321 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4871828697884116381, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}

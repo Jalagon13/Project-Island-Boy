@@ -306,7 +306,7 @@ namespace IslandBoy
 
 			foreach(Collider2D col in colliders)
 			{
-				if(col.gameObject.layer == 3) 
+				if(col.gameObject.layer == 3 || col.CompareTag("RSC") || col.TryGetComponent<FeetTag>(out FeetTag ft)) 
 					return false;
 			}
 

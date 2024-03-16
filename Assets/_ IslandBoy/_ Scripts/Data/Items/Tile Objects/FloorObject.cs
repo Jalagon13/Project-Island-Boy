@@ -1,5 +1,6 @@
 using MoreMountains.Tools;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace IslandBoy
 {
@@ -19,8 +20,9 @@ namespace IslandBoy
 			bool groundTmHasTile = control.GroundTm.Tilemap.HasTile(Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position));
 			bool floorTmHasTile = control.FloorTm.Tilemap.HasTile(Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position));
 			// bool tilActionClear = control.CursorControl.IsClear();
+			bool onSurface = SceneManager.GetActiveScene().buildIndex == 2;
 			
-			if (groundTmHasTile && !floorTmHasTile /* && tilActionClear */)
+			if (groundTmHasTile && !floorTmHasTile && onSurface)
 			{
 				control.FocusSlot.InventoryItem.Count--;
 				GameSignals.ITEM_DEPLOYED.Dispatch();
