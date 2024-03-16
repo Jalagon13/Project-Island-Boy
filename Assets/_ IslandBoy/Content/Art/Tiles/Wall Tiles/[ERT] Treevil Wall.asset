@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74aaddb1da4037a4b89eae794beabd64, type: 3}
-  m_Name: '[ERT] CoalOre'
+  m_Name: '[ERT] Treevil Wall'
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: -467745054, guid: 30430db0d806144cb81f8747cd109e68, type: 3}
   m_DefaultGameObject: {fileID: 0}
@@ -1045,9 +1045,9 @@ MonoBehaviour:
     - {x: 0, y: -1, z: 0}
     - {x: 1, y: -1, z: 0}
     m_RuleTransform: 0
-  Item: {fileID: 11400000, guid: 47c3a9b74278ee349b95932b23f8112c, type: 2}
-  HitSound: {fileID: 8300000, guid: db82029e0262e8848ad16558d8a33dbb, type: 3}
-  PlaceSound: {fileID: 8300000, guid: db82029e0262e8848ad16558d8a33dbb, type: 3}
-  DestroySound: {fileID: 8300000, guid: e2b6630a648447b47a66f7f8325c7440, type: 3}
+  Item: {fileID: 11400000, guid: 666617eb3361d4c56992a8c0e33db318, type: 2}
+  HitSound: {fileID: 8300000, guid: 7af607a3736db8a43bd85f247755f233, type: 3}
+  PlaceSound: {fileID: 8300000, guid: 7af607a3736db8a43bd85f247755f233, type: 3}
+  DestroySound: {fileID: 8300000, guid: 1f5e75782a6e8434cba4bce854fb47eb, type: 3}
   MaxHitPoints: 5
-  HitToolType: 2
+  HitToolType: 1
