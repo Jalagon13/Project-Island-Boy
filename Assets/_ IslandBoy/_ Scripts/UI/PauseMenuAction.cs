@@ -31,9 +31,17 @@ namespace IslandBoy
 			_playerInput.Player.PauseMenu.started += TogglePause;
 			_state = GAMESTATE.PLAYING;
 			_quitGame = false;
+            GameSignals.ENABLE_PAUSE.AddListener(EnablePause);
+			GameSignals.DISABLE_PAUSE.AddListener(DisablePause);
 		}
 
-		private void OnEnable()
+        private void OnDestroy()
+        {
+			GameSignals.ENABLE_PAUSE.RemoveListener(EnablePause);
+			GameSignals.DISABLE_PAUSE.RemoveListener(DisablePause);
+		}
+
+        private void OnEnable()
 		{
 			_playerInput.Enable();
 		}
@@ -41,6 +49,16 @@ namespace IslandBoy
 		private void OnDisable()
 		{
 			_playerInput.Disable();
+		}
+
+		private void EnablePause(ISignalParameters parameters)
+        {
+			OnEnable();
+		}
+
+		private void DisablePause(ISignalParameters parameters)
+		{
+			OnDisable();
 		}
 
 		private void Start()
