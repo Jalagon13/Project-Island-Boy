@@ -230,7 +230,7 @@ namespace IslandBoy
 				return (int)powerParameter.Value;
 			}
 
-			return 1;
+			return 0;
 		}
 	}
 }

@@ -17,10 +17,11 @@ MonoBehaviour:
   <Stackable>k__BackingField: 0
   <UpgradeRecipe>k__BackingField: {fileID: 0}
   <XpUpgradeCost>k__BackingField: 0
-  <Description>k__BackingField: '* Summon a giant boulder from the sky!'
+  <Description>k__BackingField: '"Summon a giant boulder from the sky!"'
+  <SubDescription>k__BackingField: 
   <DefaultParameterList>k__BackingField:
   - Parameter: {fileID: 11400000, guid: 8a8bef37f1c5e3c40ad4319761ff897a, type: 2}
-    Value: 25
+    Value: 75
   - Parameter: {fileID: 11400000, guid: c25902e3274ad0a4a97f3515779aecea, type: 2}
     Value: 6
   _manaCostPerCast: 15

@@ -124,7 +124,6 @@ namespace IslandBoy
 			if (Pointer.IsOverUI() || _focusSlotRef.ItemObject is not ToolObject || _clickTimer.RemainingSeconds > 0 || !_canUseActions || _focusSlotRef == null) return;
 				
 			_sc.PerformAnimation();
-			HitTilemap();
 			
 			if (_currentClickable != null && _currentClickable is not Entity)
 			{
@@ -132,6 +131,8 @@ namespace IslandBoy
 				_clickTimer.RemainingSeconds = CalcMiningSpeed();
 				return;
 			}
+			else
+				HitTilemap();
 		}
 
 		private void HitTilemap()
@@ -274,7 +275,14 @@ namespace IslandBoy
 				{
 					if (c.TryGetComponent(out Clickable clickable))
 					{
-						clickablesFound.Add(clickable);
+						if (c.TryGetComponent(out Chest chest))
+                        {
+							// Only break chest if it is empty
+							if(!chest.HasItems())
+								clickablesFound.Add(clickable);
+						}
+						else
+							clickablesFound.Add(clickable);
 					}
 				}
 			}

@@ -1274,7 +1274,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 1f5e75782a6e8434cba4bce854fb47eb, type: 3}
     - target: {fileID: 5759804511303924600, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: _breakType
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5759804511303924600, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: _prompCanvas
@@ -1453,3 +1453,7 @@ MonoBehaviour:
   _tutorialObject: {fileID: 5099223661913255683}
   _nextButton: {fileID: 2463512926122683907}
   _backButton: {fileID: 7020245308157746202}
+  _reachedLastDialogue:
+    m_PersistentCalls:
+      m_Calls: []
+  _noBedText: 

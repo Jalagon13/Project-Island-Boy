@@ -43,23 +43,7 @@ namespace IslandBoy
 
         public override string GetDescription()
         {
-            // float clickDistance = 0;
-            // float damage = 0;
-
-            // foreach (var item in DefaultParameterList)
-            // {
-            //     switch (item.Parameter.ParameterName)
-            //     {
-            //         // case "ClickDistance":
-            //         //     clickDistance = item.Value;
-            //             // break;
-            //         // case "Damage":
-            //         //     damage = item.Value;
-            //         //     break;
-            //     }
-            // }
-
-            return $"{Description}";
+            return $"{GetDescriptionBreak()}<color={textBlueColor}>* Requires bait to fish<br>* Left Click to cast<br>* Space to catch fish </color={textBlueColor}>";
         }
 
         private void CreateHook(FocusSlotControl control)

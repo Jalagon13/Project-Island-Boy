@@ -48,10 +48,8 @@ namespace IslandBoy
 						break;
 				}
 			}
-			
 			string upgradeText = UpgradeRecipe != null ? $"<br>* Upgradable" : string.Empty;
-			
-			return "* " + _armorType.ToString() + $" Armor<br>* {defense} defense{upgradeText}";
+			return $"{GetDescriptionBreak()}<color={textBlueColor}>* {_armorType} Armor<br>* {defense} defense{upgradeText}</color={textBlueColor}>";
 		}
 	}
 }

@@ -15,7 +15,10 @@ MonoBehaviour:
   <Name>k__BackingField: Magic Potion
   <UiDisplay>k__BackingField: {fileID: -1424274245, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   <Stackable>k__BackingField: 1
-  <Description>k__BackingField: 
+  <UpgradeRecipe>k__BackingField: {fileID: 0}
+  <XpUpgradeCost>k__BackingField: 0
+  <Description>k__BackingField: '"Restores mana"'
+  <SubDescription>k__BackingField: 
   <DefaultParameterList>k__BackingField: []
   _consumeType: 2
   _consumeSound: {fileID: 8300000, guid: 8e1c936e926ce1f408a69e176d4ed9f0, type: 3}

@@ -39,15 +39,14 @@ namespace IslandBoy
 
         public override string GetDescription()
         {
-            string description = "";
+            string howToUse = "";
             switch (_accessoryType)
             {
                 case AccessoryType.Dash:
-                    description += $"* Press SPRINT to Dash!<br>";
+                    howToUse += $"* Press SPRINT to Dash!<br>";
                     break;
             }
-
-            return "* Accessory<br>" + description + $"* { _cooldown} second cooldown";
+            return $"{GetDescriptionBreak()}<color={textBlueColor}>* Accessory<br>{howToUse}* { _cooldown} second cooldown</color={textBlueColor}>";
         }
     }
 }

@@ -15,7 +15,10 @@ MonoBehaviour:
   <Name>k__BackingField: Iron Anvil
   <UiDisplay>k__BackingField: {fileID: 941267960, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   <Stackable>k__BackingField: 1
-  <Description>k__BackingField: "\u2022 Upgrade your tools"
+  <UpgradeRecipe>k__BackingField: {fileID: 0}
+  <XpUpgradeCost>k__BackingField: 0
+  <Description>k__BackingField: '"Upgrade your tools"'
   <DefaultParameterList>k__BackingField: []
   _prefabToDeploy: {fileID: 7398615981352729919, guid: 09b5bc2d6cd7119469ebddbb160c2d4b, type: 3}
   _deploySound: {fileID: 8300000, guid: acc9a292f9a4e9448953f37d61d47e54, type: 3}
+  _canPlaceOnFloor: 1

@@ -49,8 +49,7 @@ namespace IslandBoy
 						break;
 				}
 			}
-
-			return $"* Left Click to place<br>* {clickDistance} build distance<br>{Description}";
+			return $"{GetDescriptionBreak()}<color={textBlueColor}>* Left Click to place<br>* {clickDistance} build distance</color={textBlueColor}>";
 		}
 	}
 }
