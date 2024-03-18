@@ -17,12 +17,14 @@ namespace IslandBoy
 		{
 			// GameSignals.INVENTORY_CLOSE.AddListener(CloseUI);
 			GameSignals.GAME_PAUSED.AddListener(CloseUI);
+			GameSignals.DAY_START.AddListener(CloseUI);
 		}
 
 		private void OnDisable()
 		{
 			// GameSignals.INVENTORY_CLOSE.RemoveListener(CloseUI);
 			GameSignals.GAME_PAUSED.RemoveListener(CloseUI);
+			GameSignals.DAY_START.RemoveListener(CloseUI);
 		}
 
 		public override IEnumerator Start()

@@ -18,10 +18,11 @@ MonoBehaviour:
   <UpgradeRecipe>k__BackingField: {fileID: 0}
   <XpUpgradeCost>k__BackingField: 0
   <Description>k__BackingField: '"Make sure to sleep by the end of the day!"'
+  <SubDescription>k__BackingField: 
   <DefaultParameterList>k__BackingField:
   - Parameter: {fileID: 11400000, guid: c25902e3274ad0a4a97f3515779aecea, type: 2}
     Value: 3
-  _prefabToDeploy: {fileID: 7067245150924448954, guid: 3537dcbb2c3a8dd4ca95c5a9f069091b, type: 3}
+  _prefabToDeploy: {fileID: 7067245150924448954, guid: d0d6940dc29d248b18f4344ef3b9d5a3, type: 3}
   _deploySound: {fileID: 8300000, guid: acc9a292f9a4e9448953f37d61d47e54, type: 3}
   _canPlaceOnFloor: 1
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}

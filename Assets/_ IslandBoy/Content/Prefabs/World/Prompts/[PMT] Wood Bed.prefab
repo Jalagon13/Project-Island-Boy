@@ -1380,7 +1380,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1543910499134551839}
         m_TargetAssemblyTypeName: IslandBoy.Bed, Assembly-CSharp
-        m_MethodName: TryToEndDay
+        m_MethodName: Sleep
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

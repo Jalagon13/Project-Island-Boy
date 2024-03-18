@@ -59,7 +59,7 @@ namespace IslandBoy
 			}
 		}
 		
-		public void Sleep()
+		public void Sleep() // attached to sleep button
 		{
 			DispatchEvents();
 		}
