@@ -1593,7 +1593,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: item_stone_helmet
+      name: item_wizard_helmet
       rect:
         serializedVersion: 2
         x: 224
@@ -1614,7 +1614,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: item_stone_chestplate
+      name: item_wizard_chestplate
       rect:
         serializedVersion: 2
         x: 224
@@ -1635,7 +1635,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: item_stone_greaves
+      name: item_wizard_greaves
       rect:
         serializedVersion: 2
         x: 224
@@ -2105,7 +2105,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2188,13 +2188,10 @@ TextureImporter:
       item_stone_book_case: -286354734
       item_stone_bow: -1479775636
       item_stone_chair: 677019676
-      item_stone_chestplate: -462435400
       item_stone_club: 606869746
       item_stone_door: -1349384185
       item_stone_floor: 1007983580
-      item_stone_greaves: 675110538
       item_stone_hammer: 1204406958
-      item_stone_helmet: 983040880
       item_stone_lamp: 505257596
       item_stone_pickaxe: 1392384841
       item_stone_shovel: -887866084
@@ -2207,6 +2204,9 @@ TextureImporter:
       item_treevil_door: 365275786
       item_treevil_lamp: -527538102
       item_upgrade_core: 903736636
+      item_wizard_chestplate: -462435400
+      item_wizard_greaves: 675110538
+      item_wizard_helmet: 983040880
       item_wood: -602149933
       item_wood_axe: 1515656529
       item_wood_book_case: -683566292

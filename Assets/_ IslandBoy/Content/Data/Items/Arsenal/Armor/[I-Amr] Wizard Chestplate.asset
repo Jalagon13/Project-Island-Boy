@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30ce6775ba6bd914ca123eb3c6157b2d, type: 3}
+  m_Name: '[I-Amr] Wizard Chestplate'
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Wizard Chestplate
+  <UiDisplay>k__BackingField: {fileID: -462435400, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  <Stackable>k__BackingField: 0
+  <UpgradeRecipe>k__BackingField: {fileID: 0}
+  <XpUpgradeCost>k__BackingField: 0
+  <Description>k__BackingField: '"Protects your body!"'
+  <SubDescription>k__BackingField: 
+  <DefaultParameterList>k__BackingField:
+  - Parameter: {fileID: 11400000, guid: af1c414ed53fdb44f971059ce55ff9c0, type: 2}
+    Value: 5
+  _armorType: 2
+  _spriteList:
+  - {fileID: -654348778, guid: 77aae9ddebe3b431eb885fe3f9e66984, type: 3}
+  - {fileID: -1718437043, guid: 77aae9ddebe3b431eb885fe3f9e66984, type: 3}
+  - {fileID: 351614189, guid: 77aae9ddebe3b431eb885fe3f9e66984, type: 3}
+  - {fileID: -2070502154, guid: 77aae9ddebe3b431eb885fe3f9e66984, type: 3}
+  - {fileID: -339082898, guid: 77aae9ddebe3b431eb885fe3f9e66984, type: 3}
+  - {fileID: -1141376584, guid: 77aae9ddebe3b431eb885fe3f9e66984, type: 3}
+  - {fileID: 741843571, guid: 77aae9ddebe3b431eb885fe3f9e66984, type: 3}
+  - {fileID: 707640899, guid: 77aae9ddebe3b431eb885fe3f9e66984, type: 3}
+  - {fileID: 740454349, guid: 77aae9ddebe3b431eb885fe3f9e66984, type: 3}
+  - {fileID: 1670968056, guid: 77aae9ddebe3b431eb885fe3f9e66984, type: 3}
+  - {fileID: -1163193055, guid: 77aae9ddebe3b431eb885fe3f9e66984, type: 3}
+  - {fileID: 1929661236, guid: 77aae9ddebe3b431eb885fe3f9e66984, type: 3}
+  - {fileID: 599046093, guid: 77aae9ddebe3b431eb885fe3f9e66984, type: 3}
+  - {fileID: -1808594722, guid: 77aae9ddebe3b431eb885fe3f9e66984, type: 3}
+  - {fileID: 1035519108, guid: 77aae9ddebe3b431eb885fe3f9e66984, type: 3}
+  - {fileID: -1118396815, guid: 77aae9ddebe3b431eb885fe3f9e66984, type: 3}
+  - {fileID: 1921092798, guid: 77aae9ddebe3b431eb885fe3f9e66984, type: 3}
+  - {fileID: -1272661967, guid: 77aae9ddebe3b431eb885fe3f9e66984, type: 3}
+  - {fileID: 159102159, guid: bddcd3935378746068b813d365285954, type: 3}
+  - {fileID: -352717503, guid: bddcd3935378746068b813d365285954, type: 3}
+  - {fileID: -1030378319, guid: bddcd3935378746068b813d365285954, type: 3}
+  - {fileID: 1369112880, guid: bddcd3935378746068b813d365285954, type: 3}
+  - {fileID: -1143438046, guid: bddcd3935378746068b813d365285954, type: 3}
+  - {fileID: 1238943654, guid: bddcd3935378746068b813d365285954, type: 3}
+  - {fileID: 85613946, guid: bddcd3935378746068b813d365285954, type: 3}
+  - {fileID: 1643909758, guid: bddcd3935378746068b813d365285954, type: 3}
+  - {fileID: 1526025485, guid: bddcd3935378746068b813d365285954, type: 3}
+  - {fileID: 1828795693, guid: bddcd3935378746068b813d365285954, type: 3}
+  - {fileID: -1508014439, guid: bddcd3935378746068b813d365285954, type: 3}
+  - {fileID: -532631816, guid: bddcd3935378746068b813d365285954, type: 3}
+  - {fileID: -63428984, guid: bddcd3935378746068b813d365285954, type: 3}
+  - {fileID: 1046999111, guid: bddcd3935378746068b813d365285954, type: 3}
+  - {fileID: -1339207892, guid: bddcd3935378746068b813d365285954, type: 3}
+  - {fileID: -1516822428, guid: bddcd3935378746068b813d365285954, type: 3}
+  - {fileID: -1272771140, guid: bddcd3935378746068b813d365285954, type: 3}
+  - {fileID: -672597755, guid: bddcd3935378746068b813d365285954, type: 3}
