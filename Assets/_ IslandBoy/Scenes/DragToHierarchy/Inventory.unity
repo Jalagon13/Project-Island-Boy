@@ -8274,7 +8274,11 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxStack: 999
   _tutorialFeedback: {fileID: 355020581}
-  _startingItems: []
+  _startingItems:
+  - OutputItem: {fileID: 11400000, guid: fb9c53bc5a9014142b9e07f97db75202, type: 2}
+    OutputAmount: 1
+  - OutputItem: {fileID: 11400000, guid: c471fb80a5facc043b05c95d8df96e43, type: 2}
+    OutputAmount: 99
   _allSlots:
   - {fileID: 1398917238}
   - {fileID: 658019018}
