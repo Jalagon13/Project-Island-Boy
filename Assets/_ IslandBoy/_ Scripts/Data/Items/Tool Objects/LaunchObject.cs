@@ -55,8 +55,7 @@ namespace IslandBoy
                         break;
                 }
             }
-
-            return $"{Description}<br>* {damage} damage";
+            return $"{GetDescriptionBreak()}<color={textBlueColor}>* {damage} damage</color={textBlueColor}>";
         }
     }
 }

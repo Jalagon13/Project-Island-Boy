@@ -15,13 +15,10 @@ MonoBehaviour:
   <Name>k__BackingField: Fishing Rod
   <UiDisplay>k__BackingField: {fileID: 1879242436, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   <Stackable>k__BackingField: 0
-  <UpgradeRecipe>k__BackingField: {fileID: 11400000, guid: b21d2e2c3e22dfb44b43b0644db6c934, type: 2}
-  <Description>k__BackingField: '* Left Click to cast
-
-    * Requires bait to fish
-
-    *
-    Space to catch fish'
+  <UpgradeRecipe>k__BackingField: {fileID: 0}
+  <XpUpgradeCost>k__BackingField: 0
+  <Description>k__BackingField: '"Catches fish"'
+  <SubDescription>k__BackingField: 
   <DefaultParameterList>k__BackingField: []
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _launchPrefab: {fileID: 2130076380612678164, guid: 9e4580ef73ad9f94da05e9e90082105d, type: 3}

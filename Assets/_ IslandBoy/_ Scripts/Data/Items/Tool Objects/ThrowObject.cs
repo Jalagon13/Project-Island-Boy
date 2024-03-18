@@ -37,7 +37,7 @@ namespace IslandBoy
 
 		public override string GetDescription()
 		{
-			return "meow";
+			return $"{GetDescriptionBreak()}<color={textBlueColor}></color={textBlueColor}>";
 		}
 	}
 }

@@ -13,7 +13,8 @@ namespace IslandBoy
 		[field: SerializeField] public int XpUpgradeCost { get; private set; }
 		[field: TextArea]
 		[field: SerializeField] public string Description { get; private set; }
-		
+		[field: SerializeField] public string SubDescription { get; private set; }
+
 		[field: SerializeField] public List<ItemParameter> DefaultParameterList { get; set; }
 
 		public abstract ToolType ToolType { get; }
@@ -28,6 +29,22 @@ namespace IslandBoy
 		protected ToolTier _baseToolTier = ToolTier.None;
 		protected ArmorType _baseArmorType = ArmorType.None;
 		protected AccessoryType _baseAccessoryType = AccessoryType.None;
+		protected string textBlueColor = "#b3e6ff";
+		protected string textHpColor = "#ffbebe";
+		protected string textManaColor = "#dcbeff";
+		protected string textEnergyColor = "#ffe7b8";
+
+		protected string GetDescriptionBreak() // returns description with line breaks
+		{
+			string description = "";
+			if (!string.IsNullOrWhiteSpace(Description))
+				description += $"{Description}<br>";
+			
+			if (!string.IsNullOrWhiteSpace(SubDescription))
+				description += $"<color={textBlueColor}>{SubDescription}</color={textBlueColor}><br>";
+
+			return description;
+		}
 	}
 
 	[Serializable]

@@ -17,7 +17,8 @@ MonoBehaviour:
   <Stackable>k__BackingField: 0
   <UpgradeRecipe>k__BackingField: {fileID: 11400000, guid: bb20b977a1f770243bc84effdf680636, type: 2}
   <XpUpgradeCost>k__BackingField: 15
-  <Description>k__BackingField: 
+  <Description>k__BackingField: '"Slays enemies"'
+  <SubDescription>k__BackingField: 
   <DefaultParameterList>k__BackingField:
   - Parameter: {fileID: 11400000, guid: 4ad4a0faaf8e8499e80aaf31f38ea091, type: 2}
     Value: 14
@@ -29,5 +30,7 @@ MonoBehaviour:
     Value: 5
   - Parameter: {fileID: 11400000, guid: 884f2d93c3332419fbe4a46a3b3101f3, type: 2}
     Value: 5
+  - Parameter: {fileID: 11400000, guid: 832cafe480ba9486991e591c546f67a8, type: 2}
+    Value: 1
   _type: 3
   _tier: 1

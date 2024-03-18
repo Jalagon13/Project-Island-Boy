@@ -86,13 +86,7 @@ namespace IslandBoy
 			}
 
 			string upgradeText = UpgradeRecipe != null ? $"<br>* Upgradable" : string.Empty;
-
-			if(energyPerSwing == 0)
-				return $"{Description}<br>* {damageMin}-{damageMax} damage<br>* 1 energy per swing{upgradeText}";
-			else
-				return $"{Description}<br>* {damageMin}-{damageMax} damage<br>* {energyPerSwing} energy per swing{upgradeText}";
-
-			
+			return $"{GetDescriptionBreak()}<color={textBlueColor}>* {damageMin}-{damageMax} damage<br>* {miningSpeed} mining speed<br>* {energyPerSwing} energy per swing{upgradeText}</color={textBlueColor}>";
 		}
 	}
 }

@@ -62,6 +62,8 @@ namespace IslandBoy
 			GameSignals.FOCUS_SLOT_UPDATED.AddListener(FocusSlotUpdated);
 			GameSignals.BED_TIME_EXECUTED.AddListener(ChangeSpawnPoint);
 			GameSignals.ENABLE_STARTING_MECHANICS.AddListener(AllowEnergyDeplete);
+			GameSignals.ENABLE_PAUSE.AddListener(EnablePauseInput);
+			GameSignals.DISABLE_PAUSE.AddListener(DisablePauseInput);
 		}
 
 		private void OnDestroy()
@@ -72,6 +74,8 @@ namespace IslandBoy
 			GameSignals.FOCUS_SLOT_UPDATED.RemoveListener(FocusSlotUpdated);
 			GameSignals.BED_TIME_EXECUTED.RemoveListener(ChangeSpawnPoint);
 			GameSignals.ENABLE_STARTING_MECHANICS.RemoveListener(AllowEnergyDeplete);
+			GameSignals.ENABLE_PAUSE.RemoveListener(EnablePauseInput);
+			GameSignals.DISABLE_PAUSE.RemoveListener(DisablePauseInput);
 		}
 
 		private void Start()
@@ -464,15 +468,13 @@ namespace IslandBoy
 		private IEnumerator PlayerDead()
 		{
 			GameSignals.PLAYER_DIED.Dispatch();
-			_playerCollider.enabled = false;
-			_sr.SetActive(false);
+			HidePlayer();
 
 			yield return new WaitForSeconds(_deathTimer);
 
 			RESTED_STATUS = RestedStatus.Bad;
 			GameSignals.DAY_END.Dispatch();
-			_playerCollider.enabled = true;
-			_sr.SetActive(true);
+			ShowPlayer();
 		}
 
 		public void NextSkin()
@@ -486,6 +488,34 @@ namespace IslandBoy
 		public void SetSkin(int num)
 		{
 			_pr.Skin = num;
+		}
+
+		/// <summary>
+		/// Hides/disables the player sprite
+		/// </summary>
+		private void HidePlayer()
+        {
+			_playerCollider.enabled = false;
+			_sr.SetActive(false);
+		}
+
+		/// <summary>
+		/// Shows/enables the player sprite
+		/// </summary>
+		private void ShowPlayer()
+		{
+			_playerCollider.enabled = true;
+			_sr.SetActive(true);
+		}
+
+		private void DisablePauseInput(ISignalParameters parameters) // When player select screen is active, hide the player sprites
+        {
+			HidePlayer();
+		}
+
+		private void EnablePauseInput(ISignalParameters parameters) // When player select screen is finished, show the player sprites
+		{
+			ShowPlayer();
 		}
 	}
 }

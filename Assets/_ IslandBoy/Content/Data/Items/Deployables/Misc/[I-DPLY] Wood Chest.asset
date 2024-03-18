@@ -15,9 +15,12 @@ MonoBehaviour:
   <Name>k__BackingField: Wood Chest
   <UiDisplay>k__BackingField: {fileID: 1962245853, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
   <Stackable>k__BackingField: 1
-  <Description>k__BackingField: 
+  <UpgradeRecipe>k__BackingField: {fileID: 0}
+  <XpUpgradeCost>k__BackingField: 0
+  <Description>k__BackingField: '"Item storage"'
   <DefaultParameterList>k__BackingField:
   - Parameter: {fileID: 11400000, guid: c25902e3274ad0a4a97f3515779aecea, type: 2}
     Value: 3
   _prefabToDeploy: {fileID: 2820560048627134769, guid: 53653b9d1e20e5e45a77c40406a91ec0, type: 3}
   _deploySound: {fileID: 8300000, guid: acc9a292f9a4e9448953f37d61d47e54, type: 3}
+  _canPlaceOnFloor: 1

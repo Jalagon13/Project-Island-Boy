@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b961d5310d26cff4bb981a7f4a481141, type: 3}
   m_Name: '[I-Wall] Treevil Bark'
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Wood
+  <Name>k__BackingField: Treevil Bark
   <UiDisplay>k__BackingField: {fileID: 63348611, guid: 84188563c40383642a900a2417e9b488, type: 3}
   <Stackable>k__BackingField: 1
   <UpgradeRecipe>k__BackingField: {fileID: 0}
   <XpUpgradeCost>k__BackingField: 0
-  <Description>k__BackingField: '* Material'
+  <Description>k__BackingField: 
+  <SubDescription>k__BackingField: 
   <DefaultParameterList>k__BackingField:
   - Parameter: {fileID: 11400000, guid: c25902e3274ad0a4a97f3515779aecea, type: 2}
     Value: 3

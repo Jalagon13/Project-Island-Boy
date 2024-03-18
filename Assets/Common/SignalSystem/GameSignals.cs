@@ -47,6 +47,8 @@ namespace IslandBoy
 		// Pause Signals
 		public static readonly Signal GAME_PAUSED = new("GamePaused");
 		public static readonly Signal GAME_UNPAUSED = new("GameUnpaused");
+		public static readonly Signal DISABLE_PAUSE = new("DisablePause");
+		public static readonly Signal ENABLE_PAUSE = new("EnablePause");
 
 		// World Signals
 		public static readonly Signal CHANGE_SCENE = new("ChangeScene");

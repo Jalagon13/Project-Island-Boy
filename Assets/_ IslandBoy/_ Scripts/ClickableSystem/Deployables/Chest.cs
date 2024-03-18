@@ -177,6 +177,20 @@ namespace IslandBoy
 		{
 			_instructions.gameObject.SetActive(true);
 		}
+
+		public bool HasItems()
+        {
+			foreach (Transform transform in _slotCanvas.transform.GetChild(0))
+			{
+				Slot chestSlot = transform.GetComponent<Slot>();
+
+				if (chestSlot.ItemObject != null)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
 	}
 
 	[Serializable]

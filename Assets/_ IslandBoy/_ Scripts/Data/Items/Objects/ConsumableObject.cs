@@ -85,7 +85,22 @@ namespace IslandBoy
 
         public override string GetDescription()
         {
-            return $"+{_value} {_consumeType}<br>Hold Right Click to consume<br>{Description}";
+            string color = "";
+            switch (_consumeType)
+            {
+                case PlayerStatType.Health:
+                    color = textHpColor;
+                    break;
+                case PlayerStatType.Energy:
+                    color = textEnergyColor;
+                    break;
+                case PlayerStatType.Mana:
+                    color = textManaColor;
+                    break;
+            }
+            string consume = $"<color={color}>+{_value} {_consumeType}</color={color}><br>";
+
+            return $"{GetDescriptionBreak()}<color={textBlueColor}>{consume}* Hold Right Click to consume</color={textBlueColor}>";
         }
     }
 }

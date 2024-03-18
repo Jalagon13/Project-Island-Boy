@@ -22,7 +22,23 @@ namespace IslandBoy
 
         public override string GetDescription()
         {
-            return $"* Material<br>{Description}";
+            float damage = 0;
+            string damageStr = "";
+
+            foreach (var item in DefaultParameterList)
+            {
+                switch (item.Parameter.ParameterName)
+                {
+                    case "Damage Max":
+                        damage = item.Value;
+                        break;
+                }
+            }
+
+            if (damage > 0)
+                damageStr += $"<br>* {damage} damage";
+
+            return $"{GetDescriptionBreak()}<color={textBlueColor}>* Material{damageStr}</color={textBlueColor}>";
         }
     }
 }

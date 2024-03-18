@@ -64,13 +64,12 @@ namespace IslandBoy
                     case "ClickDistance":
                         clickDistance = item.Value;
                         break;
-                    case "Damage":
+                    case "Damage Max":
                         damage = item.Value;
                         break;
                 }
             }
-
-            return $"* {_manaCostPerCast} mana per click<br>* {damage} damage<br>* {clickDistance} cast distance<br>{Description}";
+            return $"{GetDescriptionBreak()}<color={textBlueColor}>* {_manaCostPerCast} mana per click<br>* {damage} damage<br>* {clickDistance} cast distance</color={textBlueColor}>";
         }
     }
 }
