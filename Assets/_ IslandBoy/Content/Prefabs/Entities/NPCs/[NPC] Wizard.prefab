@@ -19,7 +19,11 @@ PrefabInstance:
     - target: {fileID: 376953390307532538, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1498854646, guid: d1fdf00d255e2d942a949c35bbb7ace1, type: 3}
+      objectReference: {fileID: 1472007752, guid: f8c14c7e11f68d647a59d1a691cbf4f8, type: 3}
+    - target: {fileID: 3131559708772651128, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 4828264215266892703, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: _startingUpgradeList.Array.size
       value: 3
@@ -138,6 +142,10 @@ PrefabInstance:
     - target: {fileID: 7578973209085655060, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9137036575405205243, guid: 2e753a47ec8c04e4fa7e41e562573d78, type: 3}
+      propertyPath: _npcSkinNumber
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

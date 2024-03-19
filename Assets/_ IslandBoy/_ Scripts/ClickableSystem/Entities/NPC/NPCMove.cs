@@ -66,7 +66,7 @@ namespace IslandBoy
 						return _ctx.HomePoint;
 					}
 				}
-
+				//Debug.Log(Vector3.Distance(_ctx.transform.position, target));
 				return target;
 			}
 			
