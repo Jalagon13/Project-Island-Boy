@@ -13,6 +13,7 @@ namespace IslandBoy
     public class CustomizablePlayer : MonoBehaviour
     {
         [SerializeField] private PlayerObject _pr;
+        [SerializeField] private string _defaultSkinPrefix;
         [SerializeField] private Skins[] _skins;
         private SpriteRenderer _sr;
 
@@ -28,10 +29,10 @@ namespace IslandBoy
 
         public void ChooseSkin()
         {
-            if (_sr.sprite.name.Contains("plr") && _pr.Skin!=0)
+            if (_sr.sprite.name.Contains(_defaultSkinPrefix) && _pr.Skin != 0)
             {
                 string spriteName = _sr.sprite.name;
-                spriteName = spriteName.Replace("plr_", "");
+                spriteName = spriteName.Replace(_defaultSkinPrefix, "");
                 int spriteNum = int.Parse(spriteName.Split('_')[^1])-1;
                 _sr.sprite = _skins[_pr.Skin].sprites[spriteNum];
             }

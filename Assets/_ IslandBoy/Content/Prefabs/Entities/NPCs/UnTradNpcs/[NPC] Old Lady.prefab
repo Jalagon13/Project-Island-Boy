@@ -12673,6 +12673,7 @@ GameObject:
   - component: {fileID: 789142961031773174}
   - component: {fileID: 376953390307532538}
   - component: {fileID: 7532210217287322724}
+  - component: {fileID: 8261519123938049685}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -12769,6 +12770,47 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8261519123938049685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5564400628202378178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e952d6776bdba45b0e4eb9af72fad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultSkinPrefix: npc
+  _skins:
+  - sprites:
+    - {fileID: 517966632, guid: 5df2bd97ffed954418b815ed0a0f8e3b, type: 3}
+    - {fileID: -876328417, guid: 5df2bd97ffed954418b815ed0a0f8e3b, type: 3}
+    - {fileID: -1604134667, guid: 5df2bd97ffed954418b815ed0a0f8e3b, type: 3}
+    - {fileID: 2091348226, guid: 5df2bd97ffed954418b815ed0a0f8e3b, type: 3}
+    - {fileID: -270681411, guid: 5df2bd97ffed954418b815ed0a0f8e3b, type: 3}
+    - {fileID: 192374082, guid: 5df2bd97ffed954418b815ed0a0f8e3b, type: 3}
+    - {fileID: 1472007752, guid: 5df2bd97ffed954418b815ed0a0f8e3b, type: 3}
+  - sprites:
+    - {fileID: 517966632, guid: e012752779c3c6b42b9c7c2f4acb7f3b, type: 3}
+    - {fileID: -876328417, guid: e012752779c3c6b42b9c7c2f4acb7f3b, type: 3}
+    - {fileID: -1604134667, guid: e012752779c3c6b42b9c7c2f4acb7f3b, type: 3}
+    - {fileID: 2091348226, guid: e012752779c3c6b42b9c7c2f4acb7f3b, type: 3}
+    - {fileID: -270681411, guid: e012752779c3c6b42b9c7c2f4acb7f3b, type: 3}
+    - {fileID: 192374082, guid: e012752779c3c6b42b9c7c2f4acb7f3b, type: 3}
+    - {fileID: 1472007752, guid: e012752779c3c6b42b9c7c2f4acb7f3b, type: 3}
+  - sprites:
+    - {fileID: 517966632, guid: f8c14c7e11f68d647a59d1a691cbf4f8, type: 3}
+    - {fileID: -876328417, guid: f8c14c7e11f68d647a59d1a691cbf4f8, type: 3}
+    - {fileID: -1604134667, guid: f8c14c7e11f68d647a59d1a691cbf4f8, type: 3}
+    - {fileID: 2091348226, guid: f8c14c7e11f68d647a59d1a691cbf4f8, type: 3}
+    - {fileID: -270681411, guid: f8c14c7e11f68d647a59d1a691cbf4f8, type: 3}
+    - {fileID: 192374082, guid: f8c14c7e11f68d647a59d1a691cbf4f8, type: 3}
+    - {fileID: 1472007752, guid: f8c14c7e11f68d647a59d1a691cbf4f8, type: 3}
+  - sprites:
+    - {fileID: -731597157, guid: 187c09b89c4ad5c4584fd05db1e76d53, type: 3}
+  _npcSkinNumber: 3
 --- !u!1 &5693895158914793050
 GameObject:
   m_ObjectHideFlags: 0

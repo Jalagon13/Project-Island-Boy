@@ -16,6 +16,7 @@ namespace IslandBoy
 		private bool _canMove = false;
 		private readonly int _hashIdle = Animator.StringToHash("[Anm] NPCIdle");
 		private readonly int _hashMove = Animator.StringToHash("[Anm] NPCMove");
+		private Animator _anim;
 		
 		public Vector2 HomePoint => _homePoint;
 		public IAstarAI AI => _ai;
@@ -25,6 +26,7 @@ namespace IslandBoy
 		{
 			_homePoint = new(999,999);
 			_ai = GetComponent<IAstarAI>();
+			_anim = transform.GetChild(0).GetComponent<Animator>();
 		}
 		
 		private void Update()
@@ -37,11 +39,11 @@ namespace IslandBoy
 			_canMove = _;
 			if(_canMove)
 			{
-				AnimStateManager.ChangeAnimationState(transform.GetChild(0).GetComponent<Animator>(), _hashIdle);
+				//ChangeToMoveState(_anim);
 			}
 			else
 			{
-				AnimStateManager.ChangeAnimationState(transform.GetChild(0).GetComponent<Animator>(), _hashMove);
+				ChangeToIdleState(_anim);
 			}
 		}
 		
@@ -52,6 +54,12 @@ namespace IslandBoy
 		
 		public void Seek(Vector2 destination)
 		{
+			// flip rotation depending on if moving left or right
+			if (destination[0] > transform.position.x)
+				transform.GetChild(0).rotation = new Quaternion(0f, 180f, 0f, 1f);
+			else
+				transform.GetChild(0).rotation = new Quaternion(0f, 0f, 0f, 1f);
+
 			_ai.destination = destination;
 		}
 
