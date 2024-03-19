@@ -17,10 +17,12 @@ namespace IslandBoy
         private int _currentStack;
         private bool _canCollect;
         private bool _collected;
+        private Attractor _attractor;
 
         private void Awake()
         {
             _sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
+            _attractor = gameObject.GetComponentInChildren<Attractor>();
         }
         
         private IEnumerator Start()
@@ -49,18 +51,23 @@ namespace IslandBoy
 
         private void OnTriggerStay2D(Collider2D collision)
         {
-            // need to add code later on to disable attractor when invetory full and enable it when inventory has space.
             if (collision.TryGetComponent(out CollectTag collectTag) && _canCollect && !_collected)
             {
-                var leftover = _pr.Inventory.AddItem(_item, _currentStack, _currentParameters);
-                
-                if (leftover == 0)
+                if (_attractor.CanAttract)
                 {
-                    _collected = true;
-                    Destroy(gameObject);
+                    var leftover = _pr.Inventory.AddItem(_item, _currentStack, _currentParameters);
+
+                    if (leftover == 0)
+                    {
+                        _collected = true;
+                        Destroy(gameObject);
+                    }
+                    else
+                    {
+                        _currentStack = leftover;
+                        _attractor.DisableCanAttract(_pr, _item);
+                    }
                 }
-                else
-                    _currentStack = leftover;
             }
         }
     }

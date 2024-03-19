@@ -181,7 +181,10 @@ namespace IslandBoy
 			{
 				Slot slot = _allSlots[i];
 
-				if(slot.SpawnInventoryItem(item, itemParameters))
+				if (slot is not InventorySlot)
+					continue;
+
+				if (slot.SpawnInventoryItem(item, itemParameters))
 				{
 					return true;
 				}
