@@ -8,6 +8,7 @@ namespace IslandBoy
 {
     public class PlayerHpBar : MonoBehaviour
     {
+        [SerializeField] private PlayerObject _pr;
         private int _currentHp;
         private int _maxHp;
 
@@ -20,6 +21,7 @@ namespace IslandBoy
             _counter = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
 
             GameSignals.PLAYER_HP_CHANGED.AddListener(UpdateHealthUI);
+            _pr.GameObject.GetComponent<Player>().DispatchHpChange();
         }
 
         private void OnDestroy()

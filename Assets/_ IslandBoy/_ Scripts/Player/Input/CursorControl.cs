@@ -97,7 +97,14 @@ namespace IslandBoy
 			{
 				if (_focusSlotRef.ItemObject is WallObject || _focusSlotRef.ItemObject is FloorObject || _focusSlotRef.ItemObject is DeployObject)
 					return;
-				if ((_focusSlotRef.ToolType == clickable.BreakType && clickable.IsTierCompatibleWith(_focusSlotRef.ToolTier, clickable.BreakTier)) || clickable is Interactable)
+				if (_focusSlotRef.ToolType == clickable.BreakType)
+                {
+					if (clickable.IsTierCompatibleWith(_focusSlotRef.ToolTier, clickable.BreakTier))
+						clickable.ShowDisplay();
+					else
+						clickable.ShowCantBreakDisplay();
+				}
+				else if (clickable is Interactable)
 					clickable.ShowDisplay();
 				// else
 				// 	clickable.HideDisplay();

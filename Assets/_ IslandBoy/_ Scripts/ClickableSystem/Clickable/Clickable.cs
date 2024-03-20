@@ -22,6 +22,7 @@ namespace IslandBoy
 		protected GameObject _progressBar;
 		protected GameObject _amountDisplay;
 		protected GameObject _instructions;
+		[SerializeField] protected GameObject _cantBreakInstructions;
 		protected SpriteRenderer _sr;
 		protected Vector2 _dropPosition;
 
@@ -110,12 +111,26 @@ namespace IslandBoy
 		}
 
 		public abstract void ShowDisplay();
+		
+		public virtual void ShowCantBreakDisplay()
+		{
+			EnableInstructions(false);
+			EnableCantBreakInstructions(true);
+		}
+
 		public virtual void HideDisplay()
 		{
 			EnableProgressBar(false);
 			EnableAmountDisplay(false);
 			EnableInstructions(false);
+			EnableCantBreakInstructions(false);
 		}
+
+		public virtual void EnableCantBreakInstructions(bool _)
+		{
+			if (_cantBreakInstructions != null)
+				_cantBreakInstructions.SetActive(_);
+		}		
 
 		protected virtual void EnableProgressBar(bool _)
 		{
