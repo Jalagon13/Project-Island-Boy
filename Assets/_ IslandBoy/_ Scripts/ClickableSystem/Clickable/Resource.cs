@@ -92,14 +92,8 @@ namespace IslandBoy
 
 		public override void ShowDisplay()
 		{
+			EnableCantBreakInstructions(false);
 			EnableInstructions(true);
-		}
-
-		public override void HideDisplay()
-		{
-			EnableProgressBar(false);
-			EnableAmountDisplay(false);
-			EnableInstructions(false);
 		}
 
 		protected override void EnableProgressBar(bool _)
