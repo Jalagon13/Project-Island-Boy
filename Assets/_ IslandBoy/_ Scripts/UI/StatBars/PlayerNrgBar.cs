@@ -9,6 +9,7 @@ namespace IslandBoy
 {
 	public class PlayerNrgBar : MonoBehaviour
 	{
+		[SerializeField] private PlayerObject _pr;
 		[SerializeField] private MMF_Player _hungryFeedback;
 		
 		private int _currentNrg;
@@ -24,6 +25,7 @@ namespace IslandBoy
 
 			GameSignals.PLAYER_NRG_CHANGED.AddListener(UpdateEnergyUI);
 			GameSignals.PLAYER_HUNGRY_WARNING.AddListener(HungerGameFeel);
+			_pr.GameObject.GetComponent<Player>().DispatchNrgChange();
 		}
 
 		private void OnDestroy()

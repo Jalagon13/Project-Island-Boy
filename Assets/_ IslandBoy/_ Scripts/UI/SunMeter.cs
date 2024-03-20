@@ -38,6 +38,7 @@ namespace IslandBoy
 		
 		private void Awake()
 		{
+			_po.DayNum = 0;
 			GameSignals.DAY_END.AddListener(EndDay);
 			GameSignals.RESIDENT_UPDATE.AddListener(ResidentUpdate);
 			GameSignals.ENTITY_DIED.AddListener(RegisterEntityDeath);
@@ -119,25 +120,15 @@ namespace IslandBoy
 		[Button("End Day")]
 		public void EndDay(ISignalParameters parameters)
 		{
+			_po.DayNum += 1;
 			PanelEnabled(true);
 			StartCoroutine(TextSequence());
 		}
 
 		private IEnumerator TextSequence()
 		{
-			// switch (Player.RESTED_STATUS)
-			// {
-			// 	case RestedStatus.Good:
-			// 		AddEndDaySlide("You got a good night's rest!");
-			// 		break;
-			// 	case RestedStatus.Okay:
-			// 		AddEndDaySlide("Your sleep last night was not the best..");
-			// 		break;
-			// 	case RestedStatus.Bad:
-			// 		AddEndDaySlide("You passed out at the end of the day...");
-			// 		break;
-			// }
-			
+			string endOfDayTxt = "<color=#6ed0f7>End of Day " + _po.DayNum + "<br><br></color=#6ed0f7>";
+
 			var text = _panel.GetChild(0).GetComponent<TextMeshProUGUI>();
 			var button = _panel.GetChild(1).GetComponent<Button>();
 
@@ -146,22 +137,41 @@ namespace IslandBoy
 
 			yield return new WaitForSeconds(1f);
 
-			text.text = "Day has ended.";
+			text.text = endOfDayTxt;
 			text.gameObject.SetActive(true);
 
+			yield return new WaitForSeconds(1.5f);
+
+			switch (Player.RESTED_STATUS)
+			{
+				case RestedStatus.Good:
+					endOfDayTxt += "You got a good night's rest!";
+					break;
+				case RestedStatus.Okay:
+					endOfDayTxt += "You didn't sleep very well last night...";
+					break;
+				case RestedStatus.Bad:
+					endOfDayTxt += "You passed out at the end of the day...";
+					break;
+			}
+
+			text.text = endOfDayTxt;
+			yield return new WaitForSeconds(2f);
+
+			//AddEndDaySlide(endOfDayTxt);
 			// yield return new WaitForSeconds(2f);
 			// Debug.Log(_endDaySlides.Count);
-			
-			foreach (string slide in _endDaySlides)
+
+			/*foreach (string slide in _endDaySlides)
 			{
 				text.text = slide;
 				yield return new WaitForSeconds(2f);
 			}
-			
-			ClearEndDaySlides();
-			
-			if(_entityTally.Count > 0)
+			ClearEndDaySlides();*/
+
+			if (_entityTally.Count > 0)
 			{
+				yield return new WaitForSeconds(1f);
 				string monsterWording = $"<color=red>Monsters Slain:</color=red><br><br>";
 				int grandTotalXp = 0;
 				text.text = monsterWording;

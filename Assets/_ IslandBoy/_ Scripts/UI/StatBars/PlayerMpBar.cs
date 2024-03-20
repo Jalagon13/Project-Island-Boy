@@ -8,6 +8,7 @@ namespace IslandBoy
 {
     public class PlayerMpBar : MonoBehaviour
     {
+        [SerializeField] private PlayerObject _pr;
         private int _currentMp;
         private int _maxMp;
 
@@ -20,6 +21,7 @@ namespace IslandBoy
             _counter = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
 
             GameSignals.PLAYER_MP_CHANGED.AddListener(UpdateMpUI);
+            _pr.GameObject.GetComponent<Player>().DispatchMpChange();
         }
 
         private void OnDestroy()

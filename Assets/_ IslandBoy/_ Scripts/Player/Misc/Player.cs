@@ -32,6 +32,8 @@ namespace IslandBoy
 		[SerializeField] private int _maxMp;
 		[Header("Parameters")]
 		[SerializeField] private float _manaGenRate;
+		[SerializeField] private float _energyRestorePercent;
+		[SerializeField] private float _hpRestorePercent;
 		[SerializeField] private float _iFrameDuration;
 		[SerializeField] private float _deathTimer;
 		[SerializeField] private AudioClip _damageSound;
@@ -156,9 +158,9 @@ namespace IslandBoy
 				case RestedStatus.Good:
 					
 					// Debug.Log("Good Rest");
-					HealNrg(Mathf.RoundToInt(_maxNrg * 0.25f), consumeFocusSlot:false);
+					HealNrg(Mathf.RoundToInt(_maxNrg * _energyRestorePercent), consumeFocusSlot:false);
 					yield return new WaitForSeconds(0.5f);
-					HealHp(Mathf.RoundToInt(_maxHp * 0.25f), consumeFocusSlot: false);
+					HealHp(Mathf.RoundToInt(_maxHp * _hpRestorePercent), consumeFocusSlot: false);
 					
 					break;
 				case RestedStatus.Okay:
@@ -302,7 +304,7 @@ namespace IslandBoy
 			signal.AddParameter("MaxHp", _maxHp);
 			signal.Dispatch();
 		}
-		private void DispatchHpChange()
+		public void DispatchHpChange()
 		{
 			Signal signal = GameSignals.PLAYER_HP_CHANGED;
 			signal.ClearParameters();
@@ -356,7 +358,7 @@ namespace IslandBoy
 			signal.Dispatch();
 		}
 
-		private void DispatchNrgChange()
+		public void DispatchNrgChange()
 		{
 			Signal signal = GameSignals.PLAYER_NRG_CHANGED;
 			signal.ClearParameters();
@@ -411,7 +413,7 @@ namespace IslandBoy
 			signal.AddParameter("MaxMp", _maxMp);
 			signal.Dispatch();
 		}
-		private void DispatchMpChange()
+		public void DispatchMpChange()
 		{
 			Signal signal = GameSignals.PLAYER_MP_CHANGED;
 			signal.ClearParameters();

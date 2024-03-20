@@ -11,6 +11,7 @@ namespace IslandBoy
 		[SerializeField] private TilemapObject _wallTm;
 		[SerializeField] private TilemapObject _floorTm;
 		[SerializeField] private TextMeshProUGUI _bedText;
+		[SerializeField] private GameObject _sleepWarning;
 
 		[SerializeField] private GameObject _npcIcons;
 		private BedNpcButton _npcButton;
@@ -50,12 +51,14 @@ namespace IslandBoy
 			if (InValidSpace())
 			{
 				Player.RESTED_STATUS = RestedStatus.Good;
-				_bedText.text = "<color=green>Valid House Detected:</color=green> <br><br>This bed is in a valid house, sleep penality will be avoided.";
+				//_bedText.text = "<color=green>Valid House Detected:</color=green> <br><br>This bed is in a valid house, sleep penality will be avoided.";
+				Sleep();
 			}
 			else
 			{
 				Player.RESTED_STATUS = RestedStatus.Okay;
-				_bedText.text = "<color=red>Sleep Penality Detected!:</color=red> <br><br>Sleeping in a bed in an uncomplete house will apply a sleep penality upon the next day.";
+				//_bedText.text = "<color=red>Sleep Penality Detected!:</color=red> <br><br>Sleeping in a bed in an uncomplete house will apply a sleep penality upon the next day.";
+				_sleepWarning.SetActive(true);
 			}
 		}
 		

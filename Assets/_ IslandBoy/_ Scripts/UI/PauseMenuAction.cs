@@ -133,7 +133,11 @@ namespace IslandBoy
 			if (_quitGame)
 			{
 				Debug.Log("Quit game");
-				Application.Quit();
+				#if UNITY_EDITOR
+					UnityEditor.EditorApplication.isPlaying = false;
+				#else
+					Application.Quit();
+				#endif
 			}
 			else //exit to title
 			{
