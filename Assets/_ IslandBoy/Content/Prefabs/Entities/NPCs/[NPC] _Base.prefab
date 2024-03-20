@@ -23352,6 +23352,12 @@ MonoBehaviour:
     - {fileID: 192374082, guid: f8c14c7e11f68d647a59d1a691cbf4f8, type: 3}
     - {fileID: 1472007752, guid: f8c14c7e11f68d647a59d1a691cbf4f8, type: 3}
   - sprites:
+    - {fileID: -663203339, guid: 187c09b89c4ad5c4584fd05db1e76d53, type: 3}
+    - {fileID: 919658227, guid: 187c09b89c4ad5c4584fd05db1e76d53, type: 3}
+    - {fileID: -1347096221, guid: 187c09b89c4ad5c4584fd05db1e76d53, type: 3}
+    - {fileID: 1244609085, guid: 187c09b89c4ad5c4584fd05db1e76d53, type: 3}
+    - {fileID: 1705411760, guid: 187c09b89c4ad5c4584fd05db1e76d53, type: 3}
+    - {fileID: -1803066211, guid: 187c09b89c4ad5c4584fd05db1e76d53, type: 3}
     - {fileID: -731597157, guid: 187c09b89c4ad5c4584fd05db1e76d53, type: 3}
   _npcSkinNumber: 0
 --- !u!1 &5750841754287189946
@@ -23486,6 +23492,7 @@ MonoBehaviour:
   _destroyFeedback: {fileID: 4532754497356607760}
   _lootTable:
     <Table>k__BackingField: []
+  _cantBreakInstructions: {fileID: 0}
   _prompCanvas: {fileID: 2557673953188033689}
   _onOpenPrompt:
     m_PersistentCalls:

@@ -16,8 +16,10 @@ namespace IslandBoy
 		private bool _canMove = false;
 		private readonly int _hashIdle = Animator.StringToHash("[Anm] NPCIdle");
 		private readonly int _hashMove = Animator.StringToHash("[Anm] NPCMove");
+		private readonly int _hashBound = Animator.StringToHash("[Anm] NPCBound");
 		private Animator _anim;
-		
+		private NPC _npc;
+
 		public Vector2 HomePoint => _homePoint;
 		public IAstarAI AI => _ai;
 		public bool CanMove => _canMove;
@@ -27,11 +29,17 @@ namespace IslandBoy
 			_homePoint = new(999,999);
 			_ai = GetComponent<IAstarAI>();
 			_anim = transform.GetChild(0).GetComponent<Animator>();
+			_npc = GetComponent<NPC>();
 		}
 		
 		private void Update()
 		{
-			
+			if (!_npc.IsFree)
+            {
+				_canMove = false;
+				if (_anim.GetCurrentAnimatorStateInfo(0).shortNameHash != _hashBound)
+					ChangeToBoundState(_anim);
+			}
 		}
 		
 		public void SetCanMove(bool _)
@@ -61,6 +69,11 @@ namespace IslandBoy
 				transform.GetChild(0).rotation = new Quaternion(0f, 0f, 0f, 1f);
 
 			_ai.destination = destination;
+		}
+
+		public void ChangeToBoundState(Animator animator)
+		{
+			AnimStateManager.ChangeAnimationState(animator, _hashBound);
 		}
 
 		public void ChangeToIdleState(Animator animator)
