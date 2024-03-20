@@ -107,7 +107,7 @@ namespace IslandBoy
 		
 		public void Setup(Vector3 direction)
 		{
-			_damage = 6;
+			_damage = 12;
 			_targetPosition = transform.position + (direction * _travelDistance);
 			
 			if(_fireSound != null)

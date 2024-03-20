@@ -14,7 +14,7 @@ namespace IslandBoy
 		private Slot _focusSlot, _hotbarSlot, _mouseSlot;
 		private Player _player;
 		private CursorControl _cursorControl;
-		private float _primaryActionDelayCoolDown = 0.34f, _secondayActionDelayCoolDown = 0.15f;
+		private float _primaryActionDelayCoolDown = 0.25f, _secondayActionDelayCoolDown = 0.15f;
 		private bool _primaryHeldDown, _secondaryHeldDown, _mouseSlotHasitem;
 
 		public Slot FocusSlot { get { return _focusSlot; } }

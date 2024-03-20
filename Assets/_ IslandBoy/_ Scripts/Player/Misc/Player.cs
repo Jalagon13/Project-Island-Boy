@@ -107,7 +107,7 @@ namespace IslandBoy
 		{
 			yield return new WaitForSeconds(8);
 
-			if(_currentNrg < (_maxNrg / 4))
+			if(_currentNrg < (_maxNrg / 3))
 			{
 				PopupMessage.Create(transform.position, $"I need to eat soon..", Color.yellow, Vector2.up, 1f);
 				GameSignals.PLAYER_HUNGRY_WARNING.Dispatch();

@@ -11,7 +11,7 @@ namespace IslandBoy
 
 		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			Debug.Log("Entering Firefly Idle State");
+			// Debug.Log("Entering Firefly Idle State");
 			_stopStateChange = false;
 			_ctx = animator.transform.root.GetComponent<FireflyStateManager>();
 			_ctx.StartCoroutine(IdleDuration(animator));

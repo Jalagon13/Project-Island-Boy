@@ -11,7 +11,7 @@ namespace IslandBoy
 
 		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			Debug.Log("Entering GHOST Move State");
+			// Debug.Log("Entering GHOST Move State");
 			_ctx = animator.transform.root.GetComponent<FireflyStateManager>();
 			_target = CalcWanderPos();
 			

@@ -22,7 +22,7 @@ namespace IslandBoy
 			bool tilActionClear = control.CursorControl.IsClear();
 			bool onSurface = SceneManager.GetActiveScene().buildIndex == 2;
 			
-			if (groundTmHasTile && !floorTmHasTile && onSurface && tilActionClear)
+			if (groundTmHasTile && !floorTmHasTile && onSurface)
 			{
 				control.FocusSlot.InventoryItem.Count--;
 				GameSignals.ITEM_DEPLOYED.Dispatch();

@@ -11510,6 +11510,7 @@ MonoBehaviour:
   _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxHitPoints: 35
   _breakType: 3
+  _breakTier: 0
   _clickFeedback: {fileID: 1867381480340656044}
   _destroyFeedback: {fileID: 4566307676181140785}
   _lootTable:
@@ -11518,6 +11519,7 @@ MonoBehaviour:
       Min: 1
       Max: 2
       Chance: 100
+  _cantBreakInstructions: {fileID: 0}
   _entityName: Slime
   _xpAmount: 8
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
@@ -11914,7 +11916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d8c5ed8a3d5d5241abf99eb3e941f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageAmount: 6
+  _damageAmount: 12
 --- !u!1 &8275846407813757169
 GameObject:
   m_ObjectHideFlags: 0
