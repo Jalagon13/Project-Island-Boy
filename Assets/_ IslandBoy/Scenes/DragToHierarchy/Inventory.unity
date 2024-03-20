@@ -8274,21 +8274,7 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxStack: 999
   _tutorialFeedback: {fileID: 355020581}
-  _startingItems:
-  - OutputItem: {fileID: 11400000, guid: fb9c53bc5a9014142b9e07f97db75202, type: 2}
-    OutputAmount: 1
-  - OutputItem: {fileID: 11400000, guid: c471fb80a5facc043b05c95d8df96e43, type: 2}
-    OutputAmount: 99
-  - OutputItem: {fileID: 11400000, guid: 2aa49c2486a9af147b68795c5f29e7de, type: 2}
-    OutputAmount: 99
-  - OutputItem: {fileID: 11400000, guid: 487d82ad0f4e2344f9733ce37e25a7b9, type: 2}
-    OutputAmount: 1
-  - OutputItem: {fileID: 11400000, guid: 6d450b0eec30a274193f9daac85ebcaf, type: 2}
-    OutputAmount: 1
-  - OutputItem: {fileID: 11400000, guid: a7aa616b06a183d478ddd00b41ede5e6, type: 2}
-    OutputAmount: 1
-  - OutputItem: {fileID: 11400000, guid: d4ce00f2e6502f44c8f3f2e6e33af73e, type: 2}
-    OutputAmount: 99
+  _startingItems: []
   _allSlots:
   - {fileID: 1398917238}
   - {fileID: 658019018}
