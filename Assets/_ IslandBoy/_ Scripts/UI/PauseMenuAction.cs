@@ -4,6 +4,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace IslandBoy
 {
@@ -106,11 +107,32 @@ namespace IslandBoy
             transform.GetChild(0).GetChild(3).gameObject.SetActive(true);
 		}
 
+		public void OnClickHelpMenu()
+		{
+            // Brings up menu asking if player is sure they want to exit/quit
+            transform.GetChild(0).GetChild(2).gameObject.SetActive(false);
+            transform.GetChild(0).GetChild(4).gameObject.SetActive(true);
+		}
+
 		public void OnClickBack2Pause()
 		{
-            // Brings main pause menu back
-            transform.GetChild(0).GetChild(2).gameObject.SetActive(true);
-            transform.GetChild(0).GetChild(3).gameObject.SetActive(false);
+			// Brings main pause menu back
+			transform.GetChild(0).GetChild(2).gameObject.SetActive(true);
+			Transform helpPanel = transform.GetChild(0).GetChild(4);
+			if (helpPanel.gameObject.activeSelf)
+			{
+				if (helpPanel.GetChild(6).gameObject.activeSelf) // reset help menu if on 2nd page
+				{
+					helpPanel.GetChild(3).GetComponent<Button>().interactable = true;
+					helpPanel.GetChild(4).GetComponent<Button>().interactable = false;
+					helpPanel.GetChild(5).gameObject.SetActive(true);
+					helpPanel.GetChild(6).gameObject.SetActive(false);
+				}
+				helpPanel.gameObject.SetActive(false);
+			}
+			else
+				transform.GetChild(0).GetChild(3).gameObject.SetActive(false);
+
 		}
 
 		public void OnClickSettings()
