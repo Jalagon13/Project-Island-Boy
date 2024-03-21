@@ -2000,7 +2000,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quit Game
+  m_text: Quit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 39a647c3e928357408995849330fb73f, type: 2}
   m_sharedMaterial: {fileID: 4835514525599508895, guid: 39a647c3e928357408995849330fb73f, type: 2}
@@ -5068,8 +5068,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -9361,6 +9361,7 @@ GameObject:
   - component: {fileID: 1804805624}
   - component: {fileID: 1804805626}
   - component: {fileID: 1804805625}
+  - component: {fileID: 1804805627}
   m_Layer: 5
   m_Name: Title Logo
   m_TagString: Untagged
@@ -9425,6 +9426,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1804805623}
   m_CullTransparentMesh: 1
+--- !u!114 &1804805627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804805623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 575dc43053e7dec4298cf49720ad04b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1813046376
 GameObject:
   m_ObjectHideFlags: 0
