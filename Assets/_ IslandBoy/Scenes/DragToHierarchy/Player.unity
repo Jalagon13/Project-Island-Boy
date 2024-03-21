@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 910, y: -485}
+  m_AnchoredPosition: {x: 77, y: -130}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &64578570
@@ -2073,7 +2073,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -816, y: 417}
+  m_AnchoredPosition: {x: 17.89978, y: 62.000122}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &600217780
@@ -4215,14 +4215,14 @@ RectTransform:
   m_GameObject: {fileID: 1111027108}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.61, y: 0.61, z: 0.61}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 24384290}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -903.99976, y: 423.99988}
+  m_AnchoredPosition: {x: -54.4, y: 56.5}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1111027110
@@ -4238,14 +4238,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.83043194, b: 0.6773585, a: 1}
+  m_Color: {r: 1, g: 0.69080764, b: 0.41037738, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -848097959, guid: 75594b36fd8cd0d409de8dacfcaf419b, type: 3}
+  m_Sprite: {fileID: -711384130, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5599,7 +5599,7 @@ MonoBehaviour:
         AnimateScaleTarget: {fileID: 9212620248405264548}
         AnimateScaleDuration: 1
         RemapCurveZero: 0
-        RemapCurveOne: 1
+        RemapCurveOne: 1.25
         Offset: 0
         AnimateX: 1
         AnimateScaleTweenX:
