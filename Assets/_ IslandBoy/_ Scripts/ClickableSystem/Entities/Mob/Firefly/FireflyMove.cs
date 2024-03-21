@@ -18,6 +18,7 @@ namespace IslandBoy
 			if(_ctx.WallTilemap.Tilemap.HasTile(Vector3Int.FloorToInt(_target)) || _ctx.FloorTilemap.Tilemap.HasTile(Vector3Int.FloorToInt(_target)))
 			{
 				_ctx.ChangeToIdleState(animator);
+				return;
 			}
 		}
 

@@ -18,20 +18,11 @@ namespace IslandBoy
 		[SerializeField] private MobSpawnSettingObject _spawnSettings;
 		[SerializeField] private int _maxMonsterSpawnRange;
 
-		private void Awake()
+		private void OnEnable()
 		{
 			GameSignals.DAY_START.AddListener(UnPauseMonsterSpawning);
 			GameSignals.DAY_END.AddListener(PauseMonsterSpawning);
-		}
-
-		private void OnDestroy()
-		{
-			GameSignals.DAY_START.RemoveListener(UnPauseMonsterSpawning);
-			GameSignals.DAY_END.RemoveListener(PauseMonsterSpawning);
-		}
-		
-		private void OnEnable()
-		{
+			
 			if(_spawnSettings.EntityListLength <= 0)
 				return;
 			
@@ -40,6 +31,9 @@ namespace IslandBoy
 		
 		private void OnDisable()
 		{
+			GameSignals.DAY_START.RemoveListener(UnPauseMonsterSpawning);
+			GameSignals.DAY_END.RemoveListener(PauseMonsterSpawning);
+			
 			StopAllCoroutines();
 			_entityRTS.Initialize();
 		}
