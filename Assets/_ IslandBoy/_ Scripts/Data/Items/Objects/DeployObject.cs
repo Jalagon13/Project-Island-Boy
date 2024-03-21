@@ -27,7 +27,7 @@ namespace IslandBoy
 			bool tilActionClear = control.CursorControl.IsClear();
 			bool onSurface = SceneManager.GetActiveScene().buildIndex == 2;
 
-			if (tilActionClear && !wallTmHasTile && groundTmHasTile && onSurface)
+			if (tilActionClear && !wallTmHasTile && groundTmHasTile)
 			{
 				if(floorTmHasTile && !_canPlaceOnFloor)
 				{
