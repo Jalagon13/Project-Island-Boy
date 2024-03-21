@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using MoreMountains.Feedbacks;
 
 namespace IslandBoy
 {
     public class DefenseDisplay : MonoBehaviour
     {
         [SerializeField] private PlayerObject _pr;
+        [SerializeField] private MMF_Player _tutorialFeedback;
         private GameObject _display;
         private TMPro.TextMeshProUGUI _defenseText;
 
@@ -15,17 +16,15 @@ namespace IslandBoy
         {
             _display = transform.GetChild(0).gameObject;
             _defenseText = _display.GetComponentInChildren<TMPro.TextMeshProUGUI>();
-            GameSignals.INVENTORY_OPEN.AddListener(EnableDisplay);
-            GameSignals.INVENTORY_CLOSE.AddListener(DisableDisplay);
             GameSignals.UPDATE_DEFENSE.AddListener(UpdateDefense);
+            GameSignals.ENABLE_STARTING_MECHANICS.AddListener(EnableDisplay);
             _display.SetActive(false);
         }
 
         private void OnDestroy()
         {
-            GameSignals.INVENTORY_OPEN.RemoveListener(EnableDisplay);
-            GameSignals.INVENTORY_CLOSE.RemoveListener(DisableDisplay);
             GameSignals.UPDATE_DEFENSE.RemoveListener(UpdateDefense);
+            GameSignals.ENABLE_STARTING_MECHANICS.RemoveListener(EnableDisplay);
         }
 
         private void UpdateDefense(ISignalParameters parameters)
@@ -35,12 +34,7 @@ namespace IslandBoy
 
         private void EnableDisplay(ISignalParameters parameters)
         {
-            _display.SetActive(true);
-        }
-
-        private void DisableDisplay(ISignalParameters parameters)
-        {
-            _display.SetActive(false);
+            _tutorialFeedback?.PlayFeedbacks();
         }
     }
 }
