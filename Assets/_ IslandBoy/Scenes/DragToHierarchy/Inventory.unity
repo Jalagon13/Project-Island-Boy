@@ -4482,8 +4482,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 973915576}
-  - {fileID: 205535460}
   - {fileID: 2135616338}
+  - {fileID: 205535460}
   m_Father: {fileID: 973184127}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
@@ -8315,6 +8315,9 @@ MonoBehaviour:
   - {fileID: 1781860673653041824}
   - {fileID: 8633483085307021670}
   - {fileID: 8633483085399154661}
+  - {fileID: 2004119243}
+  - {fileID: 1384623466}
+  - {fileID: 2116776336}
   - {fileID: 5602138069271407921}
   _armorSlots:
   - {fileID: 1781860673653041824}

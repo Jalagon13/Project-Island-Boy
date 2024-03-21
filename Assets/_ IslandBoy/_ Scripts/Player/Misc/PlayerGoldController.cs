@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.Tools;
+using MoreMountains.Feedbacks;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -11,7 +12,8 @@ namespace IslandBoy
 	{
 		[SerializeField] private AudioClip _goldSound;
 		[SerializeField] private TextMeshProUGUI _goldViewText;
-		
+		[SerializeField] private MMF_Player _tutorialFeedback;
+
 		private static PlayerGoldController _instance;
 		
 		[InfoBox("Debug Money button")]
@@ -32,9 +34,9 @@ namespace IslandBoy
 		{
 			_currency = new();
 			_instance = this;
-			
-			GameSignals.INVENTORY_OPEN.AddListener(EnableGoldDisplay);
-			GameSignals.INVENTORY_CLOSE.AddListener(DisableGoldDisplay);
+
+			GameSignals.ENABLE_STARTING_MECHANICS.AddListener(EnableGoldDisplay);
+			_goldViewText.transform.parent.gameObject.SetActive(false);
 		}
 		
 		private void OnDestroy()
@@ -44,9 +46,8 @@ namespace IslandBoy
 				_currency.ValueIncreased += UpdateView;
 				_currency.ValueDecreased += UpdateView;
 			}
-			
-			GameSignals.INVENTORY_OPEN.RemoveListener(EnableGoldDisplay);
-			GameSignals.INVENTORY_CLOSE.RemoveListener(DisableGoldDisplay);
+
+			GameSignals.ENABLE_STARTING_MECHANICS.RemoveListener(EnableGoldDisplay);
 		}
 		
 		private void Start()
@@ -56,18 +57,11 @@ namespace IslandBoy
 				_currency.ValueIncreased += UpdateView;
 				_currency.ValueDecreased += UpdateView;
 			}
-			
-			DisableGoldDisplay(null);
 		}
 		
 		private void EnableGoldDisplay(ISignalParameters parameters)
 		{
-			_goldViewText.transform.parent.gameObject.SetActive(true);
-		}
-		
-		private void DisableGoldDisplay(ISignalParameters parameters)
-		{
-			_goldViewText.transform.parent.gameObject.SetActive(false);
+			_tutorialFeedback?.PlayFeedbacks();
 		}
 		
 		public void AddCurrency(int amount, Vector2 popupPosition = default)

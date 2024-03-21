@@ -11479,8 +11479,8 @@ MonoBehaviour:
   _lootTable:
     <Table>k__BackingField:
     - Item: {fileID: 11400000, guid: 666617eb3361d4c56992a8c0e33db318, type: 2}
-      Min: 15
-      Max: 25
+      Min: 25
+      Max: 35
       Chance: 100
     - Item: {fileID: 11400000, guid: 1de2d6bdb326b594c8605026470246f9, type: 2}
       Min: 2
@@ -11498,6 +11498,7 @@ MonoBehaviour:
       Min: 1
       Max: 1
       Chance: 100
+  _cantBreakInstructions: {fileID: 0}
   _entityName: Treevil
   _xpAmount: 250
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
