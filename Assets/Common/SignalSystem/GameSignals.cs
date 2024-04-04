@@ -12,6 +12,7 @@ namespace IslandBoy
 		public static readonly Signal BED_TIME_EXECUTED = new("BedTimeExecuted");
 		public static readonly Signal NIGHT_START = new("NightStart");
 		public static readonly Signal ENTITY_DIED = new("EntityDied");
+		public static readonly Signal RESOURCE_CLEARED = new("ResourceCleared");
 
 		// Player Signals
 		public static readonly Signal INVENTORY_OPEN = new("InventoryOpen");

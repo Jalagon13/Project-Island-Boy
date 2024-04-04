@@ -83,18 +83,7 @@ namespace IslandBoy
 			
 			if(colliderGo.TryGetComponent(out Resource rsc) && !_canHitPlayer)
 			{
-				if(rsc.SwingDestructOnly)
-				{
-					var gmod = rsc.GetComponent<GiveMoneyOnDestroy>();
-						
-					if(gmod != null)
-					{
-						gmod.GiveMoney();
-					}
-					
-					rsc.OnBreak();
-				}
-				else if(colliderGo.layer == 12)
+				if(colliderGo.layer == 12)
 				{
 					return;
 				}

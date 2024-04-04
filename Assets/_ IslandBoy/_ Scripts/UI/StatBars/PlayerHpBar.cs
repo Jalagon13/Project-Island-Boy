@@ -21,7 +21,7 @@ namespace IslandBoy
             _counter = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
 
             GameSignals.PLAYER_HP_CHANGED.AddListener(UpdateHealthUI);
-            _pr.GameObject.GetComponent<Player>().DispatchHpChange();
+            // _pr.GameObject.GetComponent<Player>().DispatchHpChange();
         }
 
         private void OnDestroy()

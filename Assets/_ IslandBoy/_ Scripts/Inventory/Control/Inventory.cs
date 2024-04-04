@@ -34,12 +34,12 @@ namespace IslandBoy
 			_csc = GetComponent<CraftSlotsControl>();
 			_mouseItemHolder = transform.GetChild(3).GetChild(0).GetComponent<MouseSlot>();
 			
-			GameSignals.ENABLE_STARTING_MECHANICS.AddListener(EnableNPCView);
+			// GameSignals.ENABLE_STARTING_MECHANICS.AddListener(EnableNPCView);
 		}
 		
 		private void OnDestroy()
 		{
-			GameSignals.ENABLE_STARTING_MECHANICS.RemoveListener(EnableNPCView);
+			// GameSignals.ENABLE_STARTING_MECHANICS.RemoveListener(EnableNPCView);
 		}
 
 		private IEnumerator Start()

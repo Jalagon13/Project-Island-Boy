@@ -9,6 +9,11 @@ namespace IslandBoy
 	{
 		[SerializeField] private MMF_Player _tutorialFeedback;
 		
+		private void Start()
+		{
+			
+		}
+		
 		private void Awake()
 		{
 			GameSignals.ENABLE_STARTING_MECHANICS.AddListener(EnableStatsView);

@@ -23,16 +23,16 @@ namespace IslandBoy
 		
 		private void Awake() 
 		{
-			GameSignals.DAY_START.AddListener(DayMonsterHandle);
-			GameSignals.NIGHT_START.AddListener(NightMonsterHandle);
-			GameSignals.ENABLE_STARTING_MECHANICS.AddListener(DayMonsterHandle);
+			// GameSignals.DAY_START.AddListener(DayMonsterHandle);
+			// GameSignals.NIGHT_START.AddListener(NightMonsterHandle);
+			// GameSignals.ENABLE_STARTING_MECHANICS.AddListener(DayMonsterHandle);
 		}
 		
 		private void OnDestroy() 
 		{
-			GameSignals.DAY_START.RemoveListener(DayMonsterHandle);
-			GameSignals.NIGHT_START.RemoveListener(NightMonsterHandle);
-			GameSignals.ENABLE_STARTING_MECHANICS.RemoveListener(DayMonsterHandle);
+			// GameSignals.DAY_START.RemoveListener(DayMonsterHandle);
+			// GameSignals.NIGHT_START.RemoveListener(NightMonsterHandle);
+			// GameSignals.ENABLE_STARTING_MECHANICS.RemoveListener(DayMonsterHandle);
 		}
 		
 		private void OnEnable()
@@ -44,7 +44,7 @@ namespace IslandBoy
 			
 			if(_isNight && !_hasSpawnedNightMonsters)
 			{
-				SpawnNightMonsters();
+				// SpawnNightMonsters();
 			}
 		}
 		
@@ -58,7 +58,7 @@ namespace IslandBoy
 		private IEnumerator Start() 
 		{
 			yield return new WaitForSeconds(.5f);
-			DayMonsterHandle(null);
+			// DayMonsterHandle(null);
 		}
 		
 		private void DayMonsterHandle(ISignalParameters parameters)

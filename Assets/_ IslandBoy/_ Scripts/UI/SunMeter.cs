@@ -42,6 +42,7 @@ namespace IslandBoy
 			GameSignals.DAY_END.AddListener(EndDay);
 			GameSignals.RESIDENT_UPDATE.AddListener(ResidentUpdate);
 			GameSignals.ENTITY_DIED.AddListener(RegisterEntityDeath);
+			GameSignals.RESOURCE_CLEARED.AddListener(RegisterResource);
 		}
 
 		private void OnDestroy()
@@ -49,6 +50,7 @@ namespace IslandBoy
 			GameSignals.DAY_END.RemoveListener(EndDay);
 			GameSignals.RESIDENT_UPDATE.RemoveListener(ResidentUpdate);
 			GameSignals.ENTITY_DIED.RemoveListener(RegisterEntityDeath);
+			GameSignals.RESOURCE_CLEARED.AddListener(RegisterResource);
 		}
 
 		private void Start()
@@ -73,6 +75,19 @@ namespace IslandBoy
 			}
 			else
 				_entityTally[entity.EntityName].SlainCount++;
+		}
+		
+		public void RegisterResource(ISignalParameters parameters)
+		{
+			Resource rsc = (Resource)parameters.GetParameter("Resource");
+			
+			if(!_entityTally.ContainsKey(rsc.RscName))
+			{
+				EntityData ed = new(rsc.MaxHitPoints);
+				_entityTally.Add(rsc.RscName, ed);
+			}
+			else
+				_entityTally[rsc.RscName].SlainCount++;
 		}
 		
 		private void ResidentUpdate(ISignalParameters parameters)
@@ -172,11 +187,11 @@ namespace IslandBoy
 			if (_entityTally.Count > 0)
 			{
 				yield return new WaitForSeconds(1f);
-				string monsterWording = $"<color=red>Monsters Slain:</color=red><br><br>";
+				string monsterWording = $"<color=green>XP Collected!:</color=green><br><br>";
 				int grandTotalXp = 0;
 				text.text = monsterWording;
 				
-				yield return new WaitForSeconds(2.5f);
+				yield return new WaitForSeconds(1.5f);
 				
 				foreach(var item in _entityTally)
 				{

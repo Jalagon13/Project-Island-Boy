@@ -75,15 +75,15 @@ namespace IslandBoy
 					_rscFoundThisSwing.Remove(rsc);
 					_rscHitThisSwing.Add(rsc);
 					
-					if(rsc.SwingDestructOnly)
-					{
-						var gmod = rsc.GetComponent<GiveMoneyOnDestroy>();
+					// if(rsc.SwingDestructOnly)
+					// {
+					// 	var gmod = rsc.GetComponent<GiveMoneyOnDestroy>();
 						
-						if(gmod != null)
-						{
-							gmod.GiveMoney();
-						}
-					}
+					// 	if(gmod != null)
+					// 	{
+					// 		gmod.GiveMoney();
+					// 	}
+					// }
 					
 					rsc.OnBreak();
 					
@@ -103,13 +103,13 @@ namespace IslandBoy
 				_entitiesFoundThisSwing.Add(entity);
 			}
 			
-			if(collision.TryGetComponent(out Resource rsc))
-			{
-				if(rsc.SwingDestructOnly)
-				{
-					_rscFoundThisSwing.Add(rsc);
-				}
-			}
+			// if(collision.TryGetComponent(out Resource rsc))
+			// {
+			// 	if(rsc.SwingDestructOnly)
+			// 	{
+			// 		_rscFoundThisSwing.Add(rsc);
+			// 	}
+			// }
 		}
 
 		private void UpdateDamage(ISignalParameters parameters)

@@ -82,17 +82,17 @@ namespace IslandBoy
 
 				if (rsc != null)
 				{
-					if(rsc.SwingDestructOnly)
-					{
-						var gmod = rsc.GetComponent<GiveMoneyOnDestroy>();
+					// if(rsc.SwingDestructOnly)
+					// {
+					// 	var gmod = rsc.GetComponent<GiveMoneyOnDestroy>();
 						
-						if(gmod != null)
-						{
-							gmod.GiveMoney();
-						}
+					// 	if(gmod != null)
+					// 	{
+					// 		gmod.GiveMoney();
+					// 	}
 						
-						rsc.OnBreak();
-					}
+					// 	rsc.OnBreak();
+					// }
 
 					rsc.OnHit(ToolType.Pickaxe, _breakableDamage);
 					rsc.OnHit(ToolType.Axe, _breakableDamage);

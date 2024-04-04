@@ -1322,8 +1322,10 @@ MonoBehaviour:
       Min: 1
       Max: 2
       Chance: 100
+  _cantBreakInstructions: {fileID: 0}
+  _rscName: 
+  _giveXp: 1
   _destructable: 1
-  _swingDestructOnly: 0
   _spawnRate: 0
 --- !u!1 &2808111002292170714
 GameObject:
@@ -1814,7 +1816,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3465621154446356389
 Transform:
   m_ObjectHideFlags: 0

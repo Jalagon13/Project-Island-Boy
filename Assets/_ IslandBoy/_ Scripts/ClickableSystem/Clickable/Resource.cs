@@ -13,13 +13,17 @@ namespace IslandBoy
 	public class Resource : Clickable
 	{
 		[Header("Base Resource Parameters")]
+		[SerializeField] private string _rscName;
+		[SerializeField] private bool _giveXp = true;
 		[SerializeField] protected bool _destructable = true;
-		[Tooltip("Think of Grass from Terraria")]
-		[SerializeField] protected bool _swingDestructOnly = false;
-		[SerializeField] protected int _spawnRate;
+		// [Tooltip("Think of Grass from Terraria")]
+		// [SerializeField] protected bool _swingDestructOnly = false;
+		// [SerializeField] protected int _spawnRate;
 
-		public bool SwingDestructOnly { get { return _swingDestructOnly; } }
-		public int SpawnRate { get { return _spawnRate; } }
+		// public bool SwingDestructOnly { get { return _swingDestructOnly; } }
+		// public int SpawnRate { get { return _spawnRate; } }
+		public int MaxHitPoints => _maxHitPoints;
+		public string RscName => _rscName;
 
 		private Timer _restoreHpTimer;
 
@@ -69,7 +73,7 @@ namespace IslandBoy
 
 		public override bool OnHit(ToolType incomingToolType, int amount, bool displayHit = true, ToolTier incomingToolTier = ToolTier.None)
 		{
-			if (!_destructable || _swingDestructOnly || !base.OnHit(incomingToolType, amount, displayHit, incomingToolTier)) 
+			if (!_destructable || !base.OnHit(incomingToolType, amount, displayHit, incomingToolTier)) 
 				return false;
 
 			if (displayHit)
@@ -80,9 +84,27 @@ namespace IslandBoy
 				EnableAmountDisplay(false);
 			}
 			
+			Signal signal = GameSignals.CLICKABLE_CLICKED;
+			signal.ClearParameters();
+			signal.AddParameter("EnergyLost", 1);
+			signal.Dispatch();
+			
 			_restoreHpTimer.RemainingSeconds = 5;
 
 			return true;
+		}
+		
+		public override void OnBreak()
+		{
+			if(_giveXp)
+			{
+				Signal signal = GameSignals.RESOURCE_CLEARED;
+				signal.ClearParameters();
+				signal.AddParameter("Resource", this);
+				signal.Dispatch();
+			}
+
+			base.OnBreak();
 		}
 
 		private void RestoreHitPoints()

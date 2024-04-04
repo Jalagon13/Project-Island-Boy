@@ -102,11 +102,6 @@ namespace IslandBoy
 			}
 			
 			if (_swingTimer.RemainingSeconds > 0 || _focusSlotRef == null || _focusSlotRef.ItemObject is not ToolObject || Pointer.IsOverUI() || !_canAnimate) return;
-				
-			Signal signal = GameSignals.CLICKABLE_CLICKED;
-			signal.ClearParameters();
-			signal.AddParameter("EnergyLost", CalcEnergyPerSwing());
-			signal.Dispatch();
 			
 			PerformCorrectAnimation();
 		}
@@ -217,20 +212,20 @@ namespace IslandBoy
 			return _defaultAnimSpeed;
 		}
 		
-		private int CalcEnergyPerSwing()
-		{
-			if(_focusSlotRef == null) return 1;
-			if (_focusSlotRef.ItemObject == null) return 1;
+		// private int CalcEnergyPerSwing()
+		// {
+		// 	if(_focusSlotRef == null) return 1;
+		// 	if (_focusSlotRef.ItemObject == null) return 1;
 
-			if (_focusSlotRef.ItemObject.DefaultParameterList.Contains(_energyPerSwingParameter))
-			{
-				var index = _focusSlotRef.ItemObject.DefaultParameterList.IndexOf(_energyPerSwingParameter);
-				var powerParameter = _focusSlotRef.ItemObject.DefaultParameterList[index];
+		// 	if (_focusSlotRef.ItemObject.DefaultParameterList.Contains(_energyPerSwingParameter))
+		// 	{
+		// 		var index = _focusSlotRef.ItemObject.DefaultParameterList.IndexOf(_energyPerSwingParameter);
+		// 		var powerParameter = _focusSlotRef.ItemObject.DefaultParameterList[index];
 
-				return (int)powerParameter.Value;
-			}
+		// 		return (int)powerParameter.Value;
+		// 	}
 
-			return 0;
-		}
+		// 	return 0;
+		// }
 	}
 }

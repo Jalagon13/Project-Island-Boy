@@ -87,11 +87,11 @@ namespace IslandBoy
 			_currentMp = _maxMp;
 			_pr.Defense = 0;
 
-			DispatchHpChange();
+			// DispatchHpChange();
 			DispatchNrgChange();
-			DispatchMpChange();
+			// DispatchMpChange();
 
-			StartCoroutine(RegenOneMana());
+			// StartCoroutine(RegenOneMana());
 			StartCoroutine(HungerWarningMessage());
 
 			_pr.Skin = _skinNum;
@@ -286,32 +286,32 @@ namespace IslandBoy
 			if(consumeFocusSlot)
 				_focusSlot.InventoryItem.Count--;
 		}
-		public void AddToHp(int amount)
-		{
-			_currentHp += amount;
-			if (_currentHp > _maxHp)
-				_currentHp = _maxHp;
+		// public void AddToHp(int amount)
+		// {
+		// 	_currentHp += amount;
+		// 	if (_currentHp > _maxHp)
+		// 		_currentHp = _maxHp;
 
-			if (_currentHp <= 0)
-			{
-				_currentHp = 0;
-				StartCoroutine(PlayerDead());
-			}
+		// 	if (_currentHp <= 0)
+		// 	{
+		// 		_currentHp = 0;
+		// 		StartCoroutine(PlayerDead());
+		// 	}
 
-			Signal signal = GameSignals.PLAYER_HP_CHANGED;
-			signal.ClearParameters();
-			signal.AddParameter("CurrentHp", _currentHp);
-			signal.AddParameter("MaxHp", _maxHp);
-			signal.Dispatch();
-		}
-		public void DispatchHpChange()
-		{
-			Signal signal = GameSignals.PLAYER_HP_CHANGED;
-			signal.ClearParameters();
-			signal.AddParameter("CurrentHp", _currentHp);
-			signal.AddParameter("MaxHp", _maxHp);
-			signal.Dispatch();
-		}
+		// 	Signal signal = GameSignals.PLAYER_HP_CHANGED;
+		// 	signal.ClearParameters();
+		// 	signal.AddParameter("CurrentHp", _currentHp);
+		// 	signal.AddParameter("MaxHp", _maxHp);
+		// 	signal.Dispatch();
+		// }
+		// public void DispatchHpChange()
+		// {
+		// 	Signal signal = GameSignals.PLAYER_HP_CHANGED;
+		// 	signal.ClearParameters();
+		// 	signal.AddParameter("CurrentHp", _currentHp);
+		// 	signal.AddParameter("MaxHp", _maxHp);
+		// 	signal.Dispatch();
+		// }
 		#endregion
 
 		#region NRG Functions
@@ -348,7 +348,7 @@ namespace IslandBoy
 			if (_currentNrg <= 0)
 			{
 				_currentNrg = 0;
-				StartCoroutine(PlayerDead());
+				// StartCoroutine(PlayerDead());
 			}
 
 			Signal signal = GameSignals.PLAYER_NRG_CHANGED;
@@ -425,67 +425,67 @@ namespace IslandBoy
 
 		public void Damage(int amount, Vector2 damagerPosition)
 		{
-			if (!CanDamage()) return;
+			// if (!CanDamage()) return;
 
-			amount = calcdamage(amount);
+			// amount = calcdamage(amount);
 				 
-			_currentHp -= amount;
-			_iFrameTimer.RemainingSeconds = _iFrameDuration;
+			// _currentHp -= amount;
+			// _iFrameTimer.RemainingSeconds = _iFrameDuration;
 
-			DispatchHpChange();
-			DispatchPlayerDamaged(amount, damagerPosition);
+			// DispatchHpChange();
+			// DispatchPlayerDamaged(amount, damagerPosition);
 
-			PopupMessage.Create(transform.position, $"{amount}", Color.red, new(0.5f, 0.5f), 1f);
-			MMSoundManagerSoundPlayEvent.Trigger(_damageSound, MMSoundManager.MMSoundManagerTracks.Sfx, transform.position);
+			// PopupMessage.Create(transform.position, $"{amount}", Color.red, new(0.5f, 0.5f), 1f);
+			// MMSoundManagerSoundPlayEvent.Trigger(_damageSound, MMSoundManager.MMSoundManagerTracks.Sfx, transform.position);
 
-			if (_currentHp <= 0)
-				StartCoroutine(PlayerDead());
-			else
-				_knockback.PlayFeedback(damagerPosition, 5f);
+			// if (_currentHp <= 0)
+			// 	StartCoroutine(PlayerDead());
+			// else
+			// 	_knockback.PlayFeedback(damagerPosition, 5f);
 		}
 
-		private void DispatchPlayerDamaged(int dmgAmount, Vector2 damagerPosition)
-		{
-			Signal signal = GameSignals.PLAYER_DAMAGED;
-			signal.ClearParameters();
-			signal.AddParameter("DamageAmount", dmgAmount);
-			signal.AddParameter("DamagerPosition", damagerPosition);
-			signal.Dispatch();
-		}
+		// private void DispatchPlayerDamaged(int dmgAmount, Vector2 damagerPosition)
+		// {
+		// 	Signal signal = GameSignals.PLAYER_DAMAGED;
+		// 	signal.ClearParameters();
+		// 	signal.AddParameter("DamageAmount", dmgAmount);
+		// 	signal.AddParameter("DamagerPosition", damagerPosition);
+		// 	signal.Dispatch();
+		// }
 
 
-		private int calcdamage(int damage)
-		{
-			if (damage <= _pr.Defense)
-				return 1;
-			else
-				return damage - _pr.Defense;
-		}
+		// private int calcdamage(int damage)
+		// {
+		// 	if (damage <= _pr.Defense)
+		// 		return 1;
+		// 	else
+		// 		return damage - _pr.Defense;
+		// }
 
-		public bool CanDamage()
-		{
-			return _iFrameTimer.RemainingSeconds <= 0;
-		}
+		// public bool CanDamage()
+		// {
+		// 	return _iFrameTimer.RemainingSeconds <= 0;
+		// }
 
-		private IEnumerator PlayerDead()
-		{
-			GameSignals.PLAYER_DIED.Dispatch();
-			HidePlayer();
+		// private IEnumerator PlayerDead()
+		// {
+		// 	GameSignals.PLAYER_DIED.Dispatch();
+		// 	HidePlayer();
 
-			yield return new WaitForSeconds(_deathTimer);
+		// 	yield return new WaitForSeconds(_deathTimer);
 
-			RESTED_STATUS = RestedStatus.Bad;
-			GameSignals.DAY_END.Dispatch();
-			ShowPlayer();
-		}
+		// 	RESTED_STATUS = RestedStatus.Bad;
+		// 	GameSignals.DAY_END.Dispatch();
+		// 	ShowPlayer();
+		// }
 
-		public void NextSkin()
-		{
-			int num = _pr.Skin + 1;
-			if (num > 1)
-				num = 0;
-			SetSkin(num);
-		}
+		// public void NextSkin()
+		// {
+		// 	int num = _pr.Skin + 1;
+		// 	if (num > 1)
+		// 		num = 0;
+		// 	SetSkin(num);
+		// }
 
 		public void SetSkin(int num)
 		{

@@ -56,11 +56,11 @@ namespace IslandBoy
 						{
 							var forageableToSpawn = forageables[Random.Range(0, forageables.Count - 1)];
 							var rsc = forageableToSpawn.GetComponent<Resource>();
-							if(rsc.SpawnRate > Random.Range(0, 100))
-							{
-								//Debug.Log($"Spawning {rsc.name}");
-								Instantiate(forageableToSpawn, tilePosition, Quaternion.identity);
-							}
+							// if(rsc.SpawnRate > Random.Range(0, 100))
+							// {
+							// 	//Debug.Log($"Spawning {rsc.name}");
+							// 	Instantiate(forageableToSpawn, tilePosition, Quaternion.identity);
+							// }
 						}
 					}
 					
