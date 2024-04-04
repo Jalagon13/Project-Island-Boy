@@ -31,6 +31,7 @@ namespace IslandBoy
 			GameSignals.DAY_END.AddListener(OnEndDay);
 			GameSignals.DAY_START.AddListener(OnStartDay);
 			GameSignals.PLAYER_DIED.AddListener(PlayerDied);
+			GameSignals.PLAYER_RESPAWN.AddListener(PlayerRespawn);
 		}
 
 		private void OnDestroy()
@@ -38,6 +39,7 @@ namespace IslandBoy
 			GameSignals.DAY_END.RemoveListener(OnEndDay);
 			GameSignals.DAY_START.RemoveListener(OnStartDay);
 			GameSignals.PLAYER_DIED.RemoveListener(PlayerDied);
+			GameSignals.PLAYER_RESPAWN.RemoveListener(PlayerRespawn);
 		}
 
 		private void Start()
@@ -56,6 +58,11 @@ namespace IslandBoy
 		private void PlayerDied(ISignalParameters parameters)
 		{
 			EnableMovement(false);
+		}
+		
+		private void PlayerRespawn(ISignalParameters parameters)
+		{
+			EnableMovement(true);
 		}
 
 		private void OnEndDay(ISignalParameters parameters)

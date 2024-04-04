@@ -11214,13 +11214,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxHp: 75
-  _maxNrg: 200
+  _maxNrg: 10
   _maxMp: 100
   _manaGenRate: 3
   _energyRestorePercent: 1
   _hpRestorePercent: 1
   _iFrameDuration: 1
-  _deathTimer: 3
+  _deathTimer: 5
   _damageSound: {fileID: 8300000, guid: 2ea738d159e7e35448fc9470a87096da, type: 3}
   _skinNum: 0
 --- !u!222 &7367356968773842811

@@ -12,12 +12,14 @@ namespace IslandBoy
         {
             _collectCollider = GetComponent<Collider2D>();
             GameSignals.PLAYER_DIED.AddListener(DisableCollider);
+            GameSignals.PLAYER_RESPAWN.AddListener(EnableCollider);
             GameSignals.DAY_START.AddListener(EnableCollider);
         }
 
         private void OnDestroy()
         {
             GameSignals.PLAYER_DIED.RemoveListener(DisableCollider);
+            GameSignals.PLAYER_RESPAWN.RemoveListener(EnableCollider);
             GameSignals.DAY_START.RemoveListener(EnableCollider);
         }
 

@@ -36,6 +36,7 @@ namespace IslandBoy
 			GameSignals.GAME_PAUSED.AddListener(PauseHandle);
 			GameSignals.GAME_UNPAUSED.AddListener(UnpauseHandle);
 			GameSignals.PLAYER_DIED.AddListener(PauseHandle);
+			GameSignals.PLAYER_RESPAWN.AddListener(UnpauseHandle);
 			GameSignals.DAY_END.AddListener(PauseHandle);
 			GameSignals.DAY_START.AddListener(UnpauseHandle);
 			GameSignals.ADD_ITEM_TO_INVENTORY_FROM_CHEST.AddListener(AddItemToInventoryFromChest);
@@ -51,6 +52,7 @@ namespace IslandBoy
 			GameSignals.GAME_PAUSED.RemoveListener(PauseHandle);
 			GameSignals.GAME_UNPAUSED.RemoveListener(UnpauseHandle);
 			GameSignals.PLAYER_DIED.RemoveListener(PauseHandle);
+			GameSignals.PLAYER_RESPAWN.RemoveListener(UnpauseHandle);
 			GameSignals.DAY_END.RemoveListener(PauseHandle);
 			GameSignals.DAY_START.RemoveListener(UnpauseHandle);
 			GameSignals.ADD_ITEM_TO_INVENTORY_FROM_CHEST.RemoveListener(AddItemToInventoryFromChest);

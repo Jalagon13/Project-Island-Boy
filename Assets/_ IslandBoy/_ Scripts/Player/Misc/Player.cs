@@ -66,6 +66,7 @@ namespace IslandBoy
 			GameSignals.ENABLE_STARTING_MECHANICS.AddListener(AllowEnergyDeplete);
 			GameSignals.ENABLE_PAUSE.AddListener(EnablePauseInput);
 			GameSignals.DISABLE_PAUSE.AddListener(DisablePauseInput);
+			GameSignals.PLAYER_RESPAWN.AddListener(PlayerRespawn);
 		}
 
 		private void OnDestroy()
@@ -78,6 +79,7 @@ namespace IslandBoy
 			GameSignals.ENABLE_STARTING_MECHANICS.RemoveListener(AllowEnergyDeplete);
 			GameSignals.ENABLE_PAUSE.RemoveListener(EnablePauseInput);
 			GameSignals.DISABLE_PAUSE.RemoveListener(DisablePauseInput);
+			GameSignals.PLAYER_RESPAWN.RemoveListener(PlayerRespawn);
 		}
 
 		private void Start()
@@ -127,6 +129,11 @@ namespace IslandBoy
 			}
 
 			StartCoroutine(RegenOneMana());
+		}
+		
+		private void PlayerRespawn(ISignalParameters parameters)
+		{
+			HealNrg(100, consumeFocusSlot:false);
 		}
 
 		private void AllowEnergyDeplete(ISignalParameters parameters)
@@ -348,7 +355,7 @@ namespace IslandBoy
 			if (_currentNrg <= 0)
 			{
 				_currentNrg = 0;
-				// StartCoroutine(PlayerDead());
+				StartCoroutine(OutOfEnergy());
 			}
 
 			Signal signal = GameSignals.PLAYER_NRG_CHANGED;
@@ -467,17 +474,18 @@ namespace IslandBoy
 		// 	return _iFrameTimer.RemainingSeconds <= 0;
 		// }
 
-		// private IEnumerator PlayerDead()
-		// {
-		// 	GameSignals.PLAYER_DIED.Dispatch();
-		// 	HidePlayer();
+		private IEnumerator OutOfEnergy()
+		{
+			GameSignals.PLAYER_DIED.Dispatch();
+			HidePlayer();
 
-		// 	yield return new WaitForSeconds(_deathTimer);
-
-		// 	RESTED_STATUS = RestedStatus.Bad;
-		// 	GameSignals.DAY_END.Dispatch();
-		// 	ShowPlayer();
-		// }
+			yield return new WaitForSeconds(_deathTimer);
+			// transform.SetPositionAndRotation(_spawnPoint, Quaternion.identity);
+			// RESTED_STATUS = RestedStatus.Bad;
+			// GameSignals.DAY_END.Dispatch();
+			ShowPlayer();
+			GameSignals.PLAYER_RESPAWN.Dispatch();
+		}
 
 		// public void NextSkin()
 		// {
@@ -496,7 +504,7 @@ namespace IslandBoy
 		/// Hides/disables the player sprite
 		/// </summary>
 		private void HidePlayer()
-        {
+		{
 			_playerCollider.enabled = false;
 			_sr.SetActive(false);
 		}
@@ -511,7 +519,7 @@ namespace IslandBoy
 		}
 
 		private void DisablePauseInput(ISignalParameters parameters) // When player select screen is active, hide the player sprites
-        {
+		{
 			HidePlayer();
 		}
 
