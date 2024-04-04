@@ -11466,7 +11466,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.4}
-  m_Size: {x: 0.8, y: 0.8}
+  m_Size: {x: 1.75, y: 0.8}
   m_Direction: 0
 --- !u!50 &3006192160976330081
 Rigidbody2D:
@@ -11508,7 +11508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
-  _maxHitPoints: 35
+  _maxHitPoints: 20
   _breakType: 3
   _breakTier: 0
   _clickFeedback: {fileID: 1867381480340656044}

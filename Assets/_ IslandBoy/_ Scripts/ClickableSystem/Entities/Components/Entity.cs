@@ -64,12 +64,35 @@ namespace IslandBoy
 			else ResetHealth();
 		}
 
+		public override bool OnHit(ToolType incomingToolType, int amount, bool displayHit = true, ToolTier incomingToolTier = ToolTier.None)
+		{
+			if (!base.OnHit(incomingToolType, amount, displayHit, incomingToolTier)) 
+				return false;
+
+			if (displayHit)
+			{
+				UpdateAmountDisplay();
+				UpdateFillImage();
+				EnableProgressBar(true);
+				EnableAmountDisplay(false);
+			}
+			
+			Signal signal = GameSignals.CLICKABLE_CLICKED;
+			signal.ClearParameters();
+			signal.AddParameter("EnergyLost", 1);
+			signal.Dispatch();
+			
+			// _restoreHpTimer.RemainingSeconds = 5;
+
+			return true;
+		}
+		
 		public bool Damage(ToolType incomingToolType, int amount, bool displayHit = true, bool kbEnabled = true, float strength = 5)
 		{
 			_onDamage?.Invoke();
 			
-			if(kbEnabled)
-				_knockback.PlayFeedback(_pr.Position, strength);
+			// if(kbEnabled)
+			// 	_knockback.PlayFeedback(_pr.Position, strength);
 			// _despawnTimer.RemainingSeconds = _durationUntilDespawn;
 
 			if (base.OnHit(incomingToolType, amount, displayHit))
@@ -108,11 +131,11 @@ namespace IslandBoy
 		}
 
 		public override void OnBreak()
-        {
-            if (_entityName == "Treevil") // will only be set off if the entity is a Treevil
+		{
+			if (_entityName == "Treevil") // will only be set off if the entity is a Treevil
 				GameSignals.TREEVIL_VANQUISHED.Dispatch();
 
-            _dropPosition = transform.position;
+			_dropPosition = transform.position;
 			GameSignals.MONSTER_KILLED.Dispatch();
 			GiveMoney();
 

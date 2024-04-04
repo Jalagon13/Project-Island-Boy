@@ -24,10 +24,10 @@ namespace IslandBoy
 				_ctx.ChangeToIdleState(animator);
 			}
 
-			if (_ctx.PlayerClose(_ctx.AgroDistance) && _ctx.CanGetToPlayer())
-			{
-				_ctx.ChangeToChaseState(animator);
-			}
+			// if (_ctx.PlayerClose(_ctx.AgroDistance) && _ctx.CanGetToPlayer())
+			// {
+			// 	_ctx.ChangeToChaseState(animator);
+			// }
 		}
 
 		public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

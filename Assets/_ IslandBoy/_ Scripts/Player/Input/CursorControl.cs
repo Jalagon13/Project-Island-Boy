@@ -98,7 +98,7 @@ namespace IslandBoy
 				if (_focusSlotRef.ItemObject is WallObject || _focusSlotRef.ItemObject is FloorObject || _focusSlotRef.ItemObject is DeployObject)
 					return;
 				if (_focusSlotRef.ToolType == clickable.BreakType)
-                {
+				{
 					if (clickable.IsTierCompatibleWith(_focusSlotRef.ToolTier, clickable.BreakTier))
 						clickable.ShowDisplay();
 					else
@@ -132,8 +132,9 @@ namespace IslandBoy
 				
 			_sc.PerformAnimation();
 			
-			if (_currentClickable != null && _currentClickable is not Entity)
+			if (_currentClickable != null)
 			{
+				// Debug.Log("Hit");
 				_currentClickable.OnHit(_focusSlotRef.ToolType, CalcToolHitAmount(), true, _focusSlotRef.ToolTier);
 				_clickTimer.RemainingSeconds = CalcMiningSpeed();
 				return;
@@ -251,7 +252,7 @@ namespace IslandBoy
 								
 				return clickDistanceParameter.Value;
 			}
-            return _startingClickDistance;
+			return _startingClickDistance;
 		}
 
 		private void UpdateCurrentClickable()
@@ -273,7 +274,7 @@ namespace IslandBoy
 
 		private Clickable ClickableFound()
 		{
-            Collider2D[] colliders = Physics2D.OverlapPointAll(transform.position);
+			Collider2D[] colliders = Physics2D.OverlapPointAll(transform.position);
 			List<Clickable> clickablesFound = new();
 
 			if (colliders.Count() > 0)
@@ -283,7 +284,7 @@ namespace IslandBoy
 					if (c.TryGetComponent(out Clickable clickable))
 					{
 						if (c.TryGetComponent(out Chest chest))
-                        {
+						{
 							// Only break chest if it is empty
 							if(!chest.HasItems())
 								clickablesFound.Add(clickable);
@@ -294,7 +295,7 @@ namespace IslandBoy
 				}
 			}
 
-			return clickablesFound.Count > 0 ? clickablesFound.Last() is Entity ? null : clickablesFound.Last() : null;
+			return clickablesFound.Count > 0 ? clickablesFound.Last() is Entity ? clickablesFound.Last() : clickablesFound.Last() : null;
 		}
 
 		private void DisableAbilityToHit(ISignalParameters parameters)

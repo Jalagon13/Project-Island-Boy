@@ -58,7 +58,7 @@ namespace IslandBoy
 
 					System.Random rnd = new System.Random();
 					var damage = rnd.Next(_damageMin, _damageMax); 
-					entity.Damage(ToolType.Sword, damage, strength:_strength);
+					// entity.Damage(ToolType.Sword, damage, strength:_strength);
 					
 					yield return new WaitForSeconds(_detectionBetweenHits);
 					_entitiesFoundThisSwing.Remove(entity);

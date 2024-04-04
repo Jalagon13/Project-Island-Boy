@@ -25,21 +25,20 @@ namespace IslandBoy
 		public int MaxHitPoints => _maxHitPoints;
 		public string RscName => _rscName;
 
-		private Timer _restoreHpTimer;
-
+		// private Timer _restoreHpTimer;
 
 		protected override void Awake()
 		{
 			base.Awake();
 
-			_restoreHpTimer = new(5);
-			_restoreHpTimer.OnTimerEnd += RestoreHitPoints;
+			// _restoreHpTimer = new(5);
+			// _restoreHpTimer.OnTimerEnd += RestoreHitPoints;
 			_dropPosition = transform.position + new Vector3(0.5f, 0.5f, 0);
 		}
 
 		private void OnDestroy()
 		{
-			_restoreHpTimer.OnTimerEnd -= RestoreHitPoints;
+			// _restoreHpTimer.OnTimerEnd -= RestoreHitPoints;
 		}
 
 		private void OnEnable()
@@ -58,10 +57,10 @@ namespace IslandBoy
 			EnableInstructions(false);
 		}
 
-		protected virtual void Update()
-		{
-			_restoreHpTimer.Tick(Time.deltaTime);
-		}
+		// protected virtual void Update()
+		// {
+		// 	_restoreHpTimer.Tick(Time.deltaTime);
+		// }
 
 		protected override void OnTriggerExit2D(Collider2D collision)
 		{
@@ -89,7 +88,7 @@ namespace IslandBoy
 			signal.AddParameter("EnergyLost", 1);
 			signal.Dispatch();
 			
-			_restoreHpTimer.RemainingSeconds = 5;
+			// _restoreHpTimer.RemainingSeconds = 5;
 
 			return true;
 		}
