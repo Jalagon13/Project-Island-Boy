@@ -7,6 +7,7 @@ namespace IslandBoy
 {
 	public class PlayerMoveInput : MonoBehaviour
 	{
+		[SerializeField] private Player _player;
 		[SerializeField] private float _speed;
 		[SerializeField] private UnityEvent _onIdle;
 		[SerializeField] private UnityEvent _onMove;
@@ -64,7 +65,14 @@ namespace IslandBoy
 
 		private void FixedUpdate()
 		{
-			_rb.MovePosition(_rb.position + _moveDirection * _speed * Time.deltaTime);
+			if(_player.CurrentEnergy <= 0)
+			{
+				_rb.MovePosition(_rb.position + _moveDirection * 3f * Time.deltaTime);
+			}
+			else
+			{
+				_rb.MovePosition(_rb.position + _moveDirection * _speed * Time.deltaTime);
+			}
 		}
 		
 		private void EnableMovement(ISignalParameters parameters)

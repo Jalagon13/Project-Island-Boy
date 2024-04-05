@@ -9818,6 +9818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 904f5c33479b8884c83539741adf8de7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 6818878840289316276}
   _speed: 5
   _onIdle:
     m_PersistentCalls:
@@ -11214,7 +11215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxHp: 75
-  _maxNrg: 10
+  _maxNrg: 200
   _maxMp: 100
   _manaGenRate: 3
   _energyRestorePercent: 1

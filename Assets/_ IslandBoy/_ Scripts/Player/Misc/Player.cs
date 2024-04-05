@@ -48,6 +48,8 @@ namespace IslandBoy
 		private bool _canDepleteEnergy;
 
 		[SerializeField] private int _skinNum;
+		
+		public int CurrentEnergy => _currentNrg;
 			
 
 		private void Awake()
@@ -111,7 +113,7 @@ namespace IslandBoy
 
 			if(_currentNrg < (_maxNrg / 3))
 			{
-				PopupMessage.Create(transform.position, $"I need to eat soon..", Color.yellow, Vector2.up, 1f);
+				PopupMessage.Create(transform.position, $"I need to eat something...", Color.yellow, Vector2.up, 1f);
 				GameSignals.PLAYER_HUNGRY_WARNING.Dispatch();
 			}
 			
@@ -355,7 +357,8 @@ namespace IslandBoy
 			if (_currentNrg <= 0)
 			{
 				_currentNrg = 0;
-				StartCoroutine(OutOfEnergy());
+				// GameSignals.PLAYER_OUT_OF_ENERGY.Dispatch();
+				// StartCoroutine(OutOfEnergy());
 			}
 
 			Signal signal = GameSignals.PLAYER_NRG_CHANGED;
@@ -474,18 +477,20 @@ namespace IslandBoy
 		// 	return _iFrameTimer.RemainingSeconds <= 0;
 		// }
 
-		private IEnumerator OutOfEnergy()
-		{
-			GameSignals.PLAYER_DIED.Dispatch();
-			HidePlayer();
+		// private IEnumerator OutOfEnergy()
+		// {
+			
+			
+		// 	// GameSignals.PLAYER_DIED.Dispatch();
+		// 	// HidePlayer();
 
-			yield return new WaitForSeconds(_deathTimer);
-			// transform.SetPositionAndRotation(_spawnPoint, Quaternion.identity);
-			// RESTED_STATUS = RestedStatus.Bad;
-			// GameSignals.DAY_END.Dispatch();
-			ShowPlayer();
-			GameSignals.PLAYER_RESPAWN.Dispatch();
-		}
+		// 	// yield return new WaitForSeconds(_deathTimer);
+		// 	// // transform.SetPositionAndRotation(_spawnPoint, Quaternion.identity);
+		// 	// // RESTED_STATUS = RestedStatus.Bad;
+		// 	// // GameSignals.DAY_END.Dispatch();
+		// 	// ShowPlayer();
+		// 	// GameSignals.PLAYER_RESPAWN.Dispatch();
+		// }
 
 		// public void NextSkin()
 		// {
