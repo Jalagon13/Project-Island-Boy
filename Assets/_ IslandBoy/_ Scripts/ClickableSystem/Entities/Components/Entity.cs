@@ -138,6 +138,8 @@ namespace IslandBoy
 			_dropPosition = transform.position;
 			GameSignals.MONSTER_KILLED.Dispatch();
 			GiveMoney();
+			
+			PlayerGoldController.Instance.AddCurrency(_maxHitPoints);
 
 			base.OnBreak();
 		}

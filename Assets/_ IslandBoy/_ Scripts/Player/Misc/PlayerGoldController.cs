@@ -69,8 +69,9 @@ namespace IslandBoy
 			if(popupPosition == default)
 				popupPosition = transform.position;
 				
-			PopupMessage.Create(popupPosition, $"+${amount}", Color.green, Vector2.up, 1f);
-			MMSoundManagerSoundPlayEvent.Trigger(_goldSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
+			PopupMessage.Create(popupPosition, $"+{amount}xp", Color.green, Vector2.up, 1f);
+			MMSoundManagerSoundPlayEvent.Trigger(_goldSound, MMSoundManager.MMSoundManagerTracks.Sfx, default, pitch:Random.Range(0.9f,1.1f));
+			
 			_changeAmount = amount;
 			_currency?.Increment(amount);
 		}

@@ -97,6 +97,8 @@ namespace IslandBoy
 		{
 			if(_giveXp)
 			{
+				PlayerGoldController.Instance.AddCurrency(_maxHitPoints);
+				
 				Signal signal = GameSignals.RESOURCE_CLEARED;
 				signal.ClearParameters();
 				signal.AddParameter("Resource", this);

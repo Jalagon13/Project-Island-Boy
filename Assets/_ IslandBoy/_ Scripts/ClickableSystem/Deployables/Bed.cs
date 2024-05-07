@@ -45,21 +45,22 @@ namespace IslandBoy
 		public void TryToEndDay() // connected to bed button
 		{
 			if (!_canCheck) return;
-
-			// DispatchEvents();
 			
-			if (InValidSpace())
-			{
-				Player.RESTED_STATUS = RestedStatus.Good;
-				//_bedText.text = "<color=green>Valid House Detected:</color=green> <br><br>This bed is in a valid house, sleep penality will be avoided.";
-				Sleep();
-			}
-			else
-			{
-				Player.RESTED_STATUS = RestedStatus.Okay;
-				//_bedText.text = "<color=red>Sleep Penality Detected!:</color=red> <br><br>Sleeping in a bed in an uncomplete house will apply a sleep penality upon the next day.";
-				_sleepWarning.SetActive(true);
-			}
+			Sleep();
+
+			// // DispatchEvents();
+			
+			// if (InValidSpace())
+			// {
+			// 	Player.RESTED_STATUS = RestedStatus.Good;
+			// 	//_bedText.text = "<color=green>Valid House Detected:</color=green> <br><br>This bed is in a valid house, sleep penality will be avoided.";
+			// }
+			// else
+			// {
+			// 	Player.RESTED_STATUS = RestedStatus.Okay;
+			// 	//_bedText.text = "<color=red>Sleep Penality Detected!:</color=red> <br><br>Sleeping in a bed in an uncomplete house will apply a sleep penality upon the next day.";
+			// 	_sleepWarning.SetActive(true);
+			// }
 		}
 		
 		public void Sleep() // attached to sleep button

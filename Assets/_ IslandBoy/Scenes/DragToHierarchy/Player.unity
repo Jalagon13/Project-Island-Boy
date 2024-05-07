@@ -9748,7 +9748,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 1367902511, guid: 163e8e7065e05434e96c5969ddf71b39, type: 3}
-  m_Color: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 0.43137255}
+  m_Color: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -11244,7 +11244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00107b7f2544f4c0ca12f913ab630483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _goldSound: {fileID: 8300000, guid: f7b568774dd7db745ba2768324150fed, type: 3}
+  _goldSound: {fileID: 8300000, guid: 30bb8e6c32354154cbb71ee2aebcfbe8, type: 3}
   _goldViewText: {fileID: 6392798501310111274}
   _tutorialFeedback: {fileID: 1378533434}
 --- !u!114 &7367368679351872880

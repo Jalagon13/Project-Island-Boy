@@ -150,98 +150,98 @@ namespace IslandBoy
 
 		private void RestoreStats(ISignalParameters parameters)
 		{
-			StartCoroutine(Delay());
+			// StartCoroutine(Delay());
 		}
 
-		private IEnumerator Delay()
-		{
-			yield return new WaitForSeconds(1.5f);
+		// private IEnumerator Delay()
+		// {
+		// 	yield return new WaitForSeconds(1.5f);
 			
-			if (_currentNrg < 0)
-				_currentNrg = 0;
-			if(_currentHp < 0)
-				_currentHp = 0;
+		// 	if (_currentNrg < 0)
+		// 		_currentNrg = 0;
+		// 	if(_currentHp < 0)
+		// 		_currentHp = 0;
 			
-			switch(RESTED_STATUS)
-			{
-				case RestedStatus.Good:
+		// 	switch(RESTED_STATUS)
+		// 	{
+		// 		case RestedStatus.Good:
 					
-					// Debug.Log("Good Rest");
-					HealNrg(Mathf.RoundToInt(_maxNrg * _energyRestorePercent), consumeFocusSlot:false);
-					yield return new WaitForSeconds(0.5f);
-					HealHp(Mathf.RoundToInt(_maxHp * _hpRestorePercent), consumeFocusSlot: false);
+		// 			// Debug.Log("Good Rest");
+		// 			HealNrg(Mathf.RoundToInt(_maxNrg * _energyRestorePercent), consumeFocusSlot:false);
+		// 			yield return new WaitForSeconds(0.5f);
+		// 			HealHp(Mathf.RoundToInt(_maxHp * _hpRestorePercent), consumeFocusSlot: false);
 					
-					break;
-				case RestedStatus.Okay:
-					// Debug.Log("Okay Rest");
-					var quarterVal = Mathf.RoundToInt(_maxNrg * 0.25f);
-					var currentNrg = _currentNrg;
+		// 			break;
+		// 		case RestedStatus.Okay:
+		// 			// Debug.Log("Okay Rest");
+		// 			var quarterVal = Mathf.RoundToInt(_maxNrg * 0.25f);
+		// 			var currentNrg = _currentNrg;
 					
-					if((currentNrg - quarterVal) < quarterVal)
-					{
-						// clamps it to 25%
-						var subAmount = currentNrg - quarterVal;
-						HealNrg(-subAmount, consumeFocusSlot:false);
-					}
-					else
-					{
-						HealNrg(-quarterVal, consumeFocusSlot:false);
-					}
+		// 			if((currentNrg - quarterVal) < quarterVal)
+		// 			{
+		// 				// clamps it to 25%
+		// 				var subAmount = currentNrg - quarterVal;
+		// 				HealNrg(-subAmount, consumeFocusSlot:false);
+		// 			}
+		// 			else
+		// 			{
+		// 				HealNrg(-quarterVal, consumeFocusSlot:false);
+		// 			}
 
-					yield return new WaitForSeconds(0.5f);
+		// 			yield return new WaitForSeconds(0.5f);
 					
-					var qVal = Mathf.RoundToInt(_maxHp * 0.25f);
-					var currentHp = _currentHp;
+		// 			var qVal = Mathf.RoundToInt(_maxHp * 0.25f);
+		// 			var currentHp = _currentHp;
 					
-					if((currentHp - qVal) < qVal)
-					{
-						// clamps it to 25%
-						var subAmount = currentHp - qVal;
-						HealHp(-subAmount, consumeFocusSlot:false);
-					}
-					else
-					{
-						HealHp(-qVal, consumeFocusSlot:false);
-					}
+		// 			if((currentHp - qVal) < qVal)
+		// 			{
+		// 				// clamps it to 25%
+		// 				var subAmount = currentHp - qVal;
+		// 				HealHp(-subAmount, consumeFocusSlot:false);
+		// 			}
+		// 			else
+		// 			{
+		// 				HealHp(-qVal, consumeFocusSlot:false);
+		// 			}
 				
-					break;
-				case RestedStatus.Bad:
-					// Debug.Log("Bad Rest");
-					var halfVal = Mathf.RoundToInt(_maxNrg * 0.5f);
-					var quVal = Mathf.RoundToInt(_maxNrg * 0.25f);
-					var currNrg = _currentNrg;
+		// 			break;
+		// 		case RestedStatus.Bad:
+		// 			// Debug.Log("Bad Rest");
+		// 			var halfVal = Mathf.RoundToInt(_maxNrg * 0.5f);
+		// 			var quVal = Mathf.RoundToInt(_maxNrg * 0.25f);
+		// 			var currNrg = _currentNrg;
 					
-					if((currNrg - halfVal) < quVal)
-					{
-						// clamps it to 25%
-						var subAmount = currNrg - quVal;
-						HealNrg(-subAmount, consumeFocusSlot:false);
-					}
-					else
-					{
-						HealNrg(-halfVal, consumeFocusSlot:false);
-					}
+		// 			if((currNrg - halfVal) < quVal)
+		// 			{
+		// 				// clamps it to 25%
+		// 				var subAmount = currNrg - quVal;
+		// 				HealNrg(-subAmount, consumeFocusSlot:false);
+		// 			}
+		// 			else
+		// 			{
+		// 				HealNrg(-halfVal, consumeFocusSlot:false);
+		// 			}
 
-					yield return new WaitForSeconds(0.5f);
+		// 			yield return new WaitForSeconds(0.5f);
 					
-					var hVal = Mathf.RoundToInt(_maxHp * 0.5f);
-					var quaVal = Mathf.RoundToInt(_maxHp * 0.25f);
-					var currHp = _currentHp;
+		// 			var hVal = Mathf.RoundToInt(_maxHp * 0.5f);
+		// 			var quaVal = Mathf.RoundToInt(_maxHp * 0.25f);
+		// 			var currHp = _currentHp;
 					
-					if((currHp - hVal) < quaVal)
-					{
-						// clamps it to 25%
-						var subAmount = currHp - quaVal;
-						HealHp(-subAmount, consumeFocusSlot:false);
-					}
-					else
-					{
-						HealHp(-hVal, consumeFocusSlot:false);
-					}
+		// 			if((currHp - hVal) < quaVal)
+		// 			{
+		// 				// clamps it to 25%
+		// 				var subAmount = currHp - quaVal;
+		// 				HealHp(-subAmount, consumeFocusSlot:false);
+		// 			}
+		// 			else
+		// 			{
+		// 				HealHp(-hVal, consumeFocusSlot:false);
+		// 			}
 				
-					break;
-			}
-		}
+		// 			break;
+		// 	}
+		// }
 
 		private void ChangeSpawnPoint(ISignalParameters parameters)
 		{

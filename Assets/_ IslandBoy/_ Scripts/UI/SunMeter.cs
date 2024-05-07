@@ -119,7 +119,13 @@ namespace IslandBoy
 			ResetDay();
 			PanelEnabled(false);
 			GameSignals.DAY_START.Dispatch();
-			Debug.Log(_grandTotalXpGain);
+			
+			StartCoroutine(Delay());
+		}
+		
+		private IEnumerator Delay()
+		{
+			yield return new WaitForSeconds(2f);
 			PlayerGoldController.Instance.AddCurrency(_grandTotalXpGain, _po.Position + new Vector2(0.5f, 0.5f));
 			_grandTotalXpGain = 0;
 		}
@@ -161,25 +167,26 @@ namespace IslandBoy
 			yield return new WaitForSeconds(1f);
 
 			text.text = endOfDayTxt;
+			MMSoundManagerSoundPlayEvent.Trigger(_xpSound, MMSoundManager.MMSoundManagerTracks.UI, default);
 			text.gameObject.SetActive(true);
 
 			yield return new WaitForSeconds(1.5f);
 
-			switch (Player.RESTED_STATUS)
-			{
-				case RestedStatus.Good:
-					endOfDayTxt += "You got a good night's rest!";
-					break;
-				case RestedStatus.Okay:
-					endOfDayTxt += "You didn't sleep very well last night...";
-					break;
-				case RestedStatus.Bad:
-					endOfDayTxt += "You passed out at the end of the day...";
-					break;
-			}
+			// switch (Player.RESTED_STATUS)
+			// {
+			// 	case RestedStatus.Good:
+			// 		endOfDayTxt += "You got a good night's rest!";
+			// 		break;
+			// 	case RestedStatus.Okay:
+			// 		endOfDayTxt += "You didn't sleep very well last night...";
+			// 		break;
+			// 	case RestedStatus.Bad:
+			// 		endOfDayTxt += "You passed out at the end of the day...";
+			// 		break;
+			// }
 
-			text.text = endOfDayTxt;
-			yield return new WaitForSeconds(2f);
+			// text.text = endOfDayTxt;
+			// yield return new WaitForSeconds(2f);
 
 			//AddEndDaySlide(endOfDayTxt);
 			// yield return new WaitForSeconds(2f);
@@ -195,7 +202,7 @@ namespace IslandBoy
 			if (_entityTally.Count > 0)
 			{
 				yield return new WaitForSeconds(1f);
-				string monsterWording = $"<color=green>XP Collected!:</color=green><br><br>";
+				string monsterWording = $"<color=orange>Resources Collected:</color=orange><br><br>";
 				int grandTotalXp = 0;
 				text.text = monsterWording;
 				
@@ -203,49 +210,20 @@ namespace IslandBoy
 				
 				foreach(var item in _entityTally)
 				{
-					monsterWording += $"{item.Key} ({item.Value.SlainCount}): XP: <color=green>{item.Value.SlainCount * item.Value.XpAmount}</color=green><br>";
-					grandTotalXp += item.Value.SlainCount * item.Value.XpAmount;
+					monsterWording += $"{item.Key}: <color=orange>{item.Value.SlainCount}</color=orange><br>";
+					grandTotalXp += item.Value.SlainCount;
 					text.text = monsterWording;
 					MMSoundManagerSoundPlayEvent.Trigger(_xpSound, MMSoundManager.MMSoundManagerTracks.UI, default);
 					yield return new WaitForSeconds(0.5f);
 				}
 				
-				float multiplier = 1;
+				monsterWording += $"<br><color=orange>Resource Total: {grandTotalXp}</color=orange><br>";
+				MMSoundManagerSoundPlayEvent.Trigger(_xpSound, MMSoundManager.MMSoundManagerTracks.UI, default);
+				text.text = monsterWording;
 				
-				if(Player.RESTED_STATUS != RestedStatus.Good)
-				{
-					if(Player.RESTED_STATUS == RestedStatus.Bad)
-					{
-						multiplier = 0.5f;
-					}
-					else if(Player.RESTED_STATUS == RestedStatus.Okay)
-					{
-						multiplier = 0.75f;
-					}
-				}
+				yield return new WaitForSeconds(0.5f);
 				
-				if(multiplier != 1)
-				{
-					// MMSoundManagerSoundPlayEvent.Trigger(_xpSound, MMSoundManager.MMSoundManagerTracks.UI, default);
-					monsterWording += $"<br>Sleep Penalty Xp Multiplier: <color=red>x{multiplier}</color=red>";
-					monsterWording += $"<br>Total XP Gained: <color=green>{grandTotalXp}</color=green> x <color=red>{multiplier}</color=red> = <color=green>{(int)(grandTotalXp * multiplier)}</color=green>";
-					grandTotalXp = (int)(grandTotalXp * multiplier);
-					// text.text = monsterWording;
-					// yield return new WaitForSeconds(1f);
-				}
-				
-				if(_energyPenalityCount > 0)
-				{
-					Debug.Log(_energyPenalityCount);
-					Debug.Log((float)_energyPenalityCount / 10f);
-					float nrgMultiplier = (float)_energyPenalityCount / 10f;
-					float mult = 1 - nrgMultiplier;
-					
-					monsterWording += $"<br>Energy Penalty Xp Multiplier: <color=red>x{mult}</color=red>";
-					monsterWording += $"<br>New Total: <color=green>{grandTotalXp}</color=green> x <color=red>{mult}</color=red> = <color=green>{(int)(grandTotalXp * mult)}</color=green>";
-					grandTotalXp = (int)(grandTotalXp * mult);
-					_energyPenalityCount = 0;
-				}
+				monsterWording += $"<color=green>XP Reward: {grandTotalXp}</color=green>";
 				
 				MMSoundManagerSoundPlayEvent.Trigger(_xpSound, MMSoundManager.MMSoundManagerTracks.UI, default);
 				
