@@ -14,6 +14,8 @@ namespace IslandBoy
 		private GameObject _playerGameObject;
 		private MouseSlot _playerMouseSlot;
 		private PlaceDownIndicator _placeDownIndicator;
+		private ExperienceController _experienceController;
+		private TimeController _timeController;
 		private int _skinNum;
 		private int _dayNum;
 
@@ -24,6 +26,8 @@ namespace IslandBoy
 		public Inventory Inventory { get { return _playerInventory; } set { _playerInventory = value; } }
 		public MouseSlot MouseSlot { get { return _playerMouseSlot; } set { _playerMouseSlot = value; } }
 		public PlaceDownIndicator PlaceDownIndicator { get { return _placeDownIndicator; } set { _placeDownIndicator = value; } }
+		public ExperienceController PlayerExperience { get { return _experienceController; } set { _experienceController = value; } }
+		public TimeController TimeController { get { return _timeController; } set { _timeController = value; } }
 		public int Defense { get { return _defense; } set { _defense = value; } }
 		public int Skin { get { return _skinNum; } set { _skinNum = value; } }
 		public int DayNum { get { return _dayNum; } set { _dayNum = value; } }
@@ -39,7 +43,7 @@ namespace IslandBoy
 		}
 
 		private void DispatchDefense()
-        {
+		{
 			Signal signal = GameSignals.UPDATE_DEFENSE;
 			signal.Dispatch();
 		}

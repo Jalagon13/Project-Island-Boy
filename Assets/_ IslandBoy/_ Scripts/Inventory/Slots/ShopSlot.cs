@@ -51,16 +51,15 @@ namespace IslandBoy
 					}
 				}
 				
-				if(PlayerGoldController.Instance.CurrencyValue >= _cost)
-				{
-					ExecuteTransaction();
-				}
+				// if(PlayerGoldController.Instance.CurrencyValue >= _cost)
+				// {
+				// 	ExecuteTransaction();
+				// }
 			}
 		}
 		
 		private void ExecuteTransaction()
 		{
-			PlayerGoldController.Instance.SubtractCurrency(_cost);
 			_buyFeedback?.PlayFeedbacks();
 			
 			if(_mouseItemHolder.ItemObject == _sellItem)

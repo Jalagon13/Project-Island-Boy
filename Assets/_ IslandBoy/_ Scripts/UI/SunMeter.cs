@@ -97,7 +97,6 @@ namespace IslandBoy
 			PanelEnabled(false);
 			GameSignals.DAY_START.Dispatch();
 			Debug.Log(_grandTotalXpGain);
-			PlayerGoldController.Instance.AddCurrency(_grandTotalXpGain, _po.Position + new Vector2(0.5f, 0.5f));
 			_grandTotalXpGain = 0;
 		}
 

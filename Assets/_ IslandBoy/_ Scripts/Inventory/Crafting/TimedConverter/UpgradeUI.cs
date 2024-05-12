@@ -68,7 +68,6 @@ namespace IslandBoy
 
 				MMSoundManagerSoundPlayEvent.Trigger(_craftSound, MMSoundManager.MMSoundManagerTracks.UI, transform.position);
 				GameSignals.ITEM_CRAFTED.Dispatch();
-				PlayerGoldController.Instance.SubtractCurrency(_xpCost);
 				// StartCoroutine(_blacksmith.ResetMenu());
 				_blacksmith.UpdateUpgradeList(_originalItem);
 				UpdateTexts();
@@ -101,8 +100,6 @@ namespace IslandBoy
 
 		private void UpdateIngTexts()
 		{
-			int xpVal = PlayerGoldController.Instance.CurrencyValue;
-			
 			string ingText = "Recipe:<br>";
 			
 			// if(_po.Inventory.GetItemAmount(_originalItem) >= 1)
@@ -115,9 +112,9 @@ namespace IslandBoy
 			// else
 			// 	ingText += $"<color=red>{_upgradeStone.Name} [{_po.Inventory.GetItemAmount(_upgradeStone)}/{1}]<color=red><br>";
 				
-			ingText += xpVal >= _xpCost ? 
-			$"<color=white>XP [{xpVal}/{_xpCost}]<color=white><br>" : 
-			$"<color=red>XP [{xpVal}/{_xpCost}]<color=red><br>";
+			// ingText += xpVal >= _xpCost ? 
+			// $"<color=white>XP [{xpVal}/{_xpCost}]<color=white><br>" : 
+			// $"<color=red>XP [{xpVal}/{_xpCost}]<color=red><br>";
 			
 			foreach (var ia in _recipeToDisplay.ResourceList)
 			{
@@ -148,9 +145,9 @@ namespace IslandBoy
 				if (!hasAllIngredients) break;
 			}
 			
-			bool hasEnoughXp = false;
-			if(PlayerGoldController.Instance.CurrencyValue >= _xpCost)
-				hasEnoughXp = true;
+			// bool hasEnoughXp = false;
+			// if(PlayerGoldController.Instance.CurrencyValue >= _xpCost)
+			// 	hasEnoughXp = true;
 			
 			bool hasOriginalItem = false;
 			if(_po.Inventory.Contains(_originalItem, 1))
@@ -167,7 +164,7 @@ namespace IslandBoy
 			if(resourceListZero)
 				return true;
 				
-			if(hasAllIngredients && hasEnoughXp && hasOriginalItem /* && hasUpgradeStone */)
+			if(hasAllIngredients /* && hasEnoughXp */ && hasOriginalItem /* && hasUpgradeStone */)
 				return true;
 				
 			return false;

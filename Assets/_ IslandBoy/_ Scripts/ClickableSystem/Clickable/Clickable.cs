@@ -92,6 +92,13 @@ namespace IslandBoy
 			AStarExtensions.Instance.UpdatePathfinding(transform.position, new(2,2,2));
 			PlayDestroyFeedbacks();
 			StopAllCoroutines();
+			
+			Signal signal = GameSignals.CLICKABLE_DESTROYED;
+			signal.ClearParameters();
+			signal.AddParameter("TimeAmount", _maxHitPoints);
+			// signal.AddParameter("SkillCategory", _skillCategory);
+			signal.Dispatch();
+			
 			Destroy(gameObject);
 		}
 
