@@ -9,6 +9,7 @@ namespace IslandBoy
 {
 	public class DayCycleHandler : MonoBehaviour
 	{
+		[SerializeField] private PlayerObject _po;
 		[Header("Day Light")]
 		public Light2D DayLight;
 		public Gradient DayLightGradient;
@@ -23,12 +24,12 @@ namespace IslandBoy
 		private IEnumerator Delay()
 		{
 			yield return new WaitForEndOfFrame();
-			TimeManager.Instance.DayCycleHandler = this;
+			_po.TimeController.DayCycleHandler = this;
 		}
 		
 		public void Tick()
 		{
-			UpdateLight(TimeManager.Instance.CurrentDayRatio);
+			UpdateLight(_po.TimeController.CurrentDayRatio);
 		}
 		
 		private void UpdateLight(float ratio)

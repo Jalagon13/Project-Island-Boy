@@ -8,6 +8,7 @@ namespace IslandBoy
 {
 	public class DynamicLight : MonoBehaviour
 	{
+		[SerializeField] private PlayerObject _po;
 		[InfoBox("When sum of DayLight rgb is below this threshhold, turn on light. (each rgb value is represented from 0 to 1)")]
 		[Range(0, 3)]
 		[SerializeField] private float _rgbThreshhold;
@@ -26,11 +27,11 @@ namespace IslandBoy
 		
 		private void Update()
 		{
-			if(TimeManager.Instance == null) return;
+			if(_po.TimeController == null) return;
 			
-			if(TimeManager.Instance.DayCycleHandler != null)
+			if(_po.TimeController.DayCycleHandler != null)
 			{
-				Color dayColor = TimeManager.Instance.DayCycleHandler.DayLight.color;
+				Color dayColor = _po.TimeController.DayCycleHandler.DayLight.color;
 				
 				float r = dayColor.r;
 				float g = dayColor.g;

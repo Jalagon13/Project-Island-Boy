@@ -14,6 +14,7 @@ namespace IslandBoy
 		[SerializeField] protected int _maxHitPoints;
 		[SerializeField] protected ToolType _breakType;
 		[SerializeField] protected ToolTier _breakTier;
+		[SerializeField] private SkillCategory _skillCategory;
 		[SerializeField] protected MMF_Player _clickFeedback;
 		[SerializeField] protected MMF_Player _destroyFeedback;
 		[SerializeField] protected LootTable _lootTable;
@@ -96,7 +97,7 @@ namespace IslandBoy
 			Signal signal = GameSignals.CLICKABLE_DESTROYED;
 			signal.ClearParameters();
 			signal.AddParameter("TimeAmount", _maxHitPoints);
-			// signal.AddParameter("SkillCategory", _skillCategory);
+			signal.AddParameter("SkillCategory", _skillCategory);
 			signal.Dispatch();
 			
 			Destroy(gameObject);
