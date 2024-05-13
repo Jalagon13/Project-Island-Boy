@@ -19,6 +19,7 @@ namespace IslandBoy
 		private PlayerInput _playerInput;
 		private Vector2 _moveDirection;
 		private Vector2 _lastNonZeroMoveDirection;
+		private TimeController _timeController;
 		private float _baseSpeed;
 		private bool _swinging;
 		private bool _moving;
@@ -33,6 +34,7 @@ namespace IslandBoy
 			_playerInput = new();
 			_baseSpeed = _speed;
 			_rb = GetComponent<Rigidbody2D>();
+			_timeController = GetComponent<TimeController>();
 			
 			GameSignals.SCENE_TRANSITION_START.AddListener(DisableMovement);
 			GameSignals.SCENE_TRANSITION_END.AddListener(EnableMovement);
@@ -64,7 +66,7 @@ namespace IslandBoy
 
 		private void FixedUpdate()
 		{
-			_rb.MovePosition(_rb.position + _moveDirection * _speed * Time.deltaTime);
+			_rb.MovePosition(_rb.position + _moveDirection * (_timeController.NoMoreEnergy() ? _speed / 2f : _speed) * Time.deltaTime);
 		}
 		
 		private void EnableMovement(ISignalParameters parameters)
