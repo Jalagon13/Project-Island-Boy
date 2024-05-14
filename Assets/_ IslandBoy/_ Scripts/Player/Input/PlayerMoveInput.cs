@@ -44,7 +44,6 @@ namespace IslandBoy
 		{
 			GameSignals.SCENE_TRANSITION_START.RemoveListener(DisableMovement);
 			GameSignals.SCENE_TRANSITION_END.RemoveListener(EnableMovement);
-			
 		}
 
 		private void OnEnable()

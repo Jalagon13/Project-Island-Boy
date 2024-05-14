@@ -60,7 +60,7 @@ namespace IslandBoy
 
 			GameSignals.CLICKABLE_CLICKED.AddListener(OnSwing);
 			GameSignals.DAY_START.AddListener(PlacePlayerAtSpawnPoint);
-			GameSignals.DAY_START.AddListener(RestoreStats);
+			GameSignals.DAY_START.AddListener(ResetEnergy);
 			GameSignals.FOCUS_SLOT_UPDATED.AddListener(FocusSlotUpdated);
 			GameSignals.BED_TIME_EXECUTED.AddListener(ChangeSpawnPoint);
 			GameSignals.ENABLE_STARTING_MECHANICS.AddListener(AllowEnergyDeplete);
@@ -72,7 +72,7 @@ namespace IslandBoy
 		{
 			GameSignals.CLICKABLE_CLICKED.RemoveListener(OnSwing);
 			GameSignals.DAY_START.RemoveListener(PlacePlayerAtSpawnPoint);
-			GameSignals.DAY_START.RemoveListener(RestoreStats);
+			GameSignals.DAY_START.RemoveListener(ResetEnergy);
 			GameSignals.FOCUS_SLOT_UPDATED.RemoveListener(FocusSlotUpdated);
 			GameSignals.BED_TIME_EXECUTED.RemoveListener(ChangeSpawnPoint);
 			GameSignals.ENABLE_STARTING_MECHANICS.RemoveListener(AllowEnergyDeplete);
@@ -83,7 +83,7 @@ namespace IslandBoy
 		private void Start()
 		{
 			_currentHp = _maxHp;
-			_currentNrg = _maxNrg;
+			_currentNrg = 0;
 			_currentMp = _maxMp;
 			_pr.Defense = 0;
 
@@ -92,7 +92,6 @@ namespace IslandBoy
 			DispatchMpChange();
 
 			StartCoroutine(RegenOneMana());
-			StartCoroutine(HungerWarningMessage());
 
 			_pr.Skin = _skinNum;
 		}
@@ -101,20 +100,6 @@ namespace IslandBoy
 		{
 			_iFrameTimer.Tick(Time.deltaTime);
 			_pr.Position = transform.position;
-		}
-
-		private IEnumerator HungerWarningMessage()
-		{
-			yield return new WaitForSeconds(8);
-
-			if(_currentNrg < (_maxNrg / 3))
-			{
-				PopupMessage.Create(transform.position, $"I need to eat soon..", Color.yellow, Vector2.up, 1f);
-				GameSignals.PLAYER_HUNGRY_WARNING.Dispatch();
-			}
-			
-
-			StartCoroutine(HungerWarningMessage());
 		}
 
 		private IEnumerator RegenOneMana()
@@ -139,100 +124,12 @@ namespace IslandBoy
 			transform.SetPositionAndRotation(_spawnPoint, Quaternion.identity);
 		}
 
-		private void RestoreStats(ISignalParameters parameters)
+		private void ResetEnergy(ISignalParameters parameters)
 		{
-			StartCoroutine(Delay());
+			_currentNrg = 0;
+			DispatchNrgChange();
 		}
 
-		private IEnumerator Delay()
-		{
-			yield return new WaitForSeconds(1.5f);
-			
-			if (_currentNrg < 0)
-				_currentNrg = 0;
-			if(_currentHp < 0)
-				_currentHp = 0;
-			
-			switch(RESTED_STATUS)
-			{
-				case RestedStatus.Good:
-					
-					// Debug.Log("Good Rest");
-					HealNrg(Mathf.RoundToInt(_maxNrg * _energyRestorePercent), consumeFocusSlot:false);
-					yield return new WaitForSeconds(0.5f);
-					HealHp(Mathf.RoundToInt(_maxHp * _hpRestorePercent), consumeFocusSlot: false);
-					
-					break;
-				case RestedStatus.Okay:
-					// Debug.Log("Okay Rest");
-					var quarterVal = Mathf.RoundToInt(_maxNrg * 0.25f);
-					var currentNrg = _currentNrg;
-					
-					if((currentNrg - quarterVal) < quarterVal)
-					{
-						// clamps it to 25%
-						var subAmount = currentNrg - quarterVal;
-						HealNrg(-subAmount, consumeFocusSlot:false);
-					}
-					else
-					{
-						HealNrg(-quarterVal, consumeFocusSlot:false);
-					}
-
-					yield return new WaitForSeconds(0.5f);
-					
-					var qVal = Mathf.RoundToInt(_maxHp * 0.25f);
-					var currentHp = _currentHp;
-					
-					if((currentHp - qVal) < qVal)
-					{
-						// clamps it to 25%
-						var subAmount = currentHp - qVal;
-						HealHp(-subAmount, consumeFocusSlot:false);
-					}
-					else
-					{
-						HealHp(-qVal, consumeFocusSlot:false);
-					}
-				
-					break;
-				case RestedStatus.Bad:
-					// Debug.Log("Bad Rest");
-					var halfVal = Mathf.RoundToInt(_maxNrg * 0.5f);
-					var quVal = Mathf.RoundToInt(_maxNrg * 0.25f);
-					var currNrg = _currentNrg;
-					
-					if((currNrg - halfVal) < quVal)
-					{
-						// clamps it to 25%
-						var subAmount = currNrg - quVal;
-						HealNrg(-subAmount, consumeFocusSlot:false);
-					}
-					else
-					{
-						HealNrg(-halfVal, consumeFocusSlot:false);
-					}
-
-					yield return new WaitForSeconds(0.5f);
-					
-					var hVal = Mathf.RoundToInt(_maxHp * 0.5f);
-					var quaVal = Mathf.RoundToInt(_maxHp * 0.25f);
-					var currHp = _currentHp;
-					
-					if((currHp - hVal) < quaVal)
-					{
-						// clamps it to 25%
-						var subAmount = currHp - quaVal;
-						HealHp(-subAmount, consumeFocusSlot:false);
-					}
-					else
-					{
-						HealHp(-hVal, consumeFocusSlot:false);
-					}
-				
-					break;
-			}
-		}
 
 		private void ChangeSpawnPoint(ISignalParameters parameters)
 		{
@@ -469,14 +366,14 @@ namespace IslandBoy
 
 		private IEnumerator PlayerDead()
 		{
-			GameSignals.PLAYER_DIED.Dispatch();
-			HidePlayer();
+			// GameSignals.PLAYER_DIED.Dispatch();
+			// HidePlayer();
 
 			yield return new WaitForSeconds(_deathTimer);
 
-			RESTED_STATUS = RestedStatus.Bad;
-			GameSignals.DAY_END.Dispatch();
-			ShowPlayer();
+			// RESTED_STATUS = RestedStatus.Bad;
+			// GameSignals.DAY_END.Dispatch();
+			// ShowPlayer();
 		}
 
 		public void NextSkin()
@@ -496,7 +393,7 @@ namespace IslandBoy
 		/// Hides/disables the player sprite
 		/// </summary>
 		private void HidePlayer()
-        {
+		{
 			_playerCollider.enabled = false;
 			_sr.SetActive(false);
 		}
@@ -511,7 +408,7 @@ namespace IslandBoy
 		}
 
 		private void DisablePauseInput(ISignalParameters parameters) // When player select screen is active, hide the player sprites
-        {
+		{
 			HidePlayer();
 		}
 

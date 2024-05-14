@@ -38,6 +38,7 @@ namespace IslandBoy
 		public static readonly Signal PLAYER_IS_NOT_MOVING = new("PlayerIsNotMoving");
 		public static readonly Signal PLAYER_HUNGRY_WARNING = new("PlayerHungryWarning");
 		public static readonly Signal CLICKABLE_DESTROYED = new("ClickableDestroyed");
+		public static readonly Signal HUNGER_RESTORED = new("HungerRestored");
 
 		// Interact Signals
 		public static readonly Signal DISPLAY_PROMPT = new("DisplayPrompt");
