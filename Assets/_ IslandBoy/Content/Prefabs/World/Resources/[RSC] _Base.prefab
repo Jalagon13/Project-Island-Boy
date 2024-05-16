@@ -1314,6 +1314,7 @@ MonoBehaviour:
   _maxHitPoints: 15
   _breakType: 2
   _breakTier: 0
+  _skillCategory: 0
   _clickFeedback: {fileID: 7165791526722579916}
   _destroyFeedback: {fileID: 4871828697884116381}
   _lootTable:
@@ -1322,6 +1323,7 @@ MonoBehaviour:
       Min: 1
       Max: 2
       Chance: 100
+  _cantBreakInstructions: {fileID: 0}
   _destructable: 1
   _swingDestructOnly: 0
   _spawnRate: 0
@@ -1837,7 +1839,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5482612516673387747}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1882,7 +1884,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5482612516673387747}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce444daaff29c174f8cb3112be7ce6b0, type: 3}
   m_Name: 
