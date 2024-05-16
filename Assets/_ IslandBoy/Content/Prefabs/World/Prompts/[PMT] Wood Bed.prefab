@@ -1007,7 +1007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8962264, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.6268303, b: 0.1273585, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1232,7 +1232,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sleep
+  m_text: Sleep anyway!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
   m_sharedMaterial: {fileID: 4835514525599508895, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
@@ -1944,12 +1944,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '<color=red>Sleep Penality Detected!:</color=red>
+  m_text: '<color=yellow>Non-valid house Detected!:</color=yellow>
 
 
-    Sleeping in an
-    invalid house incurs a penalty. Valid houses have complete walls/floors and an
-    interior of at least 9 tiles.'
+    Sleep in
+    a valid house to get a exp multipler bonus! Valid houses have complete walls/floors
+    and an interior of at least 9 tiles.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
   m_sharedMaterial: {fileID: 4835514525599508895, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
@@ -2112,8 +2112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7290442375305206576, guid: f93ea425b327cab4eb66786b593b01ac, type: 3}
       propertyPath: m_text
-      value: 'Start the next day?
-
+      value: 'Would you like to end the day?
 
 '
       objectReference: {fileID: 0}

@@ -37,6 +37,7 @@ namespace IslandBoy
 			GameSignals.CLICKABLE_DESTROYED.AddListener(AddExperience);
 			GameSignals.DAY_START.AddListener(ResetMultiplier);
 			GameSignals.HUNGER_RESTORED.AddListener(HungerRestored);
+			GameSignals.PLAYER_DIED.AddListener(PlayerDied);
 		}
 		
 		private void OnDestroy()
@@ -45,11 +46,17 @@ namespace IslandBoy
 			GameSignals.CLICKABLE_DESTROYED.RemoveListener(AddExperience);
 			GameSignals.DAY_START.RemoveListener(ResetMultiplier);
 			GameSignals.HUNGER_RESTORED.RemoveListener(HungerRestored);
+			GameSignals.PLAYER_DIED.RemoveListener(PlayerDied);
 		}
 		
 		private void Start()
 		{
 			_experienceView = FindObjectOfType<ExperienceView>();
+		}
+		
+		private void PlayerDied(ISignalParameters parameters)
+		{
+			AddToMultiplier(-0.5f);
 		}
 		
 		private void HungerRestored(ISignalParameters parameters)

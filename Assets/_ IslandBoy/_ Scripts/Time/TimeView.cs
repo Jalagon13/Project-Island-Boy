@@ -12,9 +12,24 @@ namespace IslandBoy
 		[SerializeField] private RectTransform _dayTransitionPanel;
 		[SerializeField] private MMF_Player _UpdateTimeFeedbacks;
 		
+		private void Awake()
+		{
+			GameSignals.DAY_END.AddListener(ExecuteEndDay);
+		}
+		
+		private void OnDestroy()
+		{
+			GameSignals.DAY_END.RemoveListener(ExecuteEndDay);
+		}
+		
 		public void Initialize()
 		{
 			_dayTransitionPanel.gameObject.SetActive(false);
+		}
+		
+		private void ExecuteEndDay(ISignalParameters parameters)
+		{
+			_dayTransitionPanel.gameObject.SetActive(true);
 		}
 		
 		public void UpdateTime(float maxTime, float currentTime)
@@ -27,8 +42,6 @@ namespace IslandBoy
 		public void EndDay() // Connected to end day button
 		{
 			GameSignals.DAY_END.Dispatch();
-			
-			_dayTransitionPanel.gameObject.SetActive(true);
 		}
 		
 		public void StartDay() // Connected to start day button
