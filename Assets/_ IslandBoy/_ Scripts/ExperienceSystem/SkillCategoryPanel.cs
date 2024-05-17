@@ -50,8 +50,18 @@ namespace IslandBoy
         
         private IEnumerator ExpSequence()
         {
-            yield return new WaitForSeconds(3f);
-            
+            yield return new WaitForSeconds(2f);
+
+            // make equation appear
+            _storedExpText.gameObject.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            _multText.gameObject.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            _convertedExpText.gameObject.SetActive(true);
+
+            yield return new WaitForSeconds(2f);
+
+
             int displayValue = _convertedExp - 1;
             for (int i = 0; i < _convertedExp; i++)
             {
@@ -70,7 +80,7 @@ namespace IslandBoy
 
                 UpdateTime();
                 
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.4f);
             }
             
             _category.StoredExp = 0;
