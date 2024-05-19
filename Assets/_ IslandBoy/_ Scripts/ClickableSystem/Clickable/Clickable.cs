@@ -12,6 +12,7 @@ namespace IslandBoy
 		[Header("Base Clickable Parameters")]
 		[SerializeField] protected PlayerObject _po;
 		[SerializeField] protected int _maxHitPoints;
+		[SerializeField] protected int _expAmount;
 		[SerializeField] protected ToolType _breakType;
 		[SerializeField] protected ToolTier _breakTier;
 		[SerializeField] private SkillCategory _skillCategory;
@@ -98,6 +99,7 @@ namespace IslandBoy
 			signal.ClearParameters();
 			signal.AddParameter("TimeAmount", _maxHitPoints);
 			signal.AddParameter("SkillCategory", _skillCategory);
+			signal.AddParameter("ExpAmount", _expAmount);
 			signal.Dispatch();
 			
 			Destroy(gameObject);

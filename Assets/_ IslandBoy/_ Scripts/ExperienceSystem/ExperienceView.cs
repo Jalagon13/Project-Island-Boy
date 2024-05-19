@@ -15,11 +15,11 @@ namespace IslandBoy
             _multiplierText.text = $"Multiplier: {multiplierToView}x";
         }
         
-        public void NotifySkillExpGain(SkillCategory skill)
+        public void NotifySkillExpGain(SkillCategory skill, int expAmount)
         {
             ExperienceNotifView expNotifView = Instantiate(_notification, transform.position, Quaternion.identity);
             expNotifView.transform.SetParent(transform);
-            expNotifView.Initialize(skill);
+            expNotifView.Initialize(skill, expAmount);
         }
     }
 }

@@ -75,11 +75,12 @@ namespace IslandBoy
 			if(_timeController.NoMoreEnergy()) return;
 			
 			SkillCategory skill = (SkillCategory)parameters.GetParameter("SkillCategory");
+			int expAmount = (int)parameters.GetParameter("ExpAmount");
 			
-			if(skill != SkillCategory.None)
+			if(skill != SkillCategory.None && expAmount > 0)
 			{
-				IncrementSkillExp(skill);
-				NotifyIncrementation(skill);
+				IncrementSkillExp(skill, expAmount);
+				NotifyIncrementation(skill, expAmount);
 			}
 		}
 		
@@ -99,15 +100,15 @@ namespace IslandBoy
 			_experienceView.UpdateMultiplierView(_experienceModel.ExpMultiplier);
 		}
 		
-		private void NotifyIncrementation(SkillCategory skill)
+		private void NotifyIncrementation(SkillCategory skill, int expAmount)
 		{
-			_experienceView.NotifySkillExpGain(skill);
+			_experienceView.NotifySkillExpGain(skill, expAmount);
 		}
 		
-		private void IncrementSkillExp(SkillCategory skill)
+		private void IncrementSkillExp(SkillCategory skill, int expAmount)
 		{
 			// Communicate with model to increment skill
-			_experienceModel.IncrementStoredExp(skill);
+			_experienceModel.IncrementStoredExp(skill, expAmount);
 		}
 	}
 }

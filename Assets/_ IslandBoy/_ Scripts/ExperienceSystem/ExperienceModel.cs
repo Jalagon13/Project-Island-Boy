@@ -51,13 +51,13 @@ namespace  IslandBoy
 			OnMultiplierUpdated?.Invoke();
 		}
 		
-		public void IncrementStoredExp(SkillCategory skill)
+		public void IncrementStoredExp(SkillCategory skill, int expAmount)
 		{
 			Category category = GetSkillCategory(skill);
 			
 			if(category != null)
 			{
-				category.StoredExp++;
+				category.StoredExp += expAmount;
 			}
 			else
 			{

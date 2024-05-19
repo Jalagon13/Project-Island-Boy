@@ -35,7 +35,7 @@ namespace IslandBoy
             {
                 if(category.Skill == SkillCategory.None) continue;
                 
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.2f);
                 
                 var scp = Instantiate(_skillCategoryPanel, _skillCategoryHolder);
                 scp.Initialize(category, multiplier);

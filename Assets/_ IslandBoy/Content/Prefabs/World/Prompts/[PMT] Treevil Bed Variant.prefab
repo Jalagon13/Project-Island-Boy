@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6016567170035714485, guid: 1381f5df28eeea94ea7aa4433c8f73b1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7067245150924448954, guid: 1381f5df28eeea94ea7aa4433c8f73b1, type: 3}
       propertyPath: m_Name
       value: '[PMT] Treevil Bed Variant'
@@ -60,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 73954393, guid: 4f748df8bc619484697935c72b812ac7, type: 3}
+    - target: {fileID: 8928252264522686265, guid: 1381f5df28eeea94ea7aa4433c8f73b1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

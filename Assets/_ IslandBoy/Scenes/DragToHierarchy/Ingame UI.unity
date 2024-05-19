@@ -5441,7 +5441,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -12.5, y: 12.5}
-  m_SizeDelta: {x: 237.5, y: 25}
+  m_SizeDelta: {x: 250, y: 25}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &526218226
 MonoBehaviour:
@@ -15435,7 +15435,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1539396262
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22206,7 +22206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2551080434505143556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22528,19 +22528,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 581830656125805947}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3463953371046311057}
-  m_Father: {fileID: 6015244140058493901}
+  m_Father: {fileID: 8060217092628705853}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 706, y: -25}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 52.56}
   m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0, y: 1}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!224 &4138905924969381236
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22726,7 +22726,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &4906900793716018208
 RectTransform:
@@ -24944,15 +24944,7 @@ MonoBehaviour:
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxStack: 999
   _tutorialFeedback: {fileID: 355020581}
-  _startingItems:
-  - OutputItem: {fileID: 11400000, guid: f9306cafa82c97447bc4f47c37ef4b10, type: 2}
-    OutputAmount: 1
-  - OutputItem: {fileID: 11400000, guid: 6dbf17cc40618ef4497ad3cc834f0ad2, type: 2}
-    OutputAmount: 1
-  - OutputItem: {fileID: 11400000, guid: 902774a644957654d84a660b19ecc643, type: 2}
-    OutputAmount: 1
-  - OutputItem: {fileID: 11400000, guid: 7c029831ef32a354a8254efb6e763674, type: 2}
-    OutputAmount: 99
+  _startingItems: []
   _allSlots:
   - {fileID: 1398917238}
   - {fileID: 658019018}
@@ -27643,7 +27635,6 @@ RectTransform:
   - {fileID: 222980749401355044}
   - {fileID: 8060217092628705853}
   - {fileID: 670699016831589598}
-  - {fileID: 4135302646192951811}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -28272,6 +28263,7 @@ RectTransform:
   m_Children:
   - {fileID: 8210749186945520924}
   - {fileID: 8672113120650714416}
+  - {fileID: 4135302646192951811}
   m_Father: {fileID: 6015244140058493901}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -28670,19 +28662,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Start Day
-
-'
+  m_text: Start Day!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
+  m_sharedMaterial: {fileID: 4835514525599508895, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

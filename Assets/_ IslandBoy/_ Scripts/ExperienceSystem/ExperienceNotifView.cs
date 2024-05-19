@@ -11,9 +11,9 @@ namespace IslandBoy
         [SerializeField] private MMF_Player _expFeedbacks;
         [SerializeField] private TextMeshProUGUI _text;
         
-        public void Initialize(SkillCategory skill)
+        public void Initialize(SkillCategory skill, int expAmount)
         {
-            _text.text = $"+1 {skill} EXP";
+            _text.text = $"+{expAmount} {skill} EXP";
             _expFeedbacks?.PlayFeedbacks();
         }
         

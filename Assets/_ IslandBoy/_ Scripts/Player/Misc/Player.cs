@@ -332,7 +332,7 @@ namespace IslandBoy
 			DispatchHpChange();
 			DispatchPlayerDamaged(amount, damagerPosition);
 
-			PopupMessage.Create(transform.position, $"{amount}", Color.red, new(0.5f, 0.5f), 1f);
+			// PopupMessage.Create(transform.position, $"{amount}", Color.red, new(0.5f, 0.5f), 1f);
 			MMSoundManagerSoundPlayEvent.Trigger(_damageSound, MMSoundManager.MMSoundManagerTracks.Sfx, transform.position);
 
 			if (_currentHp <= 0)
