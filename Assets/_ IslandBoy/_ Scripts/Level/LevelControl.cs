@@ -27,15 +27,15 @@ namespace IslandBoy
 		private void Awake()
 		{
 			GameSignals.CHANGE_SCENE.AddListener(ChangeScene);
-            GameSignals.PLAYER_DIED.AddListener(PlayerDiedToggle);
-            GameSignals.DAY_END.AddListener(RespawnProcedure);
+            // GameSignals.PLAYER_DIED.AddListener(PlayerDiedToggle);
+            // GameSignals.DAY_END.AddListener(RespawnProcedure);
 		}
 
 		private void OnDestroy()
 		{
 			GameSignals.CHANGE_SCENE.RemoveListener(ChangeScene);
-            GameSignals.PLAYER_DIED.RemoveListener(PlayerDiedToggle);
-            GameSignals.DAY_END.RemoveListener(RespawnProcedure);
+            // GameSignals.PLAYER_DIED.RemoveListener(PlayerDiedToggle);
+            // GameSignals.DAY_END.RemoveListener(RespawnProcedure);
         }
 
 		private void ChangeScene(ISignalParameters parameters)
@@ -108,10 +108,10 @@ namespace IslandBoy
 			
 			PlayerDied = false;
 
-            Signal signal = GameSignals.CHANGE_SCENE;
-            signal.ClearParameters();
-			signal.AddParameter("NextScene", SurfaceScene);
-            signal.Dispatch();
+            // Signal signal = GameSignals.CHANGE_SCENE;
+            // signal.ClearParameters();
+			// signal.AddParameter("NextScene", SurfaceScene);
+            // signal.Dispatch();
         }
 	}
 }

@@ -21,7 +21,9 @@ namespace IslandBoy
 		private void OnEnable()
 		{
 			GameSignals.DAY_START.AddListener(UnPauseMonsterSpawning);
+			GameSignals.PLAYER_RESPAWN.AddListener(UnPauseMonsterSpawning);
 			GameSignals.DAY_END.AddListener(PauseMonsterSpawning);
+			GameSignals.PLAYER_DIED.AddListener(PauseMonsterSpawning);
 			
 			if(_spawnSettings.EntityListLength <= 0)
 				return;
@@ -32,7 +34,9 @@ namespace IslandBoy
 		private void OnDisable()
 		{
 			GameSignals.DAY_START.RemoveListener(UnPauseMonsterSpawning);
+			GameSignals.PLAYER_RESPAWN.RemoveListener(UnPauseMonsterSpawning);
 			GameSignals.DAY_END.RemoveListener(PauseMonsterSpawning);
+			GameSignals.PLAYER_DIED.RemoveListener(PauseMonsterSpawning);
 			
 			StopAllCoroutines();
 			_entityRTS.Initialize();

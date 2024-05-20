@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 namespace IslandBoy
@@ -12,12 +12,14 @@ namespace IslandBoy
         {
             _deathPanel = transform.GetChild(0).GetComponent<RectTransform>();
             GameSignals.PLAYER_DIED.AddListener(EnableDeathPanel);
+            GameSignals.PLAYER_RESPAWN.AddListener(DisableDeathPanel);
             GameSignals.DAY_END.AddListener(DisableDeathPanel);
         }
 
         private void OnDestroy()
         {
             GameSignals.PLAYER_DIED.RemoveListener(EnableDeathPanel);
+            GameSignals.PLAYER_RESPAWN.RemoveListener(DisableDeathPanel);
             GameSignals.DAY_END.RemoveListener(DisableDeathPanel);
         }
 

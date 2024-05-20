@@ -3,6 +3,7 @@ using SingularityGroup.HotReload;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace IslandBoy
 {
@@ -66,6 +67,7 @@ namespace IslandBoy
 			GameSignals.ENABLE_STARTING_MECHANICS.AddListener(AllowEnergyDeplete);
 			GameSignals.ENABLE_PAUSE.AddListener(EnablePauseInput);
 			GameSignals.DISABLE_PAUSE.AddListener(DisablePauseInput);
+			GameSignals.PLAYER_RESPAWN.AddListener(ResetHealth);
 		}
 
 		private void OnDestroy()
@@ -78,6 +80,7 @@ namespace IslandBoy
 			GameSignals.ENABLE_STARTING_MECHANICS.RemoveListener(AllowEnergyDeplete);
 			GameSignals.ENABLE_PAUSE.RemoveListener(EnablePauseInput);
 			GameSignals.DISABLE_PAUSE.RemoveListener(DisablePauseInput);
+			GameSignals.PLAYER_RESPAWN.RemoveListener(ResetHealth);
 		}
 
 		private void Start()
@@ -112,6 +115,12 @@ namespace IslandBoy
 			}
 
 			StartCoroutine(RegenOneMana());
+		}
+		
+		private void ResetHealth(ISignalParameters parameters)
+		{
+			_currentHp = _maxHp;
+			DispatchHpChange();
 		}
 
 		private void AllowEnergyDeplete(ISignalParameters parameters)
@@ -328,7 +337,7 @@ namespace IslandBoy
 			DispatchHpChange();
 			DispatchPlayerDamaged(amount, damagerPosition);
 
-			// PopupMessage.Create(transform.position, $"{amount}", Color.red, new(0.5f, 0.5f), 1f);
+			PopupMessage.Create(transform.position, $"{amount}", Color.red, new(0.5f, 0.5f), 1f);
 			MMSoundManagerSoundPlayEvent.Trigger(_damageSound, MMSoundManager.MMSoundManagerTracks.Sfx, transform.position);
 
 			if (_currentHp <= 0)
@@ -362,14 +371,26 @@ namespace IslandBoy
 
 		private IEnumerator PlayerDead()
 		{
-			// GameSignals.PLAYER_DIED.Dispatch();
-			// HidePlayer();
+			GameSignals.PLAYER_DIED.Dispatch();
+			HidePlayer();
 
 			yield return new WaitForSeconds(_deathTimer);
 
-			// RESTED_STATUS = RestedStatus.Bad;
-			// GameSignals.DAY_END.Dispatch();
-			// ShowPlayer();
+			// Get the current active scene
+			Scene currentScene = SceneManager.GetActiveScene();
+	   		int sceneIndex = currentScene.buildIndex;
+			
+			GameSignals.PLAYER_RESPAWN.Dispatch();
+			if(sceneIndex == 2) // Surface Death
+			{
+				transform.SetPositionAndRotation(_spawnPoint, Quaternion.identity);
+			}
+			else if(sceneIndex == 3) // Cave Death
+			{
+				GameSignals.PLAYER_RESPAWN_IN_CAVE.Dispatch();
+			}
+			
+			ShowPlayer();
 		}
 
 		public void NextSkin()

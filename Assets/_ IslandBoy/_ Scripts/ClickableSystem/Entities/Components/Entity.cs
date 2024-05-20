@@ -11,6 +11,7 @@ namespace IslandBoy
 		[Header("Base Entity Parameters")]
 		[SerializeField] private string _entityName;
 		[SerializeField] private int _xpAmount;
+		[SerializeField] private bool _destroyEntityOnPlayerDeath;
 		[SerializeField] protected PlayerObject _pr;
 		[SerializeField] private EntityRuntimeSet _entityRts;
 		[SerializeField] private UnityEvent _onDamage;

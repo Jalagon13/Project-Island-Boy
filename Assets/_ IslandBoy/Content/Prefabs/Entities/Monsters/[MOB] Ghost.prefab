@@ -1162,8 +1162,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxHitPoints: 18
+  _expAmount: 0
   _breakType: 3
   _breakTier: 0
+  _skillCategory: 0
   _clickFeedback: {fileID: 3130511575979003274}
   _destroyFeedback: {fileID: 3019761147227211072}
   _lootTable:
@@ -1172,8 +1174,10 @@ MonoBehaviour:
       Min: 1
       Max: 2
       Chance: 100
+  _cantBreakInstructions: {fileID: 0}
   _entityName: Ranged Monster
   _xpAmount: 10
+  _destroyEntityOnPlayerDeath: 0
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _entityRts: {fileID: 11400000, guid: b8395270c8b53467b8a3f0ce6f083313, type: 2}
   _onDamage:
@@ -18145,6 +18149,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DynamicLight
       objectReference: {fileID: 0}
+    - target: {fileID: 2836146914331849061, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
+      propertyPath: _po
+      value: 
+      objectReference: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
     - target: {fileID: 6023195277773901937, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
       propertyPath: m_Color.b
       value: 0.6323528

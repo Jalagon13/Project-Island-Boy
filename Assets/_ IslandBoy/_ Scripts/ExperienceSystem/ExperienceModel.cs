@@ -48,6 +48,11 @@ namespace  IslandBoy
 		public void AddToMultiplier(float multiplier)
 		{
 			_expMultiplier += multiplier;
+			if(_expMultiplier < 0)
+			{
+				_expMultiplier = 0;
+			}
+			
 			OnMultiplierUpdated?.Invoke();
 		}
 		

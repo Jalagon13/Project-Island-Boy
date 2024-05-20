@@ -39,6 +39,7 @@ namespace IslandBoy
 			GameSignals.GAME_UNPAUSED.AddListener(UnpauseHandle);
 			GameSignals.PLAYER_DIED.AddListener(PauseHandle);
 			GameSignals.DAY_START.AddListener(UnpauseHandle);
+			GameSignals.PLAYER_RESPAWN.AddListener(UnpauseHandle);
 			GameSignals.ITEM_ADDED.AddListener(HighlightSelected);
 		}
 
@@ -48,6 +49,7 @@ namespace IslandBoy
 			GameSignals.GAME_UNPAUSED.RemoveListener(UnpauseHandle);
 			GameSignals.PLAYER_DIED.RemoveListener(PauseHandle); 
 			GameSignals.DAY_START.RemoveListener(UnpauseHandle);
+			GameSignals.PLAYER_RESPAWN.RemoveListener(UnpauseHandle);
 			GameSignals.ITEM_ADDED.RemoveListener(HighlightSelected);
 		}
 

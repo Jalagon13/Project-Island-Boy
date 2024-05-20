@@ -54,6 +54,7 @@ namespace IslandBoy
 			GameSignals.FOCUS_SLOT_UPDATED.AddListener(FocusSlotUpdated);
 			GameSignals.DAY_END.AddListener(DisableAbilityToHit);
 			GameSignals.DAY_START.AddListener(EnableAbilityToHit);
+			GameSignals.PLAYER_RESPAWN.AddListener(EnableAbilityToHit);
 			GameSignals.PLAYER_DIED.AddListener(DisableAbilityToHit);
 			GameSignals.GAME_PAUSED.AddListener(DisableAbilityToHit);
 			GameSignals.SCENE_TRANSITION_START.AddListener(DisableAbilityToHit);
@@ -67,6 +68,7 @@ namespace IslandBoy
 			GameSignals.FOCUS_SLOT_UPDATED.RemoveListener(FocusSlotUpdated);
 			GameSignals.DAY_END.RemoveListener(DisableAbilityToHit);
 			GameSignals.DAY_START.RemoveListener(EnableAbilityToHit);
+			GameSignals.PLAYER_RESPAWN.RemoveListener(EnableAbilityToHit);
 			GameSignals.PLAYER_DIED.RemoveListener(DisableAbilityToHit);
 			GameSignals.GAME_PAUSED.RemoveListener(DisableAbilityToHit);
 			GameSignals.SCENE_TRANSITION_START.RemoveListener(DisableAbilityToHit);
@@ -98,7 +100,7 @@ namespace IslandBoy
 				if (_focusSlotRef.ItemObject is WallObject || _focusSlotRef.ItemObject is FloorObject || _focusSlotRef.ItemObject is DeployObject)
 					return;
 				if (_focusSlotRef.ToolType == clickable.BreakType)
-                {
+				{
 					if (clickable.IsTierCompatibleWith(_focusSlotRef.ToolTier, clickable.BreakTier))
 						clickable.ShowDisplay();
 					else
@@ -251,7 +253,7 @@ namespace IslandBoy
 								
 				return clickDistanceParameter.Value;
 			}
-            return _startingClickDistance;
+			return _startingClickDistance;
 		}
 
 		private void UpdateCurrentClickable()
@@ -273,7 +275,7 @@ namespace IslandBoy
 
 		private Clickable ClickableFound()
 		{
-            Collider2D[] colliders = Physics2D.OverlapPointAll(transform.position);
+			Collider2D[] colliders = Physics2D.OverlapPointAll(transform.position);
 			List<Clickable> clickablesFound = new();
 
 			if (colliders.Count() > 0)
@@ -283,7 +285,7 @@ namespace IslandBoy
 					if (c.TryGetComponent(out Clickable clickable))
 					{
 						if (c.TryGetComponent(out Chest chest))
-                        {
+						{
 							// Only break chest if it is empty
 							if(!chest.HasItems())
 								clickablesFound.Add(clickable);

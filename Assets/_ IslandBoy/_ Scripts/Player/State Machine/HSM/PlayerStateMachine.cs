@@ -29,6 +29,7 @@ namespace IslandBoy
 			_moveInput = GetComponent<PlayerMoveInput>();
 			
 			GameSignals.DAY_END.AddListener(OnEndDay);
+			GameSignals.PLAYER_RESPAWN.AddListener(Respawn);
 			GameSignals.DAY_START.AddListener(OnStartDay);
 			GameSignals.PLAYER_DIED.AddListener(PlayerDied);
 		}
@@ -36,6 +37,7 @@ namespace IslandBoy
 		private void OnDestroy()
 		{
 			GameSignals.DAY_END.RemoveListener(OnEndDay);
+			GameSignals.PLAYER_RESPAWN.RemoveListener(Respawn);
 			GameSignals.DAY_START.RemoveListener(OnStartDay);
 			GameSignals.PLAYER_DIED.RemoveListener(PlayerDied);
 		}
@@ -51,6 +53,11 @@ namespace IslandBoy
 		{
 			_currentState.UpdateStates();
 			_pr.MousePosition = (Vector2)_mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+		}
+		
+		private void Respawn(ISignalParameters parameters)
+		{
+			EnableMovement(true);
 		}
 
 		private void PlayerDied(ISignalParameters parameters)

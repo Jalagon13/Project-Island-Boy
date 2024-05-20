@@ -19,18 +19,18 @@ namespace IslandBoy
         {
             _currentHealth = _maxHealth;
             
-            GameSignals.PLAYER_DAMAGED.AddListener(Damage);
-            GameSignals.PLAYER_HEALED.AddListener(Heal);// might change to ON_COSUME
-            GameSignals.PLAYER_DIED.AddListener(Die);
-            GameSignals.PLAYER_RESPAWNED.AddListener(RestoreAllHealth);
+            // GameSignals.PLAYER_DAMAGED.AddListener(Damage);
+            // GameSignals.PLAYER_HEALED.AddListener(Heal);// might change to ON_COSUME
+            // GameSignals.PLAYER_DIED.AddListener(Die);
+            // GameSignals.PLAYER_RESPAWNED.AddListener(RestoreAllHealth);
         }
         
         private void OnDestroy()
         {
-            GameSignals.PLAYER_DAMAGED.RemoveListener(Damage);
-            GameSignals.PLAYER_HEALED.RemoveListener(Heal);
-            GameSignals.PLAYER_DIED.RemoveListener(Die);
-            GameSignals.PLAYER_RESPAWNED.RemoveListener(RestoreAllHealth);
+            // GameSignals.PLAYER_DAMAGED.RemoveListener(Damage);
+            // GameSignals.PLAYER_HEALED.RemoveListener(Heal);
+            // GameSignals.PLAYER_DIED.RemoveListener(Die);
+            // GameSignals.PLAYER_RESPAWNED.RemoveListener(RestoreAllHealth);
         }
         
         private void Start()

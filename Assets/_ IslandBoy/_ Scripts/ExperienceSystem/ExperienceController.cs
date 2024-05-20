@@ -93,12 +93,6 @@ namespace IslandBoy
 			}
 		}
 		
-		[Button("AddToMultiplier")]
-		private void Test()
-		{
-			AddToMultiplier(0.5f);
-		}
-		
 		public void AddToMultiplier(float addedValue)
 		{
 			_experienceModel.AddToMultiplier(addedValue);
