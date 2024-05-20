@@ -25,6 +25,7 @@ namespace IslandBoy
 		private ExperienceModel _experienceModel;
 		public ExperienceModel ExperienceModel => _experienceModel;
 		private TimeController _timeController;
+		private bool _canIncrementExp = false;
 		
 		private void Awake()
 		{
@@ -38,6 +39,7 @@ namespace IslandBoy
 			GameSignals.DAY_START.AddListener(ResetMultiplier);
 			GameSignals.HUNGER_RESTORED.AddListener(HungerRestored);
 			GameSignals.PLAYER_DIED.AddListener(PlayerDied);
+			GameSignals.ENABLE_STARTING_MECHANICS.AddListener(EnableExpIncrement);
 		}
 		
 		private void OnDestroy()
@@ -47,11 +49,17 @@ namespace IslandBoy
 			GameSignals.DAY_START.RemoveListener(ResetMultiplier);
 			GameSignals.HUNGER_RESTORED.RemoveListener(HungerRestored);
 			GameSignals.PLAYER_DIED.RemoveListener(PlayerDied);
+			GameSignals.ENABLE_STARTING_MECHANICS.RemoveListener(EnableExpIncrement);
 		}
 		
 		private void Start()
 		{
 			_experienceView = FindObjectOfType<ExperienceView>();
+		}
+		
+		private void EnableExpIncrement(ISignalParameters parameters)
+		{
+			_canIncrementExp = true;
 		}
 		
 		private void PlayerDied(ISignalParameters parameters)
@@ -71,6 +79,7 @@ namespace IslandBoy
 		
 		private void AddExperience(ISignalParameters parameters)
 		{
+			if(!_canIncrementExp) return;
 			if(!parameters.HasParameter("SkillCategory")) return;
 			if(_timeController.NoMoreEnergy()) return;
 			

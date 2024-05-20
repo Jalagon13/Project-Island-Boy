@@ -49,13 +49,11 @@ namespace IslandBoy
 		{
 			_currentNrg = (int)parameters.GetParameter("CurrentNrg");
 			_maxNrg = (int)parameters.GetParameter("MaxNrg");
-
 			_fillImage.fillAmount = Mathf.Clamp01(Mathf.InverseLerp(0, _maxNrg, _currentNrg));
 			
 			if(_currentNrg >= _maxNrg && !_hungerQuotaFilled)
 			{
 				GameSignals.HUNGER_RESTORED.Dispatch();
-				Debug.Log("Hunger Restored");
 				_hungerQuotaFilled = true;
 			}
 		}

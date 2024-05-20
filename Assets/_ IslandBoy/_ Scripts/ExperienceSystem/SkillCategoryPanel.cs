@@ -61,7 +61,6 @@ namespace IslandBoy
 
             yield return new WaitForSeconds(2f);
 
-
             int displayValue = _convertedExp - 1;
             for (int i = 0; i < _convertedExp; i++)
             {
@@ -80,7 +79,7 @@ namespace IslandBoy
 
                 UpdateTime();
                 
-                yield return new WaitForSeconds(0.4f);
+                yield return new WaitForSeconds(0.15f);
             }
             
             _category.StoredExp = 0;

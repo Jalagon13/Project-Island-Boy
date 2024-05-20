@@ -522,6 +522,8 @@ MonoBehaviour:
   _target: {fileID: 3739807175942007135}
   _radius: 1.7
   _fishingProgressSpeed: 0.002
+  _skillCategory: 5
+  _expAmount: 8
   _successSound: {fileID: 8300000, guid: f7b568774dd7db745ba2768324150fed, type: 3}
   _fleeSound: {fileID: 8300000, guid: 02121cc507b53c2489410a4889effc75, type: 3}
   fishProgress: 0.35

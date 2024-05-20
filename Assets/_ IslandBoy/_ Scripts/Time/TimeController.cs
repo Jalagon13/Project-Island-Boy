@@ -13,6 +13,7 @@ namespace IslandBoy
 		private float _currentTime;
 		public DayCycleHandler DayCycleHandler { get; set; }
 		public float CurrentDayRatio => _currentTime / _maxTime;
+		private bool _canIncrementTime = false;
 		
 		private void Awake()
 		{
@@ -20,6 +21,7 @@ namespace IslandBoy
 			_currentTime = 0;
 			
 			GameSignals.CLICKABLE_DESTROYED.AddListener(IncrementTime);
+			GameSignals.ENABLE_STARTING_MECHANICS.AddListener(EnableTimeIncrement);
 			GameSignals.DAY_END.AddListener(OnDayEnd);
 			GameSignals.DAY_START.AddListener(OnDayStart);
 		}
@@ -27,6 +29,7 @@ namespace IslandBoy
 		private void OnDestroy()
 		{
 			GameSignals.CLICKABLE_DESTROYED.RemoveListener(IncrementTime);
+			GameSignals.ENABLE_STARTING_MECHANICS.RemoveListener(EnableTimeIncrement);
 			GameSignals.DAY_END.RemoveListener(OnDayEnd);
 			GameSignals.DAY_START.RemoveListener(OnDayStart);
 		}
@@ -47,8 +50,15 @@ namespace IslandBoy
 			return _currentTime >= _maxTime;
 		}
 		
+		private void EnableTimeIncrement(ISignalParameters parameters)
+		{
+			_canIncrementTime = true;
+		}
+		
 		private void IncrementTime(ISignalParameters parameters)
 		{
+			if(!_canIncrementTime) return;
+			
 			SkillCategory skill = (SkillCategory)parameters.GetParameter("SkillCategory");
 			int baseTimeAmount = (int)parameters.GetParameter("TimeAmount");
 			int expAmount = (int)parameters.GetParameter("ExpAmount");

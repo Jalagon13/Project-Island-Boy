@@ -225,12 +225,8 @@ namespace IslandBoy
 				_currentNrg = _maxNrg;
 
 			PopupMessage.Create(transform.position, $"+{amount} Energy", Color.yellow, new(0.5f, 0.5f), 0.5f);
-
-			Signal signal = GameSignals.PLAYER_NRG_CHANGED;
-			signal.ClearParameters();
-			signal.AddParameter("CurrentNrg", _currentNrg);
-			signal.AddParameter("MaxNrg", _maxNrg);
-			signal.Dispatch();
+			
+			DispatchNrgChange();
 
 			if (consumeFocusSlot)
 				_focusSlot.InventoryItem.Count--;

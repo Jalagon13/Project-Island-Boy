@@ -13,6 +13,9 @@ namespace IslandBoy
 		[SerializeField] private Transform _target; //Target point to rotate around
 		[SerializeField] private float _radius;
 		[SerializeField] private float _fishingProgressSpeed; //how fast the fishing progress bar fills up
+		[SerializeField] private SkillCategory _skillCategory;
+		[SerializeField] protected int _expAmount;
+		[SerializeField] protected int _timeAmount;
 		private ItemObject _fish;
 
 		// speed of the fish
@@ -104,6 +107,14 @@ namespace IslandBoy
 			_pr.Inventory.AddItem(_fish, 1);
 			PopupMessage.Create(transform.position, $"You caught a {_fish.Name}!", Color.green, Vector2.up, 1f);
 			MMSoundManagerSoundPlayEvent.Trigger(_successSound, MMSoundManager.MMSoundManagerTracks.Sfx, _target.transform.position);
+			
+			Signal signal = GameSignals.CLICKABLE_DESTROYED;
+			signal.ClearParameters();
+			signal.AddParameter("TimeAmount", _timeAmount);
+			signal.AddParameter("SkillCategory", _skillCategory);
+			signal.AddParameter("ExpAmount", _expAmount);
+			signal.Dispatch();
+			
 			EndMinigame();
 		}
 

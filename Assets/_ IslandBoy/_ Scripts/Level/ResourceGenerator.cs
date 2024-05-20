@@ -11,9 +11,12 @@ namespace IslandBoy
 		[SerializeField] private TilemapObject _grassTm;
 		[SerializeField] private TilemapObject _floorTm;
 		[SerializeField] private TilemapObject _wallTm;
+		[SerializeField] private Entity _surfaceSlimeEntity;
 		[SerializeField] private List<RscSpawnSetting> _rscSpawnSettings;
 		
 		private List<Vector2> _spawnPositions = new();
+		private int _maxSurfaceSlimes = 8;
+		private int _currentSlimes;
 		
 		[Serializable]
 		public class RscSpawnSetting
@@ -25,6 +28,17 @@ namespace IslandBoy
 		private void Awake()
 		{
 			GameSignals.DAY_START.AddListener(RefreshResources);
+		}
+		
+		private void OnEnable()
+		{
+			_currentSlimes = 0;
+			StartCoroutine(SpawnSlimes());
+		}
+		
+		private void OnDisable()
+		{
+			StopAllCoroutines();
 		}
 		
 		private void OnDestroy()
@@ -48,6 +62,22 @@ namespace IslandBoy
 			StartCoroutine(Refresh());
 		}
 		
+		private IEnumerator SpawnSlimes()
+		{
+			yield return new WaitForSeconds(8);
+			
+			var randPos = GetRandomPosition();
+			Vector3Int pos = new((int)randPos.x, (int)randPos.y, 0);
+			
+			if(IsValidSpawnPosition(pos) && _currentSlimes < _maxSurfaceSlimes)
+			{
+				SpawnClickable(_surfaceSlimeEntity, pos, appendToLevel:false);
+				_currentSlimes++;
+			}
+			
+			StartCoroutine(SpawnSlimes());
+		}
+		
 		private void RefreshResources(ISignalParameters parameters)
 		{
 			StartCoroutine(Refresh());
@@ -55,8 +85,6 @@ namespace IslandBoy
 		
 		private IEnumerator Refresh()
 		{
-			yield return new WaitForSeconds(1f);
-			
 			// Destroy all resources
 			foreach (Transform child in transform)
 			{
@@ -120,7 +148,7 @@ namespace IslandBoy
 
 			foreach(Collider2D col in colliders)
 			{
-				if(col.gameObject.layer == 3 || col.CompareTag("RSC") || col.TryGetComponent(out FeetTag ft))
+				if(col.gameObject.layer == 3 || col.CompareTag("RSC") || col.CompareTag("NPC") || col.TryGetComponent(out FeetTag ft))
 				{
 					return false;
 				}

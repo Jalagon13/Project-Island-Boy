@@ -46,7 +46,6 @@ namespace IslandBoy
 		public static readonly Signal DISPLAY_PROMPT = new("DisplayPrompt");
 		public static readonly Signal DISPLAY_INTERACTABLE = new("DisplayInteractable");
 		public static readonly Signal CRAFT_STATION_INTERACT = new("CraftStationInteract");
-		
 
 		// Pause Signals
 		public static readonly Signal GAME_PAUSED = new("GamePaused");
