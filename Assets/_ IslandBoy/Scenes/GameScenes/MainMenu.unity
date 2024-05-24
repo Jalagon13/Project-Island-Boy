@@ -879,7 +879,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -202.72635, w: -104.32698}
+  m_margin: {x: 0, y: 0, z: -221.24911, w: -104.32698}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1037,11 +1037,11 @@ RectTransform:
   - {fileID: 359650303}
   - {fileID: 389497297}
   - {fileID: 1235351865}
-  m_Father: {fileID: 881172645}
+  m_Father: {fileID: 256160032}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 30, y: -40}
+  m_AnchoredPosition: {x: -540, y: 200}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &158646179
@@ -1512,11 +1512,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1732766707}
+  - {fileID: 144497123}
   - {fileID: 1913205251}
   - {fileID: 135536519}
   - {fileID: 1538754436}
-  - {fileID: 1460776430}
+  - {fileID: 459672440}
   - {fileID: 481359949}
   m_Father: {fileID: 1914566117}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2281,11 +2281,11 @@ RectTransform:
   - {fileID: 1394309525}
   - {fileID: 1011683786}
   - {fileID: 2003671261}
-  m_Father: {fileID: 881172645}
+  m_Father: {fileID: 256160032}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 80, y: -295}
+  m_AnchoredPosition: {x: -510, y: -295}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &467282406
@@ -3910,9 +3910,9 @@ RectTransform:
   - {fileID: 1853253396}
   - {fileID: 1719676067}
   - {fileID: 2132565592}
-  - {fileID: 144497123}
   - {fileID: 391772143}
-  - {fileID: 459672440}
+  - {fileID: 1460776430}
+  - {fileID: 1732766707}
   m_Father: {fileID: 1914566117}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -5731,7 +5731,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -314.29074, w: -104.32698}
+  m_margin: {x: 0, y: 0, z: -229.4534, w: -104.32698}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -6763,11 +6763,11 @@ RectTransform:
   - {fileID: 1341507824}
   - {fileID: 1666597671}
   - {fileID: 1736437869}
-  m_Father: {fileID: 256160032}
+  m_Father: {fileID: 881172645}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -513, y: -300}
+  m_AnchoredPosition: {x: 30, y: -40}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1473299891
@@ -8787,11 +8787,11 @@ RectTransform:
   - {fileID: 1550142303}
   - {fileID: 1181725354}
   - {fileID: 1527152057}
-  m_Father: {fileID: 256160032}
+  m_Father: {fileID: 881172645}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -510, y: 200}
+  m_AnchoredPosition: {x: 90, y: -295}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1736437868
@@ -8851,9 +8851,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Be aware that once your health drops to 0, you will die. Once you die,
-    you will respawn the next day. Replenish your health by sleeping or drinking
-    health potions.
+  m_text: Watch your health! If you die, you will respawn the next day, but you won't
+    gain as much XP. Heal yourself by sleeping or drinking health potions.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
   m_sharedMaterial: {fileID: 4835514525599508895, guid: 7d5b1abbb7045db4db201bb90361d9df, type: 2}
@@ -8880,8 +8879,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 27
+  m_fontSizeBase: 27
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -8916,7 +8915,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -177.35703, w: -99.66948}
+  m_margin: {x: 0, y: 0, z: -263.09503, w: -99.66948}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

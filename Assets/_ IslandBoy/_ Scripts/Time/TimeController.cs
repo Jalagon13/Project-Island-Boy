@@ -38,11 +38,14 @@ namespace IslandBoy
 		{
 			// Future note to self: This may cause some issues when creating a scene loading bootstrap
 			_timeView = FindObjectOfType<TimeView>();
-			_timeView.Initialize();
-			UpdateView();
-			
+			if (_timeView != null)
+			{
+				_timeView.Initialize();
+				UpdateView();
+			}
 			yield return new WaitForEndOfFrame();
-			DayCycleHandler.Tick();
+            if (_timeView != null)
+                DayCycleHandler.Tick();
 		}
 		
 		public bool NoMoreEnergy()
