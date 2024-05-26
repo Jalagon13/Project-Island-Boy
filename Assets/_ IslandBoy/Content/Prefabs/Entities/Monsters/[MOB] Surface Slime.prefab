@@ -11508,7 +11508,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxHitPoints: 35
-  _expAmount: 0
+  _expAmount: 3
   _breakType: 3
   _breakTier: 0
   _skillCategory: 0
@@ -11523,6 +11523,7 @@ MonoBehaviour:
   _cantBreakInstructions: {fileID: 0}
   _entityName: Slime
   _xpAmount: 8
+  _destroyEntityOnPlayerDeath: 0
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _entityRts: {fileID: 11400000, guid: c10890a72884b4620825b7390a1593f9, type: 2}
   _onDamage:
