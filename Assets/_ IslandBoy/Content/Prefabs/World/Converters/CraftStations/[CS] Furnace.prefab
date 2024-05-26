@@ -153,6 +153,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DynamicLight
       objectReference: {fileID: 0}
+    - target: {fileID: 2836146914331849061, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
+      propertyPath: _po
+      value: 
+      objectReference: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
     - target: {fileID: 6023195277773901937, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
       propertyPath: m_Enabled
       value: 0
