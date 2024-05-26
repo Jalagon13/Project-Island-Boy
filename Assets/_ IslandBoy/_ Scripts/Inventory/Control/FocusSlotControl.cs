@@ -128,7 +128,7 @@ namespace IslandBoy
 
 		private void ExecutePrimaryAction(InputAction.CallbackContext context)
 		{
-			if(_primaryDelayCooldownTimer.RemainingSeconds <= 0 && _focusSlot.ItemObject != null && !_secondaryHeldDown && !Pointer.IsOverUI())
+			if(_focusSlot != null && _primaryDelayCooldownTimer.RemainingSeconds <= 0 && _focusSlot.ItemObject != null && !_secondaryHeldDown && !Pointer.IsOverUI())
 			{
 				_focusSlot.ItemObject.ExecutePrimaryAction(this);
 				_primaryDelayCooldownTimer.RemainingSeconds = _primaryActionDelayCoolDown;
@@ -137,7 +137,7 @@ namespace IslandBoy
 
 		private void ExecuteSecondaryAction(InputAction.CallbackContext context)
 		{
-			if (_secondaryDelayCooldownTimer.RemainingSeconds <= 0 && _focusSlot.ItemObject != null && !_primaryHeldDown && !Pointer.IsOverUI())
+			if (_focusSlot != null && _secondaryDelayCooldownTimer.RemainingSeconds <= 0 && _focusSlot.ItemObject != null && !_primaryHeldDown && !Pointer.IsOverUI())
 			{
 				_focusSlot.ItemObject.ExecuteSecondaryAction(this);
 				_secondaryDelayCooldownTimer.RemainingSeconds = _secondayActionDelayCoolDown;

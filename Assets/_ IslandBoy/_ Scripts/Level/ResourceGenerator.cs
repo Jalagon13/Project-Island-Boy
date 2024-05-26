@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 namespace IslandBoy
 {
@@ -32,6 +32,7 @@ namespace IslandBoy
 		
 		private void OnEnable()
 		{
+			StartCoroutine(Refresh());
 			_currentSlimes = 0;
 			StartCoroutine(SpawnSlimes());
 		}
@@ -58,9 +59,9 @@ namespace IslandBoy
 					_spawnPositions.Add(new Vector2(position.x, position.y));
 				}
 			}
-			
-			StartCoroutine(Refresh());
-		}
+			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Surface"))
+                StartCoroutine(Refresh());
+        }
 		
 		private IEnumerator SpawnSlimes()
 		{
@@ -94,7 +95,10 @@ namespace IslandBoy
 			// spawn resources
 			foreach(RscSpawnSetting entry in _rscSpawnSettings)
 			{
-				for (int i = 0; i < entry.SpawnAmount; i++)
+				// choose a number between half and x1.5 the spawn amount
+				int spawnAmount = UnityEngine.Random.Range(entry.SpawnAmount, entry.SpawnAmount * 3) / 2;
+
+                for (int i = 0; i < spawnAmount; i++)
 				{
 					tryAgain:
 					var randPos = GetRandomPosition();
@@ -109,7 +113,7 @@ namespace IslandBoy
 						goto tryAgain;
 					}
 					
-					yield return new WaitForSeconds(0.025f);
+					yield return new WaitForSeconds(0.01f);
 				}
 			}
 		}
@@ -126,7 +130,7 @@ namespace IslandBoy
 		
 		private Vector2 GetRandomPosition()
 		{
-			int randomIndex = UnityEngine.Random.Range(0, _spawnPositions.Count);
+			int randomIndex = UnityEngine.Random.Range(0, _spawnPositions.Count - 1);
 			Vector2 randomPosition = _spawnPositions[randomIndex];
 			
 			return randomPosition;

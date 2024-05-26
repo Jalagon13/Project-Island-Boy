@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 namespace IslandBoy
 {
@@ -24,8 +22,7 @@ namespace IslandBoy
 			EnableAllObjectsInScene(surfaceScene, false); 
 			 
 			yield return StartCoroutine(LoadSceneAdd("StartCave")); 
-			Scene gameWorld = SceneManager.GetSceneByName("StartCave"); 
-			SceneManager.SetActiveScene(gameWorld); 
+			SceneManager.SetActiveScene(SceneManager.GetSceneByName("StartCave")); 
 			
 			GameSignals.SCENE_FINISH_SETUP.Dispatch();
 			SceneManager.UnloadSceneAsync("MainMenu");
