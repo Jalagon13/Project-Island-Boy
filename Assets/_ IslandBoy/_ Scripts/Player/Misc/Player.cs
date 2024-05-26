@@ -160,11 +160,11 @@ namespace IslandBoy
 			if(parameters.HasParameter("EnergyLost"))
 			{
 				var energyLost = (int)parameters.GetParameter("EnergyLost");
-				AddToNrg(-energyLost);
+				// AddToNrg(-energyLost);
 			}
 			else
 			{
-				AddToNrg(-1);
+				// AddToNrg(-1);
 			}
 		}
 
@@ -250,7 +250,7 @@ namespace IslandBoy
 			if (_currentNrg <= 0)
 			{
 				_currentNrg = 0;
-				StartCoroutine(PlayerDead());
+				// StartCoroutine(PlayerDead());
 			}
 
 			Signal signal = GameSignals.PLAYER_NRG_CHANGED;

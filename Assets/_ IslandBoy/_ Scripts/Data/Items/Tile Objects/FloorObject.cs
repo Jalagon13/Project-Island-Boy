@@ -20,8 +20,9 @@ namespace IslandBoy
 			bool groundTmHasTile = control.GroundTm.Tilemap.HasTile(Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position));
 			bool floorTmHasTile = control.FloorTm.Tilemap.HasTile(Vector3Int.FloorToInt(control.CursorControl.gameObject.transform.position));
 			bool tilActionClear = control.CursorControl.IsClear();
-			bool onSurface = SceneManager.GetActiveScene().buildIndex == 2;
+			bool onSurface = SceneManager.GetActiveScene().buildIndex == 4;
 			
+				Debug.Log(!floorTmHasTile);
 			if (groundTmHasTile && !floorTmHasTile && onSurface)
 			{
 				control.FocusSlot.InventoryItem.Count--;
