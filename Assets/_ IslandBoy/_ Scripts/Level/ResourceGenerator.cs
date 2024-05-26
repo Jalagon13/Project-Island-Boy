@@ -130,7 +130,7 @@ namespace IslandBoy
 		
 		private Vector2 GetRandomPosition()
 		{
-			int randomIndex = UnityEngine.Random.Range(0, _spawnPositions.Count - 1);
+			int randomIndex = UnityEngine.Random.Range(0, _spawnPositions.Count);
 			Vector2 randomPosition = _spawnPositions[randomIndex];
 			
 			return randomPosition;
