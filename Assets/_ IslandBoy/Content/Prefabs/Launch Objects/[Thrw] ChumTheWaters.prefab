@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 441054456966309812}
   - component: {fileID: 7287282748272200838}
   - component: {fileID: -7548475521656876078}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: '[Thrw] ChumTheWaters'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,6 @@ MonoBehaviour:
   _enemyDamage: 25
   _animator: {fileID: 8467840353209257037}
   _cooldownTimer: 1.2
-  _manaCostPerCast: 12
 --- !u!1 &282825942256326087
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6192827631131729761}
   - component: {fileID: 123926045977977288}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DetonationFeedbacks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -589,7 +588,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4188854163450556908}
   - component: {fileID: 3613321941397297259}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DamageRadius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -673,7 +672,7 @@ GameObject:
   m_Component:
   - component: {fileID: 73655016460208119}
   - component: {fileID: 1958074319726954210}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Audio Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5690,7 +5689,7 @@ GameObject:
   - component: {fileID: 6075212648598411219}
   - component: {fileID: 5163465828262801351}
   - component: {fileID: 8467840353209257037}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5796,7 +5795,7 @@ GameObject:
   m_Component:
   - component: {fileID: 999867431273546121}
   - component: {fileID: 5852404782644554518}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DummySprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5921,6 +5920,10 @@ PrefabInstance:
     - target: {fileID: 1483596600131035560, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
       propertyPath: m_Name
       value: DynamicLight
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483596600131035560, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6023195277773901937, guid: 1e48a586f5574f34a8448b65698d50d9, type: 3}
       propertyPath: m_PointLightOuterRadius
