@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace IslandBoy
 {
@@ -9,7 +8,8 @@ namespace IslandBoy
         void Start()
         {
             GameSignals.SCENE_FINISH_SETUP.AddListener(EnableUI);
-            gameObject.SetActive(false);
+            if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Surface"))
+                gameObject.SetActive(false);
         }
 
         private void OnDestroy()

@@ -62,6 +62,12 @@ namespace IslandBoy
             yield return new WaitForSeconds(2f);
 
             int displayValue = _convertedExp - 1;
+            float fillBuffer;
+            if (_convertedExp < 15)
+                fillBuffer = 0.1f;
+            else
+                fillBuffer = 1.5f / _convertedExp;
+
             for (int i = 0; i < _convertedExp; i++)
             {
                 _levelSystem.GainExperience(1);
@@ -79,7 +85,7 @@ namespace IslandBoy
 
                 UpdateTime();
                 
-                yield return new WaitForSeconds(0.15f);
+                yield return new WaitForSeconds(fillBuffer);
             }
             
             _category.StoredExp = 0;

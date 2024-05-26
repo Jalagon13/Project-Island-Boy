@@ -82,8 +82,10 @@ namespace IslandBoy
 			if(!_canIncrementExp) return;
 			if(!parameters.HasParameter("SkillCategory")) return;
 			if(_timeController.NoMoreEnergy()) return;
-			
-			SkillCategory skill = (SkillCategory)parameters.GetParameter("SkillCategory");
+			if(_experienceView == null)
+                _experienceView = FindObjectOfType<ExperienceView>();
+
+            SkillCategory skill = (SkillCategory)parameters.GetParameter("SkillCategory");
 			int expAmount = (int)parameters.GetParameter("ExpAmount");
 			
 			if(skill != SkillCategory.None && expAmount > 0)

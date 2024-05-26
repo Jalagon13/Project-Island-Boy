@@ -97,7 +97,7 @@ namespace IslandBoy
 		{
 			if(collision.TryGetComponent<Clickable>(out var clickable))
 			{
-				if (_focusSlotRef.ItemObject is WallObject || _focusSlotRef.ItemObject is FloorObject || _focusSlotRef.ItemObject is DeployObject)
+				if (_focusSlotRef == null || _focusSlotRef.ItemObject is WallObject || _focusSlotRef.ItemObject is FloorObject || _focusSlotRef.ItemObject is DeployObject)
 					return;
 				if (_focusSlotRef.ToolType == clickable.BreakType)
 				{
@@ -130,7 +130,7 @@ namespace IslandBoy
 		
 		private void ExecuteHit()
 		{
-			if (Pointer.IsOverUI() || _focusSlotRef.ItemObject is not ToolObject || _clickTimer.RemainingSeconds > 0 || !_canUseActions || _focusSlotRef == null) return;
+			if (_focusSlotRef == null || Pointer.IsOverUI() || _focusSlotRef.ItemObject is not ToolObject || _clickTimer.RemainingSeconds > 0 || !_canUseActions) return;
 				
 			_sc.PerformAnimation();
 			

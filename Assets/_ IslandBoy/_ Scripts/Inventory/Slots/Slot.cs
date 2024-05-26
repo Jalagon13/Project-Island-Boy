@@ -78,6 +78,8 @@ namespace IslandBoy
 
 		private void OnEnable()
 		{
+			if (_pr.Inventory == null)
+				return;
 			_mouseItemHolder = _pr.Inventory.MouseItemHolder;
 			_maxStack = _pr.Inventory.MaxStack;
 			if (_isChestSlot) _chestOpen = true; // BROOKE

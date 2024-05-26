@@ -26234,6 +26234,7 @@ GameObject:
   - component: {fileID: 5602138070413133697}
   - component: {fileID: 5602138070413133698}
   - component: {fileID: 5602138070413133699}
+  - component: {fileID: 5602138070413133702}
   m_Layer: 0
   m_Name: Inventory Canvas
   m_TagString: Untagged
@@ -26241,6 +26242,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5602138070413133702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5602138070413133701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af89cad081f1b4c4ca55808ce4754042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5602138070472068377
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -90,7 +90,10 @@ namespace IslandBoy
 		
 		private void UpdateView()
 		{
-			_timeView.UpdateTime(_currentTime, _maxTime);
+            if (_timeView == null)
+                _timeView = FindObjectOfType<TimeView>();
+
+            _timeView.UpdateTime(_currentTime, _maxTime);
 		}
 		
 		private void OnDayStart(ISignalParameters parameters)
