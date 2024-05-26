@@ -32,7 +32,7 @@ namespace IslandBoy
 		
 		private void OnEnable()
 		{
-			StartCoroutine(Refresh());
+			//StartCoroutine(Refresh());
 			_currentSlimes = 0;
 			StartCoroutine(SpawnSlimes());
 		}
@@ -59,8 +59,8 @@ namespace IslandBoy
 					_spawnPositions.Add(new Vector2(position.x, position.y));
 				}
 			}
-			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Surface"))
-                StartCoroutine(Refresh());
+			//if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Surface"))
+                Refresh();
         }
 		
 		private IEnumerator SpawnSlimes()
@@ -81,10 +81,10 @@ namespace IslandBoy
 		
 		private void RefreshResources(ISignalParameters parameters)
 		{
-			StartCoroutine(Refresh());
+			Refresh();
 		}
 		
-		private IEnumerator Refresh()
+		private void Refresh()
 		{
 			// Destroy all resources
 			foreach (Transform child in transform)
@@ -112,8 +112,6 @@ namespace IslandBoy
 					{
 						goto tryAgain;
 					}
-					
-					yield return new WaitForSeconds(0.01f);
 				}
 			}
 		}
