@@ -19,9 +19,7 @@ namespace IslandBoy
             gameObject.GetComponent<Rigidbody2D>().simulated = false;
 			_animator.enabled = true;
 
-            //DamageResources();
             DamageEntities();
-            //DamageTiles(Vector3Int.CeilToInt(transform.position), _explodeRadius);
 
 			_sizzlingSource.Stop();
 

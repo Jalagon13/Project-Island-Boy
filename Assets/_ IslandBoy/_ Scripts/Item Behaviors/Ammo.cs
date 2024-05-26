@@ -73,7 +73,7 @@ namespace IslandBoy
 					if (_clickableFound != null) return;
 
 					_clickableFound = clickable;
-					_clickableFound.OnHit(ToolType.Sword, _damage);
+					clickable.Damage(ToolType.Sword, _damage);
 					
 					Destroy(gameObject);
 				}

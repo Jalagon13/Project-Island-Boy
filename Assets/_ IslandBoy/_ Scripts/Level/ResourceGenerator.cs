@@ -33,7 +33,6 @@ namespace IslandBoy
 		
 		private void OnEnable()
 		{
-			//StartCoroutine(Refresh());
 			_currentSlimes = 0;
 			StartCoroutine(SpawnSlimes());
 		}
@@ -61,8 +60,7 @@ namespace IslandBoy
 					_spawnPositions.Add(new Vector2(position.x, position.y));
 				}
 			}
-			//if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Surface"))
-                Refresh();
+			Refresh();
         }
 		
 		private IEnumerator SpawnSlimes()
