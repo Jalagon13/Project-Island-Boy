@@ -28,6 +28,7 @@ namespace IslandBoy
 		private void Awake()
 		{
 			GameSignals.DAY_START.AddListener(RefreshResources);
+			GameSignals.DAY_END.AddListener(StopMonsterSpawn);
 		}
 		
 		private void OnEnable()
@@ -45,7 +46,8 @@ namespace IslandBoy
 		private void OnDestroy()
 		{
 			GameSignals.DAY_START.RemoveListener(RefreshResources);
-		}
+            GameSignals.DAY_END.RemoveListener(StopMonsterSpawn);
+        }
 		
 		private void Start()
 		{
@@ -82,6 +84,11 @@ namespace IslandBoy
 		private void RefreshResources(ISignalParameters parameters)
 		{
 			Refresh();
+		}
+
+		private void StopMonsterSpawn(ISignalParameters parameters)
+		{
+			StopAllCoroutines();
 		}
 		
 		private void Refresh()
