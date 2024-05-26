@@ -117,7 +117,19 @@ namespace IslandBoy
 			GameSignals.MONSTER_KILLED.Dispatch();
 			GiveMoney();
 
-			base.OnBreak();
+			_lootTable.SpawnLoot(_dropPosition);
+			AStarExtensions.Instance.UpdatePathfinding(transform.position, new(2,2,2));
+			PlayDestroyFeedbacks();
+			StopAllCoroutines();
+			
+			Signal signal = GameSignals.CLICKABLE_DESTROYED;
+			signal.ClearParameters();
+			signal.AddParameter("TimeAmount", _maxHitPoints / 3);
+			signal.AddParameter("SkillCategory", _skillCategory);
+			signal.AddParameter("ExpAmount", _expAmount);
+			signal.Dispatch();
+			
+			Destroy(gameObject);
 		}
 		
 		public void GiveMoney()

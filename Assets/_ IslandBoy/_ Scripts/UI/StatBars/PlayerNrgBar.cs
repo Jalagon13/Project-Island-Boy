@@ -11,6 +11,7 @@ namespace IslandBoy
 	{
 		[SerializeField] private PlayerObject _pr;
 		[SerializeField] private MMF_Player _hungryFeedback;
+		[SerializeField] private MMF_Player _hungerFilledFeedback;
 		
 		private int _currentNrg;
 		private int _maxNrg;
@@ -54,6 +55,8 @@ namespace IslandBoy
 			if(_currentNrg >= _maxNrg && !_hungerQuotaFilled)
 			{
 				GameSignals.HUNGER_RESTORED.Dispatch();
+				_hungerFilledFeedback?.PlayFeedbacks();
+				PopupMessage.Create(_pr.Position, $"+1 Multiplier!", Color.green, new(0.5f, 0.5f), 1f);
 				_hungerQuotaFilled = true;
 			}
 		}

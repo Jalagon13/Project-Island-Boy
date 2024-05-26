@@ -15,7 +15,7 @@ namespace IslandBoy
 		[SerializeField] protected int _expAmount;
 		[SerializeField] protected ToolType _breakType;
 		[SerializeField] protected ToolTier _breakTier;
-		[SerializeField] private SkillCategory _skillCategory;
+		[SerializeField] protected SkillCategory _skillCategory;
 		[SerializeField] protected MMF_Player _clickFeedback;
 		[SerializeField] protected MMF_Player _destroyFeedback;
 		[SerializeField] protected LootTable _lootTable;
