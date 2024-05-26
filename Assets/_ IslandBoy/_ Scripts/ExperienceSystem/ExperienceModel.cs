@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace  IslandBoy
 {
 	public class Category
 	{
 		public SkillCategory Skill;
+		public Image PanelLogo;
 		public int StoredExp; // stored Exp that will be added to the level system at the end of the day
 		private LevelSystem _levelSystem;
 		public LevelSystem LevelSystem => _levelSystem;
