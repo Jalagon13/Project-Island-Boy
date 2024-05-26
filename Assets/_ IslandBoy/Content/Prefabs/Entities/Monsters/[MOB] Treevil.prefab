@@ -11472,8 +11472,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxHitPoints: 550
+  _expAmount: 50
   _breakType: 3
   _breakTier: 0
+  _skillCategory: 4
   _clickFeedback: {fileID: 4857741665004852582}
   _destroyFeedback: {fileID: 6431521983977084862}
   _lootTable:
@@ -11501,6 +11503,7 @@ MonoBehaviour:
   _cantBreakInstructions: {fileID: 0}
   _entityName: Treevil
   _xpAmount: 250
+  _destroyEntityOnPlayerDeath: 0
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _entityRts: {fileID: 11400000, guid: b8395270c8b53467b8a3f0ce6f083313, type: 2}
   _onDamage:

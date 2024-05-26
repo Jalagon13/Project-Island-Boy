@@ -24025,8 +24025,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _po: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _maxHitPoints: 100
+  _expAmount: 10
   _breakType: 3
   _breakTier: 0
+  _skillCategory: 4
   _clickFeedback: {fileID: 2180959547788177693}
   _destroyFeedback: {fileID: 5200139754911122493}
   _lootTable:
@@ -24035,8 +24037,10 @@ MonoBehaviour:
       Min: 1
       Max: 1
       Chance: 100
+  _cantBreakInstructions: {fileID: 0}
   _entityName: Monster Heart
   _xpAmount: 100
+  _destroyEntityOnPlayerDeath: 0
   _pr: {fileID: 11400000, guid: acf810fa69a4abc4d8064d6382efe8fb, type: 2}
   _entityRts: {fileID: 11400000, guid: b8395270c8b53467b8a3f0ce6f083313, type: 2}
   _onDamage:
