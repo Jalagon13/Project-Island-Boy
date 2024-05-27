@@ -31,7 +31,7 @@ namespace IslandBoy
             Vector3 playerPosition = control.Player.transform.position;
 
             Ammo ammo = Instantiate(_launchPrefab, playerPosition + new Vector3(0, 0.65f), Quaternion.identity);
-            Vector3 direction = (control.CursorControl.transform.position - ammo.transform.position).normalized;
+            Vector3 direction = ((Vector3)_pr.MousePosition - ammo.transform.position).normalized;
             ammo.Setup(this, _ammo, direction);
 
             MMSoundManagerSoundPlayEvent.Trigger(_launchSound, MMSoundManager.MMSoundManagerTracks.Sfx, control.transform.position);

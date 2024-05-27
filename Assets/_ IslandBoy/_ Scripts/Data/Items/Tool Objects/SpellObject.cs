@@ -25,7 +25,7 @@ namespace IslandBoy
         {
             if (!control.Player.HasEnoughManaToCast(_manaCostPerCast))
             {
-                PopupMessage.Create(control.Player.transform.position, $"You have no mana!", Color.yellow, Vector2.up, 1f);
+                PopupMessage.Create(control.Player.transform.position, $"You need more mana!", Color.yellow, Vector2.up, 1f);
                 return;
             }
 
