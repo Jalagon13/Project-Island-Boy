@@ -24,8 +24,8 @@ namespace IslandBoy
 			Vector3 playerPosition = control.Player.transform.position;
 
 			Throwable throwObject = Instantiate(_throwPrefab, playerPosition + new Vector3(0, 0.65f), Quaternion.identity);
-			Vector3 direction = (control.CursorControl.transform.position - throwObject.transform.position).normalized;
-			throwObject.Setup(direction);
+			Vector3 direction = ((Vector3)_pr.MousePosition - throwObject.transform.position).normalized;
+            throwObject.Setup(direction);
 			
 			MMSoundManagerSoundPlayEvent.Trigger(_launchSound, MMSoundManager.MMSoundManagerTracks.Sfx, default);
 		}
