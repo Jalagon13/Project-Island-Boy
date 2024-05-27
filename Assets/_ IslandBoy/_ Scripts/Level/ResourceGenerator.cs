@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace IslandBoy
 {
@@ -127,6 +126,8 @@ namespace IslandBoy
 			
 			if(appendToLevel)
 				r.transform.SetParent(transform);
+			if (UnityEngine.Random.Range(0, 2) == 1)
+				r.transform.GetComponentInChildren<SpriteRenderer>().flipX = true;
 				
 			return r;
 		}

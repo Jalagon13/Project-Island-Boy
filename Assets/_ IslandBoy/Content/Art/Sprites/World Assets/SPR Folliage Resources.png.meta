@@ -194,7 +194,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -202,6 +202,48 @@ TextureImporter:
       bones: []
       spriteID: f9994e3c62e815a46bd7d7cf18f9e2c1
       internalID: 567193946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rsc_large_log
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a3b3408673847a4485271d87b872df9
+      internalID: -1947866161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rsc_large_mushroom
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 18
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b31f2fbc66107db45baa62f3c8b5e219
+      internalID: 1851662652
       vertices: []
       indices: 
       edges: []
@@ -218,6 +260,8 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       rsc_large_cactus: -1998174806
+      rsc_large_log: -1947866161
+      rsc_large_mushroom: 1851662652
       rsc_sand: 567193946
       rsc_small_cactus: -830259932
       rsc_tumble_weed: 1173731923

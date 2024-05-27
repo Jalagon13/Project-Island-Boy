@@ -363,7 +363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _maxHitPoints
-      value: 6
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _skillCategory
@@ -374,6 +374,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 246382689600776459}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Max
       value: 9
       objectReference: {fileID: 0}
@@ -382,9 +386,41 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[1].Max
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[1].Min
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[2].Max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[2].Min
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: _lootTable.<Table>k__BackingField.Array.data[0].Item
       value: 
       objectReference: {fileID: 11400000, guid: a89d325f56e1521458a926e9cc55bc79, type: 2}
+    - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[1].Item
+      value: 
+      objectReference: {fileID: 11400000, guid: 47c3a9b74278ee349b95932b23f8112c, type: 2}
+    - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[2].Item
+      value: 
+      objectReference: {fileID: 11400000, guid: 847fa5b490bd8174cac64b327757844a, type: 2}
+    - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[1].Chance
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2107207712863143465, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
+      propertyPath: _lootTable.<Table>k__BackingField.Array.data[2].Chance
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2456008257036638237, guid: 6d3657d3566f2b04c98f4143ed754397, type: 3}
       propertyPath: m_Name
       value: '[RSC] Really Hardstone'

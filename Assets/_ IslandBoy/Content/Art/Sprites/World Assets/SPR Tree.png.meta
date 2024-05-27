@@ -194,7 +194,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -202,6 +202,27 @@ TextureImporter:
       bones: []
       spriteID: 345723db2157fde4780f49952cc78be8
       internalID: -2066864580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rsc_palm_tree
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 0
+        width: 43
+        height: 73
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e14fa05bc87e75a41b0479a53907c627
+      internalID: -1212540
       vertices: []
       indices: 
       edges: []
@@ -219,6 +240,7 @@ TextureImporter:
     nameFileIdTable:
       rsc_bush: 1939293987
       rsc_mushroom: -2066864580
+      rsc_palm_tree: -1212540
       rsc_small_log: 349764897
       rsc_tree: -1302916514
   mipmapLimitGroupName: 

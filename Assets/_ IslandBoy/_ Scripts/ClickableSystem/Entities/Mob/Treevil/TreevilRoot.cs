@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace IslandBoy
@@ -32,6 +30,7 @@ namespace IslandBoy
                     timer = 0;
                     rootSprite.SetActive(true);
                     warningSprite.SetActive(false);
+                    gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
                 }
             }
             else if (timer > _attackLength)

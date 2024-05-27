@@ -58,7 +58,7 @@ namespace IslandBoy
 
             FishingHook hook = Instantiate(_launchPrefab, playerPosition + new Vector3(0, 0.65f), Quaternion.identity);
             _currentHook = hook.gameObject;
-            Vector3 direction = (control.CursorControl.transform.position - hook.transform.position).normalized;
+            Vector3 direction = ((Vector3)_pr.MousePosition - hook.transform.position).normalized;
             hook.Setup(this, direction);
 
             MMSoundManagerSoundPlayEvent.Trigger(_launchSound, MMSoundManager.MMSoundManagerTracks.Sfx, control.transform.position);
