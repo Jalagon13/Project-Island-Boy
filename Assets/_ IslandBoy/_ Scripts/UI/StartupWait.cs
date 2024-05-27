@@ -8,8 +8,8 @@ namespace IslandBoy
         void Start()
         {
             GameSignals.SCENE_FINISH_SETUP.AddListener(EnableUI);
-            if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Surface"))
-                gameObject.SetActive(false);
+            // if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Surface"))
+            //     gameObject.SetActive(false);
         }
 
         private void OnDestroy()
