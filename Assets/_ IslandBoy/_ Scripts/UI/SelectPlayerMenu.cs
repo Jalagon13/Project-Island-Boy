@@ -4,18 +4,20 @@ using UnityEngine;
 
 namespace IslandBoy
 {
-    public class SelectPlayerMenu : MonoBehaviour
-    {
+	public class SelectPlayerMenu : MonoBehaviour
+	{
 		[SerializeField] private PlayerObject _pr;
 		[SerializeField] private GameObject selectMenu;
 
-		private void Start()
+		private IEnumerator Start()
 		{
+			yield return new WaitForEndOfFrame();
 			PauseGame();
 		}
 
 		public void PauseGame()
 		{
+			if(_pr.Inventory == null) return;
 			if (_pr.Inventory.InventoryControl.IsInventoryOpen)
 			{
 				GameSignals.INVENTORY_CLOSE.Dispatch();
