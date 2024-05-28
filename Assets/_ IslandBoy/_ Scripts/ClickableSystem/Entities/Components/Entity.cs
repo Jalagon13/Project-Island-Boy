@@ -109,11 +109,11 @@ namespace IslandBoy
 		}
 
 		public override void OnBreak()
-        {
-            if (_entityName == "Treevil") // will only be set off if the entity is a Treevil
+		{
+			if (_entityName == "Treevil") // will only be set off if the entity is a Treevil
 				GameSignals.TREEVIL_VANQUISHED.Dispatch();
 
-            _dropPosition = transform.position;
+			_dropPosition = transform.position;
 			GameSignals.MONSTER_KILLED.Dispatch();
 			GiveMoney();
 
@@ -124,7 +124,15 @@ namespace IslandBoy
 			
 			Signal signal = GameSignals.CLICKABLE_DESTROYED;
 			signal.ClearParameters();
-			signal.AddParameter("TimeAmount", _maxHitPoints / 3);
+			if (_entityName == "Treevil")
+			{
+				signal.AddParameter("TimeAmount", 0);
+			}
+			else
+			{
+				signal.AddParameter("TimeAmount", _maxHitPoints / 3);
+			}
+			
 			signal.AddParameter("SkillCategory", _skillCategory);
 			signal.AddParameter("ExpAmount", _expAmount);
 			signal.Dispatch();
