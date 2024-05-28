@@ -134,7 +134,9 @@ namespace IslandBoy
 			foreach (string npc in NpcSlots.Instance.AllNPCs)
 			{
 				if (NpcSlots.Instance.HasBeenFreed(npc))
+				{
 					_npcIcons.transform.Find(npc).gameObject.SetActive(true);
+				}
 			}
 		}
 
@@ -170,6 +172,11 @@ namespace IslandBoy
 				{
 					//_feedbackHolder.DisplayFeedback("Not valid housing. Make sure the area around you is enclosed.", Color.yellow);
 					// PopupMessage.Create(transform.position, "Area not enclosed with floor and wall or missing a door", Color.yellow, new(0.5f, 0.5f), 3f);
+					Debug.Log("1");
+					Debug.Log(!_floorTm.Tilemap.HasTile(p));
+					Debug.Log(!_wallTm.Tilemap.HasTile(p));
+					Debug.Log(!HasDoor(p));
+					Debug.Log(p);
 					return false;
 				}
 
@@ -184,6 +191,7 @@ namespace IslandBoy
 				if (HasBed(p))
 				{
 					print("Too many beds!");
+					Debug.Log("2");
 					return false;
 				}
 
@@ -210,13 +218,15 @@ namespace IslandBoy
 			if (_floorTilePositions.Count < 9)
 			{
 				// PopupMessage.Create(transform.position, "Space too small!", Color.yellow, new(0.5f, 0.5f), 1f);
+				Debug.Log("3");
 				return false;
 			}
 
 			// if floor tile positions are greater than 100 tiles, then housing is too big.
-			if (_floorTilePositions.Count > 100)
+			if (_floorTilePositions.Count > 200)
 			{
 				// PopupMessage.Create(transform.position, "Space too large!", Color.yellow, new(0.5f, 0.5f), 1f);
+				Debug.Log("4");
 				return false;
 			}
 
@@ -224,6 +234,7 @@ namespace IslandBoy
 			if (doorPositions.Count <= 0)
 			{
 				// PopupMessage.Create(transform.position, "No door found!", Color.yellow, new(0.5f, 0.5f), 1f);
+				Debug.Log("5");
 				return false;
 			}
 
@@ -277,6 +288,7 @@ namespace IslandBoy
 			if (!validDoorFound)
 			{
 				// PopupMessage.Create(transform.position, "Door must lead to outside!", Color.yellow, new(0.5f, 0.5f), 1f);
+				Debug.Log("6");
 				return false;
 			}
 
