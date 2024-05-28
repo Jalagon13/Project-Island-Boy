@@ -26,7 +26,7 @@ namespace IslandBoy
 			GameSignals.PLAYER_NRG_CHANGED.AddListener(UpdateEnergyUI);
 			GameSignals.PLAYER_HUNGRY_WARNING.AddListener(HungerGameFeel);
 			GameSignals.DAY_START.AddListener(ResetHunger);
-			_pr.GameObject.GetComponent<Player>().DispatchNrgChange();
+			
 		}
 
 		private void OnDestroy()
@@ -34,6 +34,12 @@ namespace IslandBoy
 			GameSignals.PLAYER_NRG_CHANGED.RemoveListener(UpdateEnergyUI);
 			GameSignals.PLAYER_HUNGRY_WARNING.RemoveListener(HungerGameFeel);
 			GameSignals.DAY_START.RemoveListener(ResetHunger);
+		}
+		
+		private IEnumerator Start()
+		{
+			yield return new WaitForEndOfFrame();
+			_pr.GameObject.GetComponent<Player>().DispatchNrgChange();
 		}
 		
 		private void HungerGameFeel(ISignalParameters parameters)

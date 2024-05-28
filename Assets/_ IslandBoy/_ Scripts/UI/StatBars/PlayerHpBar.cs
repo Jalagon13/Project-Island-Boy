@@ -6,36 +6,41 @@ using UnityEngine.UI;
 
 namespace IslandBoy
 {
-    public class PlayerHpBar : MonoBehaviour
-    {
-        [SerializeField] private PlayerObject _pr;
-        private int _currentHp;
-        private int _maxHp;
+	public class PlayerHpBar : MonoBehaviour
+	{
+		[SerializeField] private PlayerObject _pr;
+		private int _currentHp;
+		private int _maxHp;
 
-        private Image _fillImage;
-        private TextMeshProUGUI _counter;
+		private Image _fillImage;
+		private TextMeshProUGUI _counter;
 
-        private void Awake()
-        {
-            _fillImage = transform.GetChild(0).GetChild(0).GetComponent<Image>();
-            _counter = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+		private void Awake()
+		{
+			_fillImage = transform.GetChild(0).GetChild(0).GetComponent<Image>();
+			_counter = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
 
-            GameSignals.PLAYER_HP_CHANGED.AddListener(UpdateHealthUI);
-            _pr.GameObject.GetComponent<Player>().DispatchHpChange();
-        }
+			GameSignals.PLAYER_HP_CHANGED.AddListener(UpdateHealthUI);
+		}
 
-        private void OnDestroy()
-        {
-            GameSignals.PLAYER_HP_CHANGED.RemoveListener(UpdateHealthUI);
-        }
+		private void OnDestroy()
+		{
+			GameSignals.PLAYER_HP_CHANGED.RemoveListener(UpdateHealthUI);
+		}
 
-        private void UpdateHealthUI(ISignalParameters parameters)
-        {
-            _currentHp = (int)parameters.GetParameter("CurrentHp");
-            _maxHp = (int)parameters.GetParameter("MaxHp");
+		private IEnumerator Start()
+		{
+			yield return new WaitForEndOfFrame();
+			_pr.GameObject.GetComponent<Player>().DispatchNrgChange();
+		}
 
-            _fillImage.fillAmount = Mathf.Clamp01(Mathf.InverseLerp(0, _maxHp, _currentHp));
-            _counter.text = _currentHp.ToString();
-        }
-    }
+		private void UpdateHealthUI(ISignalParameters parameters)
+		{
+			_currentHp = (int)parameters.GetParameter("CurrentHp");
+			_maxHp = (int)parameters.GetParameter("MaxHp");
+
+			_fillImage.fillAmount = Mathf.Clamp01(Mathf.InverseLerp(0, _maxHp, _currentHp));
+			_counter.text = _currentHp.ToString();
+		}
+	}
 }
