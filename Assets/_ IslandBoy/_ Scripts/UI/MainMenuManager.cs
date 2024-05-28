@@ -11,6 +11,11 @@ namespace IslandBoy
 			StartCoroutine(LoadScenes());
 		}
 
+		public void LoadDemoWorld()
+		{
+			StartCoroutine (LoadDemo());
+		}
+
 		private IEnumerator LoadScenes()
 		{
 			yield return StartCoroutine(LoadSceneAdd("Player"));  
@@ -27,6 +32,17 @@ namespace IslandBoy
 			GameSignals.SCENE_FINISH_SETUP.Dispatch();
 			SceneManager.UnloadSceneAsync("MainMenu");
 		}
+
+		private IEnumerator LoadDemo()
+		{
+            yield return StartCoroutine(LoadSceneAdd("Player"));
+            yield return StartCoroutine(LoadSceneAdd("IngameUI"));
+            yield return StartCoroutine(LoadSceneAdd("DemoWorld"));
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName("DemoWorld"));
+
+            GameSignals.SCENE_FINISH_SETUP.Dispatch();
+            SceneManager.UnloadSceneAsync("MainMenu");
+        }
 		
 		private void EnableAllObjectsInScene(Scene scene, bool _)
 		{
